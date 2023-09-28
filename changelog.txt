@@ -1,0 +1,25 @@
+
+[h1]Shortsword Update[/h1]
+- Make boss more dodgeble and fixed damage
+- Added stupid content from `Supreme Calamitas in Vanilla` Mod (Hello, AdamChromeE)
+- Added shortswords:
+	- Exo Gladius
+	- Terra Shiv
+	- Tomutus
+	- Coldheart Icicle
+	- Caliburn, True Caliburn
+	- Disease
+- Added Shortstrike mechanic (Special effect with cooldown)
+- Added blades:
+	- Blade of Enmity
+	- Crimsaber
+	- Mandible Claws
+	- RGB Murasama
+- Added other weapons:
+	- Lead Wizard
+	- Impaler
+	- Charged Dart Blaster
+	- Hadopelagic Echo
+- Added ammos:
+	- Profanned Dart
+- Added Reality Relocator (Rof of Harmony variant of Normality Relocator)

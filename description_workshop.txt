@@ -1,0 +1,16 @@
+Clamitas Addon is mod for Calamity which adds serious and unserious content from Calamity Fandom wiki and not only. It is my first addon for calamity
+
+[h1]Content[/h1]
+[list]
+	[*]This mod add a Legendary Clamitas, Supreme Clam, from calamity memes. Clamitas is post-Calamitas Clone boss which summoned by Clamitous Shell in Brimstone Crags
+	[*]Also mod adds a upgraded version of [b]Mollusk Armor[/b], [b]Supreme Luck Potion[/b] and [b]Giant Clam`s Weapons[/b].
+	[*]Mod adds a removed from Calamity Mod Shortswords with rework
+	[*]Has support of Boss Checklist
+[/list]
+
+[h1]Credits[/h1]
+Thanks StarvoXD for motivation and music theme for Clamitas
+Fandom Wiki for sprites and ideas
+YOU for downloading this project
+
+[h1]My discord server:[url=https://discord.gg/7auk3bDb3K] Link[/url][/h1]

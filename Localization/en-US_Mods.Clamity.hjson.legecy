@@ -1,0 +1,222 @@
+# This file will automatically update with entries for new content after a build and reload
+
+Items: {
+	AAA: {
+		DisplayName: A A A
+		Tooltip: ""
+	}
+
+	Materials: {
+		HuskOfCalamity: {
+			Tooltip: The remains of a hell mollusk
+			DisplayName: Husk Of Calamity
+		}
+	}
+
+	ClamitousPearl: {
+		Tooltip: Its clammin' time
+		DisplayName: Clamitous Pearl
+	}
+
+	SupremeLuckPotion: {
+		Tooltip: Greatly increases the Luck of the user
+		DisplayName: Supreme Luck Potion
+	}
+
+	Lore: {
+		LoreWhat: {
+			DisplayName: Clamitas
+			Lore: I won't comment on what it is. No. No. I don't comment that much
+		}
+	}
+
+	ClamitasShelleggings: {
+		DisplayName: Clamitas Shelleggings
+		Tooltip: 20% increased damage and 9% increased critical strike chance
+	}
+
+	ClamitasShellmet: {
+		DisplayName: Clamitas Shellmet
+		Tooltip:
+			'''
+			20% increased damage and 9% increased critical strike chance
+			Periodically rains down prism shards that can briefly stun enemies
+			'''
+		SetBonus:
+			'''
+			Three shellfishes aid you in combat
+			4 increased max minions
+			'''
+	}
+
+	ClamitasShellplate: {
+		DisplayName: Clamitas Shellplate
+		Tooltip:
+			'''
+			15% increased damage and 4% increased critical strike chance
+			Enemies within the aura are slowed down
+			Does not work while a boss is alive
+			Provides a small amount of light in the abyss
+			'''
+	}
+
+	ClamitasSummoningItem: {
+		Tooltip:
+			'''
+			Summons the Clamitas when used in Brimstone Crags
+			Not consumable
+			'''
+		DisplayName: Clamitous Shell
+	}
+
+	ClamitasMusicbox: {
+		DisplayName: Music Box (Clamitas)
+		Tooltip: ""
+	}
+
+	ClamitasRelic: {
+		DisplayName: Clamitas Relic
+		Tooltip: ""
+	}
+
+	Weapons: {
+		Melee: {
+			ClamitasCrusher: {
+				DisplayName: Clamitas Crusher
+				Tooltip:
+					'''
+					Launches a medium clamitas that stuns enemies for a short amount of time
+					Create a homing brimstone bolts in trail or enemy hit
+					Starts being affected by gravity and does much more damage after being airborne for a while
+					'''
+			}
+
+			ExoGladius: {
+				DisplayName: Exo Gladius
+				Tooltip: ""
+			}
+		}
+
+		Ranged: {
+			DepthsEchoRifle: {
+				DisplayName: Depths Echo Rifle
+				Tooltip: Converts musket balls into homing brimstone bolts
+			}
+
+			Obsidigun: {
+				DisplayName: Obsidigun
+				Tooltip: ""
+			}
+		}
+
+		Summon: {
+			HellstoneShellfishStaff: {
+				Tooltip:
+					'''
+					Summons a hellstone shellfish to fight for you
+					Each shellfish takes 2 minion slots
+					'''
+				DisplayName: Hellstone Shellfish Staff
+			}
+		}
+	}
+
+	EyeofStupidity: {
+		DisplayName: Eye of Stupidity
+		Tooltip:
+			'''
+			Summon a Legendary Supreme Supreme Calamitas of Supremity in Xeroc`a Cloth from Supreme
+			Hello, AdamChromeE
+			'''
+	}
+
+	ExoGladius: {
+		DisplayName: Exo Gladius
+		Tooltip: ""
+	}
+
+	SummonBoss: {
+		ClamitasSummoningItem: {
+			DisplayName: Clamitas Summoning Item
+			Tooltip: ""
+		}
+
+		EyeofStupidity: {
+			DisplayName: Eyeof Stupidity
+			Tooltip: ""
+		}
+	}
+
+	Armor: {
+		Clamitas: {
+			ClamitasShelleggings: {
+				DisplayName: Clamitas Shelleggings
+				Tooltip: ""
+			}
+
+			ClamitasShellmet: {
+				DisplayName: Clamitas Shellmet
+				Tooltip: ""
+			}
+
+			ClamitasShellplate: {
+				DisplayName: Clamitas Shellplate
+				Tooltip: ""
+			}
+		}
+	}
+
+	Potions: {
+		SupremeLuckPotion: {
+			DisplayName: Supreme Luck Potion
+			Tooltip: ""
+		}
+	}
+}
+
+NPCs: {
+	ClamitasBoss: {
+		DisplayName: Clamitas, Supreme Clam
+		Bestiary: Cursed Giant Clam by Calamitas himself, clematis absorbed the power of brimstone. There is no power left in the pearl from the ocean. No scoundrel can resist the power of Clamitas itself
+
+		BossChecklistIntegration: {
+			SpawnInfo: Use an [i:Clamity/ClamitasSummoningItem] in the Brimstone Crags
+			DespawnMessage: "[c/FFD700:The Clamitas returns into hiding in its grotto.]"
+		}
+	}
+
+	Stupid.DisplayName: Legendary Supreme Supreme Calamitas of Supremity in Xeroc`a Cloth from Supreme
+}
+
+Buffs: {
+	SupremeLucky: {
+		Description: You are feeling very lucky
+		DisplayName: Supreme Lucky
+	}
+
+	HellstoneShellfishStaffBuff: {
+		Description: The hellstone shellfish will protect you
+		DisplayName: Hellstone Shellfish
+	}
+}
+
+Tiles.ClamitasMusicboxTile.MapEntry: Clamitas Musicbox Tile
+
+Projectiles: {
+	Melee: {
+		ClamitasCrusherProjectile.DisplayName: Clamitas Crusher
+		ExoGladiusBeam.DisplayName: Exo Gladius Beam
+		ExoGladiusExplosion.DisplayName: Exo Gladius Explosion
+		ExoGladiusProjectile.DisplayName: Exo Gladius Projectile
+	}
+
+	Ranged: {
+		DepthsEchoRifleProjectile.DisplayName: Depths Echo Rifle Energy
+		DepthsEchoRifleProjectileSplit.DisplayName: Depths Echo Rifle Energy Split
+	}
+
+	Summon.HellstoneShellfishStaffMinion.DisplayName: Hellstone Shellfish
+	ExoGladiusProjectile.DisplayName: Exo Gladius Projectile
+	ObsidigunBullet.DisplayName: Obsidigun Bullet
+	ObsidigunBulletShard.DisplayName: Obsidigun Bullet Shard
+}
