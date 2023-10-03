@@ -3,12 +3,13 @@
 - Make boss more dodgeble and fixed damage
 - Added stupid content from `Supreme Calamitas in Vanilla` Mod (Hello, AdamChromeE)
 - Added shortswords:
-	- Exo Gladius
-	- Terra Shiv
+	- Spore Knife
 	- Tomutus
 	- Coldheart Icicle
 	- Caliburn, True Caliburn
+	- Terra Shiv
 	- Disease
+	- Exo Gladius
 - Added Shortstrike mechanic (Special effect with cooldown)
 - Added blades:
 	- Blade of Enmity
@@ -21,5 +22,5 @@
 	- Charged Dart Blaster
 	- Hadopelagic Echo
 - Added ammos:
-	- Profanned Dart
+	- Profaned Dart
 - Added Reality Relocator (Rof of Harmony variant of Normality Relocator)

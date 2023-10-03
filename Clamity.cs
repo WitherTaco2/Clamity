@@ -1,17 +1,17 @@
 using System.Collections.Generic;
 using System;
-using Terraria.ModLoader;
-using CalamityMod.NPCs.CalClone;
 using Clamity.Content.Boss.Clamitas;
-using CalamityMod.Items.SummonItems;
-using CalamityMod.Items.Armor.Vanity;
-using CalamityMod.Items.LoreItems;
-using CalamityMod.Items.Placeables.Furniture.DevPaintings;
-using CalamityMod.Items.Placeables.Furniture.Trophies;
 using Clamity.Content.Boss.Clamitas.Drop;
 using Clamity.Content.Boss.Clamitas.Other;
-using CalamityMod.Cooldowns;
 using Clamity.Content.Cooldowns;
+using CalamityMod.Cooldowns;
+using CalamityMod.UI.CalamitasEnchants;
+using CalamityMod;
+using CalamityMod.Items.Accessories;
+using CalamityMod.NPCs.CalClone;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace Clamity
 {
@@ -22,7 +22,31 @@ namespace Clamity
         {
             mod = this;
             CooldownRegistry.Register<ShortstrikeCooldown>(ShortstrikeCooldown.ID);
+            /*EnchantmentManager.EnchantmentList.Add(
+                new Enchantment(
+                    ClamityUtils.GetText("UI.Enchantments.AflameAcc.DisplayName"),
+                    ClamityUtils.GetText("UI.Enchantments.AflameAcc.Description"),
+                    10000,
+                    "CalamityMod/UI/CalamitasEnchantments/CurseIcon_Aflame",
+                    (player => player.Clamity().aflameAcc = true),
+                    (item => item.IsEnchantable() && item.accessory 
+                        //&& ClamityUtils.ContainType(item.type, ModContent.ItemType<LuxorsGift>(), ModContent.ItemType<FungalClump>(), ModContent.ItemType<WifeinaBottle>(), ModContent.ItemType<EyeoftheStorm>(), ModContent.ItemType<RoseStone>(), ModContent.ItemType<PearlofEnthrallment>(), ModContent.ItemType<HeartoftheElements>())
+                    )
+                )
+            );*/
+            //CalamityMod.CalamityMod
+            ModLoader.GetMod("CalamityMod").Call(
+                "CreateEnchantment",
+                ClamityUtils.GetText("UI.Enchantments.AflameAcc.DisplayName"),
+                ClamityUtils.GetText("UI.Enchantments.AflameAcc.Description"),
+                10000,
+                new Predicate<Item>(EnchantableAcc),
+                "CalamityMod/UI/CalamitasEnchantments/CurseIcon_Aflame",
+                delegate (Player player) { player.Clamity().aflameAcc = true; }
+
+            );
         }
+        private static bool EnchantableAcc(Item item) => !item.IsAir && item.maxStack == 1 && item.ammo == AmmoID.None && item.accessory;
         public override void Unload()
         {
             mod = null;
@@ -43,29 +67,18 @@ namespace Clamity
             });
 
 
-            /*
-              string str11 = "CalamitasClone";
-              float difficulty11;
-              WeakReferenceSupport.ModProgression.TryGetValue(str11, out difficulty11);
-              int num6 = ModContent.NPCType<CalamitasClone>();
-              List<int> intList14 = new List<int>()
-              {
-                ModContent.ItemType<CalamitasCloneRelic>(),
-                ModContent.ItemType<CalamitasCloneTrophy>(),
-                ModContent.ItemType<CataclysmTrophy>(),
-                ModContent.ItemType<CatastropheTrophy>(),
-                ModContent.ItemType<CalamitasCloneMask>(),
-                ModContent.ItemType<HoodOfCalamity>(),
-                ModContent.ItemType<RobesOfCalamity>(),
-                ModContent.ItemType<LoreCalamitasClone>(),
-                ModContent.ItemType<ThankYouPainting>()
-              };
-              WeakReferenceSupport.AddBoss(bossChecklist, calamity, str11, difficulty11, (object) num6, Downed.DownedCalClone, new Dictionary<string, object>()
-              {
-                ["spawnItems"] = (object) ModContent.ItemType<EyeofDesolation>(),
-                ["collectibles"] = (object) intList14
-              });
-            */
+            /*EnchantmentManager.EnchantmentList.Add(
+                new Enchantment(
+                    ClamityUtils.GetText("UI.Enchantments.AflameAcc.DisplayName"),
+                    ClamityUtils.GetText("UI.Enchantments.AflameAcc.Description"),
+                    10000,
+                    "CalamityMod/UI/CalamitasEnchantments/CurseIcon_Aflame",
+                    (player => player.Clamity().aflameAcc = true),
+                    (item => item.IsEnchantable() && item.accessory
+                    //&& ClamityUtils.ContainType(item.type, ModContent.ItemType<LuxorsGift>(), ModContent.ItemType<FungalClump>(), ModContent.ItemType<WifeinaBottle>(), ModContent.ItemType<EyeoftheStorm>(), ModContent.ItemType<RoseStone>(), ModContent.ItemType<PearlofEnthrallment>(), ModContent.ItemType<HeartoftheElements>())
+                    )
+                )
+            );*/
         }
         private void AddBoss(
           Mod bossChecklist,

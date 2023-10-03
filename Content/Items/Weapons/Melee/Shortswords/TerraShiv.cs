@@ -98,6 +98,12 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
             int num = Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center, Projectile.velocity * 0.1f, ModContent.ProjectileType<TerraShivSlash>(), (int)(Projectile.damage * 1f), Projectile.knockBack, Projectile.owner, a, 4);
 
         }
+        public override void ExtraBehavior()
+        {
+            if (!Utils.NextBool(Main.rand, 5))
+                return;
+            Dust.NewDust(new Vector2((float)Projectile.Hitbox.X, (float)Projectile.Hitbox.Y), Projectile.Hitbox.Width, Projectile.Hitbox.Height, 107, 0.0f, 0.0f, 0, new Color(), 1f);
+        }
     }
     public class TerraShivSlash : ExobeamSlash
     {

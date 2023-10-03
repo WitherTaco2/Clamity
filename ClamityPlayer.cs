@@ -1,7 +1,10 @@
 ﻿using CalamityMod;
+using CalamityMod.Buffs.DamageOverTime;
 using CalamityMod.Cooldowns;
 using CalamityMod.Items;
+using CalamityMod.UI.CalamitasEnchants;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.GameInput;
 using Terraria.ModLoader;
@@ -11,9 +14,30 @@ namespace Clamity
     public class ClamityPlayer : ModPlayer
     {
         public bool realityRelocator;
+        public bool aflameAcc;
+        public List<int> aflameAccList;
         public override void ResetEffects()
         {
             realityRelocator = false;
+            aflameAcc = false;
+            aflameAccList = new List<int>();
+        }
+        //public Item[] accesories;
+        public override void UpdateEquips()
+        {
+            foreach (Item i in Player.armor)
+            {
+                if (!i.IsAir)
+                    if (i.Calamity().AppliedEnchantment != null)
+                    {
+                        if (i.Calamity().AppliedEnchantment.Value.ID == 10000)
+                            aflameAccList.Add(i.type);
+                    }
+            }
+            if (aflameAccList.Count > 0)
+            {
+                Player.AddBuff(ModContent.BuffType<WeakBrimstoneFlames>(), 1);
+            }
         }
         public override void ProcessTriggers(TriggersSet triggersSet)
         {

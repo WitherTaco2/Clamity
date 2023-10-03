@@ -1,10 +1,5 @@
 ﻿using CalamityMod.Items.Materials;
 using CalamityMod.Items;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -13,6 +8,7 @@ using CalamityMod;
 using Terraria;
 using Microsoft.Xna.Framework;
 using Clamity.Content.Cooldowns;
+using Terraria.GameContent;
 
 namespace Clamity.Content.Items.Weapons.Melee.Shortswords
 {
@@ -72,6 +68,18 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
                 Main.player[Projectile.owner].AddCooldown(ShortstrikeCooldown.ID, 30);
                 Projectile.NewProjectile(Projectile.GetSource_OnHit(target), target.Center, Vector2.Zero, ProjectileID.Volcano, hit.Damage, hit.Knockback, Projectile.owner);
             }
+        }
+        public override void ExtraBehavior()
+        {
+            //Lighting.AddLight(Projectile.Center, )
+            if (!Utils.NextBool(Main.rand, 5))
+                return;
+            Dust.NewDust(new Vector2((float)Projectile.Hitbox.X, (float)Projectile.Hitbox.Y), Projectile.Hitbox.Width, Projectile.Hitbox.Height, 6, 0.0f, 0.0f, 0, new Color(), 3f);
+        }
+        public override bool PreDraw(ref Color lightColor)
+        {
+            Main.spriteBatch.Draw(TextureAssets.Projectile[Type].Value, new Rectangle(0, 0, Projectile.width, Projectile.height), new Color(255, 255, 255, 200));
+            return base.PreDraw(ref lightColor);
         }
     }
 }

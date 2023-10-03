@@ -33,8 +33,9 @@ namespace Clamity.Content.Menu
                     zero.Y -= (value.Height * num3 - Main.screenHeight) * 0.5f;
                 }
             }
-
-            spriteBatch.Draw(value, zero, null, Color.White, 0f, Vector2.Zero, num3, SpriteEffects.None, 0f);
+            zero += value.Size() / 4f;
+            spriteBatch.Draw(value, zero + Vector2.UnitX * MathF.Sin(Main.GlobalTimeWrappedHourly) * 2f, null, Color.White, MathF.Sin(Main.GlobalTimeWrappedHourly / 2f) / 60f, value.Size() / 2f, num3 * 1.05f, SpriteEffects.None, 0f);
+            //spriteBatch.Draw(value, zero, null, Color.White, 0f, value.Size() / 2f, num3, SpriteEffects.None, 0f);
             for (int i = 0; i < 5; i++)
             {
                 if (Main.rand.NextBool(4))

@@ -110,6 +110,12 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
             Main.EntitySpriteDraw(value, Projectile.Center - Main.screenPosition, new Rectangle(0, 0, value.Width, value.Height), Projectile.GetAlpha(lightColor), Projectile.rotation + MathHelper.PiOver4, value.Size() / 2f, Projectile.scale, 0);
             return false;
         }*/
+        public override void ExtraBehavior()
+        {
+            if (!Utils.NextBool(Main.rand, 5))
+                return;
+            Dust.NewDust(new Vector2((float)Projectile.Hitbox.X, (float)Projectile.Hitbox.Y), Projectile.Hitbox.Width, Projectile.Hitbox.Height, 107, 0.0f, 0.0f, 0, new Color(), 1f);
+        }
 
     }
     public class ExoGladiusBeam : Exobeam, ILocalizedModType, IModType

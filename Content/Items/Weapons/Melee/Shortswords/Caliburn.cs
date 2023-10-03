@@ -98,6 +98,12 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
             }
             return base.PreDraw(ref lightColor);
         }*/
+        public override void ExtraBehavior()
+        {
+            if (!Utils.NextBool(Main.rand, 5))
+                return;
+            Dust.NewDust(new Vector2((float)Projectile.Hitbox.X, (float)Projectile.Hitbox.Y), Projectile.Hitbox.Width, Projectile.Hitbox.Height, 57, 0.0f, 0.0f, 0, new Color(), 1f);
+        }
     }
     public class CaliburnSlash : ExobeamSlash
     {

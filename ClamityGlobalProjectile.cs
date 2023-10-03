@@ -1,8 +1,16 @@
 ﻿using CalamityMod;
+using CalamityMod.Buffs.DamageOverTime;
+using CalamityMod.Items.Accessories;
+using CalamityMod.Projectiles.Magic;
+using CalamityMod.Projectiles.Melee;
+using CalamityMod.Projectiles.Ranged;
+using CalamityMod.Projectiles.Rogue;
+using CalamityMod.Projectiles.Summon;
 using Clamity.Content.Buffs.Shortstrike;
 using Clamity.Content.Cooldowns;
 using Microsoft.CodeAnalysis;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -16,22 +24,6 @@ namespace Clamity
             Player player = Main.player[projectile.owner];
             if (!player.HasCooldown(ShortstrikeCooldown.ID))
             {
-                /*if (projectile.type == ProjectileID.CopperShortswordStab)
-                {
-                    //Projectile.NewProjectile(projectile.GetSource_FromThis(), player.Center, Vector2.Zero, ModContent.ProjectileType<ShortstrikeEffect>(), 0, 0, player.whoAmI);
-                    player.AddBuff(ModContent.BuffType<CopperShortstrike>(), 60);
-                    player.AddCooldown(ShortstrikeCooldown.ID, CalamityUtils.SecondsToFrames(2));
-                }
-                if (projectile.type == ProjectileID.TinShortswordStab)
-                {
-                    player.AddBuff(ModContent.BuffType<TinShortstrike>(), 60);
-                    player.AddCooldown(ShortstrikeCooldown.ID, CalamityUtils.SecondsToFrames(2));
-                }
-                if (projectile.type == ProjectileID.IronShortswordStab)
-                {
-                    player.AddBuff(ModContent.BuffType<IronShortstrike>(), 60);
-                    player.AddCooldown(ShortstrikeCooldown.ID, CalamityUtils.SecondsToFrames(2));
-                }*/
                 Shortstrike(player, projectile, ModContent.BuffType<CopperShortstrike>(), 1, ProjectileID.CopperShortswordStab);
                 Shortstrike(player, projectile, ModContent.BuffType<TinShortstrike>(), 1, ProjectileID.TinShortswordStab);
                 Shortstrike(player, projectile, ModContent.BuffType<IronShortstrike>(), 1, ProjectileID.IronShortswordStab);
@@ -41,6 +33,40 @@ namespace Clamity
                 Shortstrike(player, projectile, ModContent.BuffType<GoldShortstrike>(), 1.2f, ProjectileID.GoldShortswordStab);
                 Shortstrike(player, projectile, ModContent.BuffType<PlatinumShortstrike>(), 1.2f, ProjectileID.PlatinumShortswordStab);
                 Shortstrike(player, projectile, ModContent.BuffType<GladiusShortstrike>(), 0.5f, ProjectileID.GladiusStab, 1.25f);
+            }
+            UpdateAflameAccesory(projectile, target, hit, damageDone);
+        }
+        private void UpdateAflameAccesory(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            Player player = Main.player[projectile.owner];
+            ClamityPlayer modPlayer = player.Clamity();
+            /*if (modPlayer.aflameAccList.Contains(ModContent.ItemType<LuxorsGift>()))
+            {
+
+            }*/
+            List<int> list = modPlayer.aflameAccList;
+            AddVulHexDebuff(list, projectile, target, ItemID.VolatileGelatin, ProjectileID.VolatileGelatinBall);
+            AddVulHexDebuff(list, projectile, target, ItemID.BoneGlove, ProjectileID.BoneGloveProj); 
+            AddVulHexDebuff(list, projectile, target, ItemID.BoneHelm, 964);
+            AddVulHexDebuff(list, projectile, target, ItemID.SporeSac, ProjectileID.SporeTrap, ProjectileID.SporeTrap2, ProjectileID.SporeGas, ProjectileID.SporeGas2, ProjectileID.SporeGas3);
+
+            AddVulHexDebuff(list, projectile, target, ModContent.ItemType<LuxorsGift>(), ModContent.ProjectileType<LuxorsGiftMelee>(), ModContent.ProjectileType<LuxorsGiftRanged>(), ModContent.ProjectileType<LuxorsGiftMagic>(), ModContent.ProjectileType<LuxorsGiftRogue>(), ModContent.ProjectileType<LuxorsGiftSummon>());
+            
+            AddVulHexDebuff(list, projectile, target, ModContent.ItemType<AngelicAlliance>(), ModContent.ProjectileType<AngelicAllianceArchangel>(), ModContent.ProjectileType<AngelRay>());
+
+        }
+        private void AddVulHexDebuff(List<int> list, Projectile proj, NPC target, int acc, params int[] projList)
+        {
+            if (list.Contains(acc))
+            {
+                foreach (int i in projList)
+                {
+                    if (proj.type == i)
+                    {
+                        target.AddBuff(ModContent.BuffType<VulnerabilityHex>(), 120);
+                        break;
+                    }
+                }
             }
         }
         private void Shortstrike(Player player, Projectile proj, int buffID, float timeInSeconds, int projectileID, float percent = 2)

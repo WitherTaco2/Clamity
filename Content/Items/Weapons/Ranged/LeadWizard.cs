@@ -46,8 +46,8 @@ namespace Clamity.Content.Items.Weapons.Ranged
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
             Projectile.NewProjectile(source, position, velocity.RotatedBy(MathF.Sin(Main.GlobalTimeWrappedHourly * 6f) / 5f), type, damage, knockback, player.whoAmI);
+            Projectile.NewProjectile(source, position, velocity.RotatedBy(MathF.Sin(Main.GlobalTimeWrappedHourly * 6f + 0.5f) / 5f), type, damage, knockback, player.whoAmI);
             Projectile.NewProjectile(source, position, velocity.RotatedBy(MathF.Sin(Main.GlobalTimeWrappedHourly * 6f + 1f) / 5f), type, damage, knockback, player.whoAmI);
-            Projectile.NewProjectile(source, position, velocity.RotatedBy(MathF.Sin(Main.GlobalTimeWrappedHourly * 6f + 2f) / 5f), type, damage, knockback, player.whoAmI);
             return false;
         }
         public override Vector2? HoldoutOffset() => new Vector2?(new Vector2(-10f, 0f));

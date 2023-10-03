@@ -1,4 +1,5 @@
 ﻿using CalamityMod;
+using CalamityMod.Buffs.DamageOverTime;
 using CalamityMod.Items.Materials;
 using CalamityMod.Projectiles.Ranged;
 using CalamityMod.Projectiles.Typeless;
@@ -132,6 +133,7 @@ namespace Clamity.Content.Items.Ammo
         {
             //ModContent.GetInstance<HolyFireBulletProj>().Kill(Projectile.timeLeft);
 
+            target.AddBuff(ModContent.BuffType<HolyFlames>(), 120);
             if (Projectile.owner == Main.myPlayer)
             {
                 int damage = (int)(Projectile.damage * 0.33f);

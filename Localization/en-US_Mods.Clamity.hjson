@@ -231,6 +231,11 @@ Items: {
 				DisplayName: Mandible Claws
 				Tooltip: ""
 			}
+
+			SporeKnife: {
+				DisplayName: Spore Knife
+				Tooltip: ""
+			}
 		}
 
 		Ranged: {
@@ -358,7 +363,11 @@ Items: {
 		Dart: {
 			ProfanedDart: {
 				DisplayName: Profaned Dart
-				Tooltip: ""
+				Tooltip:
+					'''
+					Bounces between enemies
+					Create explosion on hit
+					'''
 			}
 		}
 	}
@@ -398,6 +407,7 @@ Projectiles: {
 		TrueCaliburnSlash.DisplayName: True Caliburn Slash
 		TrueCaliburnSlash2.DisplayName: True Caliburn Slash2
 		DiseaseProjectile.DisplayName: Disease Projectile
+		SporeKnifeProjectile.DisplayName: Spore Knife Projectile
 	}
 
 	Ranged: {
@@ -417,4 +427,13 @@ Projectiles: {
 	ProfanedDartProjectile.DisplayName: Profaned Dart Projectile
 }
 
-UI.Cooldowns.ShortstrikeCooldown: Shortstrike Cooldown
+UI: {
+	Cooldowns.ShortstrikeCooldown: Shortstrike Cooldown
+
+	Enchantments: {
+		AflameAcc: {
+			DisplayName: Aflame
+			Description: Ignites enemies with the Supreme Witch's power on hit (by minion) but also causes the user to take damage over time when wearing this item.
+		}
+	}
+}
