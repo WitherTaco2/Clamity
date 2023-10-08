@@ -16,10 +16,10 @@ namespace Clamity.Content.Boss.Pyrogen.Drop.Weapons
 {
     public class SearedShredder : ModItem, ILocalizedModType, IModType
     {
-        public override bool IsLoadingEnabled(Mod mod)
+        /*public override bool IsLoadingEnabled(Mod mod)
         {
             return false;
-        }
+        }*/
         public new string LocalizationCategory => "Items.Weapons.Melee";
         public override void SetDefaults() 
         {

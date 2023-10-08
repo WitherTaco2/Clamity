@@ -14,11 +14,13 @@ namespace Clamity
     public class ClamityPlayer : ModPlayer
     {
         public bool realityRelocator;
+        public bool wulfrumShortstrike;
         public bool aflameAcc;
         public List<int> aflameAccList;
         public override void ResetEffects()
         {
             realityRelocator = false;
+            wulfrumShortstrike = false;
             aflameAcc = false;
             aflameAccList = new List<int>();
         }

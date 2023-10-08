@@ -15,10 +15,10 @@ namespace Clamity.Content.Boss.Pyrogen.Drop.Weapons
 {
     public class Obsidigun : ModItem, ILocalizedModType, IModType
     {
-        public override bool IsLoadingEnabled(Mod mod)
+        /*public override bool IsLoadingEnabled(Mod mod)
         {
             return false;
-        }
+        }*/
         public new string LocalizationCategory => "Items.Weapons.Ranged";
         public override void SetDefaults()
         {

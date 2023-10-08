@@ -34,9 +34,18 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
             Item.damage = 1;
             Item.DamageType = DamageClass.MeleeNoSpeed;
             Item.knockBack = 3f;
+            Item.crit = 0;
 
             Item.shoot = ModContent.ProjectileType<ColdheartIcicleProjectile>();
             Item.shootSpeed = 2.4f;
+        }
+        public override void UpdateInventory(Player player)
+        {
+            Item.crit = 0;
+        }
+        public override void ModifyWeaponCrit(Player player, ref float crit)
+        {
+            crit = 1f;
         }
     }
     public class ColdheartIcicleProjectile : BaseShortswordProjectile, ILocalizedModType, IModType

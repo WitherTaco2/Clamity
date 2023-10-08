@@ -8,6 +8,8 @@ using Clamity.Content.Boss.Clamitas.Drop;
 using CalamityMod.NPCs.Cryogen;
 using System.Collections.Generic;
 using Terraria.ModLoader.IO;
+using CalamityMod;
+using CalamityMod.Items.Placeables;
 
 namespace Clamity
 {
@@ -55,9 +57,29 @@ namespace Clamity
                 }
             }
         }
+        internal static bool _downedPyrogen;
+        public static bool downedPyrogen
+        {
+            get
+            {
+                return _downedPyrogen;
+            }
+            set
+            {
+                if (!value)
+                {
+                    _downedPyrogen = false;
+                }
+                else
+                {
+                    NPC.SetEventFlagCleared(ref _downedPyrogen, -1);
+                }
+            }
+        }
         internal static void ResetAllFlags()
         {
             downedClamitas = false;
+            downedPyrogen = false;
         }
         public override void OnWorldLoad()
         {
@@ -73,6 +95,7 @@ namespace Clamity
             if (downedClamitas)
             {
                 list.Add("clamitas");
+                list.Add("pyrogen");
             }
             tag["downedFlagsClamity"] = list;
         }
@@ -80,6 +103,15 @@ namespace Clamity
         {
             IList<string> list = tag.GetList<string>("downedFlagsClamity");
             downedClamitas = list.Contains("clamitas");
+            downedPyrogen = list.Contains("pyrogen");
+        }
+        public static int AnySandBlock;
+        public override void AddRecipeGroups()
+        {
+            ClamitySystem.AnySandBlock = RecipeGroup.RegisterGroup("AnySandBlock", new RecipeGroup((Func<string>)(() => LangHelper.GetText("Misc.RecipeGroup.AnySandBlock")), new int[5]
+            {
+                ItemID.SandBlock, ItemID.EbonsandBlock, ItemID.PearlsandBlock, ItemID.CrimsandBlock, ModContent.ItemType<AstralSand>()
+            }));
         }
     }
 }

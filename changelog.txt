@@ -1,8 +1,8 @@
 
-[h1]Shortsword Update[/h1]
-- Make boss more dodgeble and fixed damage
+[h1]Shortfire Update[/h1]
 - Added stupid content from `Supreme Calamitas in Vanilla` Mod (Hello, AdamChromeE)
 - Added shortswords:
+	- Wulfrum Leech Dagger
 	- Spore Knife
 	- Tomutus
 	- Coldheart Icicle
@@ -24,3 +24,5 @@
 - Added ammos:
 	- Profaned Dart
 - Added Reality Relocator (Rof of Harmony variant of Normality Relocator)
+- Added Aflame enchantment for accesories
+- Added Wulfrum Lure

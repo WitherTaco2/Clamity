@@ -12,10 +12,10 @@ namespace Clamity.Content.Boss.Pyrogen.Drop.Weapons
 {
     public class MoltenPiercer : RogueWeapon
     {
-        public override bool IsLoadingEnabled(Mod mod)
+        /*public override bool IsLoadingEnabled(Mod mod)
         {
             return false;
-        }
+        }*/
         public override void SetDefaults()
         {
             Item.width = Item.height = 32;

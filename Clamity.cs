@@ -12,6 +12,8 @@ using CalamityMod.NPCs.CalClone;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
+using Clamity.Content.Boss.Pyrogen.NPCs;
+using Clamity.Content.Boss.Pyrogen;
 
 namespace Clamity
 {
@@ -64,6 +66,19 @@ namespace Clamity
             {
                 ["spawnItems"] = (object)ModContent.ItemType<ClamitasSummoningItem>(),
                 ["collectibles"] = (object)intList14
+            });
+
+
+            List<int> intList15 = new List<int>()
+            {
+                /*ModContent.ItemType<ClamitasRelic>(),
+                ModContent.ItemType<LoreWhat>(),
+                ModContent.ItemType<ClamitasMusicbox>()*/
+            };
+            AddBoss(bossChecklist, mod, "Pyrogen", 8.5f, ModContent.NPCType<PyrogenBoss>(), () => ClamitySystem.downedPyrogen, new Dictionary<string, object>()
+            {
+                ["spawnItems"] = (object)ModContent.ItemType<PyroKey>(),
+                ["collectibles"] = (object)intList15
             });
 
 

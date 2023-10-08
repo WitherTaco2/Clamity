@@ -1,4 +1,4 @@
-displayName = Clamity Addon (Shortsword Update)
+displayName = Clamity Addon (Blade & Fire Update)
 author = WitherTaco
-version = 0.3
+version = 0.4
 modReferences = CalamityMod

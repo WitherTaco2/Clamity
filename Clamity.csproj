@@ -23,6 +23,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Content\Boss\Pyrogen\Gores\" />
     <Folder Include="Content\Items\Pets\MasterRev\" />
   </ItemGroup>
 </Project>

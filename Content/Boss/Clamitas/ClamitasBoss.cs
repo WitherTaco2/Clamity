@@ -31,6 +31,7 @@ using CalamityMod.Items.LoreItems;
 using CalamityMod.NPCs.Cryogen;
 using Microsoft.CodeAnalysis;
 using CalamityMod.Dusts;
+using CalamityMod.Items.Placeables.Furniture.DevPaintings;
 
 namespace Clamity.Content.Boss.Clamitas
 {
@@ -671,6 +672,7 @@ namespace Clamity.Content.Boss.Clamitas
             npcLoot.Add(ModContent.ItemType<ClamitousPearl>(), 1, 2, 4);
             npcLoot.AddConditionalPerPlayer(() => !ClamitySystem.downedClamitas, ModContent.ItemType<LoreWhat>(), ui: true, DropHelper.FirstKillText);
             npcLoot.DefineConditionalDropSet(DropHelper.RevAndMaster).Add(ModContent.ItemType<ClamitasRelic>());
+            npcLoot.Add(ModContent.ItemType<ThankYouPainting>(), 100);
 
             /*int[] itemIDs = new int[4]
             {

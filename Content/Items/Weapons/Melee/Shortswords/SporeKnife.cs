@@ -54,6 +54,7 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
         }
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
+            target.AddBuff(BuffID.Poisoned, 120);
             if (!Main.player[Projectile.owner].HasCooldown(ShortstrikeCooldown.ID))
             {
                 Main.player[Projectile.owner].AddCooldown(ShortstrikeCooldown.ID, 20);

@@ -56,6 +56,11 @@ Buffs: {
 			DisplayName: Gladius Shortstrike
 			Description: Increases player movement speed by 20%
 		}
+
+		WulfrumShortstrike: {
+			DisplayName: Wulfrum Shortstrike
+			Description: Mods.Clamity.Buffs.Shortstrike.WulfrumShortstrike.Description
+		}
 	}
 }
 
@@ -126,6 +131,13 @@ Items: {
 					Does not work while a boss is alive
 					Provides a small amount of light in the abyss
 					'''
+			}
+		}
+
+		Vanity: {
+			PyrogenMask: {
+				Tooltip: ""
+				DisplayName: Pyrogen Mask
 			}
 		}
 	}
@@ -234,7 +246,17 @@ Items: {
 
 			SporeKnife: {
 				DisplayName: Spore Knife
-				Tooltip: ""
+				Tooltip: Release spores on shortstrike
+			}
+
+			WulfrumLeechDagger: {
+				DisplayName: Wulfrum Leech Dagger
+				Tooltip:
+					'''
+					Drains a low percentage of enemy health on hit
+					Cannot inflict critical hits
+					Make unconsumable for second on shortstrike
+					'''
 			}
 		}
 
@@ -304,6 +326,23 @@ Items: {
 					Sound waves echo additional sound waves on enemy hits
 					'''
 			}
+
+			RoseBow: {
+				Tooltip: ""
+				DisplayName: Rose Bow
+			}
+
+			OmegaRay: {
+				Tooltip: ""
+				DisplayName: Omega Ray
+			}
+		}
+
+		Rogue: {
+			MoltenPiercer: {
+				Tooltip: ""
+				DisplayName: Molten Piercer
+			}
 		}
 	}
 
@@ -371,6 +410,26 @@ Items: {
 			}
 		}
 	}
+
+	Fishing: {
+		WulfrumLure: {
+			DisplayName: Wulfrum Lure
+			Tooltip:
+				'''
+				Shoots a 3 bobbers at once
+				Right Click to charge fishing rod by energy core
+				Charge has 10 uses
+				Charged rod increases bobber count by 4 and fishing power up to 70%
+				'''
+		}
+	}
+
+	SummonItems: {
+		PyroKey: {
+			Tooltip: ""
+			DisplayName: Pyro Key
+		}
+	}
 }
 
 NPCs: {
@@ -386,6 +445,8 @@ NPCs: {
 
 	Stupid.DisplayName: Legendary Supreme Supreme Calamitas of Supremity in Xeroc`a Cloth from Supreme
 	StormElemental.DisplayName: Storm Elemental
+	PyrogenShield.DisplayName: Pyrogen Shield
+	PyrogenBoss.DisplayName: Pyrogen Boss
 }
 
 Projectiles: {
@@ -408,6 +469,7 @@ Projectiles: {
 		TrueCaliburnSlash2.DisplayName: True Caliburn Slash2
 		DiseaseProjectile.DisplayName: Disease Projectile
 		SporeKnifeProjectile.DisplayName: Spore Knife Projectile
+		WulfrumLeechDaggerProjectile.DisplayName: Wulfrum Leech Dagger Projectile
 	}
 
 	Ranged: {
@@ -425,6 +487,8 @@ Projectiles: {
 	ChargedBlast3.DisplayName: Charged Blast3
 	ChargedDartExplosion.DisplayName: Charged Dart Explosion
 	ProfanedDartProjectile.DisplayName: Profaned Dart Projectile
+	WulfrumLeechDaggerShard.DisplayName: Wulfrum Leech Dagger Shard
+	WulfrumLureBobber.DisplayName: Wulfrum Lure Bobber
 }
 
 UI: {
@@ -433,7 +497,13 @@ UI: {
 	Enchantments: {
 		AflameAcc: {
 			DisplayName: Aflame
-			Description: Ignites enemies with the Supreme Witch's power on hit (by minion) but also causes the user to take damage over time when wearing this item.
+			Description:
+				'''
+				Ignites enemies with the Supreme Witch's power on hit (by minion) but also causes the user to take damage over time when wearing this item.
+				P. S. Not all accesories has support of this enchantment
+				'''
 		}
 	}
 }
+
+Misc.RecipeGroup.AnySandBlock: And Sand Block
