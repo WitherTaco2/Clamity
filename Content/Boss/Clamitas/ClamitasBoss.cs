@@ -182,6 +182,10 @@ namespace Clamity.Content.Boss.Clamitas
             {
                 player.AddBuff(ModContent.BuffType<CalamityMod.Buffs.StatDebuffs.Clamity>(), 2);
             }
+            if (Main.player[NPC.target].dead && !Main.player[NPC.target].active)
+            {
+                NPC.active = false;
+            }
 
             if (!hide)
             {
