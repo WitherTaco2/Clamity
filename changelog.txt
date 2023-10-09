@@ -1,28 +1,34 @@
 
 [h1]Shortfire Update[/h1]
-- Added stupid content from `Supreme Calamitas in Vanilla` Mod (Hello, AdamChromeE)
-- Added shortswords:
-	- Wulfrum Leech Dagger
+- Added new boss - Pyrogen
+	- He has Mask, Lore items
+	- New weapons - Seared Shredder (melee), Obsidigun (ranged) and Molten Piercer (rogue)
+- Added and ported shortswords:
+	- Wulfrum Leech Dagger (new)
 	- Spore Knife
 	- Tomutus
 	- Coldheart Icicle
-	- Caliburn, True Caliburn
+	- Caliburn
+	- True Caliburn
 	- Terra Shiv
-	- Disease
+	- Disease (new)
 	- Exo Gladius
-- Added Shortstrike mechanic (Special effect with cooldown)
-- Added blades:
+- Added Shortstrike mechanic (Special effect on hit by shortsword with cooldown)
+- Added and ported blades:
 	- Blade of Enmity
 	- Crimsaber
 	- Mandible Claws
 	- RGB Murasama
-- Added other weapons:
+- Added and ported other weapons:
 	- Lead Wizard
 	- Impaler
 	- Charged Dart Blaster
+	- Rose Bow
 	- Hadopelagic Echo
+	- Omega Ray
 - Added ammos:
 	- Profaned Dart
 - Added Reality Relocator (Rof of Harmony variant of Normality Relocator)
 - Added Aflame enchantment for accesories
 - Added Wulfrum Lure
+- Added stupid content from `Supreme Calamitas in Vanilla` Mod (Hello, AdamChromeE)

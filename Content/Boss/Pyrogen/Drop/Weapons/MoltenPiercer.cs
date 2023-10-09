@@ -1,10 +1,14 @@
-﻿using CalamityMod.Items;
+﻿using CalamityMod;
+using CalamityMod.Items;
 using CalamityMod.Items.Weapons.Rogue;
+using CalamityMod.Projectiles.Rogue;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -24,18 +28,39 @@ namespace Clamity.Content.Boss.Pyrogen.Drop.Weapons
             Item.noMelee = true;
             Item.noUseGraphic = true;
 
-            Item.shoot = ModContent.ProjectileType<ObsidigunBullet>();
+            Item.shoot = ModContent.ProjectileType<MoltenPiercerProjectile>();
             Item.shootSpeed = 9f;
-            Item.useAmmo = AmmoID.Bullet;
 
             Item.damage = 57;
-            Item.DamageType = DamageClass.Ranged;
+            Item.DamageType = ModContent.GetInstance<RogueDamageClass>();
             Item.knockBack = 5f;
         }
     }
     public class MoltenPiercerProjectile : ModProjectile, ILocalizedModType, IModType
     {
         public new string LocalizationCategory => "Projectiles.Rogue";
+        public override void SetDefaults()
+        {
+            Projectile.width = 18;
+            Projectile.height = 40;
+            Projectile.aiStyle = -1;
+            Projectile.DamageType = ModContent.GetInstance<RogueDamageClass>();
+            Projectile.penetrate = 5;
+            Projectile.timeLeft = 600;
+            Projectile.friendly = true;
+            AIType = -1;
+        }
+        public override void AI()
+        {
+            Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver4;
+            Projectile.velocity.Y *= 1.01f;
+            //if (Projectile.timeLeft < 540) 
+            //    Projectile.rotation
+        }
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            //CursedDaggerProj
 
+        }
     }
 }
