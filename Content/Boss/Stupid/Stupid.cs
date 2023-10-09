@@ -10,6 +10,10 @@ namespace Clamity.Content.Boss.Stupid
 {
     public class Stupid : ModNPC
     {
+        public override void SetStaticDefaults()
+        {
+            this.HideFromBestiary();
+        }
         public override void SetDefaults()
         {
             NPC.width = 164;

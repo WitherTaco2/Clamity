@@ -36,6 +36,7 @@ using Terraria.GameContent.ItemDropRules;
 using Clamity.Content.Boss.Pyrogen.Drop.Weapons;
 using Clamity.Content.Items.Materials;
 using Clamity.Content.Boss.Pyrogen.Drop;
+using Terraria.GameContent.Biomes;
 
 namespace Clamity.Content.Boss.Pyrogen.NPCs
 {
@@ -120,8 +121,9 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
         }
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
-            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[1]
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[2]
             {
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Desert,
                 new FlavorTextBestiaryInfoElement("Mods.Clamity.NPCs.PyrogenBoss.Bestiary")
             });
         }
@@ -351,7 +353,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
             float num19 = num12 + num14;
             float num20 = num19 + num16;
             bool flag10 = NPC.ai[1] >= num12;
-            if (flag && (NPC.ai[0] < 5f || !flag8) && !flag10)
+            if (flag && (NPC.ai[0] < 5f || !flag8) && !flag10) //summoning "ice bombs"
             {
                 calamityGlobalNPC.newAI[3] += 1f;
                 if (calamityGlobalNPC.newAI[3] >= (bossRushActive ? 660f : 900f))
@@ -379,7 +381,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                 }
             }
 
-            if (NPC.ai[0] == 0f)
+            if (NPC.ai[0] == 0f) //phase 1 - curcle of fireballs
             {
                 NPC.rotation = NPC.velocity.X * 0.1f;
                 NPC.localAI[0] += 1f;
@@ -434,7 +436,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                 return;
             }
 
-            if (NPC.ai[0] == 1f)
+            if (NPC.ai[0] == 1f) //phase 2 - floating above player and shooting a curcle of fireballs
             {
                 if (NPC.ai[1] < num12)
                 {
@@ -525,7 +527,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                         }
                     }
                 }
-                else if (NPC.ai[1] < num19)
+                else if (NPC.ai[1] < num19) //rotation before dash
                 {
                     NPC.ai[1] += 1f;
                     float num41 = 3f;
@@ -562,7 +564,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                     NPC.rotation += calamityGlobalNPC.newAI[0];
                     NPC.velocity *= 0.98f;
                 }
-                else
+                else //dash
                 {
                     if (NPC.ai[1] == num19)
                     {
@@ -617,7 +619,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                 return;
             }
 
-            if (NPC.ai[0] == 2f)
+            if (NPC.ai[0] == 2f) //phaase 3 - only dashes
             {
                 if (NPC.ai[1] < num12)
                 {
@@ -1320,7 +1322,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
             //npcLoot.Add(ModContent.ItemType<CryogenTrophy>(), 10);
             //npcLoot.DefineConditionalDropSet(DropHelper.RevAndMaster).Add(ModContent.ItemType<CryogenRelic>());
             //npcLoot.DefineConditionalDropSet(DropHelper.GFB).Add(ModContent.ItemType<BloodflareCore>());
-            npcLoot.AddConditionalPerPlayer(() => !ClamitySystem.downedPyrogen, ModContent.ItemType<LoreArchmage>(), ui: true, DropHelper.FirstKillText);
+            npcLoot.AddConditionalPerPlayer(() => !ClamitySystem.downedPyrogen, ModContent.ItemType<LorePyrogen>(), ui: true, DropHelper.FirstKillText);
         }
 
         public override void OnKill()

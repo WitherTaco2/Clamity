@@ -378,6 +378,11 @@ Items: {
 			DisplayName: Clamitas
 			Lore: I won't comment on what it is. No. No. I don't comment that much
 		}
+
+		LorePyrogen: {
+			DisplayName: Pyrogen
+			Lore: An entity considered to be the opposite of cryogen. We do not know what is there and how it appeared.
+		}
 	}
 
 	ClamitasMusicbox: {
@@ -489,6 +494,7 @@ Projectiles: {
 	ProfanedDartProjectile.DisplayName: Profaned Dart Projectile
 	WulfrumLeechDaggerShard.DisplayName: Wulfrum Leech Dagger Shard
 	WulfrumLureBobber.DisplayName: Wulfrum Lure Bobber
+	Rogue.MoltenPiercerProjectile.DisplayName: Molten Piercer Projectile
 }
 
 UI: {

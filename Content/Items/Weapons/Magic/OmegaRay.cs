@@ -57,15 +57,15 @@ namespace Clamity.Content.Items.Weapons.Magic
         {
             Vector2 vector2_1 = player.RotatedRelativePoint(player.MountedCenter, true, true);
             float num4 = 0.314159274f;
-            int num5 = 3;
+            int num5 = 5;
             Vector2 vector2_2 = velocity;
             vector2_2.Normalize();
             vector2_2 = vector2_2 * 80f;
             bool flag = Collision.CanHit(vector2_1, 0, 0, vector2_1 + vector2_2, 0, 0);
-            for (int index3 = 0; index3 < num5; ++index3)
+            for (float index3 = 0; index3 < num5; ++index3)
             {
-                float num6 = (float)index3 - (float)(((double)num5 - 1.0) / 2.0);
-                Vector2 vector2_3 = Utils.RotatedBy(vector2_2, (double)num4 * (double)num6, new Vector2());
+                float num6 = index3 - (num5 - 2f) / 2f;
+                Vector2 vector2_3 = Utils.RotatedBy(vector2_2, (double)(num4 * num6), new Vector2());
                 if (!flag)
                     vector2_3 = vector2_3 - vector2_2;
                 Projectile.NewProjectile(source, vector2_1.X + vector2_3.X, vector2_1.Y + vector2_3.Y, velocity.X * 1.5f, velocity.Y * 1.5f, type, (int)(damage * 0.8f), knockback, player.whoAmI, 0.0f, 0.0f, 0.0f);

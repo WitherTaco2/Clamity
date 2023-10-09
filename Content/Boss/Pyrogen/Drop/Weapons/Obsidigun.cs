@@ -15,10 +15,6 @@ namespace Clamity.Content.Boss.Pyrogen.Drop.Weapons
 {
     public class Obsidigun : ModItem, ILocalizedModType, IModType
     {
-        /*public override bool IsLoadingEnabled(Mod mod)
-        {
-            return false;
-        }*/
         public new string LocalizationCategory => "Items.Weapons.Ranged";
         public override void SetDefaults()
         {
@@ -49,10 +45,6 @@ namespace Clamity.Content.Boss.Pyrogen.Drop.Weapons
     }
     public class ObsidigunBullet : ModProjectile, ILocalizedModType, IModType
     {
-        public override bool IsLoadingEnabled(Mod mod)
-        {
-            return false;
-        }
         public new string LocalizationCategory => "Projectiles.Ranged";
         public override void SetDefaults()
         {
@@ -78,10 +70,6 @@ namespace Clamity.Content.Boss.Pyrogen.Drop.Weapons
     }
     public class ObsidigunBulletShard : ModProjectile, ILocalizedModType, IModType
     {
-        public override bool IsLoadingEnabled(Mod mod)
-        {
-            return false;
-        }
         public new string LocalizationCategory => "Projectiles.Ranged";
         public override void SetDefaults()
         {

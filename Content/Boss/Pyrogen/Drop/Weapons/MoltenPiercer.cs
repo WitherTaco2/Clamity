@@ -12,10 +12,6 @@ namespace Clamity.Content.Boss.Pyrogen.Drop.Weapons
 {
     public class MoltenPiercer : RogueWeapon
     {
-        /*public override bool IsLoadingEnabled(Mod mod)
-        {
-            return false;
-        }*/
         public override void SetDefaults()
         {
             Item.width = Item.height = 32;
@@ -32,17 +28,13 @@ namespace Clamity.Content.Boss.Pyrogen.Drop.Weapons
             Item.shootSpeed = 9f;
             Item.useAmmo = AmmoID.Bullet;
 
-            Item.damage = 48;
+            Item.damage = 57;
             Item.DamageType = DamageClass.Ranged;
-            Item.knockBack = 6f;
+            Item.knockBack = 5f;
         }
     }
     public class MoltenPiercerProjectile : ModProjectile, ILocalizedModType, IModType
     {
-        public override bool IsLoadingEnabled(Mod mod)
-        {
-            return false;
-        }
         public new string LocalizationCategory => "Projectiles.Rogue";
 
     }

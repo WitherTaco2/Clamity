@@ -16,10 +16,6 @@ namespace Clamity.Content.Boss.Pyrogen.Drop.Weapons
 {
     public class SearedShredder : ModItem, ILocalizedModType, IModType
     {
-        /*public override bool IsLoadingEnabled(Mod mod)
-        {
-            return false;
-        }*/
         public new string LocalizationCategory => "Items.Weapons.Melee";
         public override void SetDefaults() 
         {
@@ -47,10 +43,6 @@ namespace Clamity.Content.Boss.Pyrogen.Drop.Weapons
     }
     public class SearedShredderProjectile : ModProjectile, ILocalizedModType, IModType
     {
-        public override bool IsLoadingEnabled(Mod mod)
-        {
-            return false;
-        }
         public new string LocalizationCategory => "Projectiles.Melee";
         public int TargetIndex = -1;
         public ref float Time => ref Projectile.ai[0];
