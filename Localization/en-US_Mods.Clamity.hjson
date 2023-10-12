@@ -328,13 +328,17 @@ Items: {
 			}
 
 			RoseBow: {
-				Tooltip: ""
 				DisplayName: Rose Bow
+				Tooltip:
+					'''
+					'Even if you can't see me, even if you can't hear me, I'll be by your side'
+					Shoots a spread of arrows and homing petals
+					'''
 			}
 
 			OmegaRay: {
-				Tooltip: ""
 				DisplayName: Omega Ray
+				Tooltip: Disintegrates everything with a five Y-beams of energy and lasers
 			}
 		}
 
@@ -342,6 +346,16 @@ Items: {
 			MoltenPiercer: {
 				Tooltip: ""
 				DisplayName: Molten Piercer
+			}
+
+			WulfrumShockCutter: {
+				DisplayName: Wulfrum Shock Cutter
+				Tooltip: ""
+			}
+
+			Crustalline: {
+				DisplayName: Crustalline
+				Tooltip: ""
 			}
 		}
 	}
@@ -369,6 +383,11 @@ Items: {
 
 		EssenceOfHeat: {
 			DisplayName: Essence Of Heat
+			Tooltip: ""
+		}
+
+		MediocreMatter: {
+			DisplayName: Mediocre Matter
 			Tooltip: ""
 		}
 	}
@@ -431,8 +450,14 @@ Items: {
 
 	SummonItems: {
 		PyroKey: {
-			Tooltip: ""
 			DisplayName: Pyro Key
+			Tooltip:
+				'''
+				Summons Pyrogen when used in the desert
+				Enrages outside the desert
+				Not consumable
+				'A key for a furnace cube.'
+				'''
 		}
 	}
 }
@@ -494,7 +519,13 @@ Projectiles: {
 	ProfanedDartProjectile.DisplayName: Profaned Dart Projectile
 	WulfrumLeechDaggerShard.DisplayName: Wulfrum Leech Dagger Shard
 	WulfrumLureBobber.DisplayName: Wulfrum Lure Bobber
-	Rogue.MoltenPiercerProjectile.DisplayName: Molten Piercer Projectile
+
+	Rogue: {
+		MoltenPiercerProjectile.DisplayName: Molten Piercer Projectile
+		WulfrumShockCutterProjectile.DisplayName: Wulfrum Shock Cutter Projectile
+	}
+
+	CrustallineProjecile.DisplayName: Crustalline Projecile
 }
 
 UI: {

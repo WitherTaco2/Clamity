@@ -104,6 +104,7 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
             Projectile.CloneDefaults(ProjectileID.SpikyBall);
             Projectile.width = 12;
             Projectile.height = 14;
+            Projectile.timeLeft = 300;
         }
     }
 }

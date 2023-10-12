@@ -29,7 +29,7 @@ namespace Clamity.Content.Boss.Pyrogen.Drop.Weapons
             Item.noUseGraphic = true;
 
             Item.shoot = ModContent.ProjectileType<MoltenPiercerProjectile>();
-            Item.shootSpeed = 9f;
+            Item.shootSpeed = 12f;
 
             Item.damage = 57;
             Item.DamageType = ModContent.GetInstance<RogueDamageClass>();
@@ -52,8 +52,8 @@ namespace Clamity.Content.Boss.Pyrogen.Drop.Weapons
         }
         public override void AI()
         {
-            Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver4;
-            Projectile.velocity.Y *= 1.01f;
+            Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
+            Projectile.velocity.Y += 0.5f;
             //if (Projectile.timeLeft < 540) 
             //    Projectile.rotation
         }
