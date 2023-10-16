@@ -20,6 +20,15 @@ namespace Clamity.Content.Boss.Clamitas.Crafted.Weapons
 {
     public class HellstoneShellfishStaff : ShellfishStaff
     {
+        public override void SetStaticDefaults()
+        {
+            base.SetStaticDefaults();
+
+
+            if (!ModLoader.TryGetMod("Redemption", out var redemption))
+                return;
+            redemption.Call("addElementItem", 2, Type);
+        }
         public override void SetDefaults()
         {
             base.SetDefaults();
@@ -60,6 +69,14 @@ namespace Clamity.Content.Boss.Clamitas.Crafted.Weapons
     }
     public class HellstoneShellfishStaffMinion : Shellfish, ILocalizedModType, IModType
     {
+        public override void SetStaticDefaults()
+        {
+            base.SetStaticDefaults();
+
+            if (!ModLoader.TryGetMod("Redemption", out var redemption))
+                return;
+            redemption.Call("addElementProj", 2, Type);
+        }
         public new string LocalizationCategory => "Projectiles.Summon.Minion";
         private int playerStill;
 

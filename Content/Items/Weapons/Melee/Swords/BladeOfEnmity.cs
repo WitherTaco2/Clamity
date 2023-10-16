@@ -12,6 +12,12 @@ namespace Clamity.Content.Items.Weapons.Melee.Swords
     public class BladeOfEnmity : ModItem, ILocalizedModType, IModType
     {
         public new string LocalizationCategory => "Items.Weapons.Melee";
+        public override void SetStaticDefaults()
+        {
+            if (!ModLoader.TryGetMod("Redemption", out var redemption))
+                return;
+            redemption.Call("addElementItem", 2, Type);
+        }
         public override void SetDefaults()
         {
             Item.width = 60; Item.height = 64;

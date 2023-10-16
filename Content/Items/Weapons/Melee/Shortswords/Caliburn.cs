@@ -22,6 +22,12 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
     public class Caliburn : ModItem, ILocalizedModType, IModType
     {
         public new string LocalizationCategory => "Items.Weapons.Melee";
+        public override void SetStaticDefaults()
+        {
+            if (!ModLoader.TryGetMod("Redemption", out var redemption))
+                return;
+            redemption.Call("addElementItem", 8, Type);
+        }
         public override void SetDefaults()
         {
             Item.width = Item.height = 38;
@@ -55,6 +61,14 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
     {
         public new string LocalizationCategory => "Projectiles.Melee";
         public override string Texture => ModContent.GetInstance<Caliburn>().Texture;
+        public override void SetStaticDefaults()
+        {
+            base.SetStaticDefaults();
+
+            if (!ModLoader.TryGetMod("Redemption", out var redemption))
+                return;
+            redemption.Call("addElementProj", 8, Type);
+        }
         public override void SetDefaults()
         {
             Projectile.width = Projectile.height = 38;
@@ -108,6 +122,15 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
     public class CaliburnSlash : ExobeamSlash
     {
         public override string Texture => ModContent.GetInstance<TerraShivSlash>().Texture;
+
+        public override void SetStaticDefaults()
+        {
+            base.SetStaticDefaults();
+
+            if (!ModLoader.TryGetMod("Redemption", out var redemption))
+                return;
+            redemption.Call("addElementProj", 8, Type);
+        }
         public override void SetDefaults()
         {
             base.SetDefaults();

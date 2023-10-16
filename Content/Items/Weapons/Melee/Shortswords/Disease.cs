@@ -19,6 +19,12 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
     public class Disease : ModItem, ILocalizedModType, IModType
     {
         public new string LocalizationCategory => "Items.Weapons.Melee";
+        public override void SetStaticDefaults()
+        {
+            if (!ModLoader.TryGetMod("Redemption", out var redemption))
+                return;
+            redemption.Call("addElementItem", 11, Type);
+        }
         public override void SetDefaults()
         {
             Item.width = 30; Item.height = 38;
@@ -44,6 +50,14 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
     {
         public new string LocalizationCategory => "Projectiles.Melee";
         public override string Texture => ModContent.GetInstance<Disease>().Texture;
+        public override void SetStaticDefaults()
+        {
+            base.SetStaticDefaults();
+
+            if (!ModLoader.TryGetMod("Redemption", out var redemption))
+                return;
+            redemption.Call("addElementProj", 11, Type);
+        }
         public override void SetDefaults()
         {
             Projectile.width = 30; Projectile.height = 38;

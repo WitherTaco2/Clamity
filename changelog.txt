@@ -2,7 +2,7 @@
 [h1]Shortfire Update[/h1]
 - Added new boss - Pyrogen
 	- He has Mask, Lore items
-	- New weapons - Seared Shredder (melee), Obsidigun (ranged) and Molten Piercer (rogue)
+	- New weapons - Seared Shredder (melee), Obsidigun (ranged), Hell`s Bells (summon), Molten Piercer (rogue),
 - Added and ported shortswords:
 	- Wulfrum Leech Dagger (new)
 	- Spore Knife
@@ -31,4 +31,5 @@
 - Added Reality Relocator (Rof of Harmony variant of Normality Relocator)
 - Added Aflame enchantment for accesories
 - Added Wulfrum Lure
-- Added stupid content from `Supreme Calamitas in Vanilla` Mod (Hello, AdamChromeE)
+- Ported stupid content from `Supreme Calamitas in Vanilla` Mod (Hello, AdamChromeE)
+- Added support of elemental damage from Mod of Redemption

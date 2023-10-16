@@ -3,6 +3,7 @@ using CalamityMod.Buffs.DamageOverTime;
 using CalamityMod.Cooldowns;
 using CalamityMod.Items;
 using CalamityMod.UI.CalamitasEnchants;
+using Clamity.Content.Boss.Pyrogen.Drop;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -17,16 +18,25 @@ namespace Clamity
         public bool wulfrumShortstrike;
         public bool aflameAcc;
         public List<int> aflameAccList;
+        public bool pyroSpear;
+        public int pyroSpearCD;
+        //Minion
+        public bool hellsBell;
         public override void ResetEffects()
         {
             realityRelocator = false;
             wulfrumShortstrike = false;
             aflameAcc = false;
             aflameAccList = new List<int>();
+            pyroSpear = false;
+
+            hellsBell = false;
         }
         //public Item[] accesories;
         public override void UpdateEquips()
         {
+            if (pyroSpearCD > 0)
+                pyroSpearCD--;
             foreach (Item i in Player.armor)
             {
                 if (!i.IsAir)
@@ -68,6 +78,33 @@ namespace Clamity
                 }
             }
 
+        }
+        public override void OnHitNPCWithItem(Item item, NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            if (pyroSpear && pyroSpearCD == 0)
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    Vector2 vec1 = Vector2.UnitY.RotatedByRandom(1f);
+                    Projectile.NewProjectile(item.GetSource_OnHit(target), target.Center + vec1 * 500f, -vec1 * 20f, ModContent.ProjectileType<SoulOfPyrogenSpear>(), item.damage / 2, 1f, Player.whoAmI, target.whoAmI);
+                }
+                pyroSpearCD = 100;
+            }
+        }
+        public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            if (proj.DamageType == ModContent.GetInstance<TrueMeleeDamageClass>())
+            {
+                if (pyroSpear && pyroSpearCD == 0)
+                {
+                    for (int i = 0; i < 4; i++)
+                    {
+                        Vector2 vec1 = Vector2.UnitY.RotatedByRandom(1f);
+                        Projectile.NewProjectile(proj.GetSource_OnHit(target), target.Center + vec1 * 500f, -vec1 * 20f, ModContent.ProjectileType<SoulOfPyrogenSpear>(), proj.damage / 2, 1f, Player.whoAmI, target.whoAmI);
+                    }
+                    pyroSpearCD = 100;
+                }
+            }
         }
     }
 }

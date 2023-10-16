@@ -24,6 +24,12 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
     public class TerraShiv : ModItem, ILocalizedModType, IModType
     {
         public new string LocalizationCategory => "Items.Weapons.Melee";
+        public override void SetStaticDefaults()
+        {
+            if (!ModLoader.TryGetMod("Redemption", out var redemption))
+                return;
+            redemption.Call("addElementItem", 10, Type);
+        }
         public override void SetDefaults()
         {
             Item.width = Item.height = 42;
@@ -64,6 +70,14 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
     {
         public new string LocalizationCategory => "Projectiles.Melee";
         public override string Texture => ModContent.GetInstance<TerraShiv>().Texture;
+        public override void SetStaticDefaults()
+        {
+            base.SetStaticDefaults();
+
+            if (!ModLoader.TryGetMod("Redemption", out var redemption))
+                return;
+            redemption.Call("addElementProj", 10, Type);
+        }
         public override void SetDefaults()
         {
             Projectile.width = Projectile.height = 42;
@@ -107,6 +121,14 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
     }
     public class TerraShivSlash : ExobeamSlash
     {
+        public override void SetStaticDefaults()
+        {
+            base.SetStaticDefaults();
+
+            if (!ModLoader.TryGetMod("Redemption", out var redemption))
+                return;
+            redemption.Call("addElementProj", 10, Type);
+        }
         public override void SetDefaults()
         {
             base.SetDefaults();
@@ -151,6 +173,14 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
     public class TerraShivSlash2 : ExobeamSlash
     {
         public override string Texture => ModContent.GetInstance<TerraShivSlash>().Texture;
+        public override void SetStaticDefaults()
+        {
+            base.SetStaticDefaults();
+
+            if (!ModLoader.TryGetMod("Redemption", out var redemption))
+                return;
+            redemption.Call("addElementProj", 10, Type);
+        }
         public override void SetDefaults()
         {
             base.SetDefaults();

@@ -15,6 +15,12 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
     public class Tomutus : ModItem, ILocalizedModType, IModType
     {
         public new string LocalizationCategory => "Items.Weapons.Melee";
+        public override void SetStaticDefaults()
+        {
+            if (!ModLoader.TryGetMod("Redemption", out var redemption))
+                return;
+            redemption.Call("addElementItem", 2, Type);
+        }
         public override void SetDefaults()
         {
             Item.width = 36; Item.height = 38;
@@ -47,6 +53,14 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
     {
         public new string LocalizationCategory => "Projectiles.Melee";
         public override string Texture => ModContent.GetInstance<Tomutus>().Texture;
+        public override void SetStaticDefaults()
+        {
+            base.SetStaticDefaults();
+
+            if (!ModLoader.TryGetMod("Redemption", out var redemption))
+                return;
+            redemption.Call("addElementProj", 2, Type);
+        }
         public override void SetDefaults()
         {
             Projectile.width = 36; Projectile.height = 38;

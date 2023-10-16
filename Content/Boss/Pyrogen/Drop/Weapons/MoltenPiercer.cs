@@ -16,6 +16,14 @@ namespace Clamity.Content.Boss.Pyrogen.Drop.Weapons
 {
     public class MoltenPiercer : RogueWeapon
     {
+        public override void SetStaticDefaults()
+        {
+            base.SetStaticDefaults();
+
+            if (!ModLoader.TryGetMod("Redemption", out var redemption))
+                return;
+            redemption.Call("addElementItem", 2, Type);
+        }
         public override void SetDefaults()
         {
             Item.width = Item.height = 32;
@@ -39,6 +47,12 @@ namespace Clamity.Content.Boss.Pyrogen.Drop.Weapons
     public class MoltenPiercerProjectile : ModProjectile, ILocalizedModType, IModType
     {
         public new string LocalizationCategory => "Projectiles.Rogue";
+        public override void SetStaticDefaults()
+        {
+            if (!ModLoader.TryGetMod("Redemption", out var redemption))
+                return;
+            redemption.Call("addElementProj", 2, Type);
+        }
         public override void SetDefaults()
         {
             Projectile.width = 18;
@@ -53,7 +67,7 @@ namespace Clamity.Content.Boss.Pyrogen.Drop.Weapons
         public override void AI()
         {
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
-            Projectile.velocity.Y += 0.5f;
+            Projectile.velocity.Y += 0.1f;
             //if (Projectile.timeLeft < 540) 
             //    Projectile.rotation
         }

@@ -16,7 +16,7 @@ namespace Clamity.Content.Boss.Pyrogen
 {
     public class PyroKey : ModItem, ILocalizedModType, IModType
     {
-        public new string LocalizationCategory => "Items.SummonItems";
+        public new string LocalizationCategory => "Items.SummonBoss";
 
         public override void SetStaticDefaults()
         {

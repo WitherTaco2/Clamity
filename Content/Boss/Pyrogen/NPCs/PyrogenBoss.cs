@@ -85,6 +85,9 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
         {
             NPCID.Sets.BossBestiaryPriority.Add(Type);
             NPCID.Sets.MPAllowedEnemies[Type] = true;
+            if (!ModLoader.TryGetMod("Redemption", out var redemption))
+                return;
+            redemption.Call("addElementNPC", 2, Type);
         }
 
         public override void SetDefaults()
@@ -1304,23 +1307,24 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
         {
             //npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<CryogenBag>()));
             LeadingConditionRule mainRule = npcLoot.DefineNormalOnlyDropSet();
-            int[] itemIDs = new int[3]
+            int[] itemIDs = new int[4]
             {
                 ModContent.ItemType<MoltenPiercer>(),
                 ModContent.ItemType<Obsidigun>(),
-                ModContent.ItemType<SearedShredder>()
+                ModContent.ItemType<SearedShredder>(),
+                ModContent.ItemType<HellsBells>()
             };
             mainRule.Add(ItemDropRule.OneFromOptions(1, itemIDs));
             //mainRule.Add(ModContent.ItemType<GlacialEmbrace>(), 10);
             mainRule.Add(ItemDropRule.Common(ModContent.ItemType<PyrogenMask>(), 7));
             mainRule.Add(ItemDropRule.Common(ModContent.ItemType<ThankYouPainting>(), 100));
             mainRule.Add(ItemDropRule.Common(ModContent.ItemType<EssenceOfHeat>(), 1, 8, 10));
-            //mainRule.Add(DropHelper.PerPlayer(ModContent.ItemType<SoulofCryogen>()));
+            mainRule.Add(DropHelper.PerPlayer(ModContent.ItemType<SoulOfPyrogen>()));
             //mainRule.Add(ModContent.ItemType<CryoStone>(), DropHelper.NormalWeaponDropRateFraction);
             //mainRule.Add(ModContent.ItemType<FrostFlare>(), DropHelper.NormalWeaponDropRateFraction);
             npcLoot.Add(ItemDropRule.Common(ItemID.DungeonDesertKey, 3));
             //npcLoot.Add(ModContent.ItemType<CryogenTrophy>(), 10);
-            //npcLoot.DefineConditionalDropSet(DropHelper.RevAndMaster).Add(ModContent.ItemType<CryogenRelic>());
+            npcLoot.DefineConditionalDropSet(DropHelper.RevAndMaster).Add(ModContent.ItemType<PyrogenRelic>());
             //npcLoot.DefineConditionalDropSet(DropHelper.GFB).Add(ModContent.ItemType<BloodflareCore>());
             npcLoot.AddConditionalPerPlayer(() => !ClamitySystem.downedPyrogen, ModContent.ItemType<LorePyrogen>(), ui: true, DropHelper.FirstKillText);
         }

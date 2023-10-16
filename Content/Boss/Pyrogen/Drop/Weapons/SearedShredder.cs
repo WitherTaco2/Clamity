@@ -17,6 +17,12 @@ namespace Clamity.Content.Boss.Pyrogen.Drop.Weapons
     public class SearedShredder : ModItem, ILocalizedModType, IModType
     {
         public new string LocalizationCategory => "Items.Weapons.Melee";
+        public override void SetStaticDefaults()
+        {
+            if (!ModLoader.TryGetMod("Redemption", out var redemption))
+                return;
+            redemption.Call("addElementItem", 2, Type);
+        }
         public override void SetDefaults() 
         {
             Item.width = 74;
@@ -46,6 +52,12 @@ namespace Clamity.Content.Boss.Pyrogen.Drop.Weapons
         public new string LocalizationCategory => "Projectiles.Melee";
         public int TargetIndex = -1;
         public ref float Time => ref Projectile.ai[0];
+        public override void SetStaticDefaults()
+        {
+            if (!ModLoader.TryGetMod("Redemption", out var redemption))
+                return;
+            redemption.Call("addElementProj", 2, Type);
+        }
         public override void SetDefaults()
         {
             Projectile.CloneDefaults(ProjectileID.DeathSickle);
@@ -59,7 +71,7 @@ namespace Clamity.Content.Boss.Pyrogen.Drop.Weapons
         }
         public override void AI()
         {
-            Projectile.ai[0]++;
+            /*Projectile.ai[0]++;
             if (Time >= 24f)
             {
                 if (TargetIndex >= 0)
@@ -82,12 +94,8 @@ namespace Clamity.Content.Boss.Pyrogen.Drop.Weapons
                     {
                         TargetIndex = nPC.whoAmI;
                     }
-                    /*else
-                    {
-                        Projectile.velocity *= 0.99f;
-                    }*/
                 }
-            }
+            }*/
         }
     }
 }

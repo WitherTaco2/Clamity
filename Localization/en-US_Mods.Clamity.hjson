@@ -62,6 +62,11 @@ Buffs: {
 			Description: Mods.Clamity.Buffs.Shortstrike.WulfrumShortstrike.Description
 		}
 	}
+
+	HellsBellsBuff: {
+		Description: The hellish bell will protect you
+		DisplayName: Obsidian bell
+	}
 }
 
 ItemExtraTooltip: {
@@ -97,6 +102,17 @@ Items: {
 				'''
 				Summon a Legendary Supreme Supreme Calamitas of Supremity in Xeroc`a Cloth from Supreme
 				Hello, AdamChromeE
+				'''
+		}
+
+		PyroKey: {
+			DisplayName: Pyro Key
+			Tooltip:
+				'''
+				Summons Pyrogen when used in the desert
+				Enrages outside the desert
+				Not consumable
+				'A key for a furnace cube.'
 				'''
 		}
 	}
@@ -315,6 +331,11 @@ Items: {
 					Each shellfish takes 2 minion slots
 					'''
 			}
+
+			HellsBells: {
+				Tooltip: Summons an obsidian bell that follows the cursor
+				DisplayName: Hell`s Bells
+			}
 		}
 
 		Magic: {
@@ -460,6 +481,24 @@ Items: {
 				'''
 		}
 	}
+
+	Accessories: {
+		SoulOfPyrogen: {
+			Tooltip:
+				'''
+				20% increased Melee damage
+				True Melee strikes create spears from the ground
+				'''
+			DisplayName: Soul of Pyrogen
+		}
+	}
+
+	Placeables: {
+		PyrogenRelic: {
+			Tooltip: ""
+			DisplayName: Pyrogen Relic
+		}
+	}
 }
 
 NPCs: {
@@ -468,15 +507,24 @@ NPCs: {
 		Bestiary: Cursed Giant Clam by Calamitas himself, clematis absorbed the power of brimstone. There is no power left in the pearl from the ocean. No scoundrel can resist the power of Clamitas itself
 
 		BossChecklistIntegration: {
-			SpawnInfo: Use an [i:Clamity/ClamitasSummoningItem] in the Brimstone Crags
+			SpawnInfo: Use an [i:Clamity/ClamitasSummoningItem] Clamitous Shell in the Brimstone Crags
 			DespawnMessage: "[c/FFD700:The Clamitas returns into hiding in its grotto.]"
+		}
+	}
+
+	PyrogenBoss: {
+		DisplayName: Pyrogen
+		Bestiary: Pyrogen is giant magic furnace which made by unknown fire wizard.
+
+		BossChecklistIntegration: {
+			SpawnInfo: Use an [i:Clamity/PyroKey] Pyro Key in the Desert
+			DespawnMessage: "[c/FFD700:The Pyrogen burned a target]"
 		}
 	}
 
 	Stupid.DisplayName: Legendary Supreme Supreme Calamitas of Supremity in Xeroc`a Cloth from Supreme
 	StormElemental.DisplayName: Storm Elemental
 	PyrogenShield.DisplayName: Pyrogen Shield
-	PyrogenBoss.DisplayName: Pyrogen Boss
 }
 
 Projectiles: {
@@ -526,6 +574,9 @@ Projectiles: {
 	}
 
 	CrustallineProjecile.DisplayName: Crustalline Projecile
+	HellsBellsSummon.DisplayName: Hells Bells Summon
+	HellsBellsRing.DisplayName: Hells Bells Ring
+	SoulOfPyrogenSpear.DisplayName: Soul Of Pyrogen Spear
 }
 
 UI: {
