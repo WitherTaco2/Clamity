@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -43,6 +44,22 @@ namespace Clamity.Content.Boss.Pyrogen.Drop.Weapons
             Item.DamageType = ModContent.GetInstance<RogueDamageClass>();
             Item.knockBack = 5f;
         }
+        public override float StealthVelocityMultiplier => 1.5f;
+        public override float StealthDamageMultiplier => 2f;
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            /*if (player.Calamity().StealthStrikeAvailable())
+            {
+                for
+            }*/
+            for (int i = 0; i < 2; i++)
+            {
+                int index = Projectile.NewProjectile(source, position, velocity + Main.rand.NextVector2Square(-1, 1), type, damage / 2, knockback, player.whoAmI);
+                if (player.Calamity().StealthStrikeAvailable())
+                    Main.projectile[index].Calamity().stealthStrike = true;
+            }
+            return base.Shoot(player, source, position, velocity, type, damage, knockback);
+        }
     }
     public class MoltenPiercerProjectile : ModProjectile, ILocalizedModType, IModType
     {
@@ -67,14 +84,14 @@ namespace Clamity.Content.Boss.Pyrogen.Drop.Weapons
         public override void AI()
         {
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
-            Projectile.velocity.Y += 0.1f;
+            Projectile.velocity.Y += 0.2f;
             if (Projectile.Calamity().stealthStrike)
             {
                 if (Projectile.ai[0] > 0)
                     Projectile.ai[0]--;
                 else
                 {
-                    Projectile.ai[0] = 30;
+                    Projectile.ai[0] = 10;
                     int index = Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, Main.rand.NextVector2CircularEdge(20, 20), ModContent.ProjectileType<ObsidigunBulletShard>(), (int)(Projectile.damage / 2), Projectile.knockBack / 5, Projectile.owner);
                     Main.projectile[index].DamageType = ModContent.GetInstance<RogueDamageClass>();
                 }
@@ -85,7 +102,7 @@ namespace Clamity.Content.Boss.Pyrogen.Drop.Weapons
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             //CursedDaggerProj
-
+            target.AddBuff(BuffID.OnFire, 120);
         }
     }
 }

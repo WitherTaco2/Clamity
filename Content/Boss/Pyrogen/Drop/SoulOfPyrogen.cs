@@ -19,7 +19,7 @@ namespace Clamity.Content.Boss.Pyrogen.Drop
         public new string LocalizationCategory => "Items.Accessories"; 
         public override void SetStaticDefaults()
         {
-            Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(8, 10));
+            Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(4, 10));
             ItemID.Sets.AnimatesAsSoul[Item.type] = true;
         }
         public override void SetDefaults()
@@ -33,6 +33,7 @@ namespace Clamity.Content.Boss.Pyrogen.Drop
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.GetDamage<MeleeDamageClass>() += 0.2f;
+            player.GetDamage<RogueDamageClass>() += 0.2f;
             player.Clamity().pyroSpear = true;
         }
     }

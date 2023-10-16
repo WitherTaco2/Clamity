@@ -86,24 +86,32 @@ namespace Clamity
                 for (int i = 0; i < 4; i++)
                 {
                     Vector2 vec1 = Vector2.UnitY.RotatedByRandom(1f);
-                    Projectile.NewProjectile(item.GetSource_OnHit(target), target.Center + vec1 * 500f, -vec1 * 20f, ModContent.ProjectileType<SoulOfPyrogenSpear>(), item.damage / 2, 1f, Player.whoAmI, target.whoAmI);
+                    Projectile.NewProjectile(item.GetSource_OnHit(target), target.Center + vec1 * 500f, -vec1.RotatedByRandom(0.1f) * 20f, ModContent.ProjectileType<SoulOfPyrogenSpear>(), item.damage / 2, 1f, Player.whoAmI, target.whoAmI);
                 }
                 pyroSpearCD = 100;
             }
         }
         public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
         {
-            if (proj.DamageType == ModContent.GetInstance<TrueMeleeDamageClass>())
+            if (proj.DamageType == ModContent.GetInstance<TrueMeleeDamageClass>()) //true melee effect
             {
-                if (pyroSpear && pyroSpearCD == 0)
+                PyroSpearEffect(proj, target);
+            }
+            if (proj.Calamity().stealthStrike) //
+            {
+                PyroSpearEffect(proj, target);
+            }
+        }
+        private void PyroSpearEffect(Projectile proj, NPC target)
+        {
+            if (pyroSpear && pyroSpearCD == 0)
+            {
+                for (int i = 0; i < 4; i++)
                 {
-                    for (int i = 0; i < 4; i++)
-                    {
-                        Vector2 vec1 = Vector2.UnitY.RotatedByRandom(1f);
-                        Projectile.NewProjectile(proj.GetSource_OnHit(target), target.Center + vec1 * 500f, -vec1 * 20f, ModContent.ProjectileType<SoulOfPyrogenSpear>(), proj.damage / 2, 1f, Player.whoAmI, target.whoAmI);
-                    }
-                    pyroSpearCD = 100;
+                    Vector2 vec1 = Vector2.UnitY.RotatedByRandom(1f);
+                    Projectile.NewProjectile(proj.GetSource_OnHit(target), target.Center + vec1 * 500f, -vec1.RotatedByRandom(0.1f) * 20f, ModContent.ProjectileType<SoulOfPyrogenSpear>(), proj.damage / 2, 1f, Player.whoAmI, target.whoAmI);
                 }
+                pyroSpearCD = 100;
             }
         }
     }

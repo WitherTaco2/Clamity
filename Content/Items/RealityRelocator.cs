@@ -13,7 +13,7 @@ namespace Clamity.Content.Items
         public override void SetDefaults()
         {
             base.SetDefaults();
-            Item.Calamity().donorItem = false;
+            //Item.Calamity().donorItem = false;
             //ItemID.Sets.ShimmerTransformToItem[ModContent.ItemType<NormalityRelocator>()] = Item.type;
         }
         public override void UpdateInventory(Player player)

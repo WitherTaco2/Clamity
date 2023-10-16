@@ -1,4 +1,6 @@
-Tiles.ClamitasMusicboxTile.MapEntry: Clamitas Musicbox Tile
+Tiles: {
+	ClamitasMusicBoxTile.MapEntry: Clamitas Music Box Tile
+}
 
 Buffs: {
 	SupremeLucky: {
@@ -473,8 +475,9 @@ Items: {
 		SoulOfPyrogen: {
 			Tooltip:
 				'''
-				20% increased Melee damage
+				20% increased Melee and Rogue damage
 				True Melee strikes create spears from the ground
+				Stealth strike create spears from the ground on hit by projectile
 				'''
 			DisplayName: Soul of Pyrogen
 		}
@@ -486,7 +489,7 @@ Items: {
 				DisplayName: Pyrogen Relic
 				Tooltip: ""
 			}
-		
+
 			ClamitasRelic: {
 				DisplayName: Clamitas Relic
 				Tooltip: Made with using hellstone
@@ -502,6 +505,13 @@ Items: {
 			PyrogenMusicBox: {
 				DisplayName: Music Box (Pyrogen)
 				Tooltip: By AstroGel
+			}
+		}
+
+		Trophies: {
+			PyrogenTrophy: {
+				Tooltip: ""
+				DisplayName: Pyrogen Trophy
 			}
 		}
 	}

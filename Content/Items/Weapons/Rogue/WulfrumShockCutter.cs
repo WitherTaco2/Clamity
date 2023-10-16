@@ -21,9 +21,13 @@ namespace Clamity.Content.Items.Weapons.Rogue
             Item.maxStack = 1;
             Item.shoot = ModContent.ProjectileType<WulfrumShockCutterProjectile>();
         }
+        public override bool ConsumeItem(Player player)
+        {
+            return false;
+        }
         public override bool? UseItem(Player player)
         {
-            return base.UseItem(player);
+            return true;
         }
         public override void AddRecipes()
         {
@@ -37,5 +41,9 @@ namespace Clamity.Content.Items.Weapons.Rogue
     public class WulfrumShockCutterProjectile : WulfrumKnifeProj
     {
         public override string Texture => ModContent.GetInstance<WulfrumShockCutter>().Texture;
+        public override void Kill(int timeLeft)
+        {
+            
+        }
     }
 }
