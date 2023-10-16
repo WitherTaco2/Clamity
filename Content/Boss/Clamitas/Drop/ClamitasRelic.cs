@@ -12,8 +12,9 @@ using Microsoft.Xna.Framework;
 
 namespace Clamity.Content.Boss.Clamitas.Drop
 {
-    public class ClamitasRelic : ModItem
+    public class ClamitasRelic : ModItem, ILocalizedModType, IModType
     {
+        public new string LocalizationCategory => "Items.Placeables.Relics";
         public override void SetDefaults()
         {
             Item.DefaultToPlaceableTile(ModContent.TileType<ClamitasRelicTile>());

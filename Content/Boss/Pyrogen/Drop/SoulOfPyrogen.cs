@@ -27,7 +27,7 @@ namespace Clamity.Content.Boss.Pyrogen.Drop
             Item.width = 26;
             Item.height = 34;
             Item.value = CalamityGlobalItem.Rarity5BuyPrice;
-            Item.rare = 5;
+            Item.rare = ItemRarityID.Pink;
             Item.accessory = true;
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
@@ -40,8 +40,7 @@ namespace Clamity.Content.Boss.Pyrogen.Drop
     {
         public override void SetDefaults()
         {
-            Projectile.width = 26;
-            Projectile.height = 26;
+            Projectile.width = Projectile.height = 26;
             Projectile.aiStyle = -1;
             Projectile.DamageType = DamageClass.Melee;
             Projectile.penetrate = 1;

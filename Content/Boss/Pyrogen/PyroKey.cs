@@ -27,10 +27,11 @@ namespace Clamity.Content.Boss.Pyrogen
         {
             base.Item.width = 26;
             base.Item.height = 48;
-            base.Item.rare = 5;
+            base.Item.rare = ItemRarityID.Pink;
+
             base.Item.useAnimation = 10;
             base.Item.useTime = 10;
-            base.Item.useStyle = 4;
+            base.Item.useStyle = ItemUseStyleID.HoldUp;
         }
 
         public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)

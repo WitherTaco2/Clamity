@@ -8,6 +8,12 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <AdditionalFiles Remove="Content\Boss\Pyrogen\Gores\**" />
+    <Compile Remove="Content\Boss\Pyrogen\Gores\**" />
+    <EmbeddedResource Remove="Content\Boss\Pyrogen\Gores\**" />
+    <None Remove="Content\Boss\Pyrogen\Gores\**" />
+  </ItemGroup>
+  <ItemGroup>
     <None Remove="changelog.txt" />
     <None Remove="description_workshop.txt" />
   </ItemGroup>
@@ -23,7 +29,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Content\Boss\Pyrogen\Gores\" />
     <Folder Include="Content\Items\Pets\MasterRev\" />
   </ItemGroup>
 </Project>

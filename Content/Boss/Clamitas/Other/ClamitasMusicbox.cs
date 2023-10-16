@@ -10,11 +10,12 @@ using Terraria.ModLoader.IO;
 
 namespace Clamity.Content.Boss.Clamitas.Other
 {
-    public class ClamitasMusicbox : ModItem
+    public class ClamitasMusicBox : ModItem, ILocalizedModType, IModType
     {
+        public new string LocalizationCategory => "Items.Placeables.MusicBoxes";
         public override void SetStaticDefaults()
         {
-            MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Sounds/Music/ClamitasTheme"), ModContent.ItemType<ClamitasMusicbox>(), ModContent.TileType<ClamitasMusicboxTile>(), 0);
+            MusicLoader.AddMusicBox(Mod, MusicLoader.GetMusicSlot(Mod, "Sounds/Music/ClamitasTheme"), ModContent.ItemType<ClamitasMusicBox>(), ModContent.TileType<ClamitasMusicBoxTile>(), 0);
         }
         public override void SetDefaults()
         {
@@ -24,7 +25,7 @@ namespace Clamity.Content.Boss.Clamitas.Other
             Item.useTime = 10;
             Item.autoReuse = true;
             Item.consumable = true;
-            Item.createTile = ModContent.TileType<ClamitasMusicboxTile>();
+            Item.createTile = ModContent.TileType<ClamitasMusicBoxTile>();
             Item.width = 32;
             Item.height = 28;
             Item.rare = 4;
@@ -32,7 +33,7 @@ namespace Clamity.Content.Boss.Clamitas.Other
             Item.accessory = true;
         }
     }
-    public class ClamitasMusicboxTile : ModTile
+    public class ClamitasMusicBoxTile : ModTile
     {
         public override void SetStaticDefaults()
         {
@@ -54,13 +55,13 @@ namespace Clamity.Content.Boss.Clamitas.Other
             Player localPlayer = Main.LocalPlayer;
             localPlayer.noThrow = 2;
             localPlayer.cursorItemIconEnabled = true;
-            localPlayer.cursorItemIconID = ModContent.ItemType<ClamitasMusicbox>();
+            localPlayer.cursorItemIconID = ModContent.ItemType<ClamitasMusicBox>();
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
             if (frameX > 30)
-                Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 48, ModContent.ItemType<ClamitasMusicbox>());
+                Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 48, ModContent.ItemType<ClamitasMusicBox>());
         }
 
         public override bool CreateDust(int i, int j, ref int type) => false;

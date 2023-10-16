@@ -68,6 +68,17 @@ namespace Clamity.Content.Boss.Pyrogen.Drop.Weapons
         {
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
             Projectile.velocity.Y += 0.1f;
+            if (Projectile.Calamity().stealthStrike)
+            {
+                if (Projectile.ai[0] > 0)
+                    Projectile.ai[0]--;
+                else
+                {
+                    Projectile.ai[0] = 30;
+                    int index = Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, Main.rand.NextVector2CircularEdge(20, 20), ModContent.ProjectileType<ObsidigunBulletShard>(), (int)(Projectile.damage / 2), Projectile.knockBack / 5, Projectile.owner);
+                    Main.projectile[index].DamageType = ModContent.GetInstance<RogueDamageClass>();
+                }
+            }
             //if (Projectile.timeLeft < 540) 
             //    Projectile.rotation
         }

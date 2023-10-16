@@ -22,7 +22,7 @@ namespace Clamity.Content.Boss.Pyrogen.Drop
         {
             base.Item.width = 28;
             base.Item.height = 20;
-            base.Item.rare = 1;
+            base.Item.rare = ItemRarityID.Blue;
             base.Item.vanity = true;
         }
     }

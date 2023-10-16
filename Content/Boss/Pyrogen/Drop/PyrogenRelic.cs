@@ -6,7 +6,7 @@ namespace Clamity.Content.Boss.Pyrogen.Drop
 {
     public class PyrogenRelic : ModItem, ILocalizedModType, IModType
     {
-        public new string LocalizationCategory => "Items.Placeables";
+        public new string LocalizationCategory => "Items.Placeables.Relics";
 
         public override void SetDefaults()
         {

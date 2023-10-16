@@ -24,15 +24,18 @@ namespace Clamity.Content.Items.Tools
         {
             Item.width = 24;
             Item.height = 28;
-            Item.useAnimation = 8;
-            Item.useTime = 8;
-            Item.useStyle = 1;
-            Item.UseSound = new SoundStyle?(SoundID.Item1);
-            Item.fishingPole = 30;
-            Item.shootSpeed = 13f;
-            Item.shoot = ModContent.ProjectileType<WulfrumLureBobber>();
             Item.value = CalamityGlobalItem.Rarity3BuyPrice;
             Item.rare = ItemRarityID.Orange;
+
+            Item.useAnimation = 8;
+            Item.useTime = 8;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.UseSound = new SoundStyle?(SoundID.Item1);
+
+            Item.shootSpeed = 13f;
+            Item.shoot = ModContent.ProjectileType<WulfrumLureBobber>();
+
+            Item.fishingPole = 30;
         }
         public override bool AltFunctionUse(Player player) => true;
         public override bool CanRightClick() => charge == 0;
@@ -45,7 +48,9 @@ namespace Clamity.Content.Items.Tools
                     player.ConsumeItem(ModContent.ItemType<EnergyCore>());
                     charge = 10;
                 }
-                Item.shoot = 0;
+                else
+                    return false;
+                Item.shoot = ProjectileID.None;
             }
             else
             {

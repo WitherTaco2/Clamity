@@ -14,10 +14,12 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Clamity.Content.Boss.Pyrogen.NPCs;
 using Clamity.Content.Boss.Pyrogen;
+using Clamity.Content.Boss.Clamitas.NPCs;
+using Clamity.Content.Boss.Pyrogen.Drop;
 
 namespace Clamity
 {
-	public class Clamity : Mod
+    public class Clamity : Mod
 	{
         public static Clamity mod;
         public override void Load()
@@ -60,7 +62,7 @@ namespace Clamity
             {
                 ModContent.ItemType<ClamitasRelic>(),
                 ModContent.ItemType<LoreWhat>(),
-                ModContent.ItemType<ClamitasMusicbox>()
+                ModContent.ItemType<ClamitasMusicBox>()
             };
             AddBoss(bossChecklist, mod, "Clamitas", 11.9f, ModContent.NPCType<ClamitasBoss>(), () => ClamitySystem.downedClamitas, new Dictionary<string, object>()
             {
@@ -71,9 +73,9 @@ namespace Clamity
 
             List<int> intList15 = new List<int>()
             {
-                /*ModContent.ItemType<ClamitasRelic>(),
-                ModContent.ItemType<LoreWhat>(),
-                ModContent.ItemType<ClamitasMusicbox>()*/
+                ModContent.ItemType<PyrogenRelic>(),
+                ModContent.ItemType<LorePyrogen>(),
+                /*ModContent.ItemType<ClamitasMusicbox>()*/
             };
             AddBoss(bossChecklist, mod, "Pyrogen", 8.5f, ModContent.NPCType<PyrogenBoss>(), () => ClamitySystem.downedPyrogen, new Dictionary<string, object>()
             {

@@ -18,19 +18,22 @@ namespace Clamity.Content.Boss.Pyrogen.Drop.Weapons
         public new string LocalizationCategory => "Items.Weapons.Summon";
         public override void SetDefaults()
         {
-            Item.damage = 39;
-            Item.mana = 10;
             Item.width = Item.height = 42;
-            Item.useTime = Item.useAnimation = 20;
-            Item.useStyle = 1;
-            Item.noMelee = true;
-            Item.knockBack = 2f;
             Item.value = CalamityGlobalItem.Rarity5BuyPrice;
-            Item.rare = 5;
+            Item.rare = ItemRarityID.Pink;
+
+            Item.useTime = Item.useAnimation = 20;
+            Item.useStyle = ItemUseStyleID.Swing;
             Item.UseSound = new SoundStyle?(SoundID.Item44);
+            Item.noMelee = true;
             Item.autoReuse = true;
-            Item.shoot = ModContent.ProjectileType<HellsBellsSummon>();
+
+            Item.damage = 39;
             Item.DamageType = DamageClass.Summon;
+            Item.knockBack = 2f;
+            Item.mana = 10;
+
+            Item.shoot = ModContent.ProjectileType<HellsBellsSummon>();
         }
 
         public override bool Shoot(

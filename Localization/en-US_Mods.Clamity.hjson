@@ -469,19 +469,6 @@ Items: {
 		}
 	}
 
-	SummonItems: {
-		PyroKey: {
-			DisplayName: Pyro Key
-			Tooltip:
-				'''
-				Summons Pyrogen when used in the desert
-				Enrages outside the desert
-				Not consumable
-				'A key for a furnace cube.'
-				'''
-		}
-	}
-
 	Accessories: {
 		SoulOfPyrogen: {
 			Tooltip:
@@ -494,9 +481,28 @@ Items: {
 	}
 
 	Placeables: {
-		PyrogenRelic: {
-			Tooltip: ""
-			DisplayName: Pyrogen Relic
+		Relics: {
+			PyrogenRelic: {
+				DisplayName: Pyrogen Relic
+				Tooltip: ""
+			}
+		
+			ClamitasRelic: {
+				DisplayName: Clamitas Relic
+				Tooltip: Made with using hellstone
+			}
+		}
+
+		MusicBoxes: {
+			ClamitasMusicBox: {
+				DisplayName: Music Box (Clamitas)
+				Tooltip: By StarvoXD
+			}
+
+			PyrogenMusicBox: {
+				DisplayName: Music Box (Pyrogen)
+				Tooltip: By AstroGel
+			}
 		}
 	}
 }

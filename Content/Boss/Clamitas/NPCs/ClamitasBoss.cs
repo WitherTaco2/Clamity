@@ -33,10 +33,11 @@ using Microsoft.CodeAnalysis;
 using CalamityMod.Dusts;
 using CalamityMod.Items.Placeables.Furniture.DevPaintings;
 
-namespace Clamity.Content.Boss.Clamitas
+namespace Clamity.Content.Boss.Clamitas.NPCs
 {
     [AutoloadBossHead]
-    public class ClamitasBoss : ModNPC {
+    public class ClamitasBoss : ModNPC
+    {
         public static readonly SoundStyle SlamSound = new SoundStyle("CalamityMod/Sounds/Item/ClamImpact");
 
         private int hitAmount;
@@ -63,42 +64,42 @@ namespace Clamity.Content.Boss.Clamitas
 
         public override void SetStaticDefaults()
         {
-            Main.npcFrameCount[base.NPC.type] = 12;
-            NPCID.Sets.BossBestiaryPriority.Add(base.Type);
+            Main.npcFrameCount[NPC.type] = 12;
+            NPCID.Sets.BossBestiaryPriority.Add(Type);
             NPCID.Sets.NPCBestiaryDrawModifiers nPCBestiaryDrawModifiers = new NPCID.Sets.NPCBestiaryDrawModifiers(0);
             nPCBestiaryDrawModifiers.Scale = 0.4f;
             NPCID.Sets.NPCBestiaryDrawModifiers value = nPCBestiaryDrawModifiers;
             value.Position.Y += 40f;
-            NPCID.Sets.NPCBestiaryDrawOffset[base.Type] = value;
+            NPCID.Sets.NPCBestiaryDrawOffset[Type] = value;
 
             //GiantClam
         }
 
         public override void SetDefaults()
         {
-            base.NPC.Calamity().canBreakPlayerDefense = true;
-            base.NPC.lavaImmune = true;
-            base.NPC.npcSlots = 5f;
-            base.NPC.damage = 50;
-            base.NPC.width = 160;
-            base.NPC.height = 120;
-            base.NPC.defense = 9999;
-            base.NPC.DR_NERD(0.3f);
+            NPC.Calamity().canBreakPlayerDefense = true;
+            NPC.lavaImmune = true;
+            NPC.npcSlots = 5f;
+            NPC.damage = 50;
+            NPC.width = 160;
+            NPC.height = 120;
+            NPC.defense = 9999;
+            NPC.DR_NERD(0.3f);
             //base.NPC.lifeMax = (Main.hardMode ? 7500 : 1250);
-            base.NPC.lifeMax = 50000;
-            base.NPC.aiStyle = -1;
-            base.AIType = -1;
+            NPC.lifeMax = 50000;
+            NPC.aiStyle = -1;
+            AIType = -1;
             //base.NPC.value = (Main.hardMode ? Item.buyPrice(0, 8) : Item.buyPrice(0, 1));
-            base.NPC.value = Item.buyPrice(0, 10);
-            base.NPC.HitSound = SoundID.NPCHit4;
-            base.NPC.knockBackResist = 0f;
-            base.NPC.rarity = 2;
-            base.NPC.Calamity().VulnerableToHeat = false;
-            base.NPC.Calamity().VulnerableToSickness = true;
-            base.NPC.Calamity().VulnerableToElectricity = true;
-            base.NPC.Calamity().VulnerableToWater = false;
-            base.SpawnModBiomes = new int[1] { ModContent.GetInstance<BrimstoneCragsBiome>().Type };
-            base.NPC.boss = true;
+            NPC.value = Item.buyPrice(0, 10);
+            NPC.HitSound = SoundID.NPCHit4;
+            NPC.knockBackResist = 0f;
+            NPC.rarity = 2;
+            NPC.Calamity().VulnerableToHeat = false;
+            NPC.Calamity().VulnerableToSickness = true;
+            NPC.Calamity().VulnerableToElectricity = true;
+            NPC.Calamity().VulnerableToWater = false;
+            SpawnModBiomes = new int[1] { ModContent.GetInstance<BrimstoneCragsBiome>().Type };
+            NPC.boss = true;
 
 
             if (!Main.dedServ)
@@ -120,8 +121,8 @@ namespace Clamity.Content.Boss.Clamitas
             writer.Write(hitAmount);
             writer.Write(attack);
             writer.Write(attackAnim);
-            writer.Write(base.NPC.dontTakeDamage);
-            writer.Write(base.NPC.chaseable);
+            writer.Write(NPC.dontTakeDamage);
+            writer.Write(NPC.chaseable);
             writer.Write(hasBeenHit);
             writer.Write(statChange);
             writer.Write(hide);
@@ -129,7 +130,7 @@ namespace Clamity.Content.Boss.Clamitas
             writer.Write(flareFrameCounter);
             for (int i = 0; i < 2; i++)
             {
-                writer.Write(base.NPC.Calamity().newAI[i]);
+                writer.Write(NPC.Calamity().newAI[i]);
             }
         }
 
@@ -138,8 +139,8 @@ namespace Clamity.Content.Boss.Clamitas
             hitAmount = reader.ReadInt32();
             attack = reader.ReadInt32();
             attackAnim = reader.ReadBoolean();
-            base.NPC.dontTakeDamage = reader.ReadBoolean();
-            base.NPC.chaseable = reader.ReadBoolean();
+            NPC.dontTakeDamage = reader.ReadBoolean();
+            NPC.chaseable = reader.ReadBoolean();
             hasBeenHit = reader.ReadBoolean();
             statChange = reader.ReadBoolean();
             hide = reader.ReadBoolean();
@@ -147,22 +148,22 @@ namespace Clamity.Content.Boss.Clamitas
             flareFrameCounter = reader.ReadInt32();
             for (int i = 0; i < 2; i++)
             {
-                base.NPC.Calamity().newAI[i] = reader.ReadSingle();
+                NPC.Calamity().newAI[i] = reader.ReadSingle();
             }
         }
 
         public override void AI()
         {
-            base.NPC.TargetClosest();
-            Player player = Main.player[base.NPC.target];
-            CalamityGlobalNPC calamityGlobalNPC = base.NPC.Calamity();
+            NPC.TargetClosest();
+            Player player = Main.player[NPC.target];
+            CalamityGlobalNPC calamityGlobalNPC = NPC.Calamity();
             if (hitAmount < 5)
             {
                 hitAmount++;
                 hasBeenHit = true;
             }
 
-            base.NPC.chaseable = hasBeenHit;
+            NPC.chaseable = hasBeenHit;
 
             flareFrameCounter++;
             if (flareFrameCounter >= 5)
@@ -178,7 +179,7 @@ namespace Clamity.Content.Boss.Clamitas
                 return;
             }
 
-            if (Main.netMode != 2 && !Main.player[base.NPC.target].dead && Main.player[base.NPC.target].active)
+            if (Main.netMode != 2 && !Main.player[NPC.target].dead && Main.player[NPC.target].active)
             {
                 player.AddBuff(ModContent.BuffType<CalamityMod.Buffs.StatDebuffs.Clamity>(), 2);
             }
@@ -189,20 +190,20 @@ namespace Clamity.Content.Boss.Clamitas
 
             if (!hide)
             {
-                Lighting.AddLight(base.NPC.Center, 0.75f, 0, 0);
+                Lighting.AddLight(NPC.Center, 0.75f, 0, 0);
             }
 
             if (!statChange)
             {
-                base.NPC.defense = 35;
-                base.NPC.damage = 200;
+                NPC.defense = 35;
+                NPC.damage = 200;
 
                 statChange = true;
             }
 
-            if (base.NPC.ai[0] < 240f)
+            if (NPC.ai[0] < 240f)
             {
-                base.NPC.ai[0] += 1f;
+                NPC.ai[0] += 1f;
                 hide = false;
             }
             else if (attack == -1)
@@ -216,120 +217,120 @@ namespace Clamity.Content.Boss.Clamitas
             else if (attack == 0)
             {
                 hide = true;
-                base.NPC.defense = 9999;
-                base.NPC.ai[1] += 1f;
-                if (base.NPC.ai[1] >= 90f)
+                NPC.defense = 9999;
+                NPC.ai[1] += 1f;
+                if (NPC.ai[1] >= 90f)
                 {
-                    base.NPC.ai[0] = 0f;
-                    base.NPC.ai[1] = 0f;
+                    NPC.ai[0] = 0f;
+                    NPC.ai[1] = 0f;
                     hide = false;
                     attack = -1;
-                    base.NPC.defense = 35;
-                    NPC.NewNPC(base.NPC.GetSource_FromAI(), (int)(base.NPC.Center.X + 5f), (int)base.NPC.Center.Y, ModContent.NPCType<Clam>());
-                    NPC.NewNPC(base.NPC.GetSource_FromAI(), (int)base.NPC.Center.X, (int)base.NPC.Center.Y, ModContent.NPCType<Clam>());
-                    NPC.NewNPC(base.NPC.GetSource_FromAI(), (int)(base.NPC.Center.X - 5f), (int)base.NPC.Center.Y, ModContent.NPCType<Clam>());
+                    NPC.defense = 35;
+                    NPC.NewNPC(NPC.GetSource_FromAI(), (int)(NPC.Center.X + 5f), (int)NPC.Center.Y, ModContent.NPCType<Clam>());
+                    NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, ModContent.NPCType<Clam>());
+                    NPC.NewNPC(NPC.GetSource_FromAI(), (int)(NPC.Center.X - 5f), (int)NPC.Center.Y, ModContent.NPCType<Clam>());
                 }
             }
             else if (attack == 1)
             {
-                if (base.NPC.ai[2] == 0f)
+                if (NPC.ai[2] == 0f)
                 {
                     if (Main.netMode != 1)
                     {
-                        base.NPC.TargetClosest();
-                        base.NPC.ai[2] = 1f;
-                        base.NPC.netUpdate = true;
+                        NPC.TargetClosest();
+                        NPC.ai[2] = 1f;
+                        NPC.netUpdate = true;
                         if (FallAttackType != 1 || AttackCounter >= 4)
                             FallAttackType = Main.rand.NextBool(3) ? 1 : 0;
                     }
                 }
-                else if (base.NPC.ai[2] == 1f)
+                else if (NPC.ai[2] == 1f)
                 {
-                    base.NPC.damage = 0;
-                    base.NPC.chaseable = false;
-                    base.NPC.dontTakeDamage = true;
-                    base.NPC.noGravity = true;
-                    base.NPC.noTileCollide = true;
-                    base.NPC.alpha += 8;
-                    if (base.NPC.alpha >= 255)
+                    NPC.damage = 0;
+                    NPC.chaseable = false;
+                    NPC.dontTakeDamage = true;
+                    NPC.noGravity = true;
+                    NPC.noTileCollide = true;
+                    NPC.alpha += 8;
+                    if (NPC.alpha >= 255)
                     {
-                        base.NPC.alpha = 255;
-                        base.NPC.position.X = player.Center.X - (float)(base.NPC.width / 2);
-                        base.NPC.position.Y = player.Center.Y - (float)(base.NPC.height / 2) + player.gfxOffY - 200f;
+                        NPC.alpha = 255;
+                        NPC.position.X = player.Center.X - NPC.width / 2;
+                        NPC.position.Y = player.Center.Y - NPC.height / 2 + player.gfxOffY - 200f;
                         if (FallAttackType == 0)
                         {
-                            base.NPC.position.X = base.NPC.position.X - 15f;
-                            base.NPC.position.Y = base.NPC.position.Y - 100f;
+                            NPC.position.X = NPC.position.X - 15f;
+                            NPC.position.Y = NPC.position.Y - 100f;
                         }
                         else if (FallAttackType == 1)
                         {
-                            base.NPC.position.X = base.NPC.position.X - 400f * (AttackCounter % 2 == 0 ? 1 : -1);
-                            base.NPC.position.Y = base.NPC.position.Y - 100f;
+                            NPC.position.X = NPC.position.X - 400f * (AttackCounter % 2 == 0 ? 1 : -1);
+                            NPC.position.Y = NPC.position.Y - 100f;
                         }
-                        base.NPC.ai[2] = 2f;
-                        base.NPC.netUpdate = true;
+                        NPC.ai[2] = 2f;
+                        NPC.netUpdate = true;
                     }
                 }
-                else if (base.NPC.ai[2] == 2f)
+                else if (NPC.ai[2] == 2f)
                 {
                     if (Main.rand.NextBool(2))
                     {
-                        int num = Dust.NewDust(base.NPC.position, base.NPC.width, base.NPC.height, ModContent.DustType<BrimstoneFlame>(), 0f, 0f, 200, default(Color), 1.5f);
+                        int num = Dust.NewDust(NPC.position, NPC.width, NPC.height, ModContent.DustType<BrimstoneFlame>(), 0f, 0f, 200, default, 1.5f);
                         Main.dust[num].noGravity = true;
                         Main.dust[num].velocity *= 0.75f;
                         Main.dust[num].fadeIn = 1.3f;
                         Vector2 vector = new Vector2(Main.rand.Next(-200, 201), Main.rand.Next(-200, 201));
                         vector.Normalize();
-                        vector *= (float)Main.rand.Next(100, 200) * 0.04f;
+                        vector *= Main.rand.Next(100, 200) * 0.04f;
                         Main.dust[num].velocity = vector;
                         vector.Normalize();
                         vector *= 34f;
-                        Main.dust[num].position = base.NPC.Center - vector;
+                        Main.dust[num].position = NPC.Center - vector;
                     }
 
-                    base.NPC.alpha -= 7;
-                    if (base.NPC.alpha <= 0)
+                    NPC.alpha -= 7;
+                    if (NPC.alpha <= 0)
                     {
-                        base.NPC.damage = (Main.expertMode ? 200 : 100);
+                        NPC.damage = Main.expertMode ? 200 : 100;
 
-                        base.NPC.chaseable = true;
-                        base.NPC.dontTakeDamage = false;
-                        base.NPC.alpha = 0;
-                        base.NPC.ai[2] = 3f;
-                        base.NPC.netUpdate = true;
+                        NPC.chaseable = true;
+                        NPC.dontTakeDamage = false;
+                        NPC.alpha = 0;
+                        NPC.ai[2] = 3f;
+                        NPC.netUpdate = true;
                     }
                 }
-                else if (base.NPC.ai[2] == 3f)
+                else if (NPC.ai[2] == 3f)
                 {
-                    base.NPC.velocity.Y += 0.8f;
+                    NPC.velocity.Y += 0.8f;
                     attackAnim = true;
-                    if (base.NPC.Center.Y > player.Center.Y - (float)(base.NPC.height / 2) + player.gfxOffY - 15f)
+                    if (NPC.Center.Y > player.Center.Y - NPC.height / 2 + player.gfxOffY - 15f)
                     {
-                        base.NPC.noTileCollide = false;
-                        base.NPC.ai[2] = 4f;
-                        base.NPC.netUpdate = true;
+                        NPC.noTileCollide = false;
+                        NPC.ai[2] = 4f;
+                        NPC.netUpdate = true;
                     }
                 }
-                else if (base.NPC.ai[2] == 4f)
+                else if (NPC.ai[2] == 4f)
                 {
-                    if (base.NPC.velocity.Y == 0f)
+                    if (NPC.velocity.Y == 0f)
                     {
-                        if (FallAttackType == 0 || (FallAttackType == 1 && AttackCounter >= 4))
+                        if (FallAttackType == 0 || FallAttackType == 1 && AttackCounter >= 4)
                         {
-                            base.NPC.ai[2] = 0f;
-                            base.NPC.ai[0] = 0f;
+                            NPC.ai[2] = 0f;
+                            NPC.ai[0] = 0f;
                             attack = -1;
                             AttackCounter = 0;
                             //NPC.ai[3] = -30;
                         }
-                        base.NPC.netUpdate = true;
-                        base.NPC.noGravity = false;
+                        NPC.netUpdate = true;
+                        NPC.noGravity = false;
                         if (FallAttackType == 1)
                         {
                             if (AttackCounter < 4)
                             {
                                 attack = 1;
-                                base.NPC.ai[2] = 0f;
+                                NPC.ai[2] = 0f;
                             }
                             AttackCounter++;
                             for (int i = 0; i < 24; i++)
@@ -340,24 +341,24 @@ namespace Clamity.Content.Boss.Clamitas
                         /*if (FallAttackType == 0 || (FallAttackType == 1 && AttackCounter >= 4))
                         {
                         }*/
-                        SoundEngine.PlaySound(in SlamSound, base.NPC.position);
+                        SoundEngine.PlaySound(in SlamSound, NPC.position);
                         if (Main.netMode != 2)
                         {
-                            for (int i = (int)base.NPC.position.X - 30; i < (int)base.NPC.position.X + base.NPC.width + 60; i += 30)
+                            for (int i = (int)NPC.position.X - 30; i < (int)NPC.position.X + NPC.width + 60; i += 30)
                             {
                                 for (int j = 0; j < 5; j++)
                                 {
-                                    int num2 = Dust.NewDust(new Vector2(base.NPC.position.X - 30f, base.NPC.position.Y + (float)base.NPC.height), base.NPC.width + 30, 4, DustID.Water, 0f, 0f, 100, default(Color), 1.5f);
+                                    int num2 = Dust.NewDust(new Vector2(NPC.position.X - 30f, NPC.position.Y + NPC.height), NPC.width + 30, 4, DustID.Water, 0f, 0f, 100, default, 1.5f);
                                     Main.dust[num2].velocity *= 0.2f;
                                 }
 
-                                int num3 = Gore.NewGore(base.NPC.GetSource_FromAI(), new Vector2(i - 30, base.NPC.position.Y + (float)base.NPC.height - 12f), default(Vector2), Main.rand.Next(61, 64));
+                                int num3 = Gore.NewGore(NPC.GetSource_FromAI(), new Vector2(i - 30, NPC.position.Y + NPC.height - 12f), default, Main.rand.Next(61, 64));
                                 Main.gore[num3].velocity *= 0.4f;
                             }
                         }
                     }
 
-                    base.NPC.velocity.Y += 0.8f;
+                    NPC.velocity.Y += 0.8f;
                 }
             }
 
@@ -427,9 +428,9 @@ namespace Clamity.Content.Boss.Clamitas
                 }
             }*/
 
-            if (base.NPC.ai[3] < 120f)
+            if (NPC.ai[3] < 120f)
             {
-                base.NPC.ai[3] += 1f;
+                NPC.ai[3] += 1f;
             }
             else
             {
@@ -439,8 +440,8 @@ namespace Clamity.Content.Boss.Clamitas
                 }
                 else if (attack == 2)
                 {
-                    SoundEngine.PlaySound(in SoundID.Item67, base.NPC.position);
-                    Vector2 vector2 = new Vector2(base.NPC.position.X + (float)base.NPC.width * 0.5f, base.NPC.position.Y + (float)base.NPC.height * 0.5f);
+                    SoundEngine.PlaySound(in SoundID.Item67, NPC.position);
+                    Vector2 vector2 = new Vector2(NPC.position.X + NPC.width * 0.5f, NPC.position.Y + NPC.height * 0.5f);
                     //float num9 = 0.783f;
                     //float num10 = MathF.Atan2(base.NPC.velocity.X, base.NPC.velocity.Y) - (num9 / 2f);
                     //float num11 = num9 / 8f;
@@ -448,8 +449,8 @@ namespace Clamity.Content.Boss.Clamitas
                     int type3 = ModContent.ProjectileType<BrimstoneHellblast>();
                     int damage3 = NPC.damage / 10;
                     //Vector2 vector3 = new Vector2(base.NPC.position.X + (float)base.NPC.width * 0.5f, base.NPC.position.Y + (float)(base.NPC.height / 2));
-                    float num12 = Main.player[base.NPC.target].position.X + (float)Main.player[base.NPC.target].width * 0.5f - NPC.Center.X + (float)Main.rand.Next(-20, 21);
-                    float num13 = Main.player[base.NPC.target].position.Y + (float)Main.player[base.NPC.target].height * 0.5f - NPC.Center.Y + (float)Main.rand.Next(-20, 21);
+                    float num12 = Main.player[NPC.target].position.X + Main.player[NPC.target].width * 0.5f - NPC.Center.X + Main.rand.Next(-20, 21);
+                    float num13 = Main.player[NPC.target].position.Y + Main.player[NPC.target].height * 0.5f - NPC.Center.Y + Main.rand.Next(-20, 21);
                     float num14 = (float)Math.Sqrt(num12 * num12 + num13 * num13);
                     num14 = 5f / num14;
                     num12 *= num14;
@@ -465,25 +466,25 @@ namespace Clamity.Content.Boss.Clamitas
                     }
 
                     attack = -1;
-                    base.NPC.ai[3] = 0f;
+                    NPC.ai[3] = 0f;
                 }
                 else if (attack == 3)
                 {
                     if (Main.netMode != 1)
                     {
-                        SoundEngine.PlaySound(in SoundID.Item68, base.NPC.position);
+                        SoundEngine.PlaySound(in SoundID.Item68, NPC.position);
                         int damage4 = NPC.damage / 10;
                         float num16 = 1200f;
                         for (int l = 0; l < 15; l++)
                         {
-                            Projectile.NewProjectile(base.NPC.GetSource_FromAI(), player.Center.X + num16 * 1.25f, player.Center.Y - 950f, 0f, 4f, ModContent.ProjectileType<BrimstoneHellblast>(), damage4, 0f, Main.myPlayer);
-                            Projectile.NewProjectile(base.NPC.GetSource_FromAI(), player.Center.X + num16 * 1.1f, player.Center.Y - 1250f, 0f, 2.5f, ModContent.ProjectileType<BrimstoneHellblast>(), damage4, 0f, Main.myPlayer);
+                            Projectile.NewProjectile(NPC.GetSource_FromAI(), player.Center.X + num16 * 1.25f, player.Center.Y - 950f, 0f, 4f, ModContent.ProjectileType<BrimstoneHellblast>(), damage4, 0f, Main.myPlayer);
+                            Projectile.NewProjectile(NPC.GetSource_FromAI(), player.Center.X + num16 * 1.1f, player.Center.Y - 1250f, 0f, 2.5f, ModContent.ProjectileType<BrimstoneHellblast>(), damage4, 0f, Main.myPlayer);
                             num16 -= 150f;
                         }
                     }
 
                     attack = -1;
-                    base.NPC.ai[3] = 0f;
+                    NPC.ai[3] = 0f;
                 }
                 else if (attack == 4)
                 {
@@ -491,7 +492,7 @@ namespace Clamity.Content.Boss.Clamitas
                     if (AttackTimer % 4 == 0)
                     {
                         if (AttackTimer % 12 == 0)
-                            SoundEngine.PlaySound(in SoundID.Item21, base.NPC.position);
+                            SoundEngine.PlaySound(in SoundID.Item21, NPC.position);
                         AttackCounter++;
                         Vector2 num9 = (Main.player[NPC.target].Center - NPC.Center).SafeNormalize(Vector2.UnitX);
                         int type3 = ModContent.ProjectileType<BrimstoneHellblast>();
@@ -502,7 +503,7 @@ namespace Clamity.Content.Boss.Clamitas
                     if (AttackCounter >= 20)
                     {
                         attack = -1;
-                        base.NPC.ai[3] = 0f;
+                        NPC.ai[3] = 0f;
                         AttackCounter = 0;
                         AttackTimer = 0;
                     }
@@ -512,7 +513,7 @@ namespace Clamity.Content.Boss.Clamitas
                     AttackTimer++;
                     if (AttackTimer % 20 == 0)
                     {
-                        SoundEngine.PlaySound(in SoundID.Item21, base.NPC.position);
+                        SoundEngine.PlaySound(in SoundID.Item21, NPC.position);
                         AttackCounter++;
                         Vector2 num9 = (Main.player[NPC.target].Center - NPC.Center).SafeNormalize(Vector2.UnitX);
                         int type3 = ModContent.ProjectileType<BrimstoneHellblast>();
@@ -524,7 +525,7 @@ namespace Clamity.Content.Boss.Clamitas
                     if (AttackCounter >= 10)
                     {
                         attack = -1;
-                        base.NPC.ai[3] = 0f;
+                        NPC.ai[3] = 0f;
                         AttackCounter = 0;
                         AttackTimer = 0;
                     }
@@ -538,7 +539,7 @@ namespace Clamity.Content.Boss.Clamitas
 
         public override bool CheckActive()
         {
-            return Vector2.Distance(Main.player[base.NPC.target].Center, base.NPC.Center) > 5600f;
+            return Vector2.Distance(Main.player[NPC.target].Center, NPC.Center) > 5600f;
         }
 
         public override bool? CanBeHitByProjectile(Projectile projectile)
@@ -553,33 +554,33 @@ namespace Clamity.Content.Boss.Clamitas
 
         public override void FindFrame(int frameHeight)
         {
-            base.NPC.frameCounter += 1.0;
-            if (base.NPC.frameCounter > (attackAnim ? 2.0 : 5.0))
+            NPC.frameCounter += 1.0;
+            if (NPC.frameCounter > (attackAnim ? 2.0 : 5.0))
             {
-                base.NPC.frameCounter = 0.0;
-                base.NPC.frame.Y = base.NPC.frame.Y + frameHeight;
+                NPC.frameCounter = 0.0;
+                NPC.frame.Y = NPC.frame.Y + frameHeight;
             }
 
-            if ((hitAmount < 5 || hide) && !base.NPC.IsABestiaryIconDummy)
+            if ((hitAmount < 5 || hide) && !NPC.IsABestiaryIconDummy)
             {
-                base.NPC.frame.Y = frameHeight * 11;
+                NPC.frame.Y = frameHeight * 11;
             }
             else if (attackAnim)
             {
-                if (base.NPC.frame.Y < frameHeight * 3)
+                if (NPC.frame.Y < frameHeight * 3)
                 {
-                    base.NPC.frame.Y = frameHeight * 3;
+                    NPC.frame.Y = frameHeight * 3;
                 }
 
-                if (base.NPC.frame.Y > frameHeight * 10)
+                if (NPC.frame.Y > frameHeight * 10)
                 {
                     hide = true;
                     attackAnim = false;
                 }
             }
-            else if (base.NPC.frame.Y > frameHeight * 3)
+            else if (NPC.frame.Y > frameHeight * 3)
             {
-                base.NPC.frame.Y = 0;
+                NPC.frame.Y = 0;
             }
         }
 
@@ -612,31 +613,31 @@ namespace Clamity.Content.Boss.Clamitas
         {
             for (int i = 0; i < 5; i++)
             {
-                Dust.NewDust(base.NPC.position, base.NPC.width, base.NPC.height, 37, hit.HitDirection, -1f);
+                Dust.NewDust(NPC.position, NPC.width, NPC.height, 37, hit.HitDirection, -1f);
             }
 
-            if (base.NPC.life <= 0)
+            if (NPC.life <= 0)
             {
                 for (int j = 0; j < 50; j++)
                 {
-                    Dust.NewDust(base.NPC.position, base.NPC.width, base.NPC.height, 37, hit.HitDirection, -1f);
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, 37, hit.HitDirection, -1f);
                 }
 
                 if (Main.netMode != 2)
                 {
-                    Gore.NewGore(base.NPC.GetSource_Death(), base.NPC.position, base.NPC.velocity, ModLoader.GetMod("CalamityMod").Find<ModGore>("GiantClam1").Type);
-                    Gore.NewGore(base.NPC.GetSource_Death(), base.NPC.position, base.NPC.velocity, ModLoader.GetMod("CalamityMod").Find<ModGore>("GiantClam2").Type);
-                    Gore.NewGore(base.NPC.GetSource_Death(), base.NPC.position, base.NPC.velocity, ModLoader.GetMod("CalamityMod").Find<ModGore>("GiantClam3").Type);
-                    Gore.NewGore(base.NPC.GetSource_Death(), base.NPC.position, base.NPC.velocity, ModLoader.GetMod("CalamityMod").Find<ModGore>("GiantClam4").Type);
-                    Gore.NewGore(base.NPC.GetSource_Death(), base.NPC.position, base.NPC.velocity, ModLoader.GetMod("CalamityMod").Find<ModGore>("GiantClam5").Type);
+                    Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, ModLoader.GetMod("CalamityMod").Find<ModGore>("GiantClam1").Type);
+                    Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, ModLoader.GetMod("CalamityMod").Find<ModGore>("GiantClam2").Type);
+                    Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, ModLoader.GetMod("CalamityMod").Find<ModGore>("GiantClam3").Type);
+                    Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, ModLoader.GetMod("CalamityMod").Find<ModGore>("GiantClam4").Type);
+                    Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, ModLoader.GetMod("CalamityMod").Find<ModGore>("GiantClam5").Type);
                 }
             }
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            Main.EntitySpriteDraw(ModContent.Request<Texture2D>(Texture + "_Extra").Value, base.NPC.Center - Vector2.UnitY * 20f * NPC.scale - screenPos, new Rectangle(0, flareFrame * 174, 116, 174), NPC.GetAlpha(Color.White), base.NPC.rotation, new Vector2(116, 174) * 0.5f, base.NPC.scale, SpriteEffects.None);
-            Main.EntitySpriteDraw(ModContent.Request<Texture2D>(Texture).Value, base.NPC.Center - screenPos, base.NPC.frame, base.NPC.GetAlpha(drawColor), base.NPC.rotation, base.NPC.frame.Size() * 0.5f, base.NPC.scale, SpriteEffects.None);
+            Main.EntitySpriteDraw(ModContent.Request<Texture2D>(Texture + "_Extra").Value, NPC.Center - Vector2.UnitY * 20f * NPC.scale - screenPos, new Rectangle(0, flareFrame * 174, 116, 174), NPC.GetAlpha(Color.White), NPC.rotation, new Vector2(116, 174) * 0.5f, NPC.scale, SpriteEffects.None);
+            Main.EntitySpriteDraw(ModContent.Request<Texture2D>(Texture).Value, NPC.Center - screenPos, NPC.frame, NPC.GetAlpha(drawColor), NPC.rotation, NPC.frame.Size() * 0.5f, NPC.scale, SpriteEffects.None);
             return false;
         }
 
@@ -645,13 +646,13 @@ namespace Clamity.Content.Boss.Clamitas
             Texture2D value = ModContent.Request<Texture2D>(Texture).Value;
             Texture2D value2 = ModContent.Request<Texture2D>(Texture + "Glow").Value;
             SpriteEffects effects = SpriteEffects.None;
-            Vector2 vector = new Vector2(base.NPC.Center.X, base.NPC.Center.Y);
-            Vector2 vector2 = new Vector2(value.Width / 2, value.Height / Main.npcFrameCount[base.NPC.type] / 2);
+            Vector2 vector = new Vector2(NPC.Center.X, NPC.Center.Y);
+            Vector2 vector2 = new Vector2(value.Width / 2, value.Height / Main.npcFrameCount[NPC.type] / 2);
             Vector2 position = vector - screenPos;
-            position -= new Vector2(value2.Width, value2.Height / Main.npcFrameCount[base.NPC.type]) * 1f / 2f;
-            position += vector2 * 1f + new Vector2(0f, 4f + base.NPC.gfxOffY);
-            Color color = new Color(127 - base.NPC.alpha, 127 - base.NPC.alpha, 127 - base.NPC.alpha, 0).MultiplyRGBA(Color.Red);
-            Main.EntitySpriteDraw(value2, position, base.NPC.frame, color, base.NPC.rotation, vector2, base.NPC.scale, effects);
+            position -= new Vector2(value2.Width, value2.Height / Main.npcFrameCount[NPC.type]) * 1f / 2f;
+            position += vector2 * 1f + new Vector2(0f, 4f + NPC.gfxOffY);
+            Color color = new Color(127 - NPC.alpha, 127 - NPC.alpha, 127 - NPC.alpha, 0).MultiplyRGBA(Color.Red);
+            Main.EntitySpriteDraw(value2, position, NPC.frame, color, NPC.rotation, vector2, NPC.scale, effects);
         }
 
         public override void OnKill()

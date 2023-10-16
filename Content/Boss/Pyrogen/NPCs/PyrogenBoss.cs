@@ -121,6 +121,11 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
             NPC.Calamity().VulnerableToHeat = true;
             NPC.Calamity().VulnerableToCold = false;
             NPC.Calamity().VulnerableToSickness = false;
+
+            /*if (!Main.dedServ)
+            {
+                Music = MusicLoader.GetMusicSlot(Mod, "Sounds/Music/");
+            }*/
         }
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
@@ -407,6 +412,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                             for (int l = 0; l < num27; l++)
                             {
                                 Vector2 vector2 = spinningpoint2.RotatedBy(num28 * l);
+                                vector2 += (player.Center - NPC.Center).SafeNormalize(Vector2.Zero) * 10f;
                                 Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center + Vector2.Normalize(vector2) * 30f, vector2, num29, projectileDamage2, 0f, Main.myPlayer);
                             }
                         }
@@ -441,7 +447,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
 
             if (NPC.ai[0] == 1f) //phase 2 - floating above player and shooting a curcle of fireballs
             {
-                if (NPC.ai[1] < num12)
+                if (NPC.ai[1] < num12 / 3 * 2)
                 {
                     NPC.ai[1] += 1f;
                     NPC.rotation = NPC.velocity.X * 0.1f;
@@ -465,6 +471,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                                 for (int m = 0; m < num35; m++)
                                 {
                                     Vector2 vector4 = spinningpoint3.RotatedBy(num36 * m);
+                                    vector4 += (player.Center - NPC.Center).SafeNormalize(Vector2.Zero) * 5f;
                                     Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center + Vector2.Normalize(vector4) * 30f, vector4, num37, projectileDamage3, 0f, Main.myPlayer);
                                 }
                             }
@@ -773,7 +780,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                 return;
             }
 
-            if (NPC.ai[0] == 3f)
+            if (NPC.ai[0] == 3f) // Phase 4 -
             {
                 NPC.rotation = NPC.velocity.X * 0.1f;
                 NPC.localAI[0] += 1f;
@@ -1309,10 +1316,10 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
             LeadingConditionRule mainRule = npcLoot.DefineNormalOnlyDropSet();
             int[] itemIDs = new int[4]
             {
-                ModContent.ItemType<MoltenPiercer>(),
-                ModContent.ItemType<Obsidigun>(),
                 ModContent.ItemType<SearedShredder>(),
-                ModContent.ItemType<HellsBells>()
+                ModContent.ItemType<Obsidigun>(),
+                ModContent.ItemType<HellsBells>(),
+                ModContent.ItemType<MoltenPiercer>()
             };
             mainRule.Add(ItemDropRule.OneFromOptions(1, itemIDs));
             //mainRule.Add(ModContent.ItemType<GlacialEmbrace>(), 10);
@@ -1323,7 +1330,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
             //mainRule.Add(ModContent.ItemType<CryoStone>(), DropHelper.NormalWeaponDropRateFraction);
             //mainRule.Add(ModContent.ItemType<FrostFlare>(), DropHelper.NormalWeaponDropRateFraction);
             npcLoot.Add(ItemDropRule.Common(ItemID.DungeonDesertKey, 3));
-            //npcLoot.Add(ModContent.ItemType<CryogenTrophy>(), 10);
+            npcLoot.Add(ModContent.ItemType<PyrogenTrophy>(), 10);
             npcLoot.DefineConditionalDropSet(DropHelper.RevAndMaster).Add(ModContent.ItemType<PyrogenRelic>());
             //npcLoot.DefineConditionalDropSet(DropHelper.GFB).Add(ModContent.ItemType<BloodflareCore>());
             npcLoot.AddConditionalPerPlayer(() => !ClamitySystem.downedPyrogen, ModContent.ItemType<LorePyrogen>(), ui: true, DropHelper.FirstKillText);

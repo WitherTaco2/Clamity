@@ -1,8 +1,8 @@
 
 [h1]Shortfire Update[/h1]
 - Added new boss - Pyrogen
-	- He has Mask, Lore items
-	- New weapons - Seared Shredder (melee), Obsidigun (ranged), Hell`s Bells (summon), Molten Piercer (rogue),
+	- He has Mask, Lore, Relic
+	- New weapons - Seared Shredder (melee), Obsidigun (ranged), Hell`s Bells (summon) and Molten Piercer (rogue),
 - Added and ported shortswords:
 	- Wulfrum Leech Dagger (new)
 	- Spore Knife

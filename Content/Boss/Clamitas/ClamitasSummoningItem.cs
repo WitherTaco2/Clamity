@@ -12,6 +12,7 @@ using Terraria;
 using CalamityMod;
 using Terraria.Audio;
 using CalamityMod.Items.Materials;
+using Clamity.Content.Boss.Clamitas.NPCs;
 
 namespace Clamity.Content.Boss.Clamitas
 {
@@ -47,7 +48,7 @@ namespace Clamity.Content.Boss.Clamitas
         public override bool? UseItem(Player player)
         {
             SoundEngine.PlaySound(in SoundID.Roar, player.Center);
-            if (Main.netMode != 1)
+            if (Main.netMode != NetmodeID.MultiplayerClient)
             {
                 NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<ClamitasBoss>());
             }

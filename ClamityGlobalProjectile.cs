@@ -20,6 +20,8 @@ namespace Clamity
 {
     public class ClamityGlobalProjectile : GlobalProjectile
     {
+        public override bool InstancePerEntity => true;
+        public int[] extraAI = new int[5];
         public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
         {
             Player player = Main.player[projectile.owner];

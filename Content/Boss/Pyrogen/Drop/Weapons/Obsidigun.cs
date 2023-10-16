@@ -80,5 +80,20 @@ namespace Clamity.Content.Boss.Pyrogen.Drop.Weapons
             if (Projectile.ai[0] == 1)
                 Projectile.DamageType = DamageClass.Melee;
         }
+        public override void PostAI()
+        {
+            base.PostAI();
+            if (Projectile.DamageType == ModContent.GetInstance<RogueDamageClass>())
+            {
+                Projectile.velocity.Y += 0.2f;
+                if (Projectile.Clamity().extraAI[0] > 0)
+                    Projectile.Clamity().extraAI[0]--;
+                else
+                {
+                    Dust dust = Dust.NewDustPerfect(Projectile.Center, DustID.Flare, Projectile.velocity.RotatedByRandom(0.3f) / 4f, Scale: 2f);
+                    dust.noGravity = true;
+                }
+            }
+        }
     }
 }
