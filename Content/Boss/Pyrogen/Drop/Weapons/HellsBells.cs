@@ -16,6 +16,14 @@ namespace Clamity.Content.Boss.Pyrogen.Drop.Weapons
     public class HellsBells : ModItem, ILocalizedModType, IModType
     {
         public new string LocalizationCategory => "Items.Weapons.Summon";
+        public override void SetStaticDefaults()
+        {
+            base.SetStaticDefaults();
+
+            if (!ModLoader.TryGetMod("Redemption", out var redemption))
+                return;
+            redemption.Call("addElementItem", 2, Type);
+        }
         public override void SetDefaults()
         {
             Item.width = Item.height = 42;

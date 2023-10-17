@@ -13,5 +13,12 @@ namespace Clamity.Content.Boss.Pyrogen.Drop
             Item.rare = ItemRarityID.Lime;
             Item.consumable = false;
         }
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient<PyrogenTrophy>()
+                .AddTile(TileID.Bookcases)
+                .Register();
+        }
     }
 }

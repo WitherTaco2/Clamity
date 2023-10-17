@@ -1314,10 +1314,11 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
         {
             //npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<CryogenBag>()));
             LeadingConditionRule mainRule = npcLoot.DefineNormalOnlyDropSet();
-            int[] itemIDs = new int[4]
+            int[] itemIDs = new int[5]
             {
                 ModContent.ItemType<SearedShredder>(),
                 ModContent.ItemType<Obsidigun>(),
+                ModContent.ItemType<TheGenerator>(),
                 ModContent.ItemType<HellsBells>(),
                 ModContent.ItemType<MoltenPiercer>()
             };

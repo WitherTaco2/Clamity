@@ -1,6 +1,4 @@
-Tiles: {
-	ClamitasMusicBoxTile.MapEntry: Clamitas Music Box Tile
-}
+Tiles.ClamitasMusicBoxTile.MapEntry: Clamitas Music Box Tile
 
 Buffs: {
 	SupremeLucky: {
@@ -363,6 +361,11 @@ Items: {
 				DisplayName: Omega Ray
 				Tooltip: Disintegrates everything with a five Y-beams of energy and lasers
 			}
+
+			TheGenerator: {
+				DisplayName: The Generator
+				Tooltip: Launches a master crown sigil that homing to nearby enemies
+			}
 		}
 
 		Rogue: {
@@ -406,7 +409,7 @@ Items: {
 
 		EssenceOfHeat: {
 			DisplayName: Essence Of Heat
-			Tooltip: ""
+			Tooltip: The essence of creatures from hot terrain
 		}
 
 		MediocreMatter: {
@@ -593,6 +596,7 @@ Projectiles: {
 	HellsBellsSummon.DisplayName: Hells Bells Summon
 	HellsBellsRing.DisplayName: Hells Bells Ring
 	SoulOfPyrogenSpear.DisplayName: Soul Of Pyrogen Spear
+	Magic.TheGeneratorSigil.DisplayName: The Generator Sigil
 }
 
 UI: {

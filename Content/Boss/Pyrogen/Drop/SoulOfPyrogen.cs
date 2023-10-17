@@ -64,6 +64,8 @@ namespace Clamity.Content.Boss.Pyrogen.Drop
                     Vector2 value = Projectile.SafeDirectionTo(target.Center) * (Projectile.velocity.Length() + 3.5f);
                     Projectile.velocity = Vector2.Lerp(Projectile.velocity, value, 0.025f);
                 }
+                Dust dust = Dust.NewDustPerfect(Projectile.Center, DustID.Flare, Projectile.velocity.RotatedByRandom(0.3f) / 4f, Scale: 2f);
+                dust.noGravity = true;
             }
         }
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
