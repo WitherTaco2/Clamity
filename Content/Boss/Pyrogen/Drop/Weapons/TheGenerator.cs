@@ -59,6 +59,7 @@ namespace Clamity.Content.Boss.Pyrogen.Drop.Weapons
             Projectile.DamageType = DamageClass.Magic;
             Projectile.penetrate = 5;
             Projectile.timeLeft = 500;
+            Projectile.tileCollide = false;
             //Projectile.extraUpdates = 3;
             AIType = 14;
             //Projectile.Calamity().pointBlankShotDuration = 18;
@@ -76,18 +77,27 @@ namespace Clamity.Content.Boss.Pyrogen.Drop.Weapons
                 {
                     Vector2 value = Projectile.SafeDirectionTo(Main.npc[TargetIndex].Center)/* * (Projectile.velocity.Length() + 3.5f)*/;
                     Projectile.velocity = Vector2.Lerp(Projectile.velocity, value, 0.01f);
+
+                    NPC npc = Main.npc[TargetIndex];
+                    Vector2 value2 = npc.SafeDirectionTo(Projectile.Center) * (Projectile.velocity.Length() + 3.5f);
+                    npc.velocity = Vector2.Lerp(npc.velocity, value2, 0.05f * npc.knockBackResist * (npc.boss ? 0f : 1f));
                 }
             }
 
             if (TargetIndex == -1)
             {
-                NPC nPC = Projectile.Center.ClosestNPCAt(1600f, ignoreTiles: false);
+                NPC nPC = Projectile.Center.ClosestNPCAt(1600f);
                 if (nPC != null)
                 {
                     TargetIndex = nPC.whoAmI;
                 }
             }
             Projectile.rotation = -Projectile.velocity.X * 0.05f;
+            for (int i = 0; i < 5; i++)
+            {
+                Vector2 vec = Vector2.UnitY.RotatedBy(MathHelper.TwoPi / 6 * i + Projectile.rotation);
+                Dust dust = Dust.NewDustPerfect(Projectile.Center + vec, DustID.GemAmethyst, vec);
+            }
         }
     }
 }

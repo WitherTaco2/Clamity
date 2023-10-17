@@ -364,7 +364,7 @@ Items: {
 
 			TheGenerator: {
 				DisplayName: The Generator
-				Tooltip: Launches a master crown sigil that homing to nearby enemies
+				Tooltip: Launches a master crown sigil that homing and draws a nearby enemies
 			}
 		}
 
@@ -553,20 +553,20 @@ Projectiles: {
 		ExoGladiusExplosion.DisplayName: Exo Gladius Explosion
 		ExoGladiusProjectile.DisplayName: Exo Gladius
 		SearedShredderProjectile.DisplayName: Seared Shredder Projectile
-		RGBMurasamaProjectile.DisplayName: R G B Murasama Projectile
-		TerraShivProjectile.DisplayName: Terra Shiv Projectile
+		RGBMurasamaProjectile.DisplayName: RGB Murasama
+		TerraShivProjectile.DisplayName: Terra Shiv
 		TerraShivSlash.DisplayName: Terra Shiv Slash
 		TerraShivSlash2.DisplayName: Terra Shiv Slash2
-		TomutusProjectile.DisplayName: Tomutus Projectile
-		ColdheartIcicleProjectile.DisplayName: Coldheart Icicle Projectile
-		CaliburnProjectile.DisplayName: Caliburn Projectile
+		TomutusProjectile.DisplayName: Tomutus
+		ColdheartIcicleProjectile.DisplayName: Coldheart Icicle
+		CaliburnProjectile.DisplayName: Caliburn
 		CaliburnSlash.DisplayName: Caliburn Slash
-		TrueCaliburnProjectile.DisplayName: True Caliburn Projectile
+		TrueCaliburnProjectile.DisplayName: True Caliburn
 		TrueCaliburnSlash.DisplayName: True Caliburn Slash
-		TrueCaliburnSlash2.DisplayName: True Caliburn Slash2
+		TrueCaliburnSlash2.DisplayName: True Caliburn Extra Slash
 		DiseaseProjectile.DisplayName: Disease Projectile
-		SporeKnifeProjectile.DisplayName: Spore Knife Projectile
-		WulfrumLeechDaggerProjectile.DisplayName: Wulfrum Leech Dagger Projectile
+		SporeKnifeProjectile.DisplayName: Spore Knife
+		WulfrumLeechDaggerProjectile.DisplayName: Wulfrum Leech Dagger
 	}
 
 	Ranged: {
@@ -578,23 +578,23 @@ Projectiles: {
 
 	Summon.Minion.HellstoneShellfishStaffMinion.DisplayName: Hellstone Shellfish
 	ShortstrikeEffect.DisplayName: Shortstrike Effect
-	ImpalerProjectile.DisplayName: Impaler Projectile
-	HadopelagicEchoProjectile.DisplayName: Hadopelagic Echo Projectile
-	HadopelagicEchoProjectile2.DisplayName: Hadopelagic Echo Projectile2
-	ChargedBlast3.DisplayName: Charged Blast3
-	ChargedDartExplosion.DisplayName: Charged Dart Explosion
-	ProfanedDartProjectile.DisplayName: Profaned Dart Projectile
+	ImpalerProjectile.DisplayName: Impaler
+	HadopelagicEchoProjectile.DisplayName: Hadopelagic Echo
+	HadopelagicEchoProjectile2.DisplayName: Hadopelagic Echo
+	ChargedBlast3.DisplayName: Charged Blast
+	ChargedDartExplosion.DisplayName: Charged Dart
+	ProfanedDartProjectile.DisplayName: Profaned Dart
 	WulfrumLeechDaggerShard.DisplayName: Wulfrum Leech Dagger Shard
 	WulfrumLureBobber.DisplayName: Wulfrum Lure Bobber
 
 	Rogue: {
-		MoltenPiercerProjectile.DisplayName: Molten Piercer Projectile
-		WulfrumShockCutterProjectile.DisplayName: Wulfrum Shock Cutter Projectile
+		MoltenPiercerProjectile.DisplayName: Molten Piercer
+		WulfrumShockCutterProjectile.DisplayName: Wulfrum Shock Cutter
 	}
 
-	CrustallineProjecile.DisplayName: Crustalline Projecile
-	HellsBellsSummon.DisplayName: Hells Bells Summon
-	HellsBellsRing.DisplayName: Hells Bells Ring
+	CrustallineProjecile.DisplayName: Crustalline
+	HellsBellsSummon.DisplayName: Hell`s Bells
+	HellsBellsRing.DisplayName: Hell`s Bells Sound
 	SoulOfPyrogenSpear.DisplayName: Soul Of Pyrogen Spear
 	Magic.TheGeneratorSigil.DisplayName: The Generator Sigil
 }
