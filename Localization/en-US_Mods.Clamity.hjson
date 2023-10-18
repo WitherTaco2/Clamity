@@ -597,6 +597,11 @@ Projectiles: {
 	HellsBellsRing.DisplayName: Hell`s Bells Sound
 	SoulOfPyrogenSpear.DisplayName: Soul Of Pyrogen Spear
 	Magic.TheGeneratorSigil.DisplayName: The Generator Sigil
+
+	Boss: {
+		Fireblast.DisplayName: Fireblast
+		FireBarrage.DisplayName: Fire Barrage
+	}
 }
 
 UI: {

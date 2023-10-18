@@ -77,10 +77,6 @@ namespace Clamity.Content.Boss.Pyrogen.Drop.Weapons
                 {
                     Vector2 value = Projectile.SafeDirectionTo(Main.npc[TargetIndex].Center)/* * (Projectile.velocity.Length() + 3.5f)*/;
                     Projectile.velocity = Vector2.Lerp(Projectile.velocity, value, 0.01f);
-
-                    NPC npc = Main.npc[TargetIndex];
-                    Vector2 value2 = npc.SafeDirectionTo(Projectile.Center) * (Projectile.velocity.Length() + 3.5f);
-                    npc.velocity = Vector2.Lerp(npc.velocity, value2, 0.05f * npc.knockBackResist * (npc.boss ? 0f : 1f));
                 }
             }
 
@@ -92,11 +88,30 @@ namespace Clamity.Content.Boss.Pyrogen.Drop.Weapons
                     TargetIndex = nPC.whoAmI;
                 }
             }
-            Projectile.rotation = -Projectile.velocity.X * 0.05f;
-            for (int i = 0; i < 5; i++)
+            foreach (NPC npc in Main.npc)
             {
-                Vector2 vec = Vector2.UnitY.RotatedBy(MathHelper.TwoPi / 6 * i + Projectile.rotation);
-                Dust dust = Dust.NewDustPerfect(Projectile.Center + vec, DustID.GemAmethyst, vec);
+                if (npc == null) continue;
+                if (!npc.active && !npc.boss && npc.knockBackResist == 0f) continue;
+                float distance = (npc.Center - Projectile.Center).Length();
+                if (distance < 1600f)
+                {
+                    Vector2 value2 = npc.SafeDirectionTo(Projectile.Center) * (Projectile.velocity.Length() + 3.5f);
+                    npc.velocity = Vector2.Lerp(npc.velocity, value2, 0.05f * npc.knockBackResist);
+                }
+            }
+            Projectile.rotation = -Projectile.velocity.X * 0.05f;
+            
+            if (Projectile.ai[0] > 0)
+                Projectile.ai[0]--;
+            else
+            {
+                for (int i = 0; i < 6; i++)
+                {
+                    Vector2 vec = Vector2.UnitY.RotatedBy(MathHelper.TwoPi / 6 * i + Projectile.rotation);
+                    Dust dust = Dust.NewDustPerfect(Projectile.Center + vec * 10f, DustID.GemAmethyst, vec * 3f);
+                    dust.noGravity = true;
+                }
+                Projectile.ai[0] = 2;
             }
         }
     }

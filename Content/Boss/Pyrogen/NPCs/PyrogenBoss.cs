@@ -37,6 +37,7 @@ using Clamity.Content.Boss.Pyrogen.Drop.Weapons;
 using Clamity.Content.Items.Materials;
 using Clamity.Content.Boss.Pyrogen.Drop;
 using Terraria.GameContent.Biomes;
+using Clamity.Content.Boss.Pyrogen.Projectiles;
 
 namespace Clamity.Content.Boss.Pyrogen.NPCs
 {
@@ -217,9 +218,9 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
             bool flag7 = num3 < (flag3 ? 0.5f : flag2 ? 0.45f : 0.3f);
             bool flag8 = num3 < (flag3 ? 0.35f : 0.25f) && flag2;
             bool flag9 = num3 < (flag3 ? 0.25f : 0.15f) && flag2;
-            int num4 = ModContent.ProjectileType<BrimstoneBarrage>();
-            int num5 = ModContent.ProjectileType<SCalBrimstoneFireblast>();
-            int num6 = ModContent.ProjectileType<BrimstoneBarrage>();
+            int num4 = ModContent.ProjectileType<FireBarrage>();
+            int num5 = ModContent.ProjectileType<Fireblast>();
+            int num6 = ModContent.ProjectileType<FireBarrage>();
             int type = Main.zenithWorld ? 235 : 67;
             if (!Main.zenithWorld)
             {
@@ -389,6 +390,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                 }
             }
 
+            //Start of attack AI
             if (NPC.ai[0] == 0f) //phase 1 - curcle of fireballs
             {
                 NPC.rotation = NPC.velocity.X * 0.1f;
