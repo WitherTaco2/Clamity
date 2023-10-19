@@ -23,6 +23,7 @@ namespace Clamity.Content.Items.Weapons.Rogue
         }
         public override void SetDefaults()
         {
+            //Malachite
             Item.width = 74; Item.height = 68;
             Item.value = CalamityGlobalItem.Rarity8BuyPrice;
             Item.rare = ItemRarityID.Yellow;
@@ -76,7 +77,7 @@ namespace Clamity.Content.Items.Weapons.Rogue
             Projectile.aiStyle = 93;
             AIType = 514;
         }
-        public override bool PreAI()
+        /*public override bool PreAI()
         {
             //Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver4;
             if (Projectile.ai[0] == 1)
@@ -89,7 +90,7 @@ namespace Clamity.Content.Items.Weapons.Rogue
             {
                 return true;
             }
-        }
+        }*/
         public void NewAI()
         {
             //Projectile.ai[0]++;
