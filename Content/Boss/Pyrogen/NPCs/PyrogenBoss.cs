@@ -100,7 +100,10 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
             NPC.height = 88;
             NPC.defense = 15;
             NPC.DR_NERD(0.3f);
-            NPC.LifeMaxNERB(30000, 36000, 300000);
+            NPC.LifeMaxNERB(20000, 26000, 200000);  //Old:
+                                                    //HP on normal with all shields = 33 500 (3 500 of shields)
+                                                    //Death - 42 000 (7000 of shields)
+                                                    //Boss Rush - 350 000 (50000 of shields)
             double num = (double)CalamityConfig.Instance.BossHealthBoost * 0.01;
             NPC.lifeMax += (int)(NPC.lifeMax * num);
             NPC.aiStyle = -1;
@@ -961,7 +964,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                 return;
             }
 
-            if (NPC.ai[0] == 4f)
+            if (NPC.ai[0] == 4f) //phase 5
             {
                 if (flag8)
                 {
@@ -1404,12 +1407,15 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
             NPC.width = 216;
             NPC.height = 216;
             NPC.scale *= CalamityWorld.death || BossRushEvent.BossRushActive || Main.getGoodWorld ? 0.8f : 1f;
-            NPC.DR_NERD(0.4f);
-            NPC.lifeMax = CalamityWorld.death ? 700 : 1400;
+            NPC.DR_NERD(0.6f);
+            NPC.lifeMax = CalamityWorld.death ? 3500 : 5000;
             if (BossRushEvent.BossRushActive)
             {
-                NPC.lifeMax = 10000;
+                NPC.lifeMax = 50000;
             }
+            //Old           - 700  - 1400  - 10000
+            //New           - 3500 - 5000  - 50000
+            //Difference    - 2800 - 3600  - 40000
 
             double num = (double)CalamityConfig.Instance.BossHealthBoost * 0.01;
             NPC.lifeMax += (int)(NPC.lifeMax * num);
@@ -1431,7 +1437,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                 NPC.Opacity = 1f;
             }
 
-            NPC.rotation += 0.05f;
+            NPC.rotation += 0.01f;
             if (NPC.type == ModContent.NPCType<PyrogenShield>())
             {
                 int num = (int)NPC.ai[0];
@@ -1451,6 +1457,29 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                     NPC.HitEffect();
                     NPC.active = false;
                     NPC.netUpdate = true;
+                }
+            }
+
+            float attackTimer = NPC.Calamity().newAI[0];
+            if (attackTimer > 0)
+            {
+                attackTimer--;
+                if (attackTimer < 90)
+                    NPC.rotation += 0.05f;
+            }
+            else
+            {
+                int randomAttack = Main.rand.Next(2);
+                switch(randomAttack)
+                {
+                    case 0:
+
+                        break;
+                    case 1:
+                        Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, -Vector2.UnitY * 30, ModContent.ProjectileType<Fireblast>(), NPC.GetProjectileDamage(ModContent.ProjectileType<Fireblast>()), 0f, Main.myPlayer);
+        
+
+                        break;
                 }
             }
         }

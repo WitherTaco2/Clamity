@@ -91,6 +91,10 @@ namespace Clamity.Content.Items.Weapons.Rogue
                 return true;
             }
         }*/
+        public override void PostAI()
+        {
+            NewAI();
+        }
         public void NewAI()
         {
             //Projectile.ai[0]++;
