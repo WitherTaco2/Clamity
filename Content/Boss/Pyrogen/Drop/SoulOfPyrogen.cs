@@ -1,6 +1,7 @@
 ﻿using CalamityMod;
 using CalamityMod.Buffs.DamageOverTime;
 using CalamityMod.Items;
+using CalamityMod.Particles;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,10 @@ namespace Clamity.Content.Boss.Pyrogen.Drop
         {
             Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(4, 10));
             ItemID.Sets.AnimatesAsSoul[Item.type] = true;
+
+            if (!ModLoader.TryGetMod("Redemption", out var redemption))
+                return;
+            redemption.Call("addElementItem", 2, Type);
         }
         public override void SetDefaults()
         {
@@ -39,6 +44,12 @@ namespace Clamity.Content.Boss.Pyrogen.Drop
     }
     public class SoulOfPyrogenSpear : ModProjectile
     {
+        public override void SetStaticDefaults()
+        {
+            if (!ModLoader.TryGetMod("Redemption", out var redemption))
+                return;
+            redemption.Call("addElementProj", 2, Type);
+        }
         public override void SetDefaults()
         {
             Projectile.width = Projectile.height = 26;
@@ -71,6 +82,7 @@ namespace Clamity.Content.Boss.Pyrogen.Drop
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.AddBuff(ModContent.BuffType<Dragonfire>(), 120);
+            GeneralParticleHandler.SpawnParticle(new SparkParticle(Projectile.Center, Projectile.velocity.SafeNormalize(Vector2.Zero) * 5f, false, 30, 3f, Color.Lerp(Color.Red, Color.DarkRed, Main.rand.NextFloat(0.7f))));
         }
     }
 }

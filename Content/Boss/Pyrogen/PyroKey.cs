@@ -81,7 +81,7 @@ namespace Clamity.Content.Boss.Pyrogen
         public override void AddRecipes()
         {
             CreateRecipe().AddRecipeGroup("AnySandBlock", 50).AddIngredient(520, 5).AddIngredient(521, 5)
-                .AddIngredient<EssenceOfHeat>(8)
+                .AddIngredient<EssenceOfFlame>(8)
                 .AddTile(16)
                 .Register();
         }

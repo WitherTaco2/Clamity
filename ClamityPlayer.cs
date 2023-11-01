@@ -1,12 +1,12 @@
 ﻿using CalamityMod;
 using CalamityMod.Buffs.DamageOverTime;
-using CalamityMod.Cooldowns;
-using CalamityMod.Items;
-using CalamityMod.UI.CalamitasEnchants;
+using CalamityMod.World;
 using Clamity.Content.Boss.Pyrogen.Drop;
+using Clamity.Content.Items.Tools.Bags.Fish;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.GameInput;
 using Terraria.ModLoader;
 
@@ -22,6 +22,8 @@ namespace Clamity
         public int pyroSpearCD;
         //Minion
         public bool hellsBell;
+        //Buffs-Debuffs
+        //public bool wCleave;
         public override void ResetEffects()
         {
             realityRelocator = false;
@@ -31,6 +33,8 @@ namespace Clamity
             pyroSpear = false;
 
             hellsBell = false;
+
+            //wCleave = false;
         }
         //public Item[] accesories;
         public override void UpdateEquips()
@@ -112,6 +116,31 @@ namespace Clamity
                     Projectile.NewProjectile(proj.GetSource_OnHit(target), target.Center + vec1 * 500f, -vec1.RotatedByRandom(0.1f) * 20f, ModContent.ProjectileType<SoulOfPyrogenSpear>(), proj.damage / 2, 1f, Player.whoAmI, target.whoAmI);
                 }
                 pyroSpearCD = 100;
+            }
+        }
+        /*public override void ModifyHitByNPC(NPC npc, ref Player.HurtModifiers modifiers)
+        {
+            if (wCleave)
+                Player.Calamity().contactDamageReduction *= 0.75f;
+        }
+        public override void ModifyHitByProjectile(Projectile proj, ref Player.HurtModifiers modifiers)
+        {
+            if (wCleave)
+                Player.Calamity().contactDamageReduction *= 0.75f;
+        }*/
+        public override void CatchFish(FishingAttempt attempt, ref int itemDrop, ref int npcSpawn, ref AdvancedPopupRequest sonar, ref Vector2 sonarPosition)
+        {
+            bool flag = !attempt.inHoney && !attempt.inLava;
+            if (flag)
+            {
+                if (Player.ZoneDesert && Main.hardMode && attempt.uncommon && Main.rand.NextBool(7))
+                    itemDrop = ModContent.ItemType<FishOfFlame>();
+                if (Player.Calamity().ZoneSulphur && DownedBossSystem.downedPolterghast && attempt.uncommon && Main.rand.NextBool(10))
+                    itemDrop = ModContent.ItemType<FrontGar>();
+                if (Player.ZoneJungle && DownedBossSystem.downedProvidence && attempt.uncommon && Main.rand.NextBool(10))
+                    itemDrop = ModContent.ItemType<RearGar>();
+                if (Player.ZoneSkyHeight && NPC.downedMoonlord && attempt.uncommon && Main.rand.NextBool(10))
+                    itemDrop = ModContent.ItemType<SideGar>();
             }
         }
     }

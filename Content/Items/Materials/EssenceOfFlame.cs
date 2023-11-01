@@ -8,7 +8,7 @@ using Terraria;
 
 namespace Clamity.Content.Items.Materials
 {
-    public class EssenceOfHeat : EssenceofEleum
+    public class EssenceOfFlame : EssenceofEleum
     {
         public override void Update(ref float gravity, ref float maxFallSpeed)
         {
@@ -16,7 +16,7 @@ namespace Clamity.Content.Items.Materials
             Lighting.AddLight(Item.Center, 0.9f * num, 0.4f * num, 0.5f * num);
         }
     }
-    public class CoreOfHeat : CoreofEleum
+    public class CoreOfFlame : CoreofEleum
     {
         public override void Update(ref float gravity, ref float maxFallSpeed)
         {
@@ -25,7 +25,7 @@ namespace Clamity.Content.Items.Materials
         }
         public override void AddRecipes()
         {
-            CreateRecipe(3).AddIngredient<EssenceOfHeat>().AddIngredient(1508).AddTile(134)
+            CreateRecipe(3).AddIngredient<EssenceOfFlame>().AddIngredient(1508).AddTile(134)
                 .Register();
         }
     }

@@ -13,7 +13,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent;
 using ReLogic.Graphics;
 
-namespace Clamity.Content.Items.Tools
+namespace Clamity.Content.Items.Tools.FishingPoles
 {
     public class WulfrumLure : ModItem, ILocalizedModType, IModType
     {
@@ -72,16 +72,16 @@ namespace Clamity.Content.Items.Tools
             if (charge > 0) num += 4;
             for (int index = 0; index < num; ++index)
             {
-                float num1 = velocity.X + Utils.NextFloat(Main.rand, -3.75f, 3.75f);
-                float num2 = velocity.Y + Utils.NextFloat(Main.rand, -3.75f, 3.75f);
-                Projectile.NewProjectile((IEntitySource)source, position.X, position.Y, num1, num2, type, 0, 0.0f, ((Entity)player).whoAmI, 0.0f, 0.0f, 0.0f);
+                float num1 = velocity.X + Main.rand.NextFloat(-3.75f, 3.75f);
+                float num2 = velocity.Y + Main.rand.NextFloat(-3.75f, 3.75f);
+                Projectile.NewProjectile(source, position.X, position.Y, num1, num2, type, 0, 0.0f, player.whoAmI, 0.0f, 0.0f, 0.0f);
             }
             return base.Shoot(player, source, position, velocity, type, damage, knockback);
         }
         public override void PostDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
             Player player = Main.player[Main.myPlayer];
-            if (player.inventory[player.selectedItem].type == base.Item.type)
+            if (player.inventory[player.selectedItem].type == Item.type)
             {
                 string text = charge.ToString();
 
@@ -113,7 +113,7 @@ namespace Clamity.Content.Items.Tools
         public override bool PreDrawExtras()
         {
             //Lighting.AddLight(Projectile.Center, (float)((double)((int)byte.MaxValue - Projectile.alpha) * 0.0 / (double)byte.MaxValue), (float)((double)((int)byte.MaxValue - this.Projectile.alpha) * 0.25 / (double)byte.MaxValue), (float)((double)((int)byte.MaxValue - this.Projectile.alpha) * 0.25 / (double)byte.MaxValue));
-            return this.Projectile.DrawFishingLine(ModContent.ItemType<WulfrumLure>(), new Color(255, 251, 189, 100), 46, 36);
+            return Projectile.DrawFishingLine(ModContent.ItemType<WulfrumLure>(), new Color(255, 251, 189, 100), 46, 36);
         }
     }
 }

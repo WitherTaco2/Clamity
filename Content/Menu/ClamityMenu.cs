@@ -97,6 +97,6 @@ namespace Clamity.Content.Menu
                 return Color.Lerp(Color.Blue, Color.Cyan, Main.rand.NextFloat(0.9f));
             }
         }
-        public override int Music => MusicLoader.GetMusicSlot("Sounds/Music/Title");
+        public override int Music => MusicLoader.GetMusicSlot("Clamity/Sounds/Music/Title");
     }
 }

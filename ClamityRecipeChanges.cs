@@ -35,7 +35,7 @@ namespace Clamity
                 }
 
                 //Item item2 = ModContent.GetInstance<CoreOfHeat>().Item;
-                int coreOfHeat =ModContent.ItemType<CoreOfHeat>();
+                int coreOfHeat =ModContent.ItemType<CoreOfFlame>();
                 if (recipe.HasResult<CoreofCalamity>())
                 {
                     //item2.stack = 3;
@@ -73,7 +73,7 @@ namespace Clamity
                     recipe.requiredItem.Insert(1, new Item(coreOfHeat) { stack = 6 });
                 }
 
-                int essenceOfHeat = ModContent.ItemType<EssenceOfHeat>();
+                int essenceOfHeat = ModContent.ItemType<EssenceOfFlame>();
                 if (recipe.HasResult<FlarewingBow>())
                 {
                     //item3.stack = 5;

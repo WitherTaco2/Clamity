@@ -12,7 +12,7 @@ using Terraria.ModLoader;
 
 namespace Clamity.Content.Items.Weapons.Rogue
 {
-    public class WulfrumShockCutter : WulfrumKnife
+    /*public class WulfrumShockCutter : WulfrumKnife
     {
         public override void SetDefaults()
         {
@@ -45,5 +45,9 @@ namespace Clamity.Content.Items.Weapons.Rogue
         {
             
         }
-    }
+        public override void OnKill(int timeLeft)
+        {
+            
+        }
+    }*/
 }

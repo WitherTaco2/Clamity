@@ -7,7 +7,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Items.Weapons.Ranged
+namespace Clamity.Content.Items.Weapons.Ranged.Guns
 {
     public class LeadWizard : ModItem, ILocalizedModType, IModType
     {

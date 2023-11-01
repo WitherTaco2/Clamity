@@ -38,6 +38,7 @@ using Clamity.Content.Items.Materials;
 using Clamity.Content.Boss.Pyrogen.Drop;
 using Terraria.GameContent.Biomes;
 using Clamity.Content.Boss.Pyrogen.Projectiles;
+using rail;
 
 namespace Clamity.Content.Boss.Pyrogen.NPCs
 {
@@ -223,7 +224,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
             bool flag9 = num3 < (flag3 ? 0.25f : 0.15f) && flag2;
             int num4 = ModContent.ProjectileType<FireBarrage>();
             int num5 = ModContent.ProjectileType<Fireblast>();
-            int num6 = ModContent.ProjectileType<FireBarrage>();
+            int num6 = ModContent.ProjectileType<FireBarrageHoming>();
             int type = Main.zenithWorld ? 235 : 67;
             if (!Main.zenithWorld)
             {
@@ -264,7 +265,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                 NPC.ai[2] = 0f;
                 if (NPC.localAI[1] == -1f)
                 {
-                    NPC.localAI[1] = flag3 ? 540f : flag ? 720f : 1080f;
+                    NPC.localAI[1] = flag3 ? 840f : flag ? 1220f : 1580f;
                 }
 
                 if (NPC.localAI[1] > 0f)
@@ -397,28 +398,31 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
             if (NPC.ai[0] == 0f) //phase 1 - curcle of fireballs
             {
                 NPC.rotation = NPC.velocity.X * 0.1f;
-                NPC.localAI[0] += 1f;
-                if (NPC.localAI[0] >= 120f)
+                if (!NPC.dontTakeDamage)
                 {
-                    NPC.localAI[0] = 0f;
-                    NPC.TargetClosest();
-                    if (Collision.CanHit(NPC.position, NPC.width, NPC.height, player.position, player.width, player.height))
+                    NPC.localAI[0] += 1f;
+                    if (NPC.localAI[0] >= 120f)
                     {
-                        //SoundStyle style = (Main.zenithWorld ? SoundID.NPCHit41 : HitSound);
-                        //SoundEngine.PlaySound(in style, NPC.Center);
-                        if (Main.netMode != 1)
+                        NPC.localAI[0] = 0f;
+                        NPC.TargetClosest();
+                        if (Collision.CanHit(NPC.position, NPC.width, NPC.height, player.position, player.width, player.height))
                         {
-                            int num27 = bossRushActive ? 24 : 16;
-                            float num28 = MathF.PI * 2f / num27;
-                            int num29 = num4;
-                            int projectileDamage2 = NPC.GetProjectileDamage(num29);
-                            float num30 = 9f + num2;
-                            Vector2 spinningpoint2 = new Vector2(0f, 0f - num30);
-                            for (int l = 0; l < num27; l++)
+                            //SoundStyle style = (Main.zenithWorld ? SoundID.NPCHit41 : HitSound);
+                            //SoundEngine.PlaySound(in style, NPC.Center);
+                            if (Main.netMode != 1)
                             {
-                                Vector2 vector2 = spinningpoint2.RotatedBy(num28 * l);
-                                vector2 += (player.Center - NPC.Center).SafeNormalize(Vector2.Zero) * 10f;
-                                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center + Vector2.Normalize(vector2) * 30f, vector2, num29, projectileDamage2, 0f, Main.myPlayer);
+                                int num27 = bossRushActive ? 24 : 16;
+                                float num28 = MathF.PI * 2f / num27;
+                                int num29 = num4;
+                                int projectileDamage2 = NPC.GetProjectileDamage(num29);
+                                float num30 = 9f + num2;
+                                Vector2 spinningpoint2 = new Vector2(0f, 0f - num30);
+                                for (int l = 0; l < num27; l++)
+                                {
+                                    Vector2 vector2 = spinningpoint2.RotatedBy(num28 * l);
+                                    vector2 += (player.Center - NPC.Center).SafeNormalize(Vector2.Zero) * 10f;
+                                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center + Vector2.Normalize(vector2) * 30f, vector2, num29, projectileDamage2, 0f, Main.myPlayer);
+                                }
                             }
                         }
                     }
@@ -456,28 +460,32 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                 {
                     NPC.ai[1] += 1f;
                     NPC.rotation = NPC.velocity.X * 0.1f;
-                    NPC.localAI[0] += 1f;
-                    if (NPC.localAI[0] >= 120f)
+
+                    if (!NPC.dontTakeDamage)
                     {
-                        NPC.localAI[0] = 0f;
-                        NPC.TargetClosest();
-                        if (Collision.CanHit(NPC.position, NPC.width, NPC.height, player.position, player.width, player.height))
+                        NPC.localAI[0] += 1f;
+                        if (NPC.localAI[0] >= 120f)
                         {
-                            //SoundStyle style = (Main.zenithWorld ? SoundID.NPCHit41 : HitSound);
-                            //SoundEngine.PlaySound(in style, NPC.Center);
-                            if (Main.netMode != 1)
+                            NPC.localAI[0] = 0f;
+                            NPC.TargetClosest();
+                            if (Collision.CanHit(NPC.position, NPC.width, NPC.height, player.position, player.width, player.height))
                             {
-                                int num35 = bossRushActive ? 18 : 12;
-                                float num36 = MathF.PI * 2f / num35;
-                                int num37 = num4;
-                                int projectileDamage3 = NPC.GetProjectileDamage(num37);
-                                float num38 = 9f + num2;
-                                Vector2 spinningpoint3 = new Vector2(0f, 0f - num38);
-                                for (int m = 0; m < num35; m++)
+                                //SoundStyle style = (Main.zenithWorld ? SoundID.NPCHit41 : HitSound);
+                                //SoundEngine.PlaySound(in style, NPC.Center);
+                                if (Main.netMode != 1)
                                 {
-                                    Vector2 vector4 = spinningpoint3.RotatedBy(num36 * m);
-                                    vector4 += (player.Center - NPC.Center).SafeNormalize(Vector2.Zero) * 5f;
-                                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center + Vector2.Normalize(vector4) * 30f, vector4, num37, projectileDamage3, 0f, Main.myPlayer);
+                                    int num35 = bossRushActive ? 18 : 12;
+                                    float num36 = MathF.PI * 2f / num35;
+                                    int num37 = num6;
+                                    int projectileDamage3 = NPC.GetProjectileDamage(num37);
+                                    float num38 = 9f + num2;
+                                    Vector2 spinningpoint3 = new Vector2(0f, 0f - num38);
+                                    for (int m = 0; m < num35; m++)
+                                    {
+                                        Vector2 vector4 = spinningpoint3.RotatedBy(num36 * m);
+                                        vector4 += (player.Center - NPC.Center).SafeNormalize(Vector2.Zero) * 5f;
+                                        Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center + Vector2.Normalize(vector4) * 30f, vector4, num37, projectileDamage3, 0f, Main.myPlayer);
+                                    }
                                 }
                             }
                         }
@@ -552,7 +560,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                         //SoundEngine.PlaySound(in style, NPC.Center);
                         if (Main.netMode != 1)
                         {
-                            int num42 = num6;
+                            int num42 = num4;
                             int projectileDamage4 = NPC.GetProjectileDamage(num42);
                             float num43 = 9f + num2;
                             float num44 = num43 - calamityGlobalNPC.newAI[0] * num43 * 0.5f;
@@ -634,37 +642,41 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                 return;
             }
 
-            if (NPC.ai[0] == 2f) //phaase 3 - only dashes
+            if (NPC.ai[0] == 2f) //phase 3 - only dashes
             {
                 if (NPC.ai[1] < num12)
                 {
                     NPC.ai[1] += 1f;
                     NPC.rotation = NPC.velocity.X * 0.1f;
-                    NPC.localAI[0] += 1f;
-                    if (NPC.localAI[0] >= 120f)
+
+                    if (!NPC.dontTakeDamage)
                     {
-                        NPC.localAI[0] = 0f;
-                        NPC.TargetClosest();
-                        if (Collision.CanHit(NPC.position, NPC.width, NPC.height, player.position, player.width, player.height))
+                        NPC.localAI[0] += 1f;
+                        if (NPC.localAI[0] >= 120f)
                         {
-                            //SoundStyle style = (Main.zenithWorld ? SoundID.NPCHit41 : HitSound);
-                            //SoundEngine.PlaySound(in style, NPC.Center);
-                            if (Main.netMode != 1)
+                            NPC.localAI[0] = 0f;
+                            NPC.TargetClosest();
+                            if (Collision.CanHit(NPC.position, NPC.width, NPC.height, player.position, player.width, player.height))
                             {
-                                int num53 = bossRushActive ? 18 : 12;
-                                float num54 = MathF.PI * 2f / num53;
-                                int num55 = num4;
-                                int projectileDamage5 = NPC.GetProjectileDamage(num55);
-                                float num56 = 9f + num2;
-                                Vector2 spinningpoint5 = new Vector2(0f, 0f - num56);
-                                for (int num57 = 0; num57 < num53; num57++)
+                                //SoundStyle style = (Main.zenithWorld ? SoundID.NPCHit41 : HitSound);
+                                //SoundEngine.PlaySound(in style, NPC.Center);
+                                if (Main.netMode != 1)
                                 {
-                                    Vector2 vector6 = spinningpoint5.RotatedBy(num54 * num57);
-                                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center + Vector2.Normalize(vector6) * 30f, vector6, num55, projectileDamage5, 0f, Main.myPlayer);
+                                    int num53 = bossRushActive ? 18 : 12;
+                                    float num54 = MathF.PI * 2f / num53;
+                                    int num55 = num4;
+                                    int projectileDamage5 = NPC.GetProjectileDamage(num55);
+                                    float num56 = 9f + num2;
+                                    Vector2 spinningpoint5 = new Vector2(0f, 0f - num56);
+                                    for (int num57 = 0; num57 < num53; num57++)
+                                    {
+                                        Vector2 vector6 = spinningpoint5.RotatedBy(num54 * num57);
+                                        Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center + Vector2.Normalize(vector6) * 30f, vector6, num55, projectileDamage5, 0f, Main.myPlayer);
+                                    }
                                 }
                             }
                         }
-                    }
+                    }   
 
                     Vector2 vector7 = new Vector2(NPC.Center.X, NPC.Center.Y);
                     float num58 = player.Center.X - vector7.X;
@@ -692,7 +704,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                         //SoundEngine.PlaySound(in style, NPC.Center);
                         if (Main.netMode != 1)
                         {
-                            int num63 = num6;
+                            int num63 = num4;
                             int projectileDamage6 = NPC.GetProjectileDamage(num63);
                             float num64 = 9f + num2;
                             float num65 = num64 - calamityGlobalNPC.newAI[0] * num64 * 0.5f;
@@ -1317,7 +1329,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            //npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<CryogenBag>()));
+            npcLoot.Add(ItemDropRule.BossBag(ModContent.ItemType<PyrogenBag>()));
             LeadingConditionRule mainRule = npcLoot.DefineNormalOnlyDropSet();
             int[] itemIDs = new int[5]
             {
@@ -1331,7 +1343,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
             //mainRule.Add(ModContent.ItemType<GlacialEmbrace>(), 10);
             mainRule.Add(ItemDropRule.Common(ModContent.ItemType<PyrogenMask>(), 7));
             mainRule.Add(ItemDropRule.Common(ModContent.ItemType<ThankYouPainting>(), 100));
-            mainRule.Add(ItemDropRule.Common(ModContent.ItemType<EssenceOfHeat>(), 1, 8, 10));
+            mainRule.Add(ItemDropRule.Common(ModContent.ItemType<EssenceOfFlame>(), 1, 8, 10));
             mainRule.Add(DropHelper.PerPlayer(ModContent.ItemType<SoulOfPyrogen>()));
             //mainRule.Add(ModContent.ItemType<CryoStone>(), DropHelper.NormalWeaponDropRateFraction);
             //mainRule.Add(ModContent.ItemType<FrostFlare>(), DropHelper.NormalWeaponDropRateFraction);
@@ -1460,27 +1472,80 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                 }
             }
 
-            float attackTimer = NPC.Calamity().newAI[0];
-            if (attackTimer > 0)
+            ref float attackTimer = ref NPC.Calamity().newAI[0];
+            ref float randomAttack = ref NPC.Calamity().newAI[1];
+            attackTimer--;
+
+            for (int i = 0; i < 8; i++)
             {
-                attackTimer--;
-                if (attackTimer < 90)
-                    NPC.rotation += 0.05f;
+                Dust dust = Dust.NewDustPerfect(NPC.Center + Vector2.UnitX.RotatedBy(MathHelper.TwoPi / 8 * i + NPC.rotation) * 90f, DustID.Flare, Vector2.UnitX.RotatedBy(MathHelper.TwoPi / 8 * i), Scale: 3f);
+                dust.noGravity = true;
             }
-            else
+
+            if (attackTimer < 90)
+                NPC.rotation += 0.05f;
+            if (attackTimer < 0)
             {
-                int randomAttack = Main.rand.Next(2);
-                switch(randomAttack)
+                if (randomAttack == -2) randomAttack = Main.rand.Next(100);
+                else if (randomAttack == -1)
+                {
+                    attackTimer = 200;
+                    randomAttack = -2;
+                }
+                else if (randomAttack >= 0)
+                {
+                    if (randomAttack < 25)
+                    {
+                        Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, -Vector2.UnitY, ModContent.ProjectileType<Fireblast>(), NPC.GetProjectileDamage(ModContent.ProjectileType<Fireblast>()), 1f, Main.myPlayer);
+                        randomAttack = -1;
+                    }
+                    else if (randomAttack >= 25 && randomAttack < 100)
+                    {
+                        if (attackTimer % 10 == 0)
+                        {
+                            for (int i = 0; i < 4; i++)
+                            {
+                                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Vector2.UnitX.RotatedBy(MathHelper.TwoPi / 4 * i + NPC.rotation) * 5f, ModContent.ProjectileType<FireBarrage>(), NPC.GetProjectileDamage(ModContent.ProjectileType<FireBarrage>()), 1f, Main.myPlayer);
+                            }
+                        }
+                        if (attackTimer < -50)
+                        {
+                            randomAttack = -1;
+                        }
+                    }
+                }
+                /*switch (randomAttack)
                 {
                     case 0:
+                        if (attackTimer % 10 == 0)
+                        {
+                            for (int i = 0; i < 4; i++)
+                            {
+                                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Vector2.UnitX.RotatedBy(MathHelper.TwoPi / 4 * i + NPC.rotation), ModContent.ProjectileType<FireBarrage>(), NPC.GetProjectileDamage(ModContent.ProjectileType<FireBarrage>()), 1f, Main.myPlayer);
+                            }
+                        }
+                        if (attackTimer < -60)
+                        {
+                            randomAttack = -1;
+                        }
 
                         break;
                     case 1:
-                        Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, -Vector2.UnitY * 30, ModContent.ProjectileType<Fireblast>(), NPC.GetProjectileDamage(ModContent.ProjectileType<Fireblast>()), 0f, Main.myPlayer);
-        
-
+                        Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, -Vector2.UnitY, ModContent.ProjectileType<Fireblast>(), NPC.GetProjectileDamage(ModContent.ProjectileType<Fireblast>()), 1f, Main.myPlayer);
+                        randomAttack = -1;
                         break;
-                }
+
+                    case -1:
+                        attackTimer = 150;
+                        randomAttack = -2;
+                        break;
+                    case -2:
+                        randomAttack = Main.rand.Next(2);
+                        break;
+                    default:
+                        randomAttack = Main.rand.Next(2);
+                        break;
+                }*/
             }
         }
 

@@ -43,15 +43,15 @@ namespace Clamity.Content.Items.Weapons.Rogue
         }
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            Projectile.NewProjectile(source, position, velocity, type, damage, knockback);
-            if (player.Calamity().StealthStrikeAvailable())
+            Projectile.NewProjectileDirect(source, position, velocity, type, damage, knockback).ai[0] = player.Calamity().StealthStrikeAvailable().ToInt();
+            /*if (player.Calamity().StealthStrikeAvailable())
             {
                 foreach (Projectile proj in Main.projectile)
                 {
                     if (proj.type == ModContent.ProjectileType<CrustallineProjecile>())
                         proj.ai[0] = 1;
                 }
-            }
+            }*/
             return false;
         }
     }

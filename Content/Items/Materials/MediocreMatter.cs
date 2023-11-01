@@ -25,7 +25,7 @@ namespace Clamity.Content.Items.Materials
                 .AddIngredient<EssenceofSunlight>()
                 .AddIngredient<EssenceofHavoc>()
                 .AddIngredient<EssenceofEleum>()
-                .AddIngredient<EssenceOfHeat>()
+                .AddIngredient<EssenceOfFlame>()
                 .AddIngredient<SeaPrism>()
                 .AddIngredient<PlagueCellCanister>()
                 .AddIngredient<BloodOrb>()

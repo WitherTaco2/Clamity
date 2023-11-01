@@ -17,7 +17,7 @@ using CalamityMod;
 using Terraria.Audio;
 using CalamityMod.Buffs.DamageOverTime;
 
-namespace Clamity.Content.Items.Weapons.Ranged
+namespace Clamity.Content.Items.Weapons.Ranged.Guns
 {
     public class ChargedDartBlaster : ModItem, ILocalizedModType, IModType
     {
@@ -54,14 +54,14 @@ namespace Clamity.Content.Items.Weapons.Ranged
         {
             if (player.altFunctionUse == 2)
             {
-                Projectile.NewProjectile(source, position.X, position.Y, velocity.X, velocity.Y, ModContent.ProjectileType<ChargedBlast3>(), (int)((double)damage * 2.0), knockback, player.whoAmI, 0.0f, 0.0f);
+                Projectile.NewProjectile(source, position.X, position.Y, velocity.X, velocity.Y, ModContent.ProjectileType<ChargedBlast3>(), (int)(damage * 2.0), knockback, player.whoAmI, 0.0f, 0.0f);
                 return false;
             }
             int num1 = Main.rand.Next(2, 5);
             for (int index = 0; index < num1; ++index)
             {
-                float num2 = velocity.X + (float)Main.rand.Next(-40, 41) * 0.05f;
-                float num3 = velocity.Y + (float)Main.rand.Next(-40, 41) * 0.05f;
+                float num2 = velocity.X + Main.rand.Next(-40, 41) * 0.05f;
+                float num3 = velocity.Y + Main.rand.Next(-40, 41) * 0.05f;
                 Projectile.NewProjectile(source, position.X, position.Y, num2, num3, type, damage / 2, knockback, player.whoAmI, 0.0f, 0.0f);
             }
             Projectile.NewProjectile(source, position.X, position.Y, velocity.X, velocity.Y, ModContent.ProjectileType<ChargedBlast>(), damage, knockback, player.whoAmI, 0.0f, 0.0f);
@@ -101,7 +101,7 @@ namespace Clamity.Content.Items.Weapons.Ranged
             Projectile.DamageType = DamageClass.Ranged;
             Projectile.penetrate = 4;
             Projectile.extraUpdates = 3;
-            Projectile.alpha = (int)byte.MaxValue;
+            Projectile.alpha = byte.MaxValue;
             Projectile.timeLeft = 300;
         }
 
@@ -129,7 +129,7 @@ namespace Clamity.Content.Items.Weapons.Ranged
                 Projectile.Kill();
             }
         }
-        public override Color? GetAlpha(Color lightColor) => new Color?(new Color(100, 100, (int)byte.MaxValue, 0));
+        public override Color? GetAlpha(Color lightColor) => new Color?(new Color(100, 100, byte.MaxValue, 0));
         public override bool PreDraw(ref Color lightColor)
         {
             return Projectile.DrawBeam(100f, 3f, lightColor);
@@ -191,17 +191,17 @@ namespace Clamity.Content.Items.Weapons.Ranged
         {
             if (Projectile.timeLeft != 5)
                 return;
-            if ((double)Projectile.ai[1] == 0.0)
+            if (Projectile.ai[1] == 0.0)
             {
                 for (int index1 = 0; index1 < 5; ++index1)
                 {
                     int index2 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, 160, 0.0f, 0.0f, 100, new Color(), 2f);
                     Dust dust = Main.dust[index2];
                     dust.velocity = dust.velocity * 3f;
-                    if (Utils.NextBool(Main.rand, 2))
+                    if (Main.rand.NextBool(2))
                     {
                         Main.dust[index2].scale = 0.5f;
-                        Main.dust[index2].fadeIn = (float)(1.0 + (double)Main.rand.Next(10) * 0.10000000149011612);
+                        Main.dust[index2].fadeIn = (float)(1.0 + Main.rand.Next(10) * 0.10000000149011612);
                     }
                 }
                 for (int index3 = 0; index3 < 10; ++index3)
@@ -223,10 +223,10 @@ namespace Clamity.Content.Items.Weapons.Ranged
                     int index7 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, 160, 0.0f, 0.0f, 100, new Color(), 2f);
                     Dust dust = Main.dust[index7];
                     dust.velocity = dust.velocity * 3f;
-                    if (Utils.NextBool(Main.rand, 2))
+                    if (Main.rand.NextBool(2))
                     {
                         Main.dust[index7].scale = 0.5f;
-                        Main.dust[index7].fadeIn = (float)(1.0 + (double)Main.rand.Next(10) * 0.10000000149011612);
+                        Main.dust[index7].fadeIn = (float)(1.0 + Main.rand.Next(10) * 0.10000000149011612);
                     }
                 }
                 for (int index8 = 0; index8 < 20; ++index8)

@@ -7,7 +7,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Items.Weapons.Ranged
+namespace Clamity.Content.Items.Weapons.Ranged.Guns
 {
     public class Impaler : ModItem, ILocalizedModType, IModType
     {
@@ -63,7 +63,7 @@ namespace Clamity.Content.Items.Weapons.Ranged
         }
         public override void AI()
         {
-            if (!Utils.NextBool(Main.rand, 5))
+            if (!Main.rand.NextBool(5))
                 return;
             Dust.NewDust(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height, 6, Projectile.velocity.X * 0.5f, Projectile.velocity.Y * 0.5f, 0, new Color(), 1f);
         }

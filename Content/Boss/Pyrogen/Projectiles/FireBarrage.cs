@@ -12,6 +12,7 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
+using CalamityMod;
 
 namespace Clamity.Content.Boss.Pyrogen.Projectiles
 {
@@ -28,6 +29,37 @@ namespace Clamity.Content.Boss.Pyrogen.Projectiles
         public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
 
+        }
+    }
+    public class FireBarrageHoming : FireBarrage
+    {
+        public override string Texture => "Clamity/Content/Boss/Pyrogen/Projectiles/FireBarrage";
+        public int TargetIndex = -1;
+        public override void AI()
+        {
+            base.AI();
+
+            if (TargetIndex >= 0)
+            {
+                if (!Main.npc[TargetIndex].active || !Main.npc[TargetIndex].CanBeChasedBy())
+                {
+                    TargetIndex = -1;
+                }
+                else
+                {
+                    Vector2 value = Projectile.SafeDirectionTo(Main.npc[TargetIndex].Center)/* * (Projectile.velocity.Length() + 3.5f)*/;
+                    Projectile.velocity = Vector2.Lerp(Projectile.velocity, value, 0.01f);
+                }
+            }
+
+            if (TargetIndex == -1)
+            {
+                NPC nPC = Projectile.Center.ClosestNPCAt(1600f);
+                if (nPC != null)
+                {
+                    TargetIndex = nPC.whoAmI;
+                }
+            }
         }
     }
     public class Fireblast : SCalBrimstoneFireblast

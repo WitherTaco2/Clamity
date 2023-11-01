@@ -84,7 +84,7 @@ namespace Clamity.Content.Boss.Pyrogen.Drop.Weapons
         public override void AI()
         {
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
-            Projectile.velocity.Y += 0.2f;
+            Projectile.velocity.Y += 0.1f;
             if (Projectile.Calamity().stealthStrike)
             {
                 if (Projectile.ai[0] > 0)

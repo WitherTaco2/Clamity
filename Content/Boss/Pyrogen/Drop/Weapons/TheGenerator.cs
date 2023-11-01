@@ -48,7 +48,7 @@ namespace Clamity.Content.Boss.Pyrogen.Drop.Weapons
         {
             if (!ModLoader.TryGetMod("Redemption", out var redemption))
                 return;
-            redemption.Call("addElementItem", 2, Type);
+            redemption.Call("addElementProj", 2, Type);
         }
         public override void SetDefaults()
         {

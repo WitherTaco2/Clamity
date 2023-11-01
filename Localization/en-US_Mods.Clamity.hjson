@@ -284,7 +284,7 @@ Items: {
 
 			Obsidigun: {
 				DisplayName: Obsidigun
-				Tooltip: Converts musket balls into fast-moving obsidian bullets that break into shards on hit
+				Tooltip: Converts musket balls into fast-moving obsidian bullets that break into a lot of shards on hit
 			}
 
 			LeadWizard: {
@@ -320,6 +320,15 @@ Items: {
 					Right click to fire a more powerful exploding energy blast that bounces
 					'''
 			}
+
+			RoseBow: {
+				DisplayName: Rose Bow
+				Tooltip:
+					'''
+					'Even if you can't see me, even if you can't hear me, I'll be by your side'
+					Shoots a spread of arrows and homing petals
+					'''
+			}
 		}
 
 		Summon: {
@@ -333,8 +342,8 @@ Items: {
 			}
 
 			HellsBells: {
-				Tooltip: Summons an obsidian bell that follows the cursor
 				DisplayName: Hell`s Bells
+				Tooltip: Summons an obsidian bell that follows the cursor
 			}
 		}
 
@@ -345,15 +354,6 @@ Items: {
 					'''
 					Fires a string of bouncing sound waves that become stronger as they travel
 					Sound waves echo additional sound waves on enemy hits
-					'''
-			}
-
-			RoseBow: {
-				DisplayName: Rose Bow
-				Tooltip:
-					'''
-					'Even if you can't see me, even if you can't hear me, I'll be by your side'
-					Shoots a spread of arrows and homing petals
 					'''
 			}
 
@@ -370,8 +370,12 @@ Items: {
 
 		Rogue: {
 			MoltenPiercer: {
-				Tooltip: ""
 				DisplayName: Molten Piercer
+				Tooltip:
+					'''
+					Throws a flaming daggers
+					Daggers create a flaming obsidian shards in flight on stealth strike
+					'''
 			}
 
 			WulfrumShockCutter: {
@@ -393,7 +397,7 @@ Items: {
 
 	Materials: {
 		HuskOfCalamity: {
-			DisplayName: Husk Of Calamity
+			DisplayName: Husk of Calamity
 			Tooltip: The remains of a hell mollusk
 		}
 
@@ -402,13 +406,13 @@ Items: {
 			Tooltip: Its clammin' time
 		}
 
-		CoreOfHeat: {
-			DisplayName: Core Of Heat
+		CoreOfFlame: {
+			DisplayName: Core of Flame
 			Tooltip: ""
 		}
 
-		EssenceOfHeat: {
-			DisplayName: Essence Of Heat
+		EssenceOfFlame: {
+			DisplayName: Essence of Flame
 			Tooltip: The essence of creatures from hot terrain
 		}
 
@@ -601,6 +605,7 @@ Projectiles: {
 	Boss: {
 		Fireblast.DisplayName: Fireblast
 		FireBarrage.DisplayName: Fire Barrage
+		FireBarrageHoming.DisplayName: Fire Barrage Homing
 	}
 }
 

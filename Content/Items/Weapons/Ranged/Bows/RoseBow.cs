@@ -9,11 +9,11 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Items.Weapons.Ranged
+namespace Clamity.Content.Items.Weapons.Ranged.Bows
 {
     public class RoseBow : ModItem, ILocalizedModType, IModType
     {
-        public new string LocalizationCategory => "Items.Weapons.Magic";
+        public new string LocalizationCategory => "Items.Weapons.Ranged";
         public override void SetDefaults()
         {
             Item.width = 54;
