@@ -1,13 +1,13 @@
-Clamitas Addon is mod for Calamity which adds content from Calamity Fandom wiki and not only, but with high quality of realization as posible.
-This mod work like Calamity Community Remix but with more quality
+Clamitas Addon is mod for Calamity which adds content from Calamity Fandom wiki and not only, but with high quality of realization as posible. (second Calamity Community Remix)
 
 [h1]Content[/h1]
 [list]
-	[*]This mod add a Legendary Clamitas, Supreme Clam, from calamity memes. Clamitas is post-Calamitas Clone boss which summoned by Clamitous Shell in Brimstone Crags
-	[*]Also mod adds a upgraded version of [b]Mollusk Armor[/b] and [b]Giant Clam`s Weapons[/b], and also [b]Supreme Luck Potion[/b].
-	[*]Mod adds a new boss - Pyrogen. This boss is fire-version of Cryogen.
-	[*]Mod adds a removed from Calamity Mod Shortswords and not only with changes or rework (but they may be unchanged)
-	[*]Has support of Boss Checklist and Elements drom Mod of Redemption
+	[*] 2 bosses: Clamitas, Supreme Clam and Pyrogen
+	[*] over 25 old and new weapons (shortswords included)
+	[*] 1 armor set
+	[*] 4 new grab fishes
+	[*] 1 new powerful potion
+	[*] And more
 [/list]
 
 [h1]Credits[/h1]

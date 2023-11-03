@@ -1,9 +1,4 @@
 ﻿using CalamityMod.Items.Materials;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria;
@@ -35,6 +30,7 @@ namespace Clamity.Content.Items.Ammo
     }
     public class WarArrowProjectile : ModProjectile
     {
+        public override string Texture => ModContent.GetInstance<WarArrow>().Texture;
         public override void SetDefaults()
         {
             Projectile.CloneDefaults(ProjectileID.WoodenArrowFriendly);

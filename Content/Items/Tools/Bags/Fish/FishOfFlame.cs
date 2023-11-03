@@ -29,6 +29,6 @@ namespace Clamity.Content.Items.Tools.Bags.Fish
 
         public override bool CanRightClick() => true;
 
-        public override void ModifyItemLoot(ItemLoot itemLoot) => itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<EssenceOfFlame>(), 5, 10));
+        public override void ModifyItemLoot(ItemLoot itemLoot) => itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<EssenceOfFlame>(), 1, 5, 10));
     }
 }

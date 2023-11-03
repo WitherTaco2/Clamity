@@ -52,12 +52,16 @@ namespace Clamity.Content.Boss.Pyrogen.Drop.Weapons
             {
                 for
             }*/
-            for (int i = 0; i < 2; i++)
+            /*for (int i = 0; i < 2; i++)
             {
                 int index = Projectile.NewProjectile(source, position, velocity + Main.rand.NextVector2Square(-1, 1), type, damage / 2, knockback, player.whoAmI);
                 if (player.Calamity().StealthStrikeAvailable())
                     Main.projectile[index].Calamity().stealthStrike = true;
-            }
+            }*/
+            int index = Projectile.NewProjectile(source, position, velocity + Main.rand.NextVector2Square(-1, 1), type, damage / 2, knockback, player.whoAmI);
+            if (player.Calamity().StealthStrikeAvailable())
+                Main.projectile[index].Calamity().stealthStrike = true;
+
             return base.Shoot(player, source, position, velocity, type, damage, knockback);
         }
     }
@@ -91,7 +95,7 @@ namespace Clamity.Content.Boss.Pyrogen.Drop.Weapons
                     Projectile.ai[0]--;
                 else
                 {
-                    Projectile.ai[0] = 10;
+                    Projectile.ai[0] = 3;
                     int index = Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, Main.rand.NextVector2CircularEdge(20, 20), ModContent.ProjectileType<ObsidigunBulletShard>(), (int)(Projectile.damage / 2), Projectile.knockBack / 5, Projectile.owner);
                     Main.projectile[index].DamageType = ModContent.GetInstance<RogueDamageClass>();
                 }

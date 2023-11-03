@@ -18,7 +18,7 @@ namespace Clamity.Content.Buffs
             BuffID.Sets.LongerExpertDebuff[this.Type] = true;
         }
 
-        public virtual void Update(NPC npc, ref int buffIndex)
+        /*public virtual void Update(NPC npc, ref int buffIndex)
         {
             if (npc.Calamity().wCleave < npc.buffTime[buffIndex])
                 npc.Calamity().wCleave = npc.buffTime[buffIndex];
@@ -26,6 +26,6 @@ namespace Clamity.Content.Buffs
             --buffIndex;
         }
 
-        public virtual void Update(Player player, ref int buffIndex) => player.Calamity().wCleave = true;
+        public virtual void Update(Player player, ref int buffIndex) => player.Calamity().wCleave = true;*/
     }
 }

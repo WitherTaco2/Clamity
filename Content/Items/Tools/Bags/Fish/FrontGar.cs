@@ -28,6 +28,6 @@ namespace Clamity.Content.Items.Tools.Bags.Fish
             Item.rare = ModContent.RarityType<PureGreen>();
         }
         public override bool CanRightClick() => true;
-        public override void ModifyItemLoot(ItemLoot itemLoot) => itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<ReaperTooth>(), 5, 15));
+        public override void ModifyItemLoot(ItemLoot itemLoot) => itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<ReaperTooth>(), 1, 5, 15));
     }
 }

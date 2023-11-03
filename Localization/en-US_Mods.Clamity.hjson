@@ -67,6 +67,11 @@ Buffs: {
 		Description: The hellish bell will protect you
 		DisplayName: Obsidian bell
 	}
+
+	WarCleave: {
+		Description: Mods.Clamity.Buffs.WarCleave.Description
+		DisplayName: War Cleave
+	}
 }
 
 ItemExtraTooltip: {
@@ -329,6 +334,11 @@ Items: {
 					Shoots a spread of arrows and homing petals
 					'''
 			}
+
+			Baow: {
+				Tooltip: ""
+				DisplayName: Baow
+			}
 		}
 
 		Summon: {
@@ -462,6 +472,11 @@ Items: {
 					Create explosion on hit
 					'''
 			}
+
+			WarArrow: {
+				Tooltip: ""
+				DisplayName: War Arrow
+			}
 		}
 	}
 
@@ -475,6 +490,26 @@ Items: {
 				Charge has 10 uses
 				Charged rod increases bobber count by 4 and fishing power up to 70%
 				'''
+		}
+
+		SideGar: {
+			Tooltip: ""
+			DisplayName: Side Gar
+		}
+
+		RearGar: {
+			Tooltip: ""
+			DisplayName: Rear Gar
+		}
+
+		FrontGar: {
+			Tooltip: ""
+			DisplayName: Front Gar
+		}
+
+		FishOfFlame: {
+			Tooltip: ""
+			DisplayName: Fish Of Flame
 		}
 	}
 
@@ -520,6 +555,13 @@ Items: {
 				Tooltip: ""
 				DisplayName: Pyrogen Trophy
 			}
+		}
+	}
+
+	TreasureBags: {
+		PyrogenBag: {
+			Tooltip: ""
+			DisplayName: Pyrogen Bag
 		}
 	}
 }
@@ -607,6 +649,8 @@ Projectiles: {
 		FireBarrage.DisplayName: Fire Barrage
 		FireBarrageHoming.DisplayName: Fire Barrage Homing
 	}
+
+	WarArrowProjectile.DisplayName: War Arrow Projectile
 }
 
 UI: {

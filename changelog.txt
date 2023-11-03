@@ -1,5 +1,5 @@
 
-[h1]Knify & Fire Update[/h1]
+[h1]Blade & Fire Update[/h1]
 - Added new boss - Pyrogen
 	- He has Mask, Lore, Relic
 	- New weapons - Seared Shredder (melee), Obsidigun (ranged), The Generator (magic), Hell`s Bells (summon) and Molten Piercer (rogue)
