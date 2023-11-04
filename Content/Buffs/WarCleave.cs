@@ -6,9 +6,9 @@ using Terraria.ModLoader;
 
 namespace Clamity.Content.Buffs
 {
-    internal class WarCleave : ModBuff
+    /*internal class WarCleave : ModBuff
     {
-    public static int DefenseReduction = 15;
+        public static int DefenseReduction = 15;
 
         public virtual void SetDefaults()
         {
@@ -18,7 +18,7 @@ namespace Clamity.Content.Buffs
             BuffID.Sets.LongerExpertDebuff[this.Type] = true;
         }
 
-        /*public virtual void Update(NPC npc, ref int buffIndex)
+        public virtual void Update(NPC npc, ref int buffIndex)
         {
             if (npc.Calamity().wCleave < npc.buffTime[buffIndex])
                 npc.Calamity().wCleave = npc.buffTime[buffIndex];
@@ -26,6 +26,6 @@ namespace Clamity.Content.Buffs
             --buffIndex;
         }
 
-        public virtual void Update(Player player, ref int buffIndex) => player.Calamity().wCleave = true;*/
-    }
+        public virtual void Update(Player player, ref int buffIndex) => player.Calamity().wCleave = true;
+    }*/
 }

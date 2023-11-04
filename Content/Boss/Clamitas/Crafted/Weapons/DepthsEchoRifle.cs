@@ -82,7 +82,7 @@ namespace Clamity.Content.Boss.Clamitas.Crafted.Weapons
             base.OnHitNPC(target, hit, damageDone);
             target.AddBuff(ModContent.BuffType<BrimstoneFlames>(), 180);
         }
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             int num = 3;
             if (Projectile.owner == Main.myPlayer)

@@ -34,13 +34,14 @@ namespace Clamity.Content.Items.Weapons.Ranged.Bows
         }
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 5; i++)
             {
-                int num = type;
-                if (Main.rand.NextBool(4))
-                    num = ModContent.ProjectileType<BeamingBolt2>();
-                int index = Projectile.NewProjectile(source, position, (velocity + Main.rand.NextVector2Circular(2.5f, 2.5f)).RotatedByRandom(0.33f), num, (int)(damage * 0.5f), knockback);
-                if (num == ModContent.ProjectileType<BeamingBolt2>())
+                Projectile.NewProjectile(source, position, (velocity + Main.rand.NextVector2Circular(2.5f, 2.5f)).RotatedByRandom(0.33f), type, (int)(damage * 0.5f), knockback);
+            }
+            for (int i = 0; i < 5; i++)
+            {
+                int num2 = ModContent.ProjectileType<BeamingBolt2>();
+                int index = Projectile.NewProjectile(source, position, (velocity + Main.rand.NextVector2Circular(2.5f, 2.5f)).RotatedByRandom(0.33f), num2, (int)(damage * 0.5f), knockback);
                     Main.projectile[index].DamageType = DamageClass.Ranged;
             }
             return false;

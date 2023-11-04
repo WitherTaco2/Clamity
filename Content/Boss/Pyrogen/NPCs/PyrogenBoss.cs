@@ -123,14 +123,14 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                 NPC.scale *= 0.8f;
             }
 
-            NPC.Calamity().VulnerableToHeat = true;
-            NPC.Calamity().VulnerableToCold = false;
+            NPC.Calamity().VulnerableToHeat = false;
+            NPC.Calamity().VulnerableToCold = true;
             NPC.Calamity().VulnerableToSickness = false;
 
-            /*if (!Main.dedServ)
+            if (!Main.dedServ)
             {
-                Music = MusicLoader.GetMusicSlot(Mod, "Sounds/Music/");
-            }*/
+                Music = Clamity.mod.GetMusicFromMusicMod("PyrogenPrototype") ?? MusicID.Sandstorm;
+            }
         }
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {

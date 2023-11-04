@@ -48,21 +48,11 @@ namespace Clamity.Content.Boss.Pyrogen.Drop.Weapons
         public override float StealthDamageMultiplier => 2f;
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            /*if (player.Calamity().StealthStrikeAvailable())
-            {
-                for
-            }*/
-            /*for (int i = 0; i < 2; i++)
-            {
-                int index = Projectile.NewProjectile(source, position, velocity + Main.rand.NextVector2Square(-1, 1), type, damage / 2, knockback, player.whoAmI);
-                if (player.Calamity().StealthStrikeAvailable())
-                    Main.projectile[index].Calamity().stealthStrike = true;
-            }*/
-            int index = Projectile.NewProjectile(source, position, velocity + Main.rand.NextVector2Square(-1, 1), type, damage / 2, knockback, player.whoAmI);
+            int index2 = Projectile.NewProjectile(source, position, velocity + Main.rand.NextVector2Square(-1, 1), type, damage / 2, knockback, player.whoAmI);
             if (player.Calamity().StealthStrikeAvailable())
-                Main.projectile[index].Calamity().stealthStrike = true;
+                Main.projectile[index2].Calamity().stealthStrike = true;
 
-            return base.Shoot(player, source, position, velocity, type, damage, knockback);
+            return false;
         }
     }
     public class MoltenPiercerProjectile : ModProjectile, ILocalizedModType, IModType

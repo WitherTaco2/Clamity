@@ -2,6 +2,7 @@ Knive & Fire Update
 * Pyrogen Boss with content
 * Returning removed weapons with rework
 * Shortstrike mechanic
+? The First Fracturer						https://calamitymod.fandom.com/wiki/The_First_Fracturer
 
 Ancient Exo Update
 * XB-10 Losbaf Boss							https://calamitymod.fandom.com/wiki/XB-10_Losbaf
@@ -13,6 +14,7 @@ Ancient Exo Update
 * Triploon, Dualpoon
 * Twentloon									https://calamitymod.fandom.com/wiki/Twentloon
 * Twenty-Twloon								https://calamitymod.fandom.com/wiki/Twenty-Twloon
+* Mediocre Matter content					https://calamitymod.fandom.com/wiki/Mediocre_Matter
 
 Acid Tides Update
 * Acidsighter boss							https://calamitymod.fandom.com/wiki/Acidsighter

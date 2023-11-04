@@ -4,6 +4,7 @@
 	- He has Mask, Lore, Relic
 	- New weapons - Seared Shredder (melee), Obsidigun (ranged), The Generator (magic), Hell`s Bells (summon) and Molten Piercer (rogue)
 	- Essence, Core and Fish of Flame
+	- Music Theme
 - Added and ported shortswords:
 	- Wulfrum Leech Dagger (new)
 	- Spore Knife
@@ -27,8 +28,10 @@
 	- Rose Bow (new)
 	- Hadopelagic Echo
 	- Omega Ray (new)
+	- Baow (new)
 - Added ammos:
 	- Profaned Dart
+	- War Arrow
 - Added Reality Relocator (Rof of Harmony variant of Normality Relocator)
 - Added Aflame enchantment for accesories
 - Added Wulfrum Lure
@@ -39,3 +42,5 @@
 - Ported stupid content from `Supreme Calamitas in Vanilla` Mod (Hello, AdamChromeE)
 - Added support of elemental damage from Mod of Redemption
 - Reduced Projectile spam from Clamitas
+- Music moved into Clamity Music Mod
+- Added music themes for Cloud Elemental, Earth Elemental and Acid Rain T2

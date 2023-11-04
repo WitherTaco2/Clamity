@@ -33,10 +33,10 @@ namespace Clamity.Content.Items.Weapons.Ranged.Bows
             Item.DamageType = DamageClass.Ranged;
             Item.knockBack = 3;
         }
-        private int count;
+        //private int count;
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            if (count == 0)
+            /*if (count == 0)
             {
                 count++;
                 return true;
@@ -44,10 +44,18 @@ namespace Clamity.Content.Items.Weapons.Ranged.Bows
             else
             {
                 Vector2 vec1 = Main.MouseWorld - position;
+                vec1.X = Math.Clamp(vec1.X, -50, 50);
+                vec1.Y = Math.Clamp(vec1.Y, -50, 50);
                 Projectile.NewProjectile(source, Main.MouseWorld + vec1, -velocity, type, damage, knockback, player.whoAmI);
                 count = 0;
                 return false;
-            }
+            }*/
+            Vector2 vec1 = Main.MouseWorld - position;
+            vec1.X = Math.Clamp(vec1.X, -250, 250);
+            vec1.Y = Math.Clamp(vec1.Y, -250, 250);
+            Projectile.NewProjectile(source, Main.MouseWorld + vec1, -velocity, type, damage, knockback, player.whoAmI);
+            Projectile.NewProjectile(source, position, velocity, type, damage, knockback, player.whoAmI);
+            return false;
         }
         public override Vector2? HoldoutOffset() => new Vector2?(new Vector2(-5f, 0.0f));
         public override void AddRecipes()

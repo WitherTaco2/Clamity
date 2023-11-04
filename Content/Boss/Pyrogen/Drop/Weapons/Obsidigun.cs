@@ -1,6 +1,7 @@
 ﻿using CalamityMod;
 using CalamityMod.Items;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,9 +64,14 @@ namespace Clamity.Content.Boss.Pyrogen.Drop.Weapons
         public override void OnKill(int timeLeft)
         {
             for (int i = 0; i < 15; i++)
-                Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, Main.rand.NextVector2CircularEdge(20, 20), ModContent.ProjectileType<ObsidigunBulletShard>(), (int)(Projectile.damage / 2), Projectile.knockBack / 5, Projectile.owner);
+                Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, Main.rand.NextVector2CircularEdge(20, 20) * Main.rand.NextFloat(0.7f, 1f), ModContent.ProjectileType<ObsidigunBulletShard>(), (int)(Projectile.damage / 10), Projectile.knockBack / 5, Projectile.owner);
 
             base.OnKill(timeLeft);
+        }
+        public override bool PreDraw(ref Color lightColor)
+        {
+            Projectile.DrawProjectileWithBackglow(new Color(98, 101, 180), lightColor, 2f);
+            return base.PreDraw(ref lightColor);
         }
     }
     public class ObsidigunBulletShard : ModProjectile, ILocalizedModType, IModType
@@ -94,6 +100,11 @@ namespace Clamity.Content.Boss.Pyrogen.Drop.Weapons
                     dust.noGravity = true;
                 }
             }
+        }
+        public override bool PreDraw(ref Color lightColor)
+        {
+            Projectile.DrawProjectileWithBackglow(new Color(98, 101, 180), lightColor, 2f);
+            return base.PreDraw(ref lightColor);
         }
     }
 }

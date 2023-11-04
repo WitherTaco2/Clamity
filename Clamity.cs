@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System;
 using Clamity.Content.Boss.Clamitas;
 using Clamity.Content.Boss.Clamitas.Drop;
-using Clamity.Content.Boss.Clamitas.Other;
 using Clamity.Content.Cooldowns;
 using CalamityMod.Cooldowns;
 using CalamityMod.UI.CalamitasEnchants;
@@ -21,24 +20,17 @@ namespace Clamity
 {
     public class Clamity : Mod
 	{
-        public static Clamity mod;
+        public static Clamity mod; 
+        public static Mod musicMod;
+        internal bool MusicAvailable => musicMod != null;
+
         public override void Load()
         {
-            mod = this;
+            mod = this; 
+            ModLoader.TryGetMod("ClamityMusic", out musicMod);
+
             CooldownRegistry.Register<ShortstrikeCooldown>(ShortstrikeCooldown.ID);
-            /*EnchantmentManager.EnchantmentList.Add(
-                new Enchantment(
-                    ClamityUtils.GetText("UI.Enchantments.AflameAcc.DisplayName"),
-                    ClamityUtils.GetText("UI.Enchantments.AflameAcc.Description"),
-                    10000,
-                    "CalamityMod/UI/CalamitasEnchantments/CurseIcon_Aflame",
-                    (player => player.Clamity().aflameAcc = true),
-                    (item => item.IsEnchantable() && item.accessory 
-                        //&& ClamityUtils.ContainType(item.type, ModContent.ItemType<LuxorsGift>(), ModContent.ItemType<FungalClump>(), ModContent.ItemType<WifeinaBottle>(), ModContent.ItemType<EyeoftheStorm>(), ModContent.ItemType<RoseStone>(), ModContent.ItemType<PearlofEnthrallment>(), ModContent.ItemType<HeartoftheElements>())
-                    )
-                )
-            );*/
-            //CalamityMod.CalamityMod
+
             ModLoader.GetMod("CalamityMod").Call(
                 "CreateEnchantment",
                 ClamityUtils.GetText("UI.Enchantments.AflameAcc.DisplayName"),
@@ -54,6 +46,7 @@ namespace Clamity
         public override void Unload()
         {
             mod = null;
+            musicMod = null;
         }
         public override void PostSetupContent()
         {
@@ -61,9 +54,12 @@ namespace Clamity
             List<int> intList14 = new List<int>()
             {
                 ModContent.ItemType<ClamitasRelic>(),
-                ModContent.ItemType<LoreWhat>(),
-                ModContent.ItemType<ClamitasMusicBox>()
+                ModContent.ItemType<LoreWhat>()
             };
+            if (Clamity.musicMod != null)
+            {
+                intList14.Add(Clamity.musicMod.Find<ModItem>("ClamitasMusicBox").Type);
+            }
             AddBoss(bossChecklist, mod, "Clamitas", 11.9f, ModContent.NPCType<ClamitasBoss>(), () => ClamitySystem.downedClamitas, new Dictionary<string, object>()
             {
                 ["spawnItems"] = (object)ModContent.ItemType<ClamitasSummoningItem>(),
@@ -97,6 +93,8 @@ namespace Clamity
                 )
             );*/
         }
+        public int? GetMusicFromMusicMod(string songFilename) => !this.MusicAvailable ? new int?() : new int?(MusicLoader.GetMusicSlot(musicMod, "Sounds/Music/" + songFilename));
+
         private void AddBoss(
           Mod bossChecklist,
           Mod hostMod,

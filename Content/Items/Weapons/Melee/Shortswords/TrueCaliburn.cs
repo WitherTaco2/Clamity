@@ -89,7 +89,7 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
                 a = 1;
                 Main.player[Projectile.owner].AddCooldown(ShortstrikeCooldown.ID, 120);
             }
-            int num = Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center, Projectile.velocity * 0.1f, ModContent.ProjectileType<TrueCaliburnSlash>(), (int)(Projectile.damage * 1f), Projectile.knockBack, Projectile.owner, a, 2);
+            int num = Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center, Projectile.velocity * 0.1f, ModContent.ProjectileType<TrueCaliburnSlash>(), (int)(Projectile.damage * 0.5f), Projectile.knockBack, Projectile.owner, a, 2);
 
         }
         public override void ExtraBehavior()
@@ -165,6 +165,9 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
         {
             base.SetDefaults();
             Projectile.width = Projectile.height = 24;
+            Projectile.usesLocalNPCImmunity = false;
+            Projectile.usesIDStaticNPCImmunity = true;
+            Projectile.idStaticNPCHitCooldown = Projectile.MaxUpdates * 12;
         }
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {

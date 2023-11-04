@@ -2,28 +2,30 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria;
+using CalamityMod.Buffs.StatDebuffs;
+using Microsoft.Xna.Framework;
 
 namespace Clamity.Content.Items.Ammo
 {
     public class WarArrow : ModItem, ILocalizedModType, IModType
     {
-        public new string LocalizationCategory => "Items.Ammo.Dart";
+        public new string LocalizationCategory => "Items.Ammo.Arrow";
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 99;
         }
         public override void SetDefaults()
         {
-            Item.CloneDefaults(ItemID.CrystalDart);
-            Item.damage = 28;
-            Item.shoot = ModContent.ProjectileType<ProfanedDartProjectile>();
-            Item.rare = ItemRarityID.Purple;
+            Item.CloneDefaults(ItemID.WoodenArrow);
+            Item.damage = 9;
+            Item.shoot = ModContent.ProjectileType<WarArrowProjectile>();
+            Item.rare = ItemRarityID.Blue;
         }
         public override void AddRecipes()
         {
-            CreateRecipe(100)
-                .AddIngredient(ItemID.CrystalDart, 100)
-                .AddIngredient<UnholyEssence>()
+            CreateRecipe(250)
+                .AddIngredient(ItemID.WoodenArrow, 250)
+                .AddIngredient<DepthCells>()
                 .AddTile(TileID.LunarCraftingStation)
                 .Register();
         }
@@ -35,9 +37,13 @@ namespace Clamity.Content.Items.Ammo
         {
             Projectile.CloneDefaults(ProjectileID.WoodenArrowFriendly);
         }
-        /*public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            target.AddBuff(ModContent.BuffType<>)
-        }*/
+            target.AddBuff(ModContent.BuffType<ArmorCrunch>(), 240);
+        }
+        public override void PostAI()
+        {
+            Projectile.rotation = Projectile.velocity.ToRotation() - MathHelper.PiOver2;
+        }
     }
 }

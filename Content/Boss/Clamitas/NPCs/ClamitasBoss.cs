@@ -73,6 +73,7 @@ namespace Clamity.Content.Boss.Clamitas.NPCs
             NPCID.Sets.NPCBestiaryDrawOffset[Type] = value;
 
             //GiantClam
+
         }
 
         public override void SetDefaults()
@@ -102,9 +103,13 @@ namespace Clamity.Content.Boss.Clamitas.NPCs
             NPC.boss = true;
 
 
-            if (!Main.dedServ)
+            /*if (!Main.dedServ)
             {
                 Music = MusicLoader.GetMusicSlot(Mod, "Sounds/Music/ClamitasTheme");
+            }*/
+            if (!Main.dedServ)
+            {
+                Music = Clamity.mod.GetMusicFromMusicMod("Clamitas") ?? MusicID.Boss3;
             }
         }
 

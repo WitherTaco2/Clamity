@@ -11,8 +11,8 @@ Clamitas Addon is mod for Calamity which adds content from Calamity Fandom wiki 
 [/list]
 
 [h1]Credits[/h1]
-Thanks StarvoXD for motivation and music theme for Clamitas
-AstroGel for music theme of Pyrogen
+Thanks StarvoXD for idea of Clamitas (and music)
+Credits for music in music mod page
 Fandom Wiki for sprites and ideas
 Calamity Team for cool mod
 YOU for downloading this project

@@ -219,7 +219,7 @@ Items: {
 
 			Crimsaber: {
 				DisplayName: Crimsaber
-				Tooltip: ""
+				Tooltip: "A sword fused with the blood of the gods"
 			}
 
 			Tomutus: {
@@ -336,8 +336,8 @@ Items: {
 			}
 
 			Baow: {
-				Tooltip: ""
 				DisplayName: Baow
+				Tooltip: Fires a second arrow mirroring the first
 			}
 		}
 
@@ -472,7 +472,9 @@ Items: {
 					Create explosion on hit
 					'''
 			}
+		}
 
+		Arrow: {
 			WarArrow: {
 				Tooltip: ""
 				DisplayName: War Arrow
@@ -493,23 +495,23 @@ Items: {
 		}
 
 		SideGar: {
-			Tooltip: ""
+			Tooltip: Press Right Click to extract singularity
 			DisplayName: Side Gar
 		}
 
 		RearGar: {
-			Tooltip: ""
+			Tooltip: Press Right Click to extract uelibloom ore
 			DisplayName: Rear Gar
 		}
 
 		FrontGar: {
-			Tooltip: ""
+			Tooltip: Press Right Click to extract tooths
 			DisplayName: Front Gar
 		}
 
 		FishOfFlame: {
-			Tooltip: ""
-			DisplayName: Fish Of Flame
+			Tooltip: Press Right Click to extract essence
+			DisplayName: Fish of Flame
 		}
 	}
 
@@ -560,8 +562,8 @@ Items: {
 
 	TreasureBags: {
 		PyrogenBag: {
-			Tooltip: ""
-			DisplayName: Pyrogen Bag
+			Tooltip: Right Click to open
+			DisplayName: Treasure Bag (Pyrogen)
 		}
 	}
 }
