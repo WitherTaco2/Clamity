@@ -1358,6 +1358,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
         {
             CalamityGlobalNPC.SetNewBossJustDowned(base.NPC);
 
+            GeneralParticleHandler.SpawnParticle(new DirectionalPulseRing(NPC.Center, Vector2.Zero, Color.Red, new Vector2(0.5f, 0.5f), Main.rand.NextFloat(12f, 25f), 0.2f, 20f, 10));
             DownedBossSystem.downedCryogen = true;
             CalamityNetcode.SyncWorld();
         }

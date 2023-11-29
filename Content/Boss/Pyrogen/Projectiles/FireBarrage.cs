@@ -76,7 +76,7 @@ namespace Clamity.Content.Boss.Pyrogen.Projectiles
         {
             
         }
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             SoundEngine.PlaySound(in ImpactSound, base.Projectile.Center);
             bool bossRushActive = BossRushEvent.BossRushActive;
