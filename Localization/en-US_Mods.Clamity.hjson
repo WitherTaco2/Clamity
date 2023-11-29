@@ -219,7 +219,7 @@ Items: {
 
 			Crimsaber: {
 				DisplayName: Crimsaber
-				Tooltip: "A sword fused with the blood of the gods"
+				Tooltip: A sword fused with the blood of the gods
 			}
 
 			Tomutus: {
@@ -476,7 +476,7 @@ Items: {
 
 		Arrow: {
 			WarArrow: {
-				Tooltip: ""
+				Tooltip: Inflict a Armor Crunch
 				DisplayName: War Arrow
 			}
 		}
@@ -488,7 +488,7 @@ Items: {
 			Tooltip:
 				'''
 				Shoots a 3 bobbers at once
-				Right Click to charge fishing rod by energy core
+				Right Click to charge fishing rod by [i:CalamityMod/EnergyCore]energy core
 				Charge has 10 uses
 				Charged rod increases bobber count by 4 and fishing power up to 70%
 				'''
