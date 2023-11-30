@@ -12,6 +12,7 @@ using Clamity.Content.Boss.Pyrogen.NPCs;
 using Microsoft.Xna.Framework;
 using Clamity.Content.Items.Materials;
 using CalamityMod.Particles;
+using UtfUnknown.Core.Probers.MultiByte.Chinese;
 
 namespace Clamity.Content.Boss.Pyrogen
 {
@@ -68,8 +69,6 @@ namespace Clamity.Content.Boss.Pyrogen
         {
             SoundEngine.PlaySound(in SoundID.Roar, player.Center);
             if (player.altFunctionUse == 2)
-                Projectile.NewProjectile(player.GetSource_ItemUse(Item), player.Center, Vector2.Zero, ModContent.ProjectileType<PyrogenSummonAnimation>(), 0, 0, player.whoAmI);
-            else
             {
                 if (Main.netMode != 1)
                 {
@@ -80,6 +79,8 @@ namespace Clamity.Content.Boss.Pyrogen
                     NetMessage.SendData(61, -1, -1, null, player.whoAmI, ModContent.NPCType<PyrogenBoss>());
                 }
             }
+            else
+                Projectile.NewProjectile(player.GetSource_ItemUse(Item), player.Center, Vector2.Zero, ModContent.ProjectileType<PyrogenSummonAnimation>(), 0, 0, player.whoAmI);
 
             return true;
         }
@@ -108,13 +109,14 @@ namespace Clamity.Content.Boss.Pyrogen
     }
     public class PyrogenSummonAnimation : ModProjectile
     {
+        public override string Texture => "CalamityMod/Projectiles/InvisibleProj";
         public override void SetDefaults()
         {
             Projectile.width = Projectile.height = 1;
             Projectile.aiStyle = -1;
             Projectile.alpha = 255;
             Projectile.ignoreWater = true;
-            Projectile.timeLeft = 120 * 3;
+            Projectile.timeLeft = 180;
         }
         public override bool? CanDamage()
         {
@@ -124,13 +126,14 @@ namespace Clamity.Content.Boss.Pyrogen
         {
             Player player = Main.player[Projectile.owner];
             Projectile.Center = player.Center - new Vector2(0, 200);
-            if (Projectile.timeLeft % 120 == 0)
+            if (Projectile.timeLeft % 40 == 0)
             {
-                GeneralParticleHandler.SpawnParticle(new DirectionalPulseRing(Projectile.Center, Vector2.Zero, Color.Red, new Vector2(0.5f, 0.5f), Main.rand.NextFloat(12f, 25f), 10f, 0f, 10));
+                GeneralParticleHandler.SpawnParticle(new DirectionalPulseRing(Projectile.Center, Vector2.Zero, Color.Red, new Vector2(0.5f, 0.5f), Main.rand.NextFloat(12f, 25f), 10f, 0f, 30));
             }
         }
         public override void OnKill(int timeLeft)
         {
+            GeneralParticleHandler.SpawnParticle(new DirectionalPulseRing(Projectile.Center, Vector2.Zero, Color.Red, new Vector2(0.5f, 0.5f), Main.rand.NextFloat(12f, 25f), 0f, 20f, 40));
             NPC.NewNPCDirect(Projectile.GetSource_Death(), Projectile.Center, ModContent.NPCType<PyrogenBoss>());
         }
     }

@@ -163,6 +163,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
         }
         public override void AI()
         {
+            #region PreAttackAI
             CalamityGlobalNPC calamityGlobalNPC = NPC.Calamity();
             Lighting.AddLight((int)((NPC.position.X + NPC.width / 2) / 16f), (int)((NPC.position.Y + NPC.height / 2) / 16f), 0f, 1f, 1f);
             if (FireDrawer != null)
@@ -393,8 +394,9 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                     }
                 }
             }
-
+            #endregion
             //Start of attack AI
+            #region Phase 1 - curcle of fireballs
             if (NPC.ai[0] == 0f) //phase 1 - curcle of fireballs
             {
                 NPC.rotation = NPC.velocity.X * 0.1f;
@@ -417,12 +419,17 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                                 int projectileDamage2 = NPC.GetProjectileDamage(num29);
                                 float num30 = 9f + num2;
                                 Vector2 spinningpoint2 = new Vector2(0f, 0f - num30);
-                                for (int l = 0; l < num27; l++)
+                                for (int i = 0; i < 5; i++)
+                                {
+                                    Vector2 vector2 = (Main.player[NPC.target].Center - NPC.Center) * 0.1f + Main.rand.NextVector2Circular(10, 10);
+                                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, vector2, num29, projectileDamage2, 0f, Main.myPlayer);
+                                }
+                                /*for (int l = 0; l < num27; l++)
                                 {
                                     Vector2 vector2 = spinningpoint2.RotatedBy(num28 * l);
                                     vector2 += (player.Center - NPC.Center).SafeNormalize(Vector2.Zero) * 10f;
                                     Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center + Vector2.Normalize(vector2) * 30f, vector2, num29, projectileDamage2, 0f, Main.myPlayer);
-                                }
+                                }*/
                             }
                         }
                     }
@@ -453,7 +460,8 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
 
                 return;
             }
-
+            #endregion
+            #region Phase 2 - floating above player and shooting a curcle of fireballs
             if (NPC.ai[0] == 1f) //phase 2 - floating above player and shooting a curcle of fireballs
             {
                 if (NPC.ai[1] < num12 / 3 * 2)
@@ -483,7 +491,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                                     for (int m = 0; m < num35; m++)
                                     {
                                         Vector2 vector4 = spinningpoint3.RotatedBy(num36 * m);
-                                        vector4 += (player.Center - NPC.Center).SafeNormalize(Vector2.Zero) * 5f;
+                                        //vector4 += (player.Center - NPC.Center).SafeNormalize(Vector2.Zero) * 5f;
                                         Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center + Vector2.Normalize(vector4) * 30f, vector4, num37, projectileDamage3, 0f, Main.myPlayer);
                                     }
                                 }
@@ -641,7 +649,8 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
 
                 return;
             }
-
+            #endregion
+            #region Phase 3 - only dashes
             if (NPC.ai[0] == 2f) //phase 3 - only dashes
             {
                 if (NPC.ai[1] < num12)
@@ -796,7 +805,8 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
 
                 return;
             }
-
+            #endregion
+            #region Phase 4
             if (NPC.ai[0] == 3f) // Phase 4 -
             {
                 NPC.rotation = NPC.velocity.X * 0.1f;
@@ -975,7 +985,8 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
 
                 return;
             }
-
+            #endregion
+            #region Phase 5
             if (NPC.ai[0] == 4f) //phase 5
             {
                 if (flag8)
@@ -1101,6 +1112,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                 NPC.rotation = NPC.velocity.X * 0.15f;
                 return;
             }
+            #endregion
 
             NPC.rotation = NPC.velocity.X * 0.1f;
             calamityGlobalNPC.newAI[3] += 1f;
@@ -1358,8 +1370,9 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
         {
             CalamityGlobalNPC.SetNewBossJustDowned(base.NPC);
 
-            GeneralParticleHandler.SpawnParticle(new DirectionalPulseRing(NPC.Center, Vector2.Zero, Color.Red, new Vector2(0.5f, 0.5f), Main.rand.NextFloat(12f, 25f), 0.2f, 20f, 10));
-            DownedBossSystem.downedCryogen = true;
+            GeneralParticleHandler.SpawnParticle(new DirectionalPulseRing(NPC.Center, Vector2.Zero, Color.Red, new Vector2(0.5f, 0.5f), Main.rand.NextFloat(12f, 25f), 0.2f, 20f, 30));
+            Projectile.NewProjectile(NPC.GetSource_Death(), NPC.Center, Vector2.Zero, ModContent.ProjectileType<PyrogenKillExplosion>(), 0, 0);
+            //DownedBossSystem.downedCryogen = true;
             CalamityNetcode.SyncWorld();
         }
 

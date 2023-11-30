@@ -653,6 +653,11 @@ Projectiles: {
 	}
 
 	WarArrowProjectile.DisplayName: War Arrow Projectile
+	FireBomb.DisplayName: Fire Bomb
+	FireBombExplosion.DisplayName: Fire Bomb Explosion
+	Firethrower.DisplayName: Firethrower
+	PyrogenSummonAnimation.DisplayName: Pyrogen Summon Animation
+	PyrogenKillExplosion.DisplayName: Pyrogen Kill Explosion
 }
 
 UI: {
