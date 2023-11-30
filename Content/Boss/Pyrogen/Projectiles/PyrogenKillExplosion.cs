@@ -16,7 +16,7 @@ namespace Clamity.Content.Boss.Pyrogen.Projectiles
         }
         public override void SetDefaults()
         {
-            Projectile.width = Projectile.height = 1;
+            Projectile.width = Projectile.height = 98;
             Projectile.aiStyle = -1;
             Projectile.timeLeft = 600;
             Projectile.scale = 2f;
@@ -24,12 +24,16 @@ namespace Clamity.Content.Boss.Pyrogen.Projectiles
         public override void AI()
         {
             Projectile.frameCounter++;
-            if (Projectile.frameCounter >= 30)
+            if (Projectile.frameCounter % 10 == 0)
             {
                 Projectile.frame++;
                 if(Projectile.frame > 6)
                     Projectile.Kill();
             }
+        }
+        public override bool? CanDamage()
+        {
+            return false;
         }
     }
 }

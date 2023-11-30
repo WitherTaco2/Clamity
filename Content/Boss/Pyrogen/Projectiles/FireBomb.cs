@@ -33,27 +33,35 @@ namespace Clamity.Content.Boss.Pyrogen.Projectiles
         }
         public override void AI()
         {
-            Projectile.rotation = Projectile.velocity.ToRotation();
-            Projectile.velocity.X = MathF.Sqrt(MathF.Sqrt(Projectile.velocity.X));
-            Projectile.velocity.Y = MathF.Sqrt(MathF.Sqrt(Projectile.velocity.Y));
+            //Projectile.velocity.X = MathF.Sqrt(MathF.Sqrt(Projectile.velocity.X));
+            //Projectile.velocity.Y = MathF.Sqrt(MathF.Sqrt(Projectile.velocity.Y));
+            //Projectile.rotation = Projectile.velocity.ToRotation()
+            Projectile.velocity *= 0.85f;
             if (Projectile.velocity.Length() < 0.1f){
-                if (Spawned)
+                if (!Spawned)
                 {
                     Spawned = true;
                     Projectile.velocity = Vector2.Zero;
-                    GeneralParticleHandler.SpawnParticle(new DirectionalPulseRing(Projectile.Center, Vector2.Zero, Color.Red, new Vector2(0.5f, 0.5f), Main.rand.NextFloat(12f, 25f), 1f, 1f, 60));
-                    GeneralParticleHandler.SpawnParticle(new DirectionalPulseRing(Projectile.Center, Vector2.Zero, Color.Red, new Vector2(0.5f, 0.5f), Main.rand.NextFloat(12f, 25f), 0f, 20f, 60));
+                    GeneralParticleHandler.SpawnParticle(new DirectionalPulseRing(Projectile.Center, Vector2.Zero, Color.Red, new Vector2(0.5f, 0.5f), Main.rand.NextFloat(12f, 25f), 2f, 2f, 60));
+                    GeneralParticleHandler.SpawnParticle(new DirectionalPulseRing(Projectile.Center, Vector2.Zero, Color.Red, new Vector2(0.5f, 0.5f), Main.rand.NextFloat(12f, 25f), 0f, 2f, 60));
                 }
                 Projectile.ai[1]++;
                 if (Projectile.ai[1] >= 60)
+                {
+                    Projectile.NewProjectile(Projectile.GetSource_Death(), Projectile.Center, Vector2.Zero, ModContent.ProjectileType<Firethrower>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
                     Projectile.Kill();
+                }
+            }
+            else
+            {
+                Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
             }
         }
         public override bool? CanDamage() => false;
-        public override void OnKill(int timeLeft)
+        /*public override void OnKill(int timeLeft)
         {
             Projectile.NewProjectile(Projectile.GetSource_Death(), Projectile.Center, Vector2.Zero, ModContent.ProjectileType<FireBombExplosion>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
-        }
+        }*/
     }
     public class FireBombExplosion : ModProjectile
     {

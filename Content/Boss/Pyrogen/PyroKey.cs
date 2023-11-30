@@ -70,7 +70,7 @@ namespace Clamity.Content.Boss.Pyrogen
             SoundEngine.PlaySound(in SoundID.Roar, player.Center);
             if (player.altFunctionUse == 2)
             {
-                if (Main.netMode != 1)
+                if (Main.netMode != NetmodeID.MultiplayerClient)
                 {
                     NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<PyrogenBoss>());
                 }
@@ -101,9 +101,9 @@ namespace Clamity.Content.Boss.Pyrogen
 
         public override void AddRecipes()
         {
-            CreateRecipe().AddRecipeGroup("AnySandBlock", 50).AddIngredient(520, 5).AddIngredient(521, 5)
+            CreateRecipe().AddRecipeGroup("AnySandBlock", 50).AddIngredient(ItemID.SoulofLight, 5).AddIngredient(ItemID.SoulofNight, 5)
                 .AddIngredient<EssenceOfFlame>(8)
-                .AddTile(16)
+                .AddTile(TileID.Anvils)
                 .Register();
         }
     }
@@ -116,7 +116,7 @@ namespace Clamity.Content.Boss.Pyrogen
             Projectile.aiStyle = -1;
             Projectile.alpha = 255;
             Projectile.ignoreWater = true;
-            Projectile.timeLeft = 180;
+            Projectile.timeLeft = 60;
         }
         public override bool? CanDamage()
         {
@@ -125,11 +125,16 @@ namespace Clamity.Content.Boss.Pyrogen
         public override void AI()
         {
             Player player = Main.player[Projectile.owner];
+            if (player.dead || player.ghost)
+                Projectile.Kill();
+
             Projectile.Center = player.Center - new Vector2(0, 200);
-            if (Projectile.timeLeft % 40 == 0)
+            if (Projectile.timeLeft % 10 == 0 /*&& Projectile.timeLeft > 40*/)
             {
-                GeneralParticleHandler.SpawnParticle(new DirectionalPulseRing(Projectile.Center, Vector2.Zero, Color.Red, new Vector2(0.5f, 0.5f), Main.rand.NextFloat(12f, 25f), 10f, 0f, 30));
+                Color color = Color.Lerp(Color.Red, Color.Yellow, 1f - Projectile.timeLeft / 60f);
+                GeneralParticleHandler.SpawnParticle(new DirectionalPulseRing(Projectile.Center, Vector2.Zero, color, new Vector2(0.5f, 0.5f), Main.rand.NextFloat(12f, 25f), 10f, 0f, 20));
             }
+            
         }
         public override void OnKill(int timeLeft)
         {

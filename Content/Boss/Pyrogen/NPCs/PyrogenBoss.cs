@@ -78,6 +78,8 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
 
         private int teleportLocationX;
 
+        private int globalTimer;
+
         public FireParticleSet FireDrawer;
 
         public static readonly SoundStyle ShieldRegenSound = new SoundStyle("CalamityMod/Sounds/Custom/CryogenShieldRegenerate");
@@ -145,6 +147,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
             writer.Write(biomeEnrageTimer);
             writer.Write(teleportLocationX);
             writer.Write(NPC.dontTakeDamage);
+            writer.Write(globalTimer);
             for (int i = 0; i < 4; i++)
             {
                 writer.Write(NPC.Calamity().newAI[i]);
@@ -156,6 +159,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
             biomeEnrageTimer = reader.ReadInt32();
             teleportLocationX = reader.ReadInt32();
             NPC.dontTakeDamage = reader.ReadBoolean();
+            globalTimer = reader.ReadInt32();
             for (int i = 0; i < 4; i++)
             {
                 NPC.Calamity().newAI[i] = reader.ReadSingle();
@@ -164,6 +168,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
         public override void AI()
         {
             #region PreAttackAI
+            globalTimer++;
             CalamityGlobalNPC calamityGlobalNPC = NPC.Calamity();
             Lighting.AddLight((int)((NPC.position.X + NPC.width / 2) / 16f), (int)((NPC.position.Y + NPC.height / 2) / 16f), 0f, 1f, 1f);
             if (FireDrawer != null)
@@ -395,8 +400,21 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                 }
             }
             #endregion
+
+            #region Stage Animations
+
+            if (NPC.ai[0] >= 1f)
+            {
+
+            }
+            if (NPC.ai[0] >= 3f && globalTimer % Main.rand.Next(30, 40) < 3)
+            {
+                int index0 = Projectile.NewProjectile(NPC.GetSource_Death(), NPC.Center + new Vector2(NPC.width / 2f * Main.rand.NextFloat(-1, 1), NPC.height / 2f * Main.rand.NextFloat(-1, 1)), Vector2.Zero, ModContent.ProjectileType<PyrogenKillExplosion>(), 0, 0);
+                Main.projectile[index0].scale = 1f;
+            }
+            #endregion
             //Start of attack AI
-            #region Phase 1 - curcle of fireballs
+            #region Phase 1 - curcle of fireballs (new firebomb)
             if (NPC.ai[0] == 0f) //phase 1 - curcle of fireballs
             {
                 NPC.rotation = NPC.velocity.X * 0.1f;
@@ -415,13 +433,13 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                             {
                                 int num27 = bossRushActive ? 24 : 16;
                                 float num28 = MathF.PI * 2f / num27;
-                                int num29 = num4;
+                                int num29 = ModContent.ProjectileType<FireBomb>();
                                 int projectileDamage2 = NPC.GetProjectileDamage(num29);
                                 float num30 = 9f + num2;
                                 Vector2 spinningpoint2 = new Vector2(0f, 0f - num30);
                                 for (int i = 0; i < 5; i++)
                                 {
-                                    Vector2 vector2 = (Main.player[NPC.target].Center - NPC.Center) * 0.1f + Main.rand.NextVector2Circular(10, 10);
+                                    Vector2 vector2 = (Main.player[NPC.target].Center - NPC.Center) * 0.01f + Main.rand.NextVector2Circular(50, 50);
                                     Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, vector2, num29, projectileDamage2, 0f, Main.myPlayer);
                                 }
                                 /*for (int l = 0; l < num27; l++)
@@ -986,7 +1004,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                 return;
             }
             #endregion
-            #region Phase 5
+            #region Phase 5 - slow dashes around player
             if (NPC.ai[0] == 4f) //phase 5
             {
                 if (flag8)
@@ -1097,6 +1115,9 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
 
                 NPC.velocity.X = (NPC.velocity.X * num118 + num112) / (num118 + 1f);
                 NPC.velocity.Y = (NPC.velocity.Y * num118 + num113) / (num118 + 1f);
+                if (globalTimer % 30 == 0 && NPC.velocity.Length() >= 5)
+                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, NPC.velocity * 0.5f, ModContent.ProjectileType<FireBomb>(), NPC.GetProjectileDamage(ModContent.ProjectileType<FireBomb>()), 0);
+
                 if (num114 < num116 + 200f)
                 {
                     NPC.velocity.X = (NPC.velocity.X * 9f + num112) / 10f;
@@ -1410,6 +1431,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
             }
         }
     }
+    [AutoloadBossHead]
     public class PyrogenShield : ModNPC
     {
         public static readonly SoundStyle BreakSound = new SoundStyle("CalamityMod/Sounds/NPCKilled/CryogenShieldBreak");
@@ -1488,7 +1510,9 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
 
             ref float attackTimer = ref NPC.Calamity().newAI[0];
             ref float randomAttack = ref NPC.Calamity().newAI[1];
+            ref float secondRotation = ref NPC.Calamity().newAI[2];
             attackTimer--;
+            secondRotation += 0.01f;
 
             for (int i = 0; i < 8; i++)
             {
@@ -1519,7 +1543,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                         {
                             for (int i = 0; i < 4; i++)
                             {
-                                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Vector2.UnitX.RotatedBy(MathHelper.TwoPi / 4 * i + NPC.rotation) * 5f, ModContent.ProjectileType<FireBarrage>(), NPC.GetProjectileDamage(ModContent.ProjectileType<FireBarrage>()), 1f, Main.myPlayer);
+                                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Vector2.UnitX.RotatedBy(MathHelper.TwoPi / 4 * i + secondRotation) * 5f, ModContent.ProjectileType<FireBarrage>(), NPC.GetProjectileDamage(ModContent.ProjectileType<FireBarrage>()), 1f, Main.myPlayer);
                             }
                         }
                         if (attackTimer < -50)
@@ -1669,6 +1693,10 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                     Gore.NewGore(NPC.GetSource_Death(), NPC.Center + Vector2.Normalize(vector) * 80f, vector * new Vector2(NPC.ai[1], NPC.ai[2]) * num5, Mod.Find<ModGore>("PyrogenShieldGore" + m).Type, NPC.scale);
                 }
             }
+        }
+        public override void BossHeadRotation(ref float rotation)
+        {
+            rotation = NPC.rotation;
         }
     }
 }
