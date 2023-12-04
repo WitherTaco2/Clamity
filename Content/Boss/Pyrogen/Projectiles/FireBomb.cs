@@ -31,24 +31,44 @@ namespace Clamity.Content.Boss.Pyrogen.Projectiles
             get => Projectile.ai[0] == 1f;
             set => Projectile.ai[0] = value ? 1f : 0f;
         }
+        private const int time = 60;
+        private int Time => (int)(time + Projectile.ai[2]);
         public override void AI()
         {
             //Projectile.velocity.X = MathF.Sqrt(MathF.Sqrt(Projectile.velocity.X));
             //Projectile.velocity.Y = MathF.Sqrt(MathF.Sqrt(Projectile.velocity.Y));
             //Projectile.rotation = Projectile.velocity.ToRotation()
-            Projectile.velocity *= 0.85f;
-            if (Projectile.velocity.Length() < 0.1f){
+            Projectile.frameCounter++;
+            if (Projectile.frameCounter > 4)
+            {
+                Projectile.frame++;
+                Projectile.frameCounter = 0;
+                if (Projectile.frame > 3)
+                {
+                    Projectile.frame = 0;
+                }
+            }
+
+            //0.95f
+            Projectile.velocity *= 0.9f;
+            GeneralParticleHandler.SpawnParticle(new DirectionalPulseRing(Projectile.Center, Vector2.Zero, Color.Red, new Vector2(0.5f, 0.5f), Main.rand.NextFloat(12f, 25f), 3f, 3f, 2));
+            if (Projectile.velocity.Length() < 1f){
                 if (!Spawned)
                 {
                     Spawned = true;
                     Projectile.velocity = Vector2.Zero;
-                    GeneralParticleHandler.SpawnParticle(new DirectionalPulseRing(Projectile.Center, Vector2.Zero, Color.Red, new Vector2(0.5f, 0.5f), Main.rand.NextFloat(12f, 25f), 2f, 2f, 60));
-                    GeneralParticleHandler.SpawnParticle(new DirectionalPulseRing(Projectile.Center, Vector2.Zero, Color.Red, new Vector2(0.5f, 0.5f), Main.rand.NextFloat(12f, 25f), 0f, 2f, 60));
+                    Projectile.ai[1] = 0;
+                    Projectile.ai[2] = Main.rand.Next(4);
+                    GeneralParticleHandler.SpawnParticle(new DirectionalPulseRing(Projectile.Center, Vector2.Zero, Color.Red, new Vector2(0.5f, 0.5f), Main.rand.NextFloat(12f, 25f), 3f, 3f, Time - 1));
+                    GeneralParticleHandler.SpawnParticle(new DirectionalPulseRing(Projectile.Center, Vector2.Zero, Color.Red, new Vector2(0.5f, 0.5f), Main.rand.NextFloat(12f, 25f), 0f, 3f, Time - 1));
                 }
                 Projectile.ai[1]++;
-                if (Projectile.ai[1] >= 60)
+                if (Projectile.ai[1] >= Time)
                 {
-                    Projectile.NewProjectile(Projectile.GetSource_Death(), Projectile.Center, Vector2.Zero, ModContent.ProjectileType<Firethrower>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
+                    int index = Projectile.NewProjectile(Projectile.GetSource_Death(), Projectile.Center, Vector2.Zero, ModContent.ProjectileType<Firethrower>(), Projectile.damage, Projectile.knockBack, Projectile.owner, 2f);
+                    Main.projectile[index].width *= 2;
+                    Main.projectile[index].height *= 2;
+                    //Main.projectile[index].scale = 2f;
                     Projectile.Kill();
                 }
             }

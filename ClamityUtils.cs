@@ -9,6 +9,7 @@ using Terraria;
 using Terraria.Localization;
 using System.Drawing;
 using System.Runtime.InteropServices;
+using Microsoft.Xna.Framework;
 
 namespace Clamity
 {
@@ -69,5 +70,30 @@ namespace Clamity
                 npc.damage = num7;
             }
         }*/
+        public static void Move(this Projectile projectile, Vector2 vector, float speed, float turnResistance = 10f,
+            bool toPlayer = false)
+        {
+            Terraria.Player player = Main.player[projectile.owner];
+            Vector2 moveTo = toPlayer ? player.Center + vector : vector;
+            Vector2 move = moveTo - projectile.Center;
+            float magnitude = Magnitude(move);
+            if (magnitude > speed)
+            {
+                move *= speed / magnitude;
+            }
+
+            move = (projectile.velocity * turnResistance + move) / (turnResistance + 1f);
+            magnitude = Magnitude(move);
+            if (magnitude > speed)
+            {
+                move *= speed / magnitude;
+            }
+
+            projectile.velocity = move;
+        }
+        public static float Magnitude(Vector2 mag) // For the Move code above
+        {
+            return (float)Math.Sqrt(mag.X * mag.X + mag.Y * mag.Y);
+        }
     }
 }

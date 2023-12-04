@@ -20,7 +20,7 @@
 	- Blade of Enmity
 	- Crimsaber
 	- Mandible Claws
-	- RGB Murasama
+	- RGB Murasama (new)
 - Added and ported other weapons:
 	- Lead Wizard
 	- Impaler
@@ -29,7 +29,7 @@
 	- Hadopelagic Echo
 	- Omega Ray (new)
 	- Baow (new)
-- Added ammos:
+- Added new ammos:
 	- Profaned Dart
 	- War Arrow
 - Added Reality Relocator (Rof of Harmony variant of Normality Relocator)
@@ -42,5 +42,6 @@
 - Ported stupid content from `Supreme Calamitas in Vanilla` Mod (Hello, AdamChromeE)
 - Added support of elemental damage from Mod of Redemption
 - Reduced Projectile spam from Clamitas
+- Nerfed Clamitas Armor
 - Music moved into Clamity Music Mod
 - Added music themes for Cloud Elemental, Earth Elemental and Acid Rain T2

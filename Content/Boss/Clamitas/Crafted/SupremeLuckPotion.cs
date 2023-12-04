@@ -61,6 +61,7 @@ namespace Clamity.Content.Boss.Clamitas.Crafted
         public override void Update(Player player, ref int buffIndex)
         {
             player.luck += 0.7f;
+            player.buffImmune[BuffID.Lucky] = true;
         }
     }
 }

@@ -127,14 +127,14 @@ Items: {
 		Clamitas: {
 			ClamitasShelleggings: {
 				DisplayName: Clamitas Shelleggings
-				Tooltip: 20% increased damage and 9% increased critical strike chance
+				Tooltip: 15% increased damage and 9% increased critical strike chance
 			}
 
 			ClamitasShellmet: {
 				DisplayName: Clamitas Shellmet
 				Tooltip:
 					'''
-					20% increased damage and 9% increased critical strike chance
+					10% increased damage and 9% increased critical strike chance
 					Periodically rains down prism shards that can briefly stun enemies
 					'''
 				SetBonus:
@@ -203,7 +203,8 @@ Items: {
 				Tooltip:
 					'''
 					A high-frequency blade that can cleanly slice through even the mightiest foe
-					Prove your worth by slaying Yharon, Dragon of Rebirth to unsheath this sword
+					Every third swing deals immense damage
+					Prove your worth by slaying The Devourer of Gods to unsheath this sword
 					'There will be blood and rainbow!'
 					'''
 			}
@@ -520,11 +521,43 @@ Items: {
 		SoulOfPyrogen: {
 			Tooltip:
 				'''
-				20% increased Melee and Rogue damage
+				10% increased Melee and Rogue damage
 				True Melee strikes create spears from the ground
 				Stealth strike create spears from the ground on hit by projectile
 				'''
 			DisplayName: Soul of Pyrogen
+		}
+
+		DraculasCharm: {
+			Tooltip:
+				'''
+				15% increased rogue damage and +10 maximum stealth
+				Create a homing lifestealing vampires on stealth strike
+				Makes Stealth strikes inflict Crumbling
+				'''
+			DisplayName: Dracula`s Charm
+		}
+
+		PyroStone: {
+			Tooltip:
+				'''
+				Multiplies all heat-based debuff damage by 1.5
+				Creates a rotating fire shield around you that damages and ignite enemies on contact
+				'One of the ancient relics'
+				'''
+			DisplayName: Pyro Stone
+		}
+
+		HellFlare: {
+			DisplayName: Hell Flare
+			Tooltip:
+				'''
+				All attacks and projectiles inflict hellfire
+				Immunity to frostburn, chilled and frozen
+				Being above 75% life grants 10% increased crit chance
+				Being below 25% life grants 10% increased damage reduction
+				Grants resistance against cold attacks
+				'''
 		}
 	}
 
@@ -659,10 +692,15 @@ Projectiles: {
 	Firethrower.DisplayName: Firethrower
 	PyrogenSummonAnimation.DisplayName: Pyrogen Summon Animation
 	PyrogenKillExplosion.DisplayName: Pyrogen Kill Explosion
+	DraculasCharmProj.DisplayName: Draculas Charm Proj
+	Typeless.PyroShieldAccessory.DisplayName: Pyro Shield Accessory
 }
 
 UI: {
-	Cooldowns.ShortstrikeCooldown: Shortstrike Cooldown
+	Cooldowns: {
+		ShortstrikeCooldown: Shortstrike Cooldown
+		PyrospearCooldown: Pyrospear Cooldown
+	}
 
 	Enchantments: {
 		AflameAcc: {

@@ -1,9 +1,11 @@
 ﻿using CalamityMod;
 using CalamityMod.Items.TreasureBags.MiscGrabBags;
 using Clamity.Content.Cooldowns;
+using Clamity.Content.Items.Accessories;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -32,6 +34,18 @@ namespace Clamity
             {
 
             }
+            if (item.DamageType == ModContent.GetInstance<RogueDamageClass>())
+            {
+                if (player.Clamity().vampireEX && player.Calamity().StealthStrikeAvailable())
+                {
+                    //NPC npc = NPC
+                    for (int i = 0; i < 10; i++)
+                    {
+                        Projectile.NewProjectile(player.GetSource_Accessory(item), player.Center, Main.rand.NextVector2CircularEdge(5, 5), ModContent.ProjectileType<DraculasCharmProj>(), 25, 0.1f, player.whoAmI, -1);
+                    }
+                }
+            }
+
         }
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {

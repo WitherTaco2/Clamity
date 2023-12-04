@@ -1,13 +1,16 @@
 ﻿using CalamityMod;
 using CalamityMod.Buffs.DamageOverTime;
+using CalamityMod.Projectiles.Typeless;
 using CalamityMod.World;
 using Clamity.Content.Boss.Pyrogen.Drop;
+using Clamity.Content.Cooldowns;
 using Clamity.Content.Items.Tools.Bags.Fish;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameInput;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Clamity
@@ -18,8 +21,13 @@ namespace Clamity
         public bool wulfrumShortstrike;
         public bool aflameAcc;
         public List<int> aflameAccList;
+
         public bool pyroSpear;
-        public int pyroSpearCD;
+        //public int pyroSpearCD;
+        public bool vampireEX;
+        public bool pyroStone;
+        public bool pyroStoneVanity;
+        public bool hellFlare;
         //Minion
         public bool hellsBell;
         //Buffs-Debuffs
@@ -30,7 +38,12 @@ namespace Clamity
             wulfrumShortstrike = false;
             aflameAcc = false;
             aflameAccList = new List<int>();
+
             pyroSpear = false;
+            vampireEX = false;
+            pyroStone = false;
+            pyroStoneVanity = false;
+            hellFlare = false;
 
             hellsBell = false;
 
@@ -39,8 +52,8 @@ namespace Clamity
         //public Item[] accesories;
         public override void UpdateEquips()
         {
-            if (pyroSpearCD > 0)
-                pyroSpearCD--;
+            //if (pyroSpearCD > 0)
+            //    pyroSpearCD--;
             foreach (Item i in Player.armor)
             {
                 if (!i.IsAir)
@@ -85,15 +98,18 @@ namespace Clamity
         }
         public override void OnHitNPCWithItem(Item item, NPC target, NPC.HitInfo hit, int damageDone)
         {
-            if (pyroSpear && pyroSpearCD == 0)
+            if (pyroSpear && !Player.HasCooldown(PyrospearCooldown.ID))
             {
                 for (int i = 0; i < 4; i++)
                 {
                     Vector2 vec1 = Vector2.UnitY.RotatedByRandom(1f);
                     Projectile.NewProjectile(item.GetSource_OnHit(target), target.Center + vec1 * 500f, -vec1.RotatedByRandom(0.1f) * 20f, ModContent.ProjectileType<SoulOfPyrogenSpear>(), item.damage / 2, 1f, Player.whoAmI, target.whoAmI);
                 }
-                pyroSpearCD = 100;
+                //pyroSpearCD = 100;
+                Player.AddCooldown(PyrospearCooldown.ID, 100);
             }
+            if (hellFlare)
+                CalamityUtils.Inflict246DebuffsNPC(target, BuffID.OnFire3);
         }
         public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
         {
@@ -108,14 +124,15 @@ namespace Clamity
         }
         private void PyroSpearEffect(Projectile proj, NPC target)
         {
-            if (pyroSpear && pyroSpearCD == 0)
+            if (pyroSpear && !Player.HasCooldown(PyrospearCooldown.ID))
             {
                 for (int i = 0; i < 4; i++)
                 {
                     Vector2 vec1 = Vector2.UnitY.RotatedByRandom(1f);
                     Projectile.NewProjectile(proj.GetSource_OnHit(target), target.Center + vec1 * 500f, -vec1.RotatedByRandom(0.1f) * 20f, ModContent.ProjectileType<SoulOfPyrogenSpear>(), proj.damage / 2, 1f, Player.whoAmI, target.whoAmI);
                 }
-                pyroSpearCD = 100;
+                //pyroSpearCD = 100;
+                Player.AddCooldown(PyrospearCooldown.ID, 100);
             }
         }
         /*public override void ModifyHitByNPC(NPC npc, ref Player.HurtModifiers modifiers)
@@ -142,6 +159,41 @@ namespace Clamity
                 if (Player.ZoneSkyHeight && NPC.downedMoonlord && attempt.uncommon && Main.rand.NextBool(10))
                     itemDrop = ModContent.ItemType<SideGar>();
             }
+        }
+        public override void PostUpdateMiscEffects()
+        {
+            StatModifier statModifier;
+            if (pyroStone || pyroStoneVanity)
+            {
+                //Main.NewText("ClamityPlayer messenge: " + pyroStone.ToString() + " " + pyroStoneVanity.ToString());
+                IEntitySource sourceAccessory = Player.GetSource_Accessory(FindAccessory(ModContent.ItemType<PyroStone>()));
+                statModifier = Player.GetBestClassDamage();
+                int damage = (int)statModifier.ApplyTo(70f);
+                if (Player.Calamity().oldFashioned)
+                    damage = CalamityUtils.CalcOldFashionedDamage(damage);
+                if (Player.whoAmI == Main.myPlayer && Player.ownedProjectileCounts[ModContent.ProjectileType<PyroShieldAccessory>()] == 0)
+                    Projectile.NewProjectile(sourceAccessory, Player.Center, Vector2.Zero, ModContent.ProjectileType<PyroShieldAccessory>(), damage, 0.0f, Player.whoAmI);
+            }
+            if (hellFlare)
+            {
+                if (this.Player.statLife > (int)(Player.statLifeMax2 * 0.75))
+                {
+                    Player.GetCritChance<GenericDamageClass>() += 10;
+                }
+                if (this.Player.statLife < (int)(Player.statLifeMax2 * 0.25))
+                {
+                    Player.endurance += 0.1f;
+                }
+            }
+        }
+        public Item FindAccessory(int itemID)
+        {
+            for (int index = 0; index < 10; ++index)
+            {
+                if (this.Player.armor[index].type == itemID)
+                    return this.Player.armor[index];
+            }
+            return new Item();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,12 +20,12 @@ namespace Clamity.Content.Boss.Pyrogen.Projectiles
             Projectile.width = Projectile.height = 98;
             Projectile.aiStyle = -1;
             Projectile.timeLeft = 600;
-            Projectile.scale = 2f;
         }
         public override void AI()
         {
+            Projectile.Center = Main.npc[(int)Projectile.ai[0]].position + new Vector2(Projectile.ai[1], Projectile.ai[2]);
             Projectile.frameCounter++;
-            if (Projectile.frameCounter % 10 == 0)
+            if (Projectile.frameCounter % 5 == 0)
             {
                 Projectile.frame++;
                 if(Projectile.frame > 6)

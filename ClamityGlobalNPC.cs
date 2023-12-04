@@ -4,17 +4,19 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Clamity.Content.Items.Materials;
 using Clamity.Content.Items.Weapons.Melee.Swords;
-using CalamityMod.NPCs.PlaguebringerGoliath;
 using Clamity.Content.Items.Weapons.Melee.Shortswords;
 using Clamity.Content.Items.Weapons.Ranged.Guns;
-using CalamityMod.Buffs.StatDebuffs;
 using Clamity.Content.Buffs;
+using CalamityMod.Buffs.StatDebuffs;
+using CalamityMod.NPCs.PlaguebringerGoliath;
+using CalamityMod;
 
 namespace Clamity
 {
     public class ClamityGlobalNPC : GlobalNPC
     {
         public override bool InstancePerEntity => true;
+        public bool IncreasedHeatEffects_PyroStone;
         //public int wCleave;
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
@@ -70,5 +72,81 @@ namespace Clamity
             if (num < 0)
                 num = 0;
         }*/
+        public override void UpdateLifeRegen(NPC npc, ref int damage)
+        {
+            bool flag1 = CalamityLists.DesertScourgeIDs.Contains(npc.type) || CalamityLists.EaterofWorldsIDs.Contains(npc.type) || CalamityLists.PerforatorIDs.Contains(npc.type) || CalamityLists.AquaticScourgeIDs.Contains(npc.type) || CalamityLists.AstrumDeusIDs.Contains(npc.type) || CalamityLists.StormWeaverIDs.Contains(npc.type);
+            bool flag2 = CalamityLists.SlimeGodIDs.Contains(npc.type);
+            bool flag3 = npc.drippingSlime || npc.drippingSparkleSlime;
+
+            float num7 = flag3 ? (flag1 | flag2 ? 1.5f : 2f) : 1f;
+            if (npc.Calamity().VulnerableToHeat.HasValue)
+            {
+                if (npc.Calamity().VulnerableToHeat.Value)
+                    num7 *= flag3 ? (flag1 | flag2 ? 1.25f : 1.5f) : (flag1 | flag2 ? 1.5f : 2f);
+                else
+                    num7 *= flag3 ? 0.2f : 0.5f;
+            }
+            if (IncreasedHeatEffects_PyroStone)
+                num7 += 0.5f;
+            float num12 = num7 - 1f;
+
+            if (npc.onFire)
+            {
+                int num15 = (int)(12.0 * num12);
+                npc.lifeRegen -= num15;
+                if (damage < num15 / 4)
+                    damage = num15 / 4;
+            }
+            if (npc.onFire2)
+            {
+                int num16 = (int)(48.0 * num12);
+                npc.lifeRegen -= num16;
+                if (damage < num16 / 4)
+                    damage = num16 / 4;
+            }
+            if (npc.onFire3)
+            {
+                int num17 = (int)(30.0 * num12);
+                npc.lifeRegen -= num17;
+                if (damage < num17 / 4)
+                    damage = num17 / 4;
+            }
+            if (npc.daybreak)
+            {
+                int num18 = 0;
+                for (int index = 0; index < Main.maxProjectiles; ++index)
+                {
+                    if (((Entity)Main.projectile[index]).active && Main.projectile[index].type == 636 && (double)Main.projectile[index].ai[0] == 1.0 && (double)Main.projectile[index].ai[1] == (double)((Entity)npc).whoAmI)
+                        ++num18;
+                }
+                int num19 = (int)((num18 <= 1 ? 1.0 : 1.0 + 0.25 * (double)(num18 - 1)) * 2.0 * 100.0 * num12);
+                npc.lifeRegen -= num19;
+                if (damage < num19 / 4)
+                    damage = num19 / 4;
+            }
+            if (npc.shadowFlame)
+            {
+                int num20 = (int)(60.0 * num12);
+                npc.lifeRegen -= num20;
+                if (damage < num20 / 4)
+                    damage = num20 / 4;
+            }
+
+            bool flag5 = npc.onFrostBurn || npc.onFrostBurn2;
+            bool flag6 = npc.onFire || npc.onFire2 || npc.onFire3 || npc.shadowFlame;
+            bool flag7 = npc.Calamity().bFlames > 0 || npc.Calamity().hFlames > 0 || npc.Calamity().gsInferno > 0 || npc.Calamity().dragonFire > 0 || npc.Calamity().banishingFire > 0 || npc.Calamity().vulnerabilityHex > 0;
+            if (npc.oiled && flag5 | flag6 | flag7)
+            {
+                double num23 = 1.0;
+                if (flag6 || flag7 & flag5)
+                    num23 *= num12;
+                if (flag7 && !flag5 && !flag6)
+                    num23 *= num7;
+                int num24 = (int)(50.0 * num23);
+                npc.lifeRegen -= num24;
+                if (damage < num24 / 4)
+                    damage = num24 / 4;
+            }
+        }
     }
 }

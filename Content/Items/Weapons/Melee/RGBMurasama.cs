@@ -10,6 +10,10 @@ using CalamityMod.Tiles.Furniture.CraftingStations;
 using Terraria.Localization;
 using System;
 using System.Collections.Generic;
+using CalamityMod.Particles;
+using static Humanizer.In;
+using Terraria.Audio;
+using Terraria.ID;
 
 namespace Clamity.Content.Items.Weapons.Melee
 {
@@ -36,7 +40,7 @@ namespace Clamity.Content.Items.Weapons.Melee
         //public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(GetHashCodeNew(Main.DiscoColor));
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            int index = tooltips.FindLastIndex(tt => tt.Mod.Equals("Terraria") && tt.Name.Equals("Tooltip2"));
+            int index = tooltips.FindLastIndex(tt => tt.Mod.Equals("Terraria") && tt.Name.Equals("Tooltip3"));
             if (index != -1)
             {
                 //tooltips[index].Text = LangHelper.GetText("Items.Weapons.Melee.RGBMurasama.Tooltip", right, potionList, favotite);
@@ -95,14 +99,16 @@ namespace Clamity.Content.Items.Weapons.Melee
         {
             CreateRecipe()
                 .AddIngredient<Murasama>()
-                .AddIngredient<ExoPrism>(10)
-                .AddIngredient<CoreofCalamity>(5)
+                .AddIngredient(ItemID.RainbowBrick, 50)
+                .AddIngredient<CoreofCalamity>(1)
                 .AddTile<DraedonsForge>()
                 .Register();
         }
     }
     public class RGBMurasamaProjectile : MurasamaSlash
     {
+
+        private Player Owner => Main.player[base.Projectile.owner];
         public override bool PreDraw(ref Color lightColor)
         {
             if (Projectile.frameCounter <= 1)
@@ -117,6 +123,59 @@ namespace Clamity.Content.Items.Weapons.Melee
             value = ModContent.Request<Texture2D>(Texture + "_Glow").Value;
             Main.EntitySpriteDraw(effects: Projectile.spriteDirection != 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None, texture: value, position: Projectile.Center - Main.screenPosition, sourceRectangle: value2, color: Main.DiscoColor, rotation: Projectile.rotation, origin: origin, scale: Projectile.scale);
             return false;
+        }
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            if (target.Organic())
+            {
+                SoundStyle style = Murasama.OrganicHit;
+                style.Pitch = ((CurrentFrame == 0) ? (-0.1f) : ((CurrentFrame == 6) ? 0.1f : ((CurrentFrame == 10) ? (-0.15f) : 0f)));
+                SoundEngine.PlaySound(in style, base.Projectile.Center);
+            }
+            else
+            {
+                SoundStyle style = Murasama.InorganicHit;
+                style.Pitch = ((CurrentFrame == 0) ? (-0.1f) : ((CurrentFrame == 6) ? 0.1f : ((CurrentFrame == 10) ? (-0.15f) : 0f)));
+                SoundEngine.PlaySound(in style, base.Projectile.Center);
+            }
+
+            for (int i = 0; i < 3; i++)
+            {
+                Color color = ((CurrentFrame != 6) ? (Main.rand.NextBool(4) ? Color.LightCoral : Color.Crimson) : (Main.rand.NextBool(3) ? Color.LightCoral : Color.White));
+                float num = Main.rand.NextFloat(1f, 1.75f);
+                if (CurrentFrame == 6)
+                {
+                    GeneralParticleHandler.SpawnParticle(new SparkleParticle(target.Center + Main.rand.NextVector2Circular((float)target.width * 0.75f, (float)target.height * 0.75f), Vector2.Zero, Color.White, Main.DiscoColor, num * 1.2f, 8, 0f, 4.5f));
+                }
+
+                GeneralParticleHandler.SpawnParticle(new SparkleParticle(target.Center + Main.rand.NextVector2Circular((float)target.width * 0.75f, (float)target.height * 0.75f), Vector2.Zero, color, Main.DiscoColor, num, 8, 0f, 2.5f));
+            }
+
+            float num2 = MathHelper.Clamp((CurrentFrame == 6) ? (18 - base.Projectile.numHits * 3) : (5 - base.Projectile.numHits * 2), 0f, 18f);
+            for (int j = 0; (float)j < num2; j++)
+            {
+                Vector2 vector = base.Projectile.velocity.RotatedBy((CurrentFrame == 0) ? (-0.45f * (float)Owner.direction) : ((CurrentFrame == 6) ? 0f : ((CurrentFrame == 10) ? (0.45f * (float)Owner.direction) : 0f))).RotatedByRandom(0.34999999403953552) * Main.rand.NextFloat(0.5f, 1.8f);
+                int num3 = Main.rand.Next(23, 35);
+                float num4 = Main.rand.NextFloat(0.95f, 1.8f);
+                if (Main.rand.NextBool())
+                {
+                    GeneralParticleHandler.SpawnParticle(new AltSparkParticle(target.Center + Main.rand.NextVector2Circular((float)target.width * 0.5f, (float)target.height * 0.5f) + base.Projectile.velocity * 1.2f, vector * ((CurrentFrame == 6) ? 1f : 0.65f), affectedByGravity: false, (int)((float)num3 * ((CurrentFrame == 6) ? 1.2f : 1f)), num4 * ((CurrentFrame == 6) ? 1.4f : 1f), Main.DiscoColor));
+                }
+                else
+                {
+                    GeneralParticleHandler.SpawnParticle(new LineParticle(target.Center + Main.rand.NextVector2Circular((float)target.width * 0.5f, (float)target.height * 0.5f) + base.Projectile.velocity * 1.2f, vector * ((CurrentFrame == 7) ? 1f : 0.65f), affectedByGravity: false, (int)((float)num3 * ((CurrentFrame == 7) ? 1.2f : 1f)), num4 * ((CurrentFrame == 7) ? 1.4f : 1f), Main.DiscoColor));
+                }
+            }
+
+            float num5 = MathHelper.Clamp((CurrentFrame == 6) ? (25 - base.Projectile.numHits * 3) : (12 - base.Projectile.numHits * 2), 0f, 25f);
+            for (int k = 0; (float)k <= num5; k++)
+            {
+                int type = (Main.rand.NextBool(3) ? 182 : (Main.rand.NextBool() ? ((CurrentFrame == 6) ? 309 : 296) : 90));
+                Dust dust = Dust.NewDustPerfect(target.Center + Main.rand.NextVector2Circular((float)target.width * 0.5f, (float)target.height * 0.5f), type, base.Projectile.velocity.RotatedBy((CurrentFrame == 0) ? (-0.45f * (float)Owner.direction) : ((CurrentFrame == 6) ? 0f : ((CurrentFrame == 10) ? (0.45f * (float)Owner.direction) : 0f))).RotatedByRandom(0.550000011920929) * Main.rand.NextFloat(0.3f, 1.1f));
+                dust.scale = Main.rand.NextFloat(0.9f, 2.4f);
+                dust.noGravity = true;
+                dust.color = Main.DiscoColor;
+            }
         }
     }
 }

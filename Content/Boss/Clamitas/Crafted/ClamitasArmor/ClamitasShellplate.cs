@@ -25,7 +25,7 @@ namespace Clamity.Content.Boss.Clamitas.Crafted.ClamitasArmor
             base.Item.height = 22;
             base.Item.value = CalamityGlobalItem.Rarity5BuyPrice;
             base.Item.rare = ItemRarityID.Lime;
-            base.Item.defense = 25;
+            base.Item.defense = 22;
         }
 
         public override void UpdateEquip(Player player)

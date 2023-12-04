@@ -93,10 +93,9 @@ namespace Clamity
         {
             List<string> list = new List<string>();
             if (downedClamitas)
-            {
                 list.Add("clamitas");
+            if (downedPyrogen)
                 list.Add("pyrogen");
-            }
             tag["downedFlagsClamity"] = list;
         }
         public override void LoadWorldData(TagCompound tag)

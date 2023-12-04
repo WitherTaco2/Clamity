@@ -340,7 +340,7 @@ namespace Clamity.Content.Boss.Clamitas.NPCs
                             AttackCounter++;
                             for (int i = 0; i < 18; i++)
                             {
-                                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Vector2.One.RotatedBy(MathHelper.TwoPi / 24f * i) * 2f, ModContent.ProjectileType<BrimstoneBarrage>(), NPC.damage / 10, 0f);
+                                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Vector2.One.RotatedBy(MathHelper.TwoPi / 18f * i) * 2f, ModContent.ProjectileType<BrimstoneBarrage>(), NPC.damage / 10, 0f);
                             }
                         }
                         /*if (FallAttackType == 0 || (FallAttackType == 1 && AttackCounter >= 4))
@@ -464,8 +464,8 @@ namespace Clamity.Content.Boss.Clamitas.NPCs
                     for (int k = 0; k < 12; k++)
                     {
                         //float num15 = num10 + num11 * (k + k * k) / 2f + (32f * k);
-                        Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, num9.RotatedBy(MathHelper.TwoPi / 16f * k) * 8f, type3, damage3, 0f, Main.myPlayer);
-                        Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, num9.RotatedBy(MathHelper.TwoPi / 16f * k + MathHelper.PiOver4 / 4) * 4f, type3, damage3, 0f, Main.myPlayer);
+                        Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, num9.RotatedBy(MathHelper.TwoPi / 12f * k) * 8f, type3, damage3, 0f, Main.myPlayer);
+                        Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, num9.RotatedBy(MathHelper.TwoPi / 12f * k + MathHelper.PiOver4 / 4) * 4f, type3, damage3, 0f, Main.myPlayer);
                         //Projectile.NewProjectile(base.NPC.GetSource_FromAI(), vector2.X, vector2.Y, (float)(Math.Sin(num15) * 3.0), (float)(Math.Cos(num15) * 3.0), type3, damage3, 0f, Main.myPlayer);
                         //Projectile.NewProjectile(base.NPC.GetSource_FromAI(), vector2.X, vector2.Y, (float)((0.0 - Math.Sin(num15)) * 3.0), (float)((0.0 - Math.Cos(num15)) * 3.0), type3, damage3, 0f, Main.myPlayer);
                     }

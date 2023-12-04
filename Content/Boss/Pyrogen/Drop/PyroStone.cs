@@ -1,0 +1,122 @@
+﻿using CalamityMod.Buffs.StatDebuffs;
+using CalamityMod;
+using CalamityMod.Items.Accessories;
+using CalamityMod.NPCs.AcidRain;
+using CalamityMod.NPCs;
+using CalamityMod.Buffs.DamageOverTime;
+using CalamityMod.Items;
+using Clamity.Content.Boss.Pyrogen.NPCs;
+using Microsoft.Xna.Framework;
+using System;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+using Terraria.DataStructures;
+
+namespace Clamity.Content.Boss.Pyrogen.Drop
+{
+    public class PyroStone : ModItem, ILocalizedModType, IModType
+    {
+        public new string LocalizationCategory => "Items.Accessories";
+
+        public override void SetStaticDefaults()
+        {
+            Main.RegisterItemAnimation(base.Item.type, new DrawAnimationVertical(4, 4));
+            ItemID.Sets.AnimatesAsSoul[base.Type] = true;
+        }
+
+        public override void SetDefaults()
+        {
+            base.Item.width = 40;
+            base.Item.height = 40;
+            base.Item.value = CalamityGlobalItem.Rarity5BuyPrice;
+            base.Item.rare = 5;
+            base.Item.accessory = true;
+        }
+        public override void UpdateAccessory(Player player, bool hideVisual) => player.Clamity().pyroStone = true;
+        public override void UpdateVanity(Player player) => player.Clamity().pyroStoneVanity = true;
+    }
+    public class PyroShieldAccessory : ModProjectile, ILocalizedModType, IModType
+    {
+        public new string LocalizationCategory => "Projectiles.Typeless";
+
+        public Player Owner => Main.player[Projectile.owner];
+
+        public override string Texture => ModContent.GetInstance<PyrogenShield>().Texture;
+
+        public override void SetStaticDefaults() => ProjectileID.Sets.MinionSacrificable[Projectile.type] = true;
+
+        public override void SetDefaults()
+        {
+            Projectile.width = 172;
+            Projectile.height = 172;
+            Projectile.ignoreWater = true;
+            Projectile.timeLeft = 90000;
+            Projectile.tileCollide = false;
+            Projectile.friendly = true;
+            Projectile.penetrate = -1;
+            Projectile.usesLocalNPCImmunity = true;
+            Projectile.localNPCHitCooldown = 25;
+        }
+
+        public override void AI()
+        {
+            ClamityPlayer clamityPlayer = Main.player[Projectile.owner].Clamity();
+            Projectile.friendly = true;
+            Projectile.hostile = false;
+            Projectile.rotation += MathF.PI / 48f;
+            Projectile.Center = Owner.Center;
+            if (!clamityPlayer.pyroStoneVanity)
+                Lighting.AddLight(Projectile.Center, Projectile.Opacity * 0.9f, Projectile.Opacity * 0.1f, Projectile.Opacity * 0.1f);
+            for (int i = 0; i < 8; i++)
+            {
+                Dust dust = Dust.NewDustPerfect(Projectile.Center + Vector2.UnitX.RotatedBy(MathHelper.TwoPi / 8 * i + Projectile.rotation) * 90f, DustID.Flare, Vector2.UnitX.RotatedBy(MathHelper.TwoPi / 8 * i), Scale: 1.5f);
+                dust.noGravity = true;
+            }
+            /*if (this.Owner != null && Owner.active && !this.Owner.dead && !(clamityPlayer.pyroStoneVanity || clamityPlayer.pyroStone))
+                return;
+            Projectile.Kill();*/
+            //Main.NewText("PyroStone messenge: " + clamityPlayer.pyroStone.ToString() + " " + clamityPlayer.pyroStoneVanity.ToString());
+            if (Owner == null || !Owner.active || Owner.dead || !(clamityPlayer.pyroStone || clamityPlayer.pyroStoneVanity))
+                Projectile.Kill();
+            
+        }
+
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            if (Main.player[Projectile.owner].Clamity().pyroStoneVanity)
+                return;
+            target.AddBuff(BuffID.OnFire3, 180, false);
+            target.AddBuff(ModContent.BuffType<Dragonfire>(), 30, false);
+            if (target.knockBackResist <= 0 || !CalamityGlobalNPC.ShouldAffectNPC(target))
+                return;
+            float num = MathHelper.Clamp(1f - target.knockBackResist, 0.0f, 1f);
+            Vector2 vector2 = target.Center - Projectile.Center;
+            vector2.Normalize();
+            target.velocity = vector2 * num;
+        }
+
+        public override void OnHitPlayer(Player target, Player.HurtInfo info)
+        {
+            if (Main.player[Projectile.owner].Clamity().pyroStoneVanity)
+                return;
+            target.AddBuff(BuffID.OnFire3, 180, true, false);
+            target.AddBuff(ModContent.BuffType<Dragonfire>(), 30, true, false);
+        }
+
+        public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
+        {
+            Vector2 center = Projectile.Center;
+            Vector2 size = Projectile.Size;
+            float radius = size.Length() * 0.5f;
+            Rectangle targetHitbox1 = targetHitbox;
+            return new bool?(CalamityUtils.CircularHitboxCollision(center, radius, targetHitbox1));
+        }
+
+        public override bool? CanHitNPC(NPC target)
+        {
+            ClamityPlayer clamityPlayer = Main.player[Projectile.owner].Clamity();
+            return target.catchItem != 0 && target.type != ModContent.NPCType<Radiator>() || clamityPlayer.pyroStoneVanity ? new bool?(false) : new bool?();
+        }
+    }
+}

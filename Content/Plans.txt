@@ -15,6 +15,9 @@ Ancient Exo Update
 * Twentloon									https://calamitymod.fandom.com/wiki/Twentloon
 * Twenty-Twloon								https://calamitymod.fandom.com/wiki/Twenty-Twloon
 * Mediocre Matter content					https://calamitymod.fandom.com/wiki/Mediocre_Matter
+? Tainted Potions							https://calamitymod.fandom.com/wiki/Tainted_Potions
+	- Desgurting Meat
+? Dron Superboss							https://calamitymod.fandom.com/wiki/Disgusting_Creature:_Dron
 
 Acid Tides Update
 * Acidsighter boss							https://calamitymod.fandom.com/wiki/Acidsighter
@@ -27,3 +30,9 @@ Acid Tides Update
 * Grand Reef								https://calamitymod.fandom.com/wiki/Grand_Reef
 ? Warloks`s Moon Fist						https://calamitymod.fandom.com/wiki/Warloks%27_Moon_Fist
 * The Archalis								https://calamitymod.fandom.com/wiki/The_Archalis
+
+??? Update
+* Bloody Edge
+	- Работает как грань ночи но
+	  имеет 4 маленьких удара вместо
+	  1ого большого

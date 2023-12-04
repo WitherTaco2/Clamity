@@ -111,6 +111,7 @@ namespace Clamity.Content.Items.Weapons.Magic
             }
             else
             {
+                Projectile.scale += MathF.Sin(Projectile.timeLeft) * 0.1f;
                 Projectile.width = 36;
                 Projectile.height = 36;
             }
@@ -172,7 +173,11 @@ namespace Clamity.Content.Items.Weapons.Magic
 
         public override bool PreDraw(ref Color lightColor)
         {
-            CalamityUtils.DrawAfterimagesCentered(Projectile, ProjectileID.Sets.TrailingMode[Projectile.type], lightColor);
+            CalamityUtils.DrawAfterimagesCentered(Projectile, ProjectileID.Sets.TrailingMode[Projectile.type], Color.LightCyan * 0.9f);
+            Texture2D texture = ModContent.Request<Texture2D>(Texture).Value;
+            SpriteEffects effects = Projectile.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+            Color newColor = Color.LightCyan;
+            Main.spriteBatch.Draw(texture, Projectile.Center + Vector2.UnitX.RotatedBy(Projectile.rotation) * 2f * Projectile.scale - Main.screenPosition, null, newColor * 0.75f, Projectile.rotation, texture.Size() / 2, Projectile.scale * 1.15f, effects, 0);
             return false;
         }
     }

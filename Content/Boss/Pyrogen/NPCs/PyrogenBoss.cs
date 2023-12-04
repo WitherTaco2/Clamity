@@ -403,14 +403,21 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
 
             #region Stage Animations
 
-            if (NPC.ai[0] >= 1f)
+            if (NPC.ai[0] >= 1f && globalTimer % Main.rand.Next(60 / (int)NPC.ai[0], 60 / (int)NPC.ai[0] + 4) < 3)
             {
-
+                Vector2 vec1 = new Vector2(NPC.width / 2f * Main.rand.NextFloat(-1, 1), NPC.height / 2f * Main.rand.NextFloat(-1, 1));
+                Vector2 vec2 = vec1.RotatedByRandom(MathHelper.PiOver4);
+                for (int i = 0; i < 3; i++)
+                {
+                    Dust dust = Dust.NewDustPerfect(NPC.Center + vec1, DustID.Flare, vec2 * i * 0.01f);
+                    dust.scale = 1.5f;
+                }
             }
-            if (NPC.ai[0] >= 3f && globalTimer % Main.rand.Next(30, 40) < 3)
+            if (NPC.ai[0] >= 3f && globalTimer % Main.rand.Next(50, 60) < 3)
             {
-                int index0 = Projectile.NewProjectile(NPC.GetSource_Death(), NPC.Center + new Vector2(NPC.width / 2f * Main.rand.NextFloat(-1, 1), NPC.height / 2f * Main.rand.NextFloat(-1, 1)), Vector2.Zero, ModContent.ProjectileType<PyrogenKillExplosion>(), 0, 0);
-                Main.projectile[index0].scale = 1f;
+                Vector2 vec11 = new Vector2(NPC.width * Main.rand.NextFloat(0, 1), NPC.height * Main.rand.NextFloat(0, 1));
+                int index0 = Projectile.NewProjectile(NPC.GetSource_Death(), NPC.position, Vector2.Zero, ModContent.ProjectileType<PyrogenKillExplosion>(), 0, 0, Main.myPlayer, NPC.whoAmI, vec11.X, vec11.Y);
+                //Main.projectile[index0].scale = 1f;
             }
             #endregion
             //Start of attack AI
@@ -437,9 +444,10 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                                 int projectileDamage2 = NPC.GetProjectileDamage(num29);
                                 float num30 = 9f + num2;
                                 Vector2 spinningpoint2 = new Vector2(0f, 0f - num30);
-                                for (int i = 0; i < 5; i++)
+                                for (int i = 0; i < 20; i++)
                                 {
-                                    Vector2 vector2 = (Main.player[NPC.target].Center - NPC.Center) * 0.01f + Main.rand.NextVector2Circular(50, 50);
+                                    //0.075f
+                                    Vector2 vector2 = (Main.player[NPC.target].Center - NPC.Center) * 0.09f + Main.rand.NextVector2Circular(100, 100);
                                     Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, vector2, num29, projectileDamage2, 0f, Main.myPlayer);
                                 }
                                 /*for (int l = 0; l < num27; l++)
@@ -1115,7 +1123,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
 
                 NPC.velocity.X = (NPC.velocity.X * num118 + num112) / (num118 + 1f);
                 NPC.velocity.Y = (NPC.velocity.Y * num118 + num113) / (num118 + 1f);
-                if (globalTimer % 30 == 0 && NPC.velocity.Length() >= 5)
+                if (globalTimer % 10 == 0)
                     Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, NPC.velocity * 0.5f, ModContent.ProjectileType<FireBomb>(), NPC.GetProjectileDamage(ModContent.ProjectileType<FireBomb>()), 0);
 
                 if (num114 < num116 + 200f)
@@ -1378,8 +1386,8 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
             mainRule.Add(ItemDropRule.Common(ModContent.ItemType<ThankYouPainting>(), 100));
             mainRule.Add(ItemDropRule.Common(ModContent.ItemType<EssenceOfFlame>(), 1, 8, 10));
             mainRule.Add(DropHelper.PerPlayer(ModContent.ItemType<SoulOfPyrogen>()));
-            //mainRule.Add(ModContent.ItemType<CryoStone>(), DropHelper.NormalWeaponDropRateFraction);
-            //mainRule.Add(ModContent.ItemType<FrostFlare>(), DropHelper.NormalWeaponDropRateFraction);
+            mainRule.Add(ModContent.ItemType<PyroStone>(), DropHelper.NormalWeaponDropRateFraction);
+            mainRule.Add(ModContent.ItemType<HellFlare>(), DropHelper.NormalWeaponDropRateFraction);
             npcLoot.Add(ItemDropRule.Common(ItemID.DungeonDesertKey, 3));
             npcLoot.Add(ModContent.ItemType<PyrogenTrophy>(), 10);
             npcLoot.DefineConditionalDropSet(DropHelper.RevAndMaster).Add(ModContent.ItemType<PyrogenRelic>());
@@ -1392,8 +1400,10 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
             CalamityGlobalNPC.SetNewBossJustDowned(base.NPC);
 
             GeneralParticleHandler.SpawnParticle(new DirectionalPulseRing(NPC.Center, Vector2.Zero, Color.Red, new Vector2(0.5f, 0.5f), Main.rand.NextFloat(12f, 25f), 0.2f, 20f, 30));
-            Projectile.NewProjectile(NPC.GetSource_Death(), NPC.Center, Vector2.Zero, ModContent.ProjectileType<PyrogenKillExplosion>(), 0, 0);
+            int index = Projectile.NewProjectile(NPC.GetSource_Death(), NPC.Center, Vector2.Zero, ModContent.ProjectileType<PyrogenKillExplosion>(), 0, 0);
+            Main.projectile[index].scale = 1f;
             //DownedBossSystem.downedCryogen = true;
+            ClamitySystem.downedPyrogen = true;
             CalamityNetcode.SyncWorld();
         }
 
@@ -1512,11 +1522,11 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
             ref float randomAttack = ref NPC.Calamity().newAI[1];
             ref float secondRotation = ref NPC.Calamity().newAI[2];
             attackTimer--;
-            secondRotation += 0.01f;
+            secondRotation += 0.025f;
 
             for (int i = 0; i < 8; i++)
             {
-                Dust dust = Dust.NewDustPerfect(NPC.Center + Vector2.UnitX.RotatedBy(MathHelper.TwoPi / 8 * i + NPC.rotation) * 90f, DustID.Flare, Vector2.UnitX.RotatedBy(MathHelper.TwoPi / 8 * i), Scale: 3f);
+                Dust dust = Dust.NewDustPerfect(NPC.Center + Vector2.UnitX.RotatedBy(MathHelper.TwoPi / 8 * i + NPC.rotation) * 90f * NPC.scale, DustID.Flare, Vector2.UnitX.RotatedBy(MathHelper.TwoPi / 8 * i), Scale: 3f * NPC.scale);
                 dust.noGravity = true;
             }
 
@@ -1546,7 +1556,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                                 Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Vector2.UnitX.RotatedBy(MathHelper.TwoPi / 4 * i + secondRotation) * 5f, ModContent.ProjectileType<FireBarrage>(), NPC.GetProjectileDamage(ModContent.ProjectileType<FireBarrage>()), 1f, Main.myPlayer);
                             }
                         }
-                        if (attackTimer < -50)
+                        if (attackTimer < -200)
                         {
                             randomAttack = -1;
                         }

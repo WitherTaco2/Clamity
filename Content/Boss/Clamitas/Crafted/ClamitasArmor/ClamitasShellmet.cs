@@ -30,12 +30,12 @@ namespace Clamity.Content.Boss.Clamitas.Crafted.ClamitasArmor
             Item.width = Item.height = 22;
             Item.value = CalamityGlobalItem.Rarity5BuyPrice;
             Item.rare = ItemRarityID.Lime;
-            Item.defense = 20;
+            Item.defense = 18;
         }
         public override void UpdateEquip(Player player)
         {
             player.ignoreWater = true;
-            player.GetDamage<GenericDamageClass>() += 0.2f;
+            player.GetDamage<GenericDamageClass>() += 0.1f;
             player.GetCritChance<GenericDamageClass>() += 9;
             AmidiasEffect(player);
 

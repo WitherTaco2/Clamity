@@ -15,6 +15,9 @@ using Clamity.Content.Boss.Pyrogen.NPCs;
 using Clamity.Content.Boss.Pyrogen;
 using Clamity.Content.Boss.Clamitas.NPCs;
 using Clamity.Content.Boss.Pyrogen.Drop;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
+using ReLogic.Content;
 
 namespace Clamity
 {
@@ -30,6 +33,7 @@ namespace Clamity
             ModLoader.TryGetMod("ClamityMusic", out musicMod);
 
             CooldownRegistry.Register<ShortstrikeCooldown>(ShortstrikeCooldown.ID);
+            CooldownRegistry.Register<PyrospearCooldown>(PyrospearCooldown.ID);
 
             ModLoader.GetMod("CalamityMod").Call(
                 "CreateEnchantment",
@@ -51,6 +55,7 @@ namespace Clamity
         public override void PostSetupContent()
         {
             ModLoader.TryGetMod("BossChecklist", out Mod bossChecklist);
+
             List<int> intList14 = new List<int>()
             {
                 ModContent.ItemType<ClamitasRelic>(),
@@ -60,10 +65,17 @@ namespace Clamity
             {
                 intList14.Add(Clamity.musicMod.Find<ModItem>("ClamitasMusicBox").Type);
             }
+            Action<SpriteBatch, Rectangle, Color> action2 = (Action<SpriteBatch, Rectangle, Color>)((sb, rect, color) =>
+            {
+                Texture2D texture2D = ModContent.Request<Texture2D>(ModContent.GetInstance<ClamitasBoss>().Texture + "_BossChecklist", (AssetRequestMode)2).Value;
+                Vector2 vector2 = new(rect.Center.X - texture2D.Width / 2, rect.Center.Y - texture2D.Height / 2);
+                sb.Draw(texture2D, vector2, color);
+            });
             AddBoss(bossChecklist, mod, "Clamitas", 11.9f, ModContent.NPCType<ClamitasBoss>(), () => ClamitySystem.downedClamitas, new Dictionary<string, object>()
             {
                 ["spawnItems"] = (object)ModContent.ItemType<ClamitasSummoningItem>(),
-                ["collectibles"] = (object)intList14
+                ["collectibles"] = (object)intList14,
+                ["customPortrait"] = (object)action2
             });
 
 
@@ -73,10 +85,21 @@ namespace Clamity
                 ModContent.ItemType<LorePyrogen>(),
                 /*ModContent.ItemType<ClamitasMusicbox>()*/
             };
+            if (Clamity.musicMod != null)
+            {
+                intList15.Add(Clamity.musicMod.Find<ModItem>("PyrogenMusicBox").Type);
+            }
+            Action<SpriteBatch, Rectangle, Color> action3 = (Action<SpriteBatch, Rectangle, Color>)((sb, rect, color) =>
+            {
+                Texture2D texture2D = ModContent.Request<Texture2D>(ModContent.GetInstance<PyrogenBoss>().Texture + "_BossChecklist", (AssetRequestMode)2).Value;
+                Vector2 vector2 = new(rect.Center.X - texture2D.Width / 2, rect.Center.Y - texture2D.Height / 2);
+                sb.Draw(texture2D, vector2, color);
+            });
             AddBoss(bossChecklist, mod, "Pyrogen", 8.5f, ModContent.NPCType<PyrogenBoss>(), () => ClamitySystem.downedPyrogen, new Dictionary<string, object>()
             {
                 ["spawnItems"] = (object)ModContent.ItemType<PyroKey>(),
-                ["collectibles"] = (object)intList15
+                ["collectibles"] = (object)intList15,
+                ["customPortrait"] = (object)action3
             });
 
 
