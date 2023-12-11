@@ -145,7 +145,7 @@ namespace Clamity
             if (wCleave)
                 Player.Calamity().contactDamageReduction *= 0.75f;
         }*/
-        public override void CatchFish(FishingAttempt attempt, ref int itemDrop, ref int npcSpawn, ref AdvancedPopupRequest sonar, ref Vector2 sonarPosition)
+        /*public override void CatchFish(FishingAttempt attempt, ref int itemDrop, ref int npcSpawn, ref AdvancedPopupRequest sonar, ref Vector2 sonarPosition)
         {
             bool flag = !attempt.inHoney && !attempt.inLava;
             if (flag)
@@ -159,7 +159,7 @@ namespace Clamity
                 if (Player.ZoneSkyHeight && NPC.downedMoonlord && attempt.uncommon && Main.rand.NextBool(10))
                     itemDrop = ModContent.ItemType<SideGar>();
             }
-        }
+        }*/
         public override void PostUpdateMiscEffects()
         {
             StatModifier statModifier;
@@ -168,9 +168,7 @@ namespace Clamity
                 //Main.NewText("ClamityPlayer messenge: " + pyroStone.ToString() + " " + pyroStoneVanity.ToString());
                 IEntitySource sourceAccessory = Player.GetSource_Accessory(FindAccessory(ModContent.ItemType<PyroStone>()));
                 statModifier = Player.GetBestClassDamage();
-                int damage = (int)statModifier.ApplyTo(70f);
-                if (Player.Calamity().oldFashioned)
-                    damage = CalamityUtils.CalcOldFashionedDamage(damage);
+                int damage = Player.ApplyArmorAccDamageBonusesTo(statModifier.ApplyTo(70f));
                 if (Player.whoAmI == Main.myPlayer && Player.ownedProjectileCounts[ModContent.ProjectileType<PyroShieldAccessory>()] == 0)
                     Projectile.NewProjectile(sourceAccessory, Player.Center, Vector2.Zero, ModContent.ProjectileType<PyroShieldAccessory>(), damage, 0.0f, Player.whoAmI);
             }

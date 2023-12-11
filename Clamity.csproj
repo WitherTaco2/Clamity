@@ -16,6 +16,7 @@
   <ItemGroup>
     <None Remove="changelog.txt" />
     <None Remove="content\Plans.txt" />
+    <None Remove="content\recruitment.txt" />
     <None Remove="description_workshop - Копировать.txt" />
     <None Remove="description_workshop.txt" />
   </ItemGroup>

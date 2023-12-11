@@ -1,4 +1,7 @@
-Tiles.ClamitasMusicBoxTile.MapEntry: Clamitas Music Box Tile
+Tiles: {
+	ClamitasMusicBoxTile.MapEntry: Clamitas Music Box Tile
+	ClamitasMusicboxTile.MapEntry: Clamitas Musicbox Tile
+}
 
 Buffs: {
 	SupremeLucky: {
@@ -431,6 +434,16 @@ Items: {
 		MediocreMatter: {
 			DisplayName: Mediocre Matter
 			Tooltip: ""
+		}
+
+		EssenceOfHeat: {
+			Tooltip: ""
+			DisplayName: Essence Of Heat
+		}
+
+		CoreOfHeat: {
+			Tooltip: ""
+			DisplayName: Core Of Heat
 		}
 	}
 
