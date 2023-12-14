@@ -1,11 +1,13 @@
 ﻿using CalamityMod;
 using CalamityMod.Buffs.DamageOverTime;
+using CalamityMod.Cooldowns;
 using CalamityMod.Projectiles.Typeless;
 using CalamityMod.World;
 using Clamity.Content.Boss.Pyrogen.Drop;
 using Clamity.Content.Cooldowns;
 using Clamity.Content.Items.Tools.Bags.Fish;
 using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
@@ -52,8 +54,6 @@ namespace Clamity
         //public Item[] accesories;
         public override void UpdateEquips()
         {
-            //if (pyroSpearCD > 0)
-            //    pyroSpearCD--;
             foreach (Item i in Player.armor)
             {
                 if (!i.IsAir)
