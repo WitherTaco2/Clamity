@@ -1,0 +1,30 @@
+ClamitasSummoningItem: {
+	DisplayName: Панцирь Кламитаса
+	Tooltip:
+		'''
+		Призывает Кламитаса в Серном Утёсе
+		Бесконечное применение
+		'''
+}
+
+EyeofStupidity: {
+	DisplayName: Глаз тупости
+	Tooltip:
+		'''
+		Summon a Legendary Supreme Supreme Calamitas of Supremity in Xeroc`a Cloth from Supreme
+		Hello, AdamChromeE
+		Призывает легендарного высшего среди высших Каламитасов самого высшего в одежде Ксерока из Суприма
+		'''
+}
+
+PyroKey: {
+	DisplayName: Пиро ключ
+	Tooltip:
+		'''
+		Призывает Пирогена в Пустыне
+		Призывает без анимации призыва при Правом Клике
+		Нахождение вне пустины приводит в ярость
+		Бесконечное применение
+		'Ключ от кубической печки'
+		'''
+}

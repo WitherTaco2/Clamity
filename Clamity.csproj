@@ -15,10 +15,36 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="changelog.txt" />
+    <None Remove="content\boss\wob\Progress.txt" />
     <None Remove="content\Plans.txt" />
     <None Remove="content\recruitment.txt" />
     <None Remove="description_workshop - Копировать.txt" />
     <None Remove="description_workshop.txt" />
+    <None Remove="localization\en-us\Mods.Clamity.Buffs.hjson" />
+    <None Remove="localization\en-us\Mods.Clamity.hjson" />
+    <None Remove="localization\en-us\Mods.Clamity.ItemExtraTooltip.hjson" />
+    <None Remove="localization\en-us\Mods.Clamity.Items.Accessories.hjson" />
+    <None Remove="localization\en-us\Mods.Clamity.Items.Ammo.hjson" />
+    <None Remove="localization\en-us\Mods.Clamity.Items.Armor.hjson" />
+    <None Remove="localization\en-us\Mods.Clamity.Items.Fishing.hjson" />
+    <None Remove="localization\en-us\Mods.Clamity.Items.Lore.hjson" />
+    <None Remove="localization\en-us\Mods.Clamity.Items.Materials.hjson" />
+    <None Remove="localization\en-us\Mods.Clamity.Items.Misc.hjson" />
+    <None Remove="localization\en-us\Mods.Clamity.Items.Placeables.hjson" />
+    <None Remove="localization\en-us\Mods.Clamity.Items.Potions.hjson" />
+    <None Remove="Localization\en-US\Mods.Clamity.Items.SummonBoss.hjson" />
+    <None Remove="localization\en-us\Mods.Clamity.Items.Tools.hjson" />
+    <None Remove="localization\en-us\Mods.Clamity.Items.TreasureBags.hjson" />
+    <None Remove="localization\en-us\Mods.Clamity.Items.Weapons.Classless.hjson" />
+    <None Remove="localization\en-us\Mods.Clamity.Items.Weapons.Magic.hjson" />
+    <None Remove="localization\en-us\Mods.Clamity.Items.Weapons.Melee.hjson" />
+    <None Remove="localization\en-us\Mods.Clamity.Items.Weapons.Ranged.hjson" />
+    <None Remove="localization\en-us\Mods.Clamity.Items.Weapons.Rogue.hjson" />
+    <None Remove="localization\en-us\Mods.Clamity.Items.Weapons.Summon.hjson" />
+    <None Remove="localization\en-us\Mods.Clamity.NPCs.hjson" />
+    <None Remove="localization\en-us\Mods.Clamity.Projectiles.hjson" />
+    <None Remove="localization\en-us\Mods.Clamity.UI.hjson" />
+    <None Remove="localization\ru-RU_Mods.Clamity.hjson" />
   </ItemGroup>
   <ItemGroup>
     <AdditionalFiles Include="Localization\en-US_Mods.Clamity.hjson.legecy" />

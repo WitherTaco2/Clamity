@@ -1,9 +1,7 @@
 ﻿using CalamityMod;
 using CalamityMod.Buffs.DamageOverTime;
-using CalamityMod.Cooldowns;
-using CalamityMod.Projectiles.Typeless;
-using CalamityMod.World;
 using Clamity.Content.Boss.Pyrogen.Drop;
+using Clamity.Content.Boss.WoB.FrozenHell.Biome;
 using Clamity.Content.Cooldowns;
 using Clamity.Content.Items.Tools.Bags.Fish;
 using Microsoft.Xna.Framework;
@@ -34,6 +32,8 @@ namespace Clamity
         public bool hellsBell;
         //Buffs-Debuffs
         //public bool wCleave;
+
+        public bool ZoneFrozenHell => Player.InModBiome((ModBiome)ModContent.GetInstance<FrozenHell>());
         public override void ResetEffects()
         {
             realityRelocator = false;

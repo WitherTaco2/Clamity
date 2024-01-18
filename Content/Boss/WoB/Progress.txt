@@ -1,0 +1,16 @@
+Boss
+()	Minions
+()	Deathray by head
+()	Phase 2
+()	Pre-Kill gun attack (Death Mode)
+
+Drop
+()	Trophy
+()	Mask
+()	Relic
+()	Master-mode item
+()	Treasure bag
+()	Lore item
+()	Large Father
+()	AMS
+()	The WOBler

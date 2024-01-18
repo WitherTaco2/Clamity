@@ -71,7 +71,7 @@ namespace Clamity.Content.Boss.Pyrogen.Drop.Weapons
         }
         public override void AI()
         {
-            /*Projectile.ai[0]++;
+            Projectile.ai[0]++;
             if (Time >= 24f)
             {
                 if (TargetIndex >= 0)
@@ -95,7 +95,7 @@ namespace Clamity.Content.Boss.Pyrogen.Drop.Weapons
                         TargetIndex = nPC.whoAmI;
                     }
                 }
-            }*/
+            }
         }
     }
 }

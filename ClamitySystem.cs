@@ -76,10 +76,31 @@ namespace Clamity
                 }
             }
         }
+
+        internal static bool _downedWallOfBronze;
+        public static bool downedWallOfBronze
+        {
+            get
+            {
+                return _downedWallOfBronze;
+            }
+            set
+            {
+                if (!value)
+                {
+                    _downedWallOfBronze = false;
+                }
+                else
+                {
+                    NPC.SetEventFlagCleared(ref _downedWallOfBronze, -1);
+                }
+            }
+        }
         internal static void ResetAllFlags()
         {
             downedClamitas = false;
             downedPyrogen = false;
+            downedWallOfBronze = false;
         }
         public override void OnWorldLoad()
         {
@@ -96,6 +117,8 @@ namespace Clamity
                 list.Add("clamitas");
             if (downedPyrogen)
                 list.Add("pyrogen");
+            if (downedWallOfBronze)
+                list.Add("wob");
             tag["downedFlagsClamity"] = list;
         }
         public override void LoadWorldData(TagCompound tag)
@@ -103,6 +126,7 @@ namespace Clamity
             IList<string> list = tag.GetList<string>("downedFlagsClamity");
             downedClamitas = list.Contains("clamitas");
             downedPyrogen = list.Contains("pyrogen");
+            downedWallOfBronze = list.Contains("wob");
         }
         public static int AnySandBlock;
         public override void AddRecipeGroups()

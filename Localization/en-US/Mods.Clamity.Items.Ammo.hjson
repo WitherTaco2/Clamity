@@ -1,0 +1,24 @@
+Dart: {
+	ProfanedDart: {
+		DisplayName: Profaned Dart
+		Tooltip:
+			'''
+			Bounces between enemies
+			Create explosion on hit
+			'''
+	}
+}
+
+Arrow: {
+	WarArrow: {
+		Tooltip: Inflict a Armor Crunch
+		DisplayName: War Arrow
+	}
+}
+
+Solution: {
+	CyanSolution: {
+		Tooltip: ""
+		DisplayName: Cyan Solution
+	}
+}

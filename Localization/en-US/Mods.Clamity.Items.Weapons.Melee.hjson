@@ -1,0 +1,108 @@
+ClamitasCrusher: {
+	DisplayName: Clamitas Crusher
+	Tooltip:
+		'''
+		Launches a medium clamitas that stuns enemies for a short amount of time
+		Create a homing brimstone bolts in trail or enemy hit
+		Starts being affected by gravity and does much more damage after being airborne for a while
+		'''
+}
+
+ExoGladius: {
+	DisplayName: Exo Gladius
+	Tooltip: Shoot a multiple energy beams that home in on enemies and explodes on hit
+}
+
+SearedShredder: {
+	DisplayName: Seared Shredder
+	Tooltip: Shoots a flame scythe that home in on enemies
+}
+
+BladeOfEnmity: {
+	DisplayName: Blade Of Enmity
+	Tooltip: Create explosion on hit
+}
+
+RGBMurasama: {
+	DisplayName: RGB Murasama
+	Tooltip:
+		'''
+		A high-frequency blade that can cleanly slice through even the mightiest foe
+		Every third swing deals immense damage
+		Prove your worth by slaying The Devourer of Gods to unsheath this sword
+		'I spent three thousand dollars.'
+		'''
+}
+
+TerraShiv: {
+	DisplayName: Terra Shiv
+	Tooltip:
+		'''
+		Don't underestimate the power of shivs
+		Create a long slash on use
+		Create a mini slahses on hit by long slash on shortstrike
+		'''
+}
+
+Crimsaber: {
+	DisplayName: Crimsaber
+	Tooltip: A sword fused with the blood of the gods
+}
+
+Tomutus: {
+	DisplayName: Tomutus
+	Tooltip:
+		'''
+		Create a explosion on shortstrike
+		Inflict Hellfire on hit
+		'''
+}
+
+ColdheartIcicle: {
+	DisplayName: Coldheart Icicle
+	Tooltip:
+		'''
+		Not affected by melee speed stat
+		Drains a percentage of enemy health on shortstrike
+		Cannot inflict critical hits
+		'''
+}
+
+Caliburn: {
+	DisplayName: Caliburn
+	Tooltip: Create slashes on shortstrike
+}
+
+TrueCaliburn: {
+	DisplayName: True Caliburn
+	Tooltip:
+		'''
+		Create a medium slash on use
+		Create a mini slahses on hit by medium slash on shortstrike
+		'''
+}
+
+Disease: {
+	DisplayName: Disease
+	Tooltip: Release plague seekers on shortstrike
+}
+
+MandibleClaws: {
+	DisplayName: Mandible Claws
+	Tooltip: ""
+}
+
+SporeKnife: {
+	DisplayName: Spore Knife
+	Tooltip: Release spores on shortstrike
+}
+
+WulfrumLeechDagger: {
+	DisplayName: Wulfrum Leech Dagger
+	Tooltip:
+		'''
+		Drains a low percentage of enemy health on hit
+		Cannot inflict critical hits
+		Make unconsumable for second on shortstrike
+		'''
+}

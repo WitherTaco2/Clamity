@@ -1,0 +1,43 @@
+Relics: {
+	PyrogenRelic: {
+		// DisplayName: Pyrogen Relic
+		// Tooltip: ""
+	}
+
+	ClamitasRelic: {
+		// DisplayName: Clamitas Relic
+		// Tooltip: Made with using hellstone
+	}
+}
+
+Trophies: {
+	PyrogenTrophy: {
+		// Tooltip: ""
+		// DisplayName: Pyrogen Trophy
+	}
+
+	WoBTrophy: {
+		// Tooltip: ""
+		// DisplayName: Wall of Bronze Trophy
+	}
+}
+
+FrozenHellstone: {
+	// Tooltip: ""
+	// DisplayName: Frozen Hellstone
+}
+
+AncientConsole: {
+	// DisplayName: Ancient Console
+	/* Tooltip:
+		'''
+		Summon a Wall of Bronze on right click on tile
+		Work in Underworld
+		Wall of Bronze despawn when you left from Underworld
+		''' */
+}
+
+FrozenAsh: {
+	// Tooltip: ""
+	// DisplayName: Frozen Ash
+}

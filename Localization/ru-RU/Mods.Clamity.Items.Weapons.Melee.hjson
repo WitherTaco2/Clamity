@@ -1,0 +1,111 @@
+ClamitasCrusher: {
+	DisplayName: Дробитель Кламитаса
+	Tooltip:
+		'''
+		Выкидывает небольшого кламитаса который оглушает противника на небольшой промежуток времени
+		Создает самоноводящиеся серные снаряды в полёте или ударе по противнику
+		Начинает подвергаться воздействию гравитации и наносит гораздо больший урон после того, как некоторое время находится в воздухе
+		'''
+}
+
+ExoGladius: {
+	DisplayName: Экзо гладиус
+	Tooltip: Стреляйте несколькими энергетическими лучами, которые взрываются после попадании по врагу
+}
+
+SearedShredder: {
+	DisplayName: Обожжённый измельчитель
+	Tooltip: Стреляет огненной косой который самонаводится на врага
+}
+
+BladeOfEnmity: {
+	DisplayName: Клинок вражды
+	Tooltip: Создает взрыв при ударе
+}
+
+RGBMurasama: {
+	DisplayName: RGB Мурасама
+	Tooltip:
+		'''
+		Высокочастотный клинок, способный чисто разрубить даже самого могучего врага
+		Каждый третий удар наносит сильный урон
+		Докажи свою состоятельность, убив Пожирателя Богов, чтобы обнажить этот меч
+		'Там будет кровь и радуга!'
+		'''
+}
+
+TerraShiv: {
+	DisplayName: Терра-заточка
+	Tooltip:
+		'''
+		Don't underestimate the power of shivs
+		Create a long slash on use
+		Create a mini slahses on hit by long slash on shortstrike
+
+		Создаёт очень длинный удар
+		Создаёт мини удары при ударе от длинного удара в момент короткого страйка
+		'''
+}
+
+Crimsaber: {
+	// DisplayName: Crimsaber
+	// Tooltip: A sword fused with the blood of the gods
+}
+
+Tomutus: {
+	// DisplayName: Tomutus
+	/* Tooltip:
+		'''
+		Create a explosion on shortstrike
+		Inflict Hellfire on hit
+		''' */
+}
+
+ColdheartIcicle: {
+	// DisplayName: Coldheart Icicle
+	/* Tooltip:
+		'''
+		Not affected by melee speed stat
+		Drains a percentage of enemy health on shortstrike
+		Cannot inflict critical hits
+		''' */
+}
+
+Caliburn: {
+	// DisplayName: Caliburn
+	// Tooltip: Create slashes on shortstrike
+}
+
+TrueCaliburn: {
+	// DisplayName: True Caliburn
+	/* Tooltip:
+		'''
+		Create a medium slash on use
+		Create a mini slahses on hit by medium slash on shortstrike
+		''' */
+}
+
+Disease: {
+	// DisplayName: Disease
+	// Tooltip: Release plague seekers on shortstrike
+}
+
+MandibleClaws: {
+	// DisplayName: Mandible Claws
+	// Tooltip: ""
+}
+
+SporeKnife: {
+	// DisplayName: Spore Knife
+	// Tooltip: Release spores on shortstrike
+}
+
+WulfrumLeechDagger: {
+	// DisplayName: Wulfrum Leech Dagger
+	/* Tooltip:
+		'''
+		Drains a low percentage of enemy health on hit
+		Cannot inflict critical hits
+		Make unconsumable for second on shortstrike
+		''' */
+}

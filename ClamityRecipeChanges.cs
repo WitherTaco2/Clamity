@@ -12,6 +12,7 @@ using CalamityMod.Items.Tools;
 using Terraria.ModLoader.IO;
 using Clamity.Content.Items.Materials;
 using Clamity.Content.Items.Weapons.Melee.Shortswords;
+using Clamity.Content.Boss.WoB.FrozenHell.Items;
 
 namespace Clamity
 {
@@ -90,6 +91,12 @@ namespace Clamity
                 {
                     //item3.stack = 10;
                     recipe.requiredItem.Add(new Item(essenceOfHeat) { stack = 10 });
+                }
+
+                if (recipe.HasResult<ShadowspecBar>())
+                {
+                    //item3.stack = 10;
+                    recipe.requiredItem.Add(new Item(ModContent.ItemType<EnchantedMetal>()));
                 }
             }
         }

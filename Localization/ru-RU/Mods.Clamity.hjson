@@ -1,0 +1,25 @@
+Items: {
+	WoBSummonItem: {
+		/* Tooltip:
+			'''
+			DEBUG
+			Summon a Wall of Bronze in Underworld
+			Non consumable
+			''' */
+		// DisplayName: Heavy Metal Trash Can
+	}
+}
+
+// Misc.RecipeGroup.AnySandBlock: And Sand Block
+
+Tiles: {
+	// FrozenHellstoneTile.MapEntry: Frozen Hellstone Tile
+	// FrozenAshTile.MapEntry: Frozen Ash Tile
+}
+
+Biomes: {
+	FrozenHell: {
+		// TownNPCDialogueName: the Frozen Hell
+		// DisplayName: Frozen Hell
+	}
+}

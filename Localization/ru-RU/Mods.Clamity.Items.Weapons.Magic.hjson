@@ -1,0 +1,18 @@
+HadopelagicEcho: {
+	// DisplayName: Hadopelagic Echo
+	/* Tooltip:
+		'''
+		Fires a string of bouncing sound waves that become stronger as they travel
+		Sound waves echo additional sound waves on enemy hits
+		''' */
+}
+
+OmegaRay: {
+	// DisplayName: Omega Ray
+	// Tooltip: Disintegrates everything with a five Y-beams of energy and lasers
+}
+
+TheGenerator: {
+	// DisplayName: The Generator
+	// Tooltip: Launches a master crown sigil that homing and draws a nearby enemies
+}

@@ -1,0 +1,39 @@
+HuskOfCalamity: {
+	// DisplayName: Husk of Calamity
+	// Tooltip: The remains of a hell mollusk
+}
+
+ClamitousPearl: {
+	// DisplayName: Clamitous Pearl
+	// Tooltip: Its clammin' time
+}
+
+CoreOfFlame: {
+	// DisplayName: Core of Flame
+	// Tooltip: ""
+}
+
+EssenceOfFlame: {
+	// DisplayName: Essence of Flame
+	// Tooltip: The essence of creatures from hot terrain
+}
+
+MediocreMatter: {
+	// DisplayName: Mediocre Matter
+	// Tooltip: ""
+}
+
+EssenceOfHeat: {
+	// Tooltip: ""
+	// DisplayName: Essence Of Heat
+}
+
+CoreOfHeat: {
+	// Tooltip: ""
+	// DisplayName: Core Of Heat
+}
+
+EnchantedMetal: {
+	// Tooltip: ""
+	// DisplayName: Enchanted Metal
+}

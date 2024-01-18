@@ -1,0 +1,41 @@
+SoulOfPyrogen: {
+	Tooltip:
+		'''
+		10% increased Melee and Rogue damage
+		True Melee strikes create spears from the ground
+		Stealth strike create spears from the ground on hit by projectile
+		'''
+	DisplayName: Soul of Pyrogen
+}
+
+DraculasCharm: {
+	Tooltip:
+		'''
+		15% increased rogue damage and +10 maximum stealth
+		Create a homing lifestealing vampires on stealth strike
+		Makes Stealth strikes inflict Crumbling
+		'''
+	DisplayName: Dracula`s Charm
+}
+
+PyroStone: {
+	Tooltip:
+		'''
+		Multiplies all heat-based debuff damage by 1.5
+		Creates a rotating fire shield around you that damages and ignite enemies on contact
+		'One of the ancient relics'
+		'''
+	DisplayName: Pyro Stone
+}
+
+HellFlare: {
+	DisplayName: Hell Flare
+	Tooltip:
+		'''
+		All attacks and projectiles inflict hellfire
+		Immunity to frostburn, chilled and frozen
+		Being above 75% life grants 10% increased crit chance
+		Being below 25% life grants 10% increased damage reduction
+		Grants resistance against cold attacks
+		'''
+}

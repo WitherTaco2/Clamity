@@ -1,0 +1,71 @@
+SupremeLucky: {
+	DisplayName: Supreme Lucky
+	Description: You are feeling very lucky
+}
+
+HellstoneShellfishStaffBuff: {
+	DisplayName: Hellstone Shellfish
+	Description: The hellstone shellfish will protect you
+}
+
+Shortstrike: {
+	CopperShortstrike: {
+		DisplayName: Copper Shortstrike
+		Description: Increases player defense by 5
+	}
+
+	IronShortstrike: {
+		DisplayName: Iron Shortstrike
+		Description: Increases player defense by 6
+	}
+
+	TinShortstrike: {
+		DisplayName: Tin Shortstrike
+		Description: Increases player damage reduction by 2%
+	}
+
+	GoldShortstrike: {
+		DisplayName: Gold Shortstrike
+		Description: Increases player defense by 10
+	}
+
+	LeadShortstrike: {
+		DisplayName: Lead Shortstrike
+		Description: Increases player damage reduction by 3%
+	}
+
+	PlatinumShortstrike: {
+		DisplayName: Platinum Shortstrike
+		Description: Increases player damage reduction by 6%
+	}
+
+	SilverShortstrike: {
+		DisplayName: Silver Shortstrike
+		Description: Increases player defense by 8
+	}
+
+	TungstenShortstrike: {
+		DisplayName: Tungsten Shortstrike
+		Description: Increases player damage reduction by 4%
+	}
+
+	GladiusShortstrike: {
+		DisplayName: Gladius Shortstrike
+		Description: Increases player movement speed by 20%
+	}
+
+	WulfrumShortstrike: {
+		DisplayName: Wulfrum Shortstrike
+		Description: Mods.Clamity.Buffs.Shortstrike.WulfrumShortstrike.Description
+	}
+}
+
+HellsBellsBuff: {
+	Description: The hellish bell will protect you
+	DisplayName: Obsidian bell
+}
+
+WarCleave: {
+	Description: Mods.Clamity.Buffs.WarCleave.Description
+	DisplayName: War Cleave
+}

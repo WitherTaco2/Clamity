@@ -1,0 +1,18 @@
+MoltenPiercer: {
+	// DisplayName: Molten Piercer
+	/* Tooltip:
+		'''
+		Throws a flaming daggers
+		Daggers create a flaming obsidian shards in flight on stealth strike
+		''' */
+}
+
+WulfrumShockCutter: {
+	// DisplayName: Wulfrum Shock Cutter
+	// Tooltip: ""
+}
+
+Crustalline: {
+	// DisplayName: Crustalline
+	// Tooltip: ""
+}

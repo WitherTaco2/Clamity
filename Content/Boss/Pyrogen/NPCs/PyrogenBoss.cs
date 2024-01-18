@@ -231,7 +231,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
             int num4 = ModContent.ProjectileType<FireBarrage>();
             int num5 = ModContent.ProjectileType<Fireblast>();
             int num6 = ModContent.ProjectileType<FireBarrageHoming>();
-            int type = Main.zenithWorld ? 235 : 67;
+            int type = 235;
             if (!Main.zenithWorld)
             {
                 _ = SoundID.Item28;
@@ -592,7 +592,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                     {
                         //SoundStyle style = (Main.zenithWorld ? SoundID.NPCHit41 : HitSound);
                         //SoundEngine.PlaySound(in style, NPC.Center);
-                        if (Main.netMode != 1)
+                        if (Main.netMode != 1 && !NPC.dontTakeDamage)
                         {
                             int num42 = num4;
                             int projectileDamage4 = NPC.GetProjectileDamage(num42);
@@ -832,7 +832,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                 return;
             }
             #endregion
-            #region Phase 4
+            #region Phase 4 - slow following and teleport
             if (NPC.ai[0] == 3f) // Phase 4 -
             {
                 NPC.rotation = NPC.velocity.X * 0.1f;
@@ -990,7 +990,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                     teleportLocationX = 0;
                     calamityGlobalNPC.newAI[2] = 0f;
                     NPC.netUpdate = true;
-                    int consequent = 100;
+                    //int consequent = 100;
                     /*if (DateTime.Now.Month == 4 && DateTime.Now.Day == 1)
                     {
                         consequent = 20;
@@ -1382,17 +1382,19 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
             };
             mainRule.Add(ItemDropRule.OneFromOptions(1, itemIDs));
             //mainRule.Add(ModContent.ItemType<GlacialEmbrace>(), 10);
-            mainRule.Add(ItemDropRule.Common(ModContent.ItemType<PyrogenMask>(), 7));
-            mainRule.Add(ItemDropRule.Common(ModContent.ItemType<ThankYouPainting>(), 100));
             mainRule.Add(ItemDropRule.Common(ModContent.ItemType<EssenceOfFlame>(), 1, 8, 10));
             mainRule.Add(DropHelper.PerPlayer(ModContent.ItemType<SoulOfPyrogen>()));
             mainRule.Add(ModContent.ItemType<PyroStone>(), DropHelper.NormalWeaponDropRateFraction);
             mainRule.Add(ModContent.ItemType<HellFlare>(), DropHelper.NormalWeaponDropRateFraction);
             npcLoot.Add(ItemDropRule.Common(ItemID.DungeonDesertKey, 3));
-            npcLoot.Add(ModContent.ItemType<PyrogenTrophy>(), 10);
+
+            mainRule.Add(ItemDropRule.Common(ModContent.ItemType<ThankYouPainting>(), 100));
+            mainRule.Add(ItemDropRule.Common(ModContent.ItemType<PyrogenMask>(), 7));
             npcLoot.DefineConditionalDropSet(DropHelper.RevAndMaster).Add(ModContent.ItemType<PyrogenRelic>());
-            //npcLoot.DefineConditionalDropSet(DropHelper.GFB).Add(ModContent.ItemType<BloodflareCore>());
+            npcLoot.Add(ModContent.ItemType<PyrogenTrophy>(), 10);
             npcLoot.AddConditionalPerPlayer(() => !ClamitySystem.downedPyrogen, ModContent.ItemType<LorePyrogen>(), ui: true, DropHelper.FirstKillText);
+
+            //npcLoot.DefineConditionalDropSet(DropHelper.GFB).Add(ModContent.ItemType<BloodflareCore>());
         }
 
         public override void OnKill()

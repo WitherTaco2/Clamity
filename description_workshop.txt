@@ -1,20 +1,21 @@
-Clamitas Addon is mod for Calamity which adds content from Calamity Fandom wiki and not only, but with high quality of realization as posible. (second Calamity Community Remix)
+Clamitas Addon is mod for Calamity which adds content from Calamity Fandom wiki and not only, but with high quality of realization as posible (second Calamity Community Remix). This mod focusing on adding bosses
 
 [h1]Content[/h1]
 [list]
-	[*] 2 bosses: Clamitas, Supreme Clam and Pyrogen
+	[*] 3 bosses: Clamitas, Pyrogen and Wall of Bronze
 	[*] over 25 old and new weapons (shortswords included)
 	[*] 1 armor set
-	[*] 4 new grab fishes
 	[*] 1 new powerful potion
 	[*] And more
 [/list]
 
 [h1]Credits[/h1]
-Thanks StarvoXD for idea of Clamitas (and music)
+Thanks StarvoXD for inspiration of Clamitas (and music)
 Credits for music in music mod page
 Fandom Wiki for sprites and ideas
 Calamity Team for cool mod
 YOU for downloading this project
 
 [h1]My discord server:[url=https://discord.gg/7auk3bDb3K] Link[/url][/h1]
+
+[h1]You can support me on [url=https://ko-fi.com/withertaco] Ko-fi[/url][/h1]

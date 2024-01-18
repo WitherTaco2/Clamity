@@ -13,6 +13,7 @@ using Terraria.ID;
 using Terraria;
 using Clamity.Content.Items.Weapons.Melee.Shortswords;
 using CalamityMod.Items.Weapons.Melee;
+using CalamityMod.Items.Accessories;
 
 namespace Clamity
 {
@@ -157,6 +158,11 @@ namespace Clamity
             CooldownInstance cooldownInstance;
             if (Player.Calamity().cooldowns.TryGetValue(ShortstrikeCharge.ID, out cooldownInstance))
                 cooldownInstance.timeLeft = shortstrikeCharge;
+
+            if (shortstrikeCharge > 0)
+            {
+                Player.AddCooldown(ShortstrikeCharge.ID, 100).timeLeft = this.shortstrikeCharge;
+            }
         }
         public override void PreUpdate()
         {
@@ -173,6 +179,16 @@ namespace Clamity
             }
             if (hitCount > 0)
             {
+                if (hitCount == shortswords.GetHitCount(Player.HeldItem.type))
+                {
+                    Player.HeldItem.useTime /= 2;
+                    Player.HeldItem.useAnimation /= 2;
+                }
+                if (hitCount == 1)
+                {
+                    Player.HeldItem.useTime *= 2;
+                    Player.HeldItem.useAnimation *= 2;
+                }
                 hitCount--;
                 QuickUseItemInSlot(Player.selectedItem);
             }
