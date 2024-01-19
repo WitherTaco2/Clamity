@@ -1443,7 +1443,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
             }
         }
     }
-    [AutoloadBossHead]
+    //[AutoloadBossHead]
     public class PyrogenShield : ModNPC
     {
         public static readonly SoundStyle BreakSound = new SoundStyle("CalamityMod/Sounds/NPCKilled/CryogenShieldBreak");
@@ -1706,9 +1706,9 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                 }
             }
         }
-        public override void BossHeadRotation(ref float rotation)
+        /*public override void BossHeadRotation(ref float rotation)
         {
             rotation = NPC.rotation;
-        }
+        }*/
     }
 }
