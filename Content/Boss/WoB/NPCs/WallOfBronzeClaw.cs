@@ -14,6 +14,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Clamity.Content.Boss.WoB.Projectiles;
+using Clamity.Commons;
 
 namespace Clamity.Content.Boss.WoB.NPCs
 {

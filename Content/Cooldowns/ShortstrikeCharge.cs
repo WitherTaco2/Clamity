@@ -1,6 +1,5 @@
 ﻿using CalamityMod;
 using CalamityMod.Cooldowns;
-using CalamityMod.Items.Accessories;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -20,9 +19,9 @@ namespace Clamity.Content.Cooldowns
         public override bool ShouldDisplay => true;
         public override LocalizedText DisplayName => Language.GetOrRegister("Mods.Clamity.UI.Cooldowns." + ShortstrikeCharge.ID);
         public override string Texture => "Clamity/Content/Cooldowns/ShortstrikeCooldown";
-        public override Color OutlineColor => new Color(255, 226, 217);
-        public override Color CooldownStartColor => new Color(205, 134, 71);
-        public override Color CooldownEndColor => new Color(235, 166, 135);
+        public override Color OutlineColor => instance.timeLeft == 100 ? Main.DiscoColor : new Color(255, 226, 217);
+        public override Color CooldownStartColor => new Color(205, 134, 71) * (instance.timeLeft == 100 ? (MathF.Sin(Main.GlobalTimeWrappedHourly * 4f) / 4f + 0.75f) : 1f);
+        public override Color CooldownEndColor => new Color(235, 166, 135) * (instance.timeLeft == 100 ? (MathF.Sin(Main.GlobalTimeWrappedHourly * 4f) / 4f + 0.75f) : 1f);
 
         private float AdjustedCompletion => (float)instance.timeLeft / 100f;
         public override bool SavedWithPlayer => false;

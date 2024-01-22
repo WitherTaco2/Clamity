@@ -1,18 +1,18 @@
 LoreWhat: {
-	// DisplayName: Clamitas
-	// Lore: I won't comment on what it is. No. No. I don't comment that much
+	DisplayName: Кламитас
+	Lore: Я не буду комментировать вот ЭТО. Нет. Нет. Я же не буду комментировать ВСЁ.
 }
 
 LorePyrogen: {
-	// DisplayName: Pyrogen
-	// Lore: An entity considered to be the opposite of cryogen. We do not know what is there and how it appeared.
+	DisplayName: Пироген
+	Lore: Сущность, считающаяся противоположностью криогена. Мы не знаем, что это такое и как оно появилось.
 }
 
 WoBLore: {
-	// DisplayName: Wall of Bronze
-	/* Lore:
+	DisplayName: Стена бронзы
+	Lore:
 		'''
-		The artificial core of the Underworld, and a marvel of ancient ingenuity.
-		This titanic bastion would carry on the task of maintaining Terraria's core if its organic counterpart were ever to expire.
-		''' */
+		Искусственное ядро Подземного мира и чудо древней изобретательности.
+		Этот титанический бастион выполнит задачу поддержания ядра Террарии, если его органический аналог разрушится.
+		'''
 }

@@ -9,12 +9,7 @@ ClamitasSummoningItem: {
 
 EyeofStupidity: {
 	DisplayName: Глаз тупости
-	Tooltip:
-		'''
-		Summon a Legendary Supreme Supreme Calamitas of Supremity in Xeroc`a Cloth from Supreme
-		Hello, AdamChromeE
-		Призывает легендарного высшего среди высших Каламитасов самого высшего в одежде Ксерока из Суприма
-		'''
+	Tooltip: Призывает легендарного высшего среди высших Каламитасов самого высшего в одежде Ксерока из Суприма
 }
 
 PyroKey: {

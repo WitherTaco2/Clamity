@@ -70,7 +70,7 @@ ColdheartIcicle: {
 
 Caliburn: {
 	DisplayName: Caliburn
-	Tooltip: Create slashes on shortstrike
+	Tooltip: Create light slashes on shortstrike
 }
 
 TrueCaliburn: {
@@ -78,7 +78,7 @@ TrueCaliburn: {
 	Tooltip:
 		'''
 		Create a medium slash on use
-		Create a mini slahses on hit by medium slash on shortstrike
+		Create a light slahses on hit by medium slash on shortstrike
 		'''
 }
 

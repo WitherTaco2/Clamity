@@ -28,6 +28,7 @@ using CalamityMod.Events;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using CalamityMod.CalPlayer;
+using Clamity.Commons;
 
 namespace Clamity
 {
@@ -145,8 +146,10 @@ namespace Clamity
         }
         private void LoadShaders()
         {
-                Filters.Scene["Clamity:FrozenHellSky"] = new Filter(new MonolithScreenShaderData("FilterMiniTower").UseColor(1.1f, 0.3f, 0.3f).UseOpacity(0.65f), EffectPriority.VeryHigh);
-                SkyManager.Instance["Clamity:FrozenHellSky"] = (CustomSky)new FrozenHellSky();
+            Filters.Scene["Clamity:FrozenHellSky"] = new Filter(new FrozenHellShaderData("FilterMiniTower").UseColor(1.0f, 0.3f, 0.3f).UseOpacity(0.65f), EffectPriority.VeryHigh);
+            SkyManager.Instance["Clamity:FrozenHellSky"] = (CustomSky)new FrozenHellSky();
+            Filters.Scene["Clamity:FrozenHellSky"].Load();
+            SkyManager.Instance["Clamity:FrozenHellSky"].Load();
         }
         private void LoadCooldowns()
         {
@@ -192,6 +195,8 @@ namespace Clamity
             List<int> intList15 = new List<int>()
             {
                 ModContent.ItemType<PyrogenRelic>(),
+                ModContent.ItemType<PyrogenTrophy>(),
+                ModContent.ItemType<PyrogenMask>(),
                 ModContent.ItemType<LorePyrogen>(),
                 /*ModContent.ItemType<ClamitasMusicbox>()*/
             };
@@ -215,6 +220,9 @@ namespace Clamity
 
             List<int> intList16 = new List<int>()
             {
+                ModContent.ItemType<WoBTrophy>(),
+                ModContent.ItemType<WoBRelic>(),
+                ModContent.ItemType<WoBMask>(),
                 ModContent.ItemType<WoBLore>(),
 
             };

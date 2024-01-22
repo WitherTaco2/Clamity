@@ -8,6 +8,11 @@ Relics: {
 		// DisplayName: Clamitas Relic
 		// Tooltip: Made with using hellstone
 	}
+
+	WoBRelic: {
+		// DisplayName: Wall of Bronze Relic
+		// Tooltip: ""
+	}
 }
 
 Trophies: {

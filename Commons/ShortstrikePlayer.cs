@@ -15,7 +15,7 @@ using Clamity.Content.Items.Weapons.Melee.Shortswords;
 using CalamityMod.Items.Weapons.Melee;
 using CalamityMod.Items.Accessories;
 
-namespace Clamity
+namespace Clamity.Commons
 {
     public class ShortstrikeInfo
     {
@@ -33,7 +33,7 @@ namespace Clamity
         public ShortstrikeInfo(int item, int hitcount, float damageMult)
         {
             this.item = item;
-            this.proj = -1;
+            proj = -1;
             this.hitcount = hitcount;
             this.damageMult = damageMult;
         }
@@ -161,7 +161,7 @@ namespace Clamity
 
             if (shortstrikeCharge > 0)
             {
-                Player.AddCooldown(ShortstrikeCharge.ID, 100).timeLeft = this.shortstrikeCharge;
+                Player.AddCooldown(ShortstrikeCharge.ID, 100).timeLeft = shortstrikeCharge;
             }
         }
         public override void PreUpdate()
@@ -183,11 +183,13 @@ namespace Clamity
                 {
                     Player.HeldItem.useTime /= 2;
                     Player.HeldItem.useAnimation /= 2;
+                    Player.HeldItem.shootSpeed /= 2;
                 }
                 if (hitCount == 1)
                 {
                     Player.HeldItem.useTime *= 2;
                     Player.HeldItem.useAnimation *= 2;
+                    Player.HeldItem.shootSpeed *= 2;
                 }
                 hitCount--;
                 QuickUseItemInSlot(Player.selectedItem);

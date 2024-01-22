@@ -84,6 +84,7 @@ namespace Clamity.Content.Menu
             Vector2 position = new Vector2(Main.screenWidth / 2f, 100f);
             spriteBatch.End();
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, SamplerState.LinearClamp, DepthStencilState.None, Main.Rasterizer, null, Main.UIScaleMatrix);
+            spriteBatch.Draw(ModContent.Request<Texture2D>("Clamity/Content/Menu/Logo_Back").Value, position, null, Color.Lerp(Color.Blue, Color.Cyan, MathF.Sin(Main.GlobalTimeWrappedHourly) / 2 + 0.5f), logoRotation, Logo.Value.Size() * 0.5f, logoScale * (1.01f + MathF.Sin(Main.GlobalTimeWrappedHourly * 2 / 3) / 100), SpriteEffects.None, 0f);
             spriteBatch.Draw(Logo.Value, position, null, drawColor, logoRotation, Logo.Value.Size() * 0.5f, logoScale, SpriteEffects.None, 0f);
             spriteBatch.End();
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, Main.Rasterizer, null, Main.UIScaleMatrix);

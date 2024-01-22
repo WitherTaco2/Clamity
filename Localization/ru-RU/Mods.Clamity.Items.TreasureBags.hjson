@@ -1,9 +1,9 @@
 PyrogenBag: {
-	// Tooltip: Right Click to open
-	// DisplayName: Treasure Bag (Pyrogen)
+	Tooltip: Правый клик для открытия
+	DisplayName: Мешок с сокровищами (Пироген)
 }
 
 WoBTreasureBag: {
-	// Tooltip: Right Click to open
-	// DisplayName: Treasure Crate (Wall of Bronze)
+	Tooltip: Правый клик для открытия
+	DisplayName: Ящик с сокровищами (Стена бронзы)
 }

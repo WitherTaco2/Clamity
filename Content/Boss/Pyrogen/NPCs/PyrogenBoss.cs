@@ -131,7 +131,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
 
             if (!Main.dedServ)
             {
-                Music = Clamity.mod.GetMusicFromMusicMod("PyrogenPrototype") ?? MusicID.Sandstorm;
+                Music = Clamity.mod.GetMusicFromMusicMod("Cryogen") ?? MusicID.Sandstorm;
             }
         }
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)

@@ -12,6 +12,7 @@ using Microsoft.Xna.Framework;
 using CalamityMod.World;
 using Terraria.ID;
 using Clamity.Content.Boss.WoB.Projectiles;
+using Clamity.Commons;
 
 namespace Clamity.Content.Boss.WoB.NPCs
 {

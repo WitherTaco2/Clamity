@@ -1,4 +1,4 @@
 AMS: {
-	// DisplayName: AMS
-	// Tooltip: Create a bomb by using mana
+	DisplayName: AMS
+	Tooltip: Создает бомбу за ману
 }

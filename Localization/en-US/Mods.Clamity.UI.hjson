@@ -1,5 +1,6 @@
 Cooldowns: {
-	ShortstrikeCooldown: Shortstrike Cooldown
+	ShortstrikeCooldown: Shortsword Effect Cooldown
+	ShortstrikeCharge: Shortstrike Charge
 	PyrospearCooldown: Pyrospear Cooldown
 }
 

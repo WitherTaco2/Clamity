@@ -17,14 +17,14 @@ using System.Threading.Tasks;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Clamity
+namespace Clamity.Commons
 {
     public static class NewNPCStats
     {
         public static void Load()
         {
 
-            NewNPCStats.EnemyStats.ProjectileDamageValues = new SortedDictionary<Tuple<int, int>, int[]>()
+            EnemyStats.ProjectileDamageValues = new SortedDictionary<Tuple<int, int>, int[]>()
             {
                 {
                   new Tuple<int, int>(ModContent.NPCType<PyrogenBoss>(), ModContent.ProjectileType<FireBarrage>()),
@@ -54,19 +54,19 @@ namespace Clamity
         }
         public static void UnLoad()
         {
-            NewNPCStats.EnemyStats.ProjectileDamageValues = null;
+            EnemyStats.ProjectileDamageValues = null;
         }
         public static int GetProjectileDamageClamity(this NPC npc, int projType)
         {
-            double num1 = Main.masterMode ? 6.0 : (Main.expertMode ? 4.0 : 2.0);
+            double num1 = Main.masterMode ? 6.0 : Main.expertMode ? 4.0 : 2.0;
             int[] numArray;
-            if (!NewNPCStats.EnemyStats.ProjectileDamageValues.TryGetValue(new Tuple<int, int>(npc.type, projType), out numArray))
+            if (!EnemyStats.ProjectileDamageValues.TryGetValue(new Tuple<int, int>(npc.type, projType), out numArray))
                 return 1;
-            int num2 = (int)Math.Round((double)numArray[0] / num1);
-            int num3 = (int)Math.Round((double)numArray[1] / num1);
-            int projectileDamage1 = (int)Math.Round((double)numArray[2] / num1);
-            int projectileDamage2 = (int)Math.Round((double)numArray[3] / num1);
-            int projectileDamage3 = (int)Math.Round((double)numArray[4] / num1);
+            int num2 = (int)Math.Round(numArray[0] / num1);
+            int num3 = (int)Math.Round(numArray[1] / num1);
+            int projectileDamage1 = (int)Math.Round(numArray[2] / num1);
+            int projectileDamage2 = (int)Math.Round(numArray[3] / num1);
+            int projectileDamage3 = (int)Math.Round(numArray[4] / num1);
             if (Main.masterMode)
                 return projectileDamage3;
             if (CalamityWorld.death)

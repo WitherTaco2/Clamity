@@ -1,20 +1,20 @@
 HuskOfCalamity: {
-	// DisplayName: Husk of Calamity
-	// Tooltip: The remains of a hell mollusk
+	DisplayName: �������� ��������
+	Tooltip: ������� ������� ��������
 }
 
 ClamitousPearl: {
-	// DisplayName: Clamitous Pearl
-	// Tooltip: Its clammin' time
+	DisplayName: ������ ��������
+	Tooltip: "'��� ����� �������'"
 }
 
 CoreOfFlame: {
-	// DisplayName: Core of Flame
+	DisplayName: ���� ����
 	// Tooltip: ""
 }
 
 EssenceOfFlame: {
-	// DisplayName: Essence of Flame
+	DisplayName: �������� ����
 	// Tooltip: The essence of creatures from hot terrain
 }
 
@@ -34,6 +34,6 @@ CoreOfHeat: {
 }
 
 EnchantedMetal: {
-	// Tooltip: ""
-	// DisplayName: Enchanted Metal
+	// Tooltip: Metal infused by soul of the Terraria
+	DisplayName: ������������ ������
 }

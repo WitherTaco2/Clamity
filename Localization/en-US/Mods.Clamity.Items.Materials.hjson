@@ -5,7 +5,7 @@ HuskOfCalamity: {
 
 ClamitousPearl: {
 	DisplayName: Clamitous Pearl
-	Tooltip: Its clammin' time
+	Tooltip: "'Its clammin' time'"
 }
 
 CoreOfFlame: {
@@ -34,6 +34,6 @@ CoreOfHeat: {
 }
 
 EnchantedMetal: {
-	Tooltip: ""
+	Tooltip: Metal infused by soul of the Terraria
 	DisplayName: Enchanted Metal
 }

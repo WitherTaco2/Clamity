@@ -30,6 +30,11 @@ namespace Clamity.Content.Boss.Pyrogen.Drop
             Item.accessory = true;
         }
 
-        public override void UpdateAccessory(Player player, bool hideVisual) => player.Clamity().hellFlare = true;
+        public override void UpdateAccessory(Player player, bool hideVisual) 
+        { 
+            player.Clamity().hellFlare = true;
+            player.buffImmune[BuffID.OnFire] = true;
+            player.buffImmune[BuffID.OnFire3] = true;
+        }
     }
 }

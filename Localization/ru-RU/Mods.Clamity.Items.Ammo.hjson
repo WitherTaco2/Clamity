@@ -1,24 +1,24 @@
 Dart: {
 	ProfanedDart: {
-		// DisplayName: Profaned Dart
-		/* Tooltip:
+		DisplayName: Оскверненный дротик
+		Tooltip:
 			'''
-			Bounces between enemies
-			Create explosion on hit
-			''' */
+			Отскакивает между противниками
+			Создаёт взрым на месте удара
+			'''
 	}
 }
 
 Arrow: {
 	WarArrow: {
-		// Tooltip: Inflict a Armor Crunch
-		// DisplayName: War Arrow
+		Tooltip: Накладывает дебафф 'Хруст брони'
+		DisplayName: Стрела войны
 	}
 }
 
 Solution: {
 	CyanSolution: {
-		// Tooltip: ""
-		// DisplayName: Cyan Solution
+		Tooltip: ""
+		DisplayName: Голубой раствор
 	}
 }

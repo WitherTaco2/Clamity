@@ -34,6 +34,7 @@ using CalamityMod.Dusts;
 using CalamityMod.Items.Placeables.Furniture.DevPaintings;
 using Clamity.Content.Boss.WoB.Projectiles;
 using CalamityMod.Events;
+using Clamity.Commons;
 
 namespace Clamity.Content.Boss.Clamitas.NPCs
 {

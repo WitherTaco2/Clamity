@@ -9,7 +9,7 @@ namespace Clamity.Content.Boss.WoB.FrozenHell.Biome
 {
     public class FrozenHell : ModBiome
     {
-        public override SceneEffectPriority Priority => SceneEffectPriority.BiomeHigh;
+        public override SceneEffectPriority Priority => SceneEffectPriority.Event;
         public override string MapBackground => BackgroundPath;
         public override string BestiaryIcon => "Clamity/Content/Boss/WoB/FrozenHell/Biome/FrozenHellIcon";
         public override string BackgroundPath => "Clamity/Content/Boss/WoB/FrozenHell/Biome/FrozenHellMap";

@@ -1,41 +1,47 @@
 SoulOfPyrogen: {
-	/* Tooltip:
+	Tooltip:
 		'''
-		10% increased Melee and Rogue damage
-		True Melee strikes create spears from the ground
-		Stealth strike create spears from the ground on hit by projectile
-		''' */
-	// DisplayName: Soul of Pyrogen
+		10% увеличенного разбойного урона и урона ближнего боя
+		Истинные удары ближнего боя создают копья из-под земли
+		Скрытые удары создают копья из-под земли
+		'''
+	DisplayName: Душа Пирогена
 }
 
 DraculasCharm: {
-	/* Tooltip:
+	Tooltip:
 		'''
-		15% increased rogue damage and +10 maximum stealth
-		Create a homing lifestealing vampires on stealth strike
-		Makes Stealth strikes inflict Crumbling
-		''' */
-	// DisplayName: Dracula`s Charm
+		15% увеличенного разбойного урона и +10 максимальной скрытности
+		При скрытном ударе создает самонаводящиеся похищающие жизнь вампиры
+		При скрытном ударе оружия накладывают дебафф Разрушение
+		Разбойничьи снаряды могут своровать жизнь при крите и разрушаются на самонаводящиеся души при уничтожении
+
+		On stealth strike create a homing lifestealing vampires 
+		On stealth strike weapon can inflict Crumbling
+		Rogue projectiles give lifesteal on crits and explode into homing souls on death
+
+		'''
+	DisplayName: очарование дракулы
 }
 
 PyroStone: {
-	/* Tooltip:
+	Tooltip:
 		'''
-		Multiplies all heat-based debuff damage by 1.5
-		Creates a rotating fire shield around you that damages and ignite enemies on contact
-		'One of the ancient relics'
-		''' */
-	// DisplayName: Pyro Stone
+		Увеличивает урон всех огненых дебаффов в 1.5 раз
+		Создаёт кольцо из огненого щита, который наносит урон и поджигает противника
+		'Один из древних реликвий'
+		'''
+	DisplayName: Пирокамень
 }
 
 HellFlare: {
-	// DisplayName: Hell Flare
-	/* Tooltip:
+	DisplayName: Адское пламя
+	Tooltip:
 		'''
-		All attacks and projectiles inflict hellfire
-		Immunity to frostburn, chilled and frozen
-		Being above 75% life grants 10% increased crit chance
-		Being below 25% life grants 10% increased damage reduction
-		Grants resistance against cold attacks
-		''' */
+		Все атаки и снаряды накладывают 'Адский огонь'
+		Даёт имунитет к дебаффам 'В огне' и 'Адский огонь'
+		Когда жизней больше 75% то даёт 10% увеличенного шанца критического удара
+		Когда жизней меньше 25% то даёт 10% уменьшеного получаемого урона
+		Даёт защиту против холодных атак
+		'''
 }

@@ -41,6 +41,7 @@ Ranged: {
 Rogue: {
 	// MoltenPiercerProjectile.DisplayName: Molten Piercer
 	// WulfrumShockCutterProjectile.DisplayName: Wulfrum Shock Cutter
+	// FrozenStarShurikenProjectile.DisplayName: Frozen Star Shuriken Projectile
 }
 
 // CrustallineProjecile.DisplayName: Crustalline

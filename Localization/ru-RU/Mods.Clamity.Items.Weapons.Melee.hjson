@@ -38,74 +38,77 @@ TerraShiv: {
 	DisplayName: Терра-заточка
 	Tooltip:
 		'''
-		Don't underestimate the power of shivs
-		Create a long slash on use
-		Create a mini slahses on hit by long slash on shortstrike
-
 		Создаёт очень длинный удар
 		Создаёт мини удары при ударе от длинного удара в момент короткого страйка
 		'''
 }
 
 Crimsaber: {
-	// DisplayName: Crimsaber
-	// Tooltip: A sword fused with the blood of the gods
+	DisplayName: Багросабля
+	Tooltip: Меч, смешанный с кровью богов
 }
 
 Tomutus: {
-	// DisplayName: Tomutus
-	/* Tooltip:
+	DisplayName: Томутус
+	Tooltip:
 		'''
 		Create a explosion on shortstrike
 		Inflict Hellfire on hit
-		''' */
+		Создаёт взрыв при коротком страйке
+		Накладывает Адский огонь при ударе
+		'''
 }
 
 ColdheartIcicle: {
-	// DisplayName: Coldheart Icicle
-	/* Tooltip:
+	DisplayName: Сосулька из сердца холода
+	Tooltip:
 		'''
-		Not affected by melee speed stat
-		Drains a percentage of enemy health on shortstrike
-		Cannot inflict critical hits
-		''' */
+		Не подвержен характеристику скорости ближнего боя
+		Отнимает процент здоровья противника при коротком ударе
+		Не может наносить критические удары
+		'''
 }
 
 Caliburn: {
-	// DisplayName: Caliburn
-	// Tooltip: Create slashes on shortstrike
+	DisplayName: Калибурн
+	Tooltip: Создает разрезы при коротком страйке
 }
 
 TrueCaliburn: {
-	// DisplayName: True Caliburn
-	/* Tooltip:
+	DisplayName: Истинный Калибурн
+	Tooltip:
 		'''
 		Create a medium slash on use
 		Create a mini slahses on hit by medium slash on shortstrike
-		''' */
+		Создает средний разрез света при использовании
+		Создает мини разрезы света при ударе от среднего разреза в момент короткого страйка
+		'''
 }
 
 Disease: {
-	// DisplayName: Disease
-	// Tooltip: Release plague seekers on shortstrike
+	DisplayName: Заболевание
+	Tooltip: Release plague seekers on shortstrike Высвобождает искателей чумы в момент короткого страйка
 }
 
 MandibleClaws: {
-	// DisplayName: Mandible Claws
-	// Tooltip: ""
+	DisplayName: Когти-челюсти
+	Tooltip: ""
 }
 
 SporeKnife: {
-	// DisplayName: Spore Knife
-	// Tooltip: Release spores on shortstrike
+	DisplayName: Spore Knife Споровый кинжал
+	Tooltip: Высвобождает споры при коротком страйке
 }
 
 WulfrumLeechDagger: {
-	// DisplayName: Wulfrum Leech Dagger
-	/* Tooltip:
+	DisplayName: Вульфрумовый кинжал-пиявка
+	Tooltip:
 		'''
 		Drains a low percentage of enemy health on hit
 		Cannot inflict critical hits
 		Make unconsumable for second on shortstrike
-		''' */
+		Отнимает маленькое количство процентов здоровья противника при ударе
+		Не может наносить критические удары
+		Делает непотребляемый в течение секунды при коротком ударе
+		'''
 }

@@ -1,18 +1,18 @@
 HadopelagicEcho: {
-	// DisplayName: Hadopelagic Echo
-	/* Tooltip:
+	DisplayName: Хадопелагическое эхо
+	Tooltip:
 		'''
-		Fires a string of bouncing sound waves that become stronger as they travel
-		Sound waves echo additional sound waves on enemy hits
-		''' */
+		Запускает цепочку отскакивающих звуковых волн, которые становятся сильнее по мере прохождения
+		Звуковые волны отражают дополнительные звуковые волны при попадании во врага
+		'''
 }
 
 OmegaRay: {
-	// DisplayName: Omega Ray
-	// Tooltip: Disintegrates everything with a five Y-beams of energy and lasers
+	DisplayName: Омега луч
+	Tooltip: Разрушает всё пятью Y-образными лучами энергии и лазерами
 }
 
 TheGenerator: {
-	// DisplayName: The Generator
-	// Tooltip: Launches a master crown sigil that homing and draws a nearby enemies
+	DisplayName: Генератор
+	Tooltip: Запускает главный символ короны, который самонаводится и притягивает ближайших врагов
 }

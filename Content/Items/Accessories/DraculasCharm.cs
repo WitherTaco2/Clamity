@@ -14,6 +14,7 @@ using static CalamityMod.NPCs.BrimstoneElemental.BrimstoneElemental;
 using Terraria.Audio;
 using Terraria.GameContent;
 using Microsoft.Xna.Framework;
+using CalamityMod.CalPlayer;
 
 namespace Clamity.Content.Items.Accessories
 {
@@ -33,7 +34,10 @@ namespace Clamity.Content.Items.Accessories
             player.GetDamage<ThrowingDamageClass>() += 0.15f;
             player.Calamity().rogueStealthMax += 0.1f;
             player.Clamity().vampireEX = true;
+
             player.Calamity().rottenDogTooth = true;
+            player.Calamity().vampiricTalisman = true;
+            player.Calamity().etherealExtorter = true;
         }
         public override void AddRecipes()
         {
@@ -41,8 +45,8 @@ namespace Clamity.Content.Items.Accessories
                 .AddIngredient<EtherealExtorter>()
                 .AddIngredient<VampiricTalisman>()
                 .AddIngredient<RottenDogtooth>()
+                .AddIngredient<BloodstoneCore>(5)
                 .AddIngredient<AshesofCalamity>(4)
-                .AddIngredient<BloodOrb>(20)
                 .AddTile(TileID.LunarCraftingStation)
                 .Register();
         }

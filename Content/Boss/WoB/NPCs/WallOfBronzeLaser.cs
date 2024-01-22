@@ -14,6 +14,7 @@ using Terraria.ModLoader;
 using CalamityMod.Projectiles.Boss;
 using Terraria.ID;
 using Clamity.Content.Boss.WoB.Projectiles;
+using Clamity.Commons;
 
 namespace Clamity.Content.Boss.WoB.NPCs
 {
