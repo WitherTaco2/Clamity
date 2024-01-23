@@ -1,0 +1,42 @@
+﻿using CalamityMod;
+using CalamityMod.Buffs.Alcohol;
+using CalamityMod.Buffs.Potions;
+using CalamityMod.Items.Potions;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+
+namespace Clamity.Content.Items.Potions
+{
+    public class SoulBaguette : Baguette, ILocalizedModType, IModType
+    {
+        public new string LocalizationCategory => "Items.Potions.Foods";
+        public override void SetDefaults()
+        {
+            base.SetDefaults();
+            Item.buffTime *= 2;
+            Item.rare = ItemRarityID.Pink;
+            Item.value += Terraria.Item.sellPrice(0, 2, 40);
+        }
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient<Baguette>()
+                .AddIngredient(ItemID.SoulofMight)
+                .AddIngredient(ItemID.SoulofSight)
+                .AddIngredient(ItemID.SoulofFright)
+                .AddTile(TileID.AdamantiteForge)
+                .Register();
+        }
+        public override void OnConsumeItem(Player player)
+        {
+            player.AddBuff(ModContent.BuffType<BaguetteBuff>(), CalamityUtils.SecondsToFrames(600f));
+            player.AddBuff(BuffID.WellFed2, CalamityUtils.SecondsToFrames(300f));
+        }
+    }
+}

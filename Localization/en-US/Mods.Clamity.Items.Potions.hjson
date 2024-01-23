@@ -2,3 +2,33 @@ SupremeLuckPotion: {
 	DisplayName: Supreme Luck Potion
 	Tooltip: Greatly increases the Luck of the user
 }
+
+Foods: {
+	AuricApple: {
+		DisplayName: Auric Apple
+		Tooltip: 
+			'''
+			Minor improvements to all stats for 1 HOUR
+			'yeah my brain is rotting from today, I read Auric Soul as Auric Fruit' - YuH
+			'''
+	}
+
+	ExoBaguette: {
+		DisplayName: Exo Baguette
+		Tooltip: 
+			'''
+			Major improvements to all stats
+			Boosts the effects of Red Wine
+			Increase threshold of alchohol poisoning by 1 buff
+			'''
+	}
+
+	SoulBaguette: {
+		DisplayName: Soul Baguette
+		Tooltip: 
+			'''
+			Medium improvements to all stats
+			Boosts the effects of Red Wine
+			'''
+	}
+}

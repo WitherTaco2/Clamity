@@ -6,8 +6,11 @@
 	- Essence, Core and Fish of Flame
 	- Music Theme
 - Added second new boss - Wall of Bronze
-	- He has Mask, Lore, Trophy
-	- He drop mining items - 
+	- He has Mask, Lore, Trophy, Relic
+	- He drops mining items - Large Father (lazer drill), AMS (unlimited bomb) and The WOBler (Hamaxe)
+	- After defeating he generate a frozen hell biome with new content
+		- New frozen hellstone ore. You can made a enchanted metal from his. And new content from his, like weapons.
+		- New enemies
 - Added and ported shortswords:
 	- Wulfrum Leech Dagger (new)
 	- Spore Knife
@@ -19,6 +22,7 @@
 	- Disease (new)
 	- Exo Gladius
 - Added Shortstrike mechanic (Special effect on hit by shortsword with cooldown)
+- Added Shortfury mechanic (After 100 true melee hitings by shortsword you can use shortfury)
 - Added and ported blades:
 	- Blade of Enmity
 	- Crimsaber
@@ -34,11 +38,17 @@
 - Added new ammos:
 	- Profaned Dart
 	- War Arrow
+- Added more food for calamity
+	- Soul and Exo Baguettes
+	- Auric Apple
+	- Eldercherry (and his juice)
 - Added Reality Relocator (Rof of Harmony variant of Normality Relocator)
 - Added Aflame enchantment for accesories
 - Added Wulfrum Lure
 - Ported stupid content from `Supreme Calamitas in Vanilla` Mod (Hello, AdamChromeE)
 - Added support of elemental damage from Mod of Redemption
-- Reduced Projectile spam from Clamitas
-- Nerfed Clamitas Armor
 - Music moved into Clamity Music Mod
+
+Balance:
+- Nerfed Clamitas Armor
+- Reduced Projectile spam from Clamitas

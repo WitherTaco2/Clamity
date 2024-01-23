@@ -1,10 +1,7 @@
 ﻿using CalamityMod;
-using CalamityMod.Buffs.StatDebuffs;
 using CalamityMod.Items.Placeables.Furniture.DevPaintings;
 using CalamityMod.Items.Potions;
 using CalamityMod.World;
-using Clamity.Content.Boss.Pyrogen.Drop;
-using Clamity.Content.Boss.Pyrogen.Drop.Weapons;
 using Clamity.Content.Boss.WoB.Drop;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -193,13 +190,22 @@ namespace Clamity.Content.Boss.WoB.NPCs
             if (GunSummonTimer >= (CalamityWorld.death ? 1200 : (Main.expertMode ? 1500 : 1800)) && num3 < 5)
             {
                 GunSummonTimer = 0;
-                Terraria.NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, ListOfGuns[(Main.rand.Next(0, ListOfGuns.Length))], ai0: NPC.whoAmI);
-                Terraria.NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, ListOfGuns[(Main.rand.Next(0, ListOfGuns.Length))], ai0: NPC.whoAmI);
-                Terraria.NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, ListOfGuns[(Main.rand.Next(0, ListOfGuns.Length))], ai0: NPC.whoAmI);
+                if (CanSecondStage)
+                {
+                    Terraria.NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, ListOfGuns[2], ai0: NPC.whoAmI);
+                    Terraria.NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, ListOfGuns[2], ai0: NPC.whoAmI);
+                    Terraria.NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, ListOfGuns[2], ai0: NPC.whoAmI);
+                }
+                else
+                {
+                    Terraria.NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, ListOfGuns[(Main.rand.Next(0, ListOfGuns.Length))], ai0: NPC.whoAmI);
+                    Terraria.NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, ListOfGuns[(Main.rand.Next(0, ListOfGuns.Length))], ai0: NPC.whoAmI);
+                    Terraria.NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, ListOfGuns[(Main.rand.Next(0, ListOfGuns.Length))], ai0: NPC.whoAmI);
+                }
             }
 
             //Deathray
-            if (Main.expertMode)
+            if (CanSecondStage)
             {
                 DeathrayTimer++;
                 if (DeathrayTimer > 2000)

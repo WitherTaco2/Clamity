@@ -69,3 +69,8 @@ WarCleave: {
 	// Description: Mods.Clamity.Buffs.WarCleave.Description
 	// DisplayName: War Cleave
 }
+
+ExoBaguetteBuff: {
+	// DisplayName: Exo Baguette Buff
+	// Description: Mods.Clamity.Buffs.ExoBaguetteBuff.Description
+}
