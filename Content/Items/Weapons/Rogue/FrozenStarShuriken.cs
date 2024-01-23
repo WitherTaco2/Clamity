@@ -52,7 +52,7 @@ namespace Clamity.Content.Items.Weapons.Rogue
                 .AddIngredient<FishboneBoomerang>()
                 .AddIngredient(ItemID.Trimarang)
                 .AddIngredient<EnchantedMetal>(8)
-                .AddTile<DraedonsForge>()
+                .AddTile<CosmicAnvil>()
                 .Register();
         }
     }

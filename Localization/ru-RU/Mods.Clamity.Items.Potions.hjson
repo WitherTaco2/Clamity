@@ -6,7 +6,7 @@ SupremeLuckPotion: {
 Foods: {
 	AuricApple: {
 		DisplayName: Аурическое яблоко
-		Tooltip: 
+		Tooltip:
 			'''
 			Незначительные улучшения всех характеристик на 1 ЧАС
 			'yeah my brain is rotting from today, I read Auric Soul as Auric Fruit' - YuH
@@ -15,7 +15,7 @@ Foods: {
 
 	ExoBaguette: {
 		DisplayName: Экзо-багет
-		Tooltip: 
+		Tooltip:
 			'''
 			Значительные улучшения всех характеристик
 			Усиливает эффект Красного Вина
@@ -25,10 +25,20 @@ Foods: {
 
 	SoulBaguette: {
 		DisplayName: Багет духов
-		Tooltip: 
+		Tooltip:
 			'''
 			Средние улучшения всех характеристик
 			Усиливает эффект Красного Вина
 			'''
+	}
+
+	Eldercherry: {
+		// DisplayName: Eldercherry
+		// Tooltip: Medium improvements to all stats
+	}
+
+	EldercherryJuice: {
+		// DisplayName: Eldercherry Juice
+		// Tooltip: Major improvements to all stats
 	}
 }

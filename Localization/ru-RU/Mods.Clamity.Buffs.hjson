@@ -56,7 +56,7 @@ Shortstrike: {
 
 	WulfrumShortstrike: {
 		// DisplayName: Wulfrum Shortstrike
-		// Description: Mods.Clamity.Buffs.Shortstrike.WulfrumShortstrike.Description
+		// Description: Wulfrum Leech Dagger is non-consumable
 	}
 }
 
@@ -71,6 +71,6 @@ WarCleave: {
 }
 
 ExoBaguetteBuff: {
-	// DisplayName: Exo Baguette Buff
-	// Description: Mods.Clamity.Buffs.ExoBaguetteBuff.Description
+	// DisplayName: Exo Baguette
+	// Description: "'Exo Bonjour' ~WitherTaco"
 }

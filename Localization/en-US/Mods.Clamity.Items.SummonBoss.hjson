@@ -22,7 +22,7 @@ PyroKey: {
 		'''
 		Summons Pyrogen when used in the desert
 		Right Click to summon without summon animation
-		Enrages outside the desert
+		Enrages boss outside the desert
 		Not consumable
 		'A key for a furnace cube.'
 		'''

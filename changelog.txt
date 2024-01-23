@@ -52,3 +52,6 @@
 Balance:
 - Nerfed Clamitas Armor
 - Reduced Projectile spam from Clamitas
+
+Fixes
+- Fixed typos in bestiary lore of Clamitas

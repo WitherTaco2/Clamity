@@ -6,7 +6,7 @@ SupremeLuckPotion: {
 Foods: {
 	AuricApple: {
 		DisplayName: Auric Apple
-		Tooltip: 
+		Tooltip:
 			'''
 			Minor improvements to all stats for 1 HOUR
 			'yeah my brain is rotting from today, I read Auric Soul as Auric Fruit' - YuH
@@ -15,7 +15,7 @@ Foods: {
 
 	ExoBaguette: {
 		DisplayName: Exo Baguette
-		Tooltip: 
+		Tooltip:
 			'''
 			Major improvements to all stats
 			Boosts the effects of Red Wine
@@ -25,10 +25,20 @@ Foods: {
 
 	SoulBaguette: {
 		DisplayName: Soul Baguette
-		Tooltip: 
+		Tooltip:
 			'''
 			Medium improvements to all stats
 			Boosts the effects of Red Wine
 			'''
+	}
+
+	Eldercherry: {
+		DisplayName: Eldercherry
+		Tooltip: Medium improvements to all stats
+	}
+
+	EldercherryJuice: {
+		DisplayName: Eldercherry Juice
+		Tooltip: Major improvements to all stats
 	}
 }

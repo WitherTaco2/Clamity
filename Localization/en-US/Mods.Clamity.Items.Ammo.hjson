@@ -14,6 +14,11 @@ Arrow: {
 		Tooltip: Inflict a Armor Crunch
 		DisplayName: War Arrow
 	}
+
+	FrostfireArrow: {
+		DisplayName: Frostfire Arrow
+		Tooltip: Create explosion on hit
+	}
 }
 
 Solution: {
