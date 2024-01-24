@@ -1,10 +1,10 @@
 HellstoneShellfishStaff: {
-	// DisplayName: Hellstone Shellfish Staff
-	/* Tooltip:
+	DisplayName: Посох моллюска из адского камня
+	Tooltip:
 		'''
 		Summons a hellstone shellfish to fight for you
 		Each shellfish takes 2 minion slots
-		''' */
+		'''
 }
 
 HellsBells: {

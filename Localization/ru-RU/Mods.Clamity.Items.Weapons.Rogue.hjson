@@ -1,10 +1,12 @@
 MoltenPiercer: {
-	// DisplayName: Molten Piercer
-	/* Tooltip:
+	DisplayName: Molten Piercer Расплавленный пронзатель
+	Tooltip:
 		'''
 		Throws a flaming daggers
 		Daggers create a flaming obsidian shards in flight on stealth strike
-		''' */
+		Кидает пламенным кинжалом
+		Кинжал создаёт огненые обсидиановые осколки в полёте при скритном ударе
+		'''
 }
 
 WulfrumShockCutter: {

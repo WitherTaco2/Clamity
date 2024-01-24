@@ -1,9 +1,9 @@
 LargeFather: {
-	// Tooltip: Uses a long-range digging beam of light
-	// DisplayName: Large Father
+	Tooltip: Использует длинный копающий луч света
+	DisplayName: Большая папочка
 }
 
 TheWOBbler: {
-	// Tooltip: Right Click to shoot a lot of ice fragments
-	// DisplayName: The WOBbler
+	Tooltip: Правый клик для того чтобы выстрельнуть большим количеством снежных фрагментов
+	DisplayName: СБпер
 }

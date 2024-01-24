@@ -1,30 +1,30 @@
 DepthsEchoRifle: {
-	// DisplayName: Depths Echo Rifle
-	// Tooltip: Converts musket balls into homing brimstone bolts
+	DisplayName: Винтовка глубокого эхо
+	Tooltip: Заменяет мушкетные патроны на самонаводящиеся серные снаряды
 }
 
 Obsidigun: {
-	// DisplayName: Obsidigun
-	// Tooltip: Converts musket balls into fast-moving obsidian bullets that break into a lot of shards on hit
+	DisplayName: Обсидипушка
+	Tooltip: Превращает мушкетные пули в быстро движущиеся обсидиановые пули, которые при попадании разлетаются на множество осколков
 }
 
 LeadWizard: {
-	// DisplayName: Lead Wizard
-	/* Tooltip:
+	DisplayName: Свинцовый маг
+	Tooltip:
 		'''
-		Shoot a 3 bullets what changes rotation around direction
-		Convert musket ball to high velocity bullet
-		33% chance to not consume ammo
-		''' */
+		Выпустите 3 пули, который меняет угол наклона вокруг направление
+		Заменяет мушкетные пули на высокоскоростные пули
+		33% шанца не потратить боеприпас
+		'''
 }
 
 Impaler: {
-	// DisplayName: Impaler
-	/* Tooltip:
+	DisplayName: Пронзатель
+	Tooltip:
 		'''
-		Instantly kills vampires and vampire bats
-		75% chance to not consume ammo
-		''' */
+		Моментально убивает вампиров и мышей-вампиров
+		75% шанца не потратить боеприпас
+		'''
 	/* Tooltip2:
 		'''
 		Fires explosive and flaming stakes
@@ -34,19 +34,19 @@ Impaler: {
 }
 
 ChargedDartBlaster: {
-	// DisplayName: Charged Dart Blaster
-	/* Tooltip:
+	DisplayName: Заряженные дротикомёт
+	Tooltip:
 		'''
-		Fires a shotgun spread of darts and a splitting energy blast
-		Right click to fire a more powerful exploding energy blast that bounces
-		''' */
+		Стреляет множеством дротиков и разлетающимся энергетическими снарядами
+		Правый клик для того, чтобы стрелять большим количеством разлетающихся энергетических снарядов, которые отскакивают
+		'''
 }
 
 RoseBow: {
-	// DisplayName: Rose Bow
-	/* Tooltip:
+	DisplayName: Лук-роза
+	Tooltip:
 		'''
-		'Even if you can't see me, even if you can't hear me, I'll be by your side'
-		Shoots a spread of arrows and homing petals
-		''' */
+		'Даже если ты меня не видишь, даже если ты меня не слышишь, я буду рядом с тобой'
+		Стреляет разбросом стрел и самонаводящихся лепестков
+		'''
 }
