@@ -2,12 +2,12 @@ HellstoneShellfishStaff: {
 	DisplayName: Посох моллюска из адского камня
 	Tooltip:
 		'''
-		Summons a hellstone shellfish to fight for you
-		Each shellfish takes 2 minion slots
+		Призывает моллюска из адского камня, который сражается за вас
+		Каждый моллюск занимает 2 слота миньонов
 		'''
 }
 
 HellsBells: {
-	// DisplayName: Hell`s Bells
-	// Tooltip: Summons an obsidian bell that follows the cursor
+	DisplayName: Колокол Ада
+	Tooltip: Призывает обсидиановый колокол, который следует за курсором
 }

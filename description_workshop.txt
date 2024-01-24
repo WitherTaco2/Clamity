@@ -1,11 +1,14 @@
 Clamitas Addon is mod for Calamity which adds content from Calamity Fandom wiki and not only, but with high quality of realization as posible (second Calamity Community Remix). This mod focusing on adding bosses
+Mod has official support of English and Russian Localization
 
 [h1]Content[/h1]
 [list]
 	[*] 3 bosses: Clamitas, Pyrogen and Wall of Bronze
 	[*] over 25 old and new weapons (shortswords included)
+	[*] new post-moonlord biome - Frozen Hell
 	[*] 1 armor set
 	[*] 1 new powerful potion
+	[*] 5 new post-moonlord food
 	[*] And more
 [/list]
 

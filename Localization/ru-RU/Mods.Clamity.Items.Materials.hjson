@@ -1,21 +1,21 @@
 HuskOfCalamity: {
-	DisplayName: �������� ��������
-	Tooltip: ������� ������� ��������
+	DisplayName: Шелуха бедствия
+	Tooltip: Останки адского моллюска
 }
 
 ClamitousPearl: {
-	DisplayName: ������ ��������
-	Tooltip: "'��� ����� �������'"
+	DisplayName: Пагубная жемчужина
+	Tooltip: "'Это время моллюска!'"
 }
 
 CoreOfFlame: {
-	DisplayName: ���� ����
+	DisplayName: Ядро огня
 	// Tooltip: ""
 }
 
 EssenceOfFlame: {
-	DisplayName: �������� ����
-	// Tooltip: The essence of creatures from hot terrain
+	DisplayName: Эссенция огня
+	Tooltip: Эссенция существ из горячих земель
 }
 
 MediocreMatter: {
@@ -34,6 +34,6 @@ CoreOfHeat: {
 }
 
 EnchantedMetal: {
-	// Tooltip: Metal infused by soul of the Terraria
-	DisplayName: ������������ ������
+	Tooltip: Металл наполенный душами самой Террарии
+	DisplayName: Зачарованный металл
 }

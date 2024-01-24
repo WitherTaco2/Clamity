@@ -1,16 +1,16 @@
 Items: {
 	WoBSummonItem: {
-		/* Tooltip:
+		Tooltip:
 			'''
 			DEBUG
-			Summon a Wall of Bronze in Underworld
-			Non consumable
-			''' */
-		// DisplayName: Heavy Metal Trash Can
+			Призывает Стену Бронзы в Преисподне
+			Не тратится
+			'''
+		DisplayName: Тяжелая металическая мусорка
 	}
 }
 
-// Misc.RecipeGroup.AnySandBlock: And Sand Block
+Misc.RecipeGroup.AnySandBlock: Любой песок
 
 Tiles: {
 	// FrozenHellstoneTile.MapEntry: Frozen Hellstone Tile
@@ -19,7 +19,7 @@ Tiles: {
 
 Biomes: {
 	FrozenHell: {
-		// TownNPCDialogueName: the Frozen Hell
-		// DisplayName: Frozen Hell
+		TownNPCDialogueName: Замороженный Ад
+		DisplayName: Замороженный Ад
 	}
 }

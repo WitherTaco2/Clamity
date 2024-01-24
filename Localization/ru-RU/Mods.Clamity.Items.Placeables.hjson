@@ -1,48 +1,48 @@
 Relics: {
 	PyrogenRelic: {
-		// DisplayName: Pyrogen Relic
-		// Tooltip: ""
+		DisplayName: Реликвия Пирогена
+		Tooltip: ""
 	}
 
 	ClamitasRelic: {
-		// DisplayName: Clamitas Relic
-		// Tooltip: Made with using hellstone
+		DisplayName: Реликвия Кламитаса
+		Tooltip: Сделан с использованием адского камня
 	}
 
 	WoBRelic: {
-		// DisplayName: Wall of Bronze Relic
-		// Tooltip: ""
+		DisplayName: Реликвия Стены бронзы
+		Tooltip: ""
 	}
 }
 
 Trophies: {
 	PyrogenTrophy: {
-		// Tooltip: ""
-		// DisplayName: Pyrogen Trophy
+		Tooltip: ""
+		DisplayName: Трофей Пирогена
 	}
 
 	WoBTrophy: {
-		// Tooltip: ""
-		// DisplayName: Wall of Bronze Trophy
+		Tooltip: ""
+		DisplayName: Трофей Стены бронзы
 	}
 }
 
 FrozenHellstone: {
-	// Tooltip: ""
-	// DisplayName: Frozen Hellstone
+	Tooltip: ""
+	DisplayName: Замороженный адский камень
 }
 
 AncientConsole: {
-	// DisplayName: Ancient Console
-	/* Tooltip:
+	DisplayName: Древняя консоль
+	Tooltip:
 		'''
-		Summon a Wall of Bronze on right click on tile
-		Work in Underworld
-		Wall of Bronze despawn when you left from Underworld
-		''' */
+		Призывает Стену Бронзы при правом клике на блоке
+		Работает только в Преисподне
+		Стена Бронзы изчезает, когда ты выходишь из Преисподни
+		'''
 }
 
 FrozenAsh: {
-	// Tooltip: ""
-	// DisplayName: Frozen Ash
+	Tooltip: ""
+	DisplayName: Frozen Ash
 }

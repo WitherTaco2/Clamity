@@ -46,7 +46,7 @@ namespace Clamity.Content.Boss.WoB.FrozenHell.Items
             Main.tileBlockLight[Type] = true;
             CalamityUtils.MergeWithHell((int)this.Type);
             CalamityUtils.MergeWithGeneral(Type);
-            this.AddMapEntry(new Color(78, 89, 99), this.CreateMapEntryName());
+            this.AddMapEntry(new Color(78, 89, 99));
             this.HitSound = new SoundStyle?(SoundID.Dig);
         }
         public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 1 : 3;

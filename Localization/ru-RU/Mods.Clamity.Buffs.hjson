@@ -55,8 +55,8 @@ Shortstrike: {
 	}
 
 	WulfrumShortstrike: {
-		// DisplayName: Wulfrum Shortstrike
-		// Description: Wulfrum Leech Dagger is non-consumable
+		DisplayName: Короткий страйк Вульфрума
+		Description: Вульфрумовый нож-пиявка теперь не тратится
 	}
 }
 
@@ -71,6 +71,6 @@ WarCleave: {
 }
 
 ExoBaguetteBuff: {
-	// DisplayName: Exo Baguette
-	// Description: "'Exo Bonjour' ~WitherTaco"
+	DisplayName: Экзо багет
+	Description: "'Экзо бонджур' ~WitherTaco"
 }

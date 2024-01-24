@@ -1,10 +1,10 @@
 RealityRelocator: {
-	// DisplayName: Reality Relocator
-	/* Tooltip:
+	DisplayName: Перемещатель реальности
+	Tooltip:
 		'''
-		Press [KEY] to teleport to the position of the mouse
-		Fall speed is doubled for 30 frames after teleporting
-		Works while in the inventory
-		'I'll be there in the blink of an eye'
-		''' */
+		Нажмите [KEY] для телепортации в позицию мыши
+		Скорость падения увеличена в течение 30 кадров после телепортации
+		Работает в инвенторе
+		'Я буду там в мгновение ока'
+		'''
 }
