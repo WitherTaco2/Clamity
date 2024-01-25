@@ -15,6 +15,7 @@ using Terraria.Audio;
 using Terraria.GameContent;
 using Microsoft.Xna.Framework;
 using CalamityMod.CalPlayer;
+using CalamityMod.Rarities;
 
 namespace Clamity.Content.Items.Accessories
 {
@@ -27,7 +28,7 @@ namespace Clamity.Content.Items.Accessories
             Item.height = 46;
             Item.accessory = true;
             Item.value = 20000 * 5;
-            Item.rare = ItemRarityID.Red;
+            Item.rare = ModContent.RarityType<Turquoise>();
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {

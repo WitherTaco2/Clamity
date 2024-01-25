@@ -11,7 +11,6 @@ using CalamityMod.Buffs.StatDebuffs;
 using CalamityMod.NPCs.PlaguebringerGoliath;
 using CalamityMod;
 using CalamityMod.NPCs.DevourerofGods;
-using Clamity.Content.Items.Pets.MasterRev.DoG;
 
 namespace Clamity
 {

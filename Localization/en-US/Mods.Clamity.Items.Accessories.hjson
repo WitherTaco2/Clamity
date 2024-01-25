@@ -43,7 +43,7 @@ HellFlare: {
 
 SupremeBarrier: {
 	DisplayName: Supreme Barrier
-	Tooltip: 
+	Tooltip:
 		'''
 		Allows the ability to ram dash, empowered by the cosmic inferno
 		This dash can slam through enemies without taking damage

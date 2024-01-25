@@ -289,5 +289,10 @@ namespace Clamity.Content.Boss.WoB.NPCs
             npcLoot.AddConditionalPerPlayer(() => !ClamitySystem.downedWallOfBronze, ModContent.ItemType<WoBLore>(), ui: true, DropHelper.FirstKillText);
 
         }
+        public override void OnKill()
+        {
+            ClamitySystem.downedWallOfBronze = true;
+            CalamityNetcode.SyncWorld();
+        }
     }
 }

@@ -49,5 +49,9 @@ FrozenAsh: {
 
 ShadowspecToilet: {
 	DisplayName: Shadowspec Toilet
-	Tooltip: ""
+	Tooltip:
+		'''
+		This was used by Xeroc itself
+		Sitting on such a throne would be a disgrace to all
+		'''
 }

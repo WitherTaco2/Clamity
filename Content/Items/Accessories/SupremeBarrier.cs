@@ -27,7 +27,7 @@ namespace Clamity.Content.Items.Accessories
             this.Item.value = CalamityGlobalItem.Rarity15BuyPrice;
             this.Item.defense = 30;
             this.Item.accessory = true;
-            this.Item.rare = ModContent.RarityType<Violet>();
+            this.Item.rare = ModContent.RarityType<HotPink>();
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {

@@ -3,9 +3,11 @@ using CalamityMod.Items.TreasureBags.MiscGrabBags;
 using Clamity.Content.Cooldowns;
 using Clamity.Content.Items.Accessories;
 using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -79,6 +81,22 @@ namespace Clamity
                 case ItemID.Gladius:
                     tooltips.Add(new TooltipLine(Mod, "Shortstrike", LangHelper.GetText(str1 + "Gladius")));
                     break;
+            }
+        }
+        public override void ModifyItemLoot(Item item, ItemLoot itemLoot)
+        {
+            if (item.type == ModContent.ItemType<StarterBag>())
+            {
+                LeadingConditionRule leadingConditionRule = itemLoot.DefineConditionalDropSet((Func<bool>)(() => WorldGen.SavedOreTiers.Copper == 166));
+
+
+                //Mod clicker = ModLoader.GetMod("ClickerClass");
+                
+                if (ModLoader.TryGetMod("ClickerClass", out Mod clicker))
+                {
+                    leadingConditionRule.Add(new CommonDrop(clicker.Find<ModItem>("CopperClicker").Item.type, 1));
+                    leadingConditionRule.OnFailedConditions(new CommonDrop(clicker.Find<ModItem>("TinClicker").Item.type, 1));
+                }
             }
         }
     }

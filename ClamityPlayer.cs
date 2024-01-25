@@ -37,7 +37,6 @@ namespace Clamity
         //public bool wCleave;
 
         //Pets
-        public bool cosmicGuardian;
 
         public bool ZoneFrozenHell => Player.InModBiome((ModBiome)ModContent.GetInstance<FrozenHell>());
         public override void ResetEffects()
@@ -56,8 +55,6 @@ namespace Clamity
             hellsBell = false;
 
             //wCleave = false;
-
-            cosmicGuardian = false;
         }
         //public Item[] accesories;
         public override void UpdateEquips()
