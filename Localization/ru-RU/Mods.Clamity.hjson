@@ -3,14 +3,14 @@ Items: {
 		Tooltip:
 			'''
 			DEBUG
-			Призывает Стену Бронзы в Преисподне
-			Не тратится
+			РџСЂРёР·С‹РІР°РµС‚ РЎС‚РµРЅСѓ Р‘СЂРѕРЅР·С‹ РІ РїСЂРµРёСЃРїРѕРґРЅРµ
+			РќРµ С‚СЂР°С‚РёС‚СЃСЏ
 			'''
-		DisplayName: Тяжелая металическая мусорка
+		DisplayName: РўСЏР¶РµР»Р°СЏ РјРµС‚Р°Р»Р»РёС‡РµСЃРєР°СЏ РјСѓСЃРѕСЂРєР°
 	}
 }
 
-Misc.RecipeGroup.AnySandBlock: Любой песок
+Misc.RecipeGroup.AnySandBlock: Р›СЋР±РѕР№ РїРµСЃРѕРє
 
 Tiles: {
 	// FrozenHellstoneTile.MapEntry: Frozen Hellstone Tile
@@ -19,7 +19,7 @@ Tiles: {
 
 Biomes: {
 	FrozenHell: {
-		TownNPCDialogueName: Замороженный Ад
-		DisplayName: Замороженный Ад
+		TownNPCDialogueName: Р—Р°РјРѕСЂРѕР¶РµРЅРЅС‹Р№ Р°Рґ
+		DisplayName: Р—Р°РјРѕСЂРѕР¶РµРЅРЅС‹Р№ Р°Рґ
 	}
 }

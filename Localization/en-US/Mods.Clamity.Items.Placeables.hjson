@@ -46,3 +46,8 @@ FrozenAsh: {
 	Tooltip: ""
 	DisplayName: Frozen Ash
 }
+
+ShadowspecToilet: {
+	DisplayName: Shadowspec Toilet
+	Tooltip: ""
+}

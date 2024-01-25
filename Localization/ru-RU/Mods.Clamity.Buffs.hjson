@@ -74,3 +74,8 @@ ExoBaguetteBuff: {
 	DisplayName: Экзо багет
 	Description: "'Экзо бонджур' ~WitherTaco"
 }
+
+CosmicGuardianBuff: {
+	// Description: Mods.Clamity.Buffs.CosmicGuardianBuff.Description
+	// DisplayName: Cosmic Guardian Buff
+}

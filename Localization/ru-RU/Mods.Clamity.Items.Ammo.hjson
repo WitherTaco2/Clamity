@@ -1,18 +1,18 @@
 Dart: {
 	ProfanedDart: {
-		DisplayName: ������������ ������
+		DisplayName: Оскверненный дротик
 		Tooltip:
 			'''
-			����������� ����� ������������
-			������ ����� �� ����� �����
+			Отскакивает между противниками
+			Создает взрыв при ударе
 			'''
 	}
 }
 
 Arrow: {
 	WarArrow: {
-		Tooltip: ����������� ������ '����� �����'
-		DisplayName: ������ �����
+		Tooltip: Накладывает 'Разрушение брони'
+		DisplayName: Стрела войны
 	}
 
 	FrostfireArrow: {
@@ -24,6 +24,6 @@ Arrow: {
 Solution: {
 	CyanSolution: {
 		Tooltip: ""
-		DisplayName: ������� �������
+		DisplayName: Голубой раствор
 	}
 }

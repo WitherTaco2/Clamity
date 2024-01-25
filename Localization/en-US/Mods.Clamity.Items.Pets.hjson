@@ -1,0 +1,8 @@
+CosmicGuardianItem: {
+	Tooltip: 
+		'''
+		Summon a personal Cosmic Guardian
+		'The longest worm-like pet in my life' - WitherTaco
+		'''
+	DisplayName: Eye of the Cosmic Guardian
+}

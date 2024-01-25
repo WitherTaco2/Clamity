@@ -74,3 +74,8 @@ ExoBaguetteBuff: {
 	DisplayName: Exo Baguette
 	Description: "'Exo Bonjour' ~WitherTaco"
 }
+
+CosmicGuardianBuff: {
+	Description: Mods.Clamity.Buffs.CosmicGuardianBuff.Description
+	DisplayName: Cosmic Guardian Buff
+}

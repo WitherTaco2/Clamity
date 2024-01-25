@@ -33,12 +33,12 @@ Foods: {
 	}
 
 	Eldercherry: {
-		// DisplayName: Eldercherry
-		// Tooltip: Medium improvements to all stats
+		DisplayName: Вишня древних
+		Tooltip: Средние улучшения всех характеристик
 	}
 
 	EldercherryJuice: {
-		// DisplayName: Eldercherry Juice
-		// Tooltip: Major improvements to all stats
+		DisplayName: Сок из вишни древних
+		Tooltip: Значительные улучшения всех характеристик
 	}
 }

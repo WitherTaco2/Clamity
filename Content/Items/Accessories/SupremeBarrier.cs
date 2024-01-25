@@ -25,7 +25,7 @@ namespace Clamity.Content.Items.Accessories
             this.Item.width = 60;
             this.Item.height = 54;
             this.Item.value = CalamityGlobalItem.Rarity15BuyPrice;
-            this.Item.defense = 20;
+            this.Item.defense = 30;
             this.Item.accessory = true;
             this.Item.rare = ModContent.RarityType<Violet>();
         }
@@ -33,13 +33,13 @@ namespace Clamity.Content.Items.Accessories
         {
             ModContent.GetInstance<AsgardianAegis>().UpdateAccessory(player, hideVisual);
             ModContent.GetInstance<RampartofDeities>().UpdateAccessory(player, hideVisual);
-            player.Calamity().copyrightInfringementShield = true;
+            //player.Calamity().copyrightInfringementShield = true;
         }
         public override void AddRecipes()
         {
             CreateRecipe()
                 .AddIngredient<AsgardianAegis>()
-                .AddIngredient<ShieldoftheHighRuler>()
+                //.AddIngredient<ShieldoftheHighRuler>()
                 .AddIngredient<RampartofDeities>()
                 .AddIngredient<ExoBaguette>()
                 .AddIngredient<ShadowspecBar>(5)

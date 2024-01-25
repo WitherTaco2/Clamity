@@ -10,6 +10,8 @@ using Clamity.Content.Buffs;
 using CalamityMod.Buffs.StatDebuffs;
 using CalamityMod.NPCs.PlaguebringerGoliath;
 using CalamityMod;
+using CalamityMod.NPCs.DevourerofGods;
+using Clamity.Content.Items.Pets.MasterRev.DoG;
 
 namespace Clamity
 {
@@ -49,6 +51,11 @@ namespace Clamity
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MandibleClaws>(), 50));
                 npcLoot.Add(ItemDropRule.ByCondition(hm, ModContent.ItemType<EssenceOfFlame>(), 4));
+            }
+
+            if(npc.type == ModContent.NPCType<DevourerofGodsHead>())
+            {
+                //npcLoot.Add(ItemDropRule.ByCondition(, ModContent.ItemType<CosmicGuardianItem>(), 4);
             }
         }
         private bool ContainType(int npcid, params int[] array)

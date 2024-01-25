@@ -22,16 +22,22 @@ namespace Clamity
         public bool aflameAcc;
         public List<int> aflameAccList;
 
+        //Equip
         public bool pyroSpear;
         //public int pyroSpearCD;
         public bool vampireEX;
         public bool pyroStone;
         public bool pyroStoneVanity;
         public bool hellFlare;
+
         //Minion
         public bool hellsBell;
+
         //Buffs-Debuffs
         //public bool wCleave;
+
+        //Pets
+        public bool cosmicGuardian;
 
         public bool ZoneFrozenHell => Player.InModBiome((ModBiome)ModContent.GetInstance<FrozenHell>());
         public override void ResetEffects()
@@ -50,6 +56,8 @@ namespace Clamity
             hellsBell = false;
 
             //wCleave = false;
+
+            cosmicGuardian = false;
         }
         //public Item[] accesories;
         public override void UpdateEquips()
