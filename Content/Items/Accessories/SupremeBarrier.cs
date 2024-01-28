@@ -5,7 +5,7 @@ using CalamityMod.Items.Accessories;
 using CalamityMod.Items.Materials;
 using CalamityMod.Rarities;
 using CalamityMod.Tiles.Furniture.CraftingStations;
-using Clamity.Content.Items.Potions;
+using Clamity.Content.Items.Potions.Food;
 using System;
 using System.Collections.Generic;
 using System.Linq;

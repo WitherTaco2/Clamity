@@ -1,16 +1,17 @@
-﻿using Terraria.GameContent.ItemDropRules;
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
-using Clamity.Content.Items.Materials;
-using Clamity.Content.Items.Weapons.Melee.Swords;
-using Clamity.Content.Items.Weapons.Melee.Shortswords;
-using Clamity.Content.Items.Weapons.Ranged.Guns;
-using Clamity.Content.Buffs;
-using CalamityMod.Buffs.StatDebuffs;
+﻿using CalamityMod;
+using CalamityMod.NPCs.Abyss;
+using CalamityMod.NPCs.NormalNPCs;
 using CalamityMod.NPCs.PlaguebringerGoliath;
-using CalamityMod;
-using CalamityMod.NPCs.DevourerofGods;
+using CalamityMod.NPCs.SunkenSea;
+using Clamity.Content.Items.Materials;
+using Clamity.Content.Items.Potions.Food;
+using Clamity.Content.Items.Weapons.Melee.Shortswords;
+using Clamity.Content.Items.Weapons.Melee.Swords;
+using Clamity.Content.Items.Weapons.Ranged.Guns;
+using Terraria;
+using Terraria.GameContent.ItemDropRules;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Clamity
 {
@@ -31,8 +32,8 @@ namespace Clamity
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Disease>(), 10));
             }
 
-            if (ContainType(npc.type, NPCID.Mummy, NPCID.LightMummy, NPCID.DarkMummy, NPCID.BloodMummy, 
-                NPCID.DesertBeast, NPCID.DesertScorpionWalk, NPCID.DesertScorpionWall, 
+            if (ContainType(npc.type, NPCID.Mummy, NPCID.LightMummy, NPCID.DarkMummy, NPCID.BloodMummy,
+                NPCID.DesertBeast, NPCID.DesertScorpionWalk, NPCID.DesertScorpionWall,
                 NPCID.DesertDjinn, NPCID.DesertLamiaDark, NPCID.DesertLamiaLight,
                 NPCID.DesertGhoul, NPCID.DesertGhoulCorruption, NPCID.DesertGhoulCrimson, NPCID.DesertGhoulHallow,
                 NPCID.DuneSplicerHead)
@@ -40,10 +41,12 @@ namespace Clamity
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<EssenceOfFlame>(), 4));
             }
+
             if (ContainType(npc.type, NPCID.Vulture, NPCID.TombCrawlerHead))
             {
                 npcLoot.Add(ItemDropRule.ByCondition(hm, ModContent.ItemType<EssenceOfFlame>(), 4));
             }
+
             if (ContainType(npc.type, NPCID.Antlion, NPCID.WalkingAntlion, NPCID.GiantWalkingAntlion, NPCID.FlyingAntlion,
                 NPCID.GiantFlyingAntlion)
             )
@@ -52,9 +55,27 @@ namespace Clamity
                 npcLoot.Add(ItemDropRule.ByCondition(hm, ModContent.ItemType<EssenceOfFlame>(), 4));
             }
 
-            if(npc.type == ModContent.NPCType<DevourerofGodsHead>())
+            if (ContainType(npc.type, ModContent.NPCType<SeaSerpent1>(), ModContent.NPCType<EutrophicRay>(), ModContent.NPCType<GhostBell>(), ModContent.NPCType<PrismBack>(), ModContent.NPCType<SeaFloaty>(), ModContent.NPCType<BlindedAngler>()))
             {
-                //npcLoot.Add(ItemDropRule.ByCondition(, ModContent.ItemType<CosmicGuardianItem>(), 4);
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ClamChowder>(), 20));
+            }
+            if (ContainType(npc.type, ModContent.NPCType<Clam>()))
+            {
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ClamChowder>(), 10));
+            }
+            if (ContainType(npc.type, ModContent.NPCType<GiantClam>()))
+            {
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ClamChowder>(), 2));
+            }
+
+
+            if (ContainType(npc.type, ModContent.NPCType<ChaoticPuffer>(), ModContent.NPCType<GiantSquid>(), ModContent.NPCType<Laserfish>(), ModContent.NPCType<OarfishHead>(), ModContent.NPCType<Eidolist>(), ModContent.NPCType<MirageJelly>(), ModContent.NPCType<Bloatfish>()))
+            {
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Barolegs>(), 20));
+            }
+            if (ContainType(npc.type, ModContent.NPCType<EidolonWyrmHead>(), ModContent.NPCType<GulperEelHead>(), ModContent.NPCType<ColossalSquid>(), ModContent.NPCType<ReaperShark>(), ModContent.NPCType<BobbitWormHead>()))
+            {
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Barolegs>(), 4));
             }
         }
         private bool ContainType(int npcid, params int[] array)

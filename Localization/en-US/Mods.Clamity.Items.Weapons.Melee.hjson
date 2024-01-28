@@ -106,3 +106,8 @@ WulfrumLeechDagger: {
 		Make unconsumable for second on shortstrike
 		'''
 }
+
+FrozenVolcano: {
+	Tooltip: ""
+	DisplayName: Frozen Volcano
+}

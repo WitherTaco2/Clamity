@@ -1,4 +1,5 @@
 ﻿using CalamityMod;
+using CalamityMod.Events;
 using CalamityMod.Items.Placeables.Furniture.DevPaintings;
 using CalamityMod.Items.Potions;
 using CalamityMod.World;
@@ -18,7 +19,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Clamity.Content.Boss.WoB.NPCs
-{    
+{
     [AutoloadBossHead]
     public class WallOfBronze : ModNPC
     {
@@ -142,7 +143,7 @@ namespace Clamity.Content.Boss.WoB.NPCs
             }
 
             //Horrified debuff and You can t escape
-            foreach (Player player in Main.player) 
+            foreach (Player player in Main.player)
             {
                 if (player == null) continue;
                 if (!player.active) continue;
@@ -166,7 +167,7 @@ namespace Clamity.Content.Boss.WoB.NPCs
                     }
                 }
 
-                
+
 
             }
 
@@ -179,9 +180,9 @@ namespace Clamity.Content.Boss.WoB.NPCs
                 if (ListOfGuns.Contains<int>(npc.type))
                     num3++;
             }
-            if (num3 >= (CalamityWorld.death ? 2 : (CalamityWorld.revenge ? 3 : 4)))
+            if (num3 >= (CalamityWorld.death ? 2 : ((CalamityWorld.revenge || BossRushEvent.BossRushActive) ? 3 : 4)))
                 NPC.dontTakeDamage = true;
-            else 
+            else
                 NPC.dontTakeDamage = false;
 
             //Summon guns
@@ -227,14 +228,14 @@ namespace Clamity.Content.Boss.WoB.NPCs
             for (int index = -num; index <= num; ++index)
             {
                 if (Main.UnderworldLayer < (int)(Main.LocalPlayer.Center.Y / 16f) + index)
-                    spriteBatch.Draw(texture2D1, 
-                                    new Vector2(NPC.Center.X - NPC.spriteDirection * texture2D1.Width * 0.5f + Math.Sign(NPC.velocity.X) * 100, (float)((int)Main.LocalPlayer.Center.Y / 200 * 200 + index * texture2D1.Height)) - screenPos, 
-                                    new Rectangle?(), 
-                                    Lighting.GetColor((int)(NPC.Center.X - NPC.spriteDirection * texture2D1.Width * 0.5) / 16, (int)(Main.LocalPlayer.Center.Y / 16) + index), 
-                                    0.0f, 
-                                    Utils.Size(texture2D1) * 0.5f, 
-                                    NPC.scale, 
-                                    spriteEffects, 
+                    spriteBatch.Draw(texture2D1,
+                                    new Vector2(NPC.Center.X - NPC.spriteDirection * texture2D1.Width * 0.5f + Math.Sign(NPC.velocity.X) * 100, (float)((int)Main.LocalPlayer.Center.Y / 200 * 200 + index * texture2D1.Height)) - screenPos,
+                                    new Rectangle?(),
+                                    Lighting.GetColor((int)(NPC.Center.X - NPC.spriteDirection * texture2D1.Width * 0.5) / 16, (int)(Main.LocalPlayer.Center.Y / 16) + index),
+                                    0.0f,
+                                    Utils.Size(texture2D1) * 0.5f,
+                                    NPC.scale,
+                                    spriteEffects,
                                     0.0f);
             }
             return base.PreDraw(spriteBatch, screenPos, drawColor);

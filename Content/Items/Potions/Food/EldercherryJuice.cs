@@ -4,7 +4,7 @@ using CalamityMod.Tiles.Furniture.CraftingStations;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Items.Potions
+namespace Clamity.Content.Items.Potions.Food
 {
     public class EldercherryJuice : ModItem, ILocalizedModType, IModType
     {

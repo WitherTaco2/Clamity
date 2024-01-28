@@ -41,4 +41,28 @@ Foods: {
 		DisplayName: Сок из вишни древних
 		Tooltip: Значительные улучшения всех характеристик
 	}
+
+	SlagspitterPauldron: {
+		// Tooltip: Major improvements to all stats
+		// DisplayName: Slagspitter Pauldron
+	}
+
+	ClamChowder: {
+		/* Tooltip:
+			'''
+			New Ilmeris style
+			Medium improvements to all stats
+			''' */
+		// DisplayName: Clam Chowder
+	}
+
+	Barolegs: {
+		/* Tooltip:
+			'''
+			The meat actually looks to have come from a barocraw. Not that it matters, it's rancid all the same
+			Varying improvements to all stats
+			Buff based on game stage
+			''' */
+		// DisplayName: Barolegs
+	}
 }

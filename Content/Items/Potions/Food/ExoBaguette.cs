@@ -15,7 +15,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Items.Potions
+namespace Clamity.Content.Items.Potions.Food
 {
     //Increase threshold of alchohol poisoning by 1 buff
     public class ExoBaguette : Baguette, ILocalizedModType, IModType
@@ -26,7 +26,7 @@ namespace Clamity.Content.Items.Potions
             base.SetDefaults();
             Item.buffType = ModContent.BuffType<ExoBaguetteBuff>();
             Item.rare = ModContent.RarityType<Violet>();
-            Item.value += Terraria.Item.sellPrice(0, 2, 40) + ModContent.GetInstance<ExoPrism>().Item.value + ModContent.GetInstance<AuricBar>().Item.value;
+            Item.value += Item.sellPrice(0, 2, 40) + ModContent.GetInstance<ExoPrism>().Item.value + ModContent.GetInstance<AuricBar>().Item.value;
         }
         public override void AddRecipes()
         {

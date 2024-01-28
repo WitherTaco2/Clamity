@@ -112,3 +112,8 @@ WulfrumLeechDagger: {
 		Делает непотребляемый в течение секунды при коротком ударе
 		'''
 }
+
+FrozenVolcano: {
+	// Tooltip: ""
+	// DisplayName: Frozen Volcano
+}

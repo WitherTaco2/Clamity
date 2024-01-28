@@ -1,49 +1,45 @@
-using System.Collections.Generic;
-using System;
+using CalamityMod;
+using CalamityMod.CalPlayer;
+using CalamityMod.Cooldowns;
+using CalamityMod.Events;
+using CalamityMod.NPCs.Yharon;
+using Clamity.Commons;
 using Clamity.Content.Boss.Clamitas;
 using Clamity.Content.Boss.Clamitas.Drop;
-using Clamity.Content.Cooldowns;
-using CalamityMod.Cooldowns;
-using CalamityMod.UI.CalamitasEnchants;
-using CalamityMod;
-using CalamityMod.Items.Accessories;
-using CalamityMod.NPCs.CalClone;
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
-using Clamity.Content.Boss.Pyrogen.NPCs;
-using Clamity.Content.Boss.Pyrogen;
 using Clamity.Content.Boss.Clamitas.NPCs;
+using Clamity.Content.Boss.Pyrogen;
 using Clamity.Content.Boss.Pyrogen.Drop;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework;
-using ReLogic.Content;
-using Clamity.Content.Boss.WoB.NPCs;
+using Clamity.Content.Boss.Pyrogen.NPCs;
 using Clamity.Content.Boss.WoB;
 using Clamity.Content.Boss.WoB.Drop;
-using CalamityMod.Skies;
-using Terraria.Graphics.Effects;
 using Clamity.Content.Boss.WoB.FrozenHell.Biome.Background;
-using CalamityMod.Events;
+using Clamity.Content.Boss.WoB.NPCs;
+using Clamity.Content.Cooldowns;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
+using System;
+using System.Collections.Generic;
+using Terraria;
 using Terraria.Audio;
-using Terraria.DataStructures;
-using CalamityMod.CalPlayer;
-using Clamity.Commons;
+using Terraria.Graphics.Effects;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Clamity
 {
     public class Clamity : Mod
-	{
-        public static Clamity mod; 
+    {
+        public static Clamity mod;
         public static Mod musicMod;
         internal bool MusicAvailable => musicMod != null;
 
         public override void Load()
         {
-            mod = this; 
+            mod = this;
             ModLoader.TryGetMod("ClamityMusic", out musicMod);
 
-            
+
 
             ModLoader.GetMod("CalamityMod").Call(
                 "CreateEnchantment",
@@ -87,54 +83,71 @@ namespace Clamity
                 115,
                 116
             );*/
-            BossRushEvent.Bosses.Insert(15, 
+            BossRushEvent.Bosses.Insert(15,
                 new BossRushEvent.Boss(
-                    ModContent.NPCType<PyrogenBoss>(), 
-                    BossRushEvent.TimeChangeContext.None, 
-                    (BossRushEvent.Boss.OnSpawnContext)null, 
-                    -1, 
-                    false, 
-                    0.0f, 
+                    ModContent.NPCType<PyrogenBoss>(),
+                    BossRushEvent.TimeChangeContext.None,
+                    (BossRushEvent.Boss.OnSpawnContext)null,
+                    -1,
+                    false,
+                    0.0f,
                     ModContent.NPCType<PyrogenShield>()
                 )
             );
-            BossRushEvent.Bosses.Insert(25,
+            BossRushEvent.Bosses.Insert(22,
                 new BossRushEvent.Boss(
                     ModContent.NPCType<ClamitasBoss>(),
                     BossRushEvent.TimeChangeContext.None,
-                    (BossRushEvent.Boss.OnSpawnContext)null,
+                    type =>
+                    {
+                        Player player = Main.player[BossRushEvent.ClosestPlayerToWorldCenter];
+
+                        NPC.SpawnOnPlayer(BossRushEvent.ClosestPlayerToWorldCenter, type);
+                    },
                     -1,
                     false,
                     0.0f
                 )
             );
-            BossRushEvent.Bosses.Insert(43,
+
+            BossRushEvent.BossDeathEffects.Add(ModContent.NPCType<Yharon>(), (NPC npc) =>
+            {
+                for (int i = 0; i < 255; i++)
+                {
+                    Player player = Main.player[i];
+                    if (player != null && player.active)
+                    {
+                        player.Calamity().BossRushReturnPosition = player.Center;
+                        Vector2? underworldPosition = CalamityPlayer.GetUnderworldPosition(player);
+                        if (!underworldPosition.HasValue)
+                        {
+                            break;
+                        }
+
+                        CalamityPlayer.ModTeleport(player, underworldPosition.Value, playSound: false, 2);
+                        SoundStyle style = BossRushEvent.TeleportSound with
+                        {
+                            Volume = 1.6f
+                        };
+                        SoundEngine.PlaySound(in style, player.Center);
+                    }
+                }
+            });
+            BossRushEvent.BossDeathEffects.Add(ModContent.NPCType<WallOfBronze>(), BossRushEvent.BossDeathEffects[113]);
+            BossRushEvent.Bosses.Insert(44,
                 new BossRushEvent.Boss(
                     ModContent.NPCType<WallOfBronze>(),
                     BossRushEvent.TimeChangeContext.None,
-                    (type =>
+                    type =>
                     {
-                        Terraria.Player player = Main.player[BossRushEvent.ClosestPlayerToWorldCenter];
-                        //player.Teleport(new Vector2(100, Main.UnderworldLayer + 40) * 16);
-                        //bool a = true;
-                        //player.Teleport(player.CheckForGoodTeleportationSpot(ref a, 1600, 100, (Main.UnderworldLayer + 40) * 16, 100, new Player.RandomTeleportationAttemptSettings()));
-                        
-                        Vector2? underworldPosition = CalamityPlayer.GetUnderworldPosition(player);
-                        if (underworldPosition.HasValue)
-                        {
-                            CalamityPlayer.ModTeleport(player, underworldPosition.Value, false, 2);
-                            SoundStyle style = BossRushEvent.TeleportSound with
-                            {
-                                Volume = 1.6f
-                            };
-                        }
+                        Player player = Main.player[BossRushEvent.ClosestPlayerToWorldCenter];
 
+                        SoundEngine.PlaySound(new SoundStyle("CalamityMod/Sounds/Custom/SCalSounds/SepulcherSpawn"), player.Center);
+                        //NPC.SpawnBoss(BossRushEvent.ClosestPlayerToWorldCenter, type);
 
                         int center = Main.maxTilesX * 16 / 2;
-                        NPC.NewNPC(player.GetSource_FromThis(), (int)player.Center.X - 1000 * (player.Center.X > center ? -1 : 1), (int)player.Center.Y, ModContent.NPCType<WallOfBronze>());
-                        SoundEngine.PlaySound(new SoundStyle("CalamityMod/Sounds/Custom/SCalSounds/SepulcherSpawn"), player.Center);
-
-                    }),
+                        NPC.NewNPC(player.GetSource_ItemUse(player.HeldItem), (int)player.Center.X - 1000 * (player.Center.X > center ? -1 : 1), (int)player.Center.Y, type);
+                    },
                     -1,
                     true,
                     0.0f,

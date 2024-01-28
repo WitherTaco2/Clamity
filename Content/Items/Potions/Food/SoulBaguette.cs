@@ -11,7 +11,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Items.Potions
+namespace Clamity.Content.Items.Potions.Food
 {
     public class SoulBaguette : Baguette, ILocalizedModType, IModType
     {
@@ -21,7 +21,7 @@ namespace Clamity.Content.Items.Potions
             base.SetDefaults();
             Item.buffTime *= 2;
             Item.rare = ItemRarityID.Pink;
-            Item.value += Terraria.Item.sellPrice(0, 2, 40);
+            Item.value += Item.sellPrice(0, 2, 40);
         }
         public override void AddRecipes()
         {

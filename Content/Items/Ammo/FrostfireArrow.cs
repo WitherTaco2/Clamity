@@ -40,8 +40,9 @@ namespace Clamity.Content.Items.Ammo
         public override void AddRecipes()
         {
             CreateRecipe(999)
-                .AddIngredient(ItemID.HellfireArrow, 666)
-                .AddIngredient(ItemID.FrostburnArrow, 333)
+                //.AddIngredient(ItemID.HellfireArrow, 666)
+                //.AddIngredient(ItemID.FrostburnArrow, 333)
+                .AddIngredient(ItemID.HellfireArrow, 999)
                 .AddIngredient<EnchantedMetal>()
                 .AddTile<CosmicAnvil>()
                 .Register();
