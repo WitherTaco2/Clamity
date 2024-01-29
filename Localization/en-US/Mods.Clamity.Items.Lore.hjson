@@ -5,7 +5,12 @@ LoreWhat: {
 
 LorePyrogen: {
 	DisplayName: Pyrogen
-	Lore: An entity considered to be the opposite of cryogen. We do not know what is there and how it appeared.
+	Lore: 
+		'''
+		An ancient furnace of an unknown firesmith. There is a lot of fire essence sealed in it. But that blacksmith had disappeared... 
+		And when Calamita found the ancient forge, she inadvertently made the souls hidden in it unstable, forming the mind of the furnace, 
+		after which she wants destruction. This is what we call a Pyrogen.
+		'''
 }
 
 WoBLore: {

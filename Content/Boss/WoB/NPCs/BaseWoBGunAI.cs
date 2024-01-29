@@ -1,6 +1,4 @@
 ﻿using CalamityMod;
-using CalamityMod.NPCs;
-using CalamityMod.NPCs.ExoMechs.Ares;
 using CalamityMod.Particles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -8,9 +6,7 @@ using System;
 using System.IO;
 using Terraria;
 using Terraria.DataStructures;
-using Terraria.GameContent;
 using Terraria.Graphics.Shaders;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Clamity.Content.Boss.WoB.NPCs
@@ -142,7 +138,7 @@ namespace Clamity.Content.Boss.WoB.NPCs
                 spriteBatch.ExitShaderRegion();
             }
 
-            Main.spriteBatch.Draw(texture2D1, vector2, rectangle, NPC.GetAlpha(drawColor), NPC.rotation, offset, NPC.scale, effects, 0f); 
+            Main.spriteBatch.Draw(texture2D1, vector2, rectangle, NPC.GetAlpha(drawColor), NPC.rotation, offset, NPC.scale, effects, 0f);
             spriteBatch.End();
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.GameViewMatrix.TransformationMatrix);
             if (ParticleTimer < MaxParticleTimer && AIState == 1)
@@ -179,7 +175,7 @@ namespace Clamity.Content.Boss.WoB.NPCs
                                     Lighting.GetColor((int)(NPC.Center.X - NPC.spriteDirection * texture2D1.Width * 0.5) / 16, (int)(Main.LocalPlayer.Center.Y / 16) + index),
                                     0.0f,
                                     Utils.Size(texture2D1) * 0.5f,
-                                    NPC.scale,
+                                    1f,
                                     spriteEffects,
                                     0.0f);
             }

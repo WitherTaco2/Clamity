@@ -42,17 +42,17 @@ HellFlare: {
 }
 
 SupremeBarrier: {
-	// DisplayName: Supreme Barrier
-	/* Tooltip:
+	DisplayName: Высший барьер
+	Tooltip:
 		'''
-		Allows the ability to ram dash, empowered by the cosmic inferno
-		This dash can slam through enemies without taking damage
-		Grants immunity to knockback and fire blocks
-		Grants immunity to the vast majority of debuffs, including God Slayer Inferno
-		Causes stars to fall and gives increased immune time when damaged
-		+0.5 HP/s life regen and reduces the cooldown of healing potions
-		Absorbs 15% of damage done to players on your team
-		This effect is only active above 25% life
-		Puts a shell around the owner when below 50% life that reduces damage taken
-		''' */
+		Дает способность тарана, усиленную космическим инферно
+		Этот дэш может пробивать врагов, не получая урона
+		Дает иммунитет к отбрасыванию и поджигающим блокам
+		Дает иммунитет к подавляющему большинству дебаффов, включая Инферно Богоубийцы
+		Вызывает падение звезд и увеличивает время иммунитета при получении урона
+		Восстанавливает жизнь на 0,5 ХП/с и уменьшает время отката целебных зелий
+		Поглощает 15% урона, наносимого игрокам вашей команды
+		Этот эффект активен только при превышении 25% жизни
+		При 50% жизни вокруг владельца образуется панцирь, которая уменьшает получаемый урон
+		'''
 }

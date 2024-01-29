@@ -1,40 +1,24 @@
 
-using CalamityMod.BiomeManagers;
-using CalamityMod.Items.Accessories;
-using CalamityMod.Items.Materials;
-using CalamityMod.Items.Placeables.Furniture.Trophies;
-using CalamityMod.Items.Weapons.Magic;
-using CalamityMod.Items.Weapons.Melee;
-using CalamityMod.Items.Weapons.Ranged;
-using CalamityMod.Items.Weapons.Summon;
-using CalamityMod.NPCs;
 using CalamityMod;
+using CalamityMod.BiomeManagers;
+using CalamityMod.Dusts;
+using CalamityMod.Events;
+using CalamityMod.Items.Placeables;
+using CalamityMod.Items.Placeables.Furniture.DevPaintings;
+using CalamityMod.NPCs;
 using CalamityMod.NPCs.SunkenSea;
-using CalamityMod.NPCs.TownNPCs;
-using CalamityMod.Projectiles.Enemy;
+using CalamityMod.Projectiles.Boss;
+using Clamity.Commons;
+using Clamity.Content.Boss.Clamitas.Drop;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.IO;
 using System;
+using System.IO;
+using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.Bestiary;
-using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
-using Terraria;
 using Terraria.ModLoader;
-using Terraria.ModLoader.Utilities;
-using Microsoft.Xna.Framework;
-using CalamityMod.Projectiles.Boss;
-using static Mono.CompilerServices.SymbolWriter.CodeBlockEntry;
-using CalamityMod.Items.Placeables;
-using Clamity.Content.Boss.Clamitas.Drop;
-using CalamityMod.Items.LoreItems;
-using CalamityMod.NPCs.Cryogen;
-using Microsoft.CodeAnalysis;
-using CalamityMod.Dusts;
-using CalamityMod.Items.Placeables.Furniture.DevPaintings;
-using Clamity.Content.Boss.WoB.Projectiles;
-using CalamityMod.Events;
-using Clamity.Commons;
 
 namespace Clamity.Content.Boss.Clamitas.NPCs
 {
@@ -174,7 +158,7 @@ namespace Clamity.Content.Boss.Clamitas.NPCs
 
             NPC.chaseable = hasBeenHit;
 
-            
+
             //hitAmount = 5;
             if (hitAmount != 5)
             {
@@ -688,6 +672,10 @@ namespace Clamity.Content.Boss.Clamitas.NPCs
             npcLoot.AddConditionalPerPlayer(() => !ClamitySystem.downedClamitas, ModContent.ItemType<LoreWhat>(), ui: true, DropHelper.FirstKillText);
             npcLoot.DefineConditionalDropSet(DropHelper.RevAndMaster).Add(ModContent.ItemType<ClamitasRelic>());
             npcLoot.Add(ModContent.ItemType<ThankYouPainting>(), 100);
+            npcLoot.DefineConditionalDropSet(DropHelper.GFB).Add(ItemID.BlackPearl, 1, 1, 9999, hideLootReport: true);
+            npcLoot.DefineConditionalDropSet(DropHelper.GFB).Add(ItemID.WhitePearl, 1, 1, 9999, hideLootReport: true);
+            npcLoot.DefineConditionalDropSet(DropHelper.GFB).Add(ItemID.PinkPearl, 1, 1, 9999, hideLootReport: true);
+            npcLoot.DefineConditionalDropSet(DropHelper.GFB).Add(ItemID.GalaxyPearl, 1, 1, 9999, hideLootReport: true);
 
             /*int[] itemIDs = new int[4]
             {

@@ -1,18 +1,13 @@
-﻿using CalamityMod.Sounds;
-using CalamityMod;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria.Audio;
-using Terraria;
-using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
+﻿using CalamityMod;
+using CalamityMod.Sounds;
 using CalamityMod.World;
-using Terraria.ID;
-using Clamity.Content.Boss.WoB.Projectiles;
 using Clamity.Commons;
+using Clamity.Content.Boss.WoB.Projectiles;
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.Audio;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Clamity.Content.Boss.WoB.NPCs
 {
@@ -43,7 +38,7 @@ namespace Clamity.Content.Boss.WoB.NPCs
             NPC.Calamity().VulnerableToSickness = new bool?(false);
             NPC.Calamity().VulnerableToElectricity = new bool?(true);
             if (Main.getGoodWorld)
-                NPC.scale = 0.5f;
+                NPC.scale = 0.75f;
         }
         public override int MaxParticleTimer => 144;
         public override int MaxTimer => 500;

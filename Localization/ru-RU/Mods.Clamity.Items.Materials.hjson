@@ -23,16 +23,6 @@ MediocreMatter: {
 	// Tooltip: ""
 }
 
-EssenceOfHeat: {
-	// Tooltip: ""
-	// DisplayName: Essence Of Heat
-}
-
-CoreOfHeat: {
-	// Tooltip: ""
-	// DisplayName: Core Of Heat
-}
-
 EnchantedMetal: {
 	Tooltip: Металл наполенный душами самой Террарии
 	DisplayName: Зачарованный металл

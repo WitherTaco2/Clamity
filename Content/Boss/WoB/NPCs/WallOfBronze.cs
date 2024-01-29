@@ -31,7 +31,7 @@ namespace Clamity.Content.Boss.WoB.NPCs
 
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0)
             {
-                CustomTexturePath = Texture + "_BossChecklist",
+                CustomTexturePath = Texture + "_Bestiary",
                 //CustomTexturePath = "CalamityMod/Projectiles/InvisibleProj",
                 Scale = 0.75f,
                 Position = new Vector2(50, 10),
@@ -234,7 +234,7 @@ namespace Clamity.Content.Boss.WoB.NPCs
                                     Lighting.GetColor((int)(NPC.Center.X - NPC.spriteDirection * texture2D1.Width * 0.5) / 16, (int)(Main.LocalPlayer.Center.Y / 16) + index),
                                     0.0f,
                                     Utils.Size(texture2D1) * 0.5f,
-                                    NPC.scale,
+                                    1f,
                                     spriteEffects,
                                     0.0f);
             }
@@ -254,7 +254,7 @@ namespace Clamity.Content.Boss.WoB.NPCs
                                     Lighting.GetColor((int)(NPC.Center.X - NPC.spriteDirection * texture2D1.Width * 0.5) / 16, (int)(Main.LocalPlayer.Center.Y / 16) + index),
                                     0.0f,
                                     Utils.Size(texture2D1) * 0.5f,
-                                    NPC.scale,
+                                    1f,
                                     spriteEffects,
                                     0.0f);
             }
@@ -288,13 +288,13 @@ namespace Clamity.Content.Boss.WoB.NPCs
             //Lore
             npcLoot.AddConditionalPerPlayer(() => !ClamitySystem.downedWallOfBronze, ModContent.ItemType<WoBLore>(), ui: true, DropHelper.FirstKillText);
             //GFB drop
-            for (int i = 0; i < 20; i++)
+            /*for (int i = 0; i < 20; i++)
             {
-                npcLoot.DefineConditionalDropSet(DropHelper.GFB).Add(ItemID.CopperBar, 1, 10, 10, true);
-                npcLoot.DefineConditionalDropSet(DropHelper.GFB).Add(ItemID.TinBar, 1, 10, 10, true);
-            }
-            //npcLoot.DefineConditionalDropSet(DropHelper.GFB).Add(ItemID.CopperPlating, 1, 1, 9999, hideLootReport: true);
-            //npcLoot.DefineConditionalDropSet(DropHelper.GFB).Add(ItemID.TinPlating, 1, 1, 9999, hideLootReport: true);
+                npcLoot.DefineConditionalDropSet(DropHelper.GFB).Add(ItemID.CopperBar, 1, 1, 10, true);
+                npcLoot.DefineConditionalDropSet(DropHelper.GFB).Add(ItemID.TinBar, 1, 1, 10, true);
+            }*/
+            npcLoot.DefineConditionalDropSet(DropHelper.GFB).Add(ItemID.CopperPlating, 1, 1, 9999, hideLootReport: true);
+            npcLoot.DefineConditionalDropSet(DropHelper.GFB).Add(ItemID.TinPlating, 1, 1, 9999, hideLootReport: true);
 
         }
         public override void OnKill()

@@ -1,20 +1,16 @@
-﻿using CalamityMod.Sounds;
-using CalamityMod;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria.Audio;
-using Terraria;
-using Terraria.DataStructures;
+﻿using CalamityMod;
+using CalamityMod.Sounds;
+using Clamity.Commons;
+using Clamity.Content.Boss.WoB.Projectiles;
 using Microsoft.Xna.Framework;
-using Terraria.ModLoader;
 using Microsoft.Xna.Framework.Graphics;
+using System;
+using Terraria;
+using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
-using Clamity.Content.Boss.WoB.Projectiles;
-using Clamity.Commons;
+using Terraria.ModLoader;
 
 namespace Clamity.Content.Boss.WoB.NPCs
 {
@@ -49,7 +45,7 @@ namespace Clamity.Content.Boss.WoB.NPCs
             NPC.Calamity().VulnerableToSickness = new bool?(false);
             NPC.Calamity().VulnerableToElectricity = new bool?(true);
             if (Main.getGoodWorld)
-                NPC.scale = 0.5f;
+                NPC.scale = 0.75f;
         }
         public override int MaxParticleTimer => 200;
         public override int MaxTimer => 500;
@@ -63,6 +59,7 @@ namespace Clamity.Content.Boss.WoB.NPCs
         public override void Attack()
         {
             if (ClawProj == -1)
+            {
                 ClawProj = Projectile.NewProjectile(NPC.GetSource_FromAI(),
                                                     NPC.Center,
                                                     Vector2.UnitX.RotatedBy(NPC.rotation) * 10,
@@ -71,6 +68,9 @@ namespace Clamity.Content.Boss.WoB.NPCs
                                                     0,
                                                     Main.myPlayer,
                                                     NPC.whoAmI);
+                if (Main.getGoodWorld)
+                    Main.projectile[(int)ClawProj].scale = 0.75f;
+            }
             else
             {
                 //Main.NewText(ClawProj + " " + NPC.whoAmI);

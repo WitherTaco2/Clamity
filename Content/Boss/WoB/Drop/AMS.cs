@@ -1,14 +1,9 @@
 ﻿using CalamityMod;
-using CalamityMod.Projectiles.Typeless;
 using CalamityMod.Rarities;
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -28,10 +23,12 @@ namespace Clamity.Content.Boss.WoB.Drop
             Item.value = Terraria.Item.sellPrice(0, 30, 24);
             Item.rare = ModContent.RarityType<Violet>();
 
-            Item.useTime = Item.useAnimation = 25;
+            Item.useTime = Item.useAnimation = 10;
             Item.useStyle = ItemUseStyleID.Swing;
             Item.noUseGraphic = true;
             Item.noMelee = true;
+            Item.UseSound = new SoundStyle?(SoundID.Item1);
+            Item.autoReuse = false;
 
             Item.damage = 100;
             Item.knockBack = 0;
@@ -39,7 +36,32 @@ namespace Clamity.Content.Boss.WoB.Drop
 
             Item.shoot = ModContent.ProjectileType<AMSProj>();
             Item.shootSpeed = 5f;
-            Item.UseSound = new SoundStyle?(SoundID.Item1);
+        }
+        public int Power = 1;
+        public override bool AltFunctionUse(Player player)
+        {
+            return true;
+        }
+        public override bool? UseItem(Player player)
+        {
+            if (player.altFunctionUse == 2)
+            {
+                Power++;
+                if (Power > 5)
+                    Power = 1;
+                CombatText.NewText(new Microsoft.Xna.Framework.Rectangle((int)player.position.X, (int)player.position.Y, player.width, player.height), Color.Orange, Power);
+                return true;
+            }
+            return base.UseItem(player);
+        }
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            if (player.altFunctionUse != 2)
+            {
+                int index = Projectile.NewProjectile(source, position, velocity, type, damage, knockback, player.whoAmI);
+                Main.projectile[index].Clamity().extraAI[0] = Power;
+            }
+            return false;
         }
     }
     public class AMSProj : ModProjectile
@@ -139,7 +161,7 @@ namespace Clamity.Content.Boss.WoB.Drop
             base.Projectile.ExpandHitboxBy(15);
             if (base.Projectile.owner == Main.myPlayer)
             {
-                base.Projectile.ExplodeTiles(5, false);
+                base.Projectile.ExplodeTiles(5 + (int)(Projectile.Clamity().extraAI[0] - 1) * 2, false);
             }
         }
     }
