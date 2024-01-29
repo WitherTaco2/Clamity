@@ -36,3 +36,5 @@ Acid Tides Update
 	- Работает как грань ночи но
 	  имеет 4 маленьких удара вместо
 	  1ого большого
+* Profusion, the Viral God					https://calamitymod.fandom.com/wiki/Profusion,_the_Viral_God
+* Cumulomenace								https://calamitymod.fandom.com/wiki/Cumulomenace#Phase_3
