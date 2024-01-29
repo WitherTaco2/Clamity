@@ -1389,12 +1389,17 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
             npcLoot.Add(ItemDropRule.Common(ItemID.DungeonDesertKey, 3));
 
             mainRule.Add(ItemDropRule.Common(ModContent.ItemType<ThankYouPainting>(), 100));
-            mainRule.Add(ItemDropRule.Common(ModContent.ItemType<PyrogenMask>(), 7));
-            npcLoot.DefineConditionalDropSet(DropHelper.RevAndMaster).Add(ModContent.ItemType<PyrogenRelic>());
-            npcLoot.Add(ModContent.ItemType<PyrogenTrophy>(), 10);
-            npcLoot.AddConditionalPerPlayer(() => !ClamitySystem.downedPyrogen, ModContent.ItemType<LorePyrogen>(), ui: true, DropHelper.FirstKillText);
 
-            //npcLoot.DefineConditionalDropSet(DropHelper.GFB).Add(ModContent.ItemType<BloodflareCore>());
+            //Mask
+            mainRule.Add(ItemDropRule.Common(ModContent.ItemType<PyrogenMask>(), 7));
+            //Relic
+            npcLoot.DefineConditionalDropSet(DropHelper.RevAndMaster).Add(ModContent.ItemType<PyrogenRelic>());
+            //Trophy
+            npcLoot.Add(ModContent.ItemType<PyrogenTrophy>(), 10);
+            //Lore
+            npcLoot.AddConditionalPerPlayer(() => !ClamitySystem.downedPyrogen, ModContent.ItemType<LorePyrogen>(), ui: true, DropHelper.FirstKillText);
+            //GFB drop
+            npcLoot.DefineConditionalDropSet(DropHelper.GFB).Add(ItemID.Hellstone, 1, 1, 9999, hideLootReport: true);
         }
 
         public override void OnKill()

@@ -29,7 +29,7 @@ Ranged: {
 
 Summon.Minion.HellstoneShellfishStaffMinion.DisplayName: Hellstone Shellfish
 ShortstrikeEffect.DisplayName: Shortstrike Effect
-ImpalerProjectile.DisplayName: Impaler
+ImpalerProjectile.DisplayName: Impaler Stake
 HadopelagicEchoProjectile.DisplayName: Hadopelagic Echo
 HadopelagicEchoProjectile2.DisplayName: Hadopelagic Echo
 ChargedBlast3.DisplayName: Charged Blast
@@ -41,7 +41,7 @@ WulfrumLureBobber.DisplayName: Wulfrum Lure Bobber
 Rogue: {
 	MoltenPiercerProjectile.DisplayName: Molten Piercer
 	WulfrumShockCutterProjectile.DisplayName: Wulfrum Shock Cutter
-	FrozenStarShurikenProjectile.DisplayName: Frozen Star Shuriken Projectile
+	FrozenStarShurikenProjectile.DisplayName: Frozen Star Shuriken
 }
 
 CrustallineProjecile.DisplayName: Crustalline
@@ -54,22 +54,23 @@ Boss: {
 	Fireblast.DisplayName: Fireblast
 	FireBarrage.DisplayName: Fire Barrage
 	FireBarrageHoming.DisplayName: Fire Barrage Homing
-	WoBDeathrayStart.DisplayName: Wo B Deathray Start
+	WoBDeathrayStart.DisplayName: Bronze Deathray
 }
 
-WarArrowProjectile.DisplayName: War Arrow Projectile
+WarArrowProjectile.DisplayName: War Arrow
 FireBomb.DisplayName: Fire Bomb
 FireBombExplosion.DisplayName: Fire Bomb Explosion
 Firethrower.DisplayName: Firethrower
 PyrogenSummonAnimation.DisplayName: Pyrogen Summon Animation
 PyrogenKillExplosion.DisplayName: Pyrogen Kill Explosion
-DraculasCharmProj.DisplayName: Draculas Charm Proj
-Typeless.PyroShieldAccessory.DisplayName: Pyro Shield Accessory
+DraculasCharmProj.DisplayName: Dracula
+Typeless.PyroShieldAccessory.DisplayName: Pyro Shield
 WallOfBronzeTorretBlast.DisplayName: Wall Of Bronze Torret Blast
-WallOfBronzeLaserBeamStart.DisplayName: Wall Of Bronze Laser Beam Start
-WallOfBronzeClawProjectile.DisplayName: Wall Of Bronze Claw Projectile
+WallOfBronzeLaserBeamStart.DisplayName: Wall Of Bronze Laser Beam
+WallOfBronzeClawProjectile.DisplayName: Wall Of Bronze Claw
 AMSProj.DisplayName: A M S Proj
-TheWOBblerProjectile.DisplayName: The W O Bbler Projectile
-CyanSolutionProjectile.DisplayName: Cyan Solution Projectile
-FrostfireArrowProj.DisplayName: Frostfire Arrow Proj
-FrostfireArrowProj2.DisplayName: Frostfire Arrow Proj2
+TheWOBblerProjectile.DisplayName: Ice Chunk
+CyanSolutionProjectile.DisplayName: Cyan Solution
+FrostfireArrowProj.DisplayName: Frostfire Arrow
+FrostfireArrowProj2.DisplayName: Frostfire Arrow Explosion
+MoonstoneKnifeProjectile.DisplayName: Moonstone Knife

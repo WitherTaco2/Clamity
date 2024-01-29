@@ -279,15 +279,22 @@ namespace Clamity.Content.Boss.WoB.NPCs
             mainRule.Add(ItemDropRule.OneFromOptions(1, itemIDs));
 
             mainRule.Add(ItemDropRule.Common(ModContent.ItemType<ThankYouPainting>(), 100));
-            mainRule.Add(ItemDropRule.Common(ModContent.ItemType<WoBMask>(), 7));
-            npcLoot.DefineConditionalDropSet(DropHelper.RevAndMaster).Add(ModContent.ItemType<WoBRelic>());
+            //Trophy
             npcLoot.Add(ModContent.ItemType<WoBTrophy>(), 10);
-            for (int i = 0; i < 3; i++)
+            //Relic
+            npcLoot.DefineConditionalDropSet(DropHelper.RevAndMaster).Add(ModContent.ItemType<WoBRelic>());
+            //Mask
+            mainRule.Add(ItemDropRule.Common(ModContent.ItemType<WoBMask>(), 7));
+            //Lore
+            npcLoot.AddConditionalPerPlayer(() => !ClamitySystem.downedWallOfBronze, ModContent.ItemType<WoBLore>(), ui: true, DropHelper.FirstKillText);
+            //GFB drop
+            for (int i = 0; i < 20; i++)
             {
                 npcLoot.DefineConditionalDropSet(DropHelper.GFB).Add(ItemID.CopperBar, 1, 10, 10, true);
                 npcLoot.DefineConditionalDropSet(DropHelper.GFB).Add(ItemID.TinBar, 1, 10, 10, true);
             }
-            npcLoot.AddConditionalPerPlayer(() => !ClamitySystem.downedWallOfBronze, ModContent.ItemType<WoBLore>(), ui: true, DropHelper.FirstKillText);
+            //npcLoot.DefineConditionalDropSet(DropHelper.GFB).Add(ItemID.CopperPlating, 1, 1, 9999, hideLootReport: true);
+            //npcLoot.DefineConditionalDropSet(DropHelper.GFB).Add(ItemID.TinPlating, 1, 1, 9999, hideLootReport: true);
 
         }
         public override void OnKill()

@@ -16,3 +16,8 @@ TheGenerator: {
 	DisplayName: The Generator
 	Tooltip: Launches a master crown sigil that homing and draws a nearby enemies
 }
+
+MoonstoneKnives: {
+	DisplayName: Moonstone Knives
+	Tooltip: Throws several knives that restore the users mana
+}

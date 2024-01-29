@@ -10,27 +10,28 @@ namespace Clamity.Content.Items.Weapons.Magic
 {
     public class MoonstoneKnives : ModItem, ILocalizedModType
     {
-        public new string LocalizationCategory => "Items.Weapons.Melee";
+        public new string LocalizationCategory => "Items.Weapons.Magic";
         public override void SetDefaults()
         {
             Item.width = 18;
-            Item.damage = 9;
-            Item.DamageType = DamageClass.MeleeNoSpeed;
-            Item.noMelee = true;
-            Item.noUseGraphic = true;
-            Item.useAnimation = 21;
-            Item.useStyle = ItemUseStyleID.Swing;
-            Item.useTime = 21;
-            Item.knockBack = 3f;
-            Item.UseSound = SoundID.Item39;
-            Item.autoReuse = true;
             Item.height = 20;
-
             Item.value = CalamityGlobalItem.Rarity2BuyPrice;
             Item.rare = ItemRarityID.Green;
 
+            Item.useAnimation = 15;
+            Item.useTime = 15;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.UseSound = SoundID.Item39;
+            Item.noMelee = true;
+            Item.noUseGraphic = true;
+            Item.autoReuse = true;
+
+            Item.knockBack = 2f;
+            Item.damage = 3;
+            Item.DamageType = DamageClass.Magic;
+
             Item.shoot = ModContent.ProjectileType<MoonstoneKnifeProjectile>();
-            Item.shootSpeed = 15f;
+            Item.shootSpeed = 13f;
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
