@@ -161,8 +161,6 @@ namespace Clamity
         {
             Filters.Scene["Clamity:FrozenHellSky"] = new Filter(new FrozenHellShaderData("FilterMiniTower").UseColor(1.0f, 0.3f, 0.3f).UseOpacity(0.65f), EffectPriority.VeryHigh);
             SkyManager.Instance["Clamity:FrozenHellSky"] = (CustomSky)new FrozenHellSky();
-            Filters.Scene["Clamity:FrozenHellSky"].Load();
-            SkyManager.Instance["Clamity:FrozenHellSky"].Load();
         }
         private void LoadCooldowns()
         {

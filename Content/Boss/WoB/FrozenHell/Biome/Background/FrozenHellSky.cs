@@ -55,14 +55,5 @@ namespace Clamity.Content.Boss.WoB.FrozenHell.Biome.Background
             //UseColor(0, 148, 255);
             base.Apply();
         }
-
-        public override void Update(GameTime gameTime)
-        {
-            if (!Main.LocalPlayer.Clamity().ZoneFrozenHell)
-            {
-                Filters.Scene["Clamity:FrozenHellSky"].Deactivate();
-            }
-        }
-
     }
 }

@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
+using Terraria.Graphics.Effects;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -16,12 +17,17 @@ namespace Clamity.Content.Boss.WoB.FrozenHell.Biome
         public override Color? BackgroundColor => base.BackgroundColor;
         public override bool IsBiomeActive(Player player) => ModContent.GetInstance<FrozenHellTileCounter>().frozenAsh >= 120 && player.ZoneUnderworldHeight;
         public override int Music => /*Clamity.mod.GetMusicFromMusicMod("") ??*/ MusicID.OtherworldlySpace;
+
+        public override void SpecialVisuals(Player player, bool isActive)
+        {
+            player.ManageSpecialBiomeVisuals("Clamity:FrozenHellSky", isActive);
+        }
     }
     public class FrozenHellTileCounter : ModSystem
     {
         public int frozenAsh;
         public override void TileCountsAvailable(ReadOnlySpan<int> tileCounts)
-        { 
+        {
             frozenAsh = tileCounts[ModContent.TileType<FrozenAshTile>()];
         }
     }
