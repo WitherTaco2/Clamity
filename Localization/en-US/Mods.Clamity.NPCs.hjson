@@ -10,7 +10,7 @@ ClamitasBoss: {
 
 PyrogenBoss: {
 	DisplayName: Pyrogen
-	Bestiary: Pyrogen is giant magic furnace which made by unknown fire wizard. He contain a lot of fire essence. 'Over 1000C on one second'
+	Bestiary: Pyrogen is giant magic furnace which made by unknown firesmith. He contain a lot of fire essence. 'Over 1000C on one second'
 
 	BossChecklistIntegration: {
 		SpawnInfo: Use an [i:Clamity/PyroKey] Pyro Key in the Desert

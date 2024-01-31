@@ -10,7 +10,7 @@ ClamitasBoss: {
 
 PyrogenBoss: {
 	DisplayName: Пироген
-	Bestiary: Пироген - гигантская магическая печь, созданная неизвестным мастером огня. В нем много огненной эссенции. 'Более 1000 раз в секунду'
+	Bestiary: Пироген - гигантская магическая печь, созданная неизвестным кузнеца огня. В нем много огненной эссенции. 'Более 1000 раз в секунду'
 
 	BossChecklistIntegration: {
 		// SpawnInfo: Use an [i:Clamity/PyroKey] Pyro Key in the Desert

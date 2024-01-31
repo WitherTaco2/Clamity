@@ -1,7 +1,5 @@
 ﻿using CalamityMod;
-using CalamityMod.Rarities;
 using Microsoft.Xna.Framework;
-using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -45,6 +43,8 @@ namespace Clamity.Content.Boss.WoB.FrozenHell.Items
             Main.tileBlockLight[Type] = true;
             Main.tileOreFinderPriority[Type] = (short)950;
             CalamityUtils.MergeWithGeneral(Type);
+            CalamityUtils.MergeWithHell(Type);
+            CalamityUtils.SetMerge(Type, ModContent.TileType<FrozenAshTile>());
             TileID.Sets.Ore[Type] = true;
             TileID.Sets.OreMergesWithMud[Type] = true;
             this.AddMapEntry(new Color(208, (int)byte.MaxValue, (int)byte.MaxValue), this.CreateMapEntryName());

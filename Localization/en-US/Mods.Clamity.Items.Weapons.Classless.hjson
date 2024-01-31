@@ -1,4 +1,8 @@
 AMS: {
 	DisplayName: AMS
-	Tooltip: Create a bomb by using mana
+	Tooltip:	
+		'''
+		Create a bomb by using mana
+		Right Click to increase explosion radius (up to 5 power)
+		'''
 }
