@@ -7,7 +7,7 @@ Mod has official support of English and Russian Localization
 	[*] over 25 old and new weapons (shortswords included)
 	[*] new post-moonlord biome - Frozen Hell
 	[*] 1 armor set
-	[*] New foods
+	[*] new foods
 	[*] And more
 [/list]
 
