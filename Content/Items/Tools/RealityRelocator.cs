@@ -2,11 +2,11 @@
 using CalamityMod.Items;
 using CalamityMod.Items.Placeables.Ores;
 using CalamityMod.Items.Placeables.Plates;
+using CalamityMod.Tiles.Furniture.CraftingStations;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
-namespace Clamity.Content.Items
+namespace Clamity.Content.Items.Tools
 {
     public class RealityRelocator : NormalityRelocator
     {
@@ -24,8 +24,8 @@ namespace Clamity.Content.Items
         public override void AddRecipes()
         {
             CreateRecipe().AddIngredient(ItemID.RodOfHarmony).AddIngredient<Cinderplate>(5).AddIngredient<ExodiumCluster>(10)
-                .AddIngredient(3459, 30)
-                .AddTile(412)
+                .AddIngredient(ItemID.FragmentStardust, 30)
+                .AddTile<DraedonsForge>()
                 .Register();
         }
     }
