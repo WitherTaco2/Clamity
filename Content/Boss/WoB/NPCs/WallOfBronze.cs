@@ -4,6 +4,7 @@ using CalamityMod.Items.Placeables.Furniture.DevPaintings;
 using CalamityMod.Items.Potions;
 using CalamityMod.World;
 using Clamity.Content.Boss.WoB.Drop;
+using Clamity.Content.Boss.WoB.FrozenHell.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -299,6 +300,32 @@ namespace Clamity.Content.Boss.WoB.NPCs
         }
         public override void OnKill()
         {
+            if (!ClamitySystem.downedWallOfBronze)
+            {
+                int basePosX = (int)NPC.Center.X / 16;
+                for (int i = -300; i < 300; i++)
+                {
+                    for (int j = Main.UnderworldLayer; j < Main.bottomWorld / 16 - 1; j++)
+                    {
+                        int posX = (int)MathHelper.Clamp(basePosX + i, 0, Main.maxTilesX);
+
+                        if (Main.tile[posX, j].TileType == TileID.Ash || Main.tile[posX, j].TileType == TileID.AshGrass)
+                        {
+                            Main.tile[posX, j].TileType = (ushort)ModContent.TileType<FrozenAshTile>();
+                            WorldGen.SquareTileFrame(posX, j);
+                            NetMessage.SendTileSquare(-1, posX, j, 1);
+                        }
+
+                        if (Main.tile[posX, j].TileType == TileID.Hellstone)
+                        {
+                            Main.tile[posX, j].TileType = (ushort)ModContent.TileType<FrozenHellstoneTile>();
+                            WorldGen.SquareTileFrame(posX, j);
+                            NetMessage.SendTileSquare(-1, posX, j, 1);
+                        }
+                    }
+                }
+            }
+
             ClamitySystem.downedWallOfBronze = true;
             CalamityNetcode.SyncWorld();
         }

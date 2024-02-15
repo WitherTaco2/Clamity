@@ -316,7 +316,7 @@ namespace Clamity.Content.Boss.Clamitas.NPCs
                         NPC.noGravity = false;
                         if (FallAttackType == 1)
                         {
-                            if (AttackCounter < 4)
+                            if (AttackCounter < 3)
                             {
                                 attack = 1;
                                 NPC.ai[2] = 0f;
