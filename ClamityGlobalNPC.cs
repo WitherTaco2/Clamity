@@ -3,6 +3,7 @@ using CalamityMod.NPCs.Abyss;
 using CalamityMod.NPCs.NormalNPCs;
 using CalamityMod.NPCs.PlaguebringerGoliath;
 using CalamityMod.NPCs.SunkenSea;
+using Clamity.Content.Boss.WoB.FrozenHell.Items;
 using Clamity.Content.Items.Materials;
 using Clamity.Content.Items.Potions.Food;
 using Clamity.Content.Items.Weapons.Melee.Shortswords;
@@ -11,6 +12,7 @@ using Clamity.Content.Items.Weapons.Ranged.Guns;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Clamity
@@ -174,6 +176,11 @@ namespace Clamity
                 if (damage < num24 / 4)
                     damage = num24 / 4;
             }
+        }
+        public override void ModifyShop(NPCShop shop)
+        {
+            if (shop.NpcType == NPCID.Steampunker)
+                shop.Add<CyanSolution>(new Condition(Language.GetOrRegister("Mods.Clamity.Misc.None"), () => ClamitySystem.downedWallOfBronze));
         }
     }
 }
