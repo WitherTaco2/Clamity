@@ -10,7 +10,10 @@ Items: {
 	}
 }
 
-Misc.RecipeGroup.AnySandBlock: Любой песок
+Misc: {
+	RecipeGroup.AnySandBlock: Любой песок
+	// None: ""
+}
 
 Tiles: {
 	// FrozenHellstoneTile.MapEntry: Frozen Hellstone Tile

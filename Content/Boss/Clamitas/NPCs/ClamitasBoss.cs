@@ -199,6 +199,13 @@ namespace Clamity.Content.Boss.Clamitas.NPCs
                 {
                     attack = Main.rand.Next(2);
                 }
+                /*int random = Main.rand.Next(100);
+                if (random > 0 && random <= 20)
+                    attack = 0;
+                if (random > 20 && random <= 50)
+                    attack = 1;
+                else
+                    attack = 2;*/
             }
             else if (attack == 0)
             {
@@ -237,7 +244,7 @@ namespace Clamity.Content.Boss.Clamitas.NPCs
                 {
                     NPC.damage = 0;
                     NPC.chaseable = false;
-                    NPC.dontTakeDamage = true;
+                    //NPC.dontTakeDamage = true;
                     NPC.noGravity = true;
                     NPC.noTileCollide = true;
                     NPC.alpha += 8;
@@ -283,7 +290,7 @@ namespace Clamity.Content.Boss.Clamitas.NPCs
                         NPC.damage = Main.expertMode ? 200 : 100;
 
                         NPC.chaseable = true;
-                        NPC.dontTakeDamage = false;
+                        //NPC.dontTakeDamage = false;
                         NPC.alpha = 0;
                         NPC.ai[2] = 3f;
                         NPC.netUpdate = true;
@@ -464,8 +471,8 @@ namespace Clamity.Content.Boss.Clamitas.NPCs
                         float num16 = 1200f;
                         for (int l = 0; l < 15; l++)
                         {
-                            Projectile.NewProjectile(NPC.GetSource_FromAI(), player.Center.X + num16 * 1.4f, player.Center.Y - 950f, 0f, 4f, ModContent.ProjectileType<BrimstoneHellblast>(), NPC.GetProjectileDamageClamity(ModContent.ProjectileType<BrimstoneHellblast>()), 0f, Main.myPlayer);
-                            Projectile.NewProjectile(NPC.GetSource_FromAI(), player.Center.X + num16 * 1.25f, player.Center.Y - 1250f, 0f, 2.5f, ModContent.ProjectileType<BrimstoneHellblast>(), NPC.GetProjectileDamageClamity(ModContent.ProjectileType<BrimstoneHellblast>()), 0f, Main.myPlayer);
+                            Projectile.NewProjectile(NPC.GetSource_FromAI(), player.Center.X + num16 * 1.4f, player.Center.Y - 950f, 0f, 4f, ModContent.ProjectileType<BrimstoneHellblast>(), NPC.GetProjectileDamageClamity(ModContent.ProjectileType<BrimstonePearlBurst>()), 0f, Main.myPlayer);
+                            Projectile.NewProjectile(NPC.GetSource_FromAI(), player.Center.X + num16 * 1.25f, player.Center.Y - 1250f, 0f, 2.5f, ModContent.ProjectileType<BrimstoneHellblast>(), NPC.GetProjectileDamageClamity(ModContent.ProjectileType<BrimstonePearlBurst>()), 0f, Main.myPlayer);
                             num16 -= 150f;
                         }
                     }
