@@ -1,9 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
@@ -25,7 +21,7 @@ namespace Clamity.Content.Boss.WoB.FrozenHell.Items
             Item.ammo = AmmoID.Solution;
             Item.width = 10;
             Item.height = 12;
-            Item.value = 25000;
+            Item.value = 5000;
             Item.rare = ItemRarityID.Orange;
             Item.maxStack = 9999;
             Item.consumable = true;

@@ -47,21 +47,12 @@ FrozenAsh: {
 	DisplayName: Frozen Ash
 }
 
-ShadowspecToilet: {
-	DisplayName: Shadowspec Toilet
-	Tooltip:
-		'''
-		This was used by Xeroc itself
-		Sitting on such a throne would be a disgrace to all
-		'''
-}
-
 PyroplateWall: {
 	Tooltip: ""
 	DisplayName: Pyroplate Wall
 }
 
 Pyroplate: {
-	Tooltip: ""
+	Tooltip: "It resonates with otherworldly energy"
 	DisplayName: Pyroplate
 }
