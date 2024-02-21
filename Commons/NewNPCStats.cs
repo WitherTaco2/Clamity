@@ -1,6 +1,4 @@
-﻿using CalamityMod;
-using CalamityMod.NPCs.NormalNPCs;
-using CalamityMod.Projectiles.Boss;
+﻿using CalamityMod.Projectiles.Boss;
 using CalamityMod.World;
 using Clamity.Content.Boss.Clamitas.NPCs;
 using Clamity.Content.Boss.Pyrogen.NPCs;
@@ -9,11 +7,7 @@ using Clamity.Content.Boss.WoB.NPCs;
 using Clamity.Content.Boss.WoB.Projectiles;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -27,11 +21,31 @@ namespace Clamity.Commons
             EnemyStats.ProjectileDamageValues = new SortedDictionary<Tuple<int, int>, int[]>()
             {
                 {
+                  new Tuple<int, int>(ModContent.NPCType<PyrogenShield>(), ModContent.ProjectileType<FireBarrage>()),
+                  new int[5]{ 60, 100, 120, 132, 180 }
+                },
+                {
+                  new Tuple<int, int>(ModContent.NPCType<PyrogenShield>(), ModContent.ProjectileType<Fireblast>()),
+                  new int[5]{ 80, 120, 136, 152, 210 }
+                },
+                {
                   new Tuple<int, int>(ModContent.NPCType<PyrogenBoss>(), ModContent.ProjectileType<FireBarrage>()),
-                  new int[5]{ 90, 110, 130, 136, 150 }
+                  new int[5]{ 60, 100, 120, 132, 180 }
+                },
+                {
+                  new Tuple<int, int>(ModContent.NPCType<PyrogenBoss>(), ModContent.ProjectileType<Fireblast>()),
+                  new int[5]{ 80, 120, 136, 152, 210 }
+                },
+                {
+                  new Tuple<int, int>(ModContent.NPCType<PyrogenBoss>(), ModContent.ProjectileType<Firethrower>()),
+                  new int[5]{ 60, 100, 120, 132, 180 }
                 },
                 {
                   new Tuple<int, int>(ModContent.NPCType<ClamitasBoss>(), ModContent.ProjectileType<BrimstoneBarrage>()),
+                  new int[5]{ 90, 110, 130, 136, 150 }
+                },
+                {
+                  new Tuple<int, int>(ModContent.NPCType<ClamitasBoss>(), ModContent.ProjectileType<BrimstonePearlBurst>()),
                   new int[5]{ 90, 110, 130, 136, 150 }
                 },
                 {

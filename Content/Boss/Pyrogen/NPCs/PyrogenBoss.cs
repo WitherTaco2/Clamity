@@ -1,44 +1,27 @@
-﻿using Terraria.ID;
-using Terraria;
-using Terraria.Audio;
-using Terraria.GameContent;
-using Terraria.GameContent.Bestiary;
-using Terraria.ModLoader;
-using Terraria.GameContent.UI.BigProgressBar;
-using ReLogic.Content;
+﻿using CalamityMod;
+using CalamityMod.Buffs.DamageOverTime;
+using CalamityMod.Events;
+using CalamityMod.Items.Placeables.Furniture.DevPaintings;
+using CalamityMod.NPCs;
+using CalamityMod.Particles;
+using CalamityMod.World;
+using Clamity.Commons;
+using Clamity.Content.Boss.Pyrogen.Drop;
+using Clamity.Content.Boss.Pyrogen.Drop.Weapons;
+using Clamity.Content.Boss.Pyrogen.Projectiles;
+using Clamity.Content.Items.Materials;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.IO;
-using CalamityMod.NPCs;
-using CalamityMod.Projectiles.Boss;
-using CalamityMod.Events;
-using CalamityMod.World;
-using CalamityMod;
-using CalamityMod.Particles;
-using CalamityMod.NPCs.Cryogen;
-using CalamityMod.Buffs.DamageOverTime;
-using CalamityMod.Items.Accessories.Wings;
-using CalamityMod.Items.Accessories;
-using CalamityMod.Items.Armor.Vanity;
-using CalamityMod.Items.LoreItems;
-using CalamityMod.Items.Materials;
-using CalamityMod.Items.Placeables.Furniture.DevPaintings;
-using CalamityMod.Items.Placeables.Furniture.Trophies;
-using CalamityMod.Items.TreasureBags;
-using CalamityMod.Items.Weapons.Magic;
-using CalamityMod.Items.Weapons.Melee;
-using CalamityMod.Items.Weapons.Ranged;
-using CalamityMod.Items.Weapons.Rogue;
-using CalamityMod.Items.Weapons.Summon;
-using CalamityMod.NPCs.TownNPCs;
+using Terraria;
+using Terraria.Audio;
+using Terraria.GameContent;
+using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
-using Clamity.Content.Boss.Pyrogen.Drop.Weapons;
-using Clamity.Content.Items.Materials;
-using Clamity.Content.Boss.Pyrogen.Drop;
-using Terraria.GameContent.Biomes;
-using Clamity.Content.Boss.Pyrogen.Projectiles;
-using rail;
+using Terraria.GameContent.UI.BigProgressBar;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Clamity.Content.Boss.Pyrogen.NPCs
 {
@@ -441,7 +424,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                                 int num27 = bossRushActive ? 24 : 16;
                                 float num28 = MathF.PI * 2f / num27;
                                 int num29 = ModContent.ProjectileType<FireBomb>();
-                                int projectileDamage2 = NPC.GetProjectileDamage(num29);
+                                int projectileDamage2 = NPC.GetProjectileDamageClamity(num29);
                                 float num30 = 9f + num2;
                                 Vector2 spinningpoint2 = new Vector2(0f, 0f - num30);
                                 for (int i = 0; i < 20; i++)
@@ -511,7 +494,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                                     int num35 = bossRushActive ? 18 : 12;
                                     float num36 = MathF.PI * 2f / num35;
                                     int num37 = num6;
-                                    int projectileDamage3 = NPC.GetProjectileDamage(num37);
+                                    int projectileDamage3 = NPC.GetProjectileDamageClamity(num37);
                                     float num38 = 9f + num2;
                                     Vector2 spinningpoint3 = new Vector2(0f, 0f - num38);
                                     for (int m = 0; m < num35; m++)
@@ -700,7 +683,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                                     int num53 = bossRushActive ? 18 : 12;
                                     float num54 = MathF.PI * 2f / num53;
                                     int num55 = num4;
-                                    int projectileDamage5 = NPC.GetProjectileDamage(num55);
+                                    int projectileDamage5 = NPC.GetProjectileDamageClamity(num55);
                                     float num56 = 9f + num2;
                                     Vector2 spinningpoint5 = new Vector2(0f, 0f - num56);
                                     for (int num57 = 0; num57 < num53; num57++)
@@ -711,7 +694,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                                 }
                             }
                         }
-                    }   
+                    }
 
                     Vector2 vector7 = new Vector2(NPC.Center.X, NPC.Center.Y);
                     float num58 = player.Center.X - vector7.X;
@@ -849,7 +832,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                             int num76 = bossRushActive ? 18 : 12;
                             float num77 = MathF.PI * 2f / num76;
                             int num78 = num4;
-                            int projectileDamage7 = NPC.GetProjectileDamage(num78);
+                            int projectileDamage7 = NPC.GetProjectileDamageClamity(num78);
                             float num79 = 10f + num2;
                             Vector2 spinningpoint7 = new Vector2(0f, 0f - num79);
                             for (int num80 = 0; num80 < num76; num80++)
@@ -1027,7 +1010,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                             if (Main.netMode != 1)
                             {
                                 int num101 = num4;
-                                int projectileDamage9 = NPC.GetProjectileDamage(num101);
+                                int projectileDamage9 = NPC.GetProjectileDamageClamity(num101);
                                 float num102 = 1.5f + num2 * 0.5f;
                                 int num103 = flag9 ? 3 : 2;
                                 for (int num104 = 0; num104 < num103; num104++)
@@ -1153,7 +1136,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                 int num119 = 2;
                 float num120 = MathF.PI * 2f / num119;
                 int num121 = num5;
-                int projectileDamage10 = NPC.GetProjectileDamage(num121);
+                int projectileDamage10 = NPC.GetProjectileDamageClamity(num121);
                 float num122 = 6f;
                 double num123 = (double)num120 * 0.5;
                 double a6 = (double)MathHelper.ToRadians(90f) - num123;
@@ -1551,7 +1534,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                 {
                     if (randomAttack < 25)
                     {
-                        Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, -Vector2.UnitY, ModContent.ProjectileType<Fireblast>(), NPC.GetProjectileDamage(ModContent.ProjectileType<Fireblast>()), 1f, Main.myPlayer);
+                        Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, -Vector2.UnitY, ModContent.ProjectileType<Fireblast>(), NPC.GetProjectileDamageClamity(ModContent.ProjectileType<Fireblast>()), 1f, Main.myPlayer);
                         randomAttack = -1;
                     }
                     else if (randomAttack >= 25 && randomAttack < 100)
@@ -1560,7 +1543,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                         {
                             for (int i = 0; i < 4; i++)
                             {
-                                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Vector2.UnitX.RotatedBy(MathHelper.TwoPi / 4 * i + secondRotation) * 5f, ModContent.ProjectileType<FireBarrage>(), NPC.GetProjectileDamage(ModContent.ProjectileType<FireBarrage>()), 1f, Main.myPlayer);
+                                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Vector2.UnitX.RotatedBy(MathHelper.TwoPi / 4 * i + secondRotation) * 5f, ModContent.ProjectileType<FireBarrage>(), NPC.GetProjectileDamageClamity(ModContent.ProjectileType<FireBarrage>()), 1f, Main.myPlayer);
                             }
                         }
                         if (attackTimer < -200)

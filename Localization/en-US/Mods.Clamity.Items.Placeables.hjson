@@ -53,6 +53,6 @@ PyroplateWall: {
 }
 
 Pyroplate: {
-	Tooltip: "It resonates with otherworldly energy"
+	Tooltip: It resonates with otherworldly energy
 	DisplayName: Pyroplate
 }

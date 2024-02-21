@@ -33,6 +33,7 @@ namespace Clamity.Content.Boss.WoB.NPCs
             NPC.noTileCollide = true;
             NPC.DeathSound = new SoundStyle?(CommonCalamitySounds.ExoDeathSound);
             NPC.HitSound = new SoundStyle?(SoundID.NPCHit4);
+            NPC.netUpdate = true;
             NPC.netAlways = true;
             NPC.hide = true;
             NPC.Calamity().VulnerableToSickness = new bool?(false);

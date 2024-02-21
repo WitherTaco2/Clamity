@@ -58,6 +58,7 @@ namespace Clamity.Content.Boss.WoB.NPCs
             NPC.boss = true;
             NPC.value = Item.sellPrice(1, 50, 25, 75);
             NPC.npcSlots = 15f;
+            NPC.netUpdate = true;
             if (Main.getGoodWorld)
                 NPC.scale = 0.5f;
 
