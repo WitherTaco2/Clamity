@@ -1,9 +1,10 @@
-[h1]Bladeabd Fire Patch 1[/h1]
+[h1]Pyroplate Patch[/h1]
 
 Added Pyroplate and Pyroplate Wall
 Added cyan solution to Speampunker shop after Wall of Bronze
-Fixed Pyrogen damage
+Added Mod Calls
 Replaced Clamitas brimstone blast rain attack to brimstone pearl rain
 Clamitas now can be hitted in fall attack
 Fixed random of Clamitas attacks
 Wall of Bronze now work in Multiplayer
+Boss defeating now registry in multiplayer

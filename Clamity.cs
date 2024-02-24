@@ -264,7 +264,7 @@ namespace Clamity
             );*/
         }
         public int? GetMusicFromMusicMod(string songFilename) => !this.MusicAvailable ? new int?() : new int?(MusicLoader.GetMusicSlot(musicMod, "Sounds/Music/" + songFilename));
-
+        public override object Call(params object[] args) => ClamityModCalls.Call(args);
         private void AddBoss(
           Mod bossChecklist,
           Mod hostMod,

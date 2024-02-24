@@ -42,8 +42,8 @@ namespace Clamity.Content.Boss.WoB.NPCs
             NPC.hide = true;
             NPC.Calamity().VulnerableToSickness = new bool?(false);
             NPC.Calamity().VulnerableToElectricity = new bool?(true);
-            if (Main.getGoodWorld)
-                NPC.scale = 2f;
+            //if (Main.getGoodWorld)
+            //    NPC.scale = 2f;
         }
         public override int MaxParticleTimer => 200;
         public override int MaxTimer => 600 * (Main.expertMode ? 1 : 2);

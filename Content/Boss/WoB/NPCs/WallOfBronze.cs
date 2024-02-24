@@ -59,8 +59,8 @@ namespace Clamity.Content.Boss.WoB.NPCs
             NPC.value = Item.sellPrice(1, 50, 25, 75);
             NPC.npcSlots = 15f;
             NPC.netUpdate = true;
-            if (Main.getGoodWorld)
-                NPC.scale = 0.5f;
+            //if (Main.getGoodWorld)
+            //    NPC.scale = 1.5f;
 
             if (!Main.dedServ)
             {
@@ -225,13 +225,16 @@ namespace Clamity.Content.Boss.WoB.NPCs
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
             Texture2D texture2D1 = ModContent.Request<Texture2D>(Texture + "_ExtraBack").Value;
+            if (Main.getGoodWorld || Main.xMas)
+                texture2D1 = ModContent.Request<Texture2D>(Texture + "_ExtraBack_GFB").Value;
             int num = Main.screenHeight / 32 + 1;
+            int num1 = texture2D1.Height;
             SpriteEffects spriteEffects = NPC.spriteDirection != 1 ? (SpriteEffects)1 : (SpriteEffects)0;
             for (int index = -num; index <= num; ++index)
             {
                 if (Main.UnderworldLayer < (int)(Main.LocalPlayer.Center.Y / 16f) + index)
                     spriteBatch.Draw(texture2D1,
-                                    new Vector2(NPC.Center.X - NPC.spriteDirection * texture2D1.Width * 0.5f + Math.Sign(NPC.velocity.X) * 100, (float)((int)Main.LocalPlayer.Center.Y / 200 * 200 + index * texture2D1.Height)) - screenPos,
+                                    new Vector2(NPC.Center.X - NPC.spriteDirection * texture2D1.Width * 0.5f + Math.Sign(NPC.velocity.X) * 100, (float)((int)Main.LocalPlayer.Center.Y / num1 * num1 + index * texture2D1.Height)) - screenPos,
                                     new Rectangle?(),
                                     Lighting.GetColor((int)(NPC.Center.X - NPC.spriteDirection * texture2D1.Width * 0.5) / 16, (int)(Main.LocalPlayer.Center.Y / 16) + index),
                                     0.0f,
@@ -245,13 +248,16 @@ namespace Clamity.Content.Boss.WoB.NPCs
         public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
             Texture2D texture2D1 = ModContent.Request<Texture2D>(Texture + "_Extra").Value;
+            if (Main.getGoodWorld || Main.xMas)
+                texture2D1 = ModContent.Request<Texture2D>(Texture + "_Extra_GFB").Value;
             int num = Main.screenHeight / 32 + 1;
+            int num1 = texture2D1.Height;
             SpriteEffects spriteEffects = NPC.spriteDirection != 1 ? (SpriteEffects)1 : (SpriteEffects)0;
             for (int index = -num; index <= num; ++index)
             {
                 if (Main.UnderworldLayer < (int)(Main.LocalPlayer.Center.Y / 16f) + index)
                     spriteBatch.Draw(texture2D1,
-                                    new Vector2(NPC.Center.X - NPC.spriteDirection * texture2D1.Width * 0.5f - Math.Sign(NPC.velocity.X), (float)((int)Main.LocalPlayer.Center.Y / 200 * 200 + index * texture2D1.Height)) - screenPos,
+                                    new Vector2(NPC.Center.X - NPC.spriteDirection * texture2D1.Width * 0.5f - Math.Sign(NPC.velocity.X), (float)((int)Main.LocalPlayer.Center.Y / num1 * num1 + index * texture2D1.Height)) - screenPos,
                                     new Rectangle?(),
                                     Lighting.GetColor((int)(NPC.Center.X - NPC.spriteDirection * texture2D1.Width * 0.5) / 16, (int)(Main.LocalPlayer.Center.Y / 16) + index),
                                     0.0f,

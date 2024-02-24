@@ -1,12 +1,7 @@
 ﻿using CalamityMod;
-using CalamityMod.Projectiles.Melee;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -120,6 +115,12 @@ namespace Clamity.Content.Boss.WoB.Projectiles
             CalamityUtils.DrawAfterimagesCentered(Projectile, ProjectileID.Sets.TrailingMode[Projectile.type], lightColor, 2);
 
             return false;
+        }
+
+        public override void OnHitPlayer(Player target, Player.HurtInfo info)
+        {
+            if (Main.getGoodWorld)
+                target.AddBuff(BuffID.Frozen, 180);
         }
     }
 }

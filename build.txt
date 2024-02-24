@@ -1,4 +1,4 @@
-displayName = Clamity Addon (Beta of Guns & Fire Update)
+displayName = Clamity Addon
 author = WitherTaco and Calamity Fandom wiki
-version = 1.0.2
+version = 1.0.3
 modReferences = CalamityMod

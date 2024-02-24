@@ -1,12 +1,10 @@
-﻿using CalamityMod.Events;
-using CalamityMod.Projectiles.Boss;
-using CalamityMod.World;
+﻿using CalamityMod.Projectiles.Boss;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.ModLoader.Config;
 
 namespace Clamity.Content.Boss.WoB.Projectiles
 {
@@ -38,6 +36,11 @@ namespace Clamity.Content.Boss.WoB.Projectiles
                 dust2.velocity *= 0.5f;
                 dust2.velocity.Y = 0f - Math.Abs(dust2.velocity.Y);
             }
+        }
+        public override void OnHitPlayer(Player target, Player.HurtInfo info)
+        {
+            if (Main.getGoodWorld)
+                target.AddBuff(BuffID.Frozen, 180);
         }
     }
 }

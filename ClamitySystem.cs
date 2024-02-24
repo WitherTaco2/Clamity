@@ -1,15 +1,14 @@
-﻿using System;
-using Terraria.ID;
-using Terraria;
-using Terraria.ModLoader;
-using CalamityMod.Items.Accessories;
+﻿using CalamityMod.Items.Accessories;
 using CalamityMod.Items.Materials;
-using Clamity.Content.Boss.Clamitas.Drop;
-using CalamityMod.NPCs.Cryogen;
-using System.Collections.Generic;
-using Terraria.ModLoader.IO;
-using CalamityMod;
 using CalamityMod.Items.Placeables;
+using Clamity.Content.Boss.Clamitas.Drop;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 
 namespace Clamity
 {
@@ -135,6 +134,22 @@ namespace Clamity
             {
                 ItemID.SandBlock, ItemID.EbonsandBlock, ItemID.PearlsandBlock, ItemID.CrimsandBlock, ModContent.ItemType<AstralSand>()
             }));
+        }
+        public override void NetSend(BinaryWriter writer)
+        {
+            BitsByte flags = new BitsByte();
+            flags[0] = downedClamitas;
+            flags[0] = downedPyrogen;
+            flags[0] = downedWallOfBronze;
+
+            writer.Write(flags);
+        }
+        public override void NetReceive(BinaryReader reader)
+        {
+            BitsByte flags = reader.ReadByte();
+            downedClamitas = flags[0];
+            downedPyrogen = flags[1];
+            downedWallOfBronze = flags[2];
         }
     }
 }

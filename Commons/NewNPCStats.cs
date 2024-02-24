@@ -33,8 +33,16 @@ namespace Clamity.Commons
                   new int[5]{ 60, 100, 120, 132, 180 }
                 },
                 {
+                  new Tuple<int, int>(ModContent.NPCType<PyrogenBoss>(), ModContent.ProjectileType<FireBarrageHoming>()),
+                  new int[5]{ 60, 100, 120, 132, 180 }
+                },
+                {
                   new Tuple<int, int>(ModContent.NPCType<PyrogenBoss>(), ModContent.ProjectileType<Fireblast>()),
                   new int[5]{ 80, 120, 136, 152, 210 }
+                },
+                {
+                  new Tuple<int, int>(ModContent.NPCType<PyrogenBoss>(), ModContent.ProjectileType<FireBomb>()),
+                  new int[5]{ 60, 100, 120, 132, 180 }
                 },
                 {
                   new Tuple<int, int>(ModContent.NPCType<PyrogenBoss>(), ModContent.ProjectileType<Firethrower>()),

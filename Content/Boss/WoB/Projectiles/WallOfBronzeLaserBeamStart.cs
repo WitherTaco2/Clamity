@@ -1,18 +1,14 @@
-﻿using CalamityMod.Buffs.DamageOverTime;
-using CalamityMod.NPCs.ExoMechs.Ares;
-using CalamityMod.NPCs;
-using CalamityMod;
-using CalamityMod.Projectiles.Boss;
-using Microsoft.Xna.Framework.Graphics;
+﻿using CalamityMod;
+using Clamity.Content.Boss.WoB.NPCs;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System;
 using System.IO;
+using Terraria;
 using Terraria.Enums;
 using Terraria.ID;
-using Terraria;
 using Terraria.ModLoader;
-using Clamity.Content.Boss.WoB.NPCs;
 
 namespace Clamity.Content.Boss.WoB.Projectiles
 {
@@ -247,6 +243,12 @@ namespace Clamity.Content.Boss.WoB.Projectiles
         public override bool CanHitPlayer(Player target)
         {
             return Projectile.scale >= 0.5f;
+        }
+
+        public override void OnHitPlayer(Player target, Player.HurtInfo info)
+        {
+            if (Main.getGoodWorld)
+                target.AddBuff(BuffID.Frozen, 180);
         }
     }
 }

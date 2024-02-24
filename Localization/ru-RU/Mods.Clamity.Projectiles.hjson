@@ -18,6 +18,7 @@ Melee: {
 	// DiseaseProjectile.DisplayName: Disease Projectile
 	// SporeKnifeProjectile.DisplayName: Spore Knife
 	// WulfrumLeechDaggerProjectile.DisplayName: Wulfrum Leech Dagger
+	// EverestProjectile.DisplayName: Everest Projectile
 }
 
 Ranged: {
