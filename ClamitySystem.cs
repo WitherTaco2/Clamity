@@ -2,6 +2,7 @@
 using CalamityMod.Items.Materials;
 using CalamityMod.Items.Placeables;
 using Clamity.Content.Boss.Clamitas.Drop;
+using Clamity.Content.Boss.ItemBossRush;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -108,6 +109,10 @@ namespace Clamity
         public override void OnWorldUnload()
         {
             ResetAllFlags();
+        }
+        public override void PostUpdateWorld()
+        {
+            TwentyTwoBulletTheory.Update();
         }
         public override void SaveWorldData(TagCompound tag)
         {

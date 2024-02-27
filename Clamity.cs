@@ -7,6 +7,7 @@ using Clamity.Commons;
 using Clamity.Content.Boss.Clamitas;
 using Clamity.Content.Boss.Clamitas.Drop;
 using Clamity.Content.Boss.Clamitas.NPCs;
+using Clamity.Content.Boss.ItemBossRush;
 using Clamity.Content.Boss.Pyrogen;
 using Clamity.Content.Boss.Pyrogen.Drop;
 using Clamity.Content.Boss.Pyrogen.NPCs;
@@ -53,6 +54,7 @@ namespace Clamity
             );
             LoadCooldowns();
             LoadBossRush();
+            TwentyTwoBulletTheory.Load();
             NewNPCStats.Load();
             if (!Main.dedServ)
             {
@@ -175,6 +177,7 @@ namespace Clamity
             musicMod = null;
 
             NewNPCStats.UnLoad();
+            TwentyTwoBulletTheory.Unload();
         }
         public override void PostSetupContent()
         {
