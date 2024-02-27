@@ -40,7 +40,7 @@ namespace Clamity.Content.Boss.ItemBossRush.ItemBosses.DivineRetribution
                 potentialRotation -= MathHelper.TwoPi;
             if (potentialRotation < MathHelper.TwoPi)
                 potentialRotation += MathHelper.TwoPi;
-            NPC.rotation += (NPC.rotation - potentialRotation) / 3;
+            NPC.rotation += (potentialRotation - NPC.rotation) / 3;
             //NPC.rotation = (NPC.rotation + )
             if (Attack == (int)DivineRetributionAttacks.CurcleOfSpears)
             {
