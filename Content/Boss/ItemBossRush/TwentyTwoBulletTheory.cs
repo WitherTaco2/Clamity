@@ -3,7 +3,6 @@ using CalamityMod.CalPlayer;
 using CalamityMod.Events;
 using CalamityMod.NPCs.ExoMechs;
 using CalamityMod.Projectiles.Typeless;
-using CalamityMod.Skies;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -124,13 +123,13 @@ namespace Clamity.Content.Boss.ItemBossRush
             if (!BulletTheoryActive)
             {
                 BulletTheorySpawnCountdown = 180;
-                BossRushSky.CurrentInterestMin = 0f;
+                TwentyTwoBulletTheorySky.CurrentInterestMin = 0f;
                 if (BulletTheoryStage != 0)
                 {
                     BulletTheoryStage = 0;
                     if (Main.netMode == NetmodeID.Server)
                     {
-                        var netMessage = ModContent.GetInstance<CalamityMod.CalamityMod>().GetPacket();
+                        var netMessage = Clamity.mod.GetPacket();
                         netMessage.Write((byte)ClamityMessageType.BulletTheoryStage);
                         netMessage.Write(BulletTheoryStage);
                         netMessage.Send();
@@ -184,8 +183,8 @@ namespace Clamity.Content.Boss.ItemBossRush
             }
 
             if (EndTimer > 0)
-                BossRushSky.CurrentInterest = MathHelper.Lerp(0.5f, 0.75f, Utils.GetLerpValue(5f, 145f, EndTimer, true));
-            BossRushSky.CurrentInterestMin = MathHelper.Lerp(0f, 0.5f, (float)Math.Pow(BulletTheoryStage / (float)Bosses.Count, 5D));
+                TwentyTwoBulletTheorySky.CurrentInterest = MathHelper.Lerp(0.5f, 0.75f, Utils.GetLerpValue(5f, 145f, EndTimer, true));
+            TwentyTwoBulletTheorySky.CurrentInterestMin = MathHelper.Lerp(0f, 0.5f, (float)Math.Pow(BulletTheoryStage / (float)Bosses.Count, 5D));
         }
 
         public static void End()
@@ -206,8 +205,8 @@ namespace Clamity.Content.Boss.ItemBossRush
             }
             else
             {
-                var netMessage = ModContent.GetInstance<CalamityMod.CalamityMod>().GetPacket();
-                netMessage.Write((byte)CalamityModMessageType.EndBossRush);
+                var netMessage = Clamity.mod.GetPacket();
+                netMessage.Write((byte)ClamityMessageType.EndBulletTheory);
                 netMessage.Send();
             }
         }
@@ -294,7 +293,7 @@ namespace Clamity.Content.Boss.ItemBossRush
                 netMessage2.Send();
             }
 
-            BossRushSky.CurrentInterest = 0.85f;
+            TwentyTwoBulletTheorySky.CurrentInterest = 0.85f;
         }
 
         public static void CreateTierAnimation(int tier)
