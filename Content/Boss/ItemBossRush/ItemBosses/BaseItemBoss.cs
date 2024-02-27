@@ -27,7 +27,12 @@ namespace Clamity.Content.Boss.ItemBossRush.ItemBosses
             }
             SafeAI();
         }
-        public ref float Attack => ref NPC.ai[0];
+        //public ref float Attack => ref NPC.ai[0];
+        public int Attack
+        {
+            get => (int)NPC.ai[0];
+            set => NPC.ai[0] = (float)value;
+        }
         public int Timer
         {
             get => (int)NPC.ai[1];
