@@ -23,5 +23,8 @@
     <Reference Include="CalamityMod">
       <HintPath>CalamityMod.dll</HintPath>
     </Reference>
+    <Reference Include="SubworldLibrary">
+      <HintPath>SubworldLibrary.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>

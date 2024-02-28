@@ -3,6 +3,7 @@ using CalamityMod.CalPlayer;
 using CalamityMod.Cooldowns;
 using CalamityMod.Events;
 using CalamityMod.NPCs.Yharon;
+using CalamityMod.Skies;
 using Clamity.Commons;
 using Clamity.Content.Boss.Clamitas;
 using Clamity.Content.Boss.Clamitas.Drop;
@@ -15,6 +16,7 @@ using Clamity.Content.Boss.WoB.Drop;
 using Clamity.Content.Boss.WoB.FrozenHell.Biome.Background;
 using Clamity.Content.Boss.WoB.NPCs;
 using Clamity.Content.Cooldowns;
+using Clamity.Content.Subworlds.Exosphere;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -161,6 +163,9 @@ namespace Clamity
         {
             Filters.Scene["Clamity:FrozenHellSky"] = new Filter(new FrozenHellShaderData("FilterMiniTower").UseColor(0.5f, 1f, 1f).UseOpacity(0.65f), EffectPriority.VeryHigh);
             SkyManager.Instance["Clamity:FrozenHellSky"] = (CustomSky)new FrozenHellSky();
+
+            Filters.Scene["Clamity:Exosphere"] = new Filter(new ExosphereFilter("FilterMiniTower").UseColor(ExoMechsSky.DrawColor).UseOpacity(0.25f), EffectPriority.VeryHigh);
+            SkyManager.Instance["Clamity:Exosphere"] = new ExosphereSky();
         }
         private void LoadCooldowns()
         {
