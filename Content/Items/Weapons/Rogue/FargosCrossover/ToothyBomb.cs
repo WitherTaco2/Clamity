@@ -2,7 +2,6 @@
 using CalamityMod.Items;
 using CalamityMod.Items.Weapons.Rogue;
 using Microsoft.Xna.Framework;
-using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -35,7 +34,7 @@ namespace Clamity.Content.Items.Weapons.Rogue.FargosCrossover
             Item.knockBack = 8f;
 
             Item.shoot = ModContent.ProjectileType<ToothyBombProjectile>();
-            Item.shootSpeed = 12f;
+            Item.shootSpeed = 16f;
         }
 
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
@@ -100,10 +99,27 @@ namespace Clamity.Content.Items.Weapons.Rogue.FargosCrossover
                 RemainingBounces = Projectile.Calamity().stealthStrike ? 3 : 1;
                 Projectile.localAI[0] = 1f;
             }
-            Projectile.rotation += Math.Sign(Projectile.velocity.X) * MathHelper.ToRadians(8f);
-            if (Projectile.velocity.Y < 10f)
-                Projectile.velocity.Y += 0.2f;
+            Projectile.rotation += Projectile.velocity.X / 3;
+            //if (Projectile.velocity.Y < 10f)
+            //    Projectile.velocity.Y += 0.2f;
 
+            //Movement
+            if (Collision.WetCollision(Projectile.position, Projectile.width, Projectile.height) || Collision.SolidCollision(Projectile.position, Projectile.width, Projectile.height))
+            {
+                if (Projectile.velocity.Y > 0)
+                    Projectile.velocity.Y *= 0.94f;
+                Projectile.velocity.Y -= 0.12f;
+            }
+            else
+            {
+                //if (Projectile.velocity.Y < 0)
+                //    Projectile.velocity.Y *= 0.75f;
+                Projectile.velocity.Y += 0.15f;
+            }
+            Projectile.velocity.X *= 0.98f;
+
+
+            //Tile Colliding
             if (CollideX)
             {
                 Projectile.velocity.X = -OldVelocityX;
@@ -124,8 +140,8 @@ namespace Clamity.Content.Items.Weapons.Rogue.FargosCrossover
                 SoundEngine.PlaySound(SoundID.Item14, Projectile.Center);
             }
 
-            if (Projectile.velocity.X != 0f)
-                OldVelocityX = Math.Sign(Projectile.velocity.X) * 12f;
+            //if (Projectile.velocity.X != 0f)
+            //    OldVelocityX = Math.Sign(Projectile.velocity.X) * 12f;
         }
         public override bool OnTileCollide(Vector2 oldVelocity)
         {

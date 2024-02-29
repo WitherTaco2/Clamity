@@ -88,25 +88,22 @@ namespace Clamity.Content.Items.Renewals
                     Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center.X, Projectile.Center.Y, speedX[i], speedY[i], ModContent.ProjectileType<CyanSolutionProjectile>(), 0, 0, Main.myPlayer);
                 }
             }
-            for (int x = -Main.maxTilesX; x < Main.maxTilesX; x++)
+            for (int x = 0; x < Main.maxTilesX; x++)
             {
-                for (int y = -Main.maxTilesY; y < Main.maxTilesY; y++)
+                for (int y = 0; y < Main.maxTilesY; y++)
                 {
-                    int xPosition = (int)(x + Projectile.Center.X / 16.0f);
-                    int yPosition = (int)(y + Projectile.Center.Y / 16.0f);
-
-                    if (Main.tile[xPosition, yPosition].TileType == TileID.Ash || Main.tile[xPosition, yPosition].TileType == TileID.AshGrass)
+                    if (Main.tile[x, y].TileType == TileID.Ash || Main.tile[x, y].TileType == TileID.AshGrass)
                     {
-                        Main.tile[xPosition, yPosition].TileType = (ushort)ModContent.TileType<FrozenAshTile>();
-                        WorldGen.SquareTileFrame(xPosition, yPosition);
-                        NetMessage.SendTileSquare(-1, xPosition, yPosition, 1);
+                        Main.tile[x, y].TileType = (ushort)ModContent.TileType<FrozenAshTile>();
+                        WorldGen.SquareTileFrame(x, y);
+                        NetMessage.SendTileSquare(-1, x, y, 1);
                     }
 
-                    if (Main.tile[xPosition, yPosition].TileType == TileID.Hellstone)
+                    if (Main.tile[x, y].TileType == TileID.Hellstone)
                     {
-                        Main.tile[xPosition, yPosition].TileType = (ushort)ModContent.TileType<FrozenHellstoneTile>();
-                        WorldGen.SquareTileFrame(xPosition, yPosition);
-                        NetMessage.SendTileSquare(-1, xPosition, yPosition, 1);
+                        Main.tile[x, y].TileType = (ushort)ModContent.TileType<FrozenHellstoneTile>();
+                        WorldGen.SquareTileFrame(x, y);
+                        NetMessage.SendTileSquare(-1, x, y, 1);
                     }
                 }
             }
