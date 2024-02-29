@@ -1,16 +1,22 @@
 ﻿using CalamityMod;
 using CalamityMod.Items;
+using CalamityMod.Items.Weapons.Rogue;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
+using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Clamity.Content.Items.Weapons.Rogue.FargosCrossover
 {
-    public class ToothyBomb : ModItem
+    public class ToothyBomb : RogueWeapon
     {
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return ModLoader.TryGetMod("FargowiltasSouls", out Mod _);
+        }
         public override void SetDefaults()
         {
             Item.width = Item.height = 58;
@@ -47,6 +53,10 @@ namespace Clamity.Content.Items.Weapons.Rogue.FargosCrossover
     }
     public class ToothyBombProjectile : ModProjectile, ILocalizedModType
     {
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return ModLoader.TryGetMod("FargowiltasSouls", out Mod _);
+        }
         public new string LocalizationCategory => "Projectiles.Rogue";
         //public override string Texture => (GetType().Namespace + "." + Name).Replace('.', '/');
         public float OldVelocityX = 0f;
@@ -60,6 +70,7 @@ namespace Clamity.Content.Items.Weapons.Rogue.FargosCrossover
         {
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 5;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
+            Main.projFrames[Projectile.type] = 3;
         }
         public override void SetDefaults()
         {
@@ -75,6 +86,15 @@ namespace Clamity.Content.Items.Weapons.Rogue.FargosCrossover
         }
         public override void AI()
         {
+
+            if (++Projectile.frameCounter > 8)
+            {
+                if (++Projectile.frame >= Main.projFrames[Type])
+                    Projectile.frame = 0;
+                Projectile.frameCounter = 0;
+            }
+
+
             if (Projectile.localAI[0] == 0f)
             {
                 RemainingBounces = Projectile.Calamity().stealthStrike ? 3 : 1;
@@ -87,6 +107,21 @@ namespace Clamity.Content.Items.Weapons.Rogue.FargosCrossover
             if (CollideX)
             {
                 Projectile.velocity.X = -OldVelocityX;
+
+
+                int max = 5;
+                if (Projectile.Calamity().stealthStrike)
+                    max += 3;
+                for (int i = 0; i < max; i++)
+                {
+                    Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center, Vector2.UnitY.RotatedByRandom(MathHelper.ToRadians(40f)) * Main.rand.NextFloat(-19f, -4f), ModContent.ProjectileType<ToothyBombShrapnel>(), Projectile.damage, 3f, Projectile.owner);
+                }
+                RemainingBounces--;
+                if (RemainingBounces <= 0)
+                {
+                    Projectile.Kill();
+                }
+                SoundEngine.PlaySound(SoundID.Item14, Projectile.Center);
             }
 
             if (Projectile.velocity.X != 0f)
@@ -101,18 +136,29 @@ namespace Clamity.Content.Items.Weapons.Rogue.FargosCrossover
             CalamityUtils.DrawAfterimagesCentered(Projectile, ProjectileID.Sets.TrailingMode[Projectile.type], lightColor, 2);
             return false;
         }
-        public override void OnKill(int timeLeft)
+        /*public override void OnKill(int timeLeft)
         {
             int max = 5;
+            if (Projectile.Calamity().stealthStrike)
+                max += 3;
             float random = Main.rand.NextFloat(MathHelper.TwoPi);
             for (int i = 0; i < max; i++)
             {
                 Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center, Vector2.UnitY.RotatedByRandom(MathHelper.ToRadians(40f)) * Main.rand.NextFloat(-19f, -4f), ModContent.ProjectileType<ToothyBombShrapnel>(), Projectile.damage, 3f, Projectile.owner);
             }
-        }
+        }*/
     }
     public class ToothyBombShrapnel : ModProjectile
     {
+        public override void SetStaticDefaults()
+        {
+            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 10;
+            ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
+        }
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+            return ModLoader.TryGetMod("FargowiltasSouls", out Mod _);
+        }
         public override void SetDefaults()
         {
             Projectile.width = Projectile.height = 18;
@@ -130,6 +176,12 @@ namespace Clamity.Content.Items.Weapons.Rogue.FargosCrossover
         public override void AI()
         {
             Projectile.velocity.Y += 0.2f;
+            Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.Pi;
+        }
+        public override bool PreDraw(ref Color lightColor)
+        {
+            CalamityUtils.DrawAfterimagesCentered(Projectile, ProjectileID.Sets.TrailingMode[Projectile.type], lightColor, 2);
+            return false;
         }
     }
 }

@@ -21,3 +21,8 @@ FrozenStarShuriken: {
 	DisplayName: Frozen Star Shuriken
 	Tooltip: ""
 }
+
+ToothyBomb: {
+	DisplayName: Toothy Bomb
+	Tooltip: ""
+}

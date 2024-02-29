@@ -43,6 +43,7 @@ Rogue: {
 	MoltenPiercerProjectile.DisplayName: Molten Piercer
 	WulfrumShockCutterProjectile.DisplayName: Wulfrum Shock Cutter
 	FrozenStarShurikenProjectile.DisplayName: Frozen Star Shuriken
+	ToothyBombProjectile.DisplayName: Toothy Bomb Projectile
 }
 
 CrustallineProjecile.DisplayName: Crustalline
@@ -76,3 +77,6 @@ FrostfireArrowProj.DisplayName: Frostfire Arrow
 FrostfireArrowProj2.DisplayName: Frostfire Arrow Explosion
 MoonstoneKnifeProjectile.DisplayName: Moonstone Knife
 Enemy.BrimstonePearlBurst.DisplayName: Brimstone Pearl Burst
+ToothyBombShrapnel.DisplayName: Toothy Bomb Shrapnel
+FrozenHellRenewalSupremeProjectile.DisplayName: Frozen Hell Renewal Supreme Projectile
+FrozenHellRenewalProjectile.DisplayName: Frozen Hell Renewal Projectile

@@ -8,6 +8,16 @@ Items: {
 			'''
 		DisplayName: Heavy Metal Trash Can
 	}
+
+	FrozenHellRenewalSupreme: {
+		Tooltip: ""
+		DisplayName: Frozen Hell Renewal Supreme
+	}
+
+	FrozenHellRenewal: {
+		Tooltip: ""
+		DisplayName: Frozen Hell Renewal
+	}
 }
 
 Misc: {
