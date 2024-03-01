@@ -56,3 +56,12 @@ SupremeBarrier: {
 		Puts a shell around the owner when below 50% life that reduces damage taken
 		'''
 }
+
+IcicleRing: {
+	Tooltip:
+		'''
+		Wearer takes damage from pain. 
+		Reduces the mana cost of spells up to zero cost.
+		'''
+	DisplayName: Icicle Ring
+}

@@ -50,7 +50,7 @@ FrozenHellstone: {
 			True melee attacks inflict Frostburn. 
 			Enemies are more likely to target you
 			'''
-		DisplayName: Frozen Hellstone Visor
+		DisplayName: Frozen Visor
 	}
 
 	FrozenHellstoneGreaves: {
@@ -59,15 +59,15 @@ FrozenHellstone: {
 			20% increased true melee damage and +75 max life. 
 			Enemies are more likely to target you
 			'''
-		DisplayName: Frozen Hellstone Greaves
+		DisplayName: Frozen Greaves
 	}
 
 	FrozenHellstoneChestplate: {
 		Tooltip:
 			'''
-			20% increased true melee damage and 20% increased true melee size. 
+			20% increased true melee damage and 20% increased melee speed. 
 			Enemies are more likely to target you
 			'''
-		DisplayName: Frozen Hellstone Chestplate
+		DisplayName: Frozen Chestplate
 	}
 }

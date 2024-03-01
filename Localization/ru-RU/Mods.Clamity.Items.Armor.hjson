@@ -44,30 +44,30 @@ Vanity: {
 
 FrozenHellstone: {
 	FrozenHellstoneVisor: {
-		/* Tooltip:
+		Tooltip:
 			'''
-			20% increased true melee damage. 
-			True melee attacks inflict Frostburn. 
-			Enemies are more likely to target you
-			''' */
-		// DisplayName: Frozen Hellstone Visor
+			20% увеличенного урона истинного ближнего боя
+			Атаки истинного ближнего боя наклыдвает Ледяной ожог
+			Враги с большей вероятностью будут нацелены на вас 
+			'''
+		DisplayName: Замороженный козырек
 	}
 
 	FrozenHellstoneGreaves: {
-		/* Tooltip:
+		Tooltip:
 			'''
-			20% increased true melee damage and +75 max life. 
-			Enemies are more likely to target you
-			''' */
-		// DisplayName: Frozen Hellstone Greaves
+			20% увеличенного урона истинного ближнего боя и +75 к максмальным очкам жизни
+			Враги с большей вероятностью будут нацелены на вас 
+			'''
+		DisplayName: Замороженные поножи
 	}
 
 	FrozenHellstoneChestplate: {
-		/* Tooltip:
+		Tooltip:
 			'''
-			20% increased true melee damage and 20% increased true melee size. 
-			Enemies are more likely to target you
-			''' */
-		// DisplayName: Frozen Hellstone Chestplate
+			20% увеличенного урона истинного ближнего боя и 20% увеличенного скорости ближнего боя
+			Враги с большей вероятностью будут нацелены на вас 
+			'''
+		DisplayName: Замороженный нагрудник
 	}
 }

@@ -1,4 +1,4 @@
-﻿using Clamity.Content.Boss.WoB.FrozenHell.Items;
+﻿using Clamity.Content.Biomes.FrozenHell.Items;
 using System;
 using Terraria;
 using Terraria.ID;
@@ -63,6 +63,19 @@ namespace Clamity.Commons
                     {
                         int type = Main.tile[k, l].TileType;
                         int wall = Main.tile[k, l].WallType;
+
+                        if (type == ModContent.TileType<FrozenAshTile>())
+                        {
+                            Main.tile[k, l].TileType = TileID.Ash;
+                            WorldGen.SquareTileFrame(k, l, true);
+                            NetMessage.SendTileSquare(-1, k, l, 1);
+                        }
+                        if (type == ModContent.TileType<FrozenHellstoneTile>())
+                        {
+                            Main.tile[k, l].TileType = TileID.Hellstone;
+                            WorldGen.SquareTileFrame(k, l, true);
+                            NetMessage.SendTileSquare(-1, k, l, 1);
+                        }
                     }
                 }
             }

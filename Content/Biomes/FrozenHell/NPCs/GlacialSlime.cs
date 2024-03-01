@@ -1,10 +1,6 @@
 ﻿using CalamityMod;
 using Clamity.Content.Biomes.FrozenHell.Items;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
@@ -42,7 +38,7 @@ namespace Clamity.Content.Biomes.FrozenHell.NPCs
             NPC.DeathSound = SoundID.NPCDeath1;
             SpawnModBiomes = new int[1]
               {
-                ((ModSceneEffect) ModContent.GetInstance<Clamity.Content.Biomes.FrozenHell.Biome.FrozenHell>()).Type
+                ((ModSceneEffect) ModContent.GetInstance<Content.Biomes.FrozenHell.Biome.FrozenHell>()).Type
               };
 
         }
@@ -55,6 +51,7 @@ namespace Clamity.Content.Biomes.FrozenHell.NPCs
         {
             npcLoot.Add(ItemDropRule.Common(ItemID.Gel, 1, 23, 30));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<FrozenHellstone>(), 1, 3, 6));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<IcicleRing>(), 100));
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo) => !spawnInfo.Player.Clamity().ZoneFrozenHell ? 0.0f : 0.25f;
     }
