@@ -1,7 +1,7 @@
 ﻿using CalamityMod;
 using CalamityMod.Buffs.DamageOverTime;
+using Clamity.Content.Biomes.FrozenHell.Biome;
 using Clamity.Content.Boss.Pyrogen.Drop;
-using Clamity.Content.Boss.WoB.FrozenHell.Biome;
 using Clamity.Content.Cooldowns;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;

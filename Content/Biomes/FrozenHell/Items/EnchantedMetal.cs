@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ModLoader;
 using CalamityMod.Tiles.Furniture.CraftingStations;
 
-namespace Clamity.Content.Boss.WoB.FrozenHell.Items
+namespace Clamity.Content.Biomes.FrozenHell.Items
 {
     public class EnchantedMetal : ModItem, ILocalizedModType, IModType
     {
@@ -14,7 +14,7 @@ namespace Clamity.Content.Boss.WoB.FrozenHell.Items
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 25;
-            ItemID.Sets.SortingPriorityMaterials[this.Type] = 106;
+            ItemID.Sets.SortingPriorityMaterials[Type] = 106;
         }
 
         public override void SetDefaults()

@@ -11,13 +11,13 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Boss.WoB.FrozenHell.NPCs
+namespace Clamity.Content.Biomes.FrozenHell.NPCs
 {
     public class ClockworkBat : ModNPC
     {
         public override void SetStaticDefaults()
         {
-            Main.npcFrameCount[this.NPC.type] = 5;
+            Main.npcFrameCount[NPC.type] = 5;
         }
         public override void SetDefaults()
         {
@@ -43,11 +43,11 @@ namespace Clamity.Content.Boss.WoB.FrozenHell.NPCs
             NPC.DeathSound = SoundID.NPCDeath14;
             SpawnModBiomes = new int[1]
               {
-                ((ModSceneEffect) ModContent.GetInstance<FrozenHell.Biome.FrozenHell>()).Type
+                ((ModSceneEffect) ModContent.GetInstance<Clamity.Content.Biomes.FrozenHell.Biome.FrozenHell>()).Type
               };
 
         }
-        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) => bestiaryEntry.Info.AddRange((IEnumerable<IBestiaryInfoElement>)new List<IBestiaryInfoElement>()
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) => bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement>()
         {
             //BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheUnderworld,
             new FlavorTextBestiaryInfoElement("Mods.Clamity.NPCs.ClockworkBat.Bestiary")

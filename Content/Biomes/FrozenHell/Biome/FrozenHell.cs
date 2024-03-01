@@ -1,11 +1,11 @@
-﻿using Clamity.Content.Boss.WoB.FrozenHell.Items;
+﻿using Clamity.Content.Biomes.FrozenHell.Items;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Boss.WoB.FrozenHell.Biome
+namespace Clamity.Content.Biomes.FrozenHell.Biome
 {
     public class FrozenHell : ModBiome
     {

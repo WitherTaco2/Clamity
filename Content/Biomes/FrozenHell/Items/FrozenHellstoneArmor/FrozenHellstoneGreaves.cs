@@ -1,11 +1,12 @@
 ﻿using CalamityMod;
 using CalamityMod.Items.Materials;
 using CalamityMod.Rarities;
+using Clamity.Content.Biomes.FrozenHell.Items;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Boss.WoB.FrozenHell.Items.FrozenHellstoneArmor
+namespace Clamity.Content.Biomes.FrozenHell.Items.FrozenHellstoneArmor
 {
     [AutoloadEquip(EquipType.Legs)]
     public class FrozenHellstoneGreaves : ModItem, ILocalizedModType, IModType
@@ -13,16 +14,16 @@ namespace Clamity.Content.Boss.WoB.FrozenHell.Items.FrozenHellstoneArmor
         public new string LocalizationCategory => "Items.Armor.FrozenHellstone";
         public override void SetDefaults()
         {
-            this.Item.width = 44;
-            this.Item.height = 22;
-            this.Item.value = Item.sellPrice(gold: 10);
-            this.Item.rare = ModContent.RarityType<DarkBlue>();
-            this.Item.defense = 45;
+            Item.width = 44;
+            Item.height = 22;
+            Item.value = Item.sellPrice(gold: 10);
+            Item.rare = ModContent.RarityType<DarkBlue>();
+            Item.defense = 45;
         }
 
-        public override void UpdateEquip(Terraria.Player player)
+        public override void UpdateEquip(Player player)
         {
-            player.GetDamage((DamageClass)ModContent.GetInstance<TrueMeleeDamageClass>()) += 0.2f;
+            player.GetDamage(ModContent.GetInstance<TrueMeleeDamageClass>()) += 0.2f;
             player.statLifeMax2 += 75;
             player.aggro += 400;
         }
