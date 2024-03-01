@@ -26,6 +26,11 @@ Ranged: {
 	DepthsEchoRifleProjectileSplit.DisplayName: Depths Echo Split
 	ObsidigunBullet.DisplayName: Obsidian Bullet
 	ObsidigunBulletShard.DisplayName: Obsidian Bullet Shard
+	AccelerationRoundProj.DisplayName: Acceleration Round Proj
+	ArcticArrowProj.DisplayName: Arctic Arrow Proj
+	EnhancedNanoRoundProj.DisplayName: Enhanced Nano Round Proj
+	Nanomachine.DisplayName: Nanomachine
+	SuperballBulletProj.DisplayName: Superball Bullet Proj
 }
 
 Summon.Minion.HellstoneShellfishStaffMinion.DisplayName: Hellstone Shellfish
