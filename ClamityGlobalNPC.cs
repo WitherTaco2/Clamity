@@ -194,7 +194,7 @@ namespace Clamity
         public override void ModifyShop(NPCShop shop)
         {
             if (shop.NpcType == NPCID.Steampunker)
-                shop.Add<CyanSolution>(new Condition(Language.GetOrRegister("Mods.Clamity.Misc.None"), () => ClamitySystem.downedWallOfBronze));
+                shop.Add<CyanSolution>(new Condition(Language.GetOrRegister("Mods.Clamity.Misc.DefeatedWoB"), () => ClamitySystem.downedWallOfBronze));
         }
     }
 }
