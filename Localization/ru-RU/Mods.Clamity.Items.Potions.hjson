@@ -66,3 +66,42 @@ Foods: {
 		// DisplayName: Barolegs
 	}
 }
+
+Tainted: {
+	TaintedHunterPotion: {
+		// DisplayName: Tainted Hunter Potion
+		// Tooltip: Increases enemy aggro by 800
+	}
+
+	TaintedInfernoPotion: {
+		// DisplayName: Tainted Inferno Potion
+		// Tooltip: You and all enemies are lit on fire
+	}
+
+	TaintedLifeforcePotion: {
+		// DisplayName: Tainted Lifeforce Potion
+		/* Tooltip:
+			'''
+			Decreases your maximum health. 
+			All lost health is converted into additional max mana.
+			''' */
+	}
+
+	TaintedManaRegenerationPotion: {
+		/* Tooltip:
+			'''
+			Mana now drains twice as quickly. 
+			All magic hits now have a chance to spawn stars.
+			''' */
+		// DisplayName: Tainted Mana Regeneration Potion
+	}
+
+	TaintedMagicPowerPotion: {
+		/* Tooltip:
+			'''
+			20% decreased magic damage. 
+			Greatly increases magic knockback.
+			''' */
+		// DisplayName: Tainted Magic Power Potion
+	}
+}

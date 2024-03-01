@@ -40,6 +40,8 @@ namespace Clamity
         //Buffs-Debuffs
         //public bool wCleave;
         public bool taintedInferno;
+        public bool taintedMagicPower;
+        public bool taintedManaRegen;
 
         //Pets
 
@@ -65,6 +67,8 @@ namespace Clamity
 
             //wCleave = false;
             taintedInferno = false;
+            taintedMagicPower = false;
+            taintedManaRegen = false;
         }
         //public Item[] accesories;
         public override void UpdateEquips()
@@ -198,6 +202,8 @@ namespace Clamity
                         npc.AddBuff(BuffID.OnFire3, 10);
                 }
             }
+            if (taintedManaRegen)
+                Player.manaCost *= 2;
         }
         public override void PostUpdateMiscEffects()
         {

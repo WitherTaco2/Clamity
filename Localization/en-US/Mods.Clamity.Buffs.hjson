@@ -74,3 +74,28 @@ ExoBaguetteBuff: {
 	DisplayName: Exo Baguette
 	Description: "'Exo Bonjour' ~WitherTaco"
 }
+
+TaintedLifeforcePotionBuff: {
+	Description: Converts part of max life into max mana
+	DisplayName: Tainted Lifeforce
+}
+
+TaintedInfernoPotionBuff: {
+	Description: All in fire
+	DisplayName: Tainted Inferno
+}
+
+TaintedHunterPotionBuff: {
+	Description: Increased aggro
+	DisplayName: Tainted Hunter
+}
+
+TaintedManaRegenerationPotionBuff: {
+	Description: 2x mana cost but you creates a stars on hit
+	DisplayName: Tainted Mana Regeneration
+}
+
+TaintedMagicPowerPotionBuff: {
+	Description: Decreased magic damage but increased magic knockback
+	DisplayName: Tainted Magic Power
+}

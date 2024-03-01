@@ -12,6 +12,7 @@ using Clamity.Content.Cooldowns;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -21,8 +22,21 @@ namespace Clamity
     {
         public override bool InstancePerEntity => true;
         public float[] extraAI = new float[5];
+        public int hitCounts;
+        public override void OnSpawn(Projectile projectile, IEntitySource source)
+        {
+            hitCounts = 0;
+            //Player player = projectile.TryGetOwner
+            if (projectile.TryGetOwner(out Player player))
+            {
+                if (player.Clamity().taintedMagicPower)
+                    projectile.knockBack *= 1.2f;
+            }
+        }
         public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
         {
+            hitCounts++;
+
             Player player = Main.player[projectile.owner];
             if (!player.HasCooldown(ShortstrikeCooldown.ID))
             {
@@ -39,6 +53,21 @@ namespace Clamity
             UpdateAflameAccesory(projectile, target, hit, damageDone);
             if (player.Clamity().inflicingMeleeFrostburn && projectile.DamageType == ModContent.GetInstance<TrueMeleeDamageClass>())
                 target.AddBuff(BuffID.Frostburn, 180);
+            if (projectile.DamageType == DamageClass.Magic && player.Clamity().taintedManaRegen)
+            {
+                int rate = projectile.penetrate;
+                if (rate == -1)
+                {
+                    rate = hitCounts;
+                }
+                if (Main.rand.NextBool(rate + 1))
+                {
+                    Vector2 position1 = projectile.Center - new Vector2(0.0f, 920f).RotatedByRandom(0.3f);
+                    float num = Main.rand.NextFloat(17f, 23f);
+                    int index = Projectile.NewProjectile(projectile.GetSource_OnHit(target), position1, Vector2.Normalize(projectile.Center - position1) * num, ProjectileID.Starfury, projectile.damage / 15, 3f, projectile.owner);
+                    Main.projectile[index].DamageType = DamageClass.Magic;
+                }
+            }
         }
         private void UpdateAflameAccesory(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
         {
