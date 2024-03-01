@@ -39,6 +39,7 @@ namespace Clamity
 
         //Buffs-Debuffs
         //public bool wCleave;
+        public bool taintedInferno;
 
         //Pets
 
@@ -63,6 +64,7 @@ namespace Clamity
             hellsBell = false;
 
             //wCleave = false;
+            taintedInferno = false;
         }
         //public Item[] accesories;
         public override void UpdateEquips()
@@ -184,7 +186,18 @@ namespace Clamity
         }
         public override void PostUpdateEquips()
         {
-
+            if (taintedInferno)
+            {
+                Player.buffImmune[BuffID.OnFire3] = false;
+                Player.AddBuff(BuffID.OnFire3, 10);
+                for (int i = 0; i < Main.maxNPCs; i++)
+                {
+                    NPC npc = Main.npc[i];
+                    if (npc == null) continue;
+                    if (npc.active && !npc.friendly && !npc.dontTakeDamage)
+                        npc.AddBuff(BuffID.OnFire3, 10);
+                }
+            }
         }
         public override void PostUpdateMiscEffects()
         {
