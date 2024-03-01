@@ -28,6 +28,7 @@ namespace Clamity
         public bool pyroStone;
         public bool pyroStoneVanity;
         public bool hellFlare;
+        public bool icicleRing;
 
         //Armor
         public bool inflicingMeleeFrostburn;
@@ -55,6 +56,7 @@ namespace Clamity
             pyroStone = false;
             pyroStoneVanity = false;
             hellFlare = false;
+            icicleRing = false;
 
             inflicingMeleeFrostburn = false;
             frozenParrying = false;
@@ -172,6 +174,19 @@ namespace Clamity
                 if (Player.ZoneSkyHeight && NPC.downedMoonlord && attempt.uncommon && Main.rand.NextBool(10))
                     itemDrop = ModContent.ItemType<SideGar>();*/
             }
+        }
+        public override void UpdateBadLifeRegen()
+        {
+            if (icicleRing && Player.statLife > Player.statLifeMax2 / 3)
+            {
+                if (Player.lifeRegen > 0)
+                    Player.lifeRegen = 0;
+                Player.lifeRegen -= 30;
+            }
+        }
+        public override void PostUpdateEquips()
+        {
+
         }
         public override void PostUpdateMiscEffects()
         {

@@ -1,7 +1,6 @@
 ﻿using CalamityMod;
 using CalamityMod.Items.Materials;
 using CalamityMod.Rarities;
-using Clamity.Content.Biomes.FrozenHell.Items;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -28,6 +27,11 @@ namespace Clamity.Content.Biomes.FrozenHell.Items.FrozenHellstoneArmor
             player.aggro += 400;
         }
 
-        public override void AddRecipes() => CreateRecipe().AddIngredient<EnchantedMetal>(15).AddIngredient<EndothermicEnergy>(24).AddIngredient(ItemID.MoltenGreaves).AddTile(TileID.Hellforge).Register();
+        public override void AddRecipes() => CreateRecipe().AddIngredient(ItemID.MoltenGreaves)
+                                                           .AddIngredient(ItemID.FrostLeggings)
+                                                           .AddIngredient<EnchantedMetal>(15)
+                                                           .AddIngredient<EndothermicEnergy>(24)
+                                                           .AddTile(TileID.Hellforge)
+                                                           .Register();
     }
 }

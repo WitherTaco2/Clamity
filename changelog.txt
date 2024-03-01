@@ -2,4 +2,8 @@
 
 Added Frozen Hellstone armor set. WoB-tier upgrade of Molted Armor
 Added Everest. WoB-tier shortsword. Direct upgrade of Tomutus
+Added Icicle Ring accessory (currtly he drops by Glacial Slime)
 Updated Frozen Ash and Frozen Hellstone sprites (item and tile)
+Clamitas now drops weapons and Slagspitter Pauldron like in his Fandom Wiki page
+Green Solution now work with Frozen Hell blocks
+Fixed localization (primary russian)

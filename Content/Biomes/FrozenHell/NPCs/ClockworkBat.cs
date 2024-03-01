@@ -1,9 +1,5 @@
 ﻿using CalamityMod;
-using CalamityMod.NPCs;
-using CalamityMod.NPCs.VanillaNPCOverrides.RegularEnemies;
-using CalamityMod.World;
 using Microsoft.Xna.Framework;
-using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent.Bestiary;
@@ -43,7 +39,7 @@ namespace Clamity.Content.Biomes.FrozenHell.NPCs
             NPC.DeathSound = SoundID.NPCDeath14;
             SpawnModBiomes = new int[1]
               {
-                ((ModSceneEffect) ModContent.GetInstance<Clamity.Content.Biomes.FrozenHell.Biome.FrozenHell>()).Type
+                ((ModSceneEffect) ModContent.GetInstance<Content.Biomes.FrozenHell.Biome.FrozenHell>()).Type
               };
 
         }

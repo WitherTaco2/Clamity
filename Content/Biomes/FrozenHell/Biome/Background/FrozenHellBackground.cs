@@ -3,10 +3,6 @@ using Microsoft.Xna.Framework.Graphics;
 using MonoMod.Cil;
 using ReLogic.Content;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.Graphics.Effects;
@@ -42,7 +38,7 @@ namespace Clamity.Content.Biomes.FrozenHell.Biome.Background
                 for (int i = 0; i < 14; i++)
                 {
                     UWBGTexture[0][i] = TextureAssets.Underworld[i];
-                    UWBGTexture[1][i] = ModContent.Request<Texture2D>("Clamity/Content/Boss/WoB/FrozenHell/Biome/Background/Underworld " + i);
+                    UWBGTexture[1][i] = ModContent.Request<Texture2D>("Clamity/Content/Biomes/FrozenHell/Biome/Background/Underworld " + i);
                 }
                 UWBGBottomColor[0] = new Color(11, 3, 7);
                 UWBGBottomColor[1] = new Color(13, 13, 28);
