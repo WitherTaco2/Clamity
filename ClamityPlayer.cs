@@ -3,6 +3,7 @@ using CalamityMod.Buffs.DamageOverTime;
 using Clamity.Content.Biomes.FrozenHell.Biome;
 using Clamity.Content.Boss.Pyrogen.Drop;
 using Clamity.Content.Cooldowns;
+using Clamity.Content.Items.Tools.Bags.Fish;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -38,6 +39,7 @@ namespace Clamity
 
         //Buffs-Debuffs
         //public bool wCleave;
+        public bool taintedInferno;
 
         //Pets
 
@@ -62,6 +64,7 @@ namespace Clamity
             hellsBell = false;
 
             //wCleave = false;
+            taintedInferno = false;
         }
         //public Item[] accesories;
         public override void UpdateEquips()
@@ -157,14 +160,14 @@ namespace Clamity
             if (wCleave)
                 Player.Calamity().contactDamageReduction *= 0.75f;
         }*/
-        /*public override void CatchFish(FishingAttempt attempt, ref int itemDrop, ref int npcSpawn, ref AdvancedPopupRequest sonar, ref Vector2 sonarPosition)
+        public override void CatchFish(FishingAttempt attempt, ref int itemDrop, ref int npcSpawn, ref AdvancedPopupRequest sonar, ref Vector2 sonarPosition)
         {
             bool flag = !attempt.inHoney && !attempt.inLava;
             if (flag)
             {
                 if (Player.ZoneDesert && Main.hardMode && attempt.uncommon && Main.rand.NextBool(7))
                     itemDrop = ModContent.ItemType<FishOfFlame>();
-                if (Player.Calamity().ZoneSulphur && DownedBossSystem.downedPolterghast && attempt.uncommon && Main.rand.NextBool(10))
+                /*if (Player.Calamity().ZoneSulphur && DownedBossSystem.downedPolterghast && attempt.uncommon && Main.rand.NextBool(10))
                     itemDrop = ModContent.ItemType<FrontGar>();
                 if (Player.ZoneJungle && DownedBossSystem.downedProvidence && attempt.uncommon && Main.rand.NextBool(10))
                     itemDrop = ModContent.ItemType<RearGar>();
@@ -206,6 +209,18 @@ namespace Clamity
                 if (this.Player.statLife < (int)(Player.statLifeMax2 * 0.25))
                 {
                     Player.endurance += 0.1f;
+                }
+            }
+            if (taintedInferno)
+            {
+                Player.buffImmune[BuffID.OnFire3] = false;
+                Player.AddBuff(BuffID.OnFire3, 10);
+                for (int i = 0; i < Main.maxNPCs; i++)
+                {
+                    NPC npc = Main.npc[i];
+                    if (npc == null) continue;
+                    if (npc.active && !npc.friendly && !npc.dontTakeDamage)
+                        npc.AddBuff(BuffID.OnFire3, 10);
                 }
             }
         }

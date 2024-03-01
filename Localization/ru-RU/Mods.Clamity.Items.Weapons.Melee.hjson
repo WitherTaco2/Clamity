@@ -52,8 +52,6 @@ Tomutus: {
 	DisplayName: Томутус
 	Tooltip:
 		'''
-		Create a explosion on shortstrike
-		Inflict Hellfire on hit
 		Создаёт взрыв при коротком страйке
 		Накладывает Адский огонь при ударе
 		'''
@@ -78,8 +76,6 @@ TrueCaliburn: {
 	DisplayName: Истинный Калибурн
 	Tooltip:
 		'''
-		Create a medium slash on use
-		Create a mini slahses on hit by medium slash on shortstrike
 		Создает средний разрез света при использовании
 		Создает мини разрезы света при ударе от среднего разреза в момент короткого страйка
 		'''
@@ -87,7 +83,7 @@ TrueCaliburn: {
 
 Disease: {
 	DisplayName: Заболевание
-	Tooltip: Release plague seekers on shortstrike Высвобождает искателей чумы в момент короткого страйка
+	Tooltip: Высвобождает искателей чумы в момент короткого страйка
 }
 
 MandibleClaws: {
@@ -104,9 +100,6 @@ WulfrumLeechDagger: {
 	DisplayName: Вульфрумовый кинжал-пиявка
 	Tooltip:
 		'''
-		Drains a low percentage of enemy health on hit
-		Cannot inflict critical hits
-		Make unconsumable for second on shortstrike
 		Отнимает маленькое количство процентов здоровья противника при ударе
 		Не может наносить критические удары
 		Делает непотребляемый в течение секунды при коротком ударе
@@ -114,11 +107,11 @@ WulfrumLeechDagger: {
 }
 
 FrozenVolcano: {
-	// Tooltip: Launches a flames
-	// DisplayName: Frozen Volcano
+	Tooltip: Запускает огонь
+	DisplayName: Замороженный вулкан
 }
 
 Everest: {
-	// Tooltip: Fires a spread of volcanic fireballs
-	// DisplayName: Everest
+	Tooltip: Выпускает разбросом вулканические огненые шары
+	DisplayName: Эверест
 }

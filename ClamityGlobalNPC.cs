@@ -79,6 +79,20 @@ namespace Clamity
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Barolegs>(), 4));
             }
+
+
+            if (NPCID.Sets.Zombies[npc.type])
+            {
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<DisgustingMeat>(), 4, 1, 2));
+            }
+            if (ContainType(npc.type, NPCID.EaterofWorldsBody))
+            {
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<DisgustingMeat>(), 1, 2, 4));
+            }
+            if (npc.type == NPCID.PartyGirl)
+            {
+                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<DisgustingMeat>(), 1, 30, 30));
+            }
         }
         private bool ContainType(int npcid, params int[] array)
         {
@@ -180,7 +194,7 @@ namespace Clamity
         public override void ModifyShop(NPCShop shop)
         {
             if (shop.NpcType == NPCID.Steampunker)
-                shop.Add<CyanSolution>(new Condition(Language.GetOrRegister("Mods.Clamity.Misc.None"), () => ClamitySystem.downedWallOfBronze));
+                shop.Add<CyanSolution>(new Condition(Language.GetOrRegister("Mods.Clamity.Misc.DefeatedWoB"), () => ClamitySystem.downedWallOfBronze));
         }
     }
 }
