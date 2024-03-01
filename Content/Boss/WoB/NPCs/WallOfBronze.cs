@@ -315,6 +315,7 @@ namespace Clamity.Content.Boss.WoB.NPCs
                     for (int j = Main.UnderworldLayer; j < Main.bottomWorld / 16 - 1; j++)
                     {
                         int posX = (int)MathHelper.Clamp(basePosX + i, 0, Main.maxTilesX);
+                        //Tile tile = Main.tile[posX, j];
 
                         if (Main.tile[posX, j].TileType == TileID.Ash || Main.tile[posX, j].TileType == TileID.AshGrass)
                         {
@@ -326,6 +327,14 @@ namespace Clamity.Content.Boss.WoB.NPCs
                         if (Main.tile[posX, j].TileType == TileID.Hellstone)
                         {
                             Main.tile[posX, j].TileType = (ushort)ModContent.TileType<FrozenHellstoneTile>();
+                            WorldGen.SquareTileFrame(posX, j);
+                            NetMessage.SendTileSquare(-1, posX, j, 1);
+                        }
+                        if (Main.tile[posX, j].LiquidType == 1 && Main.tile[posX, j].LiquidAmount > 0 && !Main.tile[posX, j].HasTile)
+                        {
+                            //Main.tile[posX, j].TileType = 162;
+                            Main.tile[posX, j].LiquidAmount = 0;
+                            WorldGen.PlaceTile(posX, j, 162, forced: true);
                             WorldGen.SquareTileFrame(posX, j);
                             NetMessage.SendTileSquare(-1, posX, j, 1);
                         }

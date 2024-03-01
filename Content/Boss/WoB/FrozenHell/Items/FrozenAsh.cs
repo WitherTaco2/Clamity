@@ -43,7 +43,7 @@ namespace Clamity.Content.Boss.WoB.FrozenHell.Items
             Main.tileBlockLight[Type] = true;
             CalamityUtils.MergeWithHell(Type);
             CalamityUtils.MergeWithGeneral(Type);
-            CalamityUtils.SetMerge(Type, ModContent.TileType<FrozenHellstoneTile>());
+            //CalamityUtils.SetMerge(Type, ModContent.TileType<FrozenHellstoneTile>());
             this.AddMapEntry(new Color(78, 89, 99));
             this.HitSound = new SoundStyle?(SoundID.Dig);
         }

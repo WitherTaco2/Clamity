@@ -42,9 +42,12 @@ namespace Clamity.Content.Boss.WoB.FrozenHell.Items
             Main.tileSolid[Type] = true;
             Main.tileBlockLight[Type] = true;
             Main.tileOreFinderPriority[Type] = (short)950;
+            Main.tileSpelunker[Type] = true;
+            Main.tileShine2[Type] = true;
+            Main.tileShine[Type] = 975;
             CalamityUtils.MergeWithGeneral(Type);
             CalamityUtils.MergeWithHell(Type);
-            CalamityUtils.SetMerge(Type, ModContent.TileType<FrozenAshTile>());
+            //CalamityUtils.SetMerge(Type, ModContent.TileType<FrozenAshTile>());
             TileID.Sets.Ore[Type] = true;
             TileID.Sets.OreMergesWithMud[Type] = true;
             this.AddMapEntry(new Color(208, (int)byte.MaxValue, (int)byte.MaxValue), this.CreateMapEntryName());

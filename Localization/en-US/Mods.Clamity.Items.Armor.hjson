@@ -41,3 +41,33 @@ Vanity: {
 		DisplayName: Wall of Bronze Mask
 	}
 }
+
+FrozenHellstone: {
+	FrozenHellstoneVisor: {
+		Tooltip:
+			'''
+			20% increased true melee damage. 
+			True melee attacks inflict Frostburn. 
+			Enemies are more likely to target you
+			'''
+		DisplayName: Frozen Hellstone Visor
+	}
+
+	FrozenHellstoneGreaves: {
+		Tooltip:
+			'''
+			20% increased true melee damage and +75 max life. 
+			Enemies are more likely to target you
+			'''
+		DisplayName: Frozen Hellstone Greaves
+	}
+
+	FrozenHellstoneChestplate: {
+		Tooltip:
+			'''
+			20% increased true melee damage and 20% increased true melee size. 
+			Enemies are more likely to target you
+			'''
+		DisplayName: Frozen Hellstone Chestplate
+	}
+}

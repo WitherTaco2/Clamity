@@ -3,9 +3,7 @@ using CalamityMod.Buffs.DamageOverTime;
 using Clamity.Content.Boss.Pyrogen.Drop;
 using Clamity.Content.Boss.WoB.FrozenHell.Biome;
 using Clamity.Content.Cooldowns;
-using Clamity.Content.Items.Tools.Bags.Fish;
 using Microsoft.Xna.Framework;
-using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
@@ -30,6 +28,10 @@ namespace Clamity
         public bool pyroStoneVanity;
         public bool hellFlare;
 
+        //Armor
+        public bool inflicingMeleeFrostburn;
+        public bool frozenParrying;
+
         //Minion
         public bool hellsBell;
 
@@ -51,6 +53,9 @@ namespace Clamity
             pyroStone = false;
             pyroStoneVanity = false;
             hellFlare = false;
+
+            inflicingMeleeFrostburn = false;
+            frozenParrying = false;
 
             hellsBell = false;
 
