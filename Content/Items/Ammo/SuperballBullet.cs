@@ -79,7 +79,7 @@ namespace Clamity.Content.Items.Ammo
                 }
             }
 
-            if (Projectile.timeLeft == 500 && Projectile.ai[0] == 0)
+            if (Projectile.timeLeft == 570 && Projectile.ai[0] == 0)
             {
                 for (int i = 0; i < 3; i++)
                 {

@@ -68,15 +68,15 @@ namespace Clamity.Content.Items.Ammo
 
         public override void OnSpawn(IEntitySource source)
         {
-            Projectile.ai[0] = Projectile.damage;
-            Projectile.ai[1] = 1f;
+            Projectile.Clamity().extraAI[0] = Projectile.damage;
+            Projectile.Clamity().extraAI[1] = 1f;
         }
 
         public override void AI()
         {
             Projectile.velocity *= 1.01f;
-            Projectile.ai[1] = MathHelper.Clamp(Projectile.ai[1] * 1.007f, 1, 2);
-            Projectile.damage = (int)(Projectile.ai[0] * Projectile.ai[1]);
+            Projectile.Clamity().extraAI[1] = MathHelper.Clamp(Projectile.Clamity().extraAI[1] * 1.007f, 1, 2);
+            Projectile.damage = (int)(Projectile.Clamity().extraAI[0] * Projectile.Clamity().extraAI[1]);
             if (Projectile.velocity.Length() >= 12f)
             {
                 Projectile.velocity *= 0.5f;
