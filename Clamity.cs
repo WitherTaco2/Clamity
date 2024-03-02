@@ -2,7 +2,9 @@ using CalamityMod;
 using CalamityMod.CalPlayer;
 using CalamityMod.Cooldowns;
 using CalamityMod.Events;
+using CalamityMod.Items.Mounts;
 using CalamityMod.NPCs.Yharon;
+using CalamityMod.UI.CalamitasEnchants;
 using Clamity.Commons;
 using Clamity.Content.Biomes.FrozenHell.Biome.Background;
 using Clamity.Content.Boss.Clamitas;
@@ -15,6 +17,7 @@ using Clamity.Content.Boss.WoB;
 using Clamity.Content.Boss.WoB.Drop;
 using Clamity.Content.Boss.WoB.NPCs;
 using Clamity.Content.Cooldowns;
+using Clamity.Content.Items.Mounts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -51,6 +54,8 @@ namespace Clamity
                 delegate (Player player) { player.Clamity().aflameAcc = true; }
 
             );
+            EnchantmentManager.ItemUpgradeRelationship.Add(ModContent.ItemType<ExoThrone>(), ModContent.ItemType<FlameCube>());
+
             LoadCooldowns();
             LoadBossRush();
             NewNPCStats.Load();

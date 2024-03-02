@@ -74,3 +74,13 @@ ExoBaguetteBuff: {
 	DisplayName: Экзо багет
 	Description: "'Экзо бонджур' ~WitherTaco"
 }
+
+BrimChairBuff: {
+	DisplayName: Серный трон
+	Description: Сидишь на геймерском кресле, бросающем вызов физике
+}
+
+PlagueChairBuff: {
+	DisplayName: Чумной стул
+	Description: Сидишь на геймерском кресле, бросающем вызов физике
+}

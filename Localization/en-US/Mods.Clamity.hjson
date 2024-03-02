@@ -8,6 +8,28 @@ Items: {
 			'''
 		DisplayName: Heavy Metal Trash Can
 	}
+
+	Mounts: {
+		FlameCube: {
+			DisplayName: Flame Cube
+			Tooltip:
+				'''
+				Materializes a quite cozy and extremely nimble flying Calamitas's throne
+				Hold [KEY] while sitting in the throne to move slower for more precision
+				'A comfortable gamer is a dangerous gamer'
+				'''
+		}
+
+		PlagueStation: {
+			DisplayName: Plague Station
+			Tooltip:
+				'''
+				Materializes a quite cozy and extremely nimble flying Plague throne
+				Hold [KEY] while sitting in the throne to move slower for more precision
+				'A comfortable gamer is a dangerous gamer'
+				'''
+		}
+	}
 }
 
 Misc: {

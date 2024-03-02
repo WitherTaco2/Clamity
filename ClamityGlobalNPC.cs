@@ -5,6 +5,7 @@ using CalamityMod.NPCs.PlaguebringerGoliath;
 using CalamityMod.NPCs.SunkenSea;
 using Clamity.Content.Biomes.FrozenHell.Items;
 using Clamity.Content.Items.Materials;
+using Clamity.Content.Items.Mounts;
 using Clamity.Content.Items.Potions.Food;
 using Clamity.Content.Items.Weapons.Melee.Shortswords;
 using Clamity.Content.Items.Weapons.Melee.Swords;
@@ -25,14 +26,18 @@ namespace Clamity
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
             Conditions.IsHardmode hm = new Conditions.IsHardmode();
+            LeadingConditionRule mainRule = npcLoot.DefineNormalOnlyDropSet();
+
             if (npc.type == NPCID.Golem)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<LeadWizard>(), 4));
             }
             if (npc.type == ModContent.NPCType<PlaguebringerGoliath>())
             {
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Disease>(), 10));
+                mainRule.Add(ItemDropRule.Common(ModContent.ItemType<Disease>(), 4));
+                mainRule.Add(ItemDropRule.Common(ModContent.ItemType<PlagueStation>()));
             }
+
 
             if (ContainType(npc.type, NPCID.Mummy, NPCID.LightMummy, NPCID.DarkMummy, NPCID.BloodMummy,
                 NPCID.DesertBeast, NPCID.DesertScorpionWalk, NPCID.DesertScorpionWall,
