@@ -29,6 +29,12 @@ namespace Clamity.Commons
                 case "wallofbronze":
                 case "wall of bronze":
                     return ClamitySystem.downedWallOfBronze;
+
+                case "profusion":
+                case "profusion viral god":
+                case "viralgod":
+                case "viral god":
+                    return ClamitySystem.downedProfusion;
             }
         }
         public static bool GetInZone(Player p, string zone)

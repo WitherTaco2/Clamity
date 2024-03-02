@@ -95,11 +95,31 @@ namespace Clamity
                 }
             }
         }
+        internal static bool _downedProfusion;
+        public static bool downedProfusion
+        {
+            get
+            {
+                return _downedProfusion;
+            }
+            set
+            {
+                if (!value)
+                {
+                    _downedProfusion = false;
+                }
+                else
+                {
+                    NPC.SetEventFlagCleared(ref _downedProfusion, -1);
+                }
+            }
+        }
         internal static void ResetAllFlags()
         {
             downedClamitas = false;
             downedPyrogen = false;
             downedWallOfBronze = false;
+            downedProfusion = false;
         }
         public override void OnWorldLoad()
         {
@@ -118,6 +138,8 @@ namespace Clamity
                 list.Add("pyrogen");
             if (downedWallOfBronze)
                 list.Add("wob");
+            if (downedProfusion)
+                list.Add("profusion");
             tag["downedFlagsClamity"] = list;
         }
         public override void LoadWorldData(TagCompound tag)
@@ -126,13 +148,19 @@ namespace Clamity
             downedClamitas = list.Contains("clamitas");
             downedPyrogen = list.Contains("pyrogen");
             downedWallOfBronze = list.Contains("wob");
+            downedProfusion = list.Contains("profusion");
         }
         public static int AnySandBlock;
+        public static int AnyEvilMushroom;
         public override void AddRecipeGroups()
         {
             ClamitySystem.AnySandBlock = RecipeGroup.RegisterGroup("AnySandBlock", new RecipeGroup((Func<string>)(() => LangHelper.GetText("Misc.RecipeGroup.AnySandBlock")), new int[5]
             {
                 ItemID.SandBlock, ItemID.EbonsandBlock, ItemID.PearlsandBlock, ItemID.CrimsandBlock, ModContent.ItemType<AstralSand>()
+            }));
+            ClamitySystem.AnyEvilMushroom = RecipeGroup.RegisterGroup("AnyEvilMushroom", new RecipeGroup((Func<string>)(() => LangHelper.GetText("Misc.RecipeGroup.AnyEvilMushroom")), new int[2]
+            {
+                ItemID.VileMushroom, ItemID.ViciousMushroom
             }));
         }
         public override void NetSend(BinaryWriter writer)
@@ -141,6 +169,7 @@ namespace Clamity
             flags[0] = downedClamitas;
             flags[0] = downedPyrogen;
             flags[0] = downedWallOfBronze;
+            flags[3] = downedProfusion;
 
             writer.Write(flags);
         }
@@ -150,6 +179,7 @@ namespace Clamity
             downedClamitas = flags[0];
             downedPyrogen = flags[1];
             downedWallOfBronze = flags[2];
+            downedProfusion = flags[3];
         }
     }
 }
