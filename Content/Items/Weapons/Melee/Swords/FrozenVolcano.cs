@@ -9,8 +9,8 @@ using CalamityMod;
 using System;
 using Microsoft.Xna.Framework;
 using CalamityMod.Rarities;
-using Clamity.Content.Boss.WoB.FrozenHell.Items;
 using CalamityMod.Tiles.Furniture.CraftingStations;
+using Clamity.Content.Biomes.FrozenHell.Items;
 
 namespace Clamity.Content.Items.Weapons.Melee.Swords
 {

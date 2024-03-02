@@ -5,7 +5,7 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Boss.WoB.FrozenHell.Items
+namespace Clamity.Content.Biomes.FrozenHell.Items
 {
     public class CyanSolution : ModItem, ILocalizedModType, IModType
     {
@@ -48,7 +48,7 @@ namespace Clamity.Content.Boss.WoB.FrozenHell.Items
 
             if (Projectile.owner == Main.myPlayer)
             {
-                Convert((int)(Projectile.position.X + (Projectile.width * 0.5f)) / 16, (int)(Projectile.position.Y + (Projectile.height * 0.5f)) / 16, 2);
+                Convert((int)(Projectile.position.X + Projectile.width * 0.5f) / 16, (int)(Projectile.position.Y + Projectile.height * 0.5f) / 16, 2);
             }
 
             if (Projectile.timeLeft > 133)
@@ -101,7 +101,7 @@ namespace Clamity.Content.Boss.WoB.FrozenHell.Items
             {
                 for (int l = j - size; l <= j + size; l++)
                 {
-                    if (WorldGen.InWorld(k, l, 1) && Math.Abs(k - i) + Math.Abs(l - j) < Math.Sqrt((size * size) + (size * size)))
+                    if (WorldGen.InWorld(k, l, 1) && Math.Abs(k - i) + Math.Abs(l - j) < Math.Sqrt(size * size + size * size))
                     {
                         int type = Main.tile[k, l].TileType;
                         int wall = Main.tile[k, l].WallType;
@@ -144,7 +144,7 @@ namespace Clamity.Content.Boss.WoB.FrozenHell.Items
                         if (Main.tile[k, l].LiquidType == LiquidID.Lava)
                         {
                             Main.tile[k, l].LiquidAmount = 0;
-                            Main.tile[k, l].TileType = (ushort)TileID.BreakableIce;
+                            Main.tile[k, l].TileType = TileID.BreakableIce;
                             WorldGen.SquareTileFrame(k, l);
                             NetMessage.SendTileSquare(-1, k, l, 1);
                         }

@@ -1,11 +1,10 @@
 ﻿using CalamityMod;
 using CalamityMod.Buffs.DamageOverTime;
+using Clamity.Content.Biomes.FrozenHell.Biome;
 using Clamity.Content.Boss.Pyrogen.Drop;
-using Clamity.Content.Boss.WoB.FrozenHell.Biome;
 using Clamity.Content.Cooldowns;
 using Clamity.Content.Items.Tools.Bags.Fish;
 using Microsoft.Xna.Framework;
-using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
@@ -29,6 +28,11 @@ namespace Clamity
         public bool pyroStone;
         public bool pyroStoneVanity;
         public bool hellFlare;
+        public bool icicleRing;
+
+        //Armor
+        public bool inflicingMeleeFrostburn;
+        public bool frozenParrying;
 
         //Minion
         public bool hellsBell;
@@ -51,6 +55,10 @@ namespace Clamity
             pyroStone = false;
             pyroStoneVanity = false;
             hellFlare = false;
+            icicleRing = false;
+
+            inflicingMeleeFrostburn = false;
+            frozenParrying = false;
 
             hellsBell = false;
 
@@ -150,21 +158,34 @@ namespace Clamity
             if (wCleave)
                 Player.Calamity().contactDamageReduction *= 0.75f;
         }*/
-        /*public override void CatchFish(FishingAttempt attempt, ref int itemDrop, ref int npcSpawn, ref AdvancedPopupRequest sonar, ref Vector2 sonarPosition)
+        public override void CatchFish(FishingAttempt attempt, ref int itemDrop, ref int npcSpawn, ref AdvancedPopupRequest sonar, ref Vector2 sonarPosition)
         {
             bool flag = !attempt.inHoney && !attempt.inLava;
             if (flag)
             {
                 if (Player.ZoneDesert && Main.hardMode && attempt.uncommon && Main.rand.NextBool(7))
                     itemDrop = ModContent.ItemType<FishOfFlame>();
-                if (Player.Calamity().ZoneSulphur && DownedBossSystem.downedPolterghast && attempt.uncommon && Main.rand.NextBool(10))
+                /*if (Player.Calamity().ZoneSulphur && DownedBossSystem.downedPolterghast && attempt.uncommon && Main.rand.NextBool(10))
                     itemDrop = ModContent.ItemType<FrontGar>();
                 if (Player.ZoneJungle && DownedBossSystem.downedProvidence && attempt.uncommon && Main.rand.NextBool(10))
                     itemDrop = ModContent.ItemType<RearGar>();
                 if (Player.ZoneSkyHeight && NPC.downedMoonlord && attempt.uncommon && Main.rand.NextBool(10))
-                    itemDrop = ModContent.ItemType<SideGar>();
+                    itemDrop = ModContent.ItemType<SideGar>();*/
             }
-        }*/
+        }
+        public override void UpdateBadLifeRegen()
+        {
+            if (icicleRing && Player.statLife > Player.statLifeMax2 / 3)
+            {
+                if (Player.lifeRegen > 0)
+                    Player.lifeRegen = 0;
+                Player.lifeRegen -= 30;
+            }
+        }
+        public override void PostUpdateEquips()
+        {
+
+        }
         public override void PostUpdateMiscEffects()
         {
             StatModifier statModifier;

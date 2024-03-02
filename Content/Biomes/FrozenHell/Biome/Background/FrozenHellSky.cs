@@ -6,17 +6,17 @@ using Terraria;
 using Terraria.Graphics.Effects;
 using Terraria.Graphics.Shaders;
 
-namespace Clamity.Content.Boss.WoB.FrozenHell.Biome.Background
+namespace Clamity.Content.Biomes.FrozenHell.Biome.Background
 {
     public class FrozenHellSky : CustomSky
     {
         //public int skyActiveLeeway;
         private bool skyActive;
         private float opacity;
-        public override void Deactivate(params object[] args) => this.skyActive = false;
-        public override void Reset() => this.skyActive = false;
-        public override bool IsActive() => this.skyActive || (double)this.opacity > 0.0;
-        public override void Activate(Vector2 position, params object[] args) => this.skyActive = true;
+        public override void Deactivate(params object[] args) => skyActive = false;
+        public override void Reset() => skyActive = false;
+        public override bool IsActive() => skyActive || opacity > 0.0;
+        public override void Activate(Vector2 position, params object[] args) => skyActive = true;
         public override void Update(GameTime gameTime)
         {
             if (!Main.LocalPlayer.Clamity().ZoneFrozenHell || Main.gameMenu)
@@ -37,7 +37,7 @@ namespace Clamity.Content.Boss.WoB.FrozenHell.Biome.Background
         }
         public override Color OnTileColor(Color inColor)
         {
-            return Color.Lerp(inColor, new Color(0, 148, 255), this.opacity);
+            return Color.Lerp(inColor, new Color(0, 148, 255), opacity);
         }
     }
     public class FrozenHellShaderData : ScreenShaderData

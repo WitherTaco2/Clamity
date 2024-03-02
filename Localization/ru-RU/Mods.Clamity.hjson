@@ -23,6 +23,7 @@ Items: {
 Misc: {
 	RecipeGroup.AnySandBlock: Любой песок
 	// None: ""
+	// DefeatedWoB: Defeated a Wall of Bronze
 }
 
 Tiles: {
