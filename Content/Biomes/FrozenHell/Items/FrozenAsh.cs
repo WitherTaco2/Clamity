@@ -5,7 +5,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Boss.WoB.FrozenHell.Items
+namespace Clamity.Content.Biomes.FrozenHell.Items
 {
     public class FrozenAsh : ModItem, ILocalizedModType, IModType
     {
@@ -13,7 +13,7 @@ namespace Clamity.Content.Boss.WoB.FrozenHell.Items
 
         public override void SetStaticDefaults()
         {
-            ItemID.Sets.SortingPriorityMaterials[this.Type] = 99;
+            ItemID.Sets.SortingPriorityMaterials[Type] = 99;
             Item.ResearchUnlockCount = 100;
         }
 
@@ -43,9 +43,9 @@ namespace Clamity.Content.Boss.WoB.FrozenHell.Items
             Main.tileBlockLight[Type] = true;
             CalamityUtils.MergeWithHell(Type);
             CalamityUtils.MergeWithGeneral(Type);
-            CalamityUtils.SetMerge(Type, ModContent.TileType<FrozenHellstoneTile>());
-            this.AddMapEntry(new Color(78, 89, 99));
-            this.HitSound = new SoundStyle?(SoundID.Dig);
+            //CalamityUtils.SetMerge(Type, ModContent.TileType<FrozenHellstoneTile>());
+            AddMapEntry(new Color(78, 89, 99));
+            HitSound = new SoundStyle?(SoundID.Dig);
         }
         public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 1 : 3;
     }

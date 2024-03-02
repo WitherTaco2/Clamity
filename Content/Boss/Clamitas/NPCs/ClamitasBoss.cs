@@ -1,15 +1,20 @@
-
 using CalamityMod;
 using CalamityMod.BiomeManagers;
 using CalamityMod.Dusts;
 using CalamityMod.Events;
 using CalamityMod.Items.Placeables;
 using CalamityMod.Items.Placeables.Furniture.DevPaintings;
+using CalamityMod.Items.Weapons.Magic;
+using CalamityMod.Items.Weapons.Melee;
+using CalamityMod.Items.Weapons.Ranged;
+using CalamityMod.Items.Weapons.Rogue;
+using CalamityMod.Items.Weapons.Summon;
 using CalamityMod.NPCs;
 using CalamityMod.NPCs.SunkenSea;
 using CalamityMod.Projectiles.Boss;
 using Clamity.Commons;
 using Clamity.Content.Boss.Clamitas.Drop;
+using Clamity.Content.Items.Potions.Food;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -17,6 +22,7 @@ using System.IO;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -79,7 +85,7 @@ namespace Clamity.Content.Boss.Clamitas.NPCs
             NPC.aiStyle = -1;
             AIType = -1;
             //base.NPC.value = (Main.hardMode ? Item.buyPrice(0, 8) : Item.buyPrice(0, 1));
-            NPC.value = Item.buyPrice(0, 10);
+            NPC.value = Item.buyPrice(0, 20);
             NPC.HitSound = SoundID.NPCHit4;
             NPC.knockBackResist = 0f;
             NPC.rarity = 2;
@@ -746,6 +752,8 @@ namespace Clamity.Content.Boss.Clamitas.NPCs
             npcLoot.Add(ModContent.ItemType<BrimstoneSlag>(), 1, 30, 40);
             npcLoot.Add(ModContent.ItemType<HuskOfCalamity>(), 1, 25, 30);
             npcLoot.Add(ModContent.ItemType<ClamitousPearl>(), 1, 2, 4);
+            npcLoot.Add(ModContent.ItemType<SlagspitterPauldron>(), 2, 1, 4);
+            npcLoot.Add(ItemDropRule.OneFromOptions(1, ModContent.ItemType<Brimlash>(), ModContent.ItemType<BrimstoneFury>(), ModContent.ItemType<BurningSea>(), ModContent.ItemType<IgneousExaltation>(), ModContent.ItemType<Brimblade>()));
             npcLoot.AddConditionalPerPlayer(() => !ClamitySystem.downedClamitas, ModContent.ItemType<LoreWhat>(), ui: true, DropHelper.FirstKillText);
             npcLoot.DefineConditionalDropSet(DropHelper.RevAndMaster).Add(ModContent.ItemType<ClamitasRelic>());
             npcLoot.Add(ModContent.ItemType<ThankYouPainting>(), 100);

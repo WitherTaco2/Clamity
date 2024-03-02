@@ -1,23 +1,19 @@
 ﻿using CalamityMod;
-using Clamity.Content.Boss.WoB.FrozenHell.Items;
-using System;
+using Clamity.Content.Biomes.FrozenHell.Items;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Boss.WoB.FrozenHell.NPCs
+namespace Clamity.Content.Biomes.FrozenHell.NPCs
 {
     public class GlacialSlime : ModNPC
     {
         public override void SetStaticDefaults()
         {
-            Main.npcFrameCount[this.NPC.type] = 2;
+            Main.npcFrameCount[NPC.type] = 2;
         }
         public override void SetDefaults()
         {
@@ -42,11 +38,11 @@ namespace Clamity.Content.Boss.WoB.FrozenHell.NPCs
             NPC.DeathSound = SoundID.NPCDeath1;
             SpawnModBiomes = new int[1]
               {
-                ((ModSceneEffect) ModContent.GetInstance<FrozenHell.Biome.FrozenHell>()).Type
+                ((ModSceneEffect) ModContent.GetInstance<Content.Biomes.FrozenHell.Biome.FrozenHell>()).Type
               };
 
         }
-        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) => bestiaryEntry.Info.AddRange((IEnumerable<IBestiaryInfoElement>)new List<IBestiaryInfoElement>()
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) => bestiaryEntry.Info.AddRange(new List<IBestiaryInfoElement>()
         {
             //BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheUnderworld,
             new FlavorTextBestiaryInfoElement("Mods.Clamity.NPCs.GlacialSlime.Bestiary")
@@ -55,6 +51,7 @@ namespace Clamity.Content.Boss.WoB.FrozenHell.NPCs
         {
             npcLoot.Add(ItemDropRule.Common(ItemID.Gel, 1, 23, 30));
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<FrozenHellstone>(), 1, 3, 6));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<IcicleRing>(), 100));
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo) => !spawnInfo.Player.Clamity().ZoneFrozenHell ? 0.0f : 0.25f;
     }

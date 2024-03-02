@@ -6,7 +6,6 @@ using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -48,6 +47,11 @@ namespace Clamity
                 }
             }
 
+        }
+        public override void OnHitNPC(Item item, Player player, NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            if ((item.DamageType == DamageClass.Melee || item.DamageType == ModContent.GetInstance<TrueMeleeDamageClass>()) && player.Clamity().inflicingMeleeFrostburn)
+                target.AddBuff(BuffID.Frostburn, 180);
         }
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
@@ -91,7 +95,7 @@ namespace Clamity
 
 
                 //Mod clicker = ModLoader.GetMod("ClickerClass");
-                
+
                 if (ModLoader.TryGetMod("ClickerClass", out Mod clicker))
                 {
                     leadingConditionRule.Add(new CommonDrop(clicker.Find<ModItem>("CopperClicker").Item.type, 1));

@@ -12,7 +12,7 @@ using CalamityMod.Items.Tools;
 using Terraria.ModLoader.IO;
 using Clamity.Content.Items.Materials;
 using Clamity.Content.Items.Weapons.Melee.Shortswords;
-using Clamity.Content.Boss.WoB.FrozenHell.Items;
+using Clamity.Content.Biomes.FrozenHell.Items;
 
 namespace Clamity
 {
