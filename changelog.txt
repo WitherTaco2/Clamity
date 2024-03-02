@@ -1,10 +1,9 @@
-[h1]Pyroplate Patch[/h1]
+[h1]Frozen Hell Part 2 Patch[/h1]
 
-Added Pyroplate and Pyroplate Wall
-Added cyan solution to Speampunker shop after Wall of Bronze
-Added Mod Calls
-Replaced Clamitas brimstone blast rain attack to brimstone pearl rain
-Clamitas now can be hitted in fall attack
-Fixed random of Clamitas attacks
-Wall of Bronze now work in Multiplayer
-Boss defeating now registry in multiplayer
+Added Frozen Hellstone armor set. WoB-tier upgrade of Molted Armor
+Added Everest. WoB-tier shortsword. Direct upgrade of Tomutus
+Added Icicle Ring accessory (currtly he drops by Glacial Slime)
+Updated Frozen Ash and Frozen Hellstone sprites (item and tile)
+Clamitas now drops weapons and Slagspitter Pauldron like in his Fandom Wiki page
+Green Solution now work with Frozen Hell blocks
+Fixed localization (primary russian)

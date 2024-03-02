@@ -3,7 +3,7 @@ using CalamityMod.NPCs.Abyss;
 using CalamityMod.NPCs.NormalNPCs;
 using CalamityMod.NPCs.PlaguebringerGoliath;
 using CalamityMod.NPCs.SunkenSea;
-using Clamity.Content.Boss.WoB.FrozenHell.Items;
+using Clamity.Content.Biomes.FrozenHell.Items;
 using Clamity.Content.Items.Materials;
 using Clamity.Content.Items.Potions.Food;
 using Clamity.Content.Items.Weapons.Melee.Shortswords;
@@ -180,7 +180,7 @@ namespace Clamity
         public override void ModifyShop(NPCShop shop)
         {
             if (shop.NpcType == NPCID.Steampunker)
-                shop.Add<CyanSolution>(new Condition(Language.GetOrRegister("Mods.Clamity.Misc.None"), () => ClamitySystem.downedWallOfBronze));
+                shop.Add<CyanSolution>(new Condition(Language.GetOrRegister("Mods.Clamity.Misc.DefeatedWoB"), () => ClamitySystem.downedWallOfBronze));
         }
     }
 }

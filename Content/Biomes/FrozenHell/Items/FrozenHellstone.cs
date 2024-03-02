@@ -5,7 +5,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Boss.WoB.FrozenHell.Items
+namespace Clamity.Content.Biomes.FrozenHell.Items
 {
     public class FrozenHellstone : ModItem, ILocalizedModType, IModType
     {
@@ -13,7 +13,7 @@ namespace Clamity.Content.Boss.WoB.FrozenHell.Items
 
         public override void SetStaticDefaults()
         {
-            ItemID.Sets.SortingPriorityMaterials[this.Type] = 99;
+            ItemID.Sets.SortingPriorityMaterials[Type] = 99;
             Item.ResearchUnlockCount = 100;
         }
 
@@ -41,16 +41,19 @@ namespace Clamity.Content.Boss.WoB.FrozenHell.Items
         {
             Main.tileSolid[Type] = true;
             Main.tileBlockLight[Type] = true;
-            Main.tileOreFinderPriority[Type] = (short)950;
+            Main.tileOreFinderPriority[Type] = 950;
+            Main.tileSpelunker[Type] = true;
+            Main.tileShine2[Type] = true;
+            Main.tileShine[Type] = 975;
             CalamityUtils.MergeWithGeneral(Type);
             CalamityUtils.MergeWithHell(Type);
-            CalamityUtils.SetMerge(Type, ModContent.TileType<FrozenAshTile>());
+            //CalamityUtils.SetMerge(Type, ModContent.TileType<FrozenAshTile>());
             TileID.Sets.Ore[Type] = true;
             TileID.Sets.OreMergesWithMud[Type] = true;
-            this.AddMapEntry(new Color(208, (int)byte.MaxValue, (int)byte.MaxValue), this.CreateMapEntryName());
-            this.MineResist = 3f;
-            this.MinPick = 280;
-            this.HitSound = new SoundStyle?(SoundID.Tink);
+            AddMapEntry(new Color(208, byte.MaxValue, byte.MaxValue), CreateMapEntryName());
+            MineResist = 3f;
+            MinPick = 280;
+            HitSound = new SoundStyle?(SoundID.Tink);
             Main.tileSpelunker[Type] = true;
         }
 

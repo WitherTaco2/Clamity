@@ -12,8 +12,8 @@ using Terraria.ModLoader;
 using CalamityMod.Tiles.Furniture.CraftingStations;
 using Terraria;
 using Microsoft.Xna.Framework;
-using Clamity.Content.Boss.WoB.FrozenHell.Items;
 using Terraria.DataStructures;
+using Clamity.Content.Biomes.FrozenHell.Items;
 
 namespace Clamity.Content.Items.Weapons.Rogue
 {

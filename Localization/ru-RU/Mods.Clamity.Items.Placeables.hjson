@@ -48,11 +48,11 @@ FrozenAsh: {
 }
 
 PyroplateWall: {
-	// Tooltip: ""
-	// DisplayName: Pyroplate Wall
+	Tooltip: ""
+	DisplayName: Стена из пироплиты
 }
 
 Pyroplate: {
-	// Tooltip: It resonates with otherworldly energy
-	// DisplayName: Pyroplate
+	Tooltip: Он резонирует с потусторонней энергией
+	DisplayName: Пироплита
 }

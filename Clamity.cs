@@ -4,6 +4,7 @@ using CalamityMod.Cooldowns;
 using CalamityMod.Events;
 using CalamityMod.NPCs.Yharon;
 using Clamity.Commons;
+using Clamity.Content.Biomes.FrozenHell.Biome.Background;
 using Clamity.Content.Boss.Clamitas;
 using Clamity.Content.Boss.Clamitas.Drop;
 using Clamity.Content.Boss.Clamitas.NPCs;
@@ -13,7 +14,6 @@ using Clamity.Content.Boss.Pyrogen.Drop;
 using Clamity.Content.Boss.Pyrogen.NPCs;
 using Clamity.Content.Boss.WoB;
 using Clamity.Content.Boss.WoB.Drop;
-using Clamity.Content.Boss.WoB.FrozenHell.Biome.Background;
 using Clamity.Content.Boss.WoB.NPCs;
 using Clamity.Content.Cooldowns;
 using Microsoft.Xna.Framework;
@@ -240,6 +240,10 @@ namespace Clamity
                 ModContent.ItemType<WoBLore>(),
 
             };
+            if (Clamity.musicMod != null)
+            {
+                intList16.Add(Clamity.musicMod.Find<ModItem>("WoBMusicBox").Type);
+            }
             Action<SpriteBatch, Rectangle, Color> action4 = (Action<SpriteBatch, Rectangle, Color>)((sb, rect, color) =>
             {
                 Texture2D texture2D = ModContent.Request<Texture2D>(ModContent.GetInstance<WallOfBronze>().Texture + "_BossChecklist", (AssetRequestMode)2).Value;

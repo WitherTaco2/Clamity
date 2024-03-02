@@ -9,7 +9,6 @@ using CalamityMod.Projectiles.Summon;
 using CalamityMod.Projectiles.Typeless;
 using Clamity.Content.Buffs.Shortstrike;
 using Clamity.Content.Cooldowns;
-using Microsoft.CodeAnalysis;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -38,6 +37,8 @@ namespace Clamity
                 Shortstrike(player, projectile, ModContent.BuffType<GladiusShortstrike>(), 0.5f, ProjectileID.GladiusStab, 1.25f);
             }
             UpdateAflameAccesory(projectile, target, hit, damageDone);
+            if (player.Clamity().inflicingMeleeFrostburn && projectile.DamageType == ModContent.GetInstance<TrueMeleeDamageClass>())
+                target.AddBuff(BuffID.Frostburn, 180);
         }
         private void UpdateAflameAccesory(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
         {
@@ -49,7 +50,7 @@ namespace Clamity
             }*/
             List<int> list = modPlayer.aflameAccList;
             AddVulHexDebuff(list, projectile, target, ItemID.VolatileGelatin, ProjectileID.VolatileGelatinBall);
-            AddVulHexDebuff(list, projectile, target, ItemID.BoneGlove, ProjectileID.BoneGloveProj); 
+            AddVulHexDebuff(list, projectile, target, ItemID.BoneGlove, ProjectileID.BoneGloveProj);
             AddVulHexDebuff(list, projectile, target, ItemID.BoneHelm, 964);
             AddVulHexDebuff(list, projectile, target, ItemID.SporeSac, ProjectileID.SporeTrap, ProjectileID.SporeTrap2, ProjectileID.SporeGas, ProjectileID.SporeGas2, ProjectileID.SporeGas3);
 
