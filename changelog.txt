@@ -1,9 +1,16 @@
 [h1]Frozen Hell Part 2 Patch[/h1]
 
+New Content:
 Added Frozen Hellstone armor set. WoB-tier upgrade of Molted Armor
 Added Everest. WoB-tier shortsword. Direct upgrade of Tomutus
 Added Icicle Ring accessory (currtly he drops by Glacial Slime)
+Added Plague Station and Flame Cube. Exo Box alternatives in different stages (after Plaguebringer Goliath and Exo Mech + Supreme Calamitas)
+
+Changes:
 Updated Frozen Ash and Frozen Hellstone sprites (item and tile)
 Clamitas now drops weapons and Slagspitter Pauldron like in his Fandom Wiki page
+
+Fixes:
 Green Solution now work with Frozen Hell blocks
 Fixed localization (primary russian)
+Fixed bug which you can't catch a fish of flame
