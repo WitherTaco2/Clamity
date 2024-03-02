@@ -11,7 +11,11 @@ Items: {
 }
 
 Misc: {
-	RecipeGroup.AnySandBlock: Любой песок
+	RecipeGroup: {
+		AnySandBlock: Любой песок
+		// AnyEvilMushroom: And Evil Mushroom
+	}
+
 	// None: ""
 	// DefeatedWoB: Defeated a Wall of Bronze
 }

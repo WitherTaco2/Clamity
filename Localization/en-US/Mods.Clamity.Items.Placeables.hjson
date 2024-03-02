@@ -25,6 +25,11 @@ Trophies: {
 		Tooltip: ""
 		DisplayName: Wall of Bronze Trophy
 	}
+
+	ProfusionTrophy: {
+		Tooltip: ""
+		DisplayName: Profusion Trophy
+	}
 }
 
 FrozenHellstone: {

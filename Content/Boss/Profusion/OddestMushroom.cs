@@ -1,9 +1,12 @@
-﻿using CalamityMod.Items.Accessories;
+﻿using CalamityMod.Events;
+using CalamityMod.Items.Accessories;
 using CalamityMod.Items.Materials;
 using CalamityMod.Items.Potions.Alcohol;
 using CalamityMod.Items.SummonItems;
 using CalamityMod.Rarities;
+using Clamity.Content.Boss.Profusion.NPCs;
 using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -29,9 +32,9 @@ namespace Clamity.Content.Boss.Profusion
         {
             itemGroup = ContentSamples.CreativeHelper.ItemGroup.BossItem;
         }
-        /*public override bool CanUseItem(Player player)
+        public override bool CanUseItem(Player player)
         {
-            if (player.ZoneGlowshroom && !NPC.AnyNPCs(ModContent.NPCType<>()))
+            if (player.ZoneGlowshroom && !NPC.AnyNPCs(ModContent.NPCType<ProfusionBoss>()))
             {
                 return !BossRushEvent.BossRushActive;
             }
@@ -43,15 +46,15 @@ namespace Clamity.Content.Boss.Profusion
             SoundEngine.PlaySound(in SoundID.Roar, player.Center);
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
-                NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<>());
+                NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<ProfusionBoss>());
             }
             else
             {
-                NetMessage.SendData(61, -1, -1, null, player.whoAmI, ModContent.NPCType<>());
+                NetMessage.SendData(61, -1, -1, null, player.whoAmI, ModContent.NPCType<ProfusionBoss>());
             }
 
             return true;
-        }*/
+        }
         public override void AddRecipes()
         {
             CreateRecipe()

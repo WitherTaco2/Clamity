@@ -44,3 +44,9 @@ GlacialSlime: {
 	DisplayName: Glacial Slime
 	Bestiary: Lava slime which powered by powerful soul of frost. Slime tried to explode, but the temperature difference turned his attempts into spikes
 }
+
+ProfusionBoss: {
+	DisplayName: Profusion, the Viral God
+	Bestiary: Placeholder text
+	BossChecklistIntegration.SpawnInfo: Use a [i:Clamity/OddestMushroom] Oddest Mushroom in Glowing Mushroom biome
+}

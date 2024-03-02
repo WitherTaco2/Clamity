@@ -25,6 +25,11 @@ Trophies: {
 		Tooltip: ""
 		DisplayName: Трофей Стены бронзы
 	}
+
+	ProfusionTrophy: {
+		// Tooltip: ""
+		// DisplayName: Profusion Trophy
+	}
 }
 
 FrozenHellstone: {

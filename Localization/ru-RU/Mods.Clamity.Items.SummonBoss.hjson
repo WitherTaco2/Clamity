@@ -23,3 +23,13 @@ PyroKey: {
 		'Ключ от кубической печки'
 		'''
 }
+
+OddestMushroom: {
+	// DisplayName: Oddest Mushroom
+	/* Tooltip:
+		'''
+		Summons the Viral God, Profusion when used in a Glowing Mushroom field
+		Enrages outside the Glowing Sushroom biome
+		Not consumable
+		''' */
+}

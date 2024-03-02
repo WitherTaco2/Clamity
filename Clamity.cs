@@ -8,6 +8,9 @@ using Clamity.Content.Biomes.FrozenHell.Biome.Background;
 using Clamity.Content.Boss.Clamitas;
 using Clamity.Content.Boss.Clamitas.Drop;
 using Clamity.Content.Boss.Clamitas.NPCs;
+using Clamity.Content.Boss.Profusion;
+using Clamity.Content.Boss.Profusion.Drop;
+using Clamity.Content.Boss.Profusion.NPCs;
 using Clamity.Content.Boss.Pyrogen;
 using Clamity.Content.Boss.Pyrogen.Drop;
 using Clamity.Content.Boss.Pyrogen.NPCs;
@@ -252,6 +255,24 @@ namespace Clamity
                 ["spawnItems"] = (object)ModContent.ItemType<AncientConsole>(),
                 ["collectibles"] = (object)intList16,
                 ["customPortrait"] = (object)action4
+            });
+
+
+            List<int> intList17 = new List<int>()
+            {
+                ModContent.ItemType<ProfusionTrophy>()
+            };
+            Action<SpriteBatch, Rectangle, Color> action5 = (Action<SpriteBatch, Rectangle, Color>)((sb, rect, color) =>
+            {
+                Texture2D texture2D = ModContent.Request<Texture2D>(ModContent.GetInstance<ProfusionBoss>().Texture + "_BossChecklist", (AssetRequestMode)2).Value;
+                Vector2 vector2 = new(rect.Center.X - texture2D.Width / 2, rect.Center.Y - texture2D.Height / 2);
+                sb.Draw(texture2D, vector2, color);
+            });
+            AddBoss(bossChecklist, mod, "Profusion", 20.6f, ModContent.NPCType<ProfusionBoss>(), () => ClamitySystem.downedProfusion, new Dictionary<string, object>()
+            {
+                ["spawnItems"] = (object)ModContent.ItemType<OddestMushroom>(),
+                ["collectibles"] = (object)intList17,
+                ["customPortrait"] = (object)action5
             });
 
             /*EnchantmentManager.EnchantmentList.Add(
