@@ -84,3 +84,8 @@ PlagueChairBuff: {
 	DisplayName: Чумной стул
 	Description: Сидишь на геймерском кресле, бросающем вызов физике
 }
+
+PlanterrorStaffBuff: {
+	DisplayName: Гантера
+	Description: '''"Поговорим об оружии и розах, я прав?"'''
+}

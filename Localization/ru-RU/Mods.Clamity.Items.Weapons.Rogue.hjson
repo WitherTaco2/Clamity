@@ -1,9 +1,9 @@
 MoltenPiercer: {
-	DisplayName: Molten Piercer ������������� ����������
+	DisplayName: Расплавленный пронзатель
 	Tooltip:
 		'''
-		������ ��������� ��������
-		������ ������ ������� ������������ ������� � ����� ��� �������� �����
+		Бросает огненный кинжал
+		Кинжал создает огненные обсидиановые осколки при скрытном ударе
 		'''
 }
 
@@ -18,17 +18,21 @@ Crustalline: {
 }
 
 FrozenStarShuriken: {
-	DisplayName: ������� �������� ������
-	// Tooltip: ""
+	DisplayName: Сюрикен морозной звезды
+	Tooltip:
+		'''
+		Создает самонаводящиеся туманные болты при ударе
+		При скрытном ударе создает больше болтов
+		'''
 }
 
 ExoBall: {
-	// DisplayName: Exo Ball
-	/* Tooltip:
+	DisplayName: Экзо шар
+	Tooltip:
 		'''
-		Hurls up to 10 speedy homing spiky balls
-		Attaches to enemies and summons a localized storm of exo beams
-		Stealth strikes home in faster and summon beams at a faster rate
-		Press <right> to delete all existing spiky balls
-		''' */
+		Швыряет до 10 скоростных самонаводящихся шипастых шаров
+		Прикрепляется к врагам и вызывает локализованный шторм экзо лучей
+		При стрытном ударе самонаводится быстрее и вызывает лучи с большей скоростью
+		Нажмите <right>, чтобы удалить все существующие шипастые шары
+		'''
 }

@@ -4,6 +4,7 @@ using CalamityMod.NPCs.NormalNPCs;
 using CalamityMod.NPCs.PlaguebringerGoliath;
 using CalamityMod.NPCs.SunkenSea;
 using CalamityMod.NPCs.SupremeCalamitas;
+using CalamityMod.NPCs.TownNPCs;
 using Clamity.Content.Biomes.FrozenHell.Items;
 using Clamity.Content.Items.Materials;
 using Clamity.Content.Items.Mounts;
@@ -189,6 +190,8 @@ namespace Clamity
         {
             if (shop.NpcType == NPCID.Steampunker)
                 shop.Add<CyanSolution>(new Condition(Language.GetOrRegister("Mods.Clamity.Misc.DefeatedWoB"), () => ClamitySystem.downedWallOfBronze));
+            if (shop.NpcType == ModContent.NPCType<DILF>())
+                shop.Add<ColdheartIcicle>();
         }
     }
 }

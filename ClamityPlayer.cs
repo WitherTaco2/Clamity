@@ -36,6 +36,7 @@ namespace Clamity
 
         //Minion
         public bool hellsBell;
+        public bool guntera;
 
         //Buffs-Debuffs
         //public bool wCleave;
@@ -65,6 +66,7 @@ namespace Clamity
             frozenParrying = false;
 
             hellsBell = false;
+            guntera = false;
 
             //wCleave = false;
 

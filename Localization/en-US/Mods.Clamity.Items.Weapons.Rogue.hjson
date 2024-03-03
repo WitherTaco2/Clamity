@@ -19,7 +19,11 @@ Crustalline: {
 
 FrozenStarShuriken: {
 	DisplayName: Frozen Star Shuriken
-	Tooltip: ""
+	Tooltip:
+		'''
+		Cheates a homing mist bolts on hit
+		On stealth strike creates more bolts
+		'''
 }
 
 ExoBall: {
