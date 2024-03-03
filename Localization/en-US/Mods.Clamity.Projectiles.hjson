@@ -43,6 +43,7 @@ Rogue: {
 	MoltenPiercerProjectile.DisplayName: Molten Piercer
 	WulfrumShockCutterProjectile.DisplayName: Wulfrum Shock Cutter
 	FrozenStarShurikenProjectile.DisplayName: Frozen Star Shuriken
+	ExoBallProjectile.DisplayName: Exo Ball Projectile
 }
 
 CrustallineProjecile.DisplayName: Crustalline

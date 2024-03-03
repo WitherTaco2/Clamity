@@ -35,7 +35,7 @@ Items: {
 Misc: {
 	RecipeGroup.AnySandBlock: Любой песок
 	// None: ""
-	// DefeatedWoB: Defeated a Wall of Bronze
+	DefeatedWoB: После победы над Стеной Бронзы
 }
 
 Tiles: {

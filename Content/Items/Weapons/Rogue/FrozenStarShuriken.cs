@@ -1,19 +1,14 @@
-﻿using CalamityMod.Items;
-using CalamityMod;
+﻿using CalamityMod;
+using CalamityMod.Items;
 using CalamityMod.Items.Weapons.Rogue;
 using CalamityMod.Projectiles.Rogue;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using CalamityMod.Tiles.Furniture.CraftingStations;
+using Clamity.Content.Biomes.FrozenHell.Items;
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using CalamityMod.Tiles.Furniture.CraftingStations;
-using Terraria;
-using Microsoft.Xna.Framework;
-using Terraria.DataStructures;
-using Clamity.Content.Biomes.FrozenHell.Items;
 
 namespace Clamity.Content.Items.Weapons.Rogue
 {
@@ -75,7 +70,7 @@ namespace Clamity.Content.Items.Weapons.Rogue
         }
         public override void AI()
         {
-            Projectile.rotation += 0.4f * (float)Projectile.direction; 
+            Projectile.rotation += 0.4f * (float)Projectile.direction;
             if (Projectile.timeLeft < BlazingStarProj.Lifetime - BlazingStarProj.ReboundTime)
                 Projectile.ai[0] = 1f;
             if (Projectile.ai[0] == 0.0)
@@ -131,6 +126,9 @@ namespace Clamity.Content.Items.Weapons.Rogue
             {
                 int index = Projectile.NewProjectile(Projectile.GetSource_OnHit(target), Projectile.Center, new Vector2(0, 15).RotatedByRandom(MathHelper.TwoPi), 297, Projectile.damage / 3, 0, Projectile.owner);
                 Main.projectile[index].DamageType = ModContent.GetInstance<RogueDamageClass>();
+                Main.projectile[index].usesLocalNPCImmunity = false;
+                Main.projectile[index].usesIDStaticNPCImmunity = true;
+                Main.projectile[index].idStaticNPCHitCooldown = 10;
             }
         }
     }

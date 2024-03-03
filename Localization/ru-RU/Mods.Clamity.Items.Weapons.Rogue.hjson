@@ -1,9 +1,9 @@
 MoltenPiercer: {
-	DisplayName: Molten Piercer Расплавленный пронзатель
+	DisplayName: Molten Piercer пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	Tooltip:
 		'''
-		Кидает пламенным кинжалом
-		Кинжал создаёт огненые обсидиановые осколки в полёте при скрытном ударе
+		пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+		пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		'''
 }
 
@@ -18,6 +18,17 @@ Crustalline: {
 }
 
 FrozenStarShuriken: {
-	DisplayName: Сюрикен морозной звезды
+	DisplayName: пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	// Tooltip: ""
+}
+
+ExoBall: {
+	// DisplayName: Exo Ball
+	/* Tooltip:
+		'''
+		Hurls up to 10 speedy homing spiky balls
+		Attaches to enemies and summons a localized storm of exo beams
+		Stealth strikes home in faster and summon beams at a faster rate
+		Press <right> to delete all existing spiky balls
+		''' */
 }

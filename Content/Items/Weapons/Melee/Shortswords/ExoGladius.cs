@@ -1,14 +1,12 @@
 ﻿
 using CalamityMod;
 using CalamityMod.Buffs.DamageOverTime;
-using CalamityMod.DataStructures;
 using CalamityMod.Items;
 using CalamityMod.Items.Materials;
 using CalamityMod.Items.Weapons.Magic;
 using CalamityMod.Items.Weapons.Melee;
 using CalamityMod.Projectiles.BaseProjectiles;
 using CalamityMod.Projectiles.Melee;
-using CalamityMod.Projectiles.Melee.Shortswords;
 using CalamityMod.Rarities;
 using CalamityMod.Tiles.Furniture.CraftingStations;
 using Microsoft.Xna.Framework;
@@ -144,7 +142,10 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
         {
             SoundEngine.PlaySound(in Exoblade.BeamHitSound, target.Center);
             if (Projectile.ai[2] == 1)
-                Projectile.NewProjectile(Projectile.GetSource_FromAI(), target.Center, Vector2.Zero, ModContent.ProjectileType<TerratomereExplosion>(), (int)(Projectile.damage * 0.5f), Projectile.knockBack, Projectile.owner, 0f, 0f, 0f);
+            {
+                int index = Projectile.NewProjectile(Projectile.GetSource_FromAI(), target.Center, Vector2.Zero, ModContent.ProjectileType<TerratomereExplosion>(), (int)(Projectile.damage * 0.5f), Projectile.knockBack, Projectile.owner, 0f, 0f, 0f);
+                Main.projectile[index].DamageType = Projectile.DamageType;
+            }
 
             target.AddBuff(ModContent.BuffType<MiracleBlight>(), 300);
         }
