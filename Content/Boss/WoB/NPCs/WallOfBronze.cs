@@ -64,7 +64,7 @@ namespace Clamity.Content.Boss.WoB.NPCs
 
             if (!Main.dedServ)
             {
-                Music = Clamity.mod.GetMusicFromMusicMod("WallOfBronze") ?? MusicID.Boss3;
+                Music = Clamity.mod.GetMusicFromMusicMod("WallOfBronzeOld") ?? MusicID.Boss3;
             }
         }
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) => bestiaryEntry.Info.AddRange((IEnumerable<IBestiaryInfoElement>)new List<IBestiaryInfoElement>()
