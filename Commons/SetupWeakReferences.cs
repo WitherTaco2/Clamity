@@ -9,6 +9,9 @@ using Clamity.Content.Biomes.FrozenHell.Biome.Background;
 using Clamity.Content.Boss.Clamitas;
 using Clamity.Content.Boss.Clamitas.Drop;
 using Clamity.Content.Boss.Clamitas.NPCs;
+using Clamity.Content.Boss.Profusion;
+using Clamity.Content.Boss.Profusion.Drop;
+using Clamity.Content.Boss.Profusion.NPCs;
 using Clamity.Content.Boss.Pyrogen;
 using Clamity.Content.Boss.Pyrogen.Drop;
 using Clamity.Content.Boss.Pyrogen.NPCs;
@@ -253,6 +256,26 @@ namespace Clamity.Commons
                     AddBoss(bossChecklist, Clamity.mod, "WallOfBronze", 22.5f, ModContent.NPCType<WallOfBronze>(), () => ClamitySystem.downedWallOfBronze, new Dictionary<string, object>()
                     {
                         ["spawnItems"] = (object)ModContent.ItemType<AncientConsole>(),
+                        ["collectibles"] = (object)itemList,
+                        ["customPortrait"] = (object)drawing
+                    });
+                }
+
+                //Profusion the Viral God
+                {
+                    List<int> itemList = new List<int>()
+                    {
+                        ModContent.ItemType<ProfusionTrophy>()
+                    };
+                    Action<SpriteBatch, Rectangle, Color> drawing = (Action<SpriteBatch, Rectangle, Color>)((sb, rect, color) =>
+                    {
+                        Texture2D texture2D = ModContent.Request<Texture2D>(ModContent.GetInstance<ProfusionBoss>().Texture + "_BossChecklist", (AssetRequestMode)2).Value;
+                        Vector2 vector2 = new(rect.Center.X - texture2D.Width / 2, rect.Center.Y - texture2D.Height / 2);
+                        sb.Draw(texture2D, vector2, color);
+                    });
+                    AddBoss(bossChecklist, Clamity.mod, "Profusion", 20.6f, ModContent.NPCType<ProfusionBoss>(), () => ClamitySystem.downedProfusion, new Dictionary<string, object>()
+                    {
+                        ["spawnItems"] = (object)ModContent.ItemType<OddestMushroom>(),
                         ["collectibles"] = (object)itemList,
                         ["customPortrait"] = (object)drawing
                     });

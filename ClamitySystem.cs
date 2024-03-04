@@ -169,6 +169,7 @@ namespace Clamity
             flags[0] = downedClamitas;
             flags[1] = downedPyrogen;
             flags[2] = downedWallOfBronze;
+            flags[3] = downedProfusion;
 
             writer.Write(flags);
         }
