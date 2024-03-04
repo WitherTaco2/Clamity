@@ -49,3 +49,21 @@ Biomes: {
 		DisplayName: Замороженный ад
 	}
 }
+
+InfernumIntro: {
+	/* Pyrogen:
+		'''
+		Auric Furnace
+		Pyrogen
+		''' */
+	/* WoB:
+		'''
+		Machine Guardian
+		Wall of Bronze
+		''' */
+	/* Clamitas:
+		'''
+		Supreme Clam
+		Clamitas
+		''' */
+}
