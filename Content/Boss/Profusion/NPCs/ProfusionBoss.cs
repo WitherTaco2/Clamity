@@ -3,6 +3,7 @@ using CalamityMod.Events;
 using CalamityMod.Items.Placeables.Furniture.DevPaintings;
 using CalamityMod.Items.Potions;
 using CalamityMod.NPCs;
+using CalamityMod.Particles;
 using CalamityMod.World;
 using Clamity.Content.Boss.Profusion.Drop;
 using Microsoft.Xna.Framework;
@@ -11,6 +12,7 @@ using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
@@ -21,6 +23,14 @@ namespace Clamity.Content.Boss.Profusion.NPCs
     [AutoloadBossHead]
     public class ProfusionBoss : ModNPC
     {
+        public enum ProfusionAIState : int
+        {
+            Awaken = 0,
+            VerticaleMushroomStems = 1,
+            ThormAttack = 2
+
+        }
+        private Player Target => Main.player[NPC.target];
         private int biomeEnrageTimer = CalamityGlobalNPC.biomeEnrageTimerMax;
         public override void SetStaticDefaults()
         {
@@ -72,9 +82,8 @@ namespace Clamity.Content.Boss.Profusion.NPCs
             BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.SurfaceMushroom,
             new FlavorTextBestiaryInfoElement("Mods.Clamity.NPCs.ProfusionBoss.Bestiary")
         });
-        public override void BossLoot(ref string name, ref int potionType) => potionType = ModContent.ItemType<SupremeHealingPotion>();
-        private ref float Attack => ref NPC.ai[0];
-        private ref float AttackTimer => ref NPC.ai[1];
+        private ref float State => ref NPC.ai[0];
+        private ref float StateTimer => ref NPC.ai[1];
         public override void AI()
         {
             //Main.player[NPC.target].ZoneGlowshroom
@@ -126,7 +135,26 @@ namespace Clamity.Content.Boss.Profusion.NPCs
             if (Main.getGoodWorld)
                 enrageScale += 0.5f;
 
-            NPC.velocity = Vector2.Normalize(player.Center - NPC.Center) * 10f * (1 + enrageScale);
+            //NPC.velocity = Vector2.Normalize(player.Center - NPC.Center) * 10f * (1 + enrageScale);
+            StateTimer++;
+            //if ()
+            switch ((ProfusionAIState)State)
+            {
+                case (ProfusionAIState.Awaken):
+                    if (StateTimer == 1)
+                        NPC.Center = Target.Center - Vector2.UnitY * 200;
+                    if (StateTimer % 30 == 0 /*&& Projectile.timeLeft > 40*/)
+                    {
+                        GeneralParticleHandler.SpawnParticle(new DirectionalPulseRing(NPC.Center, Vector2.Zero, Color.DarkBlue, new Vector2(0.5f, 0.5f), Main.rand.NextFloat(12f, 25f), 10f, 0f, 60));
+                    }
+                    if (StateTimer >= 90)
+                        SetState(ProfusionAIState.Awaken);
+                    break;
+            }
+        }
+        public override void OnSpawn(IEntitySource source)
+        {
+            SetState(ProfusionAIState.Awaken);
         }
         public override void FindFrame(int frameHeight)
         {
@@ -135,6 +163,13 @@ namespace Clamity.Content.Boss.Profusion.NPCs
             int frame = (int)NPC.frameCounter;
             NPC.frame.Y = frame * frameHeight;
         }
+        private void SetState(ProfusionAIState nextState)
+        {
+            State = (int)nextState;
+            StateTimer = 0;
+        }
+        #region Drop
+        public override void BossLoot(ref string name, ref int potionType) => potionType = ModContent.ItemType<SupremeHealingPotion>();
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             LeadingConditionRule mainRule = npcLoot.DefineNormalOnlyDropSet();
@@ -157,14 +192,16 @@ namespace Clamity.Content.Boss.Profusion.NPCs
             ClamitySystem.downedProfusion = true;
             CalamityNetcode.SyncWorld();
         }
+        #endregion
+        #region Net Update
         public override void SendExtraAI(BinaryWriter writer)
         {
             writer.Write(biomeEnrageTimer);
         }
-
         public override void ReceiveExtraAI(BinaryReader reader)
         {
             biomeEnrageTimer = reader.ReadInt32();
         }
+        #endregion
     }
 }
