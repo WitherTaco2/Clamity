@@ -7,12 +7,14 @@ namespace Clamity
     {
         public static Clamity mod;
         public static Mod musicMod;
+        public static Mod infernum;
         internal bool MusicAvailable => musicMod != null;
 
         public override void Load()
         {
             mod = this;
             ModLoader.TryGetMod("ClamityMusic", out musicMod);
+            ModLoader.TryGetMod("InfernumMode", out infernum);
 
             NewNPCStats.Load();
             SetupWeakReferences.Load();
@@ -21,6 +23,7 @@ namespace Clamity
         {
             mod = null;
             musicMod = null;
+            infernum = null;
 
             NewNPCStats.UnLoad();
         }

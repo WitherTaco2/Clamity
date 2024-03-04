@@ -261,20 +261,40 @@ namespace Clamity.Commons
         }
         public static void SetupInfernumIntroScreen()
         {
-            if (ModLoader.TryGetMod("InfernumMode", out Mod infernum))
+            if (Clamity.infernum != null)
             {
-                bool activeInfernum = infernum.Call("GetInfernumActive") as bool? ?? false;
+                //bool activeInfernum = Clamity.infernum.Call("GetInfernumActive") as bool? ?? false;
                 //Clamitas
+                {
+                    object intro = Clamity.infernum.Call("InitializeIntroScreen",
+                        Language.GetOrRegister("Mods.Clamity.InfernumIntro.Clamitas"),
+                        60, false,
+                        () => { return NPC.AnyNPCs(ModContent.NPCType<ClamitasBoss>()) && (Clamity.infernum.Call("GetInfernumActive") as bool? ?? false); },
+                        (float ratio, float completion) => { return Color.DarkRed; }
+                        );
+                    intro = Clamity.infernum.Call("RegisterIntroScreen", intro);
+                }
 
                 //Pyrogen
                 {
-                    object intro = infernum.Call("InitializeIntroScreen",
+                    object intro = Clamity.infernum.Call("InitializeIntroScreen",
                         Language.GetOrRegister("Mods.Clamity.InfernumIntro.Pyrogen"),
                         60, false,
-                        () => { return NPC.AnyNPCs(ModContent.NPCType<PyrogenBoss>()) && activeInfernum; },
+                        () => { return NPC.AnyNPCs(ModContent.NPCType<PyrogenBoss>()) && (Clamity.infernum.Call("GetInfernumActive") as bool? ?? false); },
                         (float ratio, float completion) => { return Color.Red; }
                         );
-                    intro = infernum.Call("RegisterIntroScreen", intro);
+                    intro = Clamity.infernum.Call("RegisterIntroScreen", intro);
+                }
+
+                //WoB
+                {
+                    object intro = Clamity.infernum.Call("InitializeIntroScreen",
+                        Language.GetOrRegister("Mods.Clamity.InfernumIntro.WoB"),
+                        1, true,
+                        () => { return NPC.AnyNPCs(ModContent.NPCType<WallOfBronze>()) && (Clamity.infernum.Call("GetInfernumActive") as bool? ?? false); },
+                        (float ratio, float completion) => { return Color.Lerp(Color.Brown, Color.YellowGreen, completion); }
+                        );
+                    intro = Clamity.infernum.Call("RegisterIntroScreen", intro);
                 }
             }
         }
