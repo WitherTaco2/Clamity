@@ -167,9 +167,8 @@ namespace Clamity
         {
             BitsByte flags = new BitsByte();
             flags[0] = downedClamitas;
-            flags[0] = downedPyrogen;
-            flags[0] = downedWallOfBronze;
-            flags[3] = downedProfusion;
+            flags[1] = downedPyrogen;
+            flags[2] = downedWallOfBronze;
 
             writer.Write(flags);
         }

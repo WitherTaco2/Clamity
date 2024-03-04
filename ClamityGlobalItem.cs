@@ -1,7 +1,11 @@
 ﻿using CalamityMod;
+using CalamityMod.Items.TreasureBags;
 using CalamityMod.Items.TreasureBags.MiscGrabBags;
 using Clamity.Content.Cooldowns;
 using Clamity.Content.Items.Accessories;
+using Clamity.Content.Items.Mounts;
+using Clamity.Content.Items.Potions.Food;
+using Clamity.Content.Items.Weapons.Melee.Shortswords;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -101,6 +105,15 @@ namespace Clamity
                     leadingConditionRule.Add(new CommonDrop(clicker.Find<ModItem>("CopperClicker").Item.type, 1));
                     leadingConditionRule.OnFailedConditions(new CommonDrop(clicker.Find<ModItem>("TinClicker").Item.type, 1));
                 }
+            }
+            if (item.type == ModContent.ItemType<PlaguebringerGoliathBag>())
+            {
+                itemLoot.Add(ModContent.ItemType<Disease>(), 4);
+                itemLoot.Add(ModContent.ItemType<PlagueStation>());
+            }
+            if (item.type == ModContent.ItemType<CalamitasCoffer>())
+            {
+                itemLoot.Add(ModContent.ItemType<Calamitea>(), 1, 10, 10);
             }
         }
     }

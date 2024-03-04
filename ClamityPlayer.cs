@@ -36,11 +36,16 @@ namespace Clamity
 
         //Minion
         public bool hellsBell;
+        public bool guntera;
 
         //Buffs-Debuffs
         //public bool wCleave;
 
         //Pets
+
+        //Mounts
+        public bool FlyingChair;
+        public int FlyingChairPower;
 
         public bool ZoneFrozenHell => Player.InModBiome((ModBiome)ModContent.GetInstance<FrozenHell>());
         public override void ResetEffects()
@@ -61,8 +66,12 @@ namespace Clamity
             frozenParrying = false;
 
             hellsBell = false;
+            guntera = false;
 
             //wCleave = false;
+
+            FlyingChair = false;
+            FlyingChairPower = 12;
         }
         //public Item[] accesories;
         public override void UpdateEquips()
@@ -218,6 +227,37 @@ namespace Clamity
                     return this.Player.armor[index];
             }
             return new Item();
+        }
+        public override void PreUpdateMovement()
+        {
+            if (Player.whoAmI != Main.myPlayer || !FlyingChair)
+                return;
+            if (Player.controlLeft)
+            {
+                Player.velocity.X = -FlyingChairPower;
+                Player.ChangeDir(-1);
+            }
+            else if (this.Player.controlRight)
+            {
+                Player.velocity.X = FlyingChairPower;
+                Player.ChangeDir(1);
+            }
+            else
+                Player.velocity.X = 0.0f;
+            if (Player.controlUp || Player.controlJump)
+                Player.velocity.Y = -FlyingChairPower;
+            else if (Player.controlDown)
+            {
+                Player.velocity.Y = FlyingChairPower;
+                if (Collision.TileCollision(Player.position, Player.velocity, Player.width, Player.height, true, gravDir: (int)this.Player.gravDir).Y == 0)
+                    Player.velocity.Y = 0.5f;
+            }
+            else
+                Player.velocity.Y = 0.0f;
+            if (CalamityKeybinds.ExoChairSlowdownHotkey.Current)
+            {
+                Player.velocity = Player.velocity / 2;
+            }
         }
     }
 }

@@ -74,3 +74,18 @@ ExoBaguetteBuff: {
 	DisplayName: Exo Baguette
 	Description: "'Exo Bonjour' ~WitherTaco"
 }
+
+BrimChairBuff: {
+	DisplayName: Brimthrone
+	Description: Riding a physics defying gamer chair
+}
+
+PlagueChairBuff: {
+	DisplayName: Plague Chair
+	Description: Riding a physics defying gamer chair
+}
+
+PlanterrorStaffBuff: {
+	DisplayName: Guntera
+	Description: '''"Talk about guns and roses, am I right?"'''
+}

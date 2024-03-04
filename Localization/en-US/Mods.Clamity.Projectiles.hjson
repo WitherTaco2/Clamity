@@ -28,7 +28,11 @@ Ranged: {
 	ObsidigunBulletShard.DisplayName: Obsidian Bullet Shard
 }
 
-Summon.Minion.HellstoneShellfishStaffMinion.DisplayName: Hellstone Shellfish
+Summon: {
+	Minion.HellstoneShellfishStaffMinion.DisplayName: Hellstone Shellfish
+	PlanterrorStaffTentacle.DisplayName: Planterror Staff Tentacle
+}
+
 ShortstrikeEffect.DisplayName: Shortstrike Effect
 ImpalerProjectile.DisplayName: Impaler Stake
 HadopelagicEchoProjectile.DisplayName: Hadopelagic Echo
@@ -43,6 +47,7 @@ Rogue: {
 	MoltenPiercerProjectile.DisplayName: Molten Piercer
 	WulfrumShockCutterProjectile.DisplayName: Wulfrum Shock Cutter
 	FrozenStarShurikenProjectile.DisplayName: Frozen Star Shuriken
+	ExoBallProjectile.DisplayName: Exo Ball Projectile
 }
 
 CrustallineProjecile.DisplayName: Crustalline
@@ -76,3 +81,4 @@ FrostfireArrowProj.DisplayName: Frostfire Arrow
 FrostfireArrowProj2.DisplayName: Frostfire Arrow Explosion
 MoonstoneKnifeProjectile.DisplayName: Moonstone Knife
 Enemy.BrimstonePearlBurst.DisplayName: Brimstone Pearl Burst
+PlanterrorStaffSummon.DisplayName: Guntera
