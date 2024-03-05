@@ -1,15 +1,8 @@
-﻿using CalamityMod.World;
-using CalamityMod;
+﻿using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.Localization;
-using System.Drawing;
-using System.Runtime.InteropServices;
-using Microsoft.Xna.Framework;
+using Terraria.ModLoader;
 
 namespace Clamity
 {
@@ -95,5 +88,21 @@ namespace Clamity
         {
             return (float)Math.Sqrt(mag.X * mag.X + mag.Y * mag.Y);
         }
+
+        #region SetValues
+        public static Item SetShoot<T>(this Item item, float shootSpeed) where T : ModProjectile
+        {
+            item.shoot = ModContent.ProjectileType<T>();
+            item.shootSpeed = shootSpeed;
+            return item;
+        }
+        public static Item SetDamage<D>(this Item item, int damage, float knockback) where D : DamageClass
+        {
+            item.damage = damage;
+            item.DamageType = ModContent.GetInstance<D>();
+            item.knockBack = knockback;
+            return item;
+        }
+        #endregion
     }
 }
