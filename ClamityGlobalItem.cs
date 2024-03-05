@@ -5,6 +5,7 @@ using Clamity.Content.Cooldowns;
 using Clamity.Content.Items.Accessories;
 using Clamity.Content.Items.Mounts;
 using Clamity.Content.Items.Potions.Food;
+using Clamity.Content.Items.Weapons.Classless;
 using Clamity.Content.Items.Weapons.Melee.Shortswords;
 using Microsoft.Xna.Framework;
 using System;
@@ -110,6 +111,9 @@ namespace Clamity
             {
                 itemLoot.Add(ModContent.ItemType<Disease>(), 4);
                 itemLoot.Add(ModContent.ItemType<PlagueStation>());
+#if DEBUG
+                itemLoot.Add(ItemDropRule.NormalvsExpert(ModContent.ItemType<TrashOfMagnus>(), 4, 3));
+#endif
             }
             if (item.type == ModContent.ItemType<CalamitasCoffer>())
             {

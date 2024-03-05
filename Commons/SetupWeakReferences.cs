@@ -44,6 +44,9 @@ namespace Clamity.Commons
             }
         }
         private static bool EnchantableAcc(Item item) => !item.IsAir && item.maxStack == 1 && item.ammo == AmmoID.None && item.accessory;
+        /// <summary>
+        /// Creates Clamity's Enchantments and Exhume Crafts
+        /// </summary>
         public static void LoadEnchantments()
         {
             //Enchantments
@@ -61,6 +64,9 @@ namespace Clamity.Commons
             //Exhume
             EnchantmentManager.ItemUpgradeRelationship.Add(ModContent.ItemType<ExoThrone>(), ModContent.ItemType<FlameCube>());
         }
+        /// <summary>
+        /// Adds Clamity's Bosses into Boss Rush
+        /// </summary>
         public static void LoadBossRush()
         {
             BossRushEvent.Bosses.Insert(15,
@@ -137,11 +143,17 @@ namespace Clamity.Commons
                 )
             );
         }
+        /// <summary>
+        /// Creates screen shaders
+        /// </summary>
         public static void LoadShaders()
         {
             Filters.Scene["Clamity:FrozenHellSky"] = new Filter(new FrozenHellShaderData("FilterMiniTower").UseColor(0.5f, 1f, 1f).UseOpacity(0.65f), EffectPriority.VeryHigh);
             SkyManager.Instance["Clamity:FrozenHellSky"] = (CustomSky)new FrozenHellSky();
         }
+        /// <summary>
+        /// Registers Clamity's Cooldowns
+        /// </summary>
         public static void LoadCooldowns()
         {
             CooldownRegistry.Register<ShortstrikeCooldown>(ShortstrikeCooldown.ID);
@@ -173,6 +185,9 @@ namespace Clamity.Commons
             }
         }
 
+        /// <summary>
+        /// Setups boss pages in Boss Checklist mod
+        /// </summary>
         public static void SetupBossChecklist()
         {
             if (ModLoader.TryGetMod("BossChecklist", out Mod bossChecklist))
@@ -259,6 +274,9 @@ namespace Clamity.Commons
                 }
             }
         }
+        /// <summary>
+        /// He setups Inferum Mode's boss intros
+        /// </summary>
         public static void SetupInfernumIntroScreen()
         {
             if (Clamity.infernum != null)

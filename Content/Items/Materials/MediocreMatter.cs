@@ -9,7 +9,11 @@ namespace Clamity.Content.Items.Materials
     {
         public override bool IsLoadingEnabled(Mod mod)
         {
+#if DEBUG
+            return true;
+#else
             return false;
+#endif
         }
         public override void SetDefaults()
         {

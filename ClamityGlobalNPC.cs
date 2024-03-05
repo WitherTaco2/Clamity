@@ -9,6 +9,7 @@ using Clamity.Content.Biomes.FrozenHell.Items;
 using Clamity.Content.Items.Materials;
 using Clamity.Content.Items.Mounts;
 using Clamity.Content.Items.Potions.Food;
+using Clamity.Content.Items.Weapons.Classless;
 using Clamity.Content.Items.Weapons.Melee.Shortswords;
 using Clamity.Content.Items.Weapons.Melee.Swords;
 using Clamity.Content.Items.Weapons.Ranged.Guns;
@@ -39,6 +40,9 @@ namespace Clamity
             {
                 mainRule.Add(ItemDropRule.Common(ModContent.ItemType<Disease>(), 4));
                 mainRule.Add(ItemDropRule.Common(ModContent.ItemType<PlagueStation>()));
+#if DEBUG
+                mainRule.Add(ItemDropRule.NormalvsExpert(ModContent.ItemType<TrashOfMagnus>(), 4, 3));
+#endif
             }
             if (npc.type == ModContent.NPCType<SupremeCalamitas>())
             {

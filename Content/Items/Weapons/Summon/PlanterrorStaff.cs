@@ -180,7 +180,7 @@ namespace Clamity.Content.Items.Weapons.Summon
             if (Target is not null)
             {
                 AITimer++;
-                if (AITimer <= PlantationStaff.TimeBeforeRamming)
+                if (AITimer <= PlantationStaff.TimeBeforeRamming / 3 * 2)
                 {
                     // The minion slows down to give a flavor effect of preparation.
                     Projectile.velocity *= 0.985f;
@@ -231,7 +231,7 @@ namespace Clamity.Content.Items.Weapons.Summon
 
         private void RamMovement()
         {
-            Projectile.velocity = Projectile.SafeDirectionTo(Target.Center) * PlantationStaff.ChargingSpeed;
+            Projectile.velocity = Projectile.SafeDirectionTo(Target.Center) * PlantationStaff.ChargingSpeed * 3 / 2;
             Projectile.rotation = Projectile.velocity.ToRotation();
             Projectile.netUpdate = true;
         }
