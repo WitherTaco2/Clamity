@@ -33,7 +33,10 @@ Items: {
 }
 
 Misc: {
-	RecipeGroup.AnySandBlock: And Sand Block
+	RecipeGroup: {
+		AnySandBlock: And Sand Block
+		AnyGemHook: Any Gem Hook
+	}
 	None: ""
 	DefeatedWoB: After defeating a Wall of Bronze
 }
