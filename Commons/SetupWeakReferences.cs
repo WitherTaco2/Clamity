@@ -278,16 +278,22 @@ namespace Clamity.Commons
                 //Pyrogen
                 {
                     object intro = Clamity.infernum.Call("InitializeIntroScreen",
-                        Language.GetOrRegister("Mods.Clamity.InfernumIntro.Pyrogen"),
+                        Language.GetText("Mods.Clamity.InfernumIntro.Pyrogen"),
                         150, false,
                         () => { return NPC.AnyNPCs(ModContent.NPCType<PyrogenBoss>()) && (Clamity.infernum.Call("GetInfernumActive") as bool? ?? false); },
                         (float ratio, float completion) => { return Color.Red; }
                         );
-                    intro = Clamity.infernum.Call("SetupCompletionEffects", intro, () => { });
+                    Action action = () => { };
+                    intro = Clamity.infernum.Call("SetupCompletionEffects", intro, action);
+
+                    Func<int, float> letterDisplayCompletionRatio = (int animationTimer) => { return 1f; };
+                    intro = Clamity.infernum.Call("SetupLetterDisplayCompletionRatio", intro, letterDisplayCompletionRatio);
+
                     //intro = Clamity.infernum.Call("SetupMainSound", intro, (int animationTimer, int animationTime, float textDelayInterpolant, float letterDisplayCompletionRatio) => { return false; }, () => { return SoundID.MenuTick; });
                     Func<int, int, float, float, bool> canPlaySound = (int animationTimer, int animationTime, float textDelayInterpolant, float letterDisplayCompletionRatio) => { return animationTimer > (int)(animationTime * (textDelayInterpolant + 0.05f)); };
                     Func<SoundStyle> sound = () => { return SoundID.MenuTick; };
                     intro = Clamity.infernum.Call("IntroScreenSetupMainSound", intro, canPlaySound, sound);
+
                     intro = Clamity.infernum.Call("RegisterIntroScreen", intro);
                 }
 
