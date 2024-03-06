@@ -48,6 +48,8 @@ Rogue: {
 	// WulfrumShockCutterProjectile.DisplayName: Wulfrum Shock Cutter
 	// FrozenStarShurikenProjectile.DisplayName: Frozen Star Shuriken
 	// ExoBallProjectile.DisplayName: Exo Ball Projectile
+	// AuricKunaiProjectile.DisplayName: Auric Kunai Projectile
+	// AuricKunaiLightning.DisplayName: Auric Kunai Lightning
 }
 
 // CrustallineProjecile.DisplayName: Crustalline
