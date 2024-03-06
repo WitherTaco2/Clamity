@@ -41,7 +41,7 @@ namespace Clamity.Content.Items.Weapons.Classless
     }
     public class TrashOfMagnusProjectile : ModProjectile, ILocalizedModType, IModType
     {
-        public new string LocalizationCategory => "Items.Weapons.Classless";
+        public new string LocalizationCategory => "Projectiles.Classless";
         public override string Texture => "CalamityMod/Projectiles/InvisibleProj";
         public override void SetDefaults()
         {

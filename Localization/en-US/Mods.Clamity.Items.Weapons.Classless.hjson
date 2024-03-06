@@ -6,3 +6,8 @@ AMS: {
 		Right Click to increase explosion radius (up to 5 power)
 		'''
 }
+
+TrashOfMagnus: {
+	DisplayName: Trash Of Magnus
+	Tooltip: ""
+}

@@ -6,3 +6,10 @@ AMS: {
 		������ ���� ��� ���������� ������� ������ (�� 5 ����)
 		'''
 }
+
+TrashOfMagnus: {
+	// DisplayName: Trash Of Magnus
+	// Tooltip: ""
+}
+
+// TrashOfMagnusProjectile.DisplayName: Trash Of Magnus Projectile

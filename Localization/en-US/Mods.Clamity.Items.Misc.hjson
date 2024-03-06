@@ -8,3 +8,8 @@ RealityRelocator: {
 		'I'll be there in the blink of an eye'
 		'''
 }
+
+RodOfMisery: {
+	DisplayName: Rod Of Misery
+	Tooltip: ""
+}

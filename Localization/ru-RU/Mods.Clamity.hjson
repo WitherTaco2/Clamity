@@ -33,7 +33,11 @@ Items: {
 }
 
 Misc: {
-	RecipeGroup.AnySandBlock: Любой песок
+	RecipeGroup: {
+		AnySandBlock: Любой песок
+		// AnyGemHook: Any Gem Hook
+	}
+
 	// None: ""
 	DefeatedWoB: После победы над Стеной Бронзы
 }

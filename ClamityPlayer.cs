@@ -1,5 +1,6 @@
 ﻿using CalamityMod;
 using CalamityMod.Buffs.DamageOverTime;
+using CalamityMod.Items.Accessories;
 using Clamity.Content.Biomes.FrozenHell.Biome;
 using Clamity.Content.Boss.Pyrogen.Drop;
 using Clamity.Content.Cooldowns;
@@ -29,6 +30,7 @@ namespace Clamity
         public bool pyroStoneVanity;
         public bool hellFlare;
         public bool icicleRing;
+        public bool redDie;
 
         //Armor
         public bool inflicingMeleeFrostburn;
@@ -193,7 +195,20 @@ namespace Clamity
         }
         public override void PostUpdateEquips()
         {
+            if (redDie)
+            {
+                for (int i = 3; i < 9; i++)
+                {
+                    Item item = Player.armor[i];
+                    if (item.type == ModContent.ItemType<OldDie>())
+                    {
+                        Player.luck -= 0.2f;
+                    }
+                    Player.luck *= 1.5f;
+                    Player.luck += 0.2f;
 
+                }
+            }
         }
         public override void PostUpdateMiscEffects()
         {
