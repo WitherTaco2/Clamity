@@ -10,6 +10,10 @@ RealityRelocator: {
 }
 
 RodOfMisery: {
-	DisplayName: Rod Of Misery
-	Tooltip: ""
+	DisplayName: Rod of Misery
+	Tooltip: 
+		'''
+		Teleports you to opposite your mouse's cursor... kinda.
+		Teleportation is disabled while Chaos State is active
+		'''
 }
