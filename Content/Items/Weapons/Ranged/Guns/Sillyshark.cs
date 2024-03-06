@@ -5,9 +5,9 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Items.Weapons.Ranged.Bows
+namespace Clamity.Content.Items.Weapons.Ranged.Guns
 {
-    public class MandibleBow : ModItem, ILocalizedModType, IModType
+    public class Sillyshark : ModItem, ILocalizedModType, IModType
     {
         public new string LocalizationCategory => "Items.Weapons.Ranged";
         public override bool IsLoadingEnabled(Mod mod)

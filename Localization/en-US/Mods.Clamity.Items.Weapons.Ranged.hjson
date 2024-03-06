@@ -51,7 +51,7 @@ RoseBow: {
 		'''
 }
 
-MandibleBow: {
-	DisplayName: Mandible Bow
+Sillyshark: {
+	DisplayName: Sillyshark
 	Tooltip: ""
 }
