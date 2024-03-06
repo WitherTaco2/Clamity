@@ -68,7 +68,7 @@ IcicleRing: {
 
 RedDie: {
 	DisplayName: Red Die
-	Tooltip: 
+	Tooltip:
 		'''
 		1.5x luck
 		20% increased luck after calculation

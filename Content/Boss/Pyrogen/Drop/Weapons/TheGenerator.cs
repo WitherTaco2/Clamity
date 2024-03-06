@@ -1,8 +1,6 @@
 ﻿using CalamityMod;
-using CalamityMod.Cooldowns;
 using CalamityMod.Items;
 using Microsoft.Xna.Framework;
-using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -100,7 +98,7 @@ namespace Clamity.Content.Boss.Pyrogen.Drop.Weapons
                 }
             }
             Projectile.rotation = -Projectile.velocity.X * 0.05f;
-            
+
             if (Projectile.ai[0] > 0)
                 Projectile.ai[0]--;
             else
@@ -113,6 +111,10 @@ namespace Clamity.Content.Boss.Pyrogen.Drop.Weapons
                 }
                 Projectile.ai[0] = 2;
             }
+        }
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            target.AddBuff(BuffID.ShadowFlame, 120);
         }
     }
 }

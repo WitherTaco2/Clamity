@@ -11,7 +11,7 @@ RealityRelocator: {
 
 RodOfMisery: {
 	DisplayName: Rod of Misery
-	Tooltip: 
+	Tooltip:
 		'''
 		Teleports you to opposite your mouse's cursor... kinda.
 		Teleportation is disabled while Chaos State is active

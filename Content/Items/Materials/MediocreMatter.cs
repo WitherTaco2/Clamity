@@ -1,7 +1,6 @@
 ﻿using CalamityMod.Items.Materials;
 using CalamityMod.Items.Placeables;
 using CalamityMod.Items.Placeables.Plates;
-using Clamity.Content.Items.Placeable;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -31,7 +30,6 @@ namespace Clamity.Content.Items.Materials
                 .AddIngredient<Cinderplate>(10)
                 .AddIngredient<Havocplate>(10)
                 .AddIngredient<Elumplate>(10)
-                .AddIngredient<Pyroplate>(10)
                 .AddIngredient<Navyplate>(10)
                 .AddIngredient<Plagueplate>(10)
                 .AddTile(TileID.Hellforge)
@@ -41,7 +39,6 @@ namespace Clamity.Content.Items.Materials
                 .AddIngredient<EssenceofSunlight>()
                 .AddIngredient<EssenceofHavoc>()
                 .AddIngredient<EssenceofEleum>()
-                .AddIngredient<EssenceOfFlame>()
                 .AddIngredient<SeaPrism>()
                 .AddIngredient<PlagueCellCanister>()
                 .AddIngredient(ItemID.Obsidian, 30)

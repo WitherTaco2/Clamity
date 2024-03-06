@@ -29,8 +29,9 @@ namespace Clamity.Content.Items.Weapons.Ranged.Guns
             Item.useStyle = ItemUseStyleID.Shoot;
 
             Item.useAmmo = AmmoID.Bullet;
-            //Item.shoot = ProjectileID.Bullet;
+            Item.shoot = ProjectileID.Bullet;
             Item.shootSpeed = 20f;
+            Item.noMelee = true;
 
             Item.damage = 100;
             Item.DamageType = DamageClass.Ranged;

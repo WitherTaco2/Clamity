@@ -2,8 +2,8 @@ AMS: {
 	DisplayName: AMS
 	Tooltip:
 		'''
-		������� ����� �� ����
-		������ ���� ��� ���������� ������� ������ (�� 5 ����)
+		Создает бомбу используя ману
+		Правый клик для увеличения радиуса взрыва (впроть до 5 силы)
 		'''
 }
 
@@ -11,5 +11,3 @@ TrashOfMagnus: {
 	// DisplayName: Trash Of Magnus
 	// Tooltip: ""
 }
-
-// TrashOfMagnusProjectile.DisplayName: Trash Of Magnus Projectile

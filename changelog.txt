@@ -3,15 +3,21 @@
 New Content:
 Added Frozen armor set. WoB-tier upgrade of Molten+Frost Armor.
 Added Everest. WoB-tier shortsword. Direct upgrade of Tomutus.
+Added Auric Kunai. Upgrade of Cosmic Kunai
 Added Exo Ball. Last in you playground Rogue Spiky Ball weapon.
 Added Planterror Staff. Direct upgrade of Plantation Staff which uses guns. Brutal!
 Added Icicle Ring accessory (currently he drops by Glacial Slime)
+Added Red Die. Post-Clamitas direct upgrade of Old Die
 Added Plague Station and Flame Cube. Exo Box alternatives in different stages (after Plaguebringer Goliath and Exo Mech + Calamitas)
 
 Changes/Addintions:
 Updated Frozen Ash and Frozen Hellstone sprites (item and tile)
 Clamitas now drops weapons and Slagspitter Pauldron like in his Fandom Wiki page
 Added Copper/Tin Clicker into Started Bag (If clicker class mod is active)
+Added The Generator in Nuclear Fury recipe
+Added Molten Piercer in Shattered Sun recipe
+The Generator now inflict Shadow Flames debuff
+
 
 Fixes:
 Fixed Green Solution don's work with Frozen Hell blocks

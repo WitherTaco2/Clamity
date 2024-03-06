@@ -1,12 +1,16 @@
 ﻿using CalamityMod.Items.Accessories;
 using CalamityMod.Items.Materials;
 using CalamityMod.Items.Tools;
+using CalamityMod.Items.Weapons.Magic;
 using CalamityMod.Items.Weapons.Melee;
 using CalamityMod.Items.Weapons.Ranged;
 using CalamityMod.Items.Weapons.Rogue;
+using CalamityMod.Items.Weapons.Typeless;
 using Clamity.Content.Biomes.FrozenHell.Items;
 using Clamity.Content.Boss.Clamitas.Drop;
+using Clamity.Content.Boss.Pyrogen.Drop.Weapons;
 using Clamity.Content.Items.Materials;
+using Clamity.Content.Items.Weapons.Classless;
 using Clamity.Content.Items.Weapons.Melee.Shortswords;
 using Terraria;
 using Terraria.ModLoader;
@@ -41,16 +45,28 @@ namespace Clamity
                 }
 
 
-                //if (recipe.HasResult<Seadragon>())
-                //    recipe.requiredItem.Insert(1, ModContent.GetInstance<Obsidigun>().Item);
+                //Weapon Changes
+                if (recipe.HasResult<Seadragon>())
+                    recipe.requiredItem.Insert(1, ModContent.GetInstance<Obsidigun>().Item);
+                if (recipe.HasResult<ShatteredSun>())
+                    recipe.requiredItem.Insert(1, ModContent.GetInstance<MoltenPiercer>().Item);
+                if (recipe.HasResult<NuclearFury>())
+                    recipe.requiredItem.Insert(2, ModContent.GetInstance<TheGenerator>().Item);
                 if (recipe.HasResult<ElementalShiv>())
                 {
-                    Item item1 = ModContent.GetInstance<TerraShiv>().Item;
-                    item1.stack = 1;
-                    recipe.requiredItem.Insert(0, item1);
+                    recipe.requiredItem.Insert(0, ModContent.GetInstance<TerraShiv>().Item);
+                    //Item item1 = ModContent.GetInstance<TerraShiv>().Item;
+                    //item1.stack = 1;
+                    //recipe.requiredItem.Insert(0, item1);
                 }
+#if DEBUG
+                if (recipe.HasResult<EyeofMagnus>())
+                    recipe.requiredItem.Insert(1, ModContent.GetInstance<TrashOfMagnus>().Item);
 
-                //Item item2 = ModContent.GetInstance<CoreOfHeat>().Item;
+#endif
+
+
+                //Core of Heat
                 int coreOfHeat = ModContent.ItemType<CoreOfFlame>();
                 if (recipe.HasResult<CoreofCalamity>())
                 {
@@ -89,6 +105,8 @@ namespace Clamity
                     recipe.requiredItem.Insert(1, new Item(coreOfHeat) { stack = 6 });
                 }
 
+
+                //Essence of Flame
                 int essenceOfHeat = ModContent.ItemType<EssenceOfFlame>();
                 if (recipe.HasResult<FlarewingBow>())
                 {
@@ -108,6 +126,7 @@ namespace Clamity
                     recipe.requiredItem.Add(new Item(essenceOfHeat) { stack = 10 });
                 }
 
+                //Other changes
                 if (recipe.HasResult<ShadowspecBar>())
                 {
                     //item3.stack = 10;
