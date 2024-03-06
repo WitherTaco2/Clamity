@@ -59,11 +59,8 @@ namespace Clamity
                     //item1.stack = 1;
                     //recipe.requiredItem.Insert(0, item1);
                 }
-#if DEBUG
                 if (recipe.HasResult<EyeofMagnus>())
                     recipe.requiredItem.Insert(1, ModContent.GetInstance<TrashOfMagnus>().Item);
-
-#endif
 
 
                 //Core of Heat

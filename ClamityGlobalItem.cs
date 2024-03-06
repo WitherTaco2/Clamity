@@ -111,9 +111,7 @@ namespace Clamity
             {
                 itemLoot.Add(ModContent.ItemType<Disease>(), 4);
                 itemLoot.Add(ModContent.ItemType<PlagueStation>());
-#if DEBUG
                 itemLoot.Add(ItemDropRule.NormalvsExpert(ModContent.ItemType<TrashOfMagnus>(), 4, 3));
-#endif
             }
             if (item.type == ModContent.ItemType<CalamitasCoffer>())
             {

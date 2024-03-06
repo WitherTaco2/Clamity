@@ -9,5 +9,11 @@ AMS: {
 
 TrashOfMagnus: {
 	DisplayName: Trash Of Magnus
-	Tooltip: ""
+	Tooltip:
+		'''
+		An attempt of Magnus' to expand into biological terrorism
+		Despite his efforts, it was deemed a failure and discarded
+		Fires plague bolts that inflict Plague
+		This weapon scales with all your damage stats at once
+		'''
 }

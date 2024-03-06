@@ -9,6 +9,7 @@ Added Planterror Staff. Direct upgrade of Plantation Staff which uses guns. Brut
 Added Icicle Ring accessory (currently he drops by Glacial Slime)
 Added Red Die. Post-Clamitas direct upgrade of Old Die
 Added Plague Station and Flame Cube. Exo Box alternatives in different stages (after Plaguebringer Goliath and Exo Mech + Calamitas)
+Added Trash of Magnus
 
 Changes/Addintions:
 Updated Frozen Ash and Frozen Hellstone sprites (item and tile)

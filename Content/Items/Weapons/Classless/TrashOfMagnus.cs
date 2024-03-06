@@ -11,14 +11,6 @@ namespace Clamity.Content.Items.Weapons.Classless
     public class TrashOfMagnus : ModItem, ILocalizedModType, IModType
     {
         public new string LocalizationCategory => "Items.Weapons.Classless";
-        public override bool IsLoadingEnabled(Mod mod)
-        {
-#if DEBUG
-            return true;
-#else
-            return false;
-#endif
-        }
         public override void SetStaticDefaults()
         {
             Item.staff[Type] = true;

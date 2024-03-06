@@ -40,9 +40,7 @@ namespace Clamity
             {
                 mainRule.Add(ItemDropRule.Common(ModContent.ItemType<Disease>(), 4));
                 mainRule.Add(ItemDropRule.Common(ModContent.ItemType<PlagueStation>()));
-#if DEBUG
                 mainRule.Add(ItemDropRule.NormalvsExpert(ModContent.ItemType<TrashOfMagnus>(), 4, 3));
-#endif
             }
             if (npc.type == ModContent.NPCType<SupremeCalamitas>())
             {
