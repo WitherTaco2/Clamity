@@ -1,12 +1,7 @@
 ﻿using CalamityMod.Items;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
-using Terraria;
 using Terraria.ModLoader;
 
 namespace Clamity.Content.Boss.Pyrogen.Drop
@@ -26,12 +21,12 @@ namespace Clamity.Content.Boss.Pyrogen.Drop
             Item.width = 20;
             Item.height = 24;
             Item.value = CalamityGlobalItem.Rarity5BuyPrice;
-            Item.rare = 5;
+            Item.rare = ItemRarityID.Pink;
             Item.accessory = true;
         }
 
-        public override void UpdateAccessory(Player player, bool hideVisual) 
-        { 
+        public override void UpdateAccessory(Player player, bool hideVisual)
+        {
             player.Clamity().hellFlare = true;
             player.buffImmune[BuffID.OnFire] = true;
             player.buffImmune[BuffID.OnFire3] = true;

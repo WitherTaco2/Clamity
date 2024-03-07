@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Terraria;
 using Terraria.ID;
-using Terraria;
 using Terraria.ModLoader;
 
 namespace Clamity.Content.Boss.Stupid
@@ -25,7 +20,7 @@ namespace Clamity.Content.Boss.Stupid
             Item.rare = -12;
             Item.useAnimation = 45;
             Item.useTime = 45;
-            Item.useStyle = 4;
+            Item.useStyle = ItemUseStyleID.HoldUp;
             Item.consumable = false;
         }
 
@@ -38,8 +33,8 @@ namespace Clamity.Content.Boss.Stupid
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(43, 6)
-                .AddTile(26)
+                .AddIngredient(ItemID.SuspiciousLookingEye, 6)
+                .AddTile(TileID.DemonAltar)
                 .Register();
         }
     }

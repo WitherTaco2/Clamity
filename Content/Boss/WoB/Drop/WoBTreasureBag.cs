@@ -3,11 +3,6 @@ using CalamityMod.Items.Placeables.Furniture.DevPaintings;
 using Clamity.Content.Boss.WoB.NPCs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -20,7 +15,7 @@ namespace Clamity.Content.Boss.WoB.Drop
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 3;
-            ItemID.Sets.BossBag[base.Item.type] = true;
+            ItemID.Sets.BossBag[Item.type] = true;
         }
 
         public override void SetDefaults()
@@ -29,7 +24,7 @@ namespace Clamity.Content.Boss.WoB.Drop
             Item.consumable = true;
             Item.width = 24;
             Item.height = 24;
-            Item.rare = 9;
+            Item.rare = ItemRarityID.Expert;
             Item.expert = true;
         }
         public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)

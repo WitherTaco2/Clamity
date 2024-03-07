@@ -1,8 +1,8 @@
-﻿using Terraria.ID;
-using Terraria.ModLoader;
+﻿using Clamity.Content.Items.Materials;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
-using Clamity.Content.Items.Materials;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Clamity.Content.Items.Tools.Bags.Fish
 {
@@ -23,7 +23,7 @@ namespace Clamity.Content.Items.Tools.Bags.Fish
             Item.maxStack = 9999;
             Item.consumable = true;
             Item.value = Item.sellPrice(0, 0, 10, 0);
-            Item.rare = 2;
+            Item.rare = ItemRarityID.Green;
         }
 
 

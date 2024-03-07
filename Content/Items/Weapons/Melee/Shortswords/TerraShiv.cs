@@ -1,23 +1,15 @@
-﻿using CalamityMod.Items.Materials;
-using CalamityMod.Items.Weapons.Melee;
+﻿using CalamityMod;
 using CalamityMod.Items;
+using CalamityMod.Items.Materials;
 using CalamityMod.Projectiles.BaseProjectiles;
-using CalamityMod.Rarities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using CalamityMod.Projectiles.Melee;
+using Clamity.Content.Cooldowns;
+using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using CalamityMod.Projectiles.Melee;
-using CalamityMod.Buffs.DamageOverTime;
-using Terraria;
-using Microsoft.Xna.Framework;
-using Terraria.DataStructures;
-using CalamityMod;
-using Clamity.Content.Cooldowns;
 
 namespace Clamity.Content.Items.Weapons.Melee.Shortswords
 {
@@ -37,7 +29,7 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
             Item.value = CalamityGlobalItem.Rarity8BuyPrice;
 
             Item.useAnimation = Item.useTime = 13;
-            Item.useStyle = 13;
+            Item.useStyle = ItemUseStyleID.Rapier;
             Item.UseSound = new SoundStyle?(SoundID.Item1);
             Item.autoReuse = true;
             Item.noUseGraphic = true;
@@ -116,7 +108,7 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
         {
             if (!Utils.NextBool(Main.rand, 5))
                 return;
-            Dust.NewDust(new Vector2((float)Projectile.Hitbox.X, (float)Projectile.Hitbox.Y), Projectile.Hitbox.Width, Projectile.Hitbox.Height, 107, 0.0f, 0.0f, 0, new Color(), 1f);
+            Dust.NewDust(new Vector2((float)Projectile.Hitbox.X, (float)Projectile.Hitbox.Y), Projectile.Hitbox.Width, Projectile.Hitbox.Height, DustID.TerraBlade, 0.0f, 0.0f, 0, new Color(), 1f);
         }
     }
     public class TerraShivSlash : ExobeamSlash

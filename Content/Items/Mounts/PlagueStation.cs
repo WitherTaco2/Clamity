@@ -25,7 +25,7 @@ namespace Clamity.Content.Items.Mounts
             MountData.dashSpeed = 9f;
             MountData.acceleration = 9f;
             MountData.swimSpeed = 9f;
-            if (Main.netMode != 2)
+            if (Main.netMode != NetmodeID.Server)
             {
                 MountData.frontTextureGlow = ModContent.Request<Texture2D>("Clamity/Content/Items/Mounts/PlagueChairMount_Glowmask");
                 MountData.textureWidth = MountData.frontTexture.Width();

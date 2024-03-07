@@ -232,7 +232,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                 HandlePhaseTransition((int)NPC.ai[0] + 1);
             }
 
-            if (NPC.ai[2] == 0f && NPC.localAI[1] == 0f && Main.netMode != 1 && (NPC.ai[0] < 3f || bossRushActive || flag3 && NPC.ai[0] > 3f))
+            if (NPC.ai[2] == 0f && NPC.localAI[1] == 0f && Main.netMode != NetmodeID.MultiplayerClient && (NPC.ai[0] < 3f || bossRushActive || flag3 && NPC.ai[0] > 3f))
             {
                 SoundEngine.PlaySound(in ShieldRegenSound, NPC.Center);
                 int num7 = NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, ModContent.NPCType<PyrogenShield>(), NPC.whoAmI);
@@ -363,7 +363,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                     calamityGlobalNPC.newAI[3] = 0f;
                     //SoundStyle style = (Main.zenithWorld ? SoundID.NPCHit41 : HitSound);
                     //SoundEngine.PlaySound(in style, NPC.Center);
-                    if (Main.netMode != 1)
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
                     {
                         int num21 = 3;
                         float num22 = MathF.PI * 2f / num21;
@@ -418,7 +418,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                         {
                             //SoundStyle style = (Main.zenithWorld ? SoundID.NPCHit41 : HitSound);
                             //SoundEngine.PlaySound(in style, NPC.Center);
-                            if (Main.netMode != 1)
+                            if (Main.netMode != NetmodeID.MultiplayerClient)
                             {
                                 int num27 = bossRushActive ? 24 : 16;
                                 float num28 = MathF.PI * 2f / num27;
@@ -488,7 +488,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                             {
                                 //SoundStyle style = (Main.zenithWorld ? SoundID.NPCHit41 : HitSound);
                                 //SoundEngine.PlaySound(in style, NPC.Center);
-                                if (Main.netMode != 1)
+                                if (Main.netMode != NetmodeID.MultiplayerClient)
                                 {
                                     int num35 = bossRushActive ? 18 : 12;
                                     float num36 = MathF.PI * 2f / num35;
@@ -573,7 +573,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                     {
                         //SoundStyle style = (Main.zenithWorld ? SoundID.NPCHit41 : HitSound);
                         //SoundEngine.PlaySound(in style, NPC.Center);
-                        if (Main.netMode != 1 && !NPC.dontTakeDamage)
+                        if (Main.netMode != NetmodeID.MultiplayerClient && !NPC.dontTakeDamage)
                         {
                             int projectileDamage4 = NPC.GetProjectileDamageClamity(num4);
                             float num43 = 9f + num2;
@@ -675,7 +675,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                             {
                                 //SoundStyle style = (Main.zenithWorld ? SoundID.NPCHit41 : HitSound);
                                 //SoundEngine.PlaySound(in style, NPC.Center);
-                                if (Main.netMode != 1)
+                                if (Main.netMode != NetmodeID.MultiplayerClient)
                                 {
                                     int num53 = bossRushActive ? 18 : 12;
                                     float num54 = MathF.PI * 2f / num53;
@@ -716,7 +716,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                     {
                         //SoundStyle style = (Main.zenithWorld ? SoundID.NPCHit41 : HitSound);
                         //SoundEngine.PlaySound(in style, NPC.Center);
-                        if (Main.netMode != 1)
+                        if (Main.netMode != NetmodeID.MultiplayerClient)
                         {
                             int projectileDamage6 = NPC.GetProjectileDamageClamity(num4);
                             float num64 = 9f + num2;
@@ -822,7 +822,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                     {
                         //SoundStyle style = (Main.zenithWorld ? SoundID.NPCHit41 : HitSound);
                         //SoundEngine.PlaySound(in style, NPC.Center);
-                        if (Main.netMode != 1)
+                        if (Main.netMode != NetmodeID.MultiplayerClient)
                         {
                             int num76 = bossRushActive ? 18 : 12;
                             float num77 = MathF.PI * 2f / num76;
@@ -855,7 +855,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                 NPC.velocity.Y = (NPC.velocity.Y * num84 + num82) / (num84 + 1f);
                 if (NPC.ai[1] == 0f)
                 {
-                    if (Main.netMode != 1)
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
                     {
                         NPC.localAI[2] += 1f;
                         if (NPC.localAI[2] >= 180f)
@@ -911,7 +911,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                             NPC.localAI[0] = 0f;
                             //SoundStyle style = (Main.zenithWorld ? SoundID.NPCHit41 : HitSound);
                             //SoundEngine.PlaySound(in style, NPC.Center);
-                            if (Main.netMode != 1)
+                            if (Main.netMode != NetmodeID.MultiplayerClient)
                             {
                                 int projectileDamage8 = NPC.GetProjectileDamageClamity(num6);
                                 float num93 = 9f + num2;
@@ -1000,7 +1000,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                         {
                             //SoundStyle style = (Main.zenithWorld ? SoundID.NPCHit41 : HitSound);
                             //SoundEngine.PlaySound(in style, NPC.Center);
-                            if (Main.netMode != 1)
+                            if (Main.netMode != NetmodeID.MultiplayerClient)
                             {
                                 int projectileDamage9 = NPC.GetProjectileDamageClamity(num4);
                                 float num102 = 1.5f + num2 * 0.5f;
@@ -1214,7 +1214,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
         {
             //SoundStyle style = (Main.zenithWorld ? SoundID.NPCDeath14 : TransitionSound);
             //SoundEngine.PlaySound(in style, NPC.Center);
-            if (Main.netMode != 2 && !Main.zenithWorld)
+            if (Main.netMode != NetmodeID.Server && !Main.zenithWorld)
             {
                 int num = newPhase >= 5 ? 3 : newPhase < 3 ? 1 : 2;
                 /*for (int i = 1; i < num; i++)
@@ -1667,7 +1667,7 @@ namespace Clamity.Content.Boss.Pyrogen.NPCs
                 Main.dust[num2].velocity *= 2f;
             }
 
-            if (Main.netMode == 2 || Main.zenithWorld)
+            if (Main.netMode == NetmodeID.Server || Main.zenithWorld)
             {
                 return;
             }

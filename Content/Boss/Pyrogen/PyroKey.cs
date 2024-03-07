@@ -1,18 +1,13 @@
 ﻿using CalamityMod.Events;
-using CalamityMod.Items.Materials;
-using CalamityMod.Items.SummonItems;
-using CalamityMod.NPCs.Cryogen;
+using CalamityMod.Particles;
+using Clamity.Content.Boss.Pyrogen.NPCs;
+using Clamity.Content.Items.Materials;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.Collections.Generic;
+using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria;
-using Clamity.Content.Boss.Pyrogen.NPCs;
-using Microsoft.Xna.Framework;
-using Clamity.Content.Items.Materials;
-using CalamityMod.Particles;
-using UtfUnknown.Core.Probers.MultiByte.Chinese;
 
 namespace Clamity.Content.Boss.Pyrogen
 {
@@ -76,7 +71,7 @@ namespace Clamity.Content.Boss.Pyrogen
                 }
                 else
                 {
-                    NetMessage.SendData(61, -1, -1, null, player.whoAmI, ModContent.NPCType<PyrogenBoss>());
+                    NetMessage.SendData(MessageID.SpawnBossUseLicenseStartEvent, -1, -1, null, player.whoAmI, ModContent.NPCType<PyrogenBoss>());
                 }
             }
             else
@@ -134,7 +129,7 @@ namespace Clamity.Content.Boss.Pyrogen
                 Color color = Color.Lerp(Color.Red, Color.Yellow, 1f - Projectile.timeLeft / 60f);
                 GeneralParticleHandler.SpawnParticle(new DirectionalPulseRing(Projectile.Center, Vector2.Zero, color, new Vector2(0.5f, 0.5f), Main.rand.NextFloat(12f, 25f), 10f, 0f, 20));
             }
-            
+
         }
         public override void OnKill(int timeLeft)
         {

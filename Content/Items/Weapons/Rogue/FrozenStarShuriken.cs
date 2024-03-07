@@ -2,6 +2,7 @@
 using CalamityMod.Items;
 using CalamityMod.Items.Weapons.Rogue;
 using CalamityMod.Projectiles.Rogue;
+using CalamityMod.Rarities;
 using CalamityMod.Tiles.Furniture.CraftingStations;
 using Clamity.Content.Biomes.FrozenHell.Items;
 using Microsoft.Xna.Framework;
@@ -17,21 +18,21 @@ namespace Clamity.Content.Items.Weapons.Rogue
         public override float StealthDamageMultiplier => 0.5f;
         public override void SetDefaults()
         {
-            base.Item.damage = 300;
-            base.Item.DamageType = ModContent.GetInstance<RogueDamageClass>();
-            base.Item.noMelee = true;
-            base.Item.noUseGraphic = true;
-            base.Item.width = 1;
-            base.Item.height = 1;
-            base.Item.useTime = 15;
-            base.Item.useAnimation = 15;
-            base.Item.useStyle = 1;
-            base.Item.knockBack = 4f;
-            base.Item.value = CalamityGlobalItem.Rarity4BuyPrice;
-            base.Item.rare = 4;
-            base.Item.UseSound = SoundID.Item1;
-            base.Item.shootSpeed = 13f;
-            base.Item.shoot = ModContent.ProjectileType<FrozenStarShurikenProjectile>();
+            Item.damage = 300;
+            Item.DamageType = ModContent.GetInstance<RogueDamageClass>();
+            Item.noMelee = true;
+            Item.noUseGraphic = true;
+            Item.width = 1;
+            Item.height = 1;
+            Item.useTime = 15;
+            Item.useAnimation = 15;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.knockBack = 4f;
+            Item.value = CalamityGlobalItem.Rarity4BuyPrice;
+            Item.rare = ModContent.RarityType<Violet>();
+            Item.UseSound = SoundID.Item1;
+            Item.shootSpeed = 13f;
+            Item.shoot = ModContent.ProjectileType<FrozenStarShurikenProjectile>();
         }
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {

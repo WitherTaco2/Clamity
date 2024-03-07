@@ -2,16 +2,11 @@
 using CalamityMod.Buffs.DamageOverTime;
 using CalamityMod.Buffs.Summon;
 using CalamityMod.CalPlayer;
-using CalamityMod.Items.Weapons.Ranged;
 using CalamityMod.Items.Weapons.Summon;
 using CalamityMod.Projectiles.Summon;
 using Clamity.Content.Boss.Clamitas.Drop;
 using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -99,7 +94,7 @@ namespace Clamity.Content.Boss.Clamitas.Crafted.Weapons
                 int num = 20;
                 for (int i = 0; i < num; i++)
                 {
-                    int num2 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y + 16f), Projectile.width, Projectile.height - 16, 33);
+                    int num2 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y + 16f), Projectile.width, Projectile.height - 16, DustID.Water);
                     Main.dust[num2].velocity *= 2f;
                     Main.dust[num2].scale *= 1.15f;
                 }

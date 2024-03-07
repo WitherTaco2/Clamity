@@ -30,7 +30,7 @@ namespace Clamity.Content.Boss.WoB.NPCs
             //NPCID.Sets.MPAllowedEnemies[this.Type] = true;
             Main.npcFrameCount[Type] = 2;
 
-            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0)
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers()
             {
                 CustomTexturePath = Texture + "_Bestiary",
                 //CustomTexturePath = "CalamityMod/Projectiles/InvisibleProj",
@@ -83,13 +83,13 @@ namespace Clamity.Content.Boss.WoB.NPCs
             for (int i = 0; i < 4; i++)
                 Terraria.NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, ListOfGuns[(Main.rand.Next(0, ListOfGuns.Length))], ai0: NPC.whoAmI);
 
-            if (Main.netMode == 1 || !(source is EntitySource_BossSpawn entitySourceBossSpawn) || !(entitySourceBossSpawn.Target is Player target))
+            if (Main.netMode == NetmodeID.MultiplayerClient || !(source is EntitySource_BossSpawn entitySourceBossSpawn) || !(entitySourceBossSpawn.Target is Player target))
                 return;
             NPC.position.X = (float)((target.Center.X < 2400f ? 480 : Main.maxTilesX * 16 - 480) - NPC.width / 2);
             NPC.position.Y = target.Center.Y - NPC.height / 2f;
-            if (Main.netMode != 2)
+            if (Main.netMode != NetmodeID.Server)
                 return;
-            NetMessage.SendData(23, -1, -1, (NetworkText)null, NPC.whoAmI, 0.0f, 0.0f, 0.0f, 0, 0, 0);
+            NetMessage.SendData(MessageID.SyncNPC, -1, -1, (NetworkText)null, NPC.whoAmI, 0.0f, 0.0f, 0.0f, 0, 0, 0);
         }
         private int[] ListOfGuns = new int[3]
         {

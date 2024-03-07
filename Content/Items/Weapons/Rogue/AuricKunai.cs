@@ -181,7 +181,7 @@ namespace Clamity.Content.Items.Weapons.Rogue
                 return;
             }
 
-            int index = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, 229, 0f, 0f, 0, default(Color), 1.15f);
+            int index = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Vortex, 0f, 0f, 0, default(Color), 1.15f);
             Dust dust = Main.dust[index];
             dust.position.X = Projectile.Center.X;
             dust.position.Y = Projectile.Center.Y;
@@ -196,7 +196,7 @@ namespace Clamity.Content.Items.Weapons.Rogue
 
                 for (int k = 0; k < 20; k++)
                 {
-                    dust = Dust.NewDustDirect(Projectile.Center - new Vector2(4), 8, 8, 229, Main.rand.NextFloat(-6f, 6f), Main.rand.NextFloat(-6f, 6f), 0, default, 1.25f);
+                    dust = Dust.NewDustDirect(Projectile.Center - new Vector2(4), 8, 8, DustID.Vortex, Main.rand.NextFloat(-6f, 6f), Main.rand.NextFloat(-6f, 6f), 0, default, 1.25f);
                     dust.noGravity = true;
                 }
             }
@@ -207,7 +207,7 @@ namespace Clamity.Content.Items.Weapons.Rogue
                 {
                     for (int k = 0; k < 6; k++)
                     {
-                        index = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, 229, Projectile.velocity.X * 0.25f, Projectile.velocity.Y * 0.25f, 125, default(Color), 1.15f);
+                        index = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Vortex, Projectile.velocity.X * 0.25f, Projectile.velocity.Y * 0.25f, 125, default(Color), 1.15f);
                         Main.dust[index].noGravity = true;
                     }
                 }

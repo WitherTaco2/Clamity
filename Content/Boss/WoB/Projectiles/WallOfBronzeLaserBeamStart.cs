@@ -127,7 +127,7 @@ namespace Clamity.Content.Boss.WoB.Projectiles
             Vector2 vector3 = Projectile.Center + Projectile.velocity * (Projectile.localAI[1] - 14f);
             for (int j = 0; j < 2; j++)
             {
-                float num7 = Projectile.velocity.ToRotation() + (Main.rand.Next(2) == 1 ? -1f : 1f) * (MathF.PI / 2f);
+                float num7 = Projectile.velocity.ToRotation() + (Main.rand.NextBool(2) ? -1f : 1f) * (MathF.PI / 2f);
                 float num8 = (float)Main.rand.NextDouble() * 2f + 2f;
                 Vector2 vector4 = new Vector2((float)Math.Cos(num7) * num8, (float)Math.Sin(num7) * num8);
                 int num9 = Dust.NewDust(vector3, 0, 0, type, vector4.X, vector4.Y);

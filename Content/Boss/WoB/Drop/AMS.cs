@@ -79,23 +79,23 @@ namespace Clamity.Content.Boss.WoB.Drop
         }
         public override void PostAI()
         {
-            if (this.Projectile.timeLeft < 2)
+            if (Projectile.timeLeft < 2)
             {
-                this.Projectile.damage = 100;
-                this.Projectile.knockBack = 10f;
+                Projectile.damage = 100;
+                Projectile.knockBack = 10f;
             }
         }
         public override void OnKill(int timeLeft)
         {
-            base.Projectile.ExpandHitboxBy(100);
-            base.Projectile.maxPenetrate = (base.Projectile.penetrate = -1);
-            base.Projectile.usesLocalNPCImmunity = true;
-            base.Projectile.localNPCHitCooldown = 10;
-            base.Projectile.Damage();
-            SoundEngine.PlaySound(in SoundID.Item14, base.Projectile.Center);
+            Projectile.ExpandHitboxBy(100);
+            Projectile.maxPenetrate = (Projectile.penetrate = -1);
+            Projectile.usesLocalNPCImmunity = true;
+            Projectile.localNPCHitCooldown = 10;
+            Projectile.Damage();
+            SoundEngine.PlaySound(in SoundID.Item14, Projectile.Center);
             for (int i = 0; i < 40; i++)
             {
-                int num = Dust.NewDust(base.Projectile.position, base.Projectile.width, base.Projectile.height, 31, 0f, 0f, 100, default(Color), 2f);
+                int num = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Smoke, 0f, 0f, 100, default(Color), 2f);
                 Main.dust[num].velocity *= 3f;
                 if (Main.rand.NextBool())
                 {
@@ -106,16 +106,16 @@ namespace Clamity.Content.Boss.WoB.Drop
 
             for (int j = 0; j < 70; j++)
             {
-                int num2 = Dust.NewDust(base.Projectile.position, base.Projectile.width, base.Projectile.height, 6, 0f, 0f, 100, default(Color), 3f);
+                int num2 = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Torch, 0f, 0f, 100, default(Color), 3f);
                 Main.dust[num2].noGravity = true;
                 Main.dust[num2].velocity *= 5f;
-                num2 = Dust.NewDust(base.Projectile.position, base.Projectile.width, base.Projectile.height, 6, 0f, 0f, 100, default(Color), 2f);
+                num2 = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Torch, 0f, 0f, 100, default(Color), 2f);
                 Main.dust[num2].velocity *= 2f;
             }
 
-            if (Main.netMode != 2)
+            if (Main.netMode != NetmodeID.Server)
             {
-                Vector2 center = base.Projectile.Center;
+                Vector2 center = Projectile.Center;
                 int num3 = 3;
                 Vector2 position = new Vector2(center.X - 24f, center.Y - 24f);
                 for (int k = 0; k < num3; k++)
@@ -132,25 +132,25 @@ namespace Clamity.Content.Boss.WoB.Drop
                     }
 
                     int type = Main.rand.Next(61, 64);
-                    int num5 = Gore.NewGore(base.Projectile.GetSource_Death(), position, default(Vector2), type);
+                    int num5 = Gore.NewGore(Projectile.GetSource_Death(), position, default(Vector2), type);
                     Gore obj = Main.gore[num5];
                     obj.velocity *= num4;
                     obj.velocity.X += 1f;
                     obj.velocity.Y += 1f;
                     type = Main.rand.Next(61, 64);
-                    num5 = Gore.NewGore(base.Projectile.GetSource_Death(), position, default(Vector2), type);
+                    num5 = Gore.NewGore(Projectile.GetSource_Death(), position, default(Vector2), type);
                     Gore obj2 = Main.gore[num5];
                     obj2.velocity *= num4;
                     obj2.velocity.X -= 1f;
                     obj2.velocity.Y += 1f;
                     type = Main.rand.Next(61, 64);
-                    num5 = Gore.NewGore(base.Projectile.GetSource_Death(), position, default(Vector2), type);
+                    num5 = Gore.NewGore(Projectile.GetSource_Death(), position, default(Vector2), type);
                     Gore obj3 = Main.gore[num5];
                     obj3.velocity *= num4;
                     obj3.velocity.X += 1f;
                     obj3.velocity.Y -= 1f;
                     type = Main.rand.Next(61, 64);
-                    num5 = Gore.NewGore(base.Projectile.GetSource_Death(), position, default(Vector2), type);
+                    num5 = Gore.NewGore(Projectile.GetSource_Death(), position, default(Vector2), type);
                     Gore obj4 = Main.gore[num5];
                     obj4.velocity *= num4;
                     obj4.velocity.X -= 1f;
@@ -158,10 +158,10 @@ namespace Clamity.Content.Boss.WoB.Drop
                 }
             }
 
-            base.Projectile.ExpandHitboxBy(15);
-            if (base.Projectile.owner == Main.myPlayer)
+            Projectile.ExpandHitboxBy(15);
+            if (Projectile.owner == Main.myPlayer)
             {
-                base.Projectile.ExplodeTiles(5 + (int)(Projectile.Clamity().extraAI[0] - 1) * 2, false);
+                Projectile.ExplodeTiles(5 + (int)(Projectile.Clamity().extraAI[0] - 1) * 2, false);
             }
         }
     }

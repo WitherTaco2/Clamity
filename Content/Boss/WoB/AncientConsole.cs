@@ -1,24 +1,17 @@
 ﻿using CalamityMod;
+using CalamityMod.Events;
 using CalamityMod.Items.Materials;
-using CalamityMod.Items.Placeables.Furniture.CraftingStations;
 using CalamityMod.Rarities;
 using CalamityMod.Tiles.Furniture.CraftingStations;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria.DataStructures;
+using Clamity.Content.Boss.WoB.NPCs;
+using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.Audio;
+using Terraria.DataStructures;
+using Terraria.Enums;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
-using Terraria.Enums;
-using Microsoft.Xna.Framework;
-using CalamityMod.Events;
-using CalamityMod.Projectiles.Boss;
-using Clamity.Content.Boss.WoB.NPCs;
-using Terraria.Audio;
 
 namespace Clamity.Content.Boss.WoB
 {
@@ -28,17 +21,17 @@ namespace Clamity.Content.Boss.WoB
 
         public override void SetDefaults()
         {
-            this.Item.createTile = ModContent.TileType<AncientConsoleTile>();
-            this.Item.useTurn = true;
-            this.Item.useAnimation = 15;
-            this.Item.useTime = 10;
-            this.Item.autoReuse = true;
-            this.Item.consumable = true;
-            this.Item.width = 38;
-            this.Item.height = 32;
-            this.Item.maxStack = 9999;
-            this.Item.useStyle = 1;
-            this.Item.rare = ModContent.RarityType<Violet>();
+            Item.createTile = ModContent.TileType<AncientConsoleTile>();
+            Item.useTurn = true;
+            Item.useAnimation = 15;
+            Item.useTime = 10;
+            Item.autoReuse = true;
+            Item.consumable = true;
+            Item.width = 38;
+            Item.height = 32;
+            Item.maxStack = 9999;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.rare = ModContent.RarityType<Violet>();
         }
         public override void AddRecipes()
         {

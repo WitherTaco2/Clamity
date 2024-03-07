@@ -1,18 +1,13 @@
-﻿using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CalamityMod;
+using CalamityMod.Items.Placeables.Furniture.DevPaintings;
+using Clamity.Content.Boss.Pyrogen.Drop.Weapons;
+using Clamity.Content.Boss.Pyrogen.NPCs;
+using Clamity.Content.Items.Materials;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using CalamityMod;
-using Clamity.Content.Items.Materials;
-using Clamity.Content.Boss.Pyrogen.NPCs;
-using Clamity.Content.Boss.Pyrogen.Drop.Weapons;
-using CalamityMod.Items.Placeables.Furniture.DevPaintings;
 
 namespace Clamity.Content.Boss.Pyrogen.Drop
 {
@@ -32,7 +27,7 @@ namespace Clamity.Content.Boss.Pyrogen.Drop
             Item.consumable = true;
             Item.width = 24;
             Item.height = 24;
-            Item.rare = 9;
+            Item.rare = ItemRarityID.Cyan;
             Item.expert = true;
         }
 

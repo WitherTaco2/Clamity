@@ -1,20 +1,15 @@
 ﻿using CalamityMod.Items;
+using CalamityMod.Items.Materials;
+using CalamityMod.Items.Weapons.Magic;
 using CalamityMod.Projectiles.Magic;
 using CalamityMod.Rarities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using CalamityMod.Tiles.Furniture.CraftingStations;
+using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria;
-using Microsoft.Xna.Framework;
-using Terraria.DataStructures;
-using CalamityMod.Items.Weapons.Magic;
-using CalamityMod.Items.Materials;
-using CalamityMod.Tiles.Furniture.CraftingStations;
 
 namespace Clamity.Content.Items.Weapons.Magic
 {
@@ -30,7 +25,7 @@ namespace Clamity.Content.Items.Weapons.Magic
             Item.width = 106;
             Item.height = 130;
             Item.useTime = this.Item.useAnimation = 4;
-            Item.useStyle = 5;
+            Item.useStyle = ItemUseStyleID.Shoot;
             Item.noMelee = true;
             Item.knockBack = 1.5f;
             Item.value = CalamityGlobalItem.Rarity15BuyPrice;
@@ -71,7 +66,7 @@ namespace Clamity.Content.Items.Weapons.Magic
                 Projectile.NewProjectile(source, vector2_1.X + vector2_3.X, vector2_1.Y + vector2_3.Y, velocity.X * 1.5f, velocity.Y * 1.5f, type, (int)(damage * 0.8f), knockback, player.whoAmI, 0.0f, 0.0f, 0.0f);
                 int index4 = Projectile.NewProjectile(source, vector2_1.X + vector2_3.X, vector2_1.Y + vector2_3.Y, velocity.X * 2f, velocity.Y * 2f, 440, (int)(damage * 0.4f), knockback * 0.4f, player.whoAmI, 0.0f, 0.0f, 0.0f);
                 Main.projectile[index4].timeLeft = 120;
-                Main.projectile[index4].tileCollide = false; 
+                Main.projectile[index4].tileCollide = false;
             }
             return false;
         }

@@ -1,6 +1,5 @@
-﻿using CalamityMod.Items.Armor.Vanity;
+﻿using Terraria;
 using Terraria.ID;
-using Terraria;
 using Terraria.ModLoader;
 
 namespace Clamity.Content.Boss.Pyrogen.Drop
@@ -12,7 +11,7 @@ namespace Clamity.Content.Boss.Pyrogen.Drop
 
         public override void SetStaticDefaults()
         {
-            if (Main.netMode != 2)
+            if (Main.netMode != NetmodeID.Server)
             {
                 ArmorIDs.Head.Sets.DrawHead[base.Item.headSlot] = false;
             }

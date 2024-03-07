@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria.IO;
-using Terraria.ModLoader;
-using Terraria.ID;
+﻿using CalamityMod;
 using CalamityMod.Events;
-using CalamityMod.NPCs.Cryogen;
-using Terraria;
-using CalamityMod;
-using Terraria.Audio;
 using CalamityMod.Items.Materials;
 using Clamity.Content.Boss.Clamitas.NPCs;
+using Terraria;
+using Terraria.Audio;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Clamity.Content.Boss.Clamitas
 {
@@ -54,7 +47,7 @@ namespace Clamity.Content.Boss.Clamitas
             }
             else
             {
-                NetMessage.SendData(61, -1, -1, null, player.whoAmI, ModContent.NPCType<ClamitasBoss>());
+                NetMessage.SendData(MessageID.SpawnBossUseLicenseStartEvent, -1, -1, null, player.whoAmI, ModContent.NPCType<ClamitasBoss>());
             }
 
             return true;

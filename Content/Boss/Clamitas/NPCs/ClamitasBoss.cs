@@ -59,7 +59,7 @@ namespace Clamity.Content.Boss.Clamitas.NPCs
         {
             Main.npcFrameCount[NPC.type] = 12;
             NPCID.Sets.BossBestiaryPriority.Add(Type);
-            NPCID.Sets.NPCBestiaryDrawModifiers nPCBestiaryDrawModifiers = new NPCID.Sets.NPCBestiaryDrawModifiers(0);
+            NPCID.Sets.NPCBestiaryDrawModifiers nPCBestiaryDrawModifiers = new NPCID.Sets.NPCBestiaryDrawModifiers();
             nPCBestiaryDrawModifiers.Scale = 0.4f;
             NPCID.Sets.NPCBestiaryDrawModifiers value = nPCBestiaryDrawModifiers;
             value.Position.Y += 40f;
@@ -171,7 +171,7 @@ namespace Clamity.Content.Boss.Clamitas.NPCs
                 return;
             }
 
-            if (Main.netMode != 2 && !Main.player[NPC.target].dead && Main.player[NPC.target].active)
+            if (Main.netMode != NetmodeID.Server && !Main.player[NPC.target].dead && Main.player[NPC.target].active)
             {
                 player.AddBuff(ModContent.BuffType<CalamityMod.Buffs.StatDebuffs.Clamity>(), 2);
             }
@@ -237,7 +237,7 @@ namespace Clamity.Content.Boss.Clamitas.NPCs
             {
                 if (NPC.ai[2] == 0f)
                 {
-                    if (Main.netMode != 1)
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
                     {
                         NPC.TargetClosest();
                         NPC.ai[2] = 1f;
@@ -344,7 +344,7 @@ namespace Clamity.Content.Boss.Clamitas.NPCs
                         {
                         }*/
                         SoundEngine.PlaySound(in SlamSound, NPC.position);
-                        if (Main.netMode != 2)
+                        if (Main.netMode != NetmodeID.Server)
                         {
                             for (int i = (int)NPC.position.X - 30; i < (int)NPC.position.X + NPC.width + 60; i += 30)
                             {
@@ -387,7 +387,7 @@ namespace Clamity.Content.Boss.Clamitas.NPCs
             }
             else if (attack == 3)
             {
-                if (Main.netMode != 1)
+                if (Main.netMode != NetmodeID.MultiplayerClient)
                 {
                     SoundEngine.PlaySound(in SoundID.Item68, NPC.position);
                     for (int l = -7; l < 7; l++)
@@ -690,17 +690,17 @@ namespace Clamity.Content.Boss.Clamitas.NPCs
         {
             for (int i = 0; i < 5; i++)
             {
-                Dust.NewDust(NPC.position, NPC.width, NPC.height, 37, hit.HitDirection, -1f);
+                Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Obsidian, hit.HitDirection, -1f);
             }
 
             if (NPC.life <= 0)
             {
                 for (int j = 0; j < 50; j++)
                 {
-                    Dust.NewDust(NPC.position, NPC.width, NPC.height, 37, hit.HitDirection, -1f);
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Obsidian, hit.HitDirection, -1f);
                 }
 
-                if (Main.netMode != 2)
+                if (Main.netMode != NetmodeID.Server)
                 {
                     Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, ModLoader.GetMod("CalamityMod").Find<ModGore>("GiantClam1").Type);
                     Gore.NewGore(NPC.GetSource_Death(), NPC.position, NPC.velocity, ModLoader.GetMod("CalamityMod").Find<ModGore>("GiantClam2").Type);

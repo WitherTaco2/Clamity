@@ -73,7 +73,7 @@ namespace Clamity.Content.Boss.WoB.NPCs
                     Vector2 spinningpoint = new Vector2(Main.rand.NextFloat(minValue, maxValue), 0f).RotatedBy(NPC.rotation);
                     spinningpoint = spinningpoint.RotatedBy(0f - num3);
                     spinningpoint = spinningpoint.RotatedByRandom(2f * num3);
-                    int num4 = ((Main.rand.Next(2) == 0) ? 206 : DustID.GemAmethyst);
+                    int num4 = ((Main.rand.NextBool(2)) ? 206 : DustID.GemAmethyst);
                     float num5 = ((num4 == 206) ? 1.5f : 1f);
                     int num6 = Dust.NewDust(new Vector2(NPC.position.X, NPC.position.Y) + Vector2.UnitX.RotatedBy(NPC.rotation) * 5, NPC.width / 6, NPC.height / 6, num4, spinningpoint.X, spinningpoint.Y, 200, default(Color), 2.5f * num5);
                     Main.dust[num6].position = NPC.Center + Vector2.UnitY.RotatedByRandom(3.1415927410125732) * (float)Main.rand.NextDouble() * NPC.width / 2f;
@@ -92,7 +92,7 @@ namespace Clamity.Content.Boss.WoB.NPCs
                     Vector2 spinningpoint2 = new Vector2(Main.rand.NextFloat(minValue, maxValue), 0f).RotatedBy(NPC.rotation);
                     spinningpoint2 = spinningpoint2.RotatedBy(0f - num3);
                     spinningpoint2 = spinningpoint2.RotatedByRandom(2f * num3);
-                    int num7 = ((Main.rand.Next(2) == 0) ? 206 : DustID.GemAmethyst);
+                    int num7 = (Main.rand.NextBool(2) ? 206 : DustID.GemAmethyst);
                     float num8 = ((num7 == 206) ? 1.5f : 1f);
                     int num9 = Dust.NewDust(new Vector2(NPC.position.X, NPC.position.Y) + Vector2.UnitX.RotatedBy(NPC.rotation) * 5, NPC.width / 6, NPC.height / 6, num7, spinningpoint2.X, spinningpoint2.Y, 0, default(Color), 3f * num8);
                     Main.dust[num9].position = NPC.Center + Vector2.UnitX.RotatedByRandom(3.1415927410125732).RotatedBy(NPC.velocity.ToRotation()) * NPC.width / 3f;

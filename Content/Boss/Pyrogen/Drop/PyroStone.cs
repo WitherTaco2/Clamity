@@ -1,17 +1,15 @@
-﻿using CalamityMod.Buffs.StatDebuffs;
-using CalamityMod;
-using CalamityMod.Items.Accessories;
-using CalamityMod.NPCs.AcidRain;
-using CalamityMod.NPCs;
+﻿using CalamityMod;
 using CalamityMod.Buffs.DamageOverTime;
 using CalamityMod.Items;
+using CalamityMod.NPCs;
+using CalamityMod.NPCs.AcidRain;
 using Clamity.Content.Boss.Pyrogen.NPCs;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.DataStructures;
 
 namespace Clamity.Content.Boss.Pyrogen.Drop
 {
@@ -21,17 +19,17 @@ namespace Clamity.Content.Boss.Pyrogen.Drop
 
         public override void SetStaticDefaults()
         {
-            Main.RegisterItemAnimation(base.Item.type, new DrawAnimationVertical(4, 4));
-            ItemID.Sets.AnimatesAsSoul[base.Type] = true;
+            Main.RegisterItemAnimation(Type, new DrawAnimationVertical(4, 4));
+            ItemID.Sets.AnimatesAsSoul[Type] = true;
         }
 
         public override void SetDefaults()
         {
-            base.Item.width = 40;
-            base.Item.height = 40;
-            base.Item.value = CalamityGlobalItem.Rarity5BuyPrice;
-            base.Item.rare = 5;
-            base.Item.accessory = true;
+            Item.width = 40;
+            Item.height = 40;
+            Item.value = CalamityGlobalItem.Rarity5BuyPrice;
+            Item.rare = ItemRarityID.Pink;
+            Item.accessory = true;
         }
         public override void UpdateAccessory(Player player, bool hideVisual) => player.Clamity().pyroStone = true;
         public override void UpdateVanity(Player player) => player.Clamity().pyroStoneVanity = true;
@@ -79,7 +77,7 @@ namespace Clamity.Content.Boss.Pyrogen.Drop
             //Main.NewText("PyroStone messenge: " + clamityPlayer.pyroStone.ToString() + " " + clamityPlayer.pyroStoneVanity.ToString());
             if (Owner == null || !Owner.active || Owner.dead || !(clamityPlayer.pyroStone || clamityPlayer.pyroStoneVanity))
                 Projectile.Kill();
-            
+
         }
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)

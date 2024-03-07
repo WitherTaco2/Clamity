@@ -1,7 +1,6 @@
 ﻿using CalamityMod.Rarities;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -59,7 +58,7 @@ namespace Clamity.Content.Boss.WoB.Drop
                 Item.axe = 300 / 5;
                 Item.hammer = 250;
                 Item.useTime = 1;
-                Item.shoot = 0;
+                Item.shoot = ProjectileID.None;
                 return true;
             }
         }

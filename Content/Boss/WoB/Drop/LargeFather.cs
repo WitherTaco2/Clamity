@@ -1,22 +1,17 @@
-﻿using CalamityMod.Items.Tools;
-using CalamityMod;
-using CalamityMod.Projectiles.Melee;
+﻿using CalamityMod;
+using CalamityMod.Items;
+using CalamityMod.Items.Tools;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.Graphics.Shaders;
-using Terraria.Localization;
-using Terraria;
-using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using CalamityMod.Items;
 using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace Clamity.Content.Boss.WoB.Drop
 {
@@ -38,9 +33,9 @@ namespace Clamity.Content.Boss.WoB.Drop
             Item.channel = true;
             Item.noUseGraphic = true;
             Item.noMelee = true;
-            Item.useStyle = 5;
+            Item.useStyle = ItemUseStyleID.Shoot;
             Item.value = CalamityGlobalItem.Rarity1BuyPrice;
-            Item.rare = 1;
+            Item.rare = ItemRarityID.Blue;
             Item.UseSound = SoundID.Item23;
             Item.autoReuse = true;
             Item.shoot = ModContent.ProjectileType<LargeFatherProj>();
