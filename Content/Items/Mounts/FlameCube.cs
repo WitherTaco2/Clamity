@@ -30,7 +30,7 @@ namespace Clamity.Content.Items.Mounts
             MountData.dashSpeed = 13f;
             MountData.acceleration = 13f;
             MountData.swimSpeed = 13f;
-            if (Main.netMode != 2)
+            if (Main.netMode != NetmodeID.Server)
             {
                 MountData.frontTextureGlow = ModContent.Request<Texture2D>("Clamity/Content/Items/Mounts/BrimChairMount_Glowmask");
                 MountData.textureWidth = MountData.frontTexture.Width();

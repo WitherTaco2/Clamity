@@ -1,7 +1,6 @@
 ﻿using CalamityMod;
 using CalamityMod.Buffs.DamageOverTime;
 using CalamityMod.Items.Materials;
-using CalamityMod.Projectiles.Ranged;
 using CalamityMod.Projectiles.Typeless;
 using Microsoft.Xna.Framework;
 using System;
@@ -122,7 +121,7 @@ namespace Clamity.Content.Items.Ammo
         }
         public override void PostAI()
         {
-            int index = Dust.NewDust(Projectile.Center, 1, 1, 244, 0.0f, 0.0f, 0, new Color(), 1f);
+            int index = Dust.NewDust(Projectile.Center, 1, 1, DustID.CopperCoin, 0.0f, 0.0f, 0, new Color(), 1f);
             Main.dust[index].position = ((Entity)this.Projectile).Center;
             Main.dust[index].noGravity = true;
             Main.dust[index].scale = Utils.NextFloat(Main.rand, 0.6f, 1.6f);
@@ -148,7 +147,7 @@ namespace Clamity.Content.Items.Ammo
             for (int i = 0; i < 4; i++)
             {
                 float scale = Main.rand.NextFloat(1.4f, 1.8f);
-                int num2 = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, 244);
+                int num2 = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.CopperCoin);
                 Main.dust[num2].noGravity = false;
                 Main.dust[num2].scale = scale;
                 float num3 = 0.25f;

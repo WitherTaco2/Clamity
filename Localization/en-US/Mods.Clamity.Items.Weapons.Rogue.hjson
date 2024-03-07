@@ -36,3 +36,12 @@ ExoBall: {
 		Press <right> to delete all existing spiky balls
 		'''
 }
+
+AuricKunai: {
+	DisplayName: Auric Kunai
+	Tooltip:
+		'''
+		Fires a rapid stream of short-range kunai
+		Stealth strikes spawn 5 Lightnings to nearest enemy
+		'''
+}

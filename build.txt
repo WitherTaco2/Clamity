@@ -2,3 +2,4 @@ displayName = Clamity Addon
 author = WitherTaco and Calamity Fandom wiki
 version = 1.0.3
 modReferences = CalamityMod
+weakReferences = InfernumMode

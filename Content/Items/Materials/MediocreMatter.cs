@@ -1,5 +1,6 @@
 ﻿using CalamityMod.Items.Materials;
 using CalamityMod.Items.Placeables;
+using CalamityMod.Items.Placeables.Plates;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -9,7 +10,11 @@ namespace Clamity.Content.Items.Materials
     {
         public override bool IsLoadingEnabled(Mod mod)
         {
+#if DEBUG
+            return true;
+#else
             return false;
+#endif
         }
         public override void SetDefaults()
         {
@@ -22,15 +27,22 @@ namespace Clamity.Content.Items.Materials
         public override void AddRecipes()
         {
             CreateRecipe()
+                .AddIngredient<Cinderplate>(10)
+                .AddIngredient<Havocplate>(10)
+                .AddIngredient<Elumplate>(10)
+                .AddIngredient<Navyplate>(10)
+                .AddIngredient<Plagueplate>(10)
+                .AddTile(TileID.Hellforge)
+                .Register();
+
+            CreateRecipe()
                 .AddIngredient<EssenceofSunlight>()
                 .AddIngredient<EssenceofHavoc>()
                 .AddIngredient<EssenceofEleum>()
-                .AddIngredient<EssenceOfFlame>()
                 .AddIngredient<SeaPrism>()
                 .AddIngredient<PlagueCellCanister>()
-                .AddIngredient<BloodOrb>()
                 .AddIngredient(ItemID.Obsidian, 30)
-                .AddTile(TileID.Hellforge)
+                .AddTile(TileID.AdamantiteForge)
                 .Register();
         }
     }

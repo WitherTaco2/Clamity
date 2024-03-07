@@ -1,14 +1,13 @@
-﻿using CalamityMod.Items.Materials;
+﻿using CalamityMod;
 using CalamityMod.Items;
+using CalamityMod.Projectiles.BaseProjectiles;
+using Clamity.Content.Cooldowns;
+using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.Audio;
+using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
-using CalamityMod.Projectiles.BaseProjectiles;
-using CalamityMod;
-using Terraria;
-using Microsoft.Xna.Framework;
-using Clamity.Content.Cooldowns;
-using Terraria.GameContent;
 
 namespace Clamity.Content.Items.Weapons.Melee.Shortswords
 {
@@ -28,7 +27,7 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
             Item.value = CalamityGlobalItem.Rarity8BuyPrice;
 
             Item.useAnimation = Item.useTime = 15;
-            Item.useStyle = 13;
+            Item.useStyle = ItemUseStyleID.Rapier;
             Item.UseSound = new SoundStyle?(SoundID.Item1);
             Item.autoReuse = true;
             Item.noUseGraphic = true;
@@ -88,7 +87,7 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
             //Lighting.AddLight(Projectile.Center, )
             if (!Utils.NextBool(Main.rand, 5))
                 return;
-            Dust.NewDust(new Vector2((float)Projectile.Hitbox.X, (float)Projectile.Hitbox.Y), Projectile.Hitbox.Width, Projectile.Hitbox.Height, 6, 0.0f, 0.0f, 0, new Color(), 3f);
+            Dust.NewDust(new Vector2((float)Projectile.Hitbox.X, (float)Projectile.Hitbox.Y), Projectile.Hitbox.Width, Projectile.Hitbox.Height, DustID.Torch, 0.0f, 0.0f, 0, new Color(), 3f);
         }
         public override bool PreDraw(ref Color lightColor)
         {

@@ -1,7 +1,4 @@
-﻿using CalamityMod.Items.Accessories;
-using CalamityMod.Items.Materials;
-using CalamityMod.Items.Placeables;
-using Clamity.Content.Boss.Clamitas.Drop;
+﻿using CalamityMod.Items.Placeables;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,29 +11,6 @@ namespace Clamity
 {
     public class ClamitySystem : ModSystem
     {
-        public override void PostAddRecipes()
-        {
-            for (int i = 0; i < Recipe.numRecipes; i++)
-            {
-                Recipe recipe = Main.recipe[i];
-
-                if (recipe.HasResult(ModContent.ItemType<TheAbsorber>()))
-                {
-                    recipe.RemoveIngredient(ModContent.ItemType<MolluskHusk>());
-                    recipe.AddIngredient<HuskOfCalamity>(5);
-                }
-                if (recipe.HasResult(ModContent.ItemType<TheAmalgam>()))
-                {
-                    recipe.RemoveIngredient(ModContent.ItemType<MolluskHusk>());
-                    recipe.AddIngredient<HuskOfCalamity>(10);
-                }
-                if (recipe.HasResult(ModContent.ItemType<AbyssalDivingSuit>()))
-                {
-                    recipe.RemoveIngredient(ModContent.ItemType<MolluskHusk>());
-                    recipe.AddIngredient<HuskOfCalamity>(15);
-                }
-            }
-        }
         internal static bool _downedClamitas;
         public static bool downedClamitas
         {
@@ -152,6 +126,7 @@ namespace Clamity
         }
         public static int AnySandBlock;
         public static int AnyEvilMushroom;
+        public static int AnyGemHook;
         public override void AddRecipeGroups()
         {
             ClamitySystem.AnySandBlock = RecipeGroup.RegisterGroup("AnySandBlock", new RecipeGroup((Func<string>)(() => LangHelper.GetText("Misc.RecipeGroup.AnySandBlock")), new int[5]
@@ -161,6 +136,10 @@ namespace Clamity
             ClamitySystem.AnyEvilMushroom = RecipeGroup.RegisterGroup("AnyEvilMushroom", new RecipeGroup((Func<string>)(() => LangHelper.GetText("Misc.RecipeGroup.AnyEvilMushroom")), new int[2]
             {
                 ItemID.VileMushroom, ItemID.ViciousMushroom
+            }));
+            ClamitySystem.AnyGemHook = RecipeGroup.RegisterGroup("AnyGemHook", new RecipeGroup((Func<string>)(() => LangHelper.GetText("Misc.RecipeGroup.AnyGemHook")), new int[7]
+            {
+                ItemID.AmethystHook, ItemID.TopazHook, ItemID.SapphireHook, ItemID.EmeraldHook, ItemID.RubyHook, ItemID.AmberHook, ItemID.DiamondHook
             }));
         }
         public override void NetSend(BinaryWriter writer)

@@ -1,15 +1,9 @@
-﻿using CalamityMod.World;
-using CalamityMod;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.Localization;
-using System.Drawing;
-using System.Runtime.InteropServices;
-using Microsoft.Xna.Framework;
+using Terraria.ModLoader;
 
 namespace Clamity
 {
@@ -94,6 +88,72 @@ namespace Clamity
         public static float Magnitude(Vector2 mag) // For the Move code above
         {
             return (float)Math.Sqrt(mag.X * mag.X + mag.Y * mag.Y);
+        }
+
+        #region SetValues
+        public static Item SetShoot<T>(this Item item, float shootSpeed) where T : ModProjectile
+        {
+            item.shoot = ModContent.ProjectileType<T>();
+            item.shootSpeed = shootSpeed;
+            return item;
+        }
+        public static Item SetDamage<D>(this Item item, int damage, float knockback) where D : DamageClass
+        {
+            item.damage = damage;
+            item.DamageType = ModContent.GetInstance<D>();
+            item.knockBack = knockback;
+            return item;
+        }
+        #endregion
+        public static bool HandleChaining(this Projectile projectile, ICollection<int> hitTargets, ICollection<int> foundTargets, int max, Func<NPC, bool> condition = null)
+        {
+            //Applies foundTargets from the last call to hitTargets
+            foreach (var f in foundTargets)
+            {
+                if (!hitTargets.Contains(f))
+                {
+                    //If check can be removed here, but left in in case of debugging/additional method
+                    hitTargets.Add(f);
+                }
+            }
+            foundTargets.Clear();
+
+            //Seek suitable targets the projectile collides with
+            for (int i = 0; i < Main.maxNPCs; i++)
+            {
+                NPC npc = Main.npc[i];
+
+                if (!npc.active || npc.dontTakeDamage || projectile.friendly && npc.townNPC) //The only checks that truly prevent damage. No chaseable or immortal, those can still be hit
+                {
+                    continue;
+                }
+
+                //Simple code instead of complicated recreation of vanilla+modded collision code here (which only runs clientside, but this has to be all-side)
+                //Hitbox has to be for "next update cycle" because AI (where this should be called) runs before movement updates, which runs before damaging takes place
+                Rectangle hitbox = new Rectangle((int)(projectile.position.X + projectile.velocity.X), (int)(projectile.position.Y + projectile.velocity.Y), projectile.width, projectile.height);
+                ProjectileLoader.ModifyDamageHitbox(projectile, ref hitbox);
+
+                if (!projectile.Colliding(hitbox, npc.Hitbox)) //Intersecting hitboxes + special checks. Safe to use all-side, lightning aura uses it
+                {
+                    continue;
+                }
+
+                if (condition != null && !condition(npc))
+                {
+                    //If custom condition returns false
+                    continue;
+                }
+
+                foundTargets.Add(i);
+            }
+
+            if (hitTargets.Count >= max)
+            {
+                projectile.Kill();
+                return true;
+            }
+
+            return false;
         }
     }
 }

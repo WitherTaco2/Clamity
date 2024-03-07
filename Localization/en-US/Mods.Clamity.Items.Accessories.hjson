@@ -65,3 +65,13 @@ IcicleRing: {
 		'''
 	DisplayName: Icicle Ring
 }
+
+RedDie: {
+	DisplayName: Red Die
+	Tooltip:
+		'''
+		1.5x luck
+		20% increased luck after calculation
+		'You are ready for reroll'
+		'''
+}

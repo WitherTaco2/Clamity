@@ -9,6 +9,7 @@ using Clamity.Content.Biomes.FrozenHell.Items;
 using Clamity.Content.Items.Materials;
 using Clamity.Content.Items.Mounts;
 using Clamity.Content.Items.Potions.Food;
+using Clamity.Content.Items.Weapons.Classless;
 using Clamity.Content.Items.Weapons.Melee.Shortswords;
 using Clamity.Content.Items.Weapons.Melee.Swords;
 using Clamity.Content.Items.Weapons.Ranged.Guns;
@@ -39,11 +40,13 @@ namespace Clamity
             {
                 mainRule.Add(ItemDropRule.Common(ModContent.ItemType<Disease>(), 4));
                 mainRule.Add(ItemDropRule.Common(ModContent.ItemType<PlagueStation>()));
+                npcLoot.Add(ItemDropRule.NormalvsExpert(ModContent.ItemType<TrashOfMagnus>(), 4, 3));
             }
             if (npc.type == ModContent.NPCType<SupremeCalamitas>())
             {
                 mainRule.Add(ItemDropRule.Common(ModContent.ItemType<Calamitea>(), 1, 10, 10));
             }
+
 
             //Essence of Flame drop
             if (ContainType(npc.type, NPCID.Mummy, NPCID.LightMummy, NPCID.DarkMummy, NPCID.BloodMummy,
@@ -66,6 +69,7 @@ namespace Clamity
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MandibleClaws>(), 50));
                 npcLoot.Add(ItemDropRule.ByCondition(hm, ModContent.ItemType<EssenceOfFlame>(), 4));
             }
+
 
             //Food drop
             if (ContainType(npc.type, ModContent.NPCType<SeaSerpent1>(), ModContent.NPCType<EutrophicRay>(), ModContent.NPCType<GhostBell>(), ModContent.NPCType<PrismBack>(), ModContent.NPCType<SeaFloaty>(), ModContent.NPCType<BlindedAngler>()))

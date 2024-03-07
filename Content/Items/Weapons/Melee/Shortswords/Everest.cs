@@ -24,7 +24,7 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
             Item.value = CalamityGlobalItem.Rarity15BuyPrice;
 
             Item.useAnimation = Item.useTime = 10;
-            Item.useStyle = 13;
+            Item.useStyle = ItemUseStyleID.Rapier;
             Item.UseSound = new SoundStyle?(SoundID.Item1);
             Item.autoReuse = true;
             Item.noUseGraphic = true;

@@ -35,6 +35,7 @@ Items: {
 Misc: {
 	RecipeGroup: {
 		AnySandBlock: Любой песок
+		// AnyGemHook: Any Gem Hook
 		// AnyEvilMushroom: And Evil Mushroom
 	}
 

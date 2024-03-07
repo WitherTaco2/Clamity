@@ -1,5 +1,6 @@
 ﻿using CalamityMod;
 using CalamityMod.Buffs.DamageOverTime;
+using CalamityMod.Items.Accessories;
 using Clamity.Content.Biomes.FrozenHell.Biome;
 using Clamity.Content.Boss.Pyrogen.Drop;
 using Clamity.Content.Cooldowns;
@@ -29,6 +30,7 @@ namespace Clamity
         public bool pyroStoneVanity;
         public bool hellFlare;
         public bool icicleRing;
+        public bool redDie;
 
         //Armor
         public bool inflicingMeleeFrostburn;
@@ -98,22 +100,22 @@ namespace Clamity
             }
             if (CalamityKeybinds.NormalityRelocatorHotKey.JustPressed && realityRelocator && Main.myPlayer == Player.whoAmI && !Player.CCed)
             {
-                Vector2 vector = default(Vector2);
-                vector.X = (float)Main.mouseX + Main.screenPosition.X;
-                if (base.Player.gravDir == 1f)
+                Vector2 vector;
+                vector.X = Main.mouseX + Main.screenPosition.X;
+                if (Player.gravDir == 1f)
                 {
                     vector.Y = (float)Main.mouseY + Main.screenPosition.Y - (float)base.Player.height;
                 }
                 else
                 {
-                    vector.Y = Main.screenPosition.Y + (float)Main.screenHeight - (float)Main.mouseY;
+                    vector.Y = Main.screenPosition.Y + Main.screenHeight - Main.mouseY;
                 }
 
-                vector.X -= base.Player.width / 2;
-                if (vector.X > 50f && vector.X < (float)(Main.maxTilesX * 16 - 50) && vector.Y > 50f && vector.Y < (float)(Main.maxTilesY * 16 - 50) && !Collision.SolidCollision(vector, base.Player.width, base.Player.height))
+                vector.X -= Player.width / 2;
+                if (vector.X > 50f && vector.X < (Main.maxTilesX * 16 - 50) && vector.Y > 50f && vector.Y < (Main.maxTilesY * 16 - 50) && !Collision.SolidCollision(vector, Player.width, Player.height))
                 {
-                    base.Player.Teleport(vector, 4);
-                    NetMessage.SendData(65, -1, -1, null, 0, base.Player.whoAmI, vector.X, vector.Y, 1);
+                    Player.Teleport(vector, 4);
+                    NetMessage.SendData(MessageID.TeleportPlayerThroughPortal, -1, -1, null, 0, Player.whoAmI, vector.X, vector.Y, 1);
                 }
             }
 
@@ -193,7 +195,20 @@ namespace Clamity
         }
         public override void PostUpdateEquips()
         {
+            if (redDie)
+            {
+                for (int i = 3; i < 9; i++)
+                {
+                    Item item = Player.armor[i];
+                    if (item.type == ModContent.ItemType<OldDie>())
+                    {
+                        Player.luck -= 0.2f;
+                    }
+                    Player.luck *= 1.5f;
+                    Player.luck += 0.2f;
 
+                }
+            }
         }
         public override void PostUpdateMiscEffects()
         {

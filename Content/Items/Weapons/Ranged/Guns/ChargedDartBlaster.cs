@@ -1,21 +1,16 @@
-﻿using CalamityMod.Items.Materials;
+﻿using CalamityMod;
+using CalamityMod.Buffs.DamageOverTime;
+using CalamityMod.CustomRecipes;
 using CalamityMod.Items;
+using CalamityMod.Items.Materials;
+using CalamityMod.Projectiles.Ranged;
 using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Terraria;
+using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria;
-using CalamityMod.Projectiles.Ranged;
-using CalamityMod.CustomRecipes;
-using Microsoft.Xna.Framework.Graphics;
-using CalamityMod;
-using Terraria.Audio;
-using CalamityMod.Buffs.DamageOverTime;
 
 namespace Clamity.Content.Items.Weapons.Ranged.Guns
 {
@@ -195,7 +190,7 @@ namespace Clamity.Content.Items.Weapons.Ranged.Guns
             {
                 for (int index1 = 0; index1 < 5; ++index1)
                 {
-                    int index2 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, 160, 0.0f, 0.0f, 100, new Color(), 2f);
+                    int index2 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.MagnetSphere, 0.0f, 0.0f, 100, new Color(), 2f);
                     Dust dust = Main.dust[index2];
                     dust.velocity = dust.velocity * 3f;
                     if (Main.rand.NextBool(2))
@@ -206,11 +201,11 @@ namespace Clamity.Content.Items.Weapons.Ranged.Guns
                 }
                 for (int index3 = 0; index3 < 10; ++index3)
                 {
-                    int index4 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, 160, 0.0f, 0.0f, 100, new Color(), 3f);
+                    int index4 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.MagnetSphere, 0.0f, 0.0f, 100, new Color(), 3f);
                     Main.dust[index4].noGravity = true;
                     Dust dust1 = Main.dust[index4];
                     dust1.velocity = dust1.velocity * 5f;
-                    int index5 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, 160, 0.0f, 0.0f, 100, new Color(), 2f);
+                    int index5 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.MagnetSphere, 0.0f, 0.0f, 100, new Color(), 2f);
                     Dust dust2 = Main.dust[index5];
                     dust2.velocity = dust2.velocity * 2f;
                 }
@@ -220,7 +215,7 @@ namespace Clamity.Content.Items.Weapons.Ranged.Guns
                 Projectile.height = Projectile.width = 100;
                 for (int index6 = 0; index6 < 10; ++index6)
                 {
-                    int index7 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, 160, 0.0f, 0.0f, 100, new Color(), 2f);
+                    int index7 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.MagnetSphere, 0.0f, 0.0f, 100, new Color(), 2f);
                     Dust dust = Main.dust[index7];
                     dust.velocity = dust.velocity * 3f;
                     if (Main.rand.NextBool(2))
@@ -231,11 +226,11 @@ namespace Clamity.Content.Items.Weapons.Ranged.Guns
                 }
                 for (int index8 = 0; index8 < 20; ++index8)
                 {
-                    int index9 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, 160, 0.0f, 0.0f, 100, new Color(), 3f);
+                    int index9 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.MagnetSphere, 0.0f, 0.0f, 100, new Color(), 3f);
                     Main.dust[index9].noGravity = true;
                     Dust dust3 = Main.dust[index9];
                     dust3.velocity = dust3.velocity * 5f;
-                    int index10 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, 160, 0.0f, 0.0f, 100, new Color(), 2f);
+                    int index10 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, DustID.MagnetSphere, 0.0f, 0.0f, 100, new Color(), 2f);
                     Dust dust4 = Main.dust[index10];
                     dust4.velocity = dust4.velocity * 2f;
                 }

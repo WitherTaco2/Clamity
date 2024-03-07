@@ -50,3 +50,8 @@ RoseBow: {
 		Shoots a spread of arrows and homing petals
 		'''
 }
+
+Sillyshark: {
+	DisplayName: Sillyshark
+	Tooltip: ""
+}

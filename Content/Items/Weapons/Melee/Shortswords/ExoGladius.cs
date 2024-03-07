@@ -30,7 +30,7 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
             Item.value = CalamityGlobalItem.Rarity15BuyPrice;
 
             Item.useAnimation = Item.useTime = 20;
-            Item.useStyle = 13;
+            Item.useStyle = ItemUseStyleID.Rapier;
             Item.UseSound = new SoundStyle?(SoundID.Item1);
             Item.autoReuse = true;
             Item.noUseGraphic = true;
@@ -112,7 +112,7 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
         {
             if (!Utils.NextBool(Main.rand, 5))
                 return;
-            Dust.NewDust(new Vector2((float)Projectile.Hitbox.X, (float)Projectile.Hitbox.Y), Projectile.Hitbox.Width, Projectile.Hitbox.Height, 107, 0.0f, 0.0f, 0, new Color(), 1f);
+            Dust.NewDust(new Vector2((float)Projectile.Hitbox.X, (float)Projectile.Hitbox.Y), Projectile.Hitbox.Width, Projectile.Hitbox.Height, DustID.TerraBlade, 0.0f, 0.0f, 0, new Color(), 1f);
         }
 
     }

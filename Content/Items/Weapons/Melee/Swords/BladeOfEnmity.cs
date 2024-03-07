@@ -1,9 +1,7 @@
 ﻿using CalamityMod.Items;
 using CalamityMod.Items.Materials;
-using CalamityMod.Rarities;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -41,7 +39,7 @@ namespace Clamity.Content.Items.Weapons.Melee.Swords
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(121)
+                .AddIngredient(ItemID.FieryGreatsword)
                 .AddIngredient<LifeAlloy>(5)
                 .AddIngredient<CoreofCalamity>(3)
                 .AddTile(TileID.MythrilAnvil)

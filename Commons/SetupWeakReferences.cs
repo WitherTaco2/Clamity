@@ -9,15 +9,15 @@ using Clamity.Content.Biomes.FrozenHell.Biome.Background;
 using Clamity.Content.Boss.Clamitas;
 using Clamity.Content.Boss.Clamitas.Drop;
 using Clamity.Content.Boss.Clamitas.NPCs;
-using Clamity.Content.Boss.Profusion;
-using Clamity.Content.Boss.Profusion.Drop;
-using Clamity.Content.Boss.Profusion.NPCs;
 using Clamity.Content.Boss.Pyrogen;
 using Clamity.Content.Boss.Pyrogen.Drop;
 using Clamity.Content.Boss.Pyrogen.NPCs;
 using Clamity.Content.Boss.WoB;
 using Clamity.Content.Boss.WoB.Drop;
 using Clamity.Content.Boss.WoB.NPCs;
+using Clamity.Content.Bosses.Profusion;
+using Clamity.Content.Bosses.Profusion.Drop;
+using Clamity.Content.Bosses.Profusion.NPCs;
 using Clamity.Content.Cooldowns;
 using Clamity.Content.Items.Mounts;
 using Microsoft.Xna.Framework;
@@ -47,6 +47,9 @@ namespace Clamity.Commons
             }
         }
         private static bool EnchantableAcc(Item item) => !item.IsAir && item.maxStack == 1 && item.ammo == AmmoID.None && item.accessory;
+        /// <summary>
+        /// Creates Clamity's Enchantments and Exhume Crafts
+        /// </summary>
         public static void LoadEnchantments()
         {
             //Enchantments
@@ -64,6 +67,9 @@ namespace Clamity.Commons
             //Exhume
             EnchantmentManager.ItemUpgradeRelationship.Add(ModContent.ItemType<ExoThrone>(), ModContent.ItemType<FlameCube>());
         }
+        /// <summary>
+        /// Adds Clamity's Bosses into Boss Rush
+        /// </summary>
         public static void LoadBossRush()
         {
             BossRushEvent.Bosses.Insert(15,
@@ -140,11 +146,17 @@ namespace Clamity.Commons
                 )
             );
         }
+        /// <summary>
+        /// Creates screen shaders
+        /// </summary>
         public static void LoadShaders()
         {
             Filters.Scene["Clamity:FrozenHellSky"] = new Filter(new FrozenHellShaderData("FilterMiniTower").UseColor(0.5f, 1f, 1f).UseOpacity(0.65f), EffectPriority.VeryHigh);
             SkyManager.Instance["Clamity:FrozenHellSky"] = (CustomSky)new FrozenHellSky();
         }
+        /// <summary>
+        /// Registers Clamity's Cooldowns
+        /// </summary>
         public static void LoadCooldowns()
         {
             CooldownRegistry.Register<ShortstrikeCooldown>(ShortstrikeCooldown.ID);
@@ -157,7 +169,7 @@ namespace Clamity.Commons
         public static void PostSetupContent()
         {
             SetupBossChecklist();
-            SetupInfernumIntroScreen();
+            //SetupInfernumIntroScreen();
         }
         public static void AddBoss(Mod bossChecklist, Mod hostMod, string name, float difficulty, object npcTypes, Func<bool> downed, Dictionary<string, object> extraInfo)
         {
@@ -176,6 +188,9 @@ namespace Clamity.Commons
             }
         }
 
+        /// <summary>
+        /// Setups boss pages in Boss Checklist mod
+        /// </summary>
         public static void SetupBossChecklist()
         {
             if (ModLoader.TryGetMod("BossChecklist", out Mod bossChecklist))
@@ -282,23 +297,57 @@ namespace Clamity.Commons
                 }
             }
         }
+        /// <summary>
+        /// He setups Inferum Mode's boss intros
+        /// </summary>
         public static void SetupInfernumIntroScreen()
         {
-            if (ModLoader.TryGetMod("InfernumMode", out Mod infernum))
+            if (Clamity.infernum != null)
             {
-                bool activeInfernum = infernum.Call("GetInfernumActive") as bool? ?? false;
+                //bool activeInfernum = Clamity.infernum.Call("GetInfernumActive") as bool? ?? false;
                 //Clamitas
+                /*{
+                    object intro = Clamity.infernum.Call("InitializeIntroScreen",
+                        Language.GetOrRegister("Mods.Clamity.InfernumIntro.Clamitas"),
+                        150, false,
+                        () => { return NPC.AnyNPCs(ModContent.NPCType<ClamitasBoss>()) && (Clamity.infernum.Call("GetInfernumActive") as bool? ?? false); },
+                        (float ratio, float completion) => { return Color.DarkRed; }
+                        );
+                    intro = Clamity.infernum.Call("RegisterIntroScreen", intro);
+                }*/
 
                 //Pyrogen
                 {
-                    object intro = infernum.Call("InitializeIntroScreen",
-                        Language.GetOrRegister("Mods.Clamity.InfernumIntro.Pyrogen"),
-                        60, false,
-                        () => { return NPC.AnyNPCs(ModContent.NPCType<PyrogenBoss>()) && activeInfernum; },
+                    object intro = Clamity.infernum.Call("InitializeIntroScreen",
+                        Language.GetText("Mods.Clamity.InfernumIntro.Pyrogen"),
+                        150, false,
+                        () => { return NPC.AnyNPCs(ModContent.NPCType<PyrogenBoss>()) && (Clamity.infernum.Call("GetInfernumActive") as bool? ?? false); },
                         (float ratio, float completion) => { return Color.Red; }
                         );
-                    intro = infernum.Call("RegisterIntroScreen", intro);
+                    Action action = () => { };
+                    intro = Clamity.infernum.Call("SetupCompletionEffects", intro, action);
+
+                    Func<int, float> letterDisplayCompletionRatio = (int animationTimer) => { return 1f; };
+                    intro = Clamity.infernum.Call("SetupLetterDisplayCompletionRatio", intro, letterDisplayCompletionRatio);
+
+                    //intro = Clamity.infernum.Call("SetupMainSound", intro, (int animationTimer, int animationTime, float textDelayInterpolant, float letterDisplayCompletionRatio) => { return false; }, () => { return SoundID.MenuTick; });
+                    Func<int, int, float, float, bool> canPlaySound = (int animationTimer, int animationTime, float textDelayInterpolant, float letterDisplayCompletionRatio) => { return animationTimer > (int)(animationTime * (textDelayInterpolant + 0.05f)); };
+                    Func<SoundStyle> sound = () => { return SoundID.MenuTick; };
+                    intro = Clamity.infernum.Call("IntroScreenSetupMainSound", intro, canPlaySound, sound);
+
+                    intro = Clamity.infernum.Call("RegisterIntroScreen", intro);
                 }
+
+                //WoB
+                /*{
+                    object intro = Clamity.infernum.Call("InitializeIntroScreen",
+                        Language.GetOrRegister("Mods.Clamity.InfernumIntro.WoB"),
+                        150, true,
+                        () => { return NPC.AnyNPCs(ModContent.NPCType<WallOfBronze>()) && (Clamity.infernum.Call("GetInfernumActive") as bool? ?? false); },
+                        (float ratio, float completion) => { return Color.Lerp(Color.Brown, Color.YellowGreen, completion); }
+                        );
+                    intro = Clamity.infernum.Call("RegisterIntroScreen", intro);
+                }*/
             }
         }
         #endregion
