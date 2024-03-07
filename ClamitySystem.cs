@@ -125,21 +125,21 @@ namespace Clamity
             downedProfusion = list.Contains("profusion");
         }
         public static int AnySandBlock;
-        public static int AnyEvilMushroom;
         public static int AnyGemHook;
+        public static int AnyEvilMushroom;
         public override void AddRecipeGroups()
         {
             ClamitySystem.AnySandBlock = RecipeGroup.RegisterGroup("AnySandBlock", new RecipeGroup((Func<string>)(() => LangHelper.GetText("Misc.RecipeGroup.AnySandBlock")), new int[5]
             {
                 ItemID.SandBlock, ItemID.EbonsandBlock, ItemID.PearlsandBlock, ItemID.CrimsandBlock, ModContent.ItemType<AstralSand>()
             }));
-            ClamitySystem.AnyEvilMushroom = RecipeGroup.RegisterGroup("AnyEvilMushroom", new RecipeGroup((Func<string>)(() => LangHelper.GetText("Misc.RecipeGroup.AnyEvilMushroom")), new int[2]
-            {
-                ItemID.VileMushroom, ItemID.ViciousMushroom
-            }));
             ClamitySystem.AnyGemHook = RecipeGroup.RegisterGroup("AnyGemHook", new RecipeGroup((Func<string>)(() => LangHelper.GetText("Misc.RecipeGroup.AnyGemHook")), new int[7]
             {
                 ItemID.AmethystHook, ItemID.TopazHook, ItemID.SapphireHook, ItemID.EmeraldHook, ItemID.RubyHook, ItemID.AmberHook, ItemID.DiamondHook
+            }));
+            ClamitySystem.AnyEvilMushroom = RecipeGroup.RegisterGroup("AnyEvilMushroom", new RecipeGroup((Func<string>)(() => LangHelper.GetText("Misc.RecipeGroup.AnyEvilMushroom")), new int[2]
+            {
+                ItemID.VileMushroom, ItemID.ViciousMushroom
             }));
         }
         public override void NetSend(BinaryWriter writer)

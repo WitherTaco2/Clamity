@@ -5,6 +5,8 @@ using Clamity.Content.Boss.Pyrogen.NPCs;
 using Clamity.Content.Boss.Pyrogen.Projectiles;
 using Clamity.Content.Boss.WoB.NPCs;
 using Clamity.Content.Boss.WoB.Projectiles;
+using Clamity.Content.Bosses.Profusion.NPCs;
+using Clamity.Content.Bosses.Profusion.Projectiles;
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
@@ -71,6 +73,10 @@ namespace Clamity.Commons
                 {
                   new Tuple<int, int>(ModContent.NPCType<WallOfBronzeTorret>(), ModContent.ProjectileType<WallOfBronzeTorretBlast>()),
                   new int[5]{ 300, 330, 360, 410, 450 }
+                },
+                {
+                  new Tuple<int, int>(ModContent.NPCType<ProfusionBoss>(), ModContent.ProjectileType<MushroomThorn>()),
+                  new int[5]{ 200, 230, 260, 310, 350 }
                 }
             };
         }

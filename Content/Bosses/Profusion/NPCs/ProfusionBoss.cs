@@ -5,7 +5,9 @@ using CalamityMod.Items.Potions;
 using CalamityMod.NPCs;
 using CalamityMod.Particles;
 using CalamityMod.World;
+using Clamity.Commons;
 using Clamity.Content.Bosses.Profusion.Drop;
+using Clamity.Content.Bosses.Profusion.Projectiles;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -27,7 +29,8 @@ namespace Clamity.Content.Bosses.Profusion.NPCs
         {
             Awaken = 0,
             VerticaleMushroomStems = 1,
-            ThormAttack = 2
+            ThormAttack = 2,
+            Test = 999
 
         }
         private Player Target => Main.player[NPC.target];
@@ -142,13 +145,32 @@ namespace Clamity.Content.Bosses.Profusion.NPCs
             {
                 case ProfusionAIState.Awaken:
                     if (StateTimer == 1)
+                    {
                         NPC.Center = Target.Center - Vector2.UnitY * 200;
+                        SoundStyle roar = SoundID.Roar;
+                        roar.Volume = 0.5f;
+                        SoundEngine.PlaySound(roar, NPC.Center);
+                    }
                     if (StateTimer % 30 == 0 /*&& Projectile.timeLeft > 40*/)
                     {
-                        GeneralParticleHandler.SpawnParticle(new DirectionalPulseRing(NPC.Center, Vector2.Zero, Color.DarkBlue, new Vector2(0.5f, 0.5f), Main.rand.NextFloat(12f, 25f), 10f, 0f, 60));
+                        GeneralParticleHandler.SpawnParticle(new DirectionalPulseRing(NPC.Center, Vector2.Zero, Color.DarkBlue, new Vector2(0.5f, 0.5f), Main.rand.NextFloat(12f, 25f), 0f, 20f, 60));
                     }
                     if (StateTimer >= 90)
-                        SetState(ProfusionAIState.Awaken);
+                        SetState(ProfusionAIState.ThormAttack);
+                    break;
+                case ProfusionAIState.ThormAttack:
+                    NPC.velocity = Vector2.Lerp(NPC.Center.DirectionTo(Target.Center - Vector2.UnitY * 200), NPC.velocity, 0.98f);
+
+                    if (StateTimer % 10 == 0)
+                    {
+                        SoundStyle summon = SoundID.NPCDeath13;
+                        summon.Volume = 0.8f;
+                        SoundEngine.PlaySound(summon, NPC.Center);
+
+                        int type = ModContent.ProjectileType<MushroomThorn>();
+                        int damage = NPC.GetProjectileDamageClamity(type);
+                        Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, NPC.Center.DirectionTo(Target.Center).SafeNormalize(Vector2.Zero), type, damage, 1f, Main.myPlayer);
+                    }
                     break;
             }
         }
