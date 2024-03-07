@@ -8,10 +8,10 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <AdditionalFiles Remove="Content\Boss\Pyrogen\Gores\**" />
-    <Compile Remove="Content\Boss\Pyrogen\Gores\**" />
-    <EmbeddedResource Remove="Content\Boss\Pyrogen\Gores\**" />
-    <None Remove="Content\Boss\Pyrogen\Gores\**" />
+    <AdditionalFiles Remove="Content\Bosses\Pyrogen\Gores\**" />
+    <Compile Remove="Content\Bosses\Pyrogen\Gores\**" />
+    <EmbeddedResource Remove="Content\Bosses\Pyrogen\Gores\**" />
+    <None Remove="Content\Bosses\Pyrogen\Gores\**" />
   </ItemGroup>
   <ItemGroup>
     <AdditionalFiles Include="Localization\en-US_Mods.Clamity.hjson.legecy" />
