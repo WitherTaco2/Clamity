@@ -1,5 +1,4 @@
 ﻿using CalamityMod.Items;
-using Clamity.Content.Boss.Pyrogen.Drop.Weapons;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;

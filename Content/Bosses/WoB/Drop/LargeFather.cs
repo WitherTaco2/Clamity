@@ -13,7 +13,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Boss.WoB.Drop
+namespace Clamity.Content.Bosses.WoB.Drop
 {
     public class LargeFather : ModItem, ILocalizedModType, IModType
     {

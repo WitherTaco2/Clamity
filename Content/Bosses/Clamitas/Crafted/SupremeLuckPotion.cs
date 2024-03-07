@@ -1,15 +1,10 @@
 ﻿using CalamityMod.Items.Materials;
-using Clamity.Content.Boss.Clamitas.Drop;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Clamity.Content.Bosses.Clamitas.Drop;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Boss.Clamitas.Crafted
+namespace Clamity.Content.Bosses.Clamitas.Crafted
 {
     public class SupremeLuckPotion : ModItem, ILocalizedModType, IModType
     {
@@ -19,7 +14,8 @@ namespace Clamity.Content.Boss.Clamitas.Crafted
             Item.ResearchUnlockCount = 20;
 
         }
-        public override void SetDefaults() {
+        public override void SetDefaults()
+        {
             Item.width = 20;
             Item.height = 30;
             Item.maxStack = 9999;
@@ -53,9 +49,10 @@ namespace Clamity.Content.Boss.Clamitas.Crafted
     }
     public class SupremeLucky : ModBuff
     {
-        public override void SetStaticDefaults() {
+        public override void SetStaticDefaults()
+        {
             Main.debuff[Type] = false;
-            Main.pvpBuff[Type]= true;
+            Main.pvpBuff[Type] = true;
             Main.buffNoSave[Type] = false;
         }
         public override void Update(Player player, ref int buffIndex)

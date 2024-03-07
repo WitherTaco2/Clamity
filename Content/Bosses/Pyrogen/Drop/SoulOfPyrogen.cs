@@ -13,7 +13,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Boss.Pyrogen.Drop
+namespace Clamity.Content.Bosses.Pyrogen.Drop
 {
     public class SoulOfPyrogen : ModItem, ILocalizedModType, IModType
     {

@@ -1,13 +1,13 @@
 ﻿using CalamityMod;
 using CalamityMod.Items.Placeables.Furniture.DevPaintings;
-using Clamity.Content.Boss.WoB.NPCs;
+using Clamity.Content.Bosses.WoB.NPCs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Boss.WoB.Drop
+namespace Clamity.Content.Bosses.WoB.Drop
 {
     public class WoBTreasureBag : ModItem, ILocalizedModType, IModType
     {

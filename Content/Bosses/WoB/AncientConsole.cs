@@ -3,7 +3,7 @@ using CalamityMod.Events;
 using CalamityMod.Items.Materials;
 using CalamityMod.Rarities;
 using CalamityMod.Tiles.Furniture.CraftingStations;
-using Clamity.Content.Boss.WoB.NPCs;
+using Clamity.Content.Bosses.WoB.NPCs;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
@@ -13,7 +13,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace Clamity.Content.Boss.WoB
+namespace Clamity.Content.Bosses.WoB
 {
     public class AncientConsole : ModItem, ILocalizedModType, IModType
     {

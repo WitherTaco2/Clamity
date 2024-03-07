@@ -1,13 +1,13 @@
 ﻿using CalamityMod;
 using CalamityMod.Events;
 using CalamityMod.Items.Materials;
-using Clamity.Content.Boss.Clamitas.NPCs;
+using Clamity.Content.Bosses.Clamitas.NPCs;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Boss.Clamitas
+namespace Clamity.Content.Bosses.Clamitas
 {
     public class ClamitasSummoningItem : ModItem, ILocalizedModType, IModType
     {

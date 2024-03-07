@@ -3,7 +3,7 @@ using CalamityMod.Projectiles.Enemy;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Boss.Clamitas.NPCs
+namespace Clamity.Content.Bosses.Clamitas.NPCs
 {
     public class BrimstonePearlBurst : PearlBurst
     {

@@ -6,8 +6,8 @@ using CalamityMod.Items.Armor.Mollusk;
 using CalamityMod.Items.Materials;
 using CalamityMod.Projectiles.Summon;
 using CalamityMod.Projectiles.Typeless;
-using Clamity.Content.Boss.Clamitas.Crafted.Weapons;
-using Clamity.Content.Boss.Clamitas.Drop;
+using Clamity.Content.Bosses.Clamitas.Crafted.Weapons;
+using Clamity.Content.Bosses.Clamitas.Drop;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -15,7 +15,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Boss.Clamitas.Crafted.ClamitasArmor
+namespace Clamity.Content.Bosses.Clamitas.Crafted.ClamitasArmor
 {
     [AutoloadEquip(new EquipType[] { EquipType.Head })]
     public class ClamitasShellmet : ModItem, ILocalizedModType, IModType

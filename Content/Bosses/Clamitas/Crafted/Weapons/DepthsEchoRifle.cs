@@ -2,23 +2,17 @@
 using CalamityMod.Buffs.DamageOverTime;
 using CalamityMod.Dusts;
 using CalamityMod.Items.Placeables;
-using CalamityMod.Items.Weapons.Melee;
 using CalamityMod.Items.Weapons.Ranged;
 using CalamityMod.Projectiles.Ranged;
-using Clamity.Content.Boss.Clamitas.Drop;
+using Clamity.Content.Bosses.Clamitas.Drop;
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Boss.Clamitas.Crafted.Weapons
+namespace Clamity.Content.Bosses.Clamitas.Crafted.Weapons
 {
     public class DepthsEchoRifle : ClamorRifle
     {
@@ -99,7 +93,7 @@ namespace Clamity.Content.Boss.Clamitas.Crafted.Weapons
     }
     public class DepthsEchoRifleProjectileSplit : ClamorRifleProjSplit
     {
-        public override string Texture => "Clamity/Content/Boss/Clamitas/Crafted/Weapons/DepthsEchoRifleProjectile";
+        public override string Texture => "Clamity/Content/Bosses/Clamitas/Crafted/Weapons/DepthsEchoRifleProjectile";
         public override void AI()
         {
             Projectile.rotation += 0.15f;

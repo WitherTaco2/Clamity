@@ -1,7 +1,7 @@
 ﻿using CalamityMod.Items.Materials;
 using System;
 
-namespace Clamity.Content.Boss.Clamitas.Drop
+namespace Clamity.Content.Bosses.Clamitas.Drop
 {
     public class HuskOfCalamity : MolluskHusk
     {

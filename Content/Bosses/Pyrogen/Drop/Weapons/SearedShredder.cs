@@ -12,7 +12,7 @@ using CalamityMod.Items.Weapons.Melee;
 using CalamityMod;
 using Microsoft.Xna.Framework;
 
-namespace Clamity.Content.Boss.Pyrogen.Drop.Weapons
+namespace Clamity.Content.Bosses.Pyrogen.Drop.Weapons
 {
     public class SearedShredder : ModItem, ILocalizedModType, IModType
     {

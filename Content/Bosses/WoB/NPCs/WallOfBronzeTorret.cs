@@ -2,14 +2,14 @@
 using CalamityMod.Sounds;
 using CalamityMod.World;
 using Clamity.Commons;
-using Clamity.Content.Boss.WoB.Projectiles;
+using Clamity.Content.Bosses.WoB.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Boss.WoB.NPCs
+namespace Clamity.Content.Bosses.WoB.NPCs
 {
     //[AutoloadBossHead]
     public class WallOfBronzeTorret : BaseWoBGunAI

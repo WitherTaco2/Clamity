@@ -1,7 +1,7 @@
 ﻿using CalamityMod;
 using CalamityMod.Items.Placeables.Furniture.DevPaintings;
-using Clamity.Content.Boss.Pyrogen.Drop.Weapons;
-using Clamity.Content.Boss.Pyrogen.NPCs;
+using Clamity.Content.Bosses.Pyrogen.Drop.Weapons;
+using Clamity.Content.Bosses.Pyrogen.NPCs;
 using Clamity.Content.Items.Materials;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -9,7 +9,7 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Boss.Pyrogen.Drop
+namespace Clamity.Content.Bosses.Pyrogen.Drop
 {
     public class PyrogenBag : ModItem, ILocalizedModType, IModType
     {

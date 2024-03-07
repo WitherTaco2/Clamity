@@ -6,7 +6,7 @@ using CalamityMod;
 using Microsoft.Xna.Framework.Graphics;
 using CalamityMod.Particles;
 
-namespace Clamity.Content.Boss.Pyrogen.Projectiles
+namespace Clamity.Content.Bosses.Pyrogen.Projectiles
 {
     public class FireBomb : ModProjectile
     {

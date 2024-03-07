@@ -11,7 +11,7 @@ using CalamityMod.Particles;
 using CalamityMod.Items;
 using Mono.Cecil;
 
-namespace Clamity.Content.Boss.Pyrogen.Drop.Weapons
+namespace Clamity.Content.Bosses.Pyrogen.Drop.Weapons
 {
     public class HellsBells : ModItem, ILocalizedModType, IModType
     {

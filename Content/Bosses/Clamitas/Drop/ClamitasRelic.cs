@@ -1,16 +1,15 @@
-﻿using System;
-using Terraria.ModLoader;
-using Terraria;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
+using System;
+using Terraria;
 using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.ID;
 using Terraria.Localization;
+using Terraria.ModLoader;
 using Terraria.ObjectData;
-using Microsoft.Xna.Framework;
 
-namespace Clamity.Content.Boss.Clamitas.Drop
+namespace Clamity.Content.Bosses.Clamitas.Drop
 {
     public class ClamitasRelic : ModItem, ILocalizedModType, IModType
     {
@@ -42,7 +41,7 @@ namespace Clamity.Content.Boss.Clamitas.Drop
 
         //public abstract int AssociatedItem { get; }
 
-        //public override string Texture => "Clamity/Content/Boss/Clamitas/Drop/";
+        //public override string Texture => "Clamity/Content/Bosses/Clamitas/Drop/";
 
         /*public override void Load()
         {

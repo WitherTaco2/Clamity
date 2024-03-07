@@ -6,12 +6,12 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Boss.WoB.Projectiles
+namespace Clamity.Content.Bosses.WoB.Projectiles
 {
     public class WoBDeathrayStart : ThanatosBeamStart
     {
-        public override Texture2D LaserMiddleTexture => ModContent.Request<Texture2D>("Clamity/Content/Boss/WoB/Projectiles/WoBDeathrayMiddle").Value;
-        public override Texture2D LaserEndTexture => ModContent.Request<Texture2D>("Clamity/Content/Boss/WoB/Projectiles/WoBDeathrayEnd").Value;
+        public override Texture2D LaserMiddleTexture => ModContent.Request<Texture2D>("Clamity/Content/Bosses/WoB/Projectiles/WoBDeathrayMiddle").Value;
+        public override Texture2D LaserEndTexture => ModContent.Request<Texture2D>("Clamity/Content/Bosses/WoB/Projectiles/WoBDeathrayEnd").Value;
         public override void PostAI()
         {
             if (!OwnerIsValid)

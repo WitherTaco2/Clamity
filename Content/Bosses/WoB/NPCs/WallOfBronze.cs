@@ -4,7 +4,7 @@ using CalamityMod.Items.Placeables.Furniture.DevPaintings;
 using CalamityMod.Items.Potions;
 using CalamityMod.World;
 using Clamity.Content.Biomes.FrozenHell.Items;
-using Clamity.Content.Boss.WoB.Drop;
+using Clamity.Content.Bosses.WoB.Drop;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -19,7 +19,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Boss.WoB.NPCs
+namespace Clamity.Content.Bosses.WoB.NPCs
 {
     [AutoloadBossHead]
     public class WallOfBronze : ModNPC

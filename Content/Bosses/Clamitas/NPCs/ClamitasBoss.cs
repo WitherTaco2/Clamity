@@ -13,7 +13,7 @@ using CalamityMod.NPCs;
 using CalamityMod.NPCs.SunkenSea;
 using CalamityMod.Projectiles.Boss;
 using Clamity.Commons;
-using Clamity.Content.Boss.Clamitas.Drop;
+using Clamity.Content.Bosses.Clamitas.Drop;
 using Clamity.Content.Items.Potions.Food;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -26,7 +26,7 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Boss.Clamitas.NPCs
+namespace Clamity.Content.Bosses.Clamitas.NPCs
 {
     [AutoloadBossHead]
     public class ClamitasBoss : ModNPC

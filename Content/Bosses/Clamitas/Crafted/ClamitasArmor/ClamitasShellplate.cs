@@ -3,7 +3,7 @@ using CalamityMod.Items;
 using CalamityMod.Items.Accessories;
 using CalamityMod.Items.Armor.Mollusk;
 using CalamityMod.Items.Materials;
-using Clamity.Content.Boss.Clamitas.Drop;
+using Clamity.Content.Bosses.Clamitas.Drop;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +13,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Boss.Clamitas.Crafted.ClamitasArmor
+namespace Clamity.Content.Bosses.Clamitas.Crafted.ClamitasArmor
 {
     [AutoloadEquip(new EquipType[] { EquipType.Body })]
     public class ClamitasShellplate : ModItem, ILocalizedModType, IModType

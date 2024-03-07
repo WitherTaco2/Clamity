@@ -3,7 +3,7 @@ using Terraria.GameContent.UI;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Boss.Clamitas.Drop
+namespace Clamity.Content.Bosses.Clamitas.Drop
 {
     public class ClamitousPearl : ModItem, ILocalizedModType, IModType
     {
