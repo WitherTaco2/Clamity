@@ -110,6 +110,7 @@ namespace Clamity.Content.Bosses.Profusion.NPCs
                 player = Main.player[NPC.target];
                 if (!player.active || player.dead)
                 {
+                    //NPC.despawnEncouraged
                     NPC.velocity.Y -= Math.Sign(NPC.velocity.Y) * 2f;
                     return;
                 }
@@ -128,7 +129,7 @@ namespace Clamity.Content.Bosses.Profusion.NPCs
 
             bool biomeEnraged = biomeEnrageTimer <= 0 || bossRush;
 
-            float enrageScale = bossRush ? 1f : 0f;
+            float enrageScale = bossRush ? 2f : 1f;
             if (biomeEnraged && (!player.ZoneGlowshroom || bossRush))
             {
                 NPC.Calamity().CurrentlyEnraged = !bossRush;
@@ -140,7 +141,6 @@ namespace Clamity.Content.Bosses.Profusion.NPCs
 
             //NPC.velocity = Vector2.Normalize(player.Center - NPC.Center) * 10f * (1 + enrageScale);
             StateTimer++;
-            //if ()
             switch ((ProfusionAIState)State)
             {
                 case ProfusionAIState.Awaken:
@@ -148,7 +148,7 @@ namespace Clamity.Content.Bosses.Profusion.NPCs
                     {
                         NPC.Center = Target.Center - Vector2.UnitY * 200;
                         SoundStyle roar = SoundID.Roar;
-                        roar.Volume = 0.5f;
+                        roar.Pitch = -2;
                         SoundEngine.PlaySound(roar, NPC.Center);
                     }
                     if (StateTimer % 15 == 0 /*&& Projectile.timeLeft > 40*/)
@@ -159,20 +159,36 @@ namespace Clamity.Content.Bosses.Profusion.NPCs
                         SetState(ProfusionAIState.ThormAttack);
                     break;
                 case ProfusionAIState.ThormAttack:
-                    NPC.velocity = Vector2.Lerp(NPC.Center.DirectionTo(Target.Center - Vector2.UnitY * 200), NPC.velocity, 0.02f) * 20;
+                    //if ()
+                    BasicMovement(enrageScale, -Vector2.UnitY * 300);
 
-                    if (StateTimer % 10 == 0)
+                    if (StateTimer % (int)(10 / enrageScale) == 0 && StateTimer <= 30)
                     {
                         SoundStyle summon = SoundID.NPCDeath13;
-                        summon.Volume = 0.8f;
+                        summon.Pitch = -2;
+                        //summon.Volume = 0.8f;
                         SoundEngine.PlaySound(summon, NPC.Center);
 
                         int type = ModContent.ProjectileType<MushroomThorn>();
                         int damage = NPC.GetProjectileDamageClamity(type);
-                        Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, NPC.Center.DirectionTo(Target.Center).SafeNormalize(Vector2.Zero) * 15, type, damage, 1f, Main.myPlayer);
+                        Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, NPC.Center.DirectionTo(Target.Center).SafeNormalize(Vector2.Zero).RotatedByRandom(1) * 15, type, damage, 1f, Main.myPlayer);
                     }
+                    if (StateTimer >= 60)
+                        SetState(ProfusionAIState.ThormAttack);
                     break;
             }
+        }
+        private void BasicMovement(float enrageScale, Vector2 offset)
+        {
+            Vector2 targetPosition = Target.Center + offset;
+            if ((targetPosition - NPC.Center).Length() > 10)
+                NPC.velocity = Vector2.Lerp(NPC.Center.DirectionTo(targetPosition), NPC.velocity, 0.05f) * 5 * enrageScale;
+            else
+                NPC.velocity *= 0.5f;
+            NPC.rotation = MathF.Sqrt(MathF.Abs(NPC.velocity.X / 100));
+            if (NPC.velocity.X < 0)
+                NPC.rotation = MathHelper.TwoPi - NPC.rotation;
+
         }
         public override void OnSpawn(IEntitySource source)
         {

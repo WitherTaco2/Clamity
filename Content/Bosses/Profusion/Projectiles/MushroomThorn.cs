@@ -15,7 +15,7 @@ namespace Clamity.Content.Bosses.Profusion.Projectiles
         public override void SetStaticDefaults()
         {
             ProjectileID.Sets.TrailCacheLength[Type] = 800;
-            ProjectileID.Sets.TrailingMode[Type] = 2;
+            ProjectileID.Sets.TrailingMode[Type] = 3;
         }
         public override void SetDefaults()
         {
@@ -27,31 +27,33 @@ namespace Clamity.Content.Bosses.Profusion.Projectiles
             Projectile.penetrate = -1;
             Projectile.timeLeft = 600;
             Projectile.Calamity().DealsDefenseDamage = true;
-            Projectile.scale = 2f;
+            Projectile.scale = 1.1f;
         }
         public override void OnSpawn(IEntitySource source)
         {
             Projectile.ai[0] = Main.rand.Next(3);
-            Projectile.ai[1] = Main.rand.NextFloat(0, 0.3f);
+            Projectile.ai[1] = Main.rand.NextFloat(1f, 2f);
         }
         public override void AI()
         {
+            Projectile.rotation = Projectile.velocity.ToRotation() - MathHelper.ToRadians(90f);
             switch (Projectile.ai[0])
             {
                 case 0:
-                    Projectile.velocity.RotatedBy(Projectile.ai[1]);
+                    Projectile.velocity = Projectile.velocity.RotatedBy(Projectile.ai[1] / 100);
                     break;
                 case 1:
-                    Projectile.velocity.RotatedBy(-Projectile.ai[1]);
+                    Projectile.velocity = Projectile.velocity.RotatedBy(-Projectile.ai[1] / 100);
                     break;
                 case 2:
-                    Projectile.velocity.RotatedBy(MathF.Sin(Projectile.timeLeft) / (10 * Projectile.ai[1]));
+                    Projectile.velocity = Projectile.velocity.RotatedBy(MathF.Cos(Projectile.timeLeft / Projectile.ai[1]));
                     break;
             }
         }
-        public override bool CanHitPlayer(Player target)
+        /*public override bool CanHitPlayer(Player target)
         {
             //Rectangle rect = new Rectangle((int)target.position.X, (int)target.position.Y, target.width, target.height);
+            //Vector2 vector = Projectile.Size / 2f;
             for (int i = 0; i < Projectile.oldPos.Length; i++)
             {
                 Vector2 oldPosition = Projectile.oldPos[i];
@@ -67,6 +69,28 @@ namespace Clamity.Content.Bosses.Profusion.Projectiles
                 }
             }
             return false;
+        }*/
+        public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
+        {
+            for (int i = 0; i < Projectile.oldPos.Length; i++)
+            {
+                Vector2 oldPosition = Projectile.oldPos[i];
+                //Vector2 oldPosition = Projectile.oldPos[i] + vector + new Vector2(0f, Projectile.gfxOffY);
+
+                Rectangle rect = new((int)oldPosition.X, (int)oldPosition.Y, 10, 10);
+                foreach (NPC npc in Main.npc)
+                {
+                    if (npc.active && npc.life > 0 && npc.Hitbox.Intersects(rect))
+                    {
+                        return true;
+                    }
+                    if (npc.active && npc.life > 0 && targetHitbox.Intersects(rect))
+                    {
+                        return true;
+                    }
+                }
+            }
+            return base.Colliding(projHitbox, targetHitbox);
         }
         public override bool PreDraw(ref Color lightColor)
         {
