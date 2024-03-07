@@ -14,7 +14,7 @@ namespace Clamity.Content.Bosses.Profusion.Projectiles
         //private List<int> skins;
         public override void SetStaticDefaults()
         {
-            ProjectileID.Sets.TrailCacheLength[Type] = 80;
+            ProjectileID.Sets.TrailCacheLength[Type] = 800;
             ProjectileID.Sets.TrailingMode[Type] = 2;
         }
         public override void SetDefaults()

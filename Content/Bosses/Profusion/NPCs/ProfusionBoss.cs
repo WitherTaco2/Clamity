@@ -151,15 +151,15 @@ namespace Clamity.Content.Bosses.Profusion.NPCs
                         roar.Volume = 0.5f;
                         SoundEngine.PlaySound(roar, NPC.Center);
                     }
-                    if (StateTimer % 30 == 0 /*&& Projectile.timeLeft > 40*/)
+                    if (StateTimer % 15 == 0 /*&& Projectile.timeLeft > 40*/)
                     {
-                        GeneralParticleHandler.SpawnParticle(new DirectionalPulseRing(NPC.Center, Vector2.Zero, Color.DarkBlue, new Vector2(0.5f, 0.5f), Main.rand.NextFloat(12f, 25f), 0f, 20f, 60));
+                        GeneralParticleHandler.SpawnParticle(new DirectionalPulseRing(NPC.Center, Vector2.Zero, Color.DarkBlue, new Vector2(0.5f, 0.5f), Main.rand.NextFloat(12f, 25f), 0f, 40f, 60));
                     }
-                    if (StateTimer >= 90)
+                    if (StateTimer >= 60)
                         SetState(ProfusionAIState.ThormAttack);
                     break;
                 case ProfusionAIState.ThormAttack:
-                    NPC.velocity = Vector2.Lerp(NPC.Center.DirectionTo(Target.Center - Vector2.UnitY * 200), NPC.velocity, 0.98f);
+                    NPC.velocity = Vector2.Lerp(NPC.Center.DirectionTo(Target.Center - Vector2.UnitY * 200), NPC.velocity, 0.02f) * 20;
 
                     if (StateTimer % 10 == 0)
                     {
@@ -169,7 +169,7 @@ namespace Clamity.Content.Bosses.Profusion.NPCs
 
                         int type = ModContent.ProjectileType<MushroomThorn>();
                         int damage = NPC.GetProjectileDamageClamity(type);
-                        Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, NPC.Center.DirectionTo(Target.Center).SafeNormalize(Vector2.Zero), type, damage, 1f, Main.myPlayer);
+                        Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, NPC.Center.DirectionTo(Target.Center).SafeNormalize(Vector2.Zero) * 15, type, damage, 1f, Main.myPlayer);
                     }
                     break;
             }

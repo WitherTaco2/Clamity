@@ -50,7 +50,7 @@ namespace Clamity.Content.Bosses.Profusion
             }
             else
             {
-                NetMessage.SendData(61, -1, -1, null, player.whoAmI, ModContent.NPCType<ProfusionBoss>());
+                NetMessage.SendData(MessageID.SpawnBossUseLicenseStartEvent, -1, -1, null, player.whoAmI, ModContent.NPCType<ProfusionBoss>());
             }
 
             return true;
