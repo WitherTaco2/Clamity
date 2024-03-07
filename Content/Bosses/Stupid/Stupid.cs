@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 using CalamityMod;
 using CalamityMod.Projectiles.Boss;
 
-namespace Clamity.Content.Boss.Stupid
+namespace Clamity.Content.Bosses.Stupid
 {
     public class Stupid : ModNPC
     {

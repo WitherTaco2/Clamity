@@ -4,14 +4,14 @@ using CalamityMod.Items.Materials;
 using CalamityMod.Items.Potions.Alcohol;
 using CalamityMod.Items.Weapons.Melee;
 using CalamityMod.Projectiles.Melee;
-using Clamity.Content.Boss.Clamitas.Drop;
+using Clamity.Content.Bosses.Clamitas.Drop;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Boss.Clamitas.Crafted.Weapons
+namespace Clamity.Content.Bosses.Clamitas.Crafted.Weapons
 {
     public class ClamitasCrusher : ClamCrusher
     {

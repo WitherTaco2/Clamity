@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Boss.Stupid
+namespace Clamity.Content.Bosses.Stupid
 {
     public class EyeofStupidity : ModItem, ILocalizedModType, IModType
     {

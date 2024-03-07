@@ -2,7 +2,7 @@
 using CalamityMod.Items.Materials;
 using CalamityMod.Rarities;
 using CalamityMod.Tiles.Furniture.CraftingStations;
-using Clamity.Content.Boss.WoB.NPCs;
+using Clamity.Content.Bosses.WoB.NPCs;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -12,7 +12,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Boss.WoB
+namespace Clamity.Content.Bosses.WoB
 {
     public class WoBSummonItem : ModItem
     {

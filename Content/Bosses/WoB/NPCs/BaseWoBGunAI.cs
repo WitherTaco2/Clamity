@@ -9,7 +9,7 @@ using Terraria.DataStructures;
 using Terraria.Graphics.Shaders;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Boss.WoB.NPCs
+namespace Clamity.Content.Bosses.WoB.NPCs
 {
     public abstract class BaseWoBGunAI : ModNPC
     {

@@ -1,20 +1,14 @@
-﻿using CalamityMod.Events;
-using CalamityMod.NPCs.SupremeCalamitas;
-using CalamityMod.NPCs;
+﻿using CalamityMod;
+using CalamityMod.Events;
 using CalamityMod.Projectiles.Boss;
 using CalamityMod.World;
+using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using CalamityMod;
 
-namespace Clamity.Content.Boss.Pyrogen.Projectiles
+namespace Clamity.Content.Bosses.Pyrogen.Projectiles
 {
     public class FireBarrage : BrimstoneBarrage
     {
@@ -33,7 +27,7 @@ namespace Clamity.Content.Boss.Pyrogen.Projectiles
     }
     public class FireBarrageHoming : FireBarrage
     {
-        public override string Texture => "Clamity/Content/Boss/Pyrogen/Projectiles/FireBarrage";
+        public override string Texture => "Clamity/Content/Bosses/Pyrogen/Projectiles/FireBarrage";
         public int TargetIndex = -1;
         public override void AI()
         {
@@ -74,7 +68,7 @@ namespace Clamity.Content.Boss.Pyrogen.Projectiles
         }
         public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
-            
+
         }
         public override void OnKill(int timeLeft)
         {

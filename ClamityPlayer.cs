@@ -2,7 +2,7 @@
 using CalamityMod.Buffs.DamageOverTime;
 using CalamityMod.Items.Accessories;
 using Clamity.Content.Biomes.FrozenHell.Biome;
-using Clamity.Content.Boss.Pyrogen.Drop;
+using Clamity.Content.Bosses.Pyrogen.Drop;
 using Clamity.Content.Cooldowns;
 using Clamity.Content.Items.Tools.Bags.Fish;
 using Microsoft.Xna.Framework;

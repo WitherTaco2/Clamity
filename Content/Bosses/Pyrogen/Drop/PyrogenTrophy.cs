@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Terraria.ModLoader;
 using Terraria.ID;
 
-namespace Clamity.Content.Boss.Pyrogen.Drop
+namespace Clamity.Content.Bosses.Pyrogen.Drop
 {
     public class PyrogenTrophy : ModItem, ILocalizedModType, IModType
     {

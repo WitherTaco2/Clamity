@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Boss.WoB.Drop
+namespace Clamity.Content.Bosses.WoB.Drop
 {
     public class WoBTrophy : ModItem, ILocalizedModType, IModType
     {

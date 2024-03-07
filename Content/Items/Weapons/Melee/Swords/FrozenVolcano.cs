@@ -20,7 +20,7 @@ namespace Clamity.Content.Items.Weapons.Melee.Swords
             Item.DamageType = DamageClass.Melee;
             Item.useTurn = true;
             Item.rare = ModContent.RarityType<Violet>();
-            Item.width = base.Item.height = 80;
+            Item.width = Item.height = 80;
             Item.scale = 1.5f;
             Item.useTime = 20;
             Item.useAnimation = 20;

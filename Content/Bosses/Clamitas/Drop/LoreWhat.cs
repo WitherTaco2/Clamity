@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Terraria.ID;
 
-namespace Clamity.Content.Boss.Clamitas.Drop
+namespace Clamity.Content.Bosses.Clamitas.Drop
 {
     public class LoreWhat : LoreItem
     {

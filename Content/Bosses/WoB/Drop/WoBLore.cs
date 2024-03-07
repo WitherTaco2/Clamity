@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ModLoader;
 using CalamityMod.Rarities;
 
-namespace Clamity.Content.Boss.WoB.Drop
+namespace Clamity.Content.Bosses.WoB.Drop
 {
     public class WoBLore : LoreItem
     {

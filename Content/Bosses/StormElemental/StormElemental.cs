@@ -15,7 +15,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
 
-namespace Clamity.Content.Boss.StormElemental
+namespace Clamity.Content.Bosses.StormElemental
 {
     public class StormElemental : ModNPC
     {

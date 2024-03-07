@@ -1,5 +1,5 @@
 ﻿using CalamityMod;
-using Clamity.Content.Boss.WoB.NPCs;
+using Clamity.Content.Bosses.WoB.NPCs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -10,7 +10,7 @@ using Terraria.Enums;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Boss.WoB.Projectiles
+namespace Clamity.Content.Bosses.WoB.Projectiles
 {
     public class WallOfBronzeLaserBeamStart : ModProjectile
     {
@@ -155,8 +155,8 @@ namespace Clamity.Content.Boss.WoB.Projectiles
             }
 
             Texture2D value = ModContent.Request<Texture2D>(Texture).Value;
-            Texture2D value2 = ModContent.Request<Texture2D>("Clamity/Content/Boss/WoB/Projectiles/WallOfBronzeLaserBeamMiddle", AssetRequestMode.ImmediateLoad).Value;
-            Texture2D value3 = ModContent.Request<Texture2D>("Clamity/Content/Boss/WoB/Projectiles/WallOfBronzeLaserBeamEnd", AssetRequestMode.ImmediateLoad).Value;
+            Texture2D value2 = ModContent.Request<Texture2D>("Clamity/Content/Bosses/WoB/Projectiles/WallOfBronzeLaserBeamMiddle", AssetRequestMode.ImmediateLoad).Value;
+            Texture2D value3 = ModContent.Request<Texture2D>("Clamity/Content/Bosses/WoB/Projectiles/WallOfBronzeLaserBeamEnd", AssetRequestMode.ImmediateLoad).Value;
             float num = Projectile.localAI[1];
             Color color = new Color(250, 250, 250, 100);
             if (Projectile.localAI[0] % 5f == 0f)

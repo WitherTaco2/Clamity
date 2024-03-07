@@ -4,14 +4,14 @@ using CalamityMod.Buffs.Summon;
 using CalamityMod.CalPlayer;
 using CalamityMod.Items.Weapons.Summon;
 using CalamityMod.Projectiles.Summon;
-using Clamity.Content.Boss.Clamitas.Drop;
+using Clamity.Content.Bosses.Clamitas.Drop;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Boss.Clamitas.Crafted.Weapons
+namespace Clamity.Content.Bosses.Clamitas.Crafted.Weapons
 {
     public class HellstoneShellfishStaff : ShellfishStaff
     {

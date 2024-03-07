@@ -1,8 +1,8 @@
-﻿using Terraria.ModLoader;
+﻿using CalamityMod.Tiles.BaseTiles;
 using Terraria;
-using CalamityMod.Tiles.BaseTiles;
+using Terraria.ModLoader;
 
-namespace Clamity.Content.Boss.WoB.Drop
+namespace Clamity.Content.Bosses.WoB.Drop
 {
     public class WoBRelic : ModItem, ILocalizedModType, IModType
     {
@@ -21,7 +21,7 @@ namespace Clamity.Content.Boss.WoB.Drop
     }
     public class WoBRelicTile : BaseBossRelic
     {
-        public override string RelicTextureName => "Clamity/Content/Boss/WoB/Drop/WoBRelicTile";
+        public override string RelicTextureName => "Clamity/Content/Bosses/WoB/Drop/WoBRelicTile";
         public override int AssociatedItem => ModContent.ItemType<WoBRelic>();
     }
 

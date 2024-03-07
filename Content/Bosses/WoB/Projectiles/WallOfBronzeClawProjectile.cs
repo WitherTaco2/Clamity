@@ -6,7 +6,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Boss.WoB.Projectiles
+namespace Clamity.Content.Bosses.WoB.Projectiles
 {
     public class WallOfBronzeClawProjectile : ModProjectile
     {

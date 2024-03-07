@@ -6,9 +6,9 @@ using CalamityMod.NPCs;
 using CalamityMod.Particles;
 using CalamityMod.World;
 using Clamity.Commons;
-using Clamity.Content.Boss.Pyrogen.Drop;
-using Clamity.Content.Boss.Pyrogen.Drop.Weapons;
-using Clamity.Content.Boss.Pyrogen.Projectiles;
+using Clamity.Content.Bosses.Pyrogen.Drop;
+using Clamity.Content.Bosses.Pyrogen.Drop.Weapons;
+using Clamity.Content.Bosses.Pyrogen.Projectiles;
 using Clamity.Content.Items.Materials;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -23,7 +23,7 @@ using Terraria.GameContent.UI.BigProgressBar;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Boss.Pyrogen.NPCs
+namespace Clamity.Content.Bosses.Pyrogen.NPCs
 {
     public class PyrogenBossBar : ModBossBar
     {

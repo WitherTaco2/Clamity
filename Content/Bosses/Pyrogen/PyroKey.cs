@@ -1,6 +1,6 @@
 ﻿using CalamityMod.Events;
 using CalamityMod.Particles;
-using Clamity.Content.Boss.Pyrogen.NPCs;
+using Clamity.Content.Bosses.Pyrogen.NPCs;
 using Clamity.Content.Items.Materials;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -9,7 +9,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Boss.Pyrogen
+namespace Clamity.Content.Bosses.Pyrogen
 {
     public class PyroKey : ModItem, ILocalizedModType, IModType
     {
