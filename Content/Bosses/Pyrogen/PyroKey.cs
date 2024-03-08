@@ -17,18 +17,18 @@ namespace Clamity.Content.Bosses.Pyrogen
 
         public override void SetStaticDefaults()
         {
-            ItemID.Sets.SortingPriorityBossSpawns[base.Type] = 7;
+            ItemID.Sets.SortingPriorityBossSpawns[Type] = 7;
         }
 
         public override void SetDefaults()
         {
-            base.Item.width = 26;
-            base.Item.height = 48;
-            base.Item.rare = ItemRarityID.Pink;
+            Item.width = 26;
+            Item.height = 48;
+            Item.rare = ItemRarityID.Pink;
 
-            base.Item.useAnimation = 10;
-            base.Item.useTime = 10;
-            base.Item.useStyle = ItemUseStyleID.HoldUp;
+            Item.useAnimation = 10;
+            Item.useTime = 10;
+            Item.useStyle = ItemUseStyleID.HoldUp;
         }
 
         public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)

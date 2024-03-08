@@ -13,7 +13,7 @@ namespace Clamity.Content.Bosses.WoB.Projectiles
         {
             Main.projFrames[Type] = 3;
             ProjectileID.Sets.TrailCacheLength[Type] = 8;
-            ProjectileID.Sets.TrailingMode[Type] = 1;
+            ProjectileID.Sets.TrailingMode[Type] = 2;
         }
         public override void SetDefaults()
         {

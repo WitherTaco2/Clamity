@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Clamity.Commons;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -20,6 +21,7 @@ namespace Clamity
 
             public static SortedDictionary<int, Tuple<bool, int[]>> DebuffImmunities;
         }*/
+        public static ShortstrikePlayer SSPlayer(this Player player) => player.GetModPlayer<ShortstrikePlayer>();
         public static ClamityPlayer Clamity(this Player player) => player.GetModPlayer<ClamityPlayer>();
         public static ClamityGlobalProjectile Clamity(this Projectile proj) => proj.GetGlobalProjectile<ClamityGlobalProjectile>();
         public static LocalizedText GetText(string key) => Language.GetOrRegister("Mods.Clamity." + key, (Func<string>)null);

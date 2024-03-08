@@ -1,6 +1,7 @@
 ﻿using CalamityMod;
 using CalamityMod.Buffs.DamageOverTime;
 using CalamityMod.Items.Accessories;
+using CalamityMod.Projectiles.Ranged;
 using Clamity.Content.Biomes.FrozenHell.Biome;
 using Clamity.Content.Bosses.Pyrogen.Drop;
 using Clamity.Content.Cooldowns;
@@ -31,6 +32,7 @@ namespace Clamity
         public bool hellFlare;
         public bool icicleRing;
         public bool redDie;
+        public bool eidolonAmulet;
 
         //Armor
         public bool inflicingMeleeFrostburn;
@@ -63,6 +65,8 @@ namespace Clamity
             pyroStoneVanity = false;
             hellFlare = false;
             icicleRing = false;
+            redDie = false;
+            eidolonAmulet = false;
 
             inflicingMeleeFrostburn = false;
             frozenParrying = false;
@@ -120,6 +124,7 @@ namespace Clamity
             }
 
         }
+        #region On Hit Effect
         public override void OnHitNPCWithItem(Item item, NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (pyroSpear && !Player.HasCooldown(PyrospearCooldown.ID))
@@ -169,6 +174,7 @@ namespace Clamity
             if (wCleave)
                 Player.Calamity().contactDamageReduction *= 0.75f;
         }*/
+        #endregion
         public override void CatchFish(FishingAttempt attempt, ref int itemDrop, ref int npcSpawn, ref AdvancedPopupRequest sonar, ref Vector2 sonarPosition)
         {
             bool flag = !attempt.inHoney && !attempt.inLava;
@@ -195,20 +201,7 @@ namespace Clamity
         }
         public override void PostUpdateEquips()
         {
-            if (redDie)
-            {
-                for (int i = 3; i < 9; i++)
-                {
-                    Item item = Player.armor[i];
-                    if (item.type == ModContent.ItemType<OldDie>())
-                    {
-                        Player.luck -= 0.2f;
-                    }
-                    Player.luck *= 1.5f;
-                    Player.luck += 0.2f;
 
-                }
-            }
         }
         public override void PostUpdateMiscEffects()
         {
@@ -232,6 +225,13 @@ namespace Clamity
                 {
                     Player.endurance += 0.1f;
                 }
+            }
+            if (eidolonAmulet)
+            {
+                bool flag1 = Player.Center.Y < Main.worldSurface * 16f;
+                bool flag2 = Main.raining & flag1 || Player.dripping || Player.wet && !Player.lavaWet && !Player.honeyWet;
+                if (Player.Calamity().oceanCrestTimer > 0 | flag2)
+                    Player.GetDamage<GenericDamageClass>() += 0.1f;
             }
         }
         public Item FindAccessory(int itemID)
@@ -273,6 +273,43 @@ namespace Clamity
             {
                 Player.velocity = Player.velocity / 2;
             }
+        }
+        public override void ModifyLuck(ref float luck)
+        {
+            if (redDie)
+            {
+                for (int i = 3; i < 9; i++)
+                {
+                    Item item = Player.armor[i];
+                    if (item.type == ModContent.ItemType<OldDie>())
+                    {
+                        luck -= 0.2f;
+                    }
+                    luck *= 1.5f;
+                    luck += 0.2f;
+                }
+            }
+        }
+        public override bool Shoot(Item item, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+
+            if (eidolonAmulet && Player.Calamity().RustyMedallionCooldown <= 0)
+            {
+                int d = (int)Player.GetTotalDamage<AverageDamageClass>().ApplyTo(damage / 5);
+                //int d = damage / 5;
+                d = Player.ApplyArmorAccDamageBonusesTo(d);
+
+                Vector2 startingPosition = Main.MouseWorld - Vector2.UnitY.RotatedByRandom(0.4f) * 1250f;
+                Vector2 directionToMouse = (Main.MouseWorld - startingPosition).SafeNormalize(Vector2.UnitY).RotatedByRandom(0.1f);
+                int drop = Projectile.NewProjectile(source, startingPosition, directionToMouse * 15f, ModContent.ProjectileType<ToxicannonDrop>(), d, 0f, Player.whoAmI);
+                if (drop.WithinBounds(Main.maxProjectiles))
+                {
+                    Main.projectile[drop].penetrate = 3;
+                    Main.projectile[drop].DamageType = DamageClass.Generic;
+                }
+                Player.Calamity().RustyMedallionCooldown = RustyMedallion.AcidCreationCooldown / 2;
+            }
+            return true;
         }
     }
 }

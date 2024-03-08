@@ -92,8 +92,9 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
             }
         }
     }
-    public class WulfrumLeechDaggerShard : ModProjectile
+    public class WulfrumLeechDaggerShard : ModProjectile, ILocalizedModType, IModType
     {
+        public new string LocalizationCategory => "Projectiles.Melee";
         public override void SetDefaults()
         {
             Projectile.CloneDefaults(ProjectileID.SpikyBall);

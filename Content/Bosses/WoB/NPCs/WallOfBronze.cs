@@ -48,7 +48,8 @@ namespace Clamity.Content.Bosses.WoB.NPCs
             NPC.aiStyle = -1;
             NPC.damage = 200;
             NPC.defense = 70;
-            NPC.lifeMax = 1500000;
+            //NPC.lifeMax = 1500000;
+            NPC.LifeMaxNERB(1500300, 288090, 288090);
             NPC.HitSound = new SoundStyle?(SoundID.NPCHit4);
             NPC.DeathSound = new SoundStyle?(SoundID.Item14);
             NPC.knockBackResist = 0.0f;
@@ -74,8 +75,8 @@ namespace Clamity.Content.Bosses.WoB.NPCs
         });
         public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)
         {
-            NPC.lifeMax = (int)(NPC.lifeMax * 0.5f * balance);
-            NPC.damage = (int)(NPC.damage * NPC.GetExpertDamageMultiplier());
+            NPC.lifeMax = (int)(NPC.lifeMax * 0.5f * balance * bossAdjustment);
+            NPC.damage = (int)(NPC.damage * NPC.GetExpertDamageMultiplier() * bossAdjustment);
         }
         public override void BossLoot(ref string name, ref int potionType) => potionType = ModContent.ItemType<OmegaHealingPotion>();
         public override void OnSpawn(IEntitySource source)
@@ -91,7 +92,7 @@ namespace Clamity.Content.Bosses.WoB.NPCs
                 return;
             NetMessage.SendData(MessageID.SyncNPC, -1, -1, (NetworkText)null, NPC.whoAmI, 0.0f, 0.0f, 0.0f, 0, 0, 0);
         }
-        private int[] ListOfGuns = new int[3]
+        private readonly int[] ListOfGuns = new int[3]
         {
             ModContent.NPCType<WallOfBronzeTorret>(),
             ModContent.NPCType<WallOfBronzeLaser>(),
@@ -121,8 +122,12 @@ namespace Clamity.Content.Bosses.WoB.NPCs
             if (NPC.target < 0 || NPC.target == byte.MaxValue || Main.player[NPC.target].Center.Y < Main.UnderworldLayer * 16 || Main.player[NPC.target].dead || !Main.player[NPC.target].active)
             {
                 NPC.TargetClosest(true);
-                if ((NPC.target == (int)byte.MaxValue || Main.player[NPC.target].Center.Y < Main.UnderworldLayer * 16 || Main.player[NPC.target].dead || !Main.player[NPC.target].active) && !NPC.despawnEncouraged)
-                    NPC.EncourageDespawn(30);
+                if ((NPC.target == (int)byte.MaxValue || Main.player[NPC.target].dead || !Main.player[NPC.target].active) || Main.player[NPC.target].Center.Y < Main.UnderworldLayer * 16)
+                {
+                    NPC.TargetClosest(true);
+                    if ((NPC.target == (int)byte.MaxValue || Main.player[NPC.target].dead || !Main.player[NPC.target].active) || Main.player[NPC.target].Center.Y < Main.UnderworldLayer * 16 && !NPC.despawnEncouraged)
+                        NPC.EncourageDespawn(30);
+                }
                 if (NPC.despawnEncouraged)
                 {
                     NPC.velocity.X += Math.Sign(NPC.velocity.X) * 2f;
@@ -182,7 +187,7 @@ namespace Clamity.Content.Bosses.WoB.NPCs
                 if (ListOfGuns.Contains<int>(npc.type))
                     num3++;
             }
-            if (num3 >= (CalamityWorld.death ? 2 : ((CalamityWorld.revenge || BossRushEvent.BossRushActive) ? 3 : 4)))
+            if (num3 >= ((CalamityWorld.revenge || BossRushEvent.BossRushActive) ? 3 : 4))
                 NPC.dontTakeDamage = true;
             else
                 NPC.dontTakeDamage = false;
@@ -190,20 +195,26 @@ namespace Clamity.Content.Bosses.WoB.NPCs
             //Summon guns
             GunSummonTimer++;
             //if (GunSummonTimer >= /*(CalamityWorld.death ? 1200 : (Main.expertMode ? 1500 : 1800))*/ 120 && num3 < 5)
-            if (GunSummonTimer >= (CalamityWorld.death ? 1200 : (Main.expertMode ? 1500 : 1800)) && num3 < 5)
+            if (GunSummonTimer >= (CalamityWorld.death ? 600 : (Main.expertMode ? 750 : 900)))
             {
                 GunSummonTimer = 0;
-                if (CanSecondStage)
+                Terraria.NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, ModContent.NPCType<MechanicalLeechHead>());
+                Terraria.NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, ModContent.NPCType<MetalMaw>());
+                Terraria.NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, ModContent.NPCType<MetalMaw>());
+                if (num3 < 5)
                 {
-                    Terraria.NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, ListOfGuns[2], ai0: NPC.whoAmI);
-                    Terraria.NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, ListOfGuns[2], ai0: NPC.whoAmI);
-                    Terraria.NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, ListOfGuns[2], ai0: NPC.whoAmI);
-                }
-                else
-                {
-                    Terraria.NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, ListOfGuns[(Main.rand.Next(0, ListOfGuns.Length))], ai0: NPC.whoAmI);
-                    Terraria.NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, ListOfGuns[(Main.rand.Next(0, ListOfGuns.Length))], ai0: NPC.whoAmI);
-                    Terraria.NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, ListOfGuns[(Main.rand.Next(0, ListOfGuns.Length))], ai0: NPC.whoAmI);
+                    if (CanSecondStage)
+                    {
+                        Terraria.NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, ListOfGuns[2], ai0: NPC.whoAmI);
+                        Terraria.NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, ListOfGuns[2], ai0: NPC.whoAmI);
+                        //Terraria.NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, ListOfGuns[2], ai0: NPC.whoAmI);
+                    }
+                    else
+                    {
+                        Terraria.NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, ListOfGuns[(Main.rand.Next(0, ListOfGuns.Length))], ai0: NPC.whoAmI);
+                        Terraria.NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, ListOfGuns[(Main.rand.Next(0, ListOfGuns.Length))], ai0: NPC.whoAmI);
+                        //Terraria.NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, ListOfGuns[(Main.rand.Next(0, ListOfGuns.Length))], ai0: NPC.whoAmI);
+                    }
                 }
             }
 
@@ -309,7 +320,8 @@ namespace Clamity.Content.Bosses.WoB.NPCs
         {
             if (!ClamitySystem.downedWallOfBronze)
             {
-                int basePosX = (int)NPC.Center.X / 16;
+                //int basePosX = (int)MathHelper.Clamp((int)NPC.Center.X / 16, 500, Main.maxTilesX - 500);
+                int basePosX = Main.maxTilesX / 2;
                 for (int i = -300; i < 300; i++)
                 {
                     for (int j = Main.UnderworldLayer; j < Main.bottomWorld / 16 - 1; j++)
@@ -340,6 +352,7 @@ namespace Clamity.Content.Bosses.WoB.NPCs
                         }
                     }
                 }
+                CalamityUtils.DisplayLocalizedText("Mods.Clamity.Misc.FrozenHellMessege", new Color?(Color.LightCyan));
             }
 
             ClamitySystem.downedWallOfBronze = true;

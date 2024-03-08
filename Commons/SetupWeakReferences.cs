@@ -38,6 +38,7 @@ namespace Clamity.Commons
         {
             LoadEnchantments();
             LoadBossRush();
+            LoadCooldowns();
             if (!Main.dedServ)
             {
                 LoadShaders();
@@ -157,8 +158,8 @@ namespace Clamity.Commons
         public static void LoadCooldowns()
         {
             CooldownRegistry.Register<ShortstrikeCooldown>(ShortstrikeCooldown.ID);
-            CooldownRegistry.Register<PyrospearCooldown>(PyrospearCooldown.ID);
             CooldownRegistry.Register<ShortstrikeCharge>(ShortstrikeCharge.ID);
+            CooldownRegistry.Register<PyrospearCooldown>(PyrospearCooldown.ID);
         }
         #endregion
 

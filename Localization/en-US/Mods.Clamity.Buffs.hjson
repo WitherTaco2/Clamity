@@ -89,3 +89,8 @@ PlanterrorStaffBuff: {
 	DisplayName: Guntera
 	Description: '''"Talk about guns and roses, am I right?"'''
 }
+
+HeavyMetalTrashCanBuff: {
+	DisplayName: Mini Bocchi
+	Description: Hitori Gotoh is following you.
+}

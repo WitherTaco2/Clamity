@@ -6,7 +6,7 @@ Items: {
 			Summon a Wall of Bronze in Underworld
 			Non consumable
 			'''
-		DisplayName: Heavy Metal Trash Can
+		DisplayName: Wall of Bronze Summoning Item
 	}
 
 	Mounts: {
@@ -40,6 +40,7 @@ Misc: {
 
 	None: ""
 	DefeatedWoB: After defeating a Wall of Bronze
+	FrozenHellMessege: You can feel the cold breeze coming from the center of Hell
 }
 
 Tiles: {

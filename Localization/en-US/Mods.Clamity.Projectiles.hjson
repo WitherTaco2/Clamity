@@ -18,7 +18,8 @@ Melee: {
 	DiseaseProjectile.DisplayName: Disease Projectile
 	SporeKnifeProjectile.DisplayName: Spore Knife
 	WulfrumLeechDaggerProjectile.DisplayName: Wulfrum Leech Dagger
-	EverestProjectile.DisplayName: Everest Projectile
+	WulfrumLeechDaggerShard.DisplayName: Wulfrum Leech Dagger Shard
+	EverestProjectile.DisplayName: Everest
 }
 
 Ranged: {
@@ -30,7 +31,7 @@ Ranged: {
 
 Summon: {
 	Minion.HellstoneShellfishStaffMinion.DisplayName: Hellstone Shellfish
-	PlanterrorStaffTentacle.DisplayName: Planterror Staff Tentacle
+	PlanterrorStaffTentacle.DisplayName: Guntera's Gun
 }
 
 ShortstrikeEffect.DisplayName: Shortstrike Effect
@@ -40,7 +41,6 @@ HadopelagicEchoProjectile2.DisplayName: Hadopelagic Echo
 ChargedBlast3.DisplayName: Charged Blast
 ChargedDartExplosion.DisplayName: Charged Dart
 ProfanedDartProjectile.DisplayName: Profaned Dart
-WulfrumLeechDaggerShard.DisplayName: Wulfrum Leech Dagger Shard
 WulfrumLureBobber.DisplayName: Wulfrum Lure Bobber
 
 Rogue: {
@@ -48,7 +48,7 @@ Rogue: {
 	WulfrumShockCutterProjectile.DisplayName: Wulfrum Shock Cutter
 	FrozenStarShurikenProjectile.DisplayName: Frozen Star Shuriken
 	ExoBallProjectile.DisplayName: Exo Ball Projectile
-	AuricKunaiProjectile.DisplayName: Auric Kunai Projectile
+	AuricKunaiProjectile.DisplayName: Auric Kunai
 	AuricKunaiLightning.DisplayName: Auric Kunai Lightning
 }
 
@@ -84,4 +84,5 @@ FrostfireArrowProj2.DisplayName: Frostfire Arrow Explosion
 MoonstoneKnifeProjectile.DisplayName: Moonstone Knife
 Enemy.BrimstonePearlBurst.DisplayName: Brimstone Pearl Burst
 PlanterrorStaffSummon.DisplayName: Guntera
-Classless.TrashOfMagnusProjectile.DisplayName: Trash Of Magnus Projectile
+Classless.TrashOfMagnusProjectile.DisplayName: Plague Bolt
+HeavyMetalTrashCanPet.DisplayName: Mini Bocchi

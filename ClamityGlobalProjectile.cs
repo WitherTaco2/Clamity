@@ -7,9 +7,6 @@ using CalamityMod.Projectiles.Ranged;
 using CalamityMod.Projectiles.Rogue;
 using CalamityMod.Projectiles.Summon;
 using CalamityMod.Projectiles.Typeless;
-using Clamity.Content.Buffs.Shortstrike;
-using Clamity.Content.Cooldowns;
-using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -24,18 +21,7 @@ namespace Clamity
         public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
         {
             Player player = Main.player[projectile.owner];
-            if (!player.HasCooldown(ShortstrikeCooldown.ID))
-            {
-                Shortstrike(player, projectile, ModContent.BuffType<CopperShortstrike>(), 1, ProjectileID.CopperShortswordStab);
-                Shortstrike(player, projectile, ModContent.BuffType<TinShortstrike>(), 1, ProjectileID.TinShortswordStab);
-                Shortstrike(player, projectile, ModContent.BuffType<IronShortstrike>(), 1, ProjectileID.IronShortswordStab);
-                Shortstrike(player, projectile, ModContent.BuffType<LeadShortstrike>(), 1, ProjectileID.LeadShortswordStab);
-                Shortstrike(player, projectile, ModContent.BuffType<SilverShortstrike>(), 1, ProjectileID.SilverShortswordStab);
-                Shortstrike(player, projectile, ModContent.BuffType<TungstenShortstrike>(), 1, ProjectileID.TungstenShortswordStab);
-                Shortstrike(player, projectile, ModContent.BuffType<GoldShortstrike>(), 1.2f, ProjectileID.GoldShortswordStab);
-                Shortstrike(player, projectile, ModContent.BuffType<PlatinumShortstrike>(), 1.2f, ProjectileID.PlatinumShortswordStab);
-                Shortstrike(player, projectile, ModContent.BuffType<GladiusShortstrike>(), 0.5f, ProjectileID.GladiusStab, 1.25f);
-            }
+
             UpdateAflameAccesory(projectile, target, hit, damageDone);
             if (player.Clamity().inflicingMeleeFrostburn && projectile.DamageType == ModContent.GetInstance<TrueMeleeDamageClass>())
                 target.AddBuff(BuffID.Frostburn, 180);
@@ -97,7 +83,7 @@ namespace Clamity
                 }
             }
         }
-        private void Shortstrike(Player player, Projectile proj, int buffID, float timeInSeconds, int projectileID, float percent = 2)
+        /*private void Shortstrike(Player player, Projectile proj, int buffID, float timeInSeconds, int projectileID, float percent = 2)
         {
             if (proj.type == projectileID)
             {
@@ -109,6 +95,6 @@ namespace Clamity
                     dust.noGravity = true;
                 }
             }
-        }
+        }*/
     }
 }
