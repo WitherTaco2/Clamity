@@ -15,6 +15,7 @@ Added Eidolon Amulet. Combination of amulets
 
 Added minions for Wall of Bronze
 
+
 Changes/Addintions:
 Updated Frozen Ash and Frozen Hellstone sprites (item and tile)
 Clamitas now drops weapons and Slagspitter Pauldron like in his Fandom Wiki page
