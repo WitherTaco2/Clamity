@@ -5,6 +5,7 @@ using CalamityMod.NPCs.PlaguebringerGoliath;
 using CalamityMod.NPCs.SunkenSea;
 using CalamityMod.NPCs.SupremeCalamitas;
 using CalamityMod.NPCs.TownNPCs;
+using Clamity.Commons.ItemDropRules;
 using Clamity.Content.Biomes.FrozenHell.Items;
 using Clamity.Content.Items.Materials;
 using Clamity.Content.Items.Mounts;
@@ -32,6 +33,10 @@ namespace Clamity
             LeadingConditionRule mainRule = npcLoot.DefineNormalOnlyDropSet();
 
             //Boss Drop
+            if (npc.type == NPCID.SkeletronHead)
+            {
+                npcLoot.Add(new KosFragmentDropRule());
+            }
             if (npc.type == NPCID.Golem)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<LeadWizard>(), 4));

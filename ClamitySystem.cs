@@ -11,6 +11,25 @@ namespace Clamity
 {
     public class ClamitySystem : ModSystem
     {
+        internal static bool _droppedKosFramgent;
+        public static bool droppedKosFramgent
+        {
+            get
+            {
+                return _droppedKosFramgent;
+            }
+            set
+            {
+                if (!value)
+                {
+                    _droppedKosFramgent = false;
+                }
+                else
+                {
+                    NPC.SetEventFlagCleared(ref _droppedKosFramgent, -1);
+                }
+            }
+        }
         internal static bool _downedClamitas;
         public static bool downedClamitas
         {
