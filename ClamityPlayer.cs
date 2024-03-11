@@ -11,6 +11,7 @@ namespace Clamity
 {
     public class ClamityPlayer : ModPlayer
     {
+        #region Variables
         public bool realityRelocator;
         public bool wulfrumShortstrike;
         public bool aflameAcc;
@@ -69,56 +70,12 @@ namespace Clamity
             hellsBell = false;
             guntera = false;
 
-            //wCleave = false;
+
 
             FlyingChair = false;
             FlyingChairPower = 12;
         }
-        //public Item[] accesories;
-        public override void UpdateEquips()
-        {
-            foreach (Item i in Player.armor)
-            {
-                if (!i.IsAir)
-                    if (i.Calamity().AppliedEnchantment != null)
-                    {
-                        if (i.Calamity().AppliedEnchantment.Value.ID == 10000)
-                            aflameAccList.Add(i.type);
-                    }
-            }
-            if (aflameAccList.Count > 0)
-            {
-                Player.AddBuff(ModContent.BuffType<WeakBrimstoneFlames>(), 1);
-            }
-        }
-        public override void ProcessTriggers(TriggersSet triggersSet)
-        {
-            if (base.Player.dead)
-            {
-                return;
-            }
-            if (CalamityKeybinds.NormalityRelocatorHotKey.JustPressed && realityRelocator && Main.myPlayer == Player.whoAmI && !Player.CCed)
-            {
-                Vector2 vector;
-                vector.X = Main.mouseX + Main.screenPosition.X;
-                if (Player.gravDir == 1f)
-                {
-                    vector.Y = (float)Main.mouseY + Main.screenPosition.Y - (float)base.Player.height;
-                }
-                else
-                {
-                    vector.Y = Main.screenPosition.Y + Main.screenHeight - Main.mouseY;
-                }
-
-                vector.X -= Player.width / 2;
-                if (vector.X > 50f && vector.X < (Main.maxTilesX * 16 - 50) && vector.Y > 50f && vector.Y < (Main.maxTilesY * 16 - 50) && !Collision.SolidCollision(vector, Player.width, Player.height))
-                {
-                    Player.Teleport(vector, 4);
-                    NetMessage.SendData(MessageID.TeleportPlayerThroughPortal, -1, -1, null, 0, Player.whoAmI, vector.X, vector.Y, 1);
-                }
-            }
-
-        }
+        #endregion
         #region On Hit Effect
         public override void OnHitNPCWithItem(Item item, NPC target, NPC.HitInfo hit, int damageDone)
         {
@@ -159,16 +116,8 @@ namespace Clamity
                 Player.AddCooldown(PyrospearCooldown.ID, 100);
             }
         }
-        /*public override void ModifyHitByNPC(NPC npc, ref Player.HurtModifiers modifiers)
-        {
-            if (wCleave)
-                Player.Calamity().contactDamageReduction *= 0.75f;
-        }
-        public override void ModifyHitByProjectile(Projectile proj, ref Player.HurtModifiers modifiers)
-        {
-            if (wCleave)
-                Player.Calamity().contactDamageReduction *= 0.75f;
-        }*/
+        #endregion
+        #region Hurt Effect
         public override void OnHurt(Player.HurtInfo info)
         {
             if (metalWings)
@@ -181,29 +130,34 @@ namespace Clamity
                     Player.wingTime += recivingFlyTime;
             }
         }
-        #endregion
-        public override void CatchFish(FishingAttempt attempt, ref int itemDrop, ref int npcSpawn, ref AdvancedPopupRequest sonar, ref Vector2 sonarPosition)
+        /*public override void ModifyHurt(ref Player.HurtModifiers modifiers)
         {
-            bool flag = !attempt.inHoney && !attempt.inLava;
-            if (flag)
+            if (metalWings)
             {
-                if (Player.ZoneDesert && Main.hardMode && attempt.uncommon && Main.rand.NextBool(7))
-                    itemDrop = ModContent.ItemType<FishOfFlame>();
-                /*if (Player.Calamity().ZoneSulphur && DownedBossSystem.downedPolterghast && attempt.uncommon && Main.rand.NextBool(10))
-                    itemDrop = ModContent.ItemType<FrontGar>();
-                if (Player.ZoneJungle && DownedBossSystem.downedProvidence && attempt.uncommon && Main.rand.NextBool(10))
-                    itemDrop = ModContent.ItemType<RearGar>();
-                if (Player.ZoneSkyHeight && NPC.downedMoonlord && attempt.uncommon && Main.rand.NextBool(10))
-                    itemDrop = ModContent.ItemType<SideGar>();*/
+                float percent = info.Damage / Player.statLifeMax2;
+                int recivingFlyTime = (int)(Player.wingTimeMax * percent / 2);
+                if (Player.wingTime + recivingFlyTime > Player.wingTimeMax)
+                    Player.wingTime = Player.wingTimeMax;
+                else
+                    Player.wingTime += recivingFlyTime;
             }
-        }
-        public override void UpdateBadLifeRegen()
+        }*/
+        #endregion
+        #region Updates
+        public override void UpdateEquips()
         {
-            if (icicleRing && Player.statLife > Player.statLifeMax2 / 3)
+            foreach (Item i in Player.armor)
             {
-                if (Player.lifeRegen > 0)
-                    Player.lifeRegen = 0;
-                Player.lifeRegen -= 30;
+                if (!i.IsAir)
+                    if (i.Calamity().AppliedEnchantment != null)
+                    {
+                        if (i.Calamity().AppliedEnchantment.Value.ID == 10000)
+                            aflameAccList.Add(i.type);
+                    }
+            }
+            if (aflameAccList.Count > 0)
+            {
+                Player.AddBuff(ModContent.BuffType<WeakBrimstoneFlames>(), 1);
             }
         }
         public override void PostUpdateEquips()
@@ -249,6 +203,17 @@ namespace Clamity
                     return this.Player.armor[index];
             }
             return new Item();
+        }
+        #endregion
+        #region Modify Stats
+        public override void UpdateBadLifeRegen()
+        {
+            if (icicleRing && Player.statLife > Player.statLifeMax2 / 3)
+            {
+                if (Player.lifeRegen > 0)
+                    Player.lifeRegen = 0;
+                Player.lifeRegen -= 30;
+            }
         }
         public override void PreUpdateMovement()
         {
@@ -297,6 +262,7 @@ namespace Clamity
                 }
             }
         }
+        #endregion
         public override bool Shoot(Item item, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
 
@@ -318,5 +284,44 @@ namespace Clamity
             }
             return true;
         }
+        #region Other
+        public override void CatchFish(FishingAttempt attempt, ref int itemDrop, ref int npcSpawn, ref AdvancedPopupRequest sonar, ref Vector2 sonarPosition)
+        {
+            bool flag = !attempt.inHoney && !attempt.inLava;
+            if (flag)
+            {
+                if (Player.ZoneDesert && Main.hardMode && attempt.uncommon && Main.rand.NextBool(7))
+                    itemDrop = ModContent.ItemType<FishOfFlame>();
+            }
+        }
+        public override void ProcessTriggers(TriggersSet triggersSet)
+        {
+            if (base.Player.dead)
+            {
+                return;
+            }
+            if (CalamityKeybinds.NormalityRelocatorHotKey.JustPressed && realityRelocator && Main.myPlayer == Player.whoAmI && !Player.CCed)
+            {
+                Vector2 vector;
+                vector.X = Main.mouseX + Main.screenPosition.X;
+                if (Player.gravDir == 1f)
+                {
+                    vector.Y = (float)Main.mouseY + Main.screenPosition.Y - (float)base.Player.height;
+                }
+                else
+                {
+                    vector.Y = Main.screenPosition.Y + Main.screenHeight - Main.mouseY;
+                }
+
+                vector.X -= Player.width / 2;
+                if (vector.X > 50f && vector.X < (Main.maxTilesX * 16 - 50) && vector.Y > 50f && vector.Y < (Main.maxTilesY * 16 - 50) && !Collision.SolidCollision(vector, Player.width, Player.height))
+                {
+                    Player.Teleport(vector, 4);
+                    NetMessage.SendData(MessageID.TeleportPlayerThroughPortal, -1, -1, null, 0, Player.whoAmI, vector.X, vector.Y, 1);
+                }
+            }
+
+        }
+        #endregion
     }
 }

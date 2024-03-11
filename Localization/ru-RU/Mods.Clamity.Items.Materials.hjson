@@ -32,3 +32,8 @@ MetalFeather: {
 	// Tooltip: ""
 	// DisplayName: Metal Feather
 }
+
+RarePlanteraFruit: {
+	// DisplayName: Rare Plantera Fruit
+	// Tooltip: ""
+}

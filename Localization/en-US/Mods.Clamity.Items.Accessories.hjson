@@ -92,7 +92,7 @@ EidolonAmulet: {
 Wings: {
 	MetalWings: {
 		DisplayName: Metal Wings
-		Tooltip: 
+		Tooltip:
 			'''
 			When you getting hit, you receive flight time percentages equal to half of the ratio of damage received to max HP
 			While wearing Frozen Armor, all players in your team gets a 20 increased defence
