@@ -1,8 +1,5 @@
 ﻿using Clamity.Content.Items.Materials;
-using Terraria;
 using Terraria.GameContent.ItemDropRules;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Clamity.Content.Items.Tools.Bags.Fish
 {

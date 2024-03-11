@@ -1,9 +1,4 @@
-﻿using CalamityMod;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-
-namespace Clamity.Content.Items.Potions.Food
+﻿namespace Clamity.Content.Items.Potions.Food
 {
     public class Barolegs : ModItem, ILocalizedModType, IModType
     {

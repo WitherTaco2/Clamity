@@ -1,8 +1,4 @@
-﻿using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-
-namespace Clamity.Content.Bosses.WoB.Drop
+﻿namespace Clamity.Content.Bosses.WoB.Drop
 {
     [AutoloadEquip(new EquipType[] { EquipType.Head })]
     internal class WoBMask : ModItem, ILocalizedModType, IModType

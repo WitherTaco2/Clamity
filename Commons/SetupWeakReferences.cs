@@ -1,5 +1,4 @@
-﻿using CalamityMod;
-using CalamityMod.CalPlayer;
+﻿using CalamityMod.CalPlayer;
 using CalamityMod.Cooldowns;
 using CalamityMod.Events;
 using CalamityMod.Items.Mounts;
@@ -17,17 +16,7 @@ using Clamity.Content.Bosses.WoB.Drop;
 using Clamity.Content.Bosses.WoB.NPCs;
 using Clamity.Content.Cooldowns;
 using Clamity.Content.Items.Mounts;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
-using System;
-using System.Collections.Generic;
-using Terraria;
-using Terraria.Audio;
 using Terraria.Graphics.Effects;
-using Terraria.ID;
-using Terraria.Localization;
-using Terraria.ModLoader;
 
 namespace Clamity.Commons
 {

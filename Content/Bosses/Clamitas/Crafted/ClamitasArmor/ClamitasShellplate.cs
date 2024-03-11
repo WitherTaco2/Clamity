@@ -1,17 +1,7 @@
-﻿using CalamityMod;
-using CalamityMod.Items;
-using CalamityMod.Items.Accessories;
+﻿using CalamityMod.Items.Accessories;
 using CalamityMod.Items.Armor.Mollusk;
 using CalamityMod.Items.Materials;
 using Clamity.Content.Bosses.Clamitas.Drop;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Clamity.Content.Bosses.Clamitas.Crafted.ClamitasArmor
 {
@@ -31,7 +21,7 @@ namespace Clamity.Content.Bosses.Clamitas.Crafted.ClamitasArmor
         public override void UpdateEquip(Player player)
         {
             player.GetDamage<GenericDamageClass>() += 0.15f;
-            player.GetCritChance<GenericDamageClass>() += 4; 
+            player.GetCritChance<GenericDamageClass>() += 4;
             player.Calamity().giantPearl = true;
         }
 

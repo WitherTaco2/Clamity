@@ -5,11 +5,7 @@ using Clamity.Content.Bosses.Pyrogen.NPCs;
 using Clamity.Content.Bosses.Pyrogen.Projectiles;
 using Clamity.Content.Bosses.WoB.NPCs;
 using Clamity.Content.Bosses.WoB.Projectiles;
-using System;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using Terraria;
-using Terraria.ModLoader;
 
 namespace Clamity.Commons
 {

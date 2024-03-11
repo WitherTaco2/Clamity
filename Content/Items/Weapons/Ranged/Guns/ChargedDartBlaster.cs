@@ -1,16 +1,7 @@
-﻿using CalamityMod;
-using CalamityMod.Buffs.DamageOverTime;
+﻿using CalamityMod.Buffs.DamageOverTime;
 using CalamityMod.CustomRecipes;
-using CalamityMod.Items;
 using CalamityMod.Items.Materials;
 using CalamityMod.Projectiles.Ranged;
-using Microsoft.Xna.Framework;
-using System;
-using Terraria;
-using Terraria.Audio;
-using Terraria.DataStructures;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Clamity.Content.Items.Weapons.Ranged.Guns
 {

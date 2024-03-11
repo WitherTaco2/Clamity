@@ -1,13 +1,5 @@
-﻿using CalamityMod;
-using CalamityMod.Particles;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.IO;
-using Terraria;
-using Terraria.DataStructures;
+﻿using CalamityMod.Particles;
 using Terraria.Graphics.Shaders;
-using Terraria.ModLoader;
 
 namespace Clamity.Content.Bosses.WoB.NPCs
 {

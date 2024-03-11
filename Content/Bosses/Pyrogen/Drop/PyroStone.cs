@@ -1,15 +1,7 @@
-﻿using CalamityMod;
-using CalamityMod.Buffs.DamageOverTime;
-using CalamityMod.Items;
+﻿using CalamityMod.Buffs.DamageOverTime;
 using CalamityMod.NPCs;
 using CalamityMod.NPCs.AcidRain;
 using Clamity.Content.Bosses.Pyrogen.NPCs;
-using Microsoft.Xna.Framework;
-using System;
-using Terraria;
-using Terraria.DataStructures;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Clamity.Content.Bosses.Pyrogen.Drop
 {

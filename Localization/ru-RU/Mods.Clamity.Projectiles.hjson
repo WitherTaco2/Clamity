@@ -20,6 +20,7 @@ Melee: {
 	// WulfrumLeechDaggerProjectile.DisplayName: Wulfrum Leech Dagger
 	// WulfrumLeechDaggerShard.DisplayName: Wulfrum Leech Dagger Shard
 	// EverestProjectile.DisplayName: Everest
+	// BaseSlash.DisplayName: Base Slash
 }
 
 Ranged: {

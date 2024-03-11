@@ -1,11 +1,4 @@
-﻿using CalamityMod;
-using CalamityMod.Items;
-using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-
-namespace Clamity.Content.Bosses.Pyrogen.Drop.Weapons
+﻿namespace Clamity.Content.Bosses.Pyrogen.Drop.Weapons
 {
     public class TheGenerator : ModItem, ILocalizedModType, IModType
     {

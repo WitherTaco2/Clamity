@@ -88,3 +88,10 @@ EidolonAmulet: {
 		Обеспечивает умеренное количество света в бездне
 		'''
 }
+
+Wings: {
+	MetalWings: {
+		// Tooltip: ""
+		// DisplayName: Metal Wings
+	}
+}

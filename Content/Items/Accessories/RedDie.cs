@@ -1,9 +1,5 @@
-﻿using CalamityMod.Items;
-using CalamityMod.Items.Accessories;
+﻿using CalamityMod.Items.Accessories;
 using Clamity.Content.Bosses.Clamitas.Drop;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Clamity.Content.Items.Accessories
 {

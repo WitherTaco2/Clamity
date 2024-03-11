@@ -1,12 +1,4 @@
-﻿using CalamityMod.Items.Placeables.Furniture.Trophies;
-using CalamityMod.Tiles.Furniture.BossTrophies;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria.ModLoader;
-using Terraria.ID;
+﻿using CalamityMod.Tiles.Furniture.BossTrophies;
 
 namespace Clamity.Content.Bosses.Pyrogen.Drop
 {

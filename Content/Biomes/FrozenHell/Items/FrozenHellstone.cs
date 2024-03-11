@@ -1,11 +1,4 @@
-﻿using CalamityMod;
-using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.Audio;
-using Terraria.ID;
-using Terraria.ModLoader;
-
-namespace Clamity.Content.Biomes.FrozenHell.Items
+﻿namespace Clamity.Content.Biomes.FrozenHell.Items
 {
     public class FrozenHellstone : ModItem, ILocalizedModType, IModType
     {

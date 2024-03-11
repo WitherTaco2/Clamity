@@ -1,14 +1,5 @@
-﻿using CalamityMod;
-using CalamityMod.Sounds;
-using Clamity.Commons;
+﻿using CalamityMod.Sounds;
 using Clamity.Content.Bosses.WoB.Projectiles;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using Terraria;
-using Terraria.Audio;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Clamity.Content.Bosses.WoB.NPCs
 {

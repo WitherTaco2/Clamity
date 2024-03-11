@@ -1,6 +1,4 @@
 ﻿using CalamityMod.Projectiles.Melee;
-using Microsoft.Xna.Framework;
-using Terraria;
 
 namespace Clamity.Content.Items.Weapons.Melee
 {

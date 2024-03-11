@@ -1,9 +1,5 @@
-﻿using CalamityMod;
-using CalamityMod.Items.Materials;
+﻿using CalamityMod.Items.Materials;
 using CalamityMod.Rarities;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Clamity.Content.Biomes.FrozenHell.Items.FrozenHellstoneArmor
 {
@@ -17,7 +13,7 @@ namespace Clamity.Content.Biomes.FrozenHell.Items.FrozenHellstoneArmor
             Item.width = 26;
             Item.height = 26;
             Item.value = Item.sellPrice(gold: 10);
-            Item.rare = ModContent.RarityType<DarkBlue>();
+            Item.rare = ModContent.RarityType<Violet>();
             Item.defense = 75;
         }
 

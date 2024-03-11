@@ -1,14 +1,7 @@
-﻿using CalamityMod;
-using CalamityMod.Cooldowns;
+﻿using CalamityMod.Cooldowns;
 using Clamity.Content.Buffs.Shortstrike;
 using Clamity.Content.Cooldowns;
 using Clamity.Content.Items.Weapons.Melee.Shortswords;
-using Microsoft.Xna.Framework;
-using System.Collections.Generic;
-using Terraria;
-using Terraria.Audio;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Clamity.Commons
 {

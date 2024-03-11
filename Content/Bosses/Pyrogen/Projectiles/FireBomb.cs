@@ -1,10 +1,4 @@
-﻿using System;
-using Terraria.ModLoader;
-using Terraria;
-using Microsoft.Xna.Framework;
-using CalamityMod;
-using Microsoft.Xna.Framework.Graphics;
-using CalamityMod.Particles;
+﻿using CalamityMod.Particles;
 
 namespace Clamity.Content.Bosses.Pyrogen.Projectiles
 {
@@ -52,7 +46,8 @@ namespace Clamity.Content.Bosses.Pyrogen.Projectiles
             //0.95f
             Projectile.velocity *= 0.9f;
             GeneralParticleHandler.SpawnParticle(new DirectionalPulseRing(Projectile.Center, Vector2.Zero, Color.Red, new Vector2(0.5f, 0.5f), Main.rand.NextFloat(12f, 25f), 3f, 3f, 2));
-            if (Projectile.velocity.Length() < 1f){
+            if (Projectile.velocity.Length() < 1f)
+            {
                 if (!Spawned)
                 {
                     Spawned = true;

@@ -1,16 +1,4 @@
-﻿using CalamityMod.Items.Materials;
-using CalamityMod.Items.Weapons.Rogue;
-using CalamityMod.Projectiles.Rogue;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-
-namespace Clamity.Content.Items.Weapons.Rogue
+﻿namespace Clamity.Content.Items.Weapons.Rogue
 {
     /*public class WulfrumShockCutter : WulfrumKnife
     {

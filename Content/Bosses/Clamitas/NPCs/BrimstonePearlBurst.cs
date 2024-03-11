@@ -1,7 +1,5 @@
 ﻿using CalamityMod.Buffs.DamageOverTime;
 using CalamityMod.Projectiles.Enemy;
-using Terraria;
-using Terraria.ModLoader;
 
 namespace Clamity.Content.Bosses.Clamitas.NPCs
 {

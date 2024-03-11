@@ -1,5 +1,4 @@
 ﻿using CalamityMod.Rarities;
-using Terraria.ModLoader;
 
 namespace Clamity.Content.Biomes.FrozenHell.Items
 {

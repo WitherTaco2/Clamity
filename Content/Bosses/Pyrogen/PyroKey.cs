@@ -2,12 +2,6 @@
 using CalamityMod.Particles;
 using Clamity.Content.Bosses.Pyrogen.NPCs;
 using Clamity.Content.Items.Materials;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Terraria;
-using Terraria.Audio;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Clamity.Content.Bosses.Pyrogen
 {

@@ -1,14 +1,5 @@
-﻿using CalamityMod;
-using Clamity.Content.Bosses.WoB.NPCs;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
-using System;
-using System.IO;
-using Terraria;
+﻿using Clamity.Content.Bosses.WoB.NPCs;
 using Terraria.Enums;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Clamity.Content.Bosses.WoB.Projectiles
 {

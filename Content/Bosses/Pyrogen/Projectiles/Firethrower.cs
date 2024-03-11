@@ -1,13 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria;
-using Terraria.ModLoader;
-
-namespace Clamity.Content.Bosses.Pyrogen.Projectiles
+﻿namespace Clamity.Content.Bosses.Pyrogen.Projectiles
 {
     public class Firethrower : ModProjectile
     {

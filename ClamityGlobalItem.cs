@@ -1,5 +1,4 @@
-﻿using CalamityMod;
-using CalamityMod.Items.TreasureBags;
+﻿using CalamityMod.Items.TreasureBags;
 using CalamityMod.Items.TreasureBags.MiscGrabBags;
 using Clamity.Content.Cooldowns;
 using Clamity.Content.Items.Accessories;
@@ -7,13 +6,7 @@ using Clamity.Content.Items.Mounts;
 using Clamity.Content.Items.Potions.Food;
 using Clamity.Content.Items.Weapons.Classless;
 using Clamity.Content.Items.Weapons.Melee.Shortswords;
-using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using Terraria;
 using Terraria.GameContent.ItemDropRules;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Clamity
 {

@@ -1,6 +1,3 @@
-using Clamity.Commons;
-using Terraria.ModLoader;
-
 namespace Clamity
 {
     public class Clamity : Mod

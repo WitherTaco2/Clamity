@@ -1,12 +1,4 @@
-﻿using System;
-using Terraria.ID;
-using Terraria;
-using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using CalamityMod;
-using CalamityMod.Projectiles.Boss;
-
-namespace Clamity.Content.Bosses.Stupid
+﻿namespace Clamity.Content.Bosses.Stupid
 {
     public class Stupid : ModNPC
     {
