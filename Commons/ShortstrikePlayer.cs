@@ -1,19 +1,7 @@
 ﻿using CalamityMod.Cooldowns;
-using CalamityMod;
+using Clamity.Content.Buffs.Shortstrike;
 using Clamity.Content.Cooldowns;
-using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria.ModLoader;
-using Terraria.Audio;
-using Terraria.ID;
-using Terraria;
 using Clamity.Content.Items.Weapons.Melee.Shortswords;
-using CalamityMod.Items.Weapons.Melee;
-using CalamityMod.Items.Accessories;
 
 namespace Clamity.Commons
 {
@@ -107,6 +95,18 @@ namespace Clamity.Commons
             new ShortstrikeInfo(ItemID.PlatinumShortsword, ProjectileID.PlatinumShortswordStab, 4, 0.2f),
             new ShortstrikeInfo(ItemID.Gladius, ProjectileID.GladiusStab, 4, 0.1f),
 
+            new ShortstrikeInfo(ModContent.ItemType<WulfrumLeechDagger>(), ModContent.ProjectileType<WulfrumLeechDaggerProjectile>(), 2, 0f),
+            new ShortstrikeInfo(ModContent.ItemType<SporeKnife>(), ModContent.ProjectileType<SporeKnifeProjectile>(), 4, 0.2f),
+            new ShortstrikeInfo(ModContent.ItemType<Tomutus>(), ModContent.ProjectileType<TomutusProjectile>(), 3, 0.3f),
+
+            new ShortstrikeInfo(ModContent.ItemType<ColdheartIcicle>(), ModContent.ProjectileType<ColdheartIcicleProjectile>(), 2, 0f),
+            new ShortstrikeInfo(ModContent.ItemType<Caliburn>(), ModContent.ProjectileType<CaliburnProjectile>(), 4, 0.15f),
+            new ShortstrikeInfo(ModContent.ItemType<TrueCaliburn>(), ModContent.ProjectileType<TrueCaliburnProjectile>(), 4, 0.2f),
+            new ShortstrikeInfo(ModContent.ItemType<TerraShiv>(), ModContent.ProjectileType<TerraShivProjectile>(), 3, 0.2f),
+            new ShortstrikeInfo(ModContent.ItemType<Disease>(), ModContent.ProjectileType<DiseaseProjectile>(), 3, 0.2f),
+            new ShortstrikeInfo(ModContent.ItemType<Everest>(), ModContent.ProjectileType<EverestProjectile>(), 5, 0.1f),
+            new ShortstrikeInfo(ModContent.ItemType<ExoGladius>(), ModContent.ProjectileType<ExoGladiusProjectile>(), 3, 0.3f),
+
             //new ShortstrikeInfo(ItemID.CopperShortsword, ProjectileID.CopperShortswordStab, 3, 0.1f),
             //new ShortstrikeInfo(ItemID.CopperShortsword, ProjectileID.CopperShortswordStab, 3, 0.1f),
             //new ShortstrikeInfo(ItemID.CopperShortsword, ProjectileID.CopperShortswordStab, 3, 0.1f),
@@ -137,6 +137,10 @@ namespace Clamity.Commons
             { ModContent.ItemType<CosmicShiv>(), 0.5f },
             { ModContent.ItemType<ExoGladius>(), 0.3f },
         };*/
+        public bool CanShortfurry()
+        {
+            return shortstrikeCharge == 100 && hitCount == 0;
+        }
         public int shortstrikeCharge;
         public int hitCount;
         public override void PostUpdateEquips()
@@ -219,28 +223,49 @@ namespace Clamity.Commons
     public class ShortstrikeGlobalItem : GlobalItem
     {
         private ShortstrikePlayer SSPlayer(Player player) => player.GetModPlayer<ShortstrikePlayer>();
-        public bool CanShortfurry(Player player)
-        {
-            return SSPlayer(player).shortstrikeCharge == 100 && SSPlayer(player).hitCount == 0;
-        }
         public override bool AltFunctionUse(Item item, Player player)
         {
             if (ShortstrikePlayer.shortswords.ContainItem(item.type))
-                return CanShortfurry(player);
+                return player.SSPlayer().CanShortfurry();
             return base.AltFunctionUse(item, player);
         }
         public override bool? UseItem(Item item, Player player)
         {
             if (ShortstrikePlayer.shortswords.ContainItem(item.type) && player.altFunctionUse == 2)
             {
-                if (CanShortfurry(player))
+                if (player.SSPlayer().CanShortfurry())
                 {
+                    Shortstrike(player, item, ModContent.BuffType<CopperShortstrike>(), 5, ItemID.CopperShortsword);
+                    Shortstrike(player, item, ModContent.BuffType<TinShortstrike>(), 5, ItemID.TinShortsword);
+                    Shortstrike(player, item, ModContent.BuffType<IronShortstrike>(), 5, ItemID.IronShortsword);
+                    Shortstrike(player, item, ModContent.BuffType<LeadShortstrike>(), 5, ItemID.LeadShortsword);
+                    Shortstrike(player, item, ModContent.BuffType<SilverShortstrike>(), 5, ItemID.SilverShortsword);
+                    Shortstrike(player, item, ModContent.BuffType<TungstenShortstrike>(), 5, ItemID.TungstenShortsword);
+                    Shortstrike(player, item, ModContent.BuffType<GoldShortstrike>(), 10, ItemID.GoldShortsword);
+                    Shortstrike(player, item, ModContent.BuffType<PlatinumShortstrike>(), 10, ItemID.PlatinumShortsword);
+                    Shortstrike(player, item, ModContent.BuffType<GladiusShortstrike>(), 5, ItemID.Gladius, 1.25f);
+
                     player.GetModPlayer<ShortstrikePlayer>().hitCount = ShortstrikePlayer.shortswords.GetHitCount(item.type);
                     player.GetModPlayer<ShortstrikePlayer>().shortstrikeCharge = 0;
+
                 }
                 return false;
             }
             return base.UseItem(item, player);
+        }
+        private void Shortstrike(Player player, Item item, int buffID, float timeInSeconds, int itemID, float percent = 2)
+        {
+            if (item.type == itemID)
+            {
+                player.AddBuff(buffID, CalamityUtils.SecondsToFrames(timeInSeconds));
+                for (float i = 0; i < MathHelper.TwoPi; i += MathHelper.PiOver4 / 3)
+                {
+                    //Dust dust = Dust.NewDustPerfect(proj.Center + proj.velocity, DustID.Electric, Vector2.UnitX.RotatedBy(i) * 3f + proj.velocity);
+                    Vector2 velocity = player.SafeDirectionTo(Main.MouseWorld).SafeNormalize(Vector2.Zero) * item.shootSpeed;
+                    Dust dust = Dust.NewDustPerfect(player.Center + velocity, DustID.Electric, Vector2.UnitX.RotatedBy(i) * 3f + velocity);
+                    dust.noGravity = true;
+                }
+            }
         }
         public override void ModifyShootStats(Item item, Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
@@ -249,6 +274,7 @@ namespace Clamity.Commons
             if (player.GetModPlayer<ShortstrikePlayer>().hitCount > 0)
             {
                 damage = (int)(damage * (1f + ShortstrikePlayer.shortswords.GetDamageMult(item.type)));
+                velocity *= 1.5f;
             }
         }
     }
@@ -262,6 +288,8 @@ namespace Clamity.Commons
             ProjectileID.GoldShortswordStab, ProjectileID.PlatinumShortswordStab,
             ProjectileID.GladiusStab
         };*/
+        public override bool InstancePerEntity => true;
+        public bool shortstrike = false;
         public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
         {
             Player player = Main.player[projectile.owner];
@@ -270,6 +298,12 @@ namespace Clamity.Commons
                 if (player.GetModPlayer<ShortstrikePlayer>().hitCount == 0)
                     player.GetModPlayer<ShortstrikePlayer>().shortstrikeCharge++;
             }
+        }
+        public override void PostAI(Projectile projectile)
+        {
+            Player player = Main.player[projectile.owner];
+            if (player.SSPlayer().hitCount > 0)
+                shortstrike = true;
         }
     }
 }

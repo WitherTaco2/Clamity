@@ -8,12 +8,39 @@ Items: {
 			'''
 		DisplayName: Тяжелая металлическая мусорка
 	}
+
+	Mounts: {
+		FlameCube: {
+			DisplayName: Куб Огня
+			Tooltip:
+				'''
+				Материализует довольно уютный и чрезвычайно проворный летающий трон Каламитаса
+				Удерживайте [KEY], сидя на троне, чтобы двигаться медленнее для большей точности
+				'Удобный геймер - опасный геймер'
+				'''
+		}
+
+		PlagueStation: {
+			DisplayName: Чумная станция
+			Tooltip:
+				'''
+				Материализует довольно уютный и чрезвычайно проворный летающий Чумной трон
+				Удерживайте [KEY], сидя на троне, чтобы двигаться медленнее для большей точности
+				'Удобный геймер - опасный геймер'
+				'''
+		}
+	}
 }
 
 Misc: {
-	RecipeGroup.AnySandBlock: Любой песок
+	RecipeGroup: {
+		AnySandBlock: Любой песок
+		// AnyGemHook: Any Gem Hook
+	}
+
 	// None: ""
-	// DefeatedWoB: Defeated a Wall of Bronze
+	DefeatedWoB: После победы над Стеной Бронзы
+	// FrozenHellMessege: You can feel the cold breeze coming from the center of Hell
 }
 
 Tiles: {
@@ -26,4 +53,22 @@ Biomes: {
 		TownNPCDialogueName: Замороженный ад
 		DisplayName: Замороженный ад
 	}
+}
+
+InfernumIntro: {
+	/* Pyrogen:
+		'''
+		Auric Furnace
+		Pyrogen
+		''' */
+	/* WoB:
+		'''
+		Machine Guardian
+		Wall of Bronze
+		''' */
+	/* Clamitas:
+		'''
+		Supreme Clam
+		Clamitas
+		''' */
 }

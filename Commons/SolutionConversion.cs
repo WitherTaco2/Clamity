@@ -1,8 +1,4 @@
 ﻿using Clamity.Content.Biomes.FrozenHell.Items;
-using System;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Clamity.Commons
 {

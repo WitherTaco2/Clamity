@@ -1,21 +1,17 @@
-﻿using CalamityMod;
-using CalamityMod.Buffs.DamageOverTime;
+﻿using CalamityMod.Buffs.DamageOverTime;
+using CalamityMod.Items.Accessories;
+using CalamityMod.Projectiles.Ranged;
 using Clamity.Content.Biomes.FrozenHell.Biome;
-using Clamity.Content.Boss.Pyrogen.Drop;
+using Clamity.Content.Bosses.Pyrogen.Drop;
 using Clamity.Content.Cooldowns;
 using Clamity.Content.Items.Tools.Bags.Fish;
-using Microsoft.Xna.Framework;
-using System.Collections.Generic;
-using Terraria;
-using Terraria.DataStructures;
 using Terraria.GameInput;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Clamity
 {
     public class ClamityPlayer : ModPlayer
     {
+        #region Variables
         public bool realityRelocator;
         public bool wulfrumShortstrike;
         public bool aflameAcc;
@@ -29,6 +25,9 @@ namespace Clamity
         public bool pyroStoneVanity;
         public bool hellFlare;
         public bool icicleRing;
+        public bool redDie;
+        public bool eidolonAmulet;
+        public bool metalWings;
 
         //Armor
         public bool inflicingMeleeFrostburn;
@@ -36,6 +35,7 @@ namespace Clamity
 
         //Minion
         public bool hellsBell;
+        public bool guntera;
 
         //Buffs-Debuffs
         //public bool wCleave;
@@ -44,6 +44,10 @@ namespace Clamity
         public bool taintedManaRegen;
 
         //Pets
+
+        //Mounts
+        public bool FlyingChair;
+        public int FlyingChairPower;
 
         public bool ZoneFrozenHell => Player.InModBiome((ModBiome)ModContent.GetInstance<FrozenHell>());
         public override void ResetEffects()
@@ -59,62 +63,23 @@ namespace Clamity
             pyroStoneVanity = false;
             hellFlare = false;
             icicleRing = false;
+            redDie = false;
+            eidolonAmulet = false;
+            metalWings = false;
 
             inflicingMeleeFrostburn = false;
             frozenParrying = false;
 
             hellsBell = false;
+            guntera = false;
 
-            //wCleave = false;
-            taintedInferno = false;
-            taintedMagicPower = false;
-            taintedManaRegen = false;
-        }
-        //public Item[] accesories;
-        public override void UpdateEquips()
-        {
-            foreach (Item i in Player.armor)
-            {
-                if (!i.IsAir)
-                    if (i.Calamity().AppliedEnchantment != null)
-                    {
-                        if (i.Calamity().AppliedEnchantment.Value.ID == 10000)
-                            aflameAccList.Add(i.type);
-                    }
-            }
-            if (aflameAccList.Count > 0)
-            {
-                Player.AddBuff(ModContent.BuffType<WeakBrimstoneFlames>(), 1);
-            }
-        }
-        public override void ProcessTriggers(TriggersSet triggersSet)
-        {
-            if (base.Player.dead)
-            {
-                return;
-            }
-            if (CalamityKeybinds.NormalityRelocatorHotKey.JustPressed && realityRelocator && Main.myPlayer == Player.whoAmI && !Player.CCed)
-            {
-                Vector2 vector = default(Vector2);
-                vector.X = (float)Main.mouseX + Main.screenPosition.X;
-                if (base.Player.gravDir == 1f)
-                {
-                    vector.Y = (float)Main.mouseY + Main.screenPosition.Y - (float)base.Player.height;
-                }
-                else
-                {
-                    vector.Y = Main.screenPosition.Y + (float)Main.screenHeight - (float)Main.mouseY;
-                }
 
-                vector.X -= base.Player.width / 2;
-                if (vector.X > 50f && vector.X < (float)(Main.maxTilesX * 16 - 50) && vector.Y > 50f && vector.Y < (float)(Main.maxTilesY * 16 - 50) && !Collision.SolidCollision(vector, base.Player.width, base.Player.height))
-                {
-                    base.Player.Teleport(vector, 4);
-                    NetMessage.SendData(65, -1, -1, null, 0, base.Player.whoAmI, vector.X, vector.Y, 1);
-                }
-            }
 
+            FlyingChair = false;
+            FlyingChairPower = 12;
         }
+        #endregion
+        #region On Hit Effect
         public override void OnHitNPCWithItem(Item item, NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (pyroSpear && !Player.HasCooldown(PyrospearCooldown.ID))
@@ -154,39 +119,51 @@ namespace Clamity
                 Player.AddCooldown(PyrospearCooldown.ID, 100);
             }
         }
-        /*public override void ModifyHitByNPC(NPC npc, ref Player.HurtModifiers modifiers)
+        #endregion
+        #region Hurt Effect
+        public override void OnHurt(Player.HurtInfo info)
         {
-            if (wCleave)
-                Player.Calamity().contactDamageReduction *= 0.75f;
+            if (metalWings)
+            {
+                float percent = info.Damage / Player.statLifeMax2;
+                int recivingFlyTime = (int)(Player.wingTimeMax * percent / 2);
+                if (Player.wingTime + recivingFlyTime > Player.wingTimeMax)
+                    Player.wingTime = Player.wingTimeMax;
+                else
+                    Player.wingTime += recivingFlyTime;
+            }
         }
-        public override void ModifyHitByProjectile(Projectile proj, ref Player.HurtModifiers modifiers)
+        /*public override void ModifyHurt(ref Player.HurtModifiers modifiers)
         {
-            if (wCleave)
-                Player.Calamity().contactDamageReduction *= 0.75f;
+            if (metalWings)
+            {
+                float percent = info.Damage / Player.statLifeMax2;
+                int recivingFlyTime = (int)(Player.wingTimeMax * percent / 2);
+                if (Player.wingTime + recivingFlyTime > Player.wingTimeMax)
+                    Player.wingTime = Player.wingTimeMax;
+                else
+                    Player.wingTime += recivingFlyTime;
+            }
         }*/
-        public override void CatchFish(FishingAttempt attempt, ref int itemDrop, ref int npcSpawn, ref AdvancedPopupRequest sonar, ref Vector2 sonarPosition)
+        #endregion
+        #region Updates
+        public override void UpdateEquips()
         {
-            bool flag = !attempt.inHoney && !attempt.inLava;
-            if (flag)
+            foreach (Item i in Player.armor)
             {
-                if (Player.ZoneDesert && Main.hardMode && attempt.uncommon && Main.rand.NextBool(7))
-                    itemDrop = ModContent.ItemType<FishOfFlame>();
-                /*if (Player.Calamity().ZoneSulphur && DownedBossSystem.downedPolterghast && attempt.uncommon && Main.rand.NextBool(10))
-                    itemDrop = ModContent.ItemType<FrontGar>();
-                if (Player.ZoneJungle && DownedBossSystem.downedProvidence && attempt.uncommon && Main.rand.NextBool(10))
-                    itemDrop = ModContent.ItemType<RearGar>();
-                if (Player.ZoneSkyHeight && NPC.downedMoonlord && attempt.uncommon && Main.rand.NextBool(10))
-                    itemDrop = ModContent.ItemType<SideGar>();*/
+                if (!i.IsAir)
+                    if (i.Calamity().AppliedEnchantment != null)
+                    {
+                        if (i.Calamity().AppliedEnchantment.Value.ID == 10000)
+                            aflameAccList.Add(i.type);
+                    }
             }
-        }
-        public override void UpdateBadLifeRegen()
-        {
-            if (icicleRing && Player.statLife > Player.statLifeMax2 / 3)
+            if (aflameAccList.Count > 0)
             {
-                if (Player.lifeRegen > 0)
-                    Player.lifeRegen = 0;
-                Player.lifeRegen -= 30;
+                Player.AddBuff(ModContent.BuffType<WeakBrimstoneFlames>(), 1);
             }
+            if (taintedManaRegen)
+                Player.manaCost *= 2;
         }
         public override void PostUpdateEquips()
         {
@@ -228,6 +205,25 @@ namespace Clamity
                     Player.endurance += 0.1f;
                 }
             }
+            if (eidolonAmulet)
+            {
+                bool flag1 = Player.Center.Y < Main.worldSurface * 16f;
+                bool flag2 = Main.raining & flag1 || Player.dripping || Player.wet && !Player.lavaWet && !Player.honeyWet;
+                if (Player.Calamity().oceanCrestTimer > 0 | flag2)
+                    Player.GetDamage<GenericDamageClass>() += 0.1f;
+            }
+            if (taintedInferno)
+            {
+                Player.buffImmune[BuffID.OnFire3] = false;
+                Player.AddBuff(BuffID.OnFire3, 10);
+                for (int i = 0; i < Main.maxNPCs; i++)
+                {
+                    NPC npc = Main.npc[i];
+                    if (npc == null) continue;
+                    if (npc.active && !npc.friendly && !npc.dontTakeDamage)
+                        npc.AddBuff(BuffID.OnFire3, 10);
+                }
+            }
         }
         public Item FindAccessory(int itemID)
         {
@@ -238,5 +234,124 @@ namespace Clamity
             }
             return new Item();
         }
+        #endregion
+        #region Modify Stats
+        public override void UpdateBadLifeRegen()
+        {
+            if (icicleRing && Player.statLife > Player.statLifeMax2 / 3)
+            {
+                if (Player.lifeRegen > 0)
+                    Player.lifeRegen = 0;
+                Player.lifeRegen -= 30;
+            }
+        }
+        public override void PreUpdateMovement()
+        {
+            if (Player.whoAmI != Main.myPlayer || !FlyingChair)
+                return;
+            if (Player.controlLeft)
+            {
+                Player.velocity.X = -FlyingChairPower;
+                Player.ChangeDir(-1);
+            }
+            else if (this.Player.controlRight)
+            {
+                Player.velocity.X = FlyingChairPower;
+                Player.ChangeDir(1);
+            }
+            else
+                Player.velocity.X = 0.0f;
+            if (Player.controlUp || Player.controlJump)
+                Player.velocity.Y = -FlyingChairPower;
+            else if (Player.controlDown)
+            {
+                Player.velocity.Y = FlyingChairPower;
+                if (Collision.TileCollision(Player.position, Player.velocity, Player.width, Player.height, true, gravDir: (int)this.Player.gravDir).Y == 0)
+                    Player.velocity.Y = 0.5f;
+            }
+            else
+                Player.velocity.Y = 0.0f;
+            if (CalamityKeybinds.ExoChairSlowdownHotkey.Current)
+            {
+                Player.velocity = Player.velocity / 2;
+            }
+        }
+        public override void ModifyLuck(ref float luck)
+        {
+            if (redDie)
+            {
+                for (int i = 3; i < 9; i++)
+                {
+                    Item item = Player.armor[i];
+                    if (item.type == ModContent.ItemType<OldDie>())
+                    {
+                        luck -= 0.2f;
+                    }
+                    luck *= 1.5f;
+                    luck += 0.2f;
+                }
+            }
+        }
+        #endregion
+        public override bool Shoot(Item item, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+
+            if (eidolonAmulet && Player.Calamity().RustyMedallionCooldown <= 0)
+            {
+                int d = (int)Player.GetTotalDamage<AverageDamageClass>().ApplyTo(damage / 5);
+                //int d = damage / 5;
+                d = Player.ApplyArmorAccDamageBonusesTo(d);
+
+                Vector2 startingPosition = Main.MouseWorld - Vector2.UnitY.RotatedByRandom(0.4f) * 1250f;
+                Vector2 directionToMouse = (Main.MouseWorld - startingPosition).SafeNormalize(Vector2.UnitY).RotatedByRandom(0.1f);
+                int drop = Projectile.NewProjectile(source, startingPosition, directionToMouse * 15f, ModContent.ProjectileType<ToxicannonDrop>(), d, 0f, Player.whoAmI);
+                if (drop.WithinBounds(Main.maxProjectiles))
+                {
+                    Main.projectile[drop].penetrate = 3;
+                    Main.projectile[drop].DamageType = DamageClass.Generic;
+                }
+                Player.Calamity().RustyMedallionCooldown = RustyMedallion.AcidCreationCooldown / 2;
+            }
+            return true;
+        }
+        #region Other
+        public override void CatchFish(FishingAttempt attempt, ref int itemDrop, ref int npcSpawn, ref AdvancedPopupRequest sonar, ref Vector2 sonarPosition)
+        {
+            bool flag = !attempt.inHoney && !attempt.inLava;
+            if (flag)
+            {
+                if (Player.ZoneDesert && Main.hardMode && attempt.uncommon && Main.rand.NextBool(7))
+                    itemDrop = ModContent.ItemType<FishOfFlame>();
+            }
+        }
+        public override void ProcessTriggers(TriggersSet triggersSet)
+        {
+            if (base.Player.dead)
+            {
+                return;
+            }
+            if (CalamityKeybinds.NormalityRelocatorHotKey.JustPressed && realityRelocator && Main.myPlayer == Player.whoAmI && !Player.CCed)
+            {
+                Vector2 vector;
+                vector.X = Main.mouseX + Main.screenPosition.X;
+                if (Player.gravDir == 1f)
+                {
+                    vector.Y = (float)Main.mouseY + Main.screenPosition.Y - (float)base.Player.height;
+                }
+                else
+                {
+                    vector.Y = Main.screenPosition.Y + Main.screenHeight - Main.mouseY;
+                }
+
+                vector.X -= Player.width / 2;
+                if (vector.X > 50f && vector.X < (Main.maxTilesX * 16 - 50) && vector.Y > 50f && vector.Y < (Main.maxTilesY * 16 - 50) && !Collision.SolidCollision(vector, Player.width, Player.height))
+                {
+                    Player.Teleport(vector, 4);
+                    NetMessage.SendData(MessageID.TeleportPlayerThroughPortal, -1, -1, null, 0, Player.whoAmI, vector.X, vector.Y, 1);
+                }
+            }
+
+        }
+        #endregion
     }
 }

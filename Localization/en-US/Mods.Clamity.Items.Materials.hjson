@@ -28,6 +28,16 @@ EnchantedMetal: {
 	DisplayName: Enchanted Metal
 }
 
+MetalFeather: {
+	Tooltip: ""
+	DisplayName: Metal Feather
+}
+
+RarePlanteraFruit: {
+	DisplayName: Rare Plantera Fruit
+	Tooltip: ""
+}
+
 DisgustingMeat: {
 	Tooltip: ""
 	DisplayName: Disgusting Meat

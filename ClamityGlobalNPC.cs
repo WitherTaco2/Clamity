@@ -1,19 +1,18 @@
-﻿using CalamityMod;
-using CalamityMod.NPCs.Abyss;
+﻿using CalamityMod.NPCs.Abyss;
 using CalamityMod.NPCs.NormalNPCs;
 using CalamityMod.NPCs.PlaguebringerGoliath;
 using CalamityMod.NPCs.SunkenSea;
+using CalamityMod.NPCs.SupremeCalamitas;
+using CalamityMod.NPCs.TownNPCs;
 using Clamity.Content.Biomes.FrozenHell.Items;
 using Clamity.Content.Items.Materials;
+using Clamity.Content.Items.Mounts;
 using Clamity.Content.Items.Potions.Food;
+using Clamity.Content.Items.Weapons.Classless;
 using Clamity.Content.Items.Weapons.Melee.Shortswords;
 using Clamity.Content.Items.Weapons.Melee.Swords;
 using Clamity.Content.Items.Weapons.Ranged.Guns;
-using Terraria;
 using Terraria.GameContent.ItemDropRules;
-using Terraria.ID;
-using Terraria.Localization;
-using Terraria.ModLoader;
 
 namespace Clamity
 {
@@ -25,15 +24,26 @@ namespace Clamity
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
             Conditions.IsHardmode hm = new Conditions.IsHardmode();
+            LeadingConditionRule mainRule = npcLoot.DefineNormalOnlyDropSet();
+
+            //Boss Drop
             if (npc.type == NPCID.Golem)
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<LeadWizard>(), 4));
             }
             if (npc.type == ModContent.NPCType<PlaguebringerGoliath>())
             {
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Disease>(), 10));
+                mainRule.Add(ItemDropRule.Common(ModContent.ItemType<Disease>(), 4));
+                mainRule.Add(ItemDropRule.Common(ModContent.ItemType<PlagueStation>()));
+                npcLoot.Add(ItemDropRule.NormalvsExpert(ModContent.ItemType<TrashOfMagnus>(), 4, 3));
+            }
+            if (npc.type == ModContent.NPCType<SupremeCalamitas>())
+            {
+                mainRule.Add(ItemDropRule.Common(ModContent.ItemType<Calamitea>(), 1, 10, 10));
             }
 
+
+            //Essence of Flame drop
             if (ContainType(npc.type, NPCID.Mummy, NPCID.LightMummy, NPCID.DarkMummy, NPCID.BloodMummy,
                 NPCID.DesertBeast, NPCID.DesertScorpionWalk, NPCID.DesertScorpionWall,
                 NPCID.DesertDjinn, NPCID.DesertLamiaDark, NPCID.DesertLamiaLight,
@@ -43,12 +53,10 @@ namespace Clamity
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<EssenceOfFlame>(), 4));
             }
-
             if (ContainType(npc.type, NPCID.Vulture, NPCID.TombCrawlerHead))
             {
                 npcLoot.Add(ItemDropRule.ByCondition(hm, ModContent.ItemType<EssenceOfFlame>(), 4));
             }
-
             if (ContainType(npc.type, NPCID.Antlion, NPCID.WalkingAntlion, NPCID.GiantWalkingAntlion, NPCID.FlyingAntlion,
                 NPCID.GiantFlyingAntlion)
             )
@@ -57,6 +65,8 @@ namespace Clamity
                 npcLoot.Add(ItemDropRule.ByCondition(hm, ModContent.ItemType<EssenceOfFlame>(), 4));
             }
 
+
+            //Food drop
             if (ContainType(npc.type, ModContent.NPCType<SeaSerpent1>(), ModContent.NPCType<EutrophicRay>(), ModContent.NPCType<GhostBell>(), ModContent.NPCType<PrismBack>(), ModContent.NPCType<SeaFloaty>(), ModContent.NPCType<BlindedAngler>()))
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ClamChowder>(), 20));
@@ -69,8 +79,6 @@ namespace Clamity
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ClamChowder>(), 2));
             }
-
-
             if (ContainType(npc.type, ModContent.NPCType<ChaoticPuffer>(), ModContent.NPCType<GiantSquid>(), ModContent.NPCType<Laserfish>(), ModContent.NPCType<OarfishHead>(), ModContent.NPCType<Eidolist>(), ModContent.NPCType<MirageJelly>(), ModContent.NPCType<Bloatfish>()))
             {
                 npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Barolegs>(), 20));
@@ -195,6 +203,8 @@ namespace Clamity
         {
             if (shop.NpcType == NPCID.Steampunker)
                 shop.Add<CyanSolution>(new Condition(Language.GetOrRegister("Mods.Clamity.Misc.DefeatedWoB"), () => ClamitySystem.downedWallOfBronze));
+            if (shop.NpcType == ModContent.NPCType<DILF>())
+                shop.Add<ColdheartIcicle>();
         }
     }
 }

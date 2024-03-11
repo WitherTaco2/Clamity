@@ -1,11 +1,4 @@
-﻿using CalamityMod;
-using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.Audio;
-using Terraria.ID;
-using Terraria.ModLoader;
-
-namespace Clamity.Content.Biomes.FrozenHell.Items
+﻿namespace Clamity.Content.Biomes.FrozenHell.Items
 {
     public class FrozenHellstone : ModItem, ILocalizedModType, IModType
     {
@@ -29,7 +22,7 @@ namespace Clamity.Content.Biomes.FrozenHell.Items
             Item.autoReuse = true;
             Item.useAnimation = 15;
             Item.useTime = 10;
-            Item.useStyle = 1;
+            Item.useStyle = ItemUseStyleID.Swing;
 
             Item.consumable = true;
             Item.createTile = ModContent.TileType<FrozenHellstoneTile>();

@@ -1,13 +1,4 @@
-﻿using CalamityMod.Items;
-using CalamityMod.Items.Weapons.Melee;
-using CalamityMod.Projectiles.Melee;
-using Terraria.Audio;
-using Terraria.ID;
-using Terraria;
-using Terraria.ModLoader;
-using CalamityMod;
-using System;
-using Microsoft.Xna.Framework;
+﻿using CalamityMod.Items.Weapons.Melee;
 using CalamityMod.Rarities;
 using CalamityMod.Tiles.Furniture.CraftingStations;
 using Clamity.Content.Biomes.FrozenHell.Items;
@@ -20,19 +11,19 @@ namespace Clamity.Content.Items.Weapons.Melee.Swords
 
         public override void SetDefaults()
         {
-            base.Item.damage = 500;
-            base.Item.DamageType = DamageClass.Melee;
-            base.Item.useTurn = true;
-            base.Item.rare = ModContent.RarityType<Violet>();
-            base.Item.width = base.Item.height = 80;
-            base.Item.scale = 1.5f;
-            base.Item.useTime = 20;
-            base.Item.useAnimation = 20;
-            base.Item.useStyle = 1;
-            base.Item.knockBack = 8f;
-            base.Item.value = CalamityGlobalItem.Rarity15BuyPrice;
-            base.Item.autoReuse = true;
-            base.Item.UseSound = SoundID.Item1;
+            Item.damage = 500;
+            Item.DamageType = DamageClass.Melee;
+            Item.useTurn = true;
+            Item.rare = ModContent.RarityType<Violet>();
+            Item.width = Item.height = 80;
+            Item.scale = 1.5f;
+            Item.useTime = 20;
+            Item.useAnimation = 20;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.knockBack = 8f;
+            Item.value = CalamityGlobalItem.Rarity15BuyPrice;
+            Item.autoReuse = true;
+            Item.UseSound = SoundID.Item1;
         }
 
         /*public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)

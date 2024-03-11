@@ -1,12 +1,4 @@
-﻿using CalamityMod.Items;
-using Microsoft.Xna.Framework;
-using System;
-using Terraria;
-using Terraria.DataStructures;
-using Terraria.ID;
-using Terraria.ModLoader;
-
-namespace Clamity.Content.Items.Weapons.Magic
+﻿namespace Clamity.Content.Items.Weapons.Magic
 {
     public class MoonstoneKnives : ModItem, ILocalizedModType
     {

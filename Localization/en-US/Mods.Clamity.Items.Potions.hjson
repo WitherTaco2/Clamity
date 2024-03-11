@@ -65,6 +65,15 @@ Foods: {
 			'''
 		DisplayName: Barolegs
 	}
+
+	Calamitea: {
+		Tooltip:
+			'''
+			Quite the calamity
+			Major improvements to all stats
+			'''
+		DisplayName: Calamitea
+	}
 }
 
 Tainted: {

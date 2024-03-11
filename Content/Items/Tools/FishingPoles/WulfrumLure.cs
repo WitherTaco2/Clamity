@@ -1,16 +1,5 @@
-﻿using CalamityMod.Items.Materials;
-using CalamityMod.Items;
-using CalamityMod.Projectiles.Typeless;
-using Terraria.Audio;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Terraria;
-using CalamityMod.Items.Fishing.FishingRods;
-using CalamityMod;
-using Microsoft.Xna.Framework;
-using Terraria.DataStructures;
-using Microsoft.Xna.Framework.Graphics;
-using Terraria.GameContent;
+﻿using CalamityMod.Items.Fishing.FishingRods;
+using CalamityMod.Items.Materials;
 using ReLogic.Graphics;
 
 namespace Clamity.Content.Items.Tools.FishingPoles

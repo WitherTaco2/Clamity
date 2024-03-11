@@ -1,10 +1,6 @@
-﻿using CalamityMod;
-using CalamityMod.Items;
-using CalamityMod.Items.Placeables.Ores;
+﻿using CalamityMod.Items.Placeables.Ores;
 using CalamityMod.Items.Placeables.Plates;
 using CalamityMod.Tiles.Furniture.CraftingStations;
-using Terraria;
-using Terraria.ID;
 
 namespace Clamity.Content.Items.Tools
 {

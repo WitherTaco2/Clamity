@@ -43,27 +43,36 @@ Foods: {
 	}
 
 	SlagspitterPauldron: {
-		// Tooltip: Major improvements to all stats
+		Tooltip: Значительные улучшения всех характеристик
 		// DisplayName: Slagspitter Pauldron
 	}
 
 	ClamChowder: {
-		/* Tooltip:
+		Tooltip:
 			'''
-			New Ilmeris style
-			Medium improvements to all stats
-			''' */
-		// DisplayName: Clam Chowder
+			Новый стиль Ильмериса
+			Средние улучшения всех характеристик
+			'''
+		DisplayName: Похлебка из моллюсков
 	}
 
 	Barolegs: {
-		/* Tooltip:
+		Tooltip:
 			'''
-			The meat actually looks to have come from a barocraw. Not that it matters, it's rancid all the same
-			Varying improvements to all stats
-			Buff based on game stage
-			''' */
-		// DisplayName: Barolegs
+			Мясо на самом деле выглядит так, будто его приготовили из барокрау. Не то чтобы это имело значение, оно все равно прогорклое
+			Различные улучшения всех характеристик
+			Бафф зависит от стадии игры
+			'''
+		DisplayName: Баролапы
+	}
+
+	Calamitea: {
+		Tooltip:
+			'''
+			Настоящее бедствие
+			Значительные улучшения всех характеристик
+			'''
+		DisplayName: Чаебедствие
 	}
 }
 

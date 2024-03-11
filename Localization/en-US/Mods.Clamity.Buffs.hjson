@@ -75,6 +75,26 @@ ExoBaguetteBuff: {
 	Description: "'Exo Bonjour' ~WitherTaco"
 }
 
+BrimChairBuff: {
+	DisplayName: Brimthrone
+	Description: Riding a physics defying gamer chair
+}
+
+PlagueChairBuff: {
+	DisplayName: Plague Chair
+	Description: Riding a physics defying gamer chair
+}
+
+PlanterrorStaffBuff: {
+	DisplayName: Guntera
+	Description: '''"Talk about guns and roses, am I right?"'''
+}
+
+HeavyMetalTrashCanBuff: {
+	DisplayName: Mini Bocchi
+	Description: Hitori Gotoh is following you.
+}
+
 TaintedLifeforcePotionBuff: {
 	Description: Converts part of max life into max mana
 	DisplayName: Tainted Lifeforce

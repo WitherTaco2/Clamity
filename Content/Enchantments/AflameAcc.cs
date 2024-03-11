@@ -1,6 +1,4 @@
-﻿using CalamityMod.UI.CalamitasEnchants;
-
-namespace Clamity.Content.Enchantments
+﻿namespace Clamity.Content.Enchantments
 {
     /*public class AflameAcc : Enchantment
     {

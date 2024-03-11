@@ -1,7 +1,4 @@
-﻿using Terraria;
-using Terraria.ModLoader;
-
-namespace Clamity.Content.Buffs.Shortstrike
+﻿namespace Clamity.Content.Buffs.Shortstrike
 {
     public class CopperShortstrike : ModBuff, ILocalizedModType, IModType
     {

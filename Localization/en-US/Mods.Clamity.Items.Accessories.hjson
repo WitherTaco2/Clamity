@@ -65,3 +65,37 @@ IcicleRing: {
 		'''
 	DisplayName: Icicle Ring
 }
+
+RedDie: {
+	DisplayName: Red Die
+	Tooltip:
+		'''
+		1.5x luck modified
+		20% increased extra luck 
+		'You are ready for reroll'
+		'''
+}
+
+EidolonAmulet: {
+	DisplayName: Eidolon Amulet
+	Tooltip:
+		'''
+		Grants immunity to the Riptide, Crush Depth and Irradiated debuffs
+		All attacks inflict the Crush Depth debuff and release acid droplets from the sky
+		You recover air while standing still underwater (don't work in abyss)
+		15% increased mining speed and 10% increased damage while wet
+		25% increased max life while in the abyss
+		Provides a moderate amount of light in the abyss
+		'''
+}
+
+Wings: {
+	MetalWings: {
+		DisplayName: Metal Wings
+		Tooltip:
+			'''
+			When you getting hit, you receive flight time percentages equal to half of the ratio of damage received to max HP
+			While wearing Frozen Armor, all players in your team gets a 20 increased defence
+			'''
+	}
+}

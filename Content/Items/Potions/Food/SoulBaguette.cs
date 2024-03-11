@@ -1,15 +1,5 @@
-﻿using CalamityMod;
-using CalamityMod.Buffs.Alcohol;
-using CalamityMod.Buffs.Potions;
+﻿using CalamityMod.Buffs.Potions;
 using CalamityMod.Items.Potions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Clamity.Content.Items.Potions.Food
 {
