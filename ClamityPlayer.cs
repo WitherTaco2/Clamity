@@ -1,8 +1,11 @@
 ﻿using CalamityMod.Buffs.DamageOverTime;
+using CalamityMod.Cooldowns;
 using CalamityMod.Items.Accessories;
+using CalamityMod.NPCs.Cryogen;
 using CalamityMod.Projectiles.Ranged;
 using Clamity.Content.Biomes.FrozenHell.Biome;
 using Clamity.Content.Bosses.Pyrogen.Drop;
+using Clamity.Content.Bosses.Pyrogen.NPCs;
 using Clamity.Content.Cooldowns;
 using Clamity.Content.Items.Tools.Bags.Fish;
 using Terraria.GameInput;
@@ -32,6 +35,7 @@ namespace Clamity
         //Armor
         public bool inflicingMeleeFrostburn;
         public bool frozenParrying;
+        public int frozenParryingTime;
 
         //Minion
         public bool hellsBell;
@@ -74,6 +78,10 @@ namespace Clamity
 
             FlyingChair = false;
             FlyingChairPower = 12;
+        }
+        public override void UpdateDead()
+        {
+            frozenParryingTime = 0;
         }
         #endregion
         #region On Hit Effect
@@ -123,16 +131,17 @@ namespace Clamity
             if (metalWings)
             {
                 float percent = info.Damage / Player.statLifeMax2;
-                int recivingFlyTime = (int)(Player.wingTimeMax * percent / 2);
+                float recivingFlyTime = Player.wingTimeMax * percent / 2;
                 if (Player.wingTime + recivingFlyTime > Player.wingTimeMax)
                     Player.wingTime = Player.wingTimeMax;
                 else
                     Player.wingTime += recivingFlyTime;
+                Main.NewText(recivingFlyTime);
             }
         }
-        /*public override void ModifyHurt(ref Player.HurtModifiers modifiers)
+        public override void ModifyHurt(ref Player.HurtModifiers modifiers)
         {
-            if (metalWings)
+            /*if (metalWings)
             {
                 float percent = info.Damage / Player.statLifeMax2;
                 int recivingFlyTime = (int)(Player.wingTimeMax * percent / 2);
@@ -140,10 +149,23 @@ namespace Clamity
                     Player.wingTime = Player.wingTimeMax;
                 else
                     Player.wingTime += recivingFlyTime;
+            }*/
+            if (frozenParrying && frozenParryingTime > 15)
+            {
+                if (!Player.HasCooldown(ParryCooldown.ID))
+                {
+                    Player.GiveIFrames(30, true);
+                    modifiers.FinalDamage *= 0.1f;
+                    modifiers.DisableSound();
+                }
+                SoundEngine.PlaySound(in PyrogenShield.BreakSound, new Vector2?(this.Player.Center));
+                Player.AddCooldown(ParryCooldown.ID, 10 * 60, false);
+                Player.AddBuff(47, 60);
             }
-        }*/
+        }
         #endregion
         #region Updates
+
         public override void UpdateEquips()
         {
             foreach (Item i in Player.armor)
@@ -166,6 +188,8 @@ namespace Clamity
         }
         public override void PostUpdateMiscEffects()
         {
+            var cooldownList = Player.GetDisplayedCooldowns();
+
             StatModifier statModifier;
             if (pyroStone || pyroStoneVanity)
             {
@@ -193,6 +217,34 @@ namespace Clamity
                 bool flag2 = Main.raining & flag1 || Player.dripping || Player.wet && !Player.lavaWet && !Player.honeyWet;
                 if (Player.Calamity().oceanCrestTimer > 0 | flag2)
                     Player.GetDamage<GenericDamageClass>() += 0.1f;
+            }
+            if (frozenParrying && frozenParryingTime > 0)
+                frozenParryingTime--;
+            if (frozenParrying && Player.HasCooldown(ParryCooldown.ID))
+            {
+                Player.buffImmune[47] = false;
+                /*for (int i = 0; i < cooldownList.Count; i++)
+                {
+                    CooldownInstance cooldown = cooldownList[i];
+
+                    if (cooldown.duration >= 9 * 60)
+                    {
+
+                    }
+                }
+                //Player.buffImmune[47] = false;
+                Player.controlJump = false;
+                Player.controlDown = false;
+                Player.controlLeft = false;
+                Player.controlRight = false;
+                Player.controlUp = false;
+                Player.controlUseItem = false;
+                Player.controlUseTile = false;
+                Player.controlThrow = false;
+                Player.gravDir = 1f;
+                Player.velocity = Vector2.Zero;
+                Player.velocity.Y = -0.1f;
+                Player.RemoveAllGrapplingHooks();*/
             }
         }
         public Item FindAccessory(int itemID)
@@ -296,7 +348,7 @@ namespace Clamity
         }
         public override void ProcessTriggers(TriggersSet triggersSet)
         {
-            if (base.Player.dead)
+            if (Player.dead)
             {
                 return;
             }
@@ -318,6 +370,15 @@ namespace Clamity
                 {
                     Player.Teleport(vector, 4);
                     NetMessage.SendData(MessageID.TeleportPlayerThroughPortal, -1, -1, null, 0, Player.whoAmI, vector.X, vector.Y, 1);
+                }
+            }
+            if (CalamityKeybinds.AccessoryParryHotKey.JustPressed && !Player.HasCooldown(ParryCooldown.ID))
+            {
+                if (frozenParrying && frozenParryingTime == 0)
+                {
+                    Player.Calamity().GeneralScreenShakePower = 2.5f;
+                    SoundEngine.PlaySound(in Cryogen.ShieldRegenSound, Player.Center);
+                    frozenParryingTime = 30;
                 }
             }
 

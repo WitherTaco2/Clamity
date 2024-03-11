@@ -23,6 +23,7 @@ Added Copper/Tin Clicker into Started Bag (If clicker class mod is active)
 Added The Generator in Nuclear Fury recipe
 Added Molten Piercer in Shattered Sun recipe
 The Generator now inflict Shadow Flames debuff
+Nerfed WoB guns max life
 
 
 Fixes:

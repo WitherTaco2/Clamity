@@ -1,5 +1,4 @@
-﻿using CalamityMod.Dusts;
-using CalamityMod.Rarities;
+﻿using CalamityMod.Rarities;
 using CalamityMod.Tiles.Furniture.CraftingStations;
 using Terraria.Graphics.Shaders;
 
@@ -49,7 +48,7 @@ namespace Clamity.Content.Biomes.FrozenHell.Items
                     }
                     if (!hovering || Main.rand.NextBool(3))
                     {
-                        int idx = Dust.NewDust(new Vector2(player.Center.X + xOffset, player.Center.Y - 15f), 30, 30, ModContent.DustType<AstralOrange>(), 0f, 0f, 100, default, 1.75f);
+                        int idx = Dust.NewDust(new Vector2(player.Center.X + xOffset, player.Center.Y - 15f), 30, 30, DustID.GemAmethyst, 0f, 0f, 100, default, 1.75f);
                         Main.dust[idx].noGravity = true;
                         Main.dust[idx].velocity *= 0.3f;
                         if (Main.rand.NextBool(10))

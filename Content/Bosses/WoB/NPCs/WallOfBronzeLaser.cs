@@ -17,7 +17,7 @@ namespace Clamity.Content.Bosses.WoB.NPCs
             NPC.height = 108;
             NPC.defense = 50;
             NPC.DR_NERD(0.2f);
-            NPC.LifeMaxNERB(20000, new int?(30000), new int?(40000));
+            NPC.LifeMaxNERB(10000, 20000, 30000);
             NPC.lifeMax += (int)(NPC.lifeMax * CalamityConfig.Instance.BossHealthBoost * 0.01f);
             NPC.aiStyle = -1;
             AIType = -1;

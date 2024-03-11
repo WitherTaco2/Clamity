@@ -27,12 +27,16 @@ namespace Clamity.Content.Biomes.FrozenHell.Items.FrozenHellstoneArmor
 
         public override void UpdateArmorSet(Player player)
         {
+            player.setBonus = ILocalizedModTypeExtensions.GetLocalizedValue((ILocalizedModType)this, "SetBonus");
+
             //player.setBonus = "Cannot be frozen.\nPress Armor Set Bonus to create an ice shield that parries attacks.[WIP]\nFailing to parry will cause you to overcool.[WIP]";
+            player.Clamity().frozenParrying = true;
             player.buffImmune[44] = true;
             player.buffImmune[324] = true;
             player.buffImmune[47] = true;
             player.aggro += 400;
         }
+
 
         public override void AddRecipes() => CreateRecipe().AddIngredient(ItemID.MoltenHelmet)
                                                            .AddIngredient(ItemID.FrostHelmet)
