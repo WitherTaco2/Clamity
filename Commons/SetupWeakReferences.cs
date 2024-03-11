@@ -253,7 +253,7 @@ namespace Clamity.Commons
                         ModContent.ItemType<WoBTrophy>(),
                         ModContent.ItemType<WoBRelic>(),
                         ModContent.ItemType<WoBMask>(),
-                        ModContent.ItemType<WoBLore>(),
+                        ModContent.ItemType<LoreWallOfBronze>(),
 
                     };
                     if (Clamity.musicMod != null)

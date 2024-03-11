@@ -305,7 +305,7 @@ namespace Clamity.Content.Bosses.WoB.NPCs
             //Mask
             mainRule.Add(ItemDropRule.Common(ModContent.ItemType<WoBMask>(), 7));
             //Lore
-            npcLoot.AddConditionalPerPlayer(() => !ClamitySystem.downedWallOfBronze, ModContent.ItemType<WoBLore>(), ui: true, DropHelper.FirstKillText);
+            npcLoot.AddConditionalPerPlayer(() => !ClamitySystem.downedWallOfBronze, ModContent.ItemType<LoreWallOfBronze>(), ui: true, DropHelper.FirstKillText);
             //GFB drop
             /*for (int i = 0; i < 20; i++)
             {
