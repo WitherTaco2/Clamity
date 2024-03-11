@@ -3,11 +3,8 @@ using CalamityMod.Events;
 using CalamityMod.Items.Placeables.Furniture.DevPaintings;
 using CalamityMod.Items.Potions;
 using CalamityMod.NPCs;
-using CalamityMod.Particles;
 using CalamityMod.World;
-using Clamity.Commons;
 using Clamity.Content.Bosses.Profusion.Drop;
-using Clamity.Content.Bosses.Profusion.Projectiles;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -23,7 +20,7 @@ using Terraria.ModLoader;
 namespace Clamity.Content.Bosses.Profusion.NPCs
 {
     [AutoloadBossHead]
-    public class ProfusionBoss : ModNPC
+    public partial class ProfusionBoss : ModNPC
     {
         public enum ProfusionAIState : int
         {
@@ -144,51 +141,12 @@ namespace Clamity.Content.Bosses.Profusion.NPCs
             switch ((ProfusionAIState)State)
             {
                 case ProfusionAIState.Awaken:
-                    if (StateTimer == 1)
-                    {
-                        NPC.Center = Target.Center - Vector2.UnitY * 200;
-                        SoundStyle roar = SoundID.Roar;
-                        roar.Pitch = -2;
-                        SoundEngine.PlaySound(roar, NPC.Center);
-                    }
-                    if (StateTimer % 15 == 0 /*&& Projectile.timeLeft > 40*/)
-                    {
-                        GeneralParticleHandler.SpawnParticle(new DirectionalPulseRing(NPC.Center, Vector2.Zero, Color.DarkBlue, new Vector2(0.5f, 0.5f), Main.rand.NextFloat(12f, 25f), 0f, 40f, 60));
-                    }
-                    if (StateTimer >= 60)
-                        SetState(ProfusionAIState.ThormAttack);
+                    AwakanAnimation();
                     break;
                 case ProfusionAIState.ThormAttack:
-                    //if ()
-                    BasicMovement(enrageScale, -Vector2.UnitY * 300);
-
-                    if (StateTimer % (int)(10 / enrageScale) == 0 && StateTimer <= 30)
-                    {
-                        SoundStyle summon = SoundID.NPCDeath13;
-                        summon.Pitch = -2;
-                        //summon.Volume = 0.8f;
-                        SoundEngine.PlaySound(summon, NPC.Center);
-
-                        int type = ModContent.ProjectileType<MushroomThorn>();
-                        int damage = NPC.GetProjectileDamageClamity(type);
-                        Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, NPC.Center.DirectionTo(Target.Center).SafeNormalize(Vector2.Zero).RotatedByRandom(1) * 15, type, damage, 1f, Main.myPlayer);
-                    }
-                    if (StateTimer >= 60)
-                        SetState(ProfusionAIState.ThormAttack);
+                    ThornAttack(enrageScale);
                     break;
             }
-        }
-        private void BasicMovement(float enrageScale, Vector2 offset)
-        {
-            Vector2 targetPosition = Target.Center + offset;
-            if ((targetPosition - NPC.Center).Length() > 10)
-                NPC.velocity = Vector2.Lerp(NPC.Center.DirectionTo(targetPosition), NPC.velocity, 0.05f) * 5 * enrageScale;
-            else
-                NPC.velocity *= 0.5f;
-            NPC.rotation = MathF.Sqrt(MathF.Abs(NPC.velocity.X / 100));
-            if (NPC.velocity.X < 0)
-                NPC.rotation = MathHelper.TwoPi - NPC.rotation;
-
         }
         public override void OnSpawn(IEntitySource source)
         {
@@ -212,12 +170,13 @@ namespace Clamity.Content.Bosses.Profusion.NPCs
         {
             LeadingConditionRule mainRule = npcLoot.DefineNormalOnlyDropSet();
 
+            mainRule.Add(ItemDropRule.Common(ModContent.ItemType<GodlikeMushroom>(), 1, 30, 50));
 
             mainRule.Add(ItemDropRule.Common(ModContent.ItemType<ThankYouPainting>(), 100));
             //Trophy
             npcLoot.Add(ModContent.ItemType<ProfusionTrophy>(), 10);
             //Relic
-            //npcLoot.DefineConditionalDropSet(DropHelper.RevAndMaster).Add(ModContent.ItemType<>());
+            npcLoot.DefineConditionalDropSet(DropHelper.RevAndMaster).Add(ModContent.ItemType<ProfusionRelic>());
             //Mask
             //mainRule.Add(ItemDropRule.Common(ModContent.ItemType<>(), 7));
             //Lore
