@@ -1,7 +1,6 @@
 ﻿using CalamityMod;
 using CalamityMod.Items;
 using CalamityMod.Projectiles.BaseProjectiles;
-using CalamityMod.Projectiles.Melee;
 using Clamity.Content.Cooldowns;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -111,7 +110,27 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
             Dust.NewDust(new Vector2((float)Projectile.Hitbox.X, (float)Projectile.Hitbox.Y), Projectile.Hitbox.Width, Projectile.Hitbox.Height, DustID.Enchanted_Gold, 0.0f, 0.0f, 0, new Color(), 1f);
         }
     }
-    public class CaliburnSlash : ExobeamSlash
+    public class CaliburnSlash : BaseSlash
+    {
+        public override void SetStaticDefaults()
+        {
+            base.SetStaticDefaults();
+
+            if (!ModLoader.TryGetMod("Redemption", out var redemption))
+                return;
+            redemption.Call("addElementProj", 8, Type);
+        }
+        public override void SetDefaults()
+        {
+            base.SetDefaults();
+            Projectile.usesLocalNPCImmunity = false;
+            Projectile.usesIDStaticNPCImmunity = true;
+            Projectile.idStaticNPCHitCooldown = Projectile.MaxUpdates * 12;
+        }
+        public override Color FirstColor => Color.Yellow;
+        public override Color SecondColor => Color.White;
+    }
+    /*public class CaliburnSlash : ExobeamSlash
     {
         public override string Texture => ModContent.GetInstance<TerraShivSlash>().Texture;
 
@@ -154,5 +173,5 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
         {
             //target.AddBuff(ModContent.BuffType<MiracleBlight>(), 300);
         }
-    }
+    }*/
 }

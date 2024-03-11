@@ -1,16 +1,9 @@
 ﻿using CalamityMod;
-using CalamityMod.Buffs.Alcohol;
 using CalamityMod.Buffs.Potions;
 using CalamityMod.Items.Materials;
 using CalamityMod.Items.Potions;
 using CalamityMod.Rarities;
 using CalamityMod.Tiles.Furniture.CraftingStations;
-using Clamity.Content.Buffs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -42,6 +35,15 @@ namespace Clamity.Content.Items.Potions.Food
             player.AddBuff(ModContent.BuffType<ExoBaguetteBuff>(), CalamityUtils.SecondsToFrames(300f));
             player.AddBuff(ModContent.BuffType<BaguetteBuff>(), CalamityUtils.SecondsToFrames(600f));
             player.AddBuff(BuffID.WellFed3, CalamityUtils.SecondsToFrames(300f));
+        }
+    }
+    public class ExoBaguetteBuff : BaguetteBuff
+    {
+        public override void Update(Player player, ref int buffIndex)
+        {
+            base.Update(player, ref buffIndex);
+            if (player.Calamity().alcoholPoisonLevel > 0)
+                player.Calamity().alcoholPoisonLevel--;
         }
     }
 }

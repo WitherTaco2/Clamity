@@ -2,7 +2,6 @@
 using CalamityMod.Items;
 using CalamityMod.Items.Materials;
 using CalamityMod.Projectiles.BaseProjectiles;
-using CalamityMod.Projectiles.Melee;
 using Clamity.Content.Cooldowns;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -111,7 +110,50 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
             Dust.NewDust(new Vector2((float)Projectile.Hitbox.X, (float)Projectile.Hitbox.Y), Projectile.Hitbox.Width, Projectile.Hitbox.Height, DustID.TerraBlade, 0.0f, 0.0f, 0, new Color(), 1f);
         }
     }
-    public class TerraShivSlash : ExobeamSlash
+    public class TerraShivSlash : BaseSlash
+    {
+        public override void SetStaticDefaults()
+        {
+            base.SetStaticDefaults();
+
+            if (!ModLoader.TryGetMod("Redemption", out var redemption))
+                return;
+            redemption.Call("addElementProj", 8, Type);
+        }
+        public override float Scale => 5f;
+        public override Color FirstColor => Color.Lime;
+        public override Color SecondColor => Color.Green;
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            if (Projectile.ai[0] == 1)
+            {
+                //Projectile.ai[1] = 1;
+                for (int i = 0; i < Projectile.ai[1]; i++)
+                    Projectile.NewProjectile(Projectile.GetSource_FromThis(), target.Center, Projectile.velocity.RotatedByRandom(MathHelper.TwoPi) * 0.1f, ModContent.ProjectileType<TerraShivSlash2>(), (int)(Projectile.damage * 0.1f), Projectile.knockBack, Projectile.owner);
+                if (Projectile.ai[1] > 1)
+                {
+                    Projectile.ai[1]--;
+                }
+            }
+        }
+    }
+    public class TerraShivSlash2 : TerraShivSlash
+    {
+        public override float Scale => 1f;
+        public override void SetDefaults()
+        {
+            base.SetDefaults();
+
+            Projectile.usesLocalNPCImmunity = false;
+            Projectile.usesIDStaticNPCImmunity = true;
+            Projectile.idStaticNPCHitCooldown = Projectile.MaxUpdates * 12;
+        }
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        {
+
+        }
+    }
+    /*public class TerraShivSlash : ExobeamSlash
     {
         public override void SetStaticDefaults()
         {
@@ -204,5 +246,5 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
         {
             //target.AddBuff(ModContent.BuffType<MiracleBlight>(), 300);
         }
-    }
+    }*/
 }

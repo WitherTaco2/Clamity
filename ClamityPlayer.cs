@@ -33,6 +33,7 @@ namespace Clamity
         public bool icicleRing;
         public bool redDie;
         public bool eidolonAmulet;
+        public bool metalWings;
 
         //Armor
         public bool inflicingMeleeFrostburn;
@@ -67,6 +68,7 @@ namespace Clamity
             icicleRing = false;
             redDie = false;
             eidolonAmulet = false;
+            metalWings = false;
 
             inflicingMeleeFrostburn = false;
             frozenParrying = false;
@@ -174,6 +176,18 @@ namespace Clamity
             if (wCleave)
                 Player.Calamity().contactDamageReduction *= 0.75f;
         }*/
+        public override void OnHurt(Player.HurtInfo info)
+        {
+            if (metalWings)
+            {
+                float percent = info.Damage / Player.statLifeMax2;
+                int recivingFlyTime = (int)(Player.wingTimeMax * percent / 2);
+                if (Player.wingTime + recivingFlyTime > Player.wingTimeMax)
+                    Player.wingTime = Player.wingTimeMax;
+                else
+                    Player.wingTime += recivingFlyTime;
+            }
+        }
         #endregion
         public override void CatchFish(FishingAttempt attempt, ref int itemDrop, ref int npcSpawn, ref AdvancedPopupRequest sonar, ref Vector2 sonarPosition)
         {
