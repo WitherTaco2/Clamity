@@ -7,13 +7,12 @@ LorePyrogen: {
 	DisplayName: Pyrogen
 	Lore:
 		'''
-		An ancient furnace of an unknown firesmith. There is a lot of fire essence sealed in it. But that blacksmith had disappeared... 
-		And when Calamita found the ancient forge, she inadvertently made the souls hidden in it unstable, forming the mind of the furnace, 
-		after which she wants destruction. This is what we call a Pyrogen.
+		The ancient furnace of the blacksmith god. It shares an auric soul with its master. 
+		But after my crusade, he was gone. I didn't take care of the second part of this soul, which led to the uncontrollability of the furnace and got a mind.
 		'''
 }
 
-WoBLore: {
+LoreWallOfBronze: {
 	DisplayName: Wall of Bronze
 	Lore:
 		'''

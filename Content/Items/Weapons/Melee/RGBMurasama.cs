@@ -1,19 +1,8 @@
-﻿using CalamityMod;
+﻿using CalamityMod.Items.Materials;
 using CalamityMod.Items.Weapons.Melee;
-using Microsoft.Xna.Framework.Graphics;
-using Terraria.ModLoader;
-using Terraria;
-using Microsoft.Xna.Framework;
-using CalamityMod.Projectiles.Melee;
-using CalamityMod.Items.Materials;
-using CalamityMod.Tiles.Furniture.CraftingStations;
-using Terraria.Localization;
-using System;
-using System.Collections.Generic;
 using CalamityMod.Particles;
-using static Humanizer.In;
-using Terraria.Audio;
-using Terraria.ID;
+using CalamityMod.Projectiles.Melee;
+using CalamityMod.Tiles.Furniture.CraftingStations;
 
 namespace Clamity.Content.Items.Weapons.Melee
 {

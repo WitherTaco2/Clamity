@@ -1,13 +1,7 @@
-﻿using CalamityMod.Items;
-using CalamityMod.Items.Materials;
+﻿using CalamityMod.Items.Materials;
 using CalamityMod.Items.Weapons.Magic;
 using CalamityMod.Projectiles.Magic;
 using CalamityMod.Rarities;
-using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.DataStructures;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Clamity.Content.Items.Weapons.Ranged.Bows
 {
@@ -42,7 +36,7 @@ namespace Clamity.Content.Items.Weapons.Ranged.Bows
             {
                 int num2 = ModContent.ProjectileType<BeamingBolt2>();
                 int index = Projectile.NewProjectile(source, position, (velocity + Main.rand.NextVector2Circular(2.5f, 2.5f)).RotatedByRandom(0.33f), num2, (int)(damage * 0.5f), knockback);
-                    Main.projectile[index].DamageType = DamageClass.Ranged;
+                Main.projectile[index].DamageType = DamageClass.Ranged;
             }
             return false;
         }

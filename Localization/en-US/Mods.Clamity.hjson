@@ -6,7 +6,29 @@ Items: {
 			Summon a Wall of Bronze in Underworld
 			Non consumable
 			'''
-		DisplayName: Heavy Metal Trash Can
+		DisplayName: Wall of Bronze Summoning Item
+	}
+
+	Mounts: {
+		FlameCube: {
+			DisplayName: Flame Cube
+			Tooltip:
+				'''
+				Materializes a quite cozy and extremely nimble flying Calamitas's throne
+				Hold [KEY] while sitting in the throne to move slower for more precision
+				'A comfortable gamer is a dangerous gamer'
+				'''
+		}
+
+		PlagueStation: {
+			DisplayName: Plague Station
+			Tooltip:
+				'''
+				Materializes a quite cozy and extremely nimble flying Plague throne
+				Hold [KEY] while sitting in the throne to move slower for more precision
+				'A comfortable gamer is a dangerous gamer'
+				'''
+		}
 	}
 
 	FrozenHellRenewalSupreme: {
@@ -21,9 +43,14 @@ Items: {
 }
 
 Misc: {
-	RecipeGroup.AnySandBlock: And Sand Block
+	RecipeGroup: {
+		AnySandBlock: And Sand Block
+		AnyGemHook: Any Gem Hook
+	}
+
 	None: ""
-	DefeatedWoB: Defeated a Wall of Bronze
+	DefeatedWoB: After defeating a Wall of Bronze
+	FrozenHellMessege: You can feel the cold breeze coming from the center of Hell
 }
 
 Tiles: {
@@ -36,4 +63,22 @@ Biomes: {
 		TownNPCDialogueName: the Frozen Hell
 		DisplayName: Frozen Hell
 	}
+}
+
+InfernumIntro: {
+	Pyrogen:
+		'''
+		Auric Furnace
+		Pyrogen
+		'''
+	WoB:
+		'''
+		Machine Guardian
+		Wall of Bronze
+		'''
+	Clamitas:
+		'''
+		Supreme Clam
+		Clamitas
+		'''
 }

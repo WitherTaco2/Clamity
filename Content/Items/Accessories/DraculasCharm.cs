@@ -1,20 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria.ID;
-using Terraria;
-using Terraria.ModLoader;
-using CalamityMod;
-using CalamityMod.Items.Accessories;
+﻿using CalamityMod.Items.Accessories;
 using CalamityMod.Items.Materials;
-using Microsoft.Xna.Framework.Graphics;
-using static CalamityMod.NPCs.BrimstoneElemental.BrimstoneElemental;
-using Terraria.Audio;
-using Terraria.GameContent;
-using Microsoft.Xna.Framework;
-using CalamityMod.CalPlayer;
 using CalamityMod.Rarities;
 
 namespace Clamity.Content.Items.Accessories

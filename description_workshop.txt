@@ -1,4 +1,4 @@
-Clamitas Addon is mod for Calamity which adds content from Calamity Fandom wiki and not only, but with high quality of realization as posible (second Calamity Community Remix). This mod focusing on adding bosses
+﻿Clamitas Addon is mod for Calamity which adds content from Calamity Fandom wiki and not only, but with high quality of realization as posible (second Calamity Community Remix). This mod focusing on adding bosses
 Mod has official support of English and Russian Localization
 
 [h1]Content[/h1]
@@ -13,6 +13,7 @@ Mod has official support of English and Russian Localization
 
 [h1]Credits[/h1]
 Thanks StarvoXD for inspiration of Clamitas (and music)
+Thanks スナネコ (Mira) for helping with Wall of Bronze and Frozen Hell
 Credits for music in music mod page
 Fandom Wiki for sprites and ideas
 Calamity Team for cool mod

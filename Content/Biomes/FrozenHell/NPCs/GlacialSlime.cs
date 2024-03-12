@@ -1,11 +1,6 @@
-﻿using CalamityMod;
-using Clamity.Content.Biomes.FrozenHell.Items;
-using System.Collections.Generic;
-using Terraria;
+﻿using Clamity.Content.Biomes.FrozenHell.Items;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Clamity.Content.Biomes.FrozenHell.NPCs
 {

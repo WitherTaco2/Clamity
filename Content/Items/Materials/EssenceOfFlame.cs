@@ -1,10 +1,4 @@
 ﻿using CalamityMod.Items.Materials;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria;
 
 namespace Clamity.Content.Items.Materials
 {
@@ -25,7 +19,10 @@ namespace Clamity.Content.Items.Materials
         }
         public override void AddRecipes()
         {
-            CreateRecipe(3).AddIngredient<EssenceOfFlame>().AddIngredient(1508).AddTile(134)
+            CreateRecipe(3)
+                .AddIngredient<EssenceOfFlame>()
+                .AddIngredient(ItemID.Ectoplasm)
+                .AddTile(TileID.MythrilAnvil)
                 .Register();
         }
     }

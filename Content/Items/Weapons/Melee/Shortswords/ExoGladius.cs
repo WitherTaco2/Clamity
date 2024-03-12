@@ -1,24 +1,11 @@
-﻿
-using CalamityMod;
-using CalamityMod.Buffs.DamageOverTime;
-using CalamityMod.DataStructures;
-using CalamityMod.Items;
+﻿using CalamityMod.Buffs.DamageOverTime;
 using CalamityMod.Items.Materials;
 using CalamityMod.Items.Weapons.Magic;
 using CalamityMod.Items.Weapons.Melee;
 using CalamityMod.Projectiles.BaseProjectiles;
 using CalamityMod.Projectiles.Melee;
-using CalamityMod.Projectiles.Melee.Shortswords;
 using CalamityMod.Rarities;
 using CalamityMod.Tiles.Furniture.CraftingStations;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using Terraria;
-using Terraria.Audio;
-using Terraria.DataStructures;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Clamity.Content.Items.Weapons.Melee.Shortswords
 {
@@ -32,7 +19,7 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
             Item.value = CalamityGlobalItem.Rarity15BuyPrice;
 
             Item.useAnimation = Item.useTime = 20;
-            Item.useStyle = 13;
+            Item.useStyle = ItemUseStyleID.Rapier;
             Item.UseSound = new SoundStyle?(SoundID.Item1);
             Item.autoReuse = true;
             Item.noUseGraphic = true;
@@ -114,7 +101,7 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
         {
             if (!Utils.NextBool(Main.rand, 5))
                 return;
-            Dust.NewDust(new Vector2((float)Projectile.Hitbox.X, (float)Projectile.Hitbox.Y), Projectile.Hitbox.Width, Projectile.Hitbox.Height, 107, 0.0f, 0.0f, 0, new Color(), 1f);
+            Dust.NewDust(new Vector2((float)Projectile.Hitbox.X, (float)Projectile.Hitbox.Y), Projectile.Hitbox.Width, Projectile.Hitbox.Height, DustID.TerraBlade, 0.0f, 0.0f, 0, new Color(), 1f);
         }
 
     }
@@ -144,7 +131,10 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
         {
             SoundEngine.PlaySound(in Exoblade.BeamHitSound, target.Center);
             if (Projectile.ai[2] == 1)
-                Projectile.NewProjectile(Projectile.GetSource_FromAI(), target.Center, Vector2.Zero, ModContent.ProjectileType<TerratomereExplosion>(), (int)(Projectile.damage * 0.5f), Projectile.knockBack, Projectile.owner, 0f, 0f, 0f);
+            {
+                int index = Projectile.NewProjectile(Projectile.GetSource_FromAI(), target.Center, Vector2.Zero, ModContent.ProjectileType<TerratomereExplosion>(), (int)(Projectile.damage * 0.5f), Projectile.knockBack, Projectile.owner, 0f, 0f, 0f);
+                Main.projectile[index].DamageType = Projectile.DamageType;
+            }
 
             target.AddBuff(ModContent.BuffType<MiracleBlight>(), 300);
         }

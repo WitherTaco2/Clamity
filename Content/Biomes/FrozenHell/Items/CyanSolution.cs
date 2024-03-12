@@ -1,9 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using Terraria;
-using Terraria.GameContent.Creative;
-using Terraria.ID;
-using Terraria.ModLoader;
+﻿using Terraria.GameContent.Creative;
 
 namespace Clamity.Content.Biomes.FrozenHell.Items
 {

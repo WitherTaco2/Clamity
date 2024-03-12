@@ -1,19 +1,8 @@
-﻿using CalamityMod.Items;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria.Audio;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Terraria;
-using CalamityMod.Projectiles.BaseProjectiles;
-using CalamityMod;
-using Clamity.Content.Cooldowns;
-using Clamity.Content.Buffs.Shortstrike;
+﻿using CalamityMod.Items.Materials;
 using CalamityMod.NPCs.Providence;
-using CalamityMod.Items.Materials;
+using CalamityMod.Projectiles.BaseProjectiles;
+using Clamity.Content.Buffs.Shortstrike;
+using Clamity.Content.Cooldowns;
 
 namespace Clamity.Content.Items.Weapons.Melee.Shortswords
 {
@@ -28,7 +17,7 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
             Item.maxStack = 9999;
 
             Item.useAnimation = Item.useTime = 56;
-            Item.useStyle = 13;
+            Item.useStyle = ItemUseStyleID.Rapier;
             Item.UseSound = new SoundStyle?(SoundID.Item1);
             Item.autoReuse = true;
             Item.noUseGraphic = true;
@@ -88,7 +77,7 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
                 player.AddCooldown(ShortstrikeCooldown.ID, 180);
                 player.AddBuff(ModContent.BuffType<WulfrumShortstrike>(), 60);
             }
-            if (target.type != 488 && target.type != ModContent.NPCType<Providence>())
+            if (target.type != NPCID.TargetDummy && target.type != ModContent.NPCType<Providence>())
                 target.life -= target.lifeMax / 200;
             if (!player.Clamity().wulfrumShortstrike)
             {
@@ -97,8 +86,9 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
             }
         }
     }
-    public class WulfrumLeechDaggerShard : ModProjectile
+    public class WulfrumLeechDaggerShard : ModProjectile, ILocalizedModType, IModType
     {
+        public new string LocalizationCategory => "Projectiles.Melee";
         public override void SetDefaults()
         {
             Projectile.CloneDefaults(ProjectileID.SpikyBall);

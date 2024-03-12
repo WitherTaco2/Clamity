@@ -1,11 +1,6 @@
-﻿using CalamityMod;
-using Microsoft.Xna.Framework;
-using System.Collections.Generic;
-using Terraria;
+﻿using Clamity.Content.Biomes.FrozenHell.Items;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Clamity.Content.Biomes.FrozenHell.NPCs
 {
@@ -64,6 +59,7 @@ namespace Clamity.Content.Biomes.FrozenHell.NPCs
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             npcLoot.Add(ItemDropRule.Common(ItemID.Cog, 1, 2, 5));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MetalFeather>(), 100));
         }
         public override float SpawnChance(NPCSpawnInfo spawnInfo) => !spawnInfo.Player.Clamity().ZoneFrozenHell ? 0.0f : 0.25f;
     }

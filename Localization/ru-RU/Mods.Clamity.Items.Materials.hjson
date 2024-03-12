@@ -27,3 +27,13 @@ EnchantedMetal: {
 	Tooltip: Металл наполенный душами самой Террарии
 	DisplayName: Зачарованный металл
 }
+
+MetalFeather: {
+	// Tooltip: ""
+	// DisplayName: Metal Feather
+}
+
+RarePlanteraFruit: {
+	// DisplayName: Rare Plantera Fruit
+	// Tooltip: ""
+}

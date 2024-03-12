@@ -44,3 +44,8 @@ GlacialSlime: {
 	DisplayName: Glacial Slime
 	Bestiary: Lava slime which powered by powerful soul of frost. Slime tried to explode, but the temperature difference turned his attempts into spikes
 }
+
+MetalMaw.DisplayName: Metal Maw
+MechanicalLeechTail.DisplayName: Mechanical Leech
+MechanicalLeechHead.DisplayName: Mechanical Leech
+MechanicalLeechBody.DisplayName: Mechanical Leech

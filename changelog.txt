@@ -1,9 +1,37 @@
 [h1]Frozen Hell Part 2 Patch[/h1]
 
-Added Frozen Hellstone armor set. WoB-tier upgrade of Molted Armor
-Added Everest. WoB-tier shortsword. Direct upgrade of Tomutus
-Added Icicle Ring accessory (currtly he drops by Glacial Slime)
+New Content:
+Added Frozen armor set. WoB-tier upgrade of Molten+Frost Armor.
+Added Everest. WoB-tier shortsword. Direct upgrade of Tomutus.
+Added Auric Kunai. Upgrade of Cosmic Kunai
+Added Exo Ball. Last in you playground Rogue Spiky Ball weapon.
+Added Planterror Staff. Direct upgrade of Plantation Staff which uses guns. Brutal!
+
+Added Icicle Ring accessory (currently he drops by Glacial Slime)
+Added Red Die. Post-Clamitas direct upgrade of Old Die
+Added Plague Station and Flame Cube. Exo Box alternatives in different stages (after Plaguebringer Goliath and Exo Mech + Calamitas)
+Added Trash of Magnus. Post-Plaguebringer Goliath Classless weapon
+Added Eidolon Amulet. Combination of amulets
+Added Metal Wings and Metal Feather for it
+
+Added minions for Wall of Bronze
+
+
+Changes/Addintions:
 Updated Frozen Ash and Frozen Hellstone sprites (item and tile)
 Clamitas now drops weapons and Slagspitter Pauldron like in his Fandom Wiki page
-Green Solution now work with Frozen Hell blocks
+Added Copper/Tin Clicker into Started Bag (If clicker class mod is active)
+Added The Generator in Nuclear Fury recipe
+Added Molten Piercer in Shattered Sun recipe
+The Generator now inflict Shadow Flames debuff
+Nerfed WoB Guns max life
+
+
+Fixes:
+Fixed Green Solution don's work with Frozen Hell blocks
 Fixed localization (primary russian)
+Fixed Fish of Flame not catchable
+Fixed Permafrost don's sells Coldheart Icicle
+Frozen Hell now generates in center in Underworld (instead of WoB kill position where it could be generated on the Brimstone Crags site)
+--------------
+WoB - Wall of Bronze

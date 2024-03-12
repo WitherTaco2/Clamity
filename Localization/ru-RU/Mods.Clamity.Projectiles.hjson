@@ -18,6 +18,9 @@ Melee: {
 	// DiseaseProjectile.DisplayName: Disease Projectile
 	// SporeKnifeProjectile.DisplayName: Spore Knife
 	// WulfrumLeechDaggerProjectile.DisplayName: Wulfrum Leech Dagger
+	// WulfrumLeechDaggerShard.DisplayName: Wulfrum Leech Dagger Shard
+	// EverestProjectile.DisplayName: Everest
+	// BaseSlash.DisplayName: Base Slash
 	// EverestProjectile.DisplayName: Everest Projectile
 	// LifebringerDaggerLight.DisplayName: Lifebringer Dagger Light
 }
@@ -29,7 +32,11 @@ Ranged: {
 	// ObsidigunBulletShard.DisplayName: Obsidian Bullet Shard
 }
 
-// Summon.Minion.HellstoneShellfishStaffMinion.DisplayName: Hellstone Shellfish
+Summon: {
+	// Minion.HellstoneShellfishStaffMinion.DisplayName: Hellstone Shellfish
+	// PlanterrorStaffTentacle.DisplayName: Guntera's Gun
+}
+
 // ShortstrikeEffect.DisplayName: Shortstrike Effect
 // ImpalerProjectile.DisplayName: Impaler Stake
 // HadopelagicEchoProjectile.DisplayName: Hadopelagic Echo
@@ -37,13 +44,15 @@ Ranged: {
 // ChargedBlast3.DisplayName: Charged Blast
 // ChargedDartExplosion.DisplayName: Charged Dart
 // ProfanedDartProjectile.DisplayName: Profaned Dart
-// WulfrumLeechDaggerShard.DisplayName: Wulfrum Leech Dagger Shard
 // WulfrumLureBobber.DisplayName: Wulfrum Lure Bobber
 
 Rogue: {
 	// MoltenPiercerProjectile.DisplayName: Molten Piercer
 	// WulfrumShockCutterProjectile.DisplayName: Wulfrum Shock Cutter
 	// FrozenStarShurikenProjectile.DisplayName: Frozen Star Shuriken
+	// ExoBallProjectile.DisplayName: Exo Ball Projectile
+	// AuricKunaiProjectile.DisplayName: Auric Kunai
+	// AuricKunaiLightning.DisplayName: Auric Kunai Lightning
 	// ToothyBombProjectile.DisplayName: Toothy Bomb Projectile
 }
 
@@ -78,6 +87,9 @@ Boss: {
 // FrostfireArrowProj2.DisplayName: Frostfire Arrow Explosion
 // MoonstoneKnifeProjectile.DisplayName: Moonstone Knife
 // Enemy.BrimstonePearlBurst.DisplayName: Brimstone Pearl Burst
+// PlanterrorStaffSummon.DisplayName: Guntera
+// Classless.TrashOfMagnusProjectile.DisplayName: Plague Bolt
+// HeavyMetalTrashCanPet.DisplayName: Mini Bocchi
 // ToothyBombShrapnel.DisplayName: Toothy Bomb Shrapnel
 // FrozenHellRenewalSupremeProjectile.DisplayName: Frozen Hell Renewal Supreme Projectile
 // FrozenHellRenewalProjectile.DisplayName: Frozen Hell Renewal Projectile

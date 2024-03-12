@@ -1,13 +1,5 @@
-﻿using CalamityMod;
-using CalamityMod.Tiles.SunkenSea;
+﻿using CalamityMod.Tiles.SunkenSea;
 using Clamity.Content.Items.Materials;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
-using Terraria;
-using Terraria.Audio;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Clamity.Content.Items.Placeable
 {

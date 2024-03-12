@@ -1,13 +1,5 @@
-﻿using CalamityMod.Items;
-using Terraria.Audio;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Terraria;
-using CalamityMod.Projectiles.BaseProjectiles;
-using CalamityMod.Projectiles.Rogue;
-using CalamityMod;
+﻿using CalamityMod.Projectiles.BaseProjectiles;
 using Clamity.Content.Cooldowns;
-using Microsoft.Xna.Framework;
 
 namespace Clamity.Content.Items.Weapons.Melee.Shortswords
 {
@@ -27,7 +19,7 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
             Item.value = CalamityGlobalItem.Rarity5BuyPrice;
 
             Item.useAnimation = Item.useTime = 12;
-            Item.useStyle = 13;
+            Item.useStyle = ItemUseStyleID.Rapier;
             Item.UseSound = new SoundStyle?(SoundID.Item1);
             Item.autoReuse = true;
             Item.noUseGraphic = true;
@@ -80,7 +72,7 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
         {
             if (!Utils.NextBool(Main.rand, 5))
                 return;
-            Dust.NewDust(new Vector2((float)Projectile.Hitbox.X, (float)Projectile.Hitbox.Y), Projectile.Hitbox.Width, Projectile.Hitbox.Height, 2, 0.0f, 0.0f, 0, new Color(), 1f);
+            Dust.NewDust(new Vector2((float)Projectile.Hitbox.X, (float)Projectile.Hitbox.Y), Projectile.Hitbox.Width, Projectile.Hitbox.Height, DustID.Grass, 0.0f, 0.0f, 0, new Color(), 1f);
         }
     }
 }
