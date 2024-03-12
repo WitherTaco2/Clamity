@@ -21,3 +21,12 @@ WoBLore: {
 		This titanic bastion would carry on the task of maintaining Terraria's core if its organic counterpart were ever to expire.
 		'''
 }
+
+LoreProfusion: {
+	DisplayName: Profusion
+	Lore:
+		'''
+		The mushroom that swallowed the auric soul. Wait, what??? Okay He has now become a god among mushrooms
+		[Maybe I stopped commenting on articles from the calamity fandom wiki - Unknown writer]
+		'''
+}

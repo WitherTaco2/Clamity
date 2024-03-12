@@ -27,3 +27,8 @@ EnchantedMetal: {
 	Tooltip: Metal infused by soul of the Terraria
 	DisplayName: Enchanted Metal
 }
+
+GodlikeMushroom: {
+	DisplayName: Godlike Mushroom
+	Tooltip: ""
+}

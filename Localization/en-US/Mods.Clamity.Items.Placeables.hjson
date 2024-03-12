@@ -13,6 +13,11 @@ Relics: {
 		DisplayName: Wall of Bronze Relic
 		Tooltip: ""
 	}
+
+	ProfusionRelic: {
+		DisplayName: Profusion Relic
+		Tooltip: ""
+	}
 }
 
 Trophies: {

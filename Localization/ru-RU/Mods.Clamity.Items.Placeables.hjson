@@ -13,6 +13,11 @@ Relics: {
 		DisplayName: Реликвия Стены бронзы
 		Tooltip: ""
 	}
+
+	ProfusionRelic: {
+		// DisplayName: Profusion Relic
+		// Tooltip: ""
+	}
 }
 
 Trophies: {
