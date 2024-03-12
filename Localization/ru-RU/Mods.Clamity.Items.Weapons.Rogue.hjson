@@ -45,3 +45,6 @@ AuricKunai: {
 		Невидимые удары наносят 5 молний ближайшему врагу
 		'''
 }
+ToothyBomb: {
+	// DisplayName: Toothy Bomb
+	// Tooltip: ""

@@ -45,3 +45,8 @@ AuricKunai: {
 		Stealth strikes spawn 5 Lightnings to nearest enemy
 		'''
 }
+
+ToothyBomb: {
+	DisplayName: Toothy Bomb
+	Tooltip: ""
+}

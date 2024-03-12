@@ -21,6 +21,8 @@ Melee: {
 	// WulfrumLeechDaggerShard.DisplayName: Wulfrum Leech Dagger Shard
 	// EverestProjectile.DisplayName: Everest
 	// BaseSlash.DisplayName: Base Slash
+	// EverestProjectile.DisplayName: Everest Projectile
+	// LifebringerDaggerLight.DisplayName: Lifebringer Dagger Light
 }
 
 Ranged: {
@@ -51,6 +53,7 @@ Rogue: {
 	// ExoBallProjectile.DisplayName: Exo Ball Projectile
 	// AuricKunaiProjectile.DisplayName: Auric Kunai
 	// AuricKunaiLightning.DisplayName: Auric Kunai Lightning
+	// ToothyBombProjectile.DisplayName: Toothy Bomb Projectile
 }
 
 // CrustallineProjecile.DisplayName: Crustalline
@@ -87,3 +90,6 @@ Boss: {
 // PlanterrorStaffSummon.DisplayName: Guntera
 // Classless.TrashOfMagnusProjectile.DisplayName: Plague Bolt
 // HeavyMetalTrashCanPet.DisplayName: Mini Bocchi
+// ToothyBombShrapnel.DisplayName: Toothy Bomb Shrapnel
+// FrozenHellRenewalSupremeProjectile.DisplayName: Frozen Hell Renewal Supreme Projectile
+// FrozenHellRenewalProjectile.DisplayName: Frozen Hell Renewal Projectile

@@ -30,6 +30,16 @@ Items: {
 				'''
 		}
 	}
+
+	FrozenHellRenewalSupreme: {
+		Tooltip: ""
+		DisplayName: Frozen Hell Renewal Supreme
+	}
+
+	FrozenHellRenewal: {
+		Tooltip: ""
+		DisplayName: Frozen Hell Renewal
+	}
 }
 
 Misc: {
