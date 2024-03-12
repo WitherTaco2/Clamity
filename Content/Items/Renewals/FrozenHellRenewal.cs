@@ -1,4 +1,4 @@
-﻿using Clamity.Content.Boss.WoB.FrozenHell.Items;
+﻿using Clamity.Content.Biomes.FrozenHell.Items;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;

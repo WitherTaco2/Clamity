@@ -19,6 +19,7 @@ Melee: {
 	// SporeKnifeProjectile.DisplayName: Spore Knife
 	// WulfrumLeechDaggerProjectile.DisplayName: Wulfrum Leech Dagger
 	// EverestProjectile.DisplayName: Everest Projectile
+	// LifebringerDaggerLight.DisplayName: Lifebringer Dagger Light
 }
 
 Ranged: {

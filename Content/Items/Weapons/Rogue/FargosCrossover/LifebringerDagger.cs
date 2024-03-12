@@ -43,6 +43,7 @@ namespace Clamity.Content.Items.Weapons.Rogue.FargosCrossover
     }
     public class LifebringerDaggerProjectile : ModProjectile
     {
+        public override string Texture => ModContent.GetInstance<LifebringerDagger>().Texture;
         public override bool IsLoadingEnabled(Mod mod)
         {
             return ModLoader.TryGetMod("FargowiltasSouls", out Mod _);
