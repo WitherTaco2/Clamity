@@ -130,13 +130,12 @@ namespace Clamity
         {
             if (metalWings)
             {
-                float percent = info.Damage / Player.statLifeMax2;
+                float percent = info.Damage / (float)Player.statLifeMax2;
                 float recivingFlyTime = Player.wingTimeMax * percent / 2;
                 if (Player.wingTime + recivingFlyTime > Player.wingTimeMax)
                     Player.wingTime = Player.wingTimeMax;
                 else
                     Player.wingTime += recivingFlyTime;
-                Main.NewText(recivingFlyTime);
             }
         }
         public override void ModifyHurt(ref Player.HurtModifiers modifiers)
@@ -154,11 +153,11 @@ namespace Clamity
             {
                 if (!Player.HasCooldown(ParryCooldown.ID))
                 {
-                    Player.GiveIFrames(30, true);
+                    Player.GiveIFrames(60, true);
                     modifiers.FinalDamage *= 0.1f;
                     modifiers.DisableSound();
                 }
-                SoundEngine.PlaySound(in PyrogenShield.BreakSound, new Vector2?(this.Player.Center));
+                SoundEngine.PlaySound(in PyrogenShield.BreakSound, new Vector2?(Player.Center));
                 Player.AddCooldown(ParryCooldown.ID, 10 * 60, false);
                 Player.AddBuff(47, 60);
             }
@@ -220,7 +219,7 @@ namespace Clamity
             }
             if (frozenParrying && frozenParryingTime > 0)
                 frozenParryingTime--;
-            if (frozenParrying && Player.HasCooldown(ParryCooldown.ID))
+            if (frozenParrying && (Player.HasCooldown(ParryCooldown.ID) || frozenParryingTime > 0))
             {
                 Player.buffImmune[47] = false;
                 /*for (int i = 0; i < cooldownList.Count; i++)
