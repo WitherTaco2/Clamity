@@ -1,5 +1,6 @@
 ﻿using CalamityMod;
 using CalamityMod.Buffs.DamageOverTime;
+using CalamityMod.Items;
 using CalamityMod.Particles;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -19,7 +20,7 @@ namespace Clamity.Content.Items.Weapons.Classless
         {
             Item.width = 44;
             Item.height = 56;
-            Item.value = Item.sellPrice(0, 6);
+            Item.value = CalamityGlobalItem.RarityYellowBuyPrice;
             Item.rare = ItemRarityID.Yellow;
 
             Item.useTime = Item.useAnimation = 20;
@@ -54,11 +55,11 @@ namespace Clamity.Content.Items.Weapons.Classless
 
             float numberOfDusts = 2f;
             float rotFactor = 360f / numberOfDusts;
-            if (player.miscCounter % 4 == 0)
+            if (player.miscCounter % 2 == 0)
             {
                 for (int i = 0; i < 2; i++)
                 {
-                    DirectionalPulseRing pulse = new DirectionalPulseRing(Projectile.position + new Vector2(Main.rand.NextFloat(0, Projectile.width), Main.rand.NextFloat(0, Projectile.height)), Vector2.Zero, Main.rand.NextBool(3) ? Color.LimeGreen : Color.Green, new Vector2(1, 1), 0, Main.rand.NextFloat(0.07f, 0.18f), 0f, 35);
+                    DirectionalPulseRing pulse = new DirectionalPulseRing(Projectile.position + new Vector2(Main.rand.NextFloat(0, Projectile.width), Main.rand.NextFloat(0, Projectile.height)), Vector2.Zero, Main.rand.NextBool(3) ? Color.LimeGreen : Color.Green, new Vector2(1, 1), 0, Main.rand.NextFloat(0.18f, 0.4f), 0f, 35);
                     GeneralParticleHandler.SpawnParticle(pulse);
                 }
 

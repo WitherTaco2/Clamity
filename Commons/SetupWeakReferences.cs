@@ -5,7 +5,9 @@ using CalamityMod.Events;
 using CalamityMod.Items.Mounts;
 using CalamityMod.NPCs.Yharon;
 using CalamityMod.UI.CalamitasEnchants;
+using Clamity.Content.Biomes.FrozenHell.Biome;
 using Clamity.Content.Biomes.FrozenHell.Biome.Background;
+using Clamity.Content.Biomes.FrozenHell.Items;
 using Clamity.Content.Bosses.Clamitas;
 using Clamity.Content.Bosses.Clamitas.Drop;
 using Clamity.Content.Bosses.Clamitas.NPCs;
@@ -157,8 +159,8 @@ namespace Clamity.Commons
         /// </summary>
         public static void LoadCooldowns()
         {
-            CooldownRegistry.Register<ShortstrikeCooldown>(ShortstrikeCooldown.ID);
-            CooldownRegistry.Register<ShortstrikeCharge>(ShortstrikeCharge.ID);
+            //CooldownRegistry.Register<ShortstrikeCooldown>(ShortstrikeCooldown.ID);
+            //CooldownRegistry.Register<ShortstrikeCharge>(ShortstrikeCharge.ID);
             CooldownRegistry.Register<PyrospearCooldown>(PyrospearCooldown.ID);
         }
         #endregion
@@ -167,7 +169,7 @@ namespace Clamity.Commons
         public static void PostSetupContent()
         {
             SetupBossChecklist();
-            //SetupInfernumIntroScreen();
+            SetupInfernumIntroScreen();
         }
         public static void AddBoss(Mod bossChecklist, Mod hostMod, string name, float difficulty, object npcTypes, Func<bool> downed, Dictionary<string, object> extraInfo)
         {
@@ -191,6 +193,11 @@ namespace Clamity.Commons
         /// </summary>
         public static void SetupBossChecklist()
         {
+            if (ModLoader.TryGetMod("CalamityMod", out Mod calamity))
+            {
+                calamity.Call("RegisterAndroombaSolution", ModContent.ItemType<CyanSolution>(), "Clamity/Commons/Androomba_FrozenHell", (NPC npc) => { FrozenHell.Convert((int)(npc.Center.X / 16f), (int)(npc.Center.Y / 16f), 2); });
+            }
+
             if (ModLoader.TryGetMod("BossChecklist", out Mod bossChecklist))
             {
                 //Clamitas
@@ -296,36 +303,98 @@ namespace Clamity.Commons
 
                 //Pyrogen
                 {
+                    int duratation = 300;
+
+
                     object intro = Clamity.infernum.Call("InitializeIntroScreen",
                         Language.GetText("Mods.Clamity.InfernumIntro.Pyrogen"),
-                        150, false,
-                        () => { return NPC.AnyNPCs(ModContent.NPCType<PyrogenBoss>()) && (Clamity.infernum.Call("GetInfernumActive") as bool? ?? false); },
-                        (float ratio, float completion) => { return Color.Red; }
+                        duratation, true,
+                        () => { return NPC.AnyNPCs(ModContent.NPCType<PyrogenBoss>()); },
+                        (float ratio, float completion) =>
+                        {
+                            float colorInterpolant = MathF.Sin(ratio * MathHelper.Pi * 4f + completion * 1.45f * MathHelper.TwoPi) * 0.5f + 0.5f;
+                            return Color.Lerp(new(176, 65, 89), new(235, 121, 121), colorInterpolant);
+                        }
                         );
+
+
+                    Clamity.infernum.Call("IntroScreenSetupLetterDisplayCompletionRatio", intro, new Func<int, float>(animationTimer => MathHelper.Clamp(animationTimer / (float)duratation * 1.36f, 0f, 1f)));
+
+
                     Action action = () => { };
-                    intro = Clamity.infernum.Call("SetupCompletionEffects", intro, action);
+                    Clamity.infernum.Call("SetupCompletionEffects", intro, action);
+
 
                     Func<int, float> letterDisplayCompletionRatio = (int animationTimer) => { return 1f; };
-                    intro = Clamity.infernum.Call("SetupLetterDisplayCompletionRatio", intro, letterDisplayCompletionRatio);
+                    Clamity.infernum.Call("IntroScreenSetupLetterDisplayCompletionRatio", intro, letterDisplayCompletionRatio);
 
-                    //intro = Clamity.infernum.Call("SetupMainSound", intro, (int animationTimer, int animationTime, float textDelayInterpolant, float letterDisplayCompletionRatio) => { return false; }, () => { return SoundID.MenuTick; });
-                    Func<int, int, float, float, bool> canPlaySound = (int animationTimer, int animationTime, float textDelayInterpolant, float letterDisplayCompletionRatio) => { return animationTimer > (int)(animationTime * (textDelayInterpolant + 0.05f)); };
+
+                    intro = Clamity.infernum.Call("SetupMainSound", intro, (int animationTimer, int animationTime, float textDelayInterpolant, float letterDisplayCompletionRatio) => { return false; }, () => { return SoundID.MenuTick; });
+
+
+                    Func<int, int, float, float, bool> canPlaySound = (int animationTimer, int animationTime, float textDelayInterpolant, float letterDisplayCompletionRatio) => { return true; };
                     Func<SoundStyle> sound = () => { return SoundID.MenuTick; };
-                    intro = Clamity.infernum.Call("IntroScreenSetupMainSound", intro, canPlaySound, sound);
+                    Clamity.infernum.Call("IntroScreenSetupMainSound", intro, canPlaySound, sound);
 
-                    intro = Clamity.infernum.Call("RegisterIntroScreen", intro);
+
+                    Clamity.infernum.Call("IntroScreenSetupTextScale", intro, 1.7f);
+
+
+                    Clamity.infernum.Call("RegisterIntroScreen", intro);
                 }
 
                 //WoB
-                /*{
+                {
+                    int duratation = 300;
+
+
                     object intro = Clamity.infernum.Call("InitializeIntroScreen",
-                        Language.GetOrRegister("Mods.Clamity.InfernumIntro.WoB"),
-                        150, true,
-                        () => { return NPC.AnyNPCs(ModContent.NPCType<WallOfBronze>()) && (Clamity.infernum.Call("GetInfernumActive") as bool? ?? false); },
-                        (float ratio, float completion) => { return Color.Lerp(Color.Brown, Color.YellowGreen, completion); }
+                        Language.GetText("Mods.Clamity.InfernumIntro.WoB"),
+                        duratation, true,
+                        () => { return NPC.AnyNPCs(ModContent.NPCType<WallOfBronze>()); },
+                        (float ratio, float completion) =>
+                        {
+                            float colorInterpolant = MathF.Sin(ratio * MathHelper.Pi * 4f + completion * 1.45f * MathHelper.TwoPi) * 0.5f + 0.5f;
+                            return Color.Lerp(new(179, 117, 74), new(223, 33, 175), colorInterpolant);
+                        }
                         );
-                    intro = Clamity.infernum.Call("RegisterIntroScreen", intro);
-                }*/
+
+                    Func<int, float> letters = (int animationTimer) =>
+                    {
+                        LocalizedText txt = Language.GetText("Mods.Clamity.InfernumIntro.WoB");
+                        float completionRatio = Utils.GetLerpValue(0.05f, 0.92f, animationTimer / (float)duratation, true);
+
+                        // If the completion ratio exceeds the point where the name is displayed, display all letters.
+                        int startOfLargeTextIndex = txt.Value.IndexOf('\n');
+                        int currentIndex = (int)(completionRatio * txt.Value.Length);
+                        if (currentIndex >= startOfLargeTextIndex)
+                            completionRatio = 1f;
+                        return completionRatio;
+                    };
+                    Clamity.infernum.Call("IntroScreenSetupLetterDisplayCompletionRatio", intro, letters);
+
+
+                    Action action = () => { };
+                    Clamity.infernum.Call("SetupCompletionEffects", intro, action);
+
+
+                    Func<int, float> letterDisplayCompletionRatio = (int animationTimer) => { return 1f; };
+                    Clamity.infernum.Call("IntroScreenSetupLetterDisplayCompletionRatio", intro, letterDisplayCompletionRatio);
+
+
+                    intro = Clamity.infernum.Call("SetupMainSound", intro, (int animationTimer, int animationTime, float textDelayInterpolant, float letterDisplayCompletionRatio) => { return false; }, () => { return SoundID.MenuTick; });
+
+
+                    Func<int, int, float, float, bool> canPlaySound = (int animationTimer, int animationTime, float textDelayInterpolant, float letterDisplayCompletionRatio) => { return true; };
+                    Func<SoundStyle> sound = () => { return SoundID.MenuTick; };
+                    Clamity.infernum.Call("IntroScreenSetupMainSound", intro, canPlaySound, sound);
+
+
+                    Clamity.infernum.Call("IntroScreenSetupTextScale", intro, 1.7f);
+
+
+                    Clamity.infernum.Call("RegisterIntroScreen", intro);
+                }
             }
         }
         #endregion

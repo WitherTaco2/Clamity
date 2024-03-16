@@ -14,12 +14,17 @@ namespace Clamity.Content.Items.Potions.Food
     public class ExoBaguette : Baguette, ILocalizedModType, IModType
     {
         public new string LocalizationCategory => "Items.Potions.Foods";
+        public override void SetStaticDefaults()
+        {
+            Item.ResearchUnlockCount = 5;
+        }
         public override void SetDefaults()
         {
             base.SetDefaults();
             Item.buffType = ModContent.BuffType<ExoBaguetteBuff>();
             Item.rare = ModContent.RarityType<Violet>();
             Item.value += Item.sellPrice(0, 2, 40) + ModContent.GetInstance<ExoPrism>().Item.value + ModContent.GetInstance<AuricBar>().Item.value;
+            Item.Calamity().donorItem = false;
         }
         public override void AddRecipes()
         {

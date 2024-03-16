@@ -13,7 +13,7 @@ DraculasCharm: {
 		'''
 		15% increased rogue damage and +10 maximum stealth
 		On stealth strike create a homing lifestealing vampires 
-		On stealth strike weapon can inflict Crumbling
+		On stealth strike weapon inflict Crumbling and deal 8% more damage
 		Rogue projectiles give lifesteal on crits and explode into homing souls on death
 		'''
 	DisplayName: Dracula`s Charm
@@ -50,10 +50,10 @@ SupremeBarrier: {
 		Grants immunity to knockback and fire blocks
 		Grants immunity to the vast majority of debuffs, including God Slayer Inferno
 		Causes stars to fall and gives increased immune time when damaged
-		+0.5 HP/s life regen and reduces the cooldown of healing potions
 		Absorbs 15% of damage done to players on your team
 		This effect is only active above 25% life
 		Puts a shell around the owner when below 50% life that reduces damage taken
+		Being hit for over 200 damage will make you immune for an extended period of time
 		'''
 }
 
@@ -72,7 +72,7 @@ RedDie: {
 		'''
 		1.5x luck modified
 		20% increased extra luck 
-		'You are ready for reroll'
+		'You are ready for reroll?'
 		'''
 }
 
@@ -94,8 +94,47 @@ Wings: {
 		DisplayName: Metal Wings
 		Tooltip:
 			'''
+			Horizontal speed: 10.50
+			Acceleration multiplier: 2.8
+			Excellent vertical speed
+			Flight time: 280
 			When you getting hit, you receive flight time percentages equal to half of the ratio of damage received to max HP
 			While wearing Frozen Armor, all players in your team gets a 20 increased defence
 			'''
 	}
+}
+
+PearlOfFishCalamity: {
+	DisplayName: Pearl of Fish Calamity
+	Tooltip:
+		'''
+		50 increased fishing power
+		Greatly increases chance of catching potion ingredient fish
+		Increases chance to catch crates
+		Potion ingredient fish yield is increased
+		Summon a water elemental who will protect you while fishing
+		'''
+}
+
+SeaShell: {
+	DisplayName: Sea Shell
+	Tooltip: Increased defense, damage reduction and movement speed while wet
+}
+
+TheSubcommunity: {
+	DisplayName: The Subcommunity
+	Tooltip:
+		'''
+		[STATS]
+		'The part of The (Calamity) Community.'
+		'Has own specialization.'
+		[c/B00BA5:Thank you to all of my supporters who made this addon a reality!]
+		'''
+	StatsList:
+		'''
+		Increases mining speed by {0}%
+		Increases a luck by {1} and fishing power by {2}
+		Increases tile and wall placing speed by {3} and placing range by {4}
+		Become more powerful as you defeat bosses ({5}% Power)
+		'''
 }

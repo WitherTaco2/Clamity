@@ -17,3 +17,22 @@ TrashOfMagnus: {
 		This weapon scales with all your damage stats at once
 		'''
 }
+
+EyeOfNova: {
+	Tooltip:
+		'''
+		Fires powerful homing exo beams that reduce enemy protection, defence and slow down
+		Heals mana and health on hit
+		This weapon scales with all your damage stats at once
+		'''
+	DisplayName: Eye of Nova
+}
+
+Celesticus: {
+	Tooltip:
+		'''
+		Fires crystals that explode and slow enemies down
+		This weapon scales with all your damage stats at once
+		'''
+	DisplayName: Celesticus
+}

@@ -26,7 +26,7 @@ namespace Clamity.Content.Bosses.Clamitas.Crafted.ClamitasArmor
         public override void SetDefaults()
         {
             Item.width = Item.height = 22;
-            Item.value = CalamityGlobalItem.Rarity5BuyPrice;
+            Item.value = CalamityGlobalItem.RarityLimeBuyPrice;
             Item.rare = ItemRarityID.Lime;
             Item.defense = 18;
         }
@@ -44,7 +44,7 @@ namespace Clamity.Content.Bosses.Clamitas.Crafted.ClamitasArmor
         }
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = ILocalizedModTypeExtensions.GetLocalizedValue((ILocalizedModType)this, "SetBonus");
+            player.setBonus = this.GetLocalizedValue("SetBonus");
 
             player.Calamity().wearingRogueArmor = true;
 
@@ -52,7 +52,7 @@ namespace Clamity.Content.Bosses.Clamitas.Crafted.ClamitasArmor
             player.maxMinions += 10;
             if (player.whoAmI == Main.myPlayer)
             {
-                IEntitySource source_ItemUse = player.GetSource_ItemUse(base.Item);
+                IEntitySource source_ItemUse = player.GetSource_ItemUse(Item);
                 if (player.FindBuffIndex(ModContent.BuffType<HellstoneShellfishStaffBuff>()) == -1)
                 {
                     player.AddBuff(ModContent.BuffType<HellstoneShellfishStaffBuff>(), 3600);
@@ -97,21 +97,21 @@ namespace Clamity.Content.Bosses.Clamitas.Crafted.ClamitasArmor
                 return;
             }
 
-            IEntitySource source_Accessory = player.GetSource_Accessory(base.Item);
+            IEntitySource source_Accessory = player.GetSource_Accessory(Item);
             int num = 25;
-            float x = (float)(Main.rand.Next(1000) - 500) + player.Center.X;
+            float x = Main.rand.Next(1000) - 500 + player.Center.X;
             float y = -1000f + player.Center.Y;
             Vector2 vector = new Vector2(x, y);
             Vector2 spinningpoint = player.Center - vector;
             spinningpoint.Normalize();
-            spinningpoint *= (float)num;
+            spinningpoint *= num;
             int num2 = 30;
             float num3 = -60f;
             for (int i = 0; i < 2; i++)
             {
                 Vector2 vector2 = vector;
-                vector2.X = vector2.X + (float)(i * 30) - (float)num2;
-                Vector2 vector3 = spinningpoint.RotatedBy(MathHelper.ToRadians(num3 + 120f * (float)i / 2f));
+                vector2.X = vector2.X + i * 30 - num2;
+                Vector2 vector3 = spinningpoint.RotatedBy(MathHelper.ToRadians(num3 + 120f * i / 2f));
                 vector3.X = vector3.X + 3f * Main.rand.NextFloat() - 1.5f;
                 int type = 0;
                 int num4 = 0;

@@ -21,7 +21,7 @@ namespace Clamity.Content.Items.Weapons.Ranged.Guns
         {
             Item.width = 68; Item.height = 26;
             Item.rare = ItemRarityID.Red;
-            Item.value = CalamityGlobalItem.Rarity10BuyPrice;
+            Item.value = CalamityGlobalItem.RarityRedBuyPrice;
 
             Item.useAnimation = Item.useTime = 25;
             Item.useStyle = ItemUseStyleID.Shoot;
@@ -85,8 +85,9 @@ namespace Clamity.Content.Items.Weapons.Ranged.Guns
                 .Register();
         }
     }
-    public class ChargedBlast3 : ModProjectile
+    public class ChargedBlast3 : ModProjectile, ILocalizedModType, IModType
     {
+        public new string LocalizationCategory => "Projectiles.Ranged";
         public override string Texture => "CalamityMod/Projectiles/LaserProj";
         public override void SetDefaults()
         {
@@ -150,7 +151,7 @@ namespace Clamity.Content.Items.Weapons.Ranged.Guns
             return false;
         }
 
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center.X, Projectile.Center.Y, 0.0f, 0.0f, ModContent.ProjectileType<ChargedDartExplosion>(), Projectile.damage / 4, Projectile.knockBack, Projectile.owner, 1f, 0.0f);
             //Main.PlaySound(SoundID.Item62, (int)Projectile.position.X, (int)Projectile.position.Y);
@@ -164,8 +165,9 @@ namespace Clamity.Content.Items.Weapons.Ranged.Guns
             Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center.X, Projectile.Center.Y, 0.0f, 0.0f, ModContent.ProjectileType<ChargedDartExplosion>(), Projectile.damage / 4, Projectile.knockBack, Projectile.owner, 0.0f, 0.0f);
         }
     }
-    public class ChargedDartExplosion : ModProjectile
+    public class ChargedDartExplosion : ModProjectile, ILocalizedModType, IModType
     {
+        public new string LocalizationCategory => "Projectiles.Ranged";
         public override string Texture => "CalamityMod/Projectiles/InvisibleProj";
 
         public override void SetDefaults()

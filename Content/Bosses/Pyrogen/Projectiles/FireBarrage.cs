@@ -11,8 +11,9 @@ using Terraria.ModLoader;
 
 namespace Clamity.Content.Bosses.Pyrogen.Projectiles
 {
-    public class FireBarrage : BrimstoneBarrage
+    public class FireBarrage : BrimstoneBarrage, ILocalizedModType, IModType
     {
+        public new string LocalizationCategory => "Projectiles.Boss";
         public override void SetStaticDefaults()
         {
             base.SetStaticDefaults();
@@ -26,8 +27,9 @@ namespace Clamity.Content.Bosses.Pyrogen.Projectiles
 
         }
     }
-    public class FireBarrageHoming : FireBarrage
+    public class FireBarrageHoming : FireBarrage, ILocalizedModType, IModType
     {
+        public new string LocalizationCategory => "Projectiles.Boss";
         public override string Texture => "Clamity/Content/Bosses/Pyrogen/Projectiles/FireBarrage";
         public int TargetIndex = -1;
         public override void AI()
@@ -57,8 +59,9 @@ namespace Clamity.Content.Bosses.Pyrogen.Projectiles
             }
         }
     }
-    public class Fireblast : SCalBrimstoneFireblast
+    public class Fireblast : SCalBrimstoneFireblast, ILocalizedModType, IModType
     {
+        public new string LocalizationCategory => "Projectiles.Boss";
         public override void SetStaticDefaults()
         {
             base.SetStaticDefaults();

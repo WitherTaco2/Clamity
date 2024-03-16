@@ -1,4 +1,6 @@
 ﻿using CalamityMod;
+using CalamityMod.Buffs.DamageOverTime;
+using CalamityMod.NPCs;
 using CalamityMod.NPCs.Abyss;
 using CalamityMod.NPCs.AcidRain;
 using CalamityMod.NPCs.NormalNPCs;
@@ -7,9 +9,11 @@ using CalamityMod.NPCs.SunkenSea;
 using CalamityMod.NPCs.SupremeCalamitas;
 using CalamityMod.NPCs.TownNPCs;
 using Clamity.Content.Biomes.FrozenHell.Items;
+using Clamity.Content.Items.Accessories;
 using Clamity.Content.Items.Materials;
 using Clamity.Content.Items.Mounts;
 using Clamity.Content.Items.Potions.Food;
+using Clamity.Content.Items.Tools.BreakingTool;
 using Clamity.Content.Items.Weapons.Classless;
 using Clamity.Content.Items.Weapons.Melee.Shortswords;
 using Clamity.Content.Items.Weapons.Melee.Swords;
@@ -52,6 +56,16 @@ namespace Clamity
                 mainRule.Add(ItemDropRule.Common(ModContent.ItemType<NuclearEssence>(), 1, 10, 25));
             }
 
+            //Other Drop
+            if (npc.type == NPCID.GoblinWarrior)
+            {
+                npcLoot.Add(ModContent.ItemType<Warblade>(), 50);
+                npcLoot.Add(ModContent.ItemType<Waraxe>(), 50);
+            }
+            if (npc.type == NPCID.SeaSnail)
+            {
+                npcLoot.Add(ItemDropRule.NormalvsExpert(ModContent.ItemType<SeaShell>(), 2, 1));
+            }
 
             //Essence of Flame drop
             if (ContainType(npc.type, NPCID.Mummy, NPCID.LightMummy, NPCID.DarkMummy, NPCID.BloodMummy,
@@ -71,7 +85,7 @@ namespace Clamity
                 NPCID.GiantFlyingAntlion)
             )
             {
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MandibleClaws>(), 50));
+                //npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MandibleClaws>(), 50));
                 npcLoot.Add(ItemDropRule.ByCondition(hm, ModContent.ItemType<EssenceOfFlame>(), 4));
             }
 
@@ -119,45 +133,132 @@ namespace Clamity
             if (num < 0)
                 num = 0;
         }*/
+        public void ApplyDPSDebuff(int lifeRegenValue, int damageValue, ref int lifeRegen, ref int damage)
+        {
+            if (lifeRegen > 0)
+                lifeRegen = 0;
+
+            lifeRegen -= lifeRegenValue;
+
+            if (damage < damageValue)
+                damage = damageValue;
+        }
         public override void UpdateLifeRegen(NPC npc, ref int damage)
         {
-            bool flag1 = CalamityLists.DesertScourgeIDs.Contains(npc.type) || CalamityLists.EaterofWorldsIDs.Contains(npc.type) || CalamityLists.PerforatorIDs.Contains(npc.type) || CalamityLists.AquaticScourgeIDs.Contains(npc.type) || CalamityLists.AstrumDeusIDs.Contains(npc.type) || CalamityLists.StormWeaverIDs.Contains(npc.type);
-            bool flag2 = CalamityLists.SlimeGodIDs.Contains(npc.type);
-            bool flag3 = npc.drippingSlime || npc.drippingSparkleSlime;
+            bool wormBoss = CalamityLists.DesertScourgeIDs.Contains(npc.type) || CalamityLists.EaterofWorldsIDs.Contains(npc.type) || CalamityLists.PerforatorIDs.Contains(npc.type) || CalamityLists.AquaticScourgeIDs.Contains(npc.type) || CalamityLists.AstrumDeusIDs.Contains(npc.type) || CalamityLists.StormWeaverIDs.Contains(npc.type);
+            bool slimeGod = CalamityLists.SlimeGodIDs.Contains(npc.type);
+            bool slimed = npc.drippingSlime || npc.drippingSparkleSlime;
 
-            float num7 = flag3 ? (flag1 | flag2 ? 1.5f : 2f) : 1f;
+            //Vulnerability
+            double heatDamageMult = slimed ? ((wormBoss || slimeGod) ? CalamityGlobalNPC.VulnerableToDoTDamageMult_Worms_SlimeGod : CalamityGlobalNPC.VulnerableToDoTDamageMult) : CalamityGlobalNPC.BaseDoTDamageMult;
             if (npc.Calamity().VulnerableToHeat.HasValue)
             {
                 if (npc.Calamity().VulnerableToHeat.Value)
-                    num7 *= flag3 ? (flag1 | flag2 ? 1.25f : 1.5f) : (flag1 | flag2 ? 1.5f : 2f);
+                    heatDamageMult *= slimed ? ((wormBoss || slimeGod) ? 1.25 : 1.5) : ((wormBoss || slimeGod) ? CalamityGlobalNPC.VulnerableToDoTDamageMult_Worms_SlimeGod : CalamityGlobalNPC.VulnerableToDoTDamageMult);
                 else
-                    num7 *= flag3 ? 0.2f : 0.5f;
+                    heatDamageMult *= slimed ? ((wormBoss || slimeGod) ? 0.66 : 0.5) : 0.5;
             }
-            if (IncreasedHeatEffects_PyroStone)
-                num7 += 0.5f;
-            float num12 = num7 - 1f;
 
+            double coldDamageMult = CalamityGlobalNPC.BaseDoTDamageMult;
+            if (npc.Calamity().VulnerableToCold.HasValue)
+            {
+                if (npc.Calamity().VulnerableToCold.Value)
+                    coldDamageMult *= wormBoss ? CalamityGlobalNPC.VulnerableToDoTDamageMult_Worms_SlimeGod : CalamityGlobalNPC.VulnerableToDoTDamageMult;
+                else
+                    coldDamageMult *= 0.5;
+            }
+
+            double sicknessDamageMult = npc.Calamity().irradiated > 0 ? (wormBoss ? CalamityGlobalNPC.VulnerableToDoTDamageMult_Worms_SlimeGod : CalamityGlobalNPC.VulnerableToDoTDamageMult) : CalamityGlobalNPC.BaseDoTDamageMult;
+            if (npc.Calamity().VulnerableToSickness.HasValue)
+            {
+                if (npc.Calamity().VulnerableToSickness.Value)
+                    sicknessDamageMult *= npc.Calamity().irradiated > 0 ? (wormBoss ? 1.25 : 1.5) : (wormBoss ? CalamityGlobalNPC.VulnerableToDoTDamageMult_Worms_SlimeGod : CalamityGlobalNPC.VulnerableToDoTDamageMult);
+                else
+                    sicknessDamageMult *= npc.Calamity().irradiated > 0 ? (wormBoss ? 0.66 : 0.5) : 0.5;
+            }
+
+            bool increasedElectricityDamage = npc.wet || npc.honeyWet || npc.lavaWet || npc.dripping;
+            double electricityDamageMult = increasedElectricityDamage ? (wormBoss ? CalamityGlobalNPC.VulnerableToDoTDamageMult_Worms_SlimeGod : CalamityGlobalNPC.VulnerableToDoTDamageMult) : CalamityGlobalNPC.BaseDoTDamageMult;
+            if (npc.Calamity().VulnerableToElectricity.HasValue)
+            {
+                if (npc.Calamity().VulnerableToElectricity.Value)
+                    electricityDamageMult *= increasedElectricityDamage ? (wormBoss ? 1.25 : 1.5) : (wormBoss ? CalamityGlobalNPC.VulnerableToDoTDamageMult_Worms_SlimeGod : CalamityGlobalNPC.VulnerableToDoTDamageMult);
+                else
+                    electricityDamageMult *= increasedElectricityDamage ? (wormBoss ? 0.66 : 0.5) : 0.5;
+            }
+
+            double waterDamageMult = CalamityGlobalNPC.BaseDoTDamageMult;
+            if (npc.Calamity().VulnerableToWater.HasValue)
+            {
+                if (npc.Calamity().VulnerableToWater.Value)
+                    waterDamageMult *= wormBoss ? CalamityGlobalNPC.VulnerableToDoTDamageMult_Worms_SlimeGod : CalamityGlobalNPC.VulnerableToDoTDamageMult;
+                else
+                    waterDamageMult *= 0.5;
+            }
+
+            //Calamity Debuff buffs
+            if (npc.Calamity().IncreasedColdEffects_EskimoSet)
+                coldDamageMult += 0.25;
+            if (npc.Calamity().IncreasedColdEffects_CryoStone)
+                coldDamageMult += 0.5;
+            if (npc.Calamity().IncreasedHeatEffects_Fireball)
+                heatDamageMult += 0.25;
+            if (npc.Calamity().IncreasedHeatEffects_FlameWakerBoots)
+                heatDamageMult += 0.25;
+            if (npc.Calamity().IncreasedHeatEffects_CinnamonRoll)
+                heatDamageMult += 0.5;
+            if (npc.Calamity().IncreasedHeatEffects_HellfireTreads)
+                heatDamageMult += 0.5;
+            if (npc.Calamity().IncreasedElectricityEffects_Transformer)
+                electricityDamageMult += 0.5;
+            if (npc.Calamity().IncreasedSicknessEffects_ToxicHeart)
+                sicknessDamageMult += 0.5;
+            if (npc.Calamity().IncreasedSicknessAndWaterEffects_EvergreenGin)
+            {
+                sicknessDamageMult += 0.25;
+                waterDamageMult += 0.25;
+            }
+
+            //Clamity Debuff buffs
+            float vanillaColdDamageMult = 0f;
+            float vanillaHeatDamageMult = 0f;
+            if (IncreasedHeatEffects_PyroStone)
+                vanillaHeatDamageMult += 0.5f;
+            float vanillaSicknessDamageMult = 0f;
+            float vanillaWaterDamageMult = 0f;
+            float vanillaElectricityDamageMult = 0f;
+
+
+            //"vanilla" debuffs
+
+            // OnFire
             if (npc.onFire)
             {
-                int num15 = (int)(12.0 * num12);
+                int num15 = (int)(12.0 * vanillaHeatDamageMult);
                 npc.lifeRegen -= num15;
                 if (damage < num15 / 4)
                     damage = num15 / 4;
             }
+
+            // Cursed Inferno
             if (npc.onFire2)
             {
-                int num16 = (int)(48.0 * num12);
+                int num16 = (int)(48.0 * vanillaHeatDamageMult);
                 npc.lifeRegen -= num16;
                 if (damage < num16 / 4)
                     damage = num16 / 4;
             }
+
+            // Hellfire
             if (npc.onFire3)
             {
-                int num17 = (int)(30.0 * num12);
+                int num17 = (int)(30.0 * vanillaHeatDamageMult);
                 npc.lifeRegen -= num17;
                 if (damage < num17 / 4)
                     damage = num17 / 4;
             }
+
+            // Daybroken
             if (npc.daybreak)
             {
                 int num18 = 0;
@@ -166,33 +267,189 @@ namespace Clamity
                     if (((Entity)Main.projectile[index]).active && Main.projectile[index].type == 636 && (double)Main.projectile[index].ai[0] == 1.0 && (double)Main.projectile[index].ai[1] == (double)((Entity)npc).whoAmI)
                         ++num18;
                 }
-                int num19 = (int)((num18 <= 1 ? 1.0 : 1.0 + 0.25 * (double)(num18 - 1)) * 2.0 * 100.0 * num12);
+                int num19 = (int)((num18 <= 1 ? 1.0 : 1.0 + 0.25 * (double)(num18 - 1)) * 2.0 * 100.0 * vanillaHeatDamageMult);
                 npc.lifeRegen -= num19;
                 if (damage < num19 / 4)
                     damage = num19 / 4;
             }
+
+            // Shadowflame
             if (npc.shadowFlame)
             {
-                int num20 = (int)(60.0 * num12);
+                int num20 = (int)(60.0 * vanillaHeatDamageMult);
                 npc.lifeRegen -= num20;
                 if (damage < num20 / 4)
                     damage = num20 / 4;
             }
 
-            bool flag5 = npc.onFrostBurn || npc.onFrostBurn2;
-            bool flag6 = npc.onFire || npc.onFire2 || npc.onFire3 || npc.shadowFlame;
-            bool flag7 = npc.Calamity().bFlames > 0 || npc.Calamity().hFlames > 0 || npc.Calamity().gsInferno > 0 || npc.Calamity().dragonFire > 0 || npc.Calamity().banishingFire > 0 || npc.Calamity().vulnerabilityHex > 0;
-            if (npc.oiled && flag5 | flag6 | flag7)
+            // Brimstone Flames
+            if (npc.Calamity().bFlames > 0)
             {
-                double num23 = 1.0;
-                if (flag6 || flag7 & flag5)
-                    num23 *= num12;
-                if (flag7 && !flag5 && !flag6)
-                    num23 *= num7;
-                int num24 = (int)(50.0 * num23);
+                int baseBrimstoneFlamesDoTValue = (int)(60 * vanillaHeatDamageMult);
+                ApplyDPSDebuff(baseBrimstoneFlamesDoTValue, baseBrimstoneFlamesDoTValue / 5, ref npc.lifeRegen, ref damage);
+            }
+
+            // Holy Flames
+            if (npc.Calamity().hFlames > 0)
+            {
+                int baseHolyFlamesDoTValue = (int)(200 * vanillaHeatDamageMult);
+                ApplyDPSDebuff(baseHolyFlamesDoTValue, baseHolyFlamesDoTValue / 5, ref npc.lifeRegen, ref damage);
+            }
+
+            // God Slayer Inferno
+            if (npc.Calamity().gsInferno > 0)
+            {
+                int baseGodSlayerInfernoDoTValue = (int)(250 * vanillaHeatDamageMult);
+                ApplyDPSDebuff(baseGodSlayerInfernoDoTValue, baseGodSlayerInfernoDoTValue / 5, ref npc.lifeRegen, ref damage);
+            }
+
+            // Dragonfire
+            if (npc.Calamity().dragonFire > 0)
+            {
+                int baseDragonFireDoTValue = (int)(960 * vanillaHeatDamageMult);
+                ApplyDPSDebuff(baseDragonFireDoTValue, baseDragonFireDoTValue / 5, ref npc.lifeRegen, ref damage);
+            }
+
+            // Banishing Fire
+            if (npc.Calamity().banishingFire > 0)
+            {
+                int baseBanishingFireDoTValue = (int)((npc.lifeMax >= 1000000 ? npc.lifeMax / 500 : 4000) * vanillaHeatDamageMult);
+                ApplyDPSDebuff(baseBanishingFireDoTValue, baseBanishingFireDoTValue / 5, ref npc.lifeRegen, ref damage);
+            }
+
+            // Vulnerability Hex
+            if (npc.Calamity().vulnerabilityHex > 0)
+            {
+                int baseVulnerabilityHexDoTValue = (int)(VulnerabilityHex.DPS * vanillaHeatDamageMult);
+                ApplyDPSDebuff(baseVulnerabilityHexDoTValue, VulnerabilityHex.TickNumber, ref npc.lifeRegen, ref damage);
+            }
+
+            // Frostburn
+            if (npc.onFrostBurn)
+            {
+                int baseFrostBurnDoTValue = (int)(16 * vanillaColdDamageMult);
+                npc.lifeRegen -= baseFrostBurnDoTValue;
+                if (damage < baseFrostBurnDoTValue / 4)
+                    damage = baseFrostBurnDoTValue / 4;
+            }
+
+            // Frostbite
+            if (npc.onFrostBurn2)
+            {
+                int baseFrostBiteDoTValue = (int)(50 * vanillaColdDamageMult);
+                npc.lifeRegen -= baseFrostBiteDoTValue;
+                if (damage < baseFrostBiteDoTValue / 4)
+                    damage = baseFrostBiteDoTValue / 4;
+            }
+
+
+            bool hasColdOil = npc.onFrostBurn || npc.onFrostBurn2;
+            bool hasHotOil = npc.onFire || npc.onFire2 || npc.onFire3 || npc.shadowFlame;
+            bool hasModHotOil = npc.Calamity().bFlames > 0 || npc.Calamity().hFlames > 0 || npc.Calamity().gsInferno > 0 || npc.Calamity().dragonFire > 0 || npc.Calamity().banishingFire > 0 || npc.Calamity().vulnerabilityHex > 0;
+            if (npc.oiled && hasColdOil | hasHotOil | hasModHotOil)
+            {
+                double multiplier = 1.0;
+                if (hasColdOil)
+                    multiplier *= vanillaColdDamageMult;
+                if (hasHotOil || hasModHotOil & hasColdOil)
+                    multiplier *= vanillaHeatDamageMult;
+                //if (hasModHotOil && !hasColdOil && !hasHotOil)
+                //    multiplier *= heatDamageMult;
+
+                int num24 = (int)(50.0 * multiplier);
                 npc.lifeRegen -= num24;
                 if (damage < num24 / 4)
                     damage = num24 / 4;
+            }
+
+            // Nightwither
+            if (npc.Calamity().nightwither > 0)
+            {
+                int baseNightwitherDoTValue = (int)(200 * vanillaColdDamageMult);
+                ApplyDPSDebuff(baseNightwitherDoTValue, baseNightwitherDoTValue / 5, ref npc.lifeRegen, ref damage);
+            }
+
+            // Plague
+            if (npc.Calamity().pFlames > 0)
+            {
+                int basePlagueDoTValue = (int)(100 * vanillaSicknessDamageMult);
+                ApplyDPSDebuff(basePlagueDoTValue, basePlagueDoTValue / 5, ref npc.lifeRegen, ref damage);
+            }
+
+            // Astral Infection
+            if (npc.Calamity().astralInfection > 0)
+            {
+                int baseAstralInfectionDoTValue = (int)(75 * vanillaSicknessDamageMult);
+                ApplyDPSDebuff(baseAstralInfectionDoTValue, baseAstralInfectionDoTValue / 5, ref npc.lifeRegen, ref damage);
+            }
+
+            // Sulphuric Poisoning
+            if (npc.Calamity().sulphurPoison > 0)
+            {
+                int baseSulphurPoisonDoTValue = (int)(240 * vanillaSicknessDamageMult);
+                ApplyDPSDebuff(baseSulphurPoisonDoTValue, baseSulphurPoisonDoTValue / 5, ref npc.lifeRegen, ref damage);
+            }
+
+            // Sage Poison
+            if (npc.Calamity().sagePoisonTime > 0)
+            {
+                // npc.Calamity().sagePoisonDamage = 50 * (float)(Math.Pow(totalSageSpirits, 0.73D) + Math.Pow(totalSageSpirits, 1.1D)) * 0.5f
+                // See SageNeedle.cs for details
+                int baseSagePoisonDoTValue = (int)(npc.Calamity().sagePoisonDamage * vanillaSicknessDamageMult);
+                ApplyDPSDebuff(baseSagePoisonDoTValue, baseSagePoisonDoTValue / 5, ref npc.lifeRegen, ref damage);
+            }
+
+            // Kami Debuff from Yanmei's Knife
+            if (npc.Calamity().kamiFlu > 0)
+            {
+                int baseKamiFluDoTValue = (int)(250 * vanillaSicknessDamageMult);
+                ApplyDPSDebuff(baseKamiFluDoTValue, baseKamiFluDoTValue / 10, ref npc.lifeRegen, ref damage);
+            }
+
+            //Absorber Affliction
+            if (npc.Calamity().absorberAffliction > 0)
+            {
+                int baseAbsorberDoTValue = (int)(400 * vanillaSicknessDamageMult);
+                ApplyDPSDebuff(baseAbsorberDoTValue, baseAbsorberDoTValue / 65, ref npc.lifeRegen, ref damage);
+            }
+
+            // Poisoned
+            if (npc.poisoned)
+            {
+                int basePoisonedDoTValue = (int)(12 * vanillaSicknessDamageMult);
+                npc.lifeRegen -= basePoisonedDoTValue;
+                if (damage < basePoisonedDoTValue / 4)
+                    damage = basePoisonedDoTValue / 4;
+            }
+
+            // Venom
+            if (npc.venom)
+            {
+                int baseVenomDoTValue = (int)(60 * vanillaSicknessDamageMult);
+                npc.lifeRegen -= baseVenomDoTValue;
+                if (damage < baseVenomDoTValue / 4)
+                    damage = baseVenomDoTValue / 4;
+            }
+
+            // Electrified
+            if (npc.Calamity().electrified > 0)
+            {
+                int baseElectrifiedDoTValue = (int)(5 * (npc.velocity.X == 0 ? 1 : 4) * vanillaElectricityDamageMult);
+                ApplyDPSDebuff(baseElectrifiedDoTValue, baseElectrifiedDoTValue / 5, ref npc.lifeRegen, ref damage);
+            }
+
+            // Crush Depth
+            if (npc.Calamity().cDepth > 0)
+            {
+                int baseCrushDepthDoTValue = (int)(100 * vanillaWaterDamageMult);
+                ApplyDPSDebuff(baseCrushDepthDoTValue, baseCrushDepthDoTValue / 2, ref npc.lifeRegen, ref damage);
+            }
+
+            //Riptide
+            if (npc.Calamity().rTide > 0)
+            {
+                int baseRiptideDoTValue = (int)(30 * vanillaWaterDamageMult);
+                ApplyDPSDebuff(baseRiptideDoTValue, baseRiptideDoTValue / 3, ref npc.lifeRegen, ref damage);
             }
         }
         public override void ModifyShop(NPCShop shop)
@@ -200,7 +457,7 @@ namespace Clamity
             if (shop.NpcType == NPCID.Steampunker)
                 shop.Add<CyanSolution>(new Condition(Language.GetOrRegister("Mods.Clamity.Misc.DefeatedWoB"), () => ClamitySystem.downedWallOfBronze));
             if (shop.NpcType == ModContent.NPCType<DILF>())
-                shop.Add<ColdheartIcicle>();
+                shop.Add<EnchantedMetal>(new Condition(Language.GetOrRegister("Mods.Clamity.Misc.GeneratedFrozenHell"), () => !ClamitySystem.generatedFrozenHell || ClamityConfig.Instance.PermafrostSoldEnchantedMetal), new Condition(Language.GetOrRegister("Mods.Clamity.Misc.DefeatedWoB"), () => ClamitySystem.downedWallOfBronze));
         }
     }
 }
