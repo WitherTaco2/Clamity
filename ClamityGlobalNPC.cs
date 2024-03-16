@@ -1,5 +1,6 @@
 ﻿using CalamityMod;
 using CalamityMod.NPCs.Abyss;
+using CalamityMod.NPCs.AcidRain;
 using CalamityMod.NPCs.NormalNPCs;
 using CalamityMod.NPCs.PlaguebringerGoliath;
 using CalamityMod.NPCs.SunkenSea;
@@ -45,6 +46,10 @@ namespace Clamity
             if (npc.type == ModContent.NPCType<SupremeCalamitas>())
             {
                 mainRule.Add(ItemDropRule.Common(ModContent.ItemType<Calamitea>(), 1, 10, 10));
+            }
+            if (npc.type == ModContent.NPCType<NuclearTerror>())
+            {
+                mainRule.Add(ItemDropRule.Common(ModContent.ItemType<NuclearEssence>(), 1, 10, 25));
             }
 
 
