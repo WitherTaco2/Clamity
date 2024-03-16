@@ -1,4 +1,8 @@
-﻿namespace Clamity.Content.Items.Potions.Food
+﻿using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+
+namespace Clamity.Content.Items.Potions.Food
 {
     public class ClamChowder : ModItem, ILocalizedModType, IModType
     {

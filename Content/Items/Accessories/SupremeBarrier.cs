@@ -1,8 +1,12 @@
-﻿using CalamityMod.Items.Accessories;
+﻿using CalamityMod.Items;
+using CalamityMod.Items.Accessories;
 using CalamityMod.Items.Materials;
 using CalamityMod.Rarities;
 using CalamityMod.Tiles.Furniture.CraftingStations;
 using Clamity.Content.Items.Potions.Food;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Clamity.Content.Items.Accessories
 {

@@ -1,4 +1,11 @@
-﻿namespace Clamity.Content.Biomes.FrozenHell.Items
+﻿using CalamityMod;
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.Audio;
+using Terraria.ID;
+using Terraria.ModLoader;
+
+namespace Clamity.Content.Biomes.FrozenHell.Items
 {
     public class FrozenAsh : ModItem, ILocalizedModType, IModType
     {

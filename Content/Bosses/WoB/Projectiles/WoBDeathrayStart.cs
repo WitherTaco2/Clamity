@@ -1,4 +1,10 @@
 ﻿using CalamityMod.Projectiles.Boss;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Clamity.Content.Bosses.WoB.Projectiles
 {

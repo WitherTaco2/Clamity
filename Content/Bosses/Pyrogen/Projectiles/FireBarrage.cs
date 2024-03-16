@@ -1,6 +1,13 @@
-﻿using CalamityMod.Events;
+﻿using CalamityMod;
+using CalamityMod.Events;
 using CalamityMod.Projectiles.Boss;
 using CalamityMod.World;
+using Microsoft.Xna.Framework;
+using System;
+using Terraria;
+using Terraria.Audio;
+using Terraria.ModLoader;
+
 
 namespace Clamity.Content.Bosses.Pyrogen.Projectiles
 {

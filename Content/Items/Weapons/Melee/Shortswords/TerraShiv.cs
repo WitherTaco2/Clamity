@@ -1,6 +1,14 @@
-﻿using CalamityMod.Items.Materials;
+﻿using CalamityMod;
+using CalamityMod.Items;
+using CalamityMod.Items.Materials;
 using CalamityMod.Projectiles.BaseProjectiles;
 using Clamity.Content.Cooldowns;
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.Audio;
+using Terraria.DataStructures;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Clamity.Content.Items.Weapons.Melee.Shortswords
 {

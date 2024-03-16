@@ -1,4 +1,8 @@
-﻿namespace Clamity.Content.Bosses.Clamitas.Drop
+﻿using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+
+namespace Clamity.Content.Bosses.Clamitas.Drop
 {
     public class ClamitousPearl : ModItem, ILocalizedModType, IModType
     {

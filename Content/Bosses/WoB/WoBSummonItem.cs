@@ -1,6 +1,10 @@
 ﻿using CalamityMod.Events;
 using CalamityMod.Rarities;
 using Clamity.Content.Bosses.WoB.NPCs;
+using Terraria;
+using Terraria.Audio;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Clamity.Content.Bosses.WoB
 {

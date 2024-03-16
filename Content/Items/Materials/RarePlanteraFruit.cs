@@ -1,4 +1,8 @@
-﻿namespace Clamity.Content.Items.Materials
+﻿using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+
+namespace Clamity.Content.Items.Materials
 {
     public class RarePlanteraFruit : ModItem, ILocalizedModType, IModType
     {

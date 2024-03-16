@@ -1,5 +1,8 @@
 ﻿using CalamityMod.Items.Materials;
 using CalamityMod.Rarities;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Clamity.Content.Items.Potions.Food
 {

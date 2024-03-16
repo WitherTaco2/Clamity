@@ -1,4 +1,11 @@
-﻿namespace Clamity.Content.Bosses.WoB.Projectiles
+﻿using CalamityMod;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+
+namespace Clamity.Content.Bosses.WoB.Projectiles
 {
     public class WallOfBronzeTorretBlast : ModProjectile
     {

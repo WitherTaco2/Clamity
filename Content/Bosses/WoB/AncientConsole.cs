@@ -1,9 +1,16 @@
-﻿using CalamityMod.Events;
+﻿using CalamityMod;
+using CalamityMod.Events;
 using CalamityMod.Items.Materials;
 using CalamityMod.Rarities;
 using CalamityMod.Tiles.Furniture.CraftingStations;
 using Clamity.Content.Bosses.WoB.NPCs;
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.Enums;
+using Terraria.ID;
+using Terraria.ModLoader;
 using Terraria.ObjectData;
 
 namespace Clamity.Content.Bosses.WoB

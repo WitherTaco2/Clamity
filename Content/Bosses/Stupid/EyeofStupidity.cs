@@ -1,4 +1,8 @@
-﻿namespace Clamity.Content.Bosses.Stupid
+﻿using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+
+namespace Clamity.Content.Bosses.Stupid
 {
     public class EyeofStupidity : ModItem, ILocalizedModType, IModType
     {

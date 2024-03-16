@@ -1,5 +1,14 @@
-﻿using CalamityMod.Cooldowns;
+﻿using CalamityMod;
+using CalamityMod.Cooldowns;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.GameContent;
 using Terraria.Graphics.Shaders;
+using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace Clamity.Content.Cooldowns
 {

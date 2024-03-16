@@ -1,4 +1,6 @@
 ﻿using CalamityMod.Items.Materials;
+using Terraria;
+using Terraria.ID;
 
 namespace Clamity.Content.Items.Materials
 {

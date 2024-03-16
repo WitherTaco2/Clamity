@@ -1,4 +1,7 @@
-﻿namespace Clamity.Content.Buffs.Shortstrike
+﻿using Terraria;
+using Terraria.ModLoader;
+
+namespace Clamity.Content.Buffs.Shortstrike
 {
     public class IronShortstrike : ModBuff, ILocalizedModType, IModType
     {

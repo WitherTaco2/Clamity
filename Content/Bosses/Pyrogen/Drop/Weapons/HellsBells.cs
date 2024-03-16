@@ -1,4 +1,13 @@
-﻿using CalamityMod.Particles;
+﻿using CalamityMod;
+using CalamityMod.Items;
+using CalamityMod.Particles;
+using Microsoft.Xna.Framework;
+using System;
+using Terraria;
+using Terraria.Audio;
+using Terraria.DataStructures;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Clamity.Content.Bosses.Pyrogen.Drop.Weapons
 {

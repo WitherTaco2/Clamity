@@ -1,4 +1,5 @@
-﻿using CalamityMod.Buffs.DamageOverTime;
+﻿using CalamityMod;
+using CalamityMod.Buffs.DamageOverTime;
 using CalamityMod.Cooldowns;
 using CalamityMod.Items.Accessories;
 using CalamityMod.NPCs.Cryogen;
@@ -8,7 +9,14 @@ using Clamity.Content.Bosses.Pyrogen.Drop;
 using Clamity.Content.Bosses.Pyrogen.NPCs;
 using Clamity.Content.Cooldowns;
 using Clamity.Content.Items.Tools.Bags.Fish;
+using Microsoft.Xna.Framework;
+using System.Collections.Generic;
+using Terraria;
+using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.GameInput;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Clamity
 {

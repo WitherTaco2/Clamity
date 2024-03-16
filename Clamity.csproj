@@ -6,7 +6,6 @@
     <TargetFramework>net6.0</TargetFramework>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <LangVersion>latest</LangVersion>
-	<ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
     <AdditionalFiles Remove="Content\Bosses\Pyrogen\Gores\**" />
@@ -22,26 +21,4 @@
       <HintPath>CalamityMod.dll</HintPath>
     </Reference>
   </ItemGroup>
-
-	<!-- Implicit usings -->
-	<ItemGroup>
-		<Using Include="Microsoft.Xna.Framework" />
-		<Using Include="Microsoft.Xna.Framework.Graphics" />
-
-		<Using Include="Terraria" />
-		<Using Include="Terraria.Audio" />
-		<Using Include="Terraria.DataStructures" />
-		<Using Include="Terraria.GameContent" />
-		<Using Include="Terraria.ID" />
-		<Using Include="Terraria.Localization" />
-		<Using Include="Terraria.ModLoader" />
-		<Using Include="Terraria.UI" />
-		<Using Include="Terraria.Utilities" />
-		<Using Include="ReLogic.Content" />
-
-		<Using Include="Clamity.Commons" />
-		
-		<Using Include="CalamityMod" />
-		<Using Include="CalamityMod.Items" />
-	</ItemGroup>
 </Project>

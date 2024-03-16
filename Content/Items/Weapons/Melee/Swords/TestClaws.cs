@@ -1,7 +1,12 @@
-﻿using CalamityMod.Items.Materials;
+﻿using CalamityMod.Items;
+using CalamityMod.Items.Materials;
 using CalamityMod.Items.Weapons.Melee;
 using CalamityMod.Tiles.Furniture.CraftingStations;
 using Clamity.Content.Items.Weapons.Melee.Shortswords;
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Clamity.Content.Items.Weapons.Melee.Swords
 {

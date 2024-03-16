@@ -1,5 +1,9 @@
 ﻿using CalamityMod.Buffs.StatDebuffs;
 using CalamityMod.Items.Materials;
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Clamity.Content.Items.Ammo
 {

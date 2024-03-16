@@ -1,4 +1,8 @@
 ﻿using CalamityMod.Items.Mounts;
+using Microsoft.Xna.Framework.Graphics;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Clamity.Content.Items.Mounts
 {

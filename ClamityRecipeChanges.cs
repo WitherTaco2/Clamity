@@ -12,6 +12,8 @@ using Clamity.Content.Bosses.Pyrogen.Drop.Weapons;
 using Clamity.Content.Items.Materials;
 using Clamity.Content.Items.Weapons.Classless;
 using Clamity.Content.Items.Weapons.Melee.Shortswords;
+using Terraria;
+using Terraria.ModLoader;
 
 namespace Clamity
 {

@@ -1,4 +1,9 @@
-﻿namespace Clamity.Content.Items.Weapons.Melee.Swords
+﻿using CalamityMod.Items;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+
+namespace Clamity.Content.Items.Weapons.Melee.Swords
 {
     public class MandibleClaws : ModItem, ILocalizedModType, IModType
     {

@@ -1,4 +1,12 @@
-﻿namespace Clamity.Content.Bosses.Pyrogen.Drop.Weapons
+﻿using CalamityMod;
+using CalamityMod.Items;
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.ID;
+using Terraria.ModLoader;
+
+namespace Clamity.Content.Bosses.Pyrogen.Drop.Weapons
 {
     public class Obsidigun : ModItem, ILocalizedModType, IModType
     {

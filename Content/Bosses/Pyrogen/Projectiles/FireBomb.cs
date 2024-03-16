@@ -1,4 +1,11 @@
-﻿using CalamityMod.Particles;
+﻿using CalamityMod;
+using CalamityMod.Particles;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
+using Terraria;
+using Terraria.ModLoader;
+
 
 namespace Clamity.Content.Bosses.Pyrogen.Projectiles
 {

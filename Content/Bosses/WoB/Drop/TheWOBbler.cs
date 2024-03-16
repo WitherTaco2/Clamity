@@ -1,4 +1,9 @@
 ﻿using CalamityMod.Rarities;
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Clamity.Content.Bosses.WoB.Drop
 {

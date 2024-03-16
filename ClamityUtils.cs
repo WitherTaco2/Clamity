@@ -1,4 +1,12 @@
-﻿namespace Clamity
+﻿using Clamity.Commons;
+using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using Terraria;
+using Terraria.Localization;
+using Terraria.ModLoader;
+
+namespace Clamity
 {
     public static class ClamityUtils
     {

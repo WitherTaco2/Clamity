@@ -1,6 +1,11 @@
-﻿using CalamityMod.Items.Armor.Mollusk;
+﻿using CalamityMod.Items;
+using CalamityMod.Items.Armor.Mollusk;
 using CalamityMod.Items.Materials;
 using Clamity.Content.Bosses.Clamitas.Drop;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+
 
 namespace Clamity.Content.Bosses.Clamitas.Crafted.ClamitasArmor
 {

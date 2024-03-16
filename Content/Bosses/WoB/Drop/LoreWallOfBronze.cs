@@ -1,5 +1,7 @@
 ﻿using CalamityMod.Items.LoreItems;
 using CalamityMod.Rarities;
+using Terraria;
+using Terraria.ModLoader;
 
 namespace Clamity.Content.Bosses.WoB.Drop
 {

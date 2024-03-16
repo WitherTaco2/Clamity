@@ -1,4 +1,11 @@
-﻿using CalamityMod.Items.Materials;
+﻿using CalamityMod.Items;
+using CalamityMod.Items.Materials;
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.GameContent;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Clamity.Content.Items.Weapons.Ranged.Guns
 {

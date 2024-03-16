@@ -1,4 +1,8 @@
-﻿namespace Clamity.Content.Bosses.Pyrogen.Projectiles
+﻿using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.ModLoader;
+
+namespace Clamity.Content.Bosses.Pyrogen.Projectiles
 {
     public class PyrogenKillExplosion : ModProjectile
     {

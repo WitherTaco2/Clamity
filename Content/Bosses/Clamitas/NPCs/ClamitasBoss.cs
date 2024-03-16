@@ -1,3 +1,4 @@
+using CalamityMod;
 using CalamityMod.BiomeManagers;
 using CalamityMod.Dusts;
 using CalamityMod.Events;
@@ -11,10 +12,19 @@ using CalamityMod.Items.Weapons.Summon;
 using CalamityMod.NPCs;
 using CalamityMod.NPCs.SunkenSea;
 using CalamityMod.Projectiles.Boss;
+using Clamity.Commons;
 using Clamity.Content.Bosses.Clamitas.Drop;
 using Clamity.Content.Items.Potions.Food;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.IO;
+using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Clamity.Content.Bosses.Clamitas.NPCs
 {

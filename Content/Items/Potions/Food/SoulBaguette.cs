@@ -1,5 +1,9 @@
-﻿using CalamityMod.Buffs.Potions;
+﻿using CalamityMod;
+using CalamityMod.Buffs.Potions;
 using CalamityMod.Items.Potions;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Clamity.Content.Items.Potions.Food
 {

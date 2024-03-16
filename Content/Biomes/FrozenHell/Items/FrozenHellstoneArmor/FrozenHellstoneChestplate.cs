@@ -1,5 +1,9 @@
-﻿using CalamityMod.Items.Materials;
+﻿using CalamityMod;
+using CalamityMod.Items.Materials;
 using CalamityMod.Rarities;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Clamity.Content.Biomes.FrozenHell.Items.FrozenHellstoneArmor
 {

@@ -1,8 +1,15 @@
-﻿using CalamityMod.Items.Weapons.Rogue;
+﻿using CalamityMod;
+using CalamityMod.Items;
+using CalamityMod.Items.Weapons.Rogue;
 using CalamityMod.Projectiles.Rogue;
 using CalamityMod.Rarities;
 using CalamityMod.Tiles.Furniture.CraftingStations;
 using Clamity.Content.Biomes.FrozenHell.Items;
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Clamity.Content.Items.Weapons.Rogue
 {

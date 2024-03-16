@@ -1,4 +1,7 @@
 ﻿using CalamityMod.Tiles.BaseTiles;
+using Terraria;
+using Terraria.ModLoader;
+
 
 namespace Clamity.Content.Bosses.Pyrogen.Drop
 {

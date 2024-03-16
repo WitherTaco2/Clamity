@@ -1,4 +1,11 @@
-﻿namespace Clamity.Commons.DrawLayers
+﻿using CalamityMod;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.ModLoader;
+
+namespace Clamity.Commons.DrawLayers
 {
     public class EncasementClamityParryLayer : PlayerDrawLayer
     {

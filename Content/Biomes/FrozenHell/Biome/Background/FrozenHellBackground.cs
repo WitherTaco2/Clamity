@@ -1,5 +1,12 @@
-﻿using MonoMod.Cil;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using MonoMod.Cil;
+using ReLogic.Content;
+using System;
+using Terraria;
+using Terraria.GameContent;
 using Terraria.Graphics.Effects;
+using Terraria.ModLoader;
 
 namespace Clamity.Content.Biomes.FrozenHell.Biome.Background
 {

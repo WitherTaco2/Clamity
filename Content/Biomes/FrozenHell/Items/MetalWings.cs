@@ -1,6 +1,12 @@
-﻿using CalamityMod.Rarities;
+﻿using CalamityMod.Items;
+using CalamityMod.Rarities;
 using CalamityMod.Tiles.Furniture.CraftingStations;
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.DataStructures;
 using Terraria.Graphics.Shaders;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Clamity.Content.Biomes.FrozenHell.Items
 {

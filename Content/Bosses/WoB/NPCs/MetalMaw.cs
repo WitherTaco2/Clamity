@@ -1,4 +1,10 @@
-﻿using Terraria.GameContent.ItemDropRules;
+﻿using CalamityMod;
+using Microsoft.Xna.Framework;
+using System;
+using Terraria;
+using Terraria.GameContent.ItemDropRules;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Clamity.Content.Bosses.WoB.NPCs
 {

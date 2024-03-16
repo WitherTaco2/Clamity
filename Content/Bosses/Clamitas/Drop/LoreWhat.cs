@@ -1,4 +1,7 @@
 ﻿using CalamityMod.Items.LoreItems;
+using Terraria;
+using Terraria.ID;
+
 
 namespace Clamity.Content.Bosses.Clamitas.Drop
 {

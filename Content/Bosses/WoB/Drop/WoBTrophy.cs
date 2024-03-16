@@ -1,4 +1,7 @@
 ﻿using CalamityMod.Tiles.Furniture.BossTrophies;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Clamity.Content.Bosses.WoB.Drop
 {

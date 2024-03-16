@@ -1,4 +1,7 @@
-﻿namespace Clamity
+﻿using Terraria.Localization;
+using Terraria.ModLoader;
+
+namespace Clamity
 {
     public static class LangHelper
     {

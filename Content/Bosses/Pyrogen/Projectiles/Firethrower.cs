@@ -1,4 +1,7 @@
-﻿namespace Clamity.Content.Bosses.Pyrogen.Projectiles
+﻿using Terraria;
+using Terraria.ModLoader;
+
+namespace Clamity.Content.Bosses.Pyrogen.Projectiles
 {
     public class Firethrower : ModProjectile
     {

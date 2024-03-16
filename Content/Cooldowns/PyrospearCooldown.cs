@@ -1,4 +1,6 @@
 ﻿using CalamityMod.Cooldowns;
+using Microsoft.Xna.Framework;
+using Terraria.Localization;
 
 namespace Clamity.Content.Cooldowns
 {

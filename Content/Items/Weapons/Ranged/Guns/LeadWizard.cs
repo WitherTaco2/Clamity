@@ -1,4 +1,12 @@
-﻿namespace Clamity.Content.Items.Weapons.Ranged.Guns
+﻿using CalamityMod.Items;
+using Microsoft.Xna.Framework;
+using System;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.ID;
+using Terraria.ModLoader;
+
+namespace Clamity.Content.Items.Weapons.Ranged.Guns
 {
     public class LeadWizard : ModItem, ILocalizedModType, IModType
     {

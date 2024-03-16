@@ -1,4 +1,8 @@
-﻿namespace Clamity.Content.Bosses.Pyrogen.Drop
+﻿using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+
+namespace Clamity.Content.Bosses.Pyrogen.Drop
 {
     [AutoloadEquip(new EquipType[] { EquipType.Head })]
     public class PyrogenMask : ModItem, ILocalizedModType, IModType

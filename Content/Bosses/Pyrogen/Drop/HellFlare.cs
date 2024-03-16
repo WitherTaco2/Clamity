@@ -1,4 +1,10 @@
-﻿namespace Clamity.Content.Bosses.Pyrogen.Drop
+﻿using CalamityMod.Items;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.ID;
+using Terraria.ModLoader;
+
+namespace Clamity.Content.Bosses.Pyrogen.Drop
 {
     public class HellFlare : ModItem, ILocalizedModType, IModType
     {

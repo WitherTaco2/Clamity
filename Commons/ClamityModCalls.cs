@@ -1,4 +1,7 @@
-﻿using CalamityMod.CalPlayer;
+﻿using CalamityMod;
+using CalamityMod.CalPlayer;
+using System;
+using Terraria;
 
 namespace Clamity.Commons
 {
