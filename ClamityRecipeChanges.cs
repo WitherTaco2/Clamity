@@ -5,12 +5,10 @@ using CalamityMod.Items.Weapons.Magic;
 using CalamityMod.Items.Weapons.Melee;
 using CalamityMod.Items.Weapons.Ranged;
 using CalamityMod.Items.Weapons.Rogue;
-using CalamityMod.Items.Weapons.Typeless;
 using Clamity.Content.Biomes.FrozenHell.Items;
 using Clamity.Content.Bosses.Clamitas.Drop;
 using Clamity.Content.Bosses.Pyrogen.Drop.Weapons;
 using Clamity.Content.Items.Materials;
-using Clamity.Content.Items.Weapons.Classless;
 using Clamity.Content.Items.Weapons.Melee.Shortswords;
 using Terraria;
 using Terraria.ModLoader;
@@ -59,8 +57,8 @@ namespace Clamity
                     //item1.stack = 1;
                     //recipe.requiredItem.Insert(0, item1);
                 }
-                if (recipe.HasResult<EyeofMagnus>())
-                    recipe.requiredItem.Insert(1, ModContent.GetInstance<TrashOfMagnus>().Item);
+                //if (recipe.HasResult<EyeofMagnus>())
+                //    recipe.requiredItem.Insert(1, ModContent.GetInstance<TrashOfMagnus>().Item);
 
 
                 //Core of Heat
