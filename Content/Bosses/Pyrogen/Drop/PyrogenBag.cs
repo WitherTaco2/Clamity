@@ -5,9 +5,11 @@ using Clamity.Content.Bosses.Pyrogen.NPCs;
 using Clamity.Content.Items.Materials;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
+
 
 namespace Clamity.Content.Bosses.Pyrogen.Drop
 {

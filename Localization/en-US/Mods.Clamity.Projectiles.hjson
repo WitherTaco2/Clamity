@@ -20,6 +20,7 @@ Melee: {
 	WulfrumLeechDaggerProjectile.DisplayName: Wulfrum Leech Dagger
 	WulfrumLeechDaggerShard.DisplayName: Wulfrum Leech Dagger Shard
 	EverestProjectile.DisplayName: Everest
+	BaseSlash.DisplayName: Base Slash
 }
 
 Ranged: {
@@ -72,7 +73,12 @@ Firethrower.DisplayName: Firethrower
 PyrogenSummonAnimation.DisplayName: Pyrogen Summon Animation
 PyrogenKillExplosion.DisplayName: Pyrogen Kill Explosion
 DraculasCharmProj.DisplayName: Dracula
-Typeless.PyroShieldAccessory.DisplayName: Pyro Shield
+
+Typeless: {
+	PyroShieldAccessory.DisplayName: Pyro Shield
+	EyeOfNovaProjectile.DisplayName: Eye Of Nova Projectile
+}
+
 WallOfBronzeTorretBlast.DisplayName: Wall Of Bronze Torret Blast
 WallOfBronzeLaserBeamStart.DisplayName: Wall Of Bronze Laser Beam
 WallOfBronzeClawProjectile.DisplayName: Wall Of Bronze Claw

@@ -11,6 +11,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
+
 namespace Clamity.Content.Bosses.Pyrogen.Drop
 {
     public class PyroStone : ModItem, ILocalizedModType, IModType

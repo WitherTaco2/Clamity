@@ -1,6 +1,7 @@
-﻿using Terraria.ID;
+﻿using CalamityMod.Items.LoreItems;
 using Terraria;
-using CalamityMod.Items.LoreItems;
+using Terraria.ID;
+
 
 namespace Clamity.Content.Bosses.Pyrogen.Drop
 {

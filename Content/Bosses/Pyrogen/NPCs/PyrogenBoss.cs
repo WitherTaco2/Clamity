@@ -23,6 +23,7 @@ using Terraria.GameContent.UI.BigProgressBar;
 using Terraria.ID;
 using Terraria.ModLoader;
 
+
 namespace Clamity.Content.Bosses.Pyrogen.NPCs
 {
     public class PyrogenBossBar : ModBossBar

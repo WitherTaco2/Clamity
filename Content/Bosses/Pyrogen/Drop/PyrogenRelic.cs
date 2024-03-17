@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.ModLoader;
 
+
 namespace Clamity.Content.Bosses.Pyrogen.Drop
 {
     public class PyrogenRelic : ModItem, ILocalizedModType, IModType

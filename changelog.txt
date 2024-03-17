@@ -12,6 +12,7 @@ Added Red Die. Post-Clamitas direct upgrade of Old Die
 Added Plague Station and Flame Cube. Exo Box alternatives in different stages (after Plaguebringer Goliath and Exo Mech + Calamitas)
 Added Trash of Magnus. Post-Plaguebringer Goliath Classless weapon
 Added Eidolon Amulet. Combination of amulets
+Added Metal Wings and Metal Feather for it
 
 Added minions for Wall of Bronze
 
@@ -23,6 +24,7 @@ Added Copper/Tin Clicker into Started Bag (If clicker class mod is active)
 Added The Generator in Nuclear Fury recipe
 Added Molten Piercer in Shattered Sun recipe
 The Generator now inflict Shadow Flames debuff
+Nerfed WoB Guns max life
 
 
 Fixes:

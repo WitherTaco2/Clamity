@@ -1,10 +1,8 @@
-﻿using System;
-using Terraria.ID;
-using Terraria;
-using Terraria.ModLoader;
+﻿using CalamityMod;
 using Microsoft.Xna.Framework;
-using CalamityMod;
-using CalamityMod.Projectiles.Boss;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Clamity.Content.Bosses.Stupid
 {

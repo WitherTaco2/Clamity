@@ -1,15 +1,13 @@
-﻿using Terraria.Audio;
+﻿using CalamityMod;
+using CalamityMod.Items;
+using CalamityMod.Particles;
+using Microsoft.Xna.Framework;
+using System;
+using Terraria;
+using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ID;
-using Terraria;
 using Terraria.ModLoader;
-using System;
-using Microsoft.Xna.Framework;
-using CalamityMod.CalPlayer;
-using CalamityMod;
-using CalamityMod.Particles;
-using CalamityMod.Items;
-using Mono.Cecil;
 
 namespace Clamity.Content.Bosses.Pyrogen.Drop.Weapons
 {

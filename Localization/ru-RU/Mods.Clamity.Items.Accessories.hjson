@@ -67,24 +67,35 @@ IcicleRing: {
 }
 
 RedDie: {
-	// DisplayName: Red Die
-	/* Tooltip:
+	DisplayName: Красный кубик
+	Tooltip:
 		'''
-		1.5x luck
-		20% increased luck after calculation
-		'You are ready for reroll'
-		''' */
+		1.5x модификатор удачи
+		20% увеличенной дополнительной удачи
+		'Готов к реролу?'
+		'''
 }
 
 EidolonAmulet: {
-	// DisplayName: Eidolon Amulet
-	/* Tooltip:
+	DisplayName: Призрачный амулет
+	Tooltip:
 		'''
-		Grants immunity to the Riptide, Crush Depth and Irradiated debuffs
-		All attacks inflict the Crush Depth debuff and release acid droplets from the sky
-		You recover air while standing still underwater
-		15% increased mining speed and 10% increased damage while wet
-		25% increased max life while in the abyss
-		Provides a moderate amount of light in the abyss
-		''' */
+		Дает иммунитет к дебаффам "Разрывной поток", "Глубина сокрушения" и "Облучение"
+		Все атаки накладывают дебафф "Глубина сокрушения" и выпускают капли кислоты с неба
+		Вы восстанавливаете воздух, неподвижно стоя под водой (не работает в бездне)
+		На 15% увеличена скорость добычи и на 10% увеличен урон когда мокром состоянии
+		25% увеличена максимальные ХП, когда ты в в бездне
+		Обеспечивает умеренное количество света в бездне
+		'''
+}
+
+Wings: {
+	MetalWings: {
+		DisplayName: Металлические крылья
+		Tooltip:
+			'''
+			После получения урона вы востанавливаете проценты времени полёта равному половины соотношения полученного урона к максимальному ХП
+			Когда надета Замороженная броня все игроки в вашей группе получают 20 увеличенной защиты
+			'''
+	}
 }

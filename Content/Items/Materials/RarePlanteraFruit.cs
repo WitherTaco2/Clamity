@@ -1,7 +1,12 @@
-﻿namespace Clamity.Content.Items.Materials
+﻿using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+
+namespace Clamity.Content.Items.Materials
 {
-    /*public class RarePlanteraFruit : ModItem
+    public class RarePlanteraFruit : ModItem, ILocalizedModType, IModType
     {
+        public new string LocalizationCategory => "Items.Materials";
         public override void SetDefaults()
         {
             Item.width = 28;
@@ -10,5 +15,5 @@
             Item.value = Item.sellPrice(0, 10);
             Item.rare = ItemRarityID.Red;
         }
-    }*/
+    }
 }

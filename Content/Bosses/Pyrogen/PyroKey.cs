@@ -9,6 +9,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
+
 namespace Clamity.Content.Bosses.Pyrogen
 {
     public class PyroKey : ModItem, ILocalizedModType, IModType

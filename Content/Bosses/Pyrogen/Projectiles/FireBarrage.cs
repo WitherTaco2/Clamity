@@ -8,6 +8,7 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.ModLoader;
 
+
 namespace Clamity.Content.Bosses.Pyrogen.Projectiles
 {
     public class FireBarrage : BrimstoneBarrage

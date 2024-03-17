@@ -1,14 +1,18 @@
 ﻿using CalamityMod;
 using CalamityMod.Buffs.DamageOverTime;
+using CalamityMod.Cooldowns;
 using CalamityMod.Items.Accessories;
+using CalamityMod.NPCs.Cryogen;
 using CalamityMod.Projectiles.Ranged;
 using Clamity.Content.Biomes.FrozenHell.Biome;
 using Clamity.Content.Bosses.Pyrogen.Drop;
+using Clamity.Content.Bosses.Pyrogen.NPCs;
 using Clamity.Content.Cooldowns;
 using Clamity.Content.Items.Tools.Bags.Fish;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameInput;
 using Terraria.ID;
@@ -18,6 +22,7 @@ namespace Clamity
 {
     public class ClamityPlayer : ModPlayer
     {
+        #region Variables
         public bool realityRelocator;
         public bool wulfrumShortstrike;
         public bool aflameAcc;
@@ -33,10 +38,12 @@ namespace Clamity
         public bool icicleRing;
         public bool redDie;
         public bool eidolonAmulet;
+        public bool metalWings;
 
         //Armor
         public bool inflicingMeleeFrostburn;
         public bool frozenParrying;
+        public int frozenParryingTime;
 
         //Minion
         public bool hellsBell;
@@ -67,6 +74,7 @@ namespace Clamity
             icicleRing = false;
             redDie = false;
             eidolonAmulet = false;
+            metalWings = false;
 
             inflicingMeleeFrostburn = false;
             frozenParrying = false;
@@ -74,56 +82,16 @@ namespace Clamity
             hellsBell = false;
             guntera = false;
 
-            //wCleave = false;
+
 
             FlyingChair = false;
             FlyingChairPower = 12;
         }
-        //public Item[] accesories;
-        public override void UpdateEquips()
+        public override void UpdateDead()
         {
-            foreach (Item i in Player.armor)
-            {
-                if (!i.IsAir)
-                    if (i.Calamity().AppliedEnchantment != null)
-                    {
-                        if (i.Calamity().AppliedEnchantment.Value.ID == 10000)
-                            aflameAccList.Add(i.type);
-                    }
-            }
-            if (aflameAccList.Count > 0)
-            {
-                Player.AddBuff(ModContent.BuffType<WeakBrimstoneFlames>(), 1);
-            }
+            frozenParryingTime = 0;
         }
-        public override void ProcessTriggers(TriggersSet triggersSet)
-        {
-            if (base.Player.dead)
-            {
-                return;
-            }
-            if (CalamityKeybinds.NormalityRelocatorHotKey.JustPressed && realityRelocator && Main.myPlayer == Player.whoAmI && !Player.CCed)
-            {
-                Vector2 vector;
-                vector.X = Main.mouseX + Main.screenPosition.X;
-                if (Player.gravDir == 1f)
-                {
-                    vector.Y = (float)Main.mouseY + Main.screenPosition.Y - (float)base.Player.height;
-                }
-                else
-                {
-                    vector.Y = Main.screenPosition.Y + Main.screenHeight - Main.mouseY;
-                }
-
-                vector.X -= Player.width / 2;
-                if (vector.X > 50f && vector.X < (Main.maxTilesX * 16 - 50) && vector.Y > 50f && vector.Y < (Main.maxTilesY * 16 - 50) && !Collision.SolidCollision(vector, Player.width, Player.height))
-                {
-                    Player.Teleport(vector, 4);
-                    NetMessage.SendData(MessageID.TeleportPlayerThroughPortal, -1, -1, null, 0, Player.whoAmI, vector.X, vector.Y, 1);
-                }
-            }
-
-        }
+        #endregion
         #region On Hit Effect
         public override void OnHitNPCWithItem(Item item, NPC target, NPC.HitInfo hit, int damageDone)
         {
@@ -164,39 +132,61 @@ namespace Clamity
                 Player.AddCooldown(PyrospearCooldown.ID, 100);
             }
         }
-        /*public override void ModifyHitByNPC(NPC npc, ref Player.HurtModifiers modifiers)
-        {
-            if (wCleave)
-                Player.Calamity().contactDamageReduction *= 0.75f;
-        }
-        public override void ModifyHitByProjectile(Projectile proj, ref Player.HurtModifiers modifiers)
-        {
-            if (wCleave)
-                Player.Calamity().contactDamageReduction *= 0.75f;
-        }*/
         #endregion
-        public override void CatchFish(FishingAttempt attempt, ref int itemDrop, ref int npcSpawn, ref AdvancedPopupRequest sonar, ref Vector2 sonarPosition)
+        #region Hurt Effect
+        public override void OnHurt(Player.HurtInfo info)
         {
-            bool flag = !attempt.inHoney && !attempt.inLava;
-            if (flag)
+            if (metalWings)
             {
-                if (Player.ZoneDesert && Main.hardMode && attempt.uncommon && Main.rand.NextBool(7))
-                    itemDrop = ModContent.ItemType<FishOfFlame>();
-                /*if (Player.Calamity().ZoneSulphur && DownedBossSystem.downedPolterghast && attempt.uncommon && Main.rand.NextBool(10))
-                    itemDrop = ModContent.ItemType<FrontGar>();
-                if (Player.ZoneJungle && DownedBossSystem.downedProvidence && attempt.uncommon && Main.rand.NextBool(10))
-                    itemDrop = ModContent.ItemType<RearGar>();
-                if (Player.ZoneSkyHeight && NPC.downedMoonlord && attempt.uncommon && Main.rand.NextBool(10))
-                    itemDrop = ModContent.ItemType<SideGar>();*/
+                float percent = info.Damage / (float)Player.statLifeMax2;
+                float recivingFlyTime = Player.wingTimeMax * percent / 2;
+                if (Player.wingTime + recivingFlyTime > Player.wingTimeMax)
+                    Player.wingTime = Player.wingTimeMax;
+                else
+                    Player.wingTime += recivingFlyTime;
             }
         }
-        public override void UpdateBadLifeRegen()
+        public override void ModifyHurt(ref Player.HurtModifiers modifiers)
         {
-            if (icicleRing && Player.statLife > Player.statLifeMax2 / 3)
+            /*if (metalWings)
             {
-                if (Player.lifeRegen > 0)
-                    Player.lifeRegen = 0;
-                Player.lifeRegen -= 30;
+                float percent = info.Damage / Player.statLifeMax2;
+                int recivingFlyTime = (int)(Player.wingTimeMax * percent / 2);
+                if (Player.wingTime + recivingFlyTime > Player.wingTimeMax)
+                    Player.wingTime = Player.wingTimeMax;
+                else
+                    Player.wingTime += recivingFlyTime;
+            }*/
+            if (frozenParrying && frozenParryingTime > 15)
+            {
+                if (!Player.HasCooldown(ParryCooldown.ID))
+                {
+                    Player.GiveIFrames(60, true);
+                    modifiers.FinalDamage *= 0.1f;
+                    modifiers.DisableSound();
+                }
+                SoundEngine.PlaySound(in PyrogenShield.BreakSound, new Vector2?(Player.Center));
+                Player.AddCooldown(ParryCooldown.ID, 10 * 60, false);
+                Player.AddBuff(47, 60);
+            }
+        }
+        #endregion
+        #region Updates
+
+        public override void UpdateEquips()
+        {
+            foreach (Item i in Player.armor)
+            {
+                if (!i.IsAir)
+                    if (i.Calamity().AppliedEnchantment != null)
+                    {
+                        if (i.Calamity().AppliedEnchantment.Value.ID == 10000)
+                            aflameAccList.Add(i.type);
+                    }
+            }
+            if (aflameAccList.Count > 0)
+            {
+                Player.AddBuff(ModContent.BuffType<WeakBrimstoneFlames>(), 1);
             }
         }
         public override void PostUpdateEquips()
@@ -205,6 +195,8 @@ namespace Clamity
         }
         public override void PostUpdateMiscEffects()
         {
+            var cooldownList = Player.GetDisplayedCooldowns();
+
             StatModifier statModifier;
             if (pyroStone || pyroStoneVanity)
             {
@@ -233,6 +225,34 @@ namespace Clamity
                 if (Player.Calamity().oceanCrestTimer > 0 | flag2)
                     Player.GetDamage<GenericDamageClass>() += 0.1f;
             }
+            if (frozenParrying && frozenParryingTime > 0)
+                frozenParryingTime--;
+            if (frozenParrying && (Player.HasCooldown(ParryCooldown.ID) || frozenParryingTime > 0))
+            {
+                Player.buffImmune[47] = false;
+                /*for (int i = 0; i < cooldownList.Count; i++)
+                {
+                    CooldownInstance cooldown = cooldownList[i];
+
+                    if (cooldown.duration >= 9 * 60)
+                    {
+
+                    }
+                }
+                //Player.buffImmune[47] = false;
+                Player.controlJump = false;
+                Player.controlDown = false;
+                Player.controlLeft = false;
+                Player.controlRight = false;
+                Player.controlUp = false;
+                Player.controlUseItem = false;
+                Player.controlUseTile = false;
+                Player.controlThrow = false;
+                Player.gravDir = 1f;
+                Player.velocity = Vector2.Zero;
+                Player.velocity.Y = -0.1f;
+                Player.RemoveAllGrapplingHooks();*/
+            }
         }
         public Item FindAccessory(int itemID)
         {
@@ -242,6 +262,17 @@ namespace Clamity
                     return this.Player.armor[index];
             }
             return new Item();
+        }
+        #endregion
+        #region Modify Stats
+        public override void UpdateBadLifeRegen()
+        {
+            if (icicleRing && Player.statLife > Player.statLifeMax2 / 3)
+            {
+                if (Player.lifeRegen > 0)
+                    Player.lifeRegen = 0;
+                Player.lifeRegen -= 30;
+            }
         }
         public override void PreUpdateMovement()
         {
@@ -290,6 +321,7 @@ namespace Clamity
                 }
             }
         }
+        #endregion
         public override bool Shoot(Item item, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
 
@@ -311,5 +343,53 @@ namespace Clamity
             }
             return true;
         }
+        #region Other
+        public override void CatchFish(FishingAttempt attempt, ref int itemDrop, ref int npcSpawn, ref AdvancedPopupRequest sonar, ref Vector2 sonarPosition)
+        {
+            bool flag = !attempt.inHoney && !attempt.inLava;
+            if (flag)
+            {
+                if (Player.ZoneDesert && Main.hardMode && attempt.uncommon && Main.rand.NextBool(7))
+                    itemDrop = ModContent.ItemType<FishOfFlame>();
+            }
+        }
+        public override void ProcessTriggers(TriggersSet triggersSet)
+        {
+            if (Player.dead)
+            {
+                return;
+            }
+            if (CalamityKeybinds.NormalityRelocatorHotKey.JustPressed && realityRelocator && Main.myPlayer == Player.whoAmI && !Player.CCed)
+            {
+                Vector2 vector;
+                vector.X = Main.mouseX + Main.screenPosition.X;
+                if (Player.gravDir == 1f)
+                {
+                    vector.Y = (float)Main.mouseY + Main.screenPosition.Y - (float)base.Player.height;
+                }
+                else
+                {
+                    vector.Y = Main.screenPosition.Y + Main.screenHeight - Main.mouseY;
+                }
+
+                vector.X -= Player.width / 2;
+                if (vector.X > 50f && vector.X < (Main.maxTilesX * 16 - 50) && vector.Y > 50f && vector.Y < (Main.maxTilesY * 16 - 50) && !Collision.SolidCollision(vector, Player.width, Player.height))
+                {
+                    Player.Teleport(vector, 4);
+                    NetMessage.SendData(MessageID.TeleportPlayerThroughPortal, -1, -1, null, 0, Player.whoAmI, vector.X, vector.Y, 1);
+                }
+            }
+            if (CalamityKeybinds.AccessoryParryHotKey.JustPressed && !Player.HasCooldown(ParryCooldown.ID))
+            {
+                if (frozenParrying && frozenParryingTime == 0)
+                {
+                    Player.Calamity().GeneralScreenShakePower = 2.5f;
+                    SoundEngine.PlaySound(in Cryogen.ShieldRegenSound, Player.Center);
+                    frozenParryingTime = 30;
+                }
+            }
+
+        }
+        #endregion
     }
 }

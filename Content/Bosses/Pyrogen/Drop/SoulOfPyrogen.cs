@@ -3,21 +3,17 @@ using CalamityMod.Buffs.DamageOverTime;
 using CalamityMod.Items;
 using CalamityMod.Particles;
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
+
 namespace Clamity.Content.Bosses.Pyrogen.Drop
 {
     public class SoulOfPyrogen : ModItem, ILocalizedModType, IModType
     {
-        public new string LocalizationCategory => "Items.Accessories"; 
+        public new string LocalizationCategory => "Items.Accessories";
         public override void SetStaticDefaults()
         {
             Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(4, 10));

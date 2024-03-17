@@ -12,6 +12,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
+
 namespace Clamity.Content.Bosses.Clamitas.Crafted.Weapons
 {
     public class DepthsEchoRifle : ClamorRifle

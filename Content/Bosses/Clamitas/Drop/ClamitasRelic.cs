@@ -9,6 +9,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
+
 namespace Clamity.Content.Bosses.Clamitas.Drop
 {
     public class ClamitasRelic : ModItem, ILocalizedModType, IModType

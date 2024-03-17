@@ -8,6 +8,14 @@ namespace Clamity.Content.Items.Tools
 {
     public class RodOfMisery : ModItem, ILocalizedModType, IModType
     {
+        public override bool IsLoadingEnabled(Mod mod)
+        {
+#if DEBUG
+            return true;
+#else
+            return false;
+#endif
+        }
         public new string LocalizationCategory => "Items.Misc";
         public override void SetDefaults()
         {

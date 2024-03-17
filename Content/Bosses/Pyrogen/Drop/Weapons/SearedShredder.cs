@@ -1,16 +1,10 @@
-﻿using CalamityMod.Items;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria.ID;
-using Terraria;
-using Terraria.ModLoader;
+﻿using CalamityMod;
 using CalamityMod.Buffs.DamageOverTime;
-using CalamityMod.Items.Weapons.Melee;
-using CalamityMod;
+using CalamityMod.Items;
 using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Clamity.Content.Bosses.Pyrogen.Drop.Weapons
 {
@@ -23,7 +17,7 @@ namespace Clamity.Content.Bosses.Pyrogen.Drop.Weapons
                 return;
             redemption.Call("addElementItem", 2, Type);
         }
-        public override void SetDefaults() 
+        public override void SetDefaults()
         {
             Item.width = 74;
             Item.height = 68;

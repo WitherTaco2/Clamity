@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
+
 namespace Clamity.Content.Bosses.Clamitas.Crafted
 {
     public class SupremeLuckPotion : ModItem, ILocalizedModType, IModType

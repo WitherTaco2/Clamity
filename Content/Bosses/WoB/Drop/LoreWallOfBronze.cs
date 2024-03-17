@@ -1,12 +1,11 @@
 ﻿using CalamityMod.Items.LoreItems;
-using Terraria.ID;
+using CalamityMod.Rarities;
 using Terraria;
 using Terraria.ModLoader;
-using CalamityMod.Rarities;
 
 namespace Clamity.Content.Bosses.WoB.Drop
 {
-    public class WoBLore : LoreItem
+    public class LoreWallOfBronze : LoreItem
     {
         public override void SetDefaults()
         {
