@@ -1,5 +1,5 @@
 ﻿using CalamityMod.Items;
-using CalamityMod.Projectiles.Melee;
+using Clamity.Content.Items.Weapons.Melee;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -27,39 +27,13 @@ namespace Clamity.Content.Bosses.KosFragmentBosses.CeasingVoid.Drops
         }
         public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
         {
-            Projectile.NewProjectile(Item.GetSource_FromThis(), target.Center, Vector2.UnitX.RotatedByRandom(1f) * 0.1f, ModContent.ProjectileType<SteelBladeSlash>(), (int)(damageDone * 0.5f), Item.knockBack, player.whoAmI);
+            Projectile.NewProjectile(Item.GetSource_FromThis(), target.Center, Vector2.UnitX.RotatedByRandom(0.5f) * 0.1f, ModContent.ProjectileType<SteelBladeSlash>(), (int)(damageDone * 0.5f), Item.knockBack, player.whoAmI);
         }
     }
-    public class SteelBladeSlash : ExobeamSlash
+    public class SteelBladeSlash : BaseSlash
     {
-        public override void SetDefaults()
-        {
-            base.SetDefaults();
-            Projectile.scale = 0.5f;
-        }
-        public override void OnHitPlayer(Player target, Player.HurtInfo info)
-        {
-
-        }
-        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
-        {
-
-        }
-        public override Color? GetAlpha(Color lightColor)
-        {
-            return Color.Lerp(Color.White, Color.LightGray, Projectile.identity / 7f % 1f) * Projectile.Opacity;
-        }
-
-        public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
-        {
-            if (projHitbox.Intersects(targetHitbox))
-            {
-                return true;
-            }
-
-            float collisionPoint = 0f;
-            return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), Projectile.Center, Projectile.Center + new Vector2(250, 0).RotatedBy(Projectile.rotation), Projectile.Size.Length() * Projectile.scale / 10f, ref collisionPoint)
-                || Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), Projectile.Center, Projectile.Center - new Vector2(250, 0).RotatedBy(Projectile.rotation), Projectile.Size.Length() * Projectile.scale / 10f, ref collisionPoint);
-        }
+        public override float Scale => 0.5f;
+        public override Color FirstColor => Color.White;
+        public override Color SecondColor => Color.LightGray;
     }
 }

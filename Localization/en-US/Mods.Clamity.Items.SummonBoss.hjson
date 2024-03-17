@@ -27,3 +27,23 @@ PyroKey: {
 		'A key for a furnace cube.'
 		'''
 }
+
+KosFragment: {
+	DisplayName: Kos Fragment
+	Tooltip:
+		'''
+		A relic of the Bones
+		Contains the power hunted relentlessly by some guys
+		When used in certain areas of the world, it will call them
+		[SPAWN]
+		Not consumable
+		'''
+	SpawnInfo: Such power attracts otherworldly beings
+	SpawnVoid:
+		'''
+		Summons the Ceasing Void
+		Enrages on the surface
+		'''
+	SpawnSignus: Summons Sigmund (nod added)
+	SpawnWeaver: Summons Weawer (not added)
+}

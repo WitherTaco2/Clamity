@@ -1,8 +1,10 @@
 ﻿using CalamityMod;
 using CalamityMod.Events;
 using CalamityMod.Items.Materials;
+using CalamityMod.Items.SummonItems;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -10,7 +12,7 @@ namespace Clamity.Content.Bosses.KosFragmentBosses
 {
     public class KosFragment : ModItem, ILocalizedModType
     {
-        public new string LocalizationCategory => "Items.SummonItems";
+        public new string LocalizationCategory => "Items.SummonBoss";
         public override void SetStaticDefaults()
         {
             ItemID.Sets.SortingPriorityBossSpawns[Type] = 19;
@@ -34,18 +36,18 @@ namespace Clamity.Content.Bosses.KosFragmentBosses
         public override bool CanUseItem(Player player)
         {
             return (player.ZoneSkyHeight || player.ZoneUnderworldHeight || player.ZoneDungeon) &&
-                /*!NPC.AnyNPCs(ModContent.NPCType<StormWeaverHead>()) &&*/ !BossRushEvent.BossRushActive;
+                !NPC.AnyNPCs(ModContent.NPCType<CeasingVoid.NPCs.CeasingVoid>()) && !BossRushEvent.BossRushActive;
         }
         public override bool? UseItem(Player player)
         {
-            /*if (player.ZoneDungeon)
+            if (player.ZoneDungeon)
             {
                 SoundEngine.PlaySound(RuneofKos.CVSound, player.Center);
                 if (Main.netMode != NetmodeID.MultiplayerClient)
-                    NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<>());
+                    NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<CeasingVoid.NPCs.CeasingVoid>());
                 else
-                    NetMessage.SendData(MessageID.SpawnBossUseLicenseStartEvent, -1, -1, null, player.whoAmI, ModContent.NPCType<CeaselessVoid>());
-            }*/
+                    NetMessage.SendData(MessageID.SpawnBossUseLicenseStartEvent, -1, -1, null, player.whoAmI, ModContent.NPCType<CeasingVoid.NPCs.CeasingVoid>());
+            }
 
             /*else if (player.ZoneUnderworldHeight)
             {
@@ -54,8 +56,9 @@ namespace Clamity.Content.Bosses.KosFragmentBosses
                     NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<Signus>());
                 else
                     NetMessage.SendData(MessageID.SpawnBossUseLicenseStartEvent, -1, -1, null, player.whoAmI, ModContent.NPCType<Signus>());
-            }
-            else if (player.ZoneSkyHeight)
+            }*/
+
+            /*else if (player.ZoneSkyHeight)
             {
                 SoundEngine.PlaySound(RuneofKos.StormSound, player.Center);
                 if (Main.netMode != NetmodeID.MultiplayerClient)

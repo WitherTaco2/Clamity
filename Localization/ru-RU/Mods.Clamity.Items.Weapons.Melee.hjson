@@ -115,3 +115,8 @@ Everest: {
 	Tooltip: Выпускает разбросом вулканические огненые шары
 	DisplayName: Эверест
 }
+
+SteelBlade: {
+	// DisplayName: Steel Blade
+	// Tooltip: Creates extra slashs on hit
+}

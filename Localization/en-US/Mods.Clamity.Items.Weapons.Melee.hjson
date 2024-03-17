@@ -116,3 +116,8 @@ Everest: {
 	Tooltip: Fires a spread of volcanic fireballs
 	DisplayName: Everest
 }
+
+SteelBlade: {
+	DisplayName: Steel Blade
+	Tooltip: Creates extra slashs on hit
+}

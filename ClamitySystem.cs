@@ -112,6 +112,7 @@ namespace Clamity
             if (downedWallOfBronze)
                 list.Add("wob");
             tag["downedFlagsClamity"] = list;
+            tag["droppedKosFragment"] = droppedKosFramgent;
         }
         public override void LoadWorldData(TagCompound tag)
         {
@@ -119,6 +120,7 @@ namespace Clamity
             downedClamitas = list.Contains("clamitas");
             downedPyrogen = list.Contains("pyrogen");
             downedWallOfBronze = list.Contains("wob");
+            droppedKosFramgent = tag.GetBool("droppedKosFragment");
         }
         public static int AnySandBlock;
         public static int AnyGemHook;
@@ -139,8 +141,9 @@ namespace Clamity
             flags[0] = downedClamitas;
             flags[1] = downedPyrogen;
             flags[2] = downedWallOfBronze;
-
             writer.Write(flags);
+
+            writer.Write(droppedKosFramgent);
         }
         public override void NetReceive(BinaryReader reader)
         {
@@ -148,6 +151,8 @@ namespace Clamity
             downedClamitas = flags[0];
             downedPyrogen = flags[1];
             downedWallOfBronze = flags[2];
+
+            droppedKosFramgent = reader.ReadBoolean();
         }
     }
 }

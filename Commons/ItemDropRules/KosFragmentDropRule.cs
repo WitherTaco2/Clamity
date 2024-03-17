@@ -14,7 +14,7 @@ namespace Clamity.Commons.ItemDropRules
         public override ItemDropAttemptResult TryDroppingItem(DropAttemptInfo info)
         {
             ItemDropAttemptResult result;
-            if (info.player.RollLuck(chanceDenominator) < chanceNumerator)
+            if (info.player.RollLuck(chanceDenominator) < chanceNumerator && !ClamitySystem.droppedKosFramgent)
             {
                 CommonCode.DropItem(info, itemId, info.rng.Next(amountDroppedMinimum, amountDroppedMaximum + 1));
                 result = default(ItemDropAttemptResult);
