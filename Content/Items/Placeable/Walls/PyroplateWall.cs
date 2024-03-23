@@ -1,9 +1,10 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Clamity.Content.Items.Placeable.Blocks;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Items.Placeable
+namespace Clamity.Content.Items.Placeable.Walls
 {
     public class PyroplateWall : ModItem, ILocalizedModType
     {

@@ -50,7 +50,6 @@ namespace Clamity
         public bool guntera;
 
         //Buffs-Debuffs
-        //public bool wCleave;
 
         //Pets
 
@@ -92,6 +91,7 @@ namespace Clamity
             frozenParryingTime = 0;
         }
         #endregion
+
         #region On Hit Effect
         public override void OnHitNPCWithItem(Item item, NPC target, NPC.HitInfo hit, int damageDone)
         {
@@ -102,7 +102,6 @@ namespace Clamity
                     Vector2 vec1 = Vector2.UnitY.RotatedByRandom(1f);
                     Projectile.NewProjectile(item.GetSource_OnHit(target), target.Center + vec1 * 500f, -vec1.RotatedByRandom(0.1f) * 20f, ModContent.ProjectileType<SoulOfPyrogenSpear>(), item.damage / 2, 1f, Player.whoAmI, target.whoAmI);
                 }
-                //pyroSpearCD = 100;
                 Player.AddCooldown(PyrospearCooldown.ID, 100);
             }
             if (hellFlare)
@@ -128,11 +127,11 @@ namespace Clamity
                     Vector2 vec1 = Vector2.UnitY.RotatedByRandom(1f);
                     Projectile.NewProjectile(proj.GetSource_OnHit(target), target.Center + vec1 * 500f, -vec1.RotatedByRandom(0.1f) * 20f, ModContent.ProjectileType<SoulOfPyrogenSpear>(), proj.damage / 2, 1f, Player.whoAmI, target.whoAmI);
                 }
-                //pyroSpearCD = 100;
                 Player.AddCooldown(PyrospearCooldown.ID, 100);
             }
         }
         #endregion
+
         #region Hurt Effect
         public override void OnHurt(Player.HurtInfo info)
         {
@@ -148,15 +147,6 @@ namespace Clamity
         }
         public override void ModifyHurt(ref Player.HurtModifiers modifiers)
         {
-            /*if (metalWings)
-            {
-                float percent = info.Damage / Player.statLifeMax2;
-                int recivingFlyTime = (int)(Player.wingTimeMax * percent / 2);
-                if (Player.wingTime + recivingFlyTime > Player.wingTimeMax)
-                    Player.wingTime = Player.wingTimeMax;
-                else
-                    Player.wingTime += recivingFlyTime;
-            }*/
             if (frozenParrying && frozenParryingTime > 15)
             {
                 if (!Player.HasCooldown(ParryCooldown.ID))
@@ -171,8 +161,8 @@ namespace Clamity
             }
         }
         #endregion
-        #region Updates
 
+        #region Updates
         public override void UpdateEquips()
         {
             foreach (Item i in Player.armor)
@@ -209,11 +199,11 @@ namespace Clamity
             }
             if (hellFlare)
             {
-                if (this.Player.statLife > (int)(Player.statLifeMax2 * 0.75))
+                if (Player.statLife > (int)(Player.statLifeMax2 * 0.75))
                 {
                     Player.GetCritChance<GenericDamageClass>() += 10;
                 }
-                if (this.Player.statLife < (int)(Player.statLifeMax2 * 0.25))
+                if (Player.statLife < (int)(Player.statLifeMax2 * 0.25))
                 {
                     Player.endurance += 0.1f;
                 }
@@ -264,6 +254,7 @@ namespace Clamity
             return new Item();
         }
         #endregion
+
         #region Modify Stats
         public override void UpdateBadLifeRegen()
         {
@@ -322,6 +313,8 @@ namespace Clamity
             }
         }
         #endregion
+
+        #region Other
         public override bool Shoot(Item item, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
 
@@ -343,7 +336,6 @@ namespace Clamity
             }
             return true;
         }
-        #region Other
         public override void CatchFish(FishingAttempt attempt, ref int itemDrop, ref int npcSpawn, ref AdvancedPopupRequest sonar, ref Vector2 sonarPosition)
         {
             bool flag = !attempt.inHoney && !attempt.inLava;

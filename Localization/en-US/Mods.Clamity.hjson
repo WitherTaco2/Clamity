@@ -72,3 +72,24 @@ InfernumIntro: {
 		Clamitas
 		'''
 }
+
+Configs: {
+	ClamityConfig: {
+		DisplayName: Clamity Config
+
+		UsesEnchantedMetalInShadowspecBarRecipe: {
+			Label: Uses Enchanted Metal In Shadowspec Bar Recipe
+			Tooltip: ""
+		}
+
+		ChangesCalamityRecipes: {
+			Label: Changes Calamity Recipes
+			Tooltip: ""
+		}
+
+		UsesClamityWeaponsInCalamityRecipes: {
+			Label: Uses Clamity Weapons In Calamity Recipes
+			Tooltip: ""
+		}
+	}
+}

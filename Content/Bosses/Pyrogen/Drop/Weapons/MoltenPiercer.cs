@@ -80,7 +80,7 @@ namespace Clamity.Content.Bosses.Pyrogen.Drop.Weapons
                 else
                 {
                     Projectile.ai[0] = 3;
-                    int index = Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, Main.rand.NextVector2CircularEdge(20, 20), ModContent.ProjectileType<ObsidigunBulletShard>(), (int)(Projectile.damage / 2), Projectile.knockBack / 5, Projectile.owner);
+                    int index = Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, Main.rand.NextVector2CircularEdge(20, 20), ModContent.ProjectileType<ObsidigunBulletShard>(), Projectile.damage / 2, Projectile.knockBack / 5, Projectile.owner);
                     Main.projectile[index].DamageType = ModContent.GetInstance<RogueDamageClass>();
                 }
             }

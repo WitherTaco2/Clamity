@@ -61,24 +61,24 @@ namespace Clamity.Content.Bosses.WoB.Drop
 
         public override LocalizedText DisplayName => CalamityUtils.GetItemName<LargeFather>();
 
-        public Player Owner => Main.player[base.Projectile.owner];
+        public Player Owner => Main.player[Projectile.owner];
 
-        public ref float MoveInIntervals => ref base.Projectile.localAI[0];
+        public ref float MoveInIntervals => ref Projectile.localAI[0];
 
-        public ref float SpeenBeams => ref base.Projectile.localAI[1];
+        public ref float SpeenBeams => ref Projectile.localAI[1];
 
-        public ref float Timer => ref base.Projectile.ai[0];
+        public ref float Timer => ref Projectile.ai[0];
 
         public override void SetDefaults()
         {
-            base.Projectile.width = 14;
-            base.Projectile.height = 14;
-            base.Projectile.friendly = true;
-            base.Projectile.penetrate = -1;
-            base.Projectile.tileCollide = false;
-            base.Projectile.hide = true;
-            base.Projectile.ownerHitCheck = true;
-            base.Projectile.DamageType = ModContent.GetInstance<TrueMeleeNoSpeedDamageClass>();
+            Projectile.width = 14;
+            Projectile.height = 14;
+            Projectile.friendly = true;
+            Projectile.penetrate = -1;
+            Projectile.tileCollide = false;
+            Projectile.hide = true;
+            Projectile.ownerHitCheck = true;
+            Projectile.DamageType = ModContent.GetInstance<TrueMeleeNoSpeedDamageClass>();
         }
 
         public override bool ShouldUpdatePosition()
@@ -89,22 +89,22 @@ namespace Clamity.Content.Bosses.WoB.Drop
         public override void AI()
         {
             Timer += 1f;
-            SpeenBeams += ((Timer > 140f) ? 1f : (1f + 2f * (float)Math.Pow(1f - Timer / 140f, 2.0)));
-            if (base.Projectile.soundDelay <= 0)
+            SpeenBeams += Timer > 140f ? 1f : 1f + 2f * (float)Math.Pow(1f - Timer / 140f, 2.0);
+            if (Projectile.soundDelay <= 0)
             {
-                SoundEngine.PlaySound(in MarniteObliterator.UseSound, base.Projectile.Center);
-                base.Projectile.soundDelay = 23;
+                SoundEngine.PlaySound(in MarniteObliterator.UseSound, Projectile.Center);
+                Projectile.soundDelay = 23;
             }
 
-            if ((Owner.Center - base.Projectile.Center).Length() >= 5f)
+            if ((Owner.Center - Projectile.Center).Length() >= 5f)
             {
-                if ((Owner.MountedCenter - base.Projectile.Center).Length() >= 30f)
+                if ((Owner.MountedCenter - Projectile.Center).Length() >= 30f)
                 {
                     DelegateMethods.v3_1 = Color.Blue.ToVector3() * 0.5f;
-                    Utils.PlotTileLine(Owner.MountedCenter + Owner.MountedCenter.DirectionTo(base.Projectile.Center) * 30f, base.Projectile.Center, 8f, DelegateMethods.CastLightOpen);
+                    Utils.PlotTileLine(Owner.MountedCenter + Owner.MountedCenter.DirectionTo(Projectile.Center) * 30f, Projectile.Center, 8f, DelegateMethods.CastLightOpen);
                 }
 
-                Lighting.AddLight(base.Projectile.Center, Color.Blue.ToVector3() * 0.7f);
+                Lighting.AddLight(Projectile.Center, Color.Blue.ToVector3() * 0.7f);
             }
 
             if (MoveInIntervals > 0f)
@@ -114,9 +114,9 @@ namespace Clamity.Content.Bosses.WoB.Drop
 
             if (!Owner.channel || Owner.noItems || Owner.CCed)
             {
-                base.Projectile.Kill();
+                Projectile.Kill();
             }
-            else if (MoveInIntervals <= 0f && Main.myPlayer == base.Projectile.owner)
+            else if (MoveInIntervals <= 0f && Main.myPlayer == Projectile.owner)
             {
                 Vector2 vector = Owner.Calamity().mouseWorld - Owner.MountedCenter;
                 if (Main.tile[Player.tileTargetX, Player.tileTargetY].HasTile)
@@ -125,7 +125,7 @@ namespace Clamity.Content.Bosses.WoB.Drop
                     MoveInIntervals = 2f;
                 }
 
-                vector = Vector2.Lerp(vector, base.Projectile.velocity, 0.7f);
+                vector = Vector2.Lerp(vector, Projectile.velocity, 0.7f);
                 if (float.IsNaN(vector.X) || float.IsNaN(vector.Y))
                 {
                     vector = -Vector2.UnitY;
@@ -141,21 +141,21 @@ namespace Clamity.Content.Bosses.WoB.Drop
                 int num2 = (Player.tileRangeY + tileBoost - 1) * 16 + 11;
                 vector.X = Math.Clamp(vector.X, -num, num);
                 vector.Y = Math.Clamp(vector.Y, -num2, num2);
-                if (vector != base.Projectile.velocity)
+                if (vector != Projectile.velocity)
                 {
-                    base.Projectile.netUpdate = true;
+                    Projectile.netUpdate = true;
                 }
 
-                base.Projectile.velocity = vector;
+                Projectile.velocity = vector;
             }
 
-            Owner.heldProj = base.Projectile.whoAmI;
-            Owner.ChangeDir(Math.Sign(base.Projectile.velocity.X));
-            Owner.SetCompositeArmFront(enabled: true, Player.CompositeArmStretchAmount.Full, base.Projectile.velocity.ToRotation() * Owner.gravDir - MathF.PI / 2f);
-            Owner.SetCompositeArmBack(enabled: true, Player.CompositeArmStretchAmount.Full, base.Projectile.velocity.ToRotation() * Owner.gravDir - MathF.PI / 2f - MathF.PI / 8f * (float)Owner.direction);
+            Owner.heldProj = Projectile.whoAmI;
+            Owner.ChangeDir(Math.Sign(Projectile.velocity.X));
+            Owner.SetCompositeArmFront(enabled: true, Player.CompositeArmStretchAmount.Full, Projectile.velocity.ToRotation() * Owner.gravDir - MathF.PI / 2f);
+            Owner.SetCompositeArmBack(enabled: true, Player.CompositeArmStretchAmount.Full, Projectile.velocity.ToRotation() * Owner.gravDir - MathF.PI / 2f - MathF.PI / 8f * Owner.direction);
             Owner.SetDummyItemTime(2);
-            base.Projectile.rotation = base.Projectile.velocity.ToRotation();
-            base.Projectile.Center = Owner.MountedCenter + base.Projectile.velocity;
+            Projectile.rotation = Projectile.velocity.ToRotation();
+            Projectile.Center = Owner.MountedCenter + Projectile.velocity;
         }
 
         internal Color ColorFunction(float completionRatio)
@@ -171,10 +171,10 @@ namespace Clamity.Content.Bosses.WoB.Drop
 
         public void DrawBeam(Texture2D beamTex, Vector2 direction, int beamIndex)
         {
-            Vector2 startPos = Owner.MountedCenter + direction * 17f + direction.RotatedBy(1.5707963705062866) * (float)Math.Cos(MathF.PI * 2f * (float)beamIndex / 3f + SpeenBeams * 0.06f) * 13f;
-            float rotation = (base.Projectile.Center - startPos).ToRotation();
-            Vector2 beamOrigin = new Vector2((float)beamTex.Width / 2f, beamTex.Height);
-            Vector2 beamScale = new Vector2(5.4f, (startPos - base.Projectile.Center).Length() / (float)beamTex.Height);
+            Vector2 startPos = Owner.MountedCenter + direction * 17f + direction.RotatedBy(1.5707963705062866) * (float)Math.Cos(MathF.PI * 2f * beamIndex / 3f + SpeenBeams * 0.06f) * 13f;
+            float rotation = (Projectile.Center - startPos).ToRotation();
+            Vector2 beamOrigin = new Vector2(beamTex.Width / 2f, beamTex.Height);
+            Vector2 beamScale = new Vector2(5.4f, (startPos - Projectile.Center).Length() / beamTex.Height);
             CalamityUtils.DrawChromaticAberration(direction.RotatedBy(1.5707963705062866), 4f, delegate (Vector2 offset, Color colorMod)
             {
                 Color firstColor = Color.Lerp(Color.Magenta, Color.DarkGoldenrod, 0.5f + 0.5f * (float)Math.Sin(SpeenBeams * 0.2f));
@@ -190,18 +190,18 @@ namespace Clamity.Content.Bosses.WoB.Drop
 
         public override bool PreDraw(ref Color lightColor)
         {
-            if (!base.Projectile.active)
+            if (!Projectile.active)
             {
                 return false;
             }
 
             Main.spriteBatch.End();
             Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.GameViewMatrix.TransformationMatrix);
-            Vector2 vector = base.Projectile.velocity.SafeNormalize(Vector2.Zero);
+            Vector2 vector = Projectile.velocity.SafeNormalize(Vector2.Zero);
             Texture2D value = ModContent.Request<Texture2D>("CalamityMod/ExtraTextures/GreyscaleGradients/SimpleGradient").Value;
             for (int i = 0; i < 3; i++)
             {
-                if ((float)Math.Sin(MathF.PI * 2f * (float)i / 3f + SpeenBeams * 0.06f) < 0f)
+                if ((float)Math.Sin(MathF.PI * 2f * i / 3f + SpeenBeams * 0.06f) < 0f)
                 {
                     DrawBeam(value, vector, i);
                 }
@@ -213,7 +213,7 @@ namespace Clamity.Content.Bosses.WoB.Drop
             }
 
             Texture2D value2 = BloomTex.Value;
-            Main.EntitySpriteDraw(value2, base.Projectile.Center - Main.screenPosition, null, Color.DeepSkyBlue * 0.3f, MathF.PI / 2f, value2.Size() / 2f, 0.3f * base.Projectile.scale, SpriteEffects.None);
+            Main.EntitySpriteDraw(value2, Projectile.Center - Main.screenPosition, null, Color.DeepSkyBlue * 0.3f, MathF.PI / 2f, value2.Size() / 2f, 0.3f * Projectile.scale, SpriteEffects.None);
             if (TrailDrawer == null)
             {
                 TrailDrawer = new PrimitiveTrail(WidthFunction, ColorFunction, null, GameShaders.Misc["CalamityMod:TrailStreak"]);
@@ -222,20 +222,20 @@ namespace Clamity.Content.Bosses.WoB.Drop
             GameShaders.Misc["CalamityMod:TrailStreak"].SetShaderTexture(ModContent.Request<Texture2D>("CalamityMod/ExtraTextures/Trails/DoubleTrail"));
             TrailDrawer.Draw(new Vector2[2]
             {
-                base.Projectile.Center,
+                Projectile.Center,
                 Owner.MountedCenter - vector * 13f
             }, -Main.screenPosition, 30);
             Main.spriteBatch.End();
             Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.GameViewMatrix.TransformationMatrix);
-            Texture2D value3 = TextureAssets.Projectile[base.Projectile.type].Value;
-            Vector2 origin = new Vector2(9f, (float)value3.Height / 2f);
+            Texture2D value3 = TextureAssets.Projectile[Projectile.type].Value;
+            Vector2 origin = new Vector2(9f, value3.Height / 2f);
             SpriteEffects effects = SpriteEffects.None;
-            if ((float)Owner.direction * Owner.gravDir < 0f)
+            if (Owner.direction * Owner.gravDir < 0f)
             {
                 effects = SpriteEffects.FlipVertically;
             }
 
-            Main.EntitySpriteDraw(value3, Owner.MountedCenter + vector * 10f - Main.screenPosition, null, base.Projectile.GetAlpha(lightColor), base.Projectile.rotation, origin, base.Projectile.scale, effects);
+            Main.EntitySpriteDraw(value3, Owner.MountedCenter + vector * 10f - Main.screenPosition, null, Projectile.GetAlpha(lightColor), Projectile.rotation, origin, Projectile.scale, effects);
             Main.spriteBatch.End();
             Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.GameViewMatrix.TransformationMatrix);
             /*if (GlowmaskTex == null)
@@ -249,7 +249,7 @@ namespace Clamity.Content.Bosses.WoB.Drop
             */
             for (int j = 0; j < 3; j++)
             {
-                if ((float)Math.Sin(MathF.PI * 2f * (float)j / 3f + SpeenBeams * 0.06f) >= 0f)
+                if ((float)Math.Sin(MathF.PI * 2f * j / 3f + SpeenBeams * 0.06f) >= 0f)
                 {
                     DrawBeam(value, vector, j);
                 }

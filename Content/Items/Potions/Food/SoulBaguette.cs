@@ -16,6 +16,7 @@ namespace Clamity.Content.Items.Potions.Food
             Item.buffTime *= 2;
             Item.rare = ItemRarityID.Pink;
             Item.value += Item.sellPrice(0, 2, 40);
+            Item.Calamity().donorItem = false;
         }
         public override void AddRecipes()
         {

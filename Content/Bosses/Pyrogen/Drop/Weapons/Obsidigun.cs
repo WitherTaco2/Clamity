@@ -58,7 +58,7 @@ namespace Clamity.Content.Bosses.Pyrogen.Drop.Weapons
         public override void OnKill(int timeLeft)
         {
             for (int i = 0; i < 15; i++)
-                Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, Main.rand.NextVector2CircularEdge(20, 20) * Main.rand.NextFloat(0.7f, 1f), ModContent.ProjectileType<ObsidigunBulletShard>(), (int)(Projectile.damage / 10), Projectile.knockBack / 5, Projectile.owner);
+                Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, Main.rand.NextVector2CircularEdge(20, 20) * Main.rand.NextFloat(0.7f, 1f), ModContent.ProjectileType<ObsidigunBulletShard>(), Projectile.damage / 10, Projectile.knockBack / 5, Projectile.owner);
 
             base.OnKill(timeLeft);
         }

@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Items.Accessories
+namespace Clamity.Content.Bosses.Clamitas.Crafted
 {
     public class RedDie : ModItem, ILocalizedModType, IModType
     {
@@ -27,7 +27,7 @@ namespace Clamity.Content.Items.Accessories
         {
             CreateRecipe()
                 .AddIngredient<OldDie>()
-                .AddIngredient<ClamitousPearl>(5)
+                .AddIngredient<ClamitousPearl>()
                 .AddTile(TileID.MythrilAnvil)
                 .Register();
         }

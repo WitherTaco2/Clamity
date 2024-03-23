@@ -13,6 +13,7 @@ Added Plague Station and Flame Cube. Exo Box alternatives in different stages (a
 Added Trash of Magnus. Post-Plaguebringer Goliath Classless weapon
 Added Eidolon Amulet. Combination of amulets
 Added Metal Wings and Metal Feather for it
+Added Pearl of Fish Calamity. Post-Clamitas upgrade of Enchanted Pearl
 
 Added minions for Wall of Bronze
 
@@ -25,6 +26,7 @@ Added The Generator in Nuclear Fury recipe
 Added Molten Piercer in Shattered Sun recipe
 The Generator now inflict Shadow Flames debuff
 Nerfed WoB Guns max life
+"Resprited" Hell Flare
 
 
 Fixes:

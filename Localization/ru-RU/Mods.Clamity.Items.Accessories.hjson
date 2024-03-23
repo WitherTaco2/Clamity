@@ -99,3 +99,15 @@ Wings: {
 			'''
 	}
 }
+
+PearlOfFishCalamity: {
+	// DisplayName: Pearl Of Fish Calamity
+	/* Tooltip:
+		'''
+		50 increased fishing power
+		Greatly increases chance of catching potion ingredient fish
+		Increases chance to catch crates
+		Potion ingredient fish yield is increased
+		Summon a water elemental who will protect you while fishing
+		''' */
+}
