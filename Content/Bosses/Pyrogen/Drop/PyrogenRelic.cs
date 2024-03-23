@@ -2,7 +2,6 @@
 using Terraria;
 using Terraria.ModLoader;
 
-
 namespace Clamity.Content.Bosses.Pyrogen.Drop
 {
     public class PyrogenRelic : ModItem, ILocalizedModType, IModType
@@ -22,7 +21,7 @@ namespace Clamity.Content.Bosses.Pyrogen.Drop
     }
     public class PyrogenRelicTile : BaseBossRelic
     {
-        public override string RelicTextureName => "Clamity/Content/Bosses/Pyrogen/Drop/PyrogenRelicTile";
+        public override string RelicTextureName => (GetType().Namespace + "." + Name).Replace('.', '/');
         public override int AssociatedItem => ModContent.ItemType<PyrogenRelic>();
     }
 }

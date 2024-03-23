@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Biomes.FrozenHell.Items.FrozenHellstoneArmor
+namespace Clamity.Content.Biomes.FrozenHell.Items.FrozenArmor
 {
     [AutoloadEquip(EquipType.Head)]
     public class FrozenHellstoneVisor : ModItem, ILocalizedModType, IModType
@@ -31,7 +31,7 @@ namespace Clamity.Content.Biomes.FrozenHell.Items.FrozenHellstoneArmor
 
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = ILocalizedModTypeExtensions.GetLocalizedValue((ILocalizedModType)this, "SetBonus");
+            player.setBonus = this.GetLocalizedValue("SetBonus");
 
             //player.setBonus = "Cannot be frozen.\nPress Armor Set Bonus to create an ice shield that parries attacks.[WIP]\nFailing to parry will cause you to overcool.[WIP]";
             player.Clamity().frozenParrying = true;

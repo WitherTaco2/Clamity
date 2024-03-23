@@ -54,7 +54,7 @@ namespace Clamity.Content.Bosses.Pyrogen.Drop.Weapons
             if (player.altFunctionUse != 2)
             {
                 int index = Projectile.NewProjectile(source, position, velocity, type, damage, knockback, player.whoAmI, 0.0f, 0.0f, 0.0f);
-                if (Utils.IndexInRange<Projectile>(Main.projectile, index))
+                if (Main.projectile.IndexInRange(index))
                     Main.projectile[index].originalDamage = Item.damage;
             }
             return false;
@@ -108,7 +108,7 @@ namespace Clamity.Content.Bosses.Pyrogen.Drop.Weapons
         public override void AI()
         {
             Owner.AddBuff(ModContent.BuffType<HellsBellsBuff>(), 3600, true, false);
-            if (this.Projectile.type == ModContent.ProjectileType<HellsBellsSummon>())
+            if (Projectile.type == ModContent.ProjectileType<HellsBellsSummon>())
             {
                 if (Owner.dead)
                     moddedOwner.hellsBell = false;
@@ -200,8 +200,8 @@ namespace Clamity.Content.Bosses.Pyrogen.Drop.Weapons
     {
         public override void SetStaticDefaults()
         {
-            Main.buffNoTimeDisplay[this.Type] = true;
-            Main.buffNoSave[this.Type] = true;
+            Main.buffNoTimeDisplay[Type] = true;
+            Main.buffNoSave[Type] = true;
         }
 
         public override void Update(Player player, ref int buffIndex)

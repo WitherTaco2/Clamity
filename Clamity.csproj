@@ -8,12 +8,6 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <AdditionalFiles Remove="Content\Bosses\Pyrogen\Gores\**" />
-    <Compile Remove="Content\Bosses\Pyrogen\Gores\**" />
-    <EmbeddedResource Remove="Content\Bosses\Pyrogen\Gores\**" />
-    <None Remove="Content\Bosses\Pyrogen\Gores\**" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="tModLoader.CodeAssist" Version="0.1.*" />
   </ItemGroup>
   <ItemGroup>

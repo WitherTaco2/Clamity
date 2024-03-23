@@ -94,8 +94,24 @@ Wings: {
 		DisplayName: Metal Wings
 		Tooltip:
 			'''
+			Horizontal speed: 10.50
+			Acceleration multiplier: 2.8
+			Excellent vertical speed
+			Flight time: 280
 			When you getting hit, you receive flight time percentages equal to half of the ratio of damage received to max HP
 			While wearing Frozen Armor, all players in your team gets a 20 increased defence
 			'''
 	}
+}
+
+PearlOfFishCalamity: {
+	DisplayName: Pearl Of Fish Calamity
+	Tooltip:
+		'''
+		50 increased fishing power
+		Greatly increases chance of catching potion ingredient fish
+		Increases chance to catch crates
+		Potion ingredient fish yield is increased
+		Summon a water elemental who will protect you while fishing
+		'''
 }

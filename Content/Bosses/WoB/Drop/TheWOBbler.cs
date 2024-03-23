@@ -18,7 +18,7 @@ namespace Clamity.Content.Bosses.WoB.Drop
         {
             Item.width = 42;
             Item.height = 40;
-            Item.value = Terraria.Item.sellPrice(0, 30, 24);
+            Item.value = Item.sellPrice(0, 30, 24);
             Item.rare = ModContent.RarityType<Violet>();
 
             Item.useTime = 1;

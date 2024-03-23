@@ -5,10 +5,10 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Biomes.FrozenHell.Items.FrozenHellstoneArmor
+namespace Clamity.Content.Biomes.FrozenHell.Items.FrozenArmor
 {
-    [AutoloadEquip(EquipType.Legs)]
-    public class FrozenHellstoneGreaves : ModItem, ILocalizedModType, IModType
+    [AutoloadEquip(EquipType.Body)]
+    public class FrozenHellstoneChestplate : ModItem, ILocalizedModType, IModType
     {
         public new string LocalizationCategory => "Items.Armor.FrozenHellstone";
         public override void SetDefaults()
@@ -17,20 +17,20 @@ namespace Clamity.Content.Biomes.FrozenHell.Items.FrozenHellstoneArmor
             Item.height = 22;
             Item.value = Item.sellPrice(gold: 10);
             Item.rare = ModContent.RarityType<Violet>();
-            Item.defense = 45;
+            Item.defense = 80;
         }
 
         public override void UpdateEquip(Player player)
         {
             player.GetDamage(ModContent.GetInstance<TrueMeleeDamageClass>()) += 0.2f;
-            player.statLifeMax2 += 75;
+            player.GetAttackSpeed<MeleeDamageClass>() += 0.2f;
             player.aggro += 400;
         }
 
-        public override void AddRecipes() => CreateRecipe().AddIngredient(ItemID.MoltenGreaves)
-                                                           .AddIngredient(ItemID.FrostLeggings)
-                                                           .AddIngredient<EnchantedMetal>(15)
-                                                           .AddIngredient<EndothermicEnergy>(24)
+        public override void AddRecipes() => CreateRecipe().AddIngredient(ItemID.MoltenBreastplate)
+                                                           .AddIngredient(ItemID.FrostBreastplate)
+                                                           .AddIngredient<EnchantedMetal>(20)
+                                                           .AddIngredient<EndothermicEnergy>(32)
                                                            .AddTile(TileID.Hellforge)
                                                            .Register();
     }

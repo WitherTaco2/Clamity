@@ -1,6 +1,7 @@
 ﻿using CalamityMod;
 using CalamityMod.Tiles.SunkenSea;
 using Clamity.Content.Items.Materials;
+using Clamity.Content.Items.Placeable.Walls;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -9,7 +10,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Items.Placeable
+namespace Clamity.Content.Items.Placeable.Blocks
 {
     public class Pyroplate : ModItem, ILocalizedModType
     {
@@ -62,7 +63,7 @@ namespace Clamity.Content.Items.Placeable
                 PulseTexture = ModContent.Request<Texture2D>("CalamityMod/Tiles/Plates/ElumplatePulse", AssetRequestMode.ImmediateLoad).Value;
                 PulseColors = new Color[PulseTexture.Width];
                 Main.QueueMainThreadAction(() => PulseTexture.GetData(PulseColors));
-                GlowTexture = ModContent.Request<Texture2D>("Clamity/Content/Items/Placeable/PyroplatePlacedGlow", AssetRequestMode.ImmediateLoad).Value;
+                GlowTexture = ModContent.Request<Texture2D>("Clamity/Content/Items/Placeable/Blocks/PyroplatePlacedGlow", AssetRequestMode.ImmediateLoad).Value;
             }
             Main.tileSolid[Type] = true;
             Main.tileMergeDirt[Type] = true;
@@ -154,7 +155,7 @@ namespace Clamity.Content.Items.Placeable
 
             Vector2 offsets = -Main.screenPosition + zero + positionOffset;
             Vector2 drawCoordinates = location + offsets;
-            if ((tile.Slope == 0 && !tile.IsHalfBlock) || (Main.tileSolid[tile.TileType] && Main.tileSolidTop[tile.TileType])) //second one should be for platforms
+            if (tile.Slope == 0 && !tile.IsHalfBlock || Main.tileSolid[tile.TileType] && Main.tileSolidTop[tile.TileType]) //second one should be for platforms
             {
                 Main.spriteBatch.Draw(texture, drawCoordinates, new Rectangle(TileFrameX, TileFrameY, width, height), drawColor, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
             }
