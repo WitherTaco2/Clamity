@@ -117,6 +117,6 @@ Everest: {
 }
 
 Warblade: {
-	// Tooltip: Has chance to inflict Armor Crunch
-	// DisplayName: Warblade
+	Tooltip: Имеет шанц наложить 'Разрушение брони'
+	DisplayName: Меч войны
 }

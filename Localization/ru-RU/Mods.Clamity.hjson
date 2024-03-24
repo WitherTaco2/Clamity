@@ -44,8 +44,8 @@ Misc: {
 }
 
 Tiles: {
-	// FrozenHellstoneTile.MapEntry: Frozen Hellstone Tile
-	// FrozenAshTile.MapEntry: Frozen Ash Tile
+	FrozenHellstoneTile.MapEntry: Замороженный адский камень
+	FrozenAshTile.MapEntry: Замороженный пепел
 }
 
 Biomes: {

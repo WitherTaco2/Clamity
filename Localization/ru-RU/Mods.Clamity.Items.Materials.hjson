@@ -30,15 +30,15 @@ EnchantedMetal: {
 
 MetalFeather: {
 	// Tooltip: ""
-	// DisplayName: Metal Feather
+	DisplayName: Металлическое перо
 }
 
 RarePlanteraFruit: {
-	// DisplayName: Rare Plantera Fruit
+	DisplayName: Редкий фрукт Плантеры
 	// Tooltip: ""
 }
 
 CoralskinFoolfish: {
-	// Tooltip: Camouflage is one of nature's best defenses
-	// DisplayName: Coralskin Foolfish
+	Tooltip: Камуфляж это один из лучших способов защиты в Природе
+	DisplayName: Коралочешуйчетая рыба-балван
 }

@@ -1,14 +1,14 @@
 LargeFather: {
-	Tooltip: ���������� ������� �������� ��� �����
-	DisplayName: ������� �������
+	Tooltip: Использует дальний копающий луч света
+	DisplayName: Большая папочка
 }
 
 TheWOBbler: {
-	Tooltip: ������ ���� ��� ���� ����� �������� ������� ���������� ������� ����������
-	DisplayName: �����
+	Tooltip: Щелкните правой кнопкой мыши, чтобы кинуть большим количеством ледяных осколков
+	DisplayName: СБпер
 }
 
 Waraxe: {
-	// Tooltip: Has chance to inflict Armor Crunch
-	// DisplayName: Waraxe
+	Tooltip: Имеет шанц наложить 'Разрушение брони'
+	DisplayName: Топор войны
 }
