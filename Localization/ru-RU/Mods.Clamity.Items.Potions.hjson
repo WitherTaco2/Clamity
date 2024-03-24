@@ -77,10 +77,12 @@ SupremeLuckPotion: {
 }
 
 TitanScalePotion: {
-	/* Tooltip:
+	Tooltip:
 		'''
 		Increases knockback, defense by 5 and damage reduction by 5%
 		Increases defense by 20 and damage reduction by 5% for a few seconds after a true melee strike
-		''' */
-	// DisplayName: Titan Scale Potion
+		Увеличивает откидываение, защиту на 5 и поглощение урона на 5%
+		Увеличивает защиту на 50 и поглощение на 5% в течение пару секунд после удара истинного ближнего урона
+		'''
+	DisplayName: Зелье чешуи титана
 }
