@@ -1,8 +1,3 @@
-SupremeLuckPotion: {
-	DisplayName: Зелье высшей удачи
-	Tooltip: Сильно увеличевает удачу пользователя
-}
-
 Foods: {
 	AuricApple: {
 		DisplayName: Аурическое яблоко
@@ -74,4 +69,18 @@ Foods: {
 			'''
 		DisplayName: Чаебедствие
 	}
+}
+
+SupremeLuckPotion: {
+	DisplayName: Зелье высшей удачи
+	Tooltip: Сильно увеличевает удачу пользователя
+}
+
+TitanScalePotion: {
+	/* Tooltip:
+		'''
+		Increases knockback, defense by 5 and damage reduction by 5%
+		Increases defense by 20 and damage reduction by 5% for a few seconds after a true melee strike
+		''' */
+	// DisplayName: Titan Scale Potion
 }

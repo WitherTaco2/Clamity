@@ -7,9 +7,11 @@ using CalamityMod.NPCs.SunkenSea;
 using CalamityMod.NPCs.SupremeCalamitas;
 using CalamityMod.NPCs.TownNPCs;
 using Clamity.Content.Biomes.FrozenHell.Items;
+using Clamity.Content.Items.Accessories;
 using Clamity.Content.Items.Materials;
 using Clamity.Content.Items.Mounts;
 using Clamity.Content.Items.Potions.Food;
+using Clamity.Content.Items.Tools.BreakingTool;
 using Clamity.Content.Items.Weapons.Classless;
 using Clamity.Content.Items.Weapons.Melee.Shortswords;
 using Clamity.Content.Items.Weapons.Melee.Swords;
@@ -52,6 +54,16 @@ namespace Clamity
                 mainRule.Add(ItemDropRule.Common(ModContent.ItemType<NuclearEssence>(), 1, 10, 25));
             }
 
+            //Other Drop
+            if (npc.type == NPCID.GoblinWarrior)
+            {
+                npcLoot.Add(ModContent.ItemType<Warblade>(), 50);
+                npcLoot.Add(ModContent.ItemType<Waraxe>(), 50);
+            }
+            if (npc.type == NPCID.SeaSnail)
+            {
+                npcLoot.Add(ItemDropRule.NormalvsExpert(ModContent.ItemType<SeaShell>(), 2, 1));
+            }
 
             //Essence of Flame drop
             if (ContainType(npc.type, NPCID.Mummy, NPCID.LightMummy, NPCID.DarkMummy, NPCID.BloodMummy,

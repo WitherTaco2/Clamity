@@ -13,7 +13,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Items.Weapons.Summon
+namespace Clamity.Content.Items.Weapons.Summon.Minions
 {
     public class PlanterrorStaff : ModItem, ILocalizedModType, IModType
     {
@@ -50,7 +50,7 @@ namespace Clamity.Content.Items.Weapons.Summon
             if (player.altFunctionUse != 2)
             {
                 int index = Projectile.NewProjectile(source, Main.MouseWorld, Main.rand.NextVector2Circular(2f, 2f), type, damage, knockback, player.whoAmI, 0.0f, 0.0f, 0.0f);
-                if (Utils.IndexInRange<Projectile>(Main.projectile, index))
+                if (Main.projectile.IndexInRange(index))
                     Main.projectile[index].originalDamage = Item.damage;
             }
 
@@ -200,7 +200,7 @@ namespace Clamity.Content.Items.Weapons.Summon
                     else if (Projectile.velocity.Length() < PlantationStaff.ChargingSpeed - 5f)
                         RamMovement();
 
-                    if (AITimer >= PlantationStaff.RamTime + PlantationStaff.TimeBeforeRamming)
+                    if (AITimer >= PlantationStaff.RamTime / 3 + PlantationStaff.TimeBeforeRamming)
                         SwitchState(AIState.Shooting);
                 }
             }
@@ -395,7 +395,7 @@ namespace Clamity.Content.Items.Weapons.Summon
                     int index = Projectile.NewProjectile(Projectile.GetSource_FromAI(),
                                                          Projectile.Center,
                                                          Projectile.DirectionTo(Target.Center) * (bullet == null ? 7f : 5f + bullet.shootSpeed),
-                                                         (bullet == null ? ProjectileID.Bullet : bullet.shoot),
+                                                         bullet == null ? ProjectileID.Bullet : bullet.shoot,
                                                          Projectile.damage + (bullet == null ? 0 : bullet.damage),
                                                          Projectile.knockBack,
                                                          Projectile.owner);
@@ -505,7 +505,7 @@ namespace Clamity.Content.Items.Weapons.Summon
                 spriteEffects = SpriteEffects.FlipHorizontally;
             Color color = Lighting.GetColor((int)MainMinion.Center.X / 16, (int)(MainMinion.Center.Y / 16f));
 
-            Main.EntitySpriteDraw(texture, MainMinion.Center - Main.screenPosition + new Vector2(0f, MainMinion.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(new Rectangle(0, frameHeight, texture.Width, height)), color, MainMinion.rotation, new Vector2((float)texture.Width / 2f, (float)height / 2f), MainMinion.scale, spriteEffects, 0);
+            Main.EntitySpriteDraw(texture, MainMinion.Center - Main.screenPosition + new Vector2(0f, MainMinion.gfxOffY), new Microsoft.Xna.Framework.Rectangle?(new Rectangle(0, frameHeight, texture.Width, height)), color, MainMinion.rotation, new Vector2(texture.Width / 2f, height / 2f), MainMinion.scale, spriteEffects, 0);
         }
 
     }
@@ -513,8 +513,8 @@ namespace Clamity.Content.Items.Weapons.Summon
     {
         public override void SetStaticDefaults()
         {
-            Main.buffNoTimeDisplay[this.Type] = true;
-            Main.buffNoSave[this.Type] = true;
+            Main.buffNoTimeDisplay[Type] = true;
+            Main.buffNoSave[Type] = true;
         }
 
         public override void Update(Player player, ref int buffIndex)

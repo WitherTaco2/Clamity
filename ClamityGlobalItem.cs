@@ -53,11 +53,6 @@ namespace Clamity
             }
 
         }
-        public override void OnHitNPC(Item item, Player player, NPC target, NPC.HitInfo hit, int damageDone)
-        {
-            if ((item.DamageType == DamageClass.Melee || item.DamageType == ModContent.GetInstance<TrueMeleeDamageClass>()) && player.Clamity().inflicingMeleeFrostburn)
-                target.AddBuff(BuffID.Frostburn, 180);
-        }
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
             string str1 = "ItemExtraTooltip.Shortstrike.";

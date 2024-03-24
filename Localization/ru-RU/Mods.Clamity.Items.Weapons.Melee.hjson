@@ -115,3 +115,8 @@ Everest: {
 	Tooltip: Выпускает разбросом вулканические огненые шары
 	DisplayName: Эверест
 }
+
+Warblade: {
+	// Tooltip: Has chance to inflict Armor Crunch
+	// DisplayName: Warblade
+}

@@ -14,7 +14,6 @@ using CalamityMod.NPCs.SunkenSea;
 using CalamityMod.Projectiles.Boss;
 using Clamity.Commons;
 using Clamity.Content.Bosses.Clamitas.Drop;
-using Clamity.Content.Items.Potions.Food;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -753,6 +752,7 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
             npcLoot.Add(ModContent.ItemType<HuskOfCalamity>(), 1, 25, 30);
             npcLoot.Add(ModContent.ItemType<ClamitousPearl>(), 1, 2, 4);
             npcLoot.Add(ModContent.ItemType<SlagspitterPauldron>(), 2, 1, 4);
+            //npcLoot.Add(ModContent.ItemType<Calamitea>(), 1, 3, 3);
             npcLoot.Add(ItemDropRule.OneFromOptions(1, ModContent.ItemType<Brimlash>(), ModContent.ItemType<BrimstoneFury>(), ModContent.ItemType<BurningSea>(), ModContent.ItemType<IgneousExaltation>(), ModContent.ItemType<Brimblade>()));
             npcLoot.AddConditionalPerPlayer(() => !ClamitySystem.downedClamitas, ModContent.ItemType<LoreWhat>(), ui: true, DropHelper.FirstKillText);
             npcLoot.DefineConditionalDropSet(DropHelper.RevAndMaster).Add(ModContent.ItemType<ClamitasRelic>());

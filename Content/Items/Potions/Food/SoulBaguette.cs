@@ -10,6 +10,10 @@ namespace Clamity.Content.Items.Potions.Food
     public class SoulBaguette : Baguette, ILocalizedModType, IModType
     {
         public new string LocalizationCategory => "Items.Potions.Foods";
+        public override void SetStaticDefaults()
+        {
+            Item.ResearchUnlockCount = 5;
+        }
         public override void SetDefaults()
         {
             base.SetDefaults();
