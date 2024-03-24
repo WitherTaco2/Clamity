@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Items.Potions.Food
+namespace Clamity.Content.Bosses.Clamitas.Drop
 {
     public class SlagspitterPauldron : ModItem, ILocalizedModType, IModType
     {

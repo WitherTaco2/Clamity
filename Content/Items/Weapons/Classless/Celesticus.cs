@@ -13,8 +13,8 @@ namespace Clamity.Content.Items.Weapons.Classless
         {
             base.SetDefaults();
 
-            Item.damage = 40;
-            Item.useTime = Item.useAnimation = 20;
+            Item.damage = 200;
+            Item.useTime = Item.useAnimation = 10;
             base.Item.Calamity().donorItem = false;
         }
         public override void AddRecipes()

@@ -37,3 +37,8 @@ RarePlanteraFruit: {
 	// DisplayName: Rare Plantera Fruit
 	// Tooltip: ""
 }
+
+CoralskinFoolfish: {
+	// Tooltip: Camouflage is one of nature's best defenses
+	// DisplayName: Coralskin Foolfish
+}

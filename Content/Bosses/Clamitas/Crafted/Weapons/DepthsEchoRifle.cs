@@ -94,7 +94,7 @@ namespace Clamity.Content.Bosses.Clamitas.Crafted.Weapons
     }
     public class DepthsEchoRifleProjectileSplit : ClamorRifleProjSplit
     {
-        public override string Texture => (GetType().Namespace + "." + Name).Replace('.', '/');
+        public override string Texture => ModContent.GetInstance<DepthsEchoRifleProjectile>().Texture;
         public override void AI()
         {
             Projectile.rotation += 0.15f;

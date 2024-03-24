@@ -328,6 +328,8 @@ namespace Clamity.Content.Bosses.Clamitas.Crafted.Weapons
                 if (flag3)
                 {
                     nPC3.HitEffect(0, 1.0);
+                    nPC3.AddBuff(ModContent.BuffType<BrimstoneFlames>(), 180);
+                    Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, Vector2.Zero, ProjectileID.Volcano, Projectile.damage, 0, Projectile.owner);
                 }
             }
             else
