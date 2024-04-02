@@ -30,7 +30,7 @@ namespace Clamity.Content.Bosses.Profusion
         }
         public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup)
         {
-            itemGroup = ContentSamples.CreativeHelper.ItemGroup.BossItem;
+            itemGroup = ContentSamples.CreativeHelper.ItemGroup.BossSpawners;
         }
         public override bool CanUseItem(Player player)
         {
