@@ -150,7 +150,7 @@ namespace Clamity.Content.Items.Weapons.Ranged.Guns
             return false;
         }
 
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center.X, Projectile.Center.Y, 0.0f, 0.0f, ModContent.ProjectileType<ChargedDartExplosion>(), Projectile.damage / 4, Projectile.knockBack, Projectile.owner, 1f, 0.0f);
             //Main.PlaySound(SoundID.Item62, (int)Projectile.position.X, (int)Projectile.position.Y);
