@@ -116,3 +116,8 @@ Everest: {
 	Tooltip: Fires a spread of volcanic fireballs
 	DisplayName: Everest
 }
+
+Warblade: {
+	Tooltip: Has chance to inflict Armor Crunch
+	DisplayName: Warblade
+}

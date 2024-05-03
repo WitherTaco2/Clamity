@@ -1,17 +1,12 @@
-﻿using CalamityMod.Items;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CalamityMod;
+using CalamityMod.Items;
+using CalamityMod.NPCs.Providence;
+using CalamityMod.Projectiles.BaseProjectiles;
+using Clamity.Content.Cooldowns;
+using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria;
-using CalamityMod.Projectiles.BaseProjectiles;
-using CalamityMod;
-using Clamity.Content.Cooldowns;
-using CalamityMod.NPCs.Providence;
 
 namespace Clamity.Content.Items.Weapons.Melee.Shortswords
 {
@@ -25,7 +20,7 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
             Item.value = CalamityGlobalItem.Rarity8BuyPrice;
 
             Item.useAnimation = Item.useTime = 27;
-            Item.useStyle = 13;
+            Item.useStyle = ItemUseStyleID.Rapier;
             Item.UseSound = new SoundStyle?(SoundID.Item1);
             Item.autoReuse = true;
             Item.noUseGraphic = true;
@@ -83,7 +78,7 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
             if (!Main.player[Projectile.owner].HasCooldown(ShortstrikeCooldown.ID))
             {
                 Main.player[Projectile.owner].AddCooldown(ShortstrikeCooldown.ID, 240);
-                if (target.type != 488 && target.type != ModContent.NPCType<Providence>())
+                if (target.type != NPCID.TargetDummy && target.type != ModContent.NPCType<Providence>())
                     target.life -= target.lifeMax / 50;
                 target.checkDead();
                 //target.HealEffect(-target.life / 50);

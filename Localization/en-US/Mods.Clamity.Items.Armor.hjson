@@ -51,6 +51,12 @@ FrozenHellstone: {
 			Enemies are more likely to target you
 			'''
 		DisplayName: Frozen Visor
+		SetBonus:
+			'''
+			Cannot be frozen.
+			Press Armor Set Bonus to create an ice shield that parries attacks.
+			Failing to parry will cause you to overcool.
+			'''
 	}
 
 	FrozenHellstoneGreaves: {

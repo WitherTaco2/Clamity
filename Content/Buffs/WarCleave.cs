@@ -1,10 +1,4 @@
-﻿using CalamityMod;
-using System;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-
-namespace Clamity.Content.Buffs
+﻿namespace Clamity.Content.Buffs
 {
     /*internal class WarCleave : ModBuff
     {

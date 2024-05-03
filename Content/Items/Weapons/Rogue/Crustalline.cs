@@ -1,13 +1,7 @@
 ﻿using CalamityMod;
 using CalamityMod.Items;
 using CalamityMod.Items.Weapons.Rogue;
-using Clamity.Content.Boss.Pyrogen.Drop.Weapons;
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -19,7 +13,11 @@ namespace Clamity.Content.Items.Weapons.Rogue
     {
         public override bool IsLoadingEnabled(Mod mod)
         {
+#if DEBUG
+            return true;
+#else
             return false;
+#endif
         }
         public override void SetDefaults()
         {

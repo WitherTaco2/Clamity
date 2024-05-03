@@ -13,7 +13,7 @@ DraculasCharm: {
 		'''
 		15% increased rogue damage and +10 maximum stealth
 		On stealth strike create a homing lifestealing vampires 
-		On stealth strike weapon can inflict Crumbling
+		On stealth strike weapon inflict Crumbling and deal 8% more damage
 		Rogue projectiles give lifesteal on crits and explode into homing souls on death
 		'''
 	DisplayName: Dracula`s Charm
@@ -64,4 +64,59 @@ IcicleRing: {
 		Reduces the mana cost of spells up to zero cost.
 		'''
 	DisplayName: Icicle Ring
+}
+
+RedDie: {
+	DisplayName: Red Die
+	Tooltip:
+		'''
+		1.5x luck modified
+		20% increased extra luck 
+		'You are ready for reroll?'
+		'''
+}
+
+EidolonAmulet: {
+	DisplayName: Eidolon Amulet
+	Tooltip:
+		'''
+		Grants immunity to the Riptide, Crush Depth and Irradiated debuffs
+		All attacks inflict the Crush Depth debuff and release acid droplets from the sky
+		You recover air while standing still underwater (don't work in abyss)
+		15% increased mining speed and 10% increased damage while wet
+		25% increased max life while in the abyss
+		Provides a moderate amount of light in the abyss
+		'''
+}
+
+Wings: {
+	MetalWings: {
+		DisplayName: Metal Wings
+		Tooltip:
+			'''
+			Horizontal speed: 10.50
+			Acceleration multiplier: 2.8
+			Excellent vertical speed
+			Flight time: 280
+			When you getting hit, you receive flight time percentages equal to half of the ratio of damage received to max HP
+			While wearing Frozen Armor, all players in your team gets a 20 increased defence
+			'''
+	}
+}
+
+PearlOfFishCalamity: {
+	DisplayName: Pearl of Fish Calamity
+	Tooltip:
+		'''
+		50 increased fishing power
+		Greatly increases chance of catching potion ingredient fish
+		Increases chance to catch crates
+		Potion ingredient fish yield is increased
+		Summon a water elemental who will protect you while fishing
+		'''
+}
+
+SeaShell: {
+	DisplayName: Sea Shell
+	Tooltip: Increased defense, damage reduction and movement speed while wet
 }

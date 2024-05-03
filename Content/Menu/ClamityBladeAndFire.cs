@@ -1,9 +1,4 @@
-﻿using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
-using Terraria.ID;
-using Terraria.ModLoader;
-
-namespace Clamity.Content.Menu
+﻿namespace Clamity.Content.Menu
 {
     /*public class ClamityBladeAndFire : ModMenu
     {

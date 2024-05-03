@@ -1,18 +1,12 @@
-﻿using CalamityMod.Items;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CalamityMod;
+using CalamityMod.Items;
+using CalamityMod.Projectiles.BaseProjectiles;
+using CalamityMod.Projectiles.Rogue;
+using Clamity.Content.Cooldowns;
+using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria;
-using CalamityMod.Projectiles.BaseProjectiles;
-using CalamityMod;
-using Clamity.Content.Cooldowns;
-using Microsoft.Xna.Framework;
-using CalamityMod.Projectiles.Rogue;
 
 namespace Clamity.Content.Items.Weapons.Melee.Shortswords
 {
@@ -32,7 +26,7 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
             Item.value = CalamityGlobalItem.Rarity5BuyPrice;
 
             Item.useAnimation = Item.useTime = 12;
-            Item.useStyle = 13;
+            Item.useStyle = ItemUseStyleID.Rapier;
             Item.UseSound = new SoundStyle?(SoundID.Item1);
             Item.autoReuse = true;
             Item.noUseGraphic = true;

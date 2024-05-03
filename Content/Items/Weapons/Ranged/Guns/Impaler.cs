@@ -65,11 +65,11 @@ namespace Clamity.Content.Items.Weapons.Ranged.Guns
         {
             if (!Main.rand.NextBool(5))
                 return;
-            Dust.NewDust(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height, 6, Projectile.velocity.X * 0.5f, Projectile.velocity.Y * 0.5f, 0, new Color(), 1f);
+            Dust.NewDust(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height, DustID.Torch, Projectile.velocity.X * 0.5f, Projectile.velocity.Y * 0.5f, 0, new Color(), 1f);
         }
         public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
-            if (target.type != 159 && target.type != 158)
+            if (target.type != NPCID.Vampire && target.type != NPCID.VampireBat)
                 return;
             modifiers.SetInstantKill();
         }

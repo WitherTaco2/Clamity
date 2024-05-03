@@ -6,24 +6,90 @@ Items: {
 			Summon a Wall of Bronze in Underworld
 			Non consumable
 			'''
-		DisplayName: Heavy Metal Trash Can
+		DisplayName: Wall of Bronze Summoning Item
+	}
+
+	Mounts: {
+		FlameCube: {
+			DisplayName: Flame Cube
+			Tooltip:
+				'''
+				Materializes a quite cozy and extremely nimble flying Calamitas's throne
+				Hold [KEY] while sitting in the throne to move slower for more precision
+				'A comfortable gamer is a dangerous gamer'
+				'''
+		}
+
+		PlagueStation: {
+			DisplayName: Plague Station
+			Tooltip:
+				'''
+				Materializes a quite cozy and extremely nimble flying Plague throne
+				Hold [KEY] while sitting in the throne to move slower for more precision
+				'A comfortable gamer is a dangerous gamer'
+				'''
+		}
 	}
 }
 
 Misc: {
-	RecipeGroup.AnySandBlock: And Sand Block
+	RecipeGroup: {
+		AnySandBlock: And Sand Block
+		AnyGemHook: Any Gem Hook
+	}
+
 	None: ""
-	DefeatedWoB: Defeated a Wall of Bronze
+	DefeatedWoB: After defeating a Wall of Bronze
+	FrozenHellMessege: You can feel the cold breeze coming from the center of Hell
 }
 
 Tiles: {
-	FrozenHellstoneTile.MapEntry: Frozen Hellstone Tile
-	FrozenAshTile.MapEntry: Frozen Ash Tile
+	FrozenHellstoneTile.MapEntry: Frozen Hellstone
+	FrozenAshTile.MapEntry: Frozen Ash
 }
 
 Biomes: {
 	FrozenHell: {
 		TownNPCDialogueName: the Frozen Hell
 		DisplayName: Frozen Hell
+	}
+}
+
+InfernumIntro: {
+	Pyrogen:
+		'''
+		Auric Furnace
+		Pyrogen
+		'''
+	WoB:
+		'''
+		Machine Guardian
+		Wall of Bronze
+		'''
+	Clamitas:
+		'''
+		Supreme Clam
+		Clamitas
+		'''
+}
+
+Configs: {
+	ClamityConfig: {
+		DisplayName: Clamity Config
+
+		UsesEnchantedMetalInShadowspecBarRecipe: {
+			Label: Uses Enchanted Metal In Shadowspec Bar Recipe
+			Tooltip: ""
+		}
+
+		ChangesCalamityRecipes: {
+			Label: Changes Calamity Recipes
+			Tooltip: ""
+		}
+
+		UsesClamityWeaponsInCalamityRecipes: {
+			Label: Uses Clamity Weapons In Calamity Recipes
+			Tooltip: ""
+		}
 	}
 }

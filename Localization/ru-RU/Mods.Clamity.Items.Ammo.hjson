@@ -16,8 +16,8 @@ Arrow: {
 	}
 
 	FrostfireArrow: {
-		// DisplayName: Frostfire Arrow
-		// Tooltip: Create explosion on hit
+		DisplayName: Стреля ледяного огня
+		Tooltip: Создает взрым при ударе
 	}
 }
 

@@ -1,7 +1,5 @@
-﻿using CalamityMod;
-using CalamityMod.Cooldowns;
+﻿using CalamityMod.Cooldowns;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
 using Terraria.Localization;
 
 namespace Clamity.Content.Cooldowns

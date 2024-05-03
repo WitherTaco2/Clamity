@@ -1,10 +1,10 @@
 ﻿using CalamityMod.Projectiles.Boss;
 using CalamityMod.World;
-using Clamity.Content.Boss.Clamitas.NPCs;
-using Clamity.Content.Boss.Pyrogen.NPCs;
-using Clamity.Content.Boss.Pyrogen.Projectiles;
-using Clamity.Content.Boss.WoB.NPCs;
-using Clamity.Content.Boss.WoB.Projectiles;
+using Clamity.Content.Bosses.Clamitas.NPCs;
+using Clamity.Content.Bosses.Pyrogen.NPCs;
+using Clamity.Content.Bosses.Pyrogen.Projectiles;
+using Clamity.Content.Bosses.WoB.NPCs;
+using Clamity.Content.Bosses.WoB.Projectiles;
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
