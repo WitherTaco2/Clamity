@@ -3,7 +3,7 @@ using CalamityMod.Buffs.DamageOverTime;
 using CalamityMod.Cooldowns;
 using CalamityMod.Items.Accessories;
 using CalamityMod.NPCs.Cryogen;
-using CalamityMod.Projectiles.Ranged;
+using CalamityMod.Projectiles.Rogue;
 using Clamity.Content.Biomes.FrozenHell.Biome;
 using Clamity.Content.Bosses.Pyrogen.Drop;
 using Clamity.Content.Bosses.Pyrogen.NPCs;
@@ -166,8 +166,8 @@ namespace Clamity
             {
                 if (!Player.HasCooldown(ParryCooldown.ID))
                 {
-                    Player.GiveIFrames(60, true);
-                    modifiers.FinalDamage *= 0.1f;
+                    Player.GiveUniversalIFrames(Player.ComputeParryIFrames(), true);
+                    modifiers.SetMaxDamage(1);
                     modifiers.DisableSound();
                 }
                 SoundEngine.PlaySound(in PyrogenShield.BreakSound, new Vector2?(Player.Center));
@@ -348,7 +348,7 @@ namespace Clamity
 
                 Vector2 startingPosition = Main.MouseWorld - Vector2.UnitY.RotatedByRandom(0.4f) * 1250f;
                 Vector2 directionToMouse = (Main.MouseWorld - startingPosition).SafeNormalize(Vector2.UnitY).RotatedByRandom(0.1f);
-                int drop = Projectile.NewProjectile(source, startingPosition, directionToMouse * 15f, ModContent.ProjectileType<ToxicannonDrop>(), d, 0f, Player.whoAmI);
+                int drop = Projectile.NewProjectile(source, startingPosition, directionToMouse * 15f, ModContent.ProjectileType<AcidBarrelDrop>(), d, 0f, Player.whoAmI);
                 if (drop.WithinBounds(Main.maxProjectiles))
                 {
                     Main.projectile[drop].penetrate = 3;

@@ -26,12 +26,12 @@ namespace Clamity.Content.Items.Weapons.Summon.Minions
         public override void SetDefaults()
         {
             Item.width = Item.height = 42;
-            Item.value = CalamityGlobalItem.Rarity5BuyPrice;
-            Item.rare = ItemRarityID.Pink;
+            Item.value = CalamityGlobalItem.RarityRedBuyPrice;
+            Item.rare = ItemRarityID.Red;
 
             Item.useTime = Item.useAnimation = 19;
             Item.useStyle = ItemUseStyleID.Swing;
-            Item.UseSound = new SoundStyle?(SoundID.Item44);
+            Item.UseSound = SoundID.Item44;
             Item.noMelee = true;
             Item.autoReuse = true;
 

@@ -82,6 +82,7 @@ DraculasCharmProj.DisplayName: Dracula
 Typeless: {
 	PyroShieldAccessory.DisplayName: Pyro Shield
 	EyeOfNovaProjectile.DisplayName: Eye Of Nova Projectile
+	GoldenGunProj.DisplayName: Golden Gun Proj
 }
 
 WallOfBronzeTorretBlast.DisplayName: Wall Of Bronze Torret Blast

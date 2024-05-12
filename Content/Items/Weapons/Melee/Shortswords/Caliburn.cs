@@ -23,7 +23,7 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
         {
             Item.width = Item.height = 38;
             Item.rare = ItemRarityID.Pink;
-            Item.value = CalamityGlobalItem.Rarity5BuyPrice;
+            Item.value = CalamityGlobalItem.RarityPinkBuyPrice;
 
             Item.useAnimation = Item.useTime = 10;
             Item.useStyle = ItemUseStyleID.Rapier;

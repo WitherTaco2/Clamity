@@ -1,5 +1,6 @@
 ﻿using CalamityMod;
 using CalamityMod.Buffs.DamageOverTime;
+using CalamityMod.Items;
 using CalamityMod.Particles;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -19,7 +20,7 @@ namespace Clamity.Content.Items.Weapons.Classless
         {
             Item.width = 44;
             Item.height = 56;
-            Item.value = Item.sellPrice(0, 6);
+            Item.value = CalamityGlobalItem.RarityYellowBuyPrice;
             Item.rare = ItemRarityID.Yellow;
 
             Item.useTime = Item.useAnimation = 20;

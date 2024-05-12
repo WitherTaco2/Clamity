@@ -14,7 +14,7 @@ namespace Clamity.Content.Items.Weapons.Melee.Swords
         {
             Item.width = 56; Item.height = 70;
             Item.rare = ItemRarityID.Pink;
-            Item.value = CalamityGlobalItem.Rarity5BuyPrice;
+            Item.value = CalamityGlobalItem.RarityPinkBuyPrice;
 
             Item.useAnimation = Item.useTime = 35;
             Item.useStyle = ItemUseStyleID.Swing;

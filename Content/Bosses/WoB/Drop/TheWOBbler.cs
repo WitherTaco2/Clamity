@@ -1,4 +1,5 @@
-﻿using CalamityMod.Rarities;
+﻿using CalamityMod.Items;
+using CalamityMod.Rarities;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
@@ -18,7 +19,7 @@ namespace Clamity.Content.Bosses.WoB.Drop
         {
             Item.width = 42;
             Item.height = 40;
-            Item.value = Item.sellPrice(0, 30, 24);
+            Item.value = CalamityGlobalItem.RarityVioletBuyPrice;
             Item.rare = ModContent.RarityType<Violet>();
 
             Item.useTime = 1;

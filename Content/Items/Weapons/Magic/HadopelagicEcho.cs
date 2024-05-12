@@ -1,5 +1,6 @@
 ﻿using CalamityMod;
 using CalamityMod.Buffs.DamageOverTime;
+using CalamityMod.Items;
 using CalamityMod.Items.Materials;
 using CalamityMod.Items.Weapons.Magic;
 using CalamityMod.Rarities;
@@ -32,7 +33,7 @@ namespace Clamity.Content.Items.Weapons.Magic
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.noMelee = true;
             Item.knockBack = 1.5f;
-            Item.value = Item.buyPrice(2, 50);
+            Item.value = CalamityGlobalItem.RarityVioletBuyPrice;
             Item.rare = ModContent.RarityType<Violet>();
             Item.autoReuse = true;
             Item.shootSpeed = 10f;

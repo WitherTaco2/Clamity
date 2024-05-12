@@ -1,4 +1,5 @@
-﻿using CalamityMod.Items;
+﻿using CalamityMod.Buffs.DamageOverTime;
+using CalamityMod.Items;
 using CalamityMod.Items.Materials;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -20,7 +21,7 @@ namespace Clamity.Content.Items.Weapons.Melee.Swords
         {
             Item.width = 60; Item.height = 64;
             Item.rare = ItemRarityID.Yellow;
-            Item.value = CalamityGlobalItem.Rarity8BuyPrice;
+            Item.value = CalamityGlobalItem.RarityYellowBuyPrice;
 
             Item.useAnimation = Item.useTime = 9;
             Item.useStyle = ItemUseStyleID.Swing;
@@ -33,6 +34,7 @@ namespace Clamity.Content.Items.Weapons.Melee.Swords
         }
         public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
         {
+            target.AddBuff(ModContent.BuffType<BrimstoneFlames>(), 60 * 5);
             Projectile.NewProjectile(player.GetSource_OnHit(target), target.Center, Vector2.Zero, ProjectileID.Volcano, hit.Damage, hit.Knockback, player.whoAmI); ;
         }
         public override Vector2? HoldoutOffset() => new Vector2(-10f, 0f);
