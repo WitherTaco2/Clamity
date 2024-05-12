@@ -11,6 +11,8 @@ Added Warblade and Waraxe
 Added Icicle Ring accessory (currently he drops by Glacial Slime)
 Added Red Die. Post-Clamitas direct upgrade of Old Die
 Added Plague Station and Flame Cube. Exo Box alternatives in different stages (after Plaguebringer Goliath and Exo Mech + Calamitas)
+Adapted to latest calamity update 2.0.4
+
 Added Trash of Magnus. Post-Plaguebringer Goliath Classless weapon
 Added Eidolon Amulet. Combination of amulets
 Added Metal Wings and Metal Feather for it
@@ -19,6 +21,8 @@ Added Pearl of Fish Calamity. Post-Clamitas upgrade of Enchanted Pearl
 Added Titan Scale Potion and his Coralskin Foolfish
 
 Added minions for Wall of Bronze
+
+Temperary removed Omega Ray (need rework later)
 
 
 Changes/Addintions:
@@ -29,6 +33,7 @@ Added The Generator in Nuclear Fury recipe
 Added Molten Piercer in Shattered Sun recipe
 The Generator now inflict Shadow Flames debuff
 Nerfed WoB Guns max life
+Blade of Enmity now inflict Brimstone Flames
 
 
 Resprites:
@@ -44,5 +49,8 @@ Fixed Permafrost don's sells Coldheart Icicle
 Frozen Hell now generates in center in Underworld (instead of WoB kill position where it could be generated on the Brimstone Crags site)
 Fixed Hellstone Shellfish Staff minion don't periodically creates explosion
 Fixed Core of Flame glowmark
+Fixed Spore Knife not have craft and fixed rarity
+Fixed Tomutus rarity
+Fixed some uncorrect price inappropriate rarity
 --------------
 WoB - Wall of Bronze

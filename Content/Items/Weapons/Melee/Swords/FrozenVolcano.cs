@@ -26,7 +26,7 @@ namespace Clamity.Content.Items.Weapons.Melee.Swords
             Item.useAnimation = 20;
             Item.useStyle = ItemUseStyleID.Swing;
             Item.knockBack = 8f;
-            Item.value = CalamityGlobalItem.Rarity15BuyPrice;
+            Item.value = CalamityGlobalItem.RarityVioletBuyPrice;
             Item.autoReuse = true;
             Item.UseSound = SoundID.Item1;
         }

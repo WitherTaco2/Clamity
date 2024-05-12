@@ -1,13 +1,14 @@
 ﻿using CalamityMod;
+using CalamityMod.Graphics.Primitives;
 using CalamityMod.Items;
 using CalamityMod.Items.Tools;
+using CalamityMod.Rarities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System;
 using Terraria;
 using Terraria.Audio;
-using Terraria.GameContent;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.Localization;
@@ -34,8 +35,8 @@ namespace Clamity.Content.Bosses.WoB.Drop
             Item.noUseGraphic = true;
             Item.noMelee = true;
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.value = CalamityGlobalItem.Rarity1BuyPrice;
-            Item.rare = ItemRarityID.Blue;
+            Item.rare = ModContent.RarityType<Violet>();
+            Item.value = CalamityGlobalItem.RarityVioletBuyPrice;
             Item.UseSound = SoundID.Item23;
             Item.autoReuse = true;
             Item.shoot = ModContent.ProjectileType<LargeFatherProj>();
@@ -57,7 +58,7 @@ namespace Clamity.Content.Bosses.WoB.Drop
 
         public static Asset<Texture2D> BloomTex;
 
-        internal PrimitiveTrail TrailDrawer;
+        //internal PrimitiveTrail TrailDrawer;
 
         public override LocalizedText DisplayName => CalamityUtils.GetItemName<LargeFather>();
 
@@ -180,15 +181,85 @@ namespace Clamity.Content.Bosses.WoB.Drop
                 Color firstColor = Color.Lerp(Color.Magenta, Color.DarkGoldenrod, 0.5f + 0.5f * (float)Math.Sin(SpeenBeams * 0.2f));
                 firstColor *= 0.54f;
                 firstColor = firstColor.MultiplyRGB(colorMod);
+
                 Main.EntitySpriteDraw(beamTex, startPos + offset - Main.screenPosition, null, firstColor, rotation + MathF.PI / 2f, beamOrigin, beamScale, SpriteEffects.None);
+
                 beamScale.X = 2.4f;
+
                 firstColor = Color.Lerp(Color.Purple, Color.Chocolate, 0.5f + 0.5f * (float)Math.Sin(SpeenBeams * 0.2f + 1.2f));
                 firstColor = firstColor.MultiplyRGB(colorMod);
+
                 Main.EntitySpriteDraw(beamTex, startPos + offset - Main.screenPosition, null, firstColor, rotation + MathF.PI / 2f, beamOrigin, beamScale, SpriteEffects.None);
             });
         }
-
         public override bool PreDraw(ref Color lightColor)
+        {
+            if (!Projectile.active)
+                return false;
+
+            Main.spriteBatch.End();
+            Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.GameViewMatrix.TransformationMatrix);
+
+
+            Vector2 normalizedVelocity = Projectile.velocity.SafeNormalize(Vector2.Zero);
+            Texture2D beamTex = ModContent.Request<Texture2D>("CalamityMod/ExtraTextures/GreyscaleGradients/SimpleGradient").Value;
+
+            for (int i = 0; i < 3; i++)
+            {
+                float beamElevation = (float)Math.Sin(MathHelper.TwoPi * i / 3f + SpeenBeams * 0.06f);
+                if (beamElevation < 0)
+                    DrawBeam(beamTex, normalizedVelocity, i);
+            }
+
+            if (BloomTex == null)
+                BloomTex = ModContent.Request<Texture2D>("CalamityMod/Particles/BloomCircle");
+            Texture2D bloomTex = BloomTex.Value;
+
+            Main.EntitySpriteDraw(bloomTex, Projectile.Center - Main.screenPosition, null, Color.DeepSkyBlue * 0.3f, MathHelper.PiOver2, bloomTex.Size() / 2f, 0.3f * Projectile.scale, SpriteEffects.None, 0);
+
+            GameShaders.Misc["CalamityMod:TrailStreak"].SetShaderTexture(ModContent.Request<Texture2D>("CalamityMod/ExtraTextures/Trails/DoubleTrail"));
+            PrimitiveRenderer.RenderTrail(new Vector2[] { Projectile.Center, Owner.MountedCenter - normalizedVelocity * 13f }, new(WidthFunction, ColorFunction, shader: GameShaders.Misc["CalamityMod:TrailStreak"]), 30);
+
+            Main.spriteBatch.End();
+            Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.GameViewMatrix.TransformationMatrix);
+
+            Texture2D tex = Terraria.GameContent.TextureAssets.Projectile[Projectile.type].Value;
+            Vector2 origin = new Vector2(9f, tex.Height / 2f);
+            SpriteEffects effect = SpriteEffects.None;
+            if (Owner.direction * Owner.gravDir < 0)
+                effect = SpriteEffects.FlipVertically;
+
+            Main.EntitySpriteDraw(tex, Owner.MountedCenter + normalizedVelocity * 10f - Main.screenPosition, null, Projectile.GetAlpha(lightColor), Projectile.rotation, origin, Projectile.scale, effect, 0);
+
+
+            Main.spriteBatch.End();
+            Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.GameViewMatrix.TransformationMatrix);
+
+            //Draw some bloom
+            /*if (GlowmaskTex == null)
+                GlowmaskTex = ModContent.Request<Texture2D>("CalamityMod/Items/Tools/MarniteObliteratorBloom");
+            Texture2D glowTex = GlowmaskTex.Value;
+            float bloomOpacity = (float)Math.Pow(Math.Clamp(Timer / 100f, 0f, 1f), 2) * (0.85f + (0.5f + 0.5f * (float)Math.Sin(Main.GlobalTimeWrappedHourly))) * 0.8f;
+            Color bloomColor = Color.Lerp(Color.DeepSkyBlue, Color.Chocolate, 0.5f + 0.5f * (float)Math.Sin(SpeenBeams * 0.2f + 1.2f));
+
+            Main.EntitySpriteDraw(glowTex, Owner.MountedCenter + normalizedVelocity * 10f - Main.screenPosition, null, bloomColor * bloomOpacity, Projectile.rotation, origin, Projectile.scale, effect, 0);
+            */
+
+
+            for (int i = 0; i < 3; i++)
+            {
+                float beamElevation = (float)Math.Sin(MathHelper.TwoPi * i / 3f + SpeenBeams * 0.06f);
+                if (beamElevation >= 0)
+                    DrawBeam(beamTex, normalizedVelocity, i);
+            }
+
+            Main.spriteBatch.End();
+            Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.GameViewMatrix.TransformationMatrix);
+
+
+            return false;
+        }
+        /*public override bool PreDraw(ref Color lightColor)
         {
             if (!Projectile.active)
             {
@@ -238,15 +309,6 @@ namespace Clamity.Content.Bosses.WoB.Drop
             Main.EntitySpriteDraw(value3, Owner.MountedCenter + vector * 10f - Main.screenPosition, null, Projectile.GetAlpha(lightColor), Projectile.rotation, origin, Projectile.scale, effects);
             Main.spriteBatch.End();
             Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.GameViewMatrix.TransformationMatrix);
-            /*if (GlowmaskTex == null)
-            {
-                GlowmaskTex = ModContent.Request<Texture2D>("CalamityMod/Items/Tools/MarniteObliteratorBloom");
-            }
-
-            Texture2D value4 = GlowmaskTex.Value;
-            float num = (float)Math.Pow(Math.Clamp(Timer / 100f, 0f, 1f), 2.0) * (0.85f + (0.5f + 0.5f * (float)Math.Sin(Main.GlobalTimeWrappedHourly))) * 0.8f;
-            Main.EntitySpriteDraw(color: Color.Lerp(Color.DeepSkyBlue, Color.Chocolate, 0.5f + 0.5f * (float)Math.Sin(SpeenBeams * 0.2f + 1.2f)) * num, texture: value4, position: Owner.MountedCenter + vector * 10f - Main.screenPosition, sourceRectangle: null, rotation: base.Projectile.rotation, origin: origin, scale: base.Projectile.scale, effects: effects);
-            */
             for (int j = 0; j < 3; j++)
             {
                 if ((float)Math.Sin(MathF.PI * 2f * j / 3f + SpeenBeams * 0.06f) >= 0f)
@@ -258,6 +320,6 @@ namespace Clamity.Content.Bosses.WoB.Drop
             Main.spriteBatch.End();
             Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.GameViewMatrix.TransformationMatrix);
             return false;
-        }
+        }*/
     }
 }

@@ -21,7 +21,7 @@ namespace Clamity.Content.Items.Weapons.Ranged.Guns
         {
             Item.width = 68; Item.height = 26;
             Item.rare = ItemRarityID.Red;
-            Item.value = CalamityGlobalItem.Rarity10BuyPrice;
+            Item.value = CalamityGlobalItem.RarityRedBuyPrice;
 
             Item.useAnimation = Item.useTime = 25;
             Item.useStyle = ItemUseStyleID.Shoot;

@@ -14,7 +14,7 @@ namespace Clamity.Content.Items.Tools.BreakingTool
         {
             Item.width = 32; Item.height = 40;
             Item.rare = ItemRarityID.Blue;
-            Item.value = CalamityGlobalItem.Rarity2BuyPrice;
+            Item.value = CalamityGlobalItem.RarityBlueBuyPrice;
             Item.scale = 1.5f;
 
             Item.useTime = 21;

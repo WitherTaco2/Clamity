@@ -1,19 +1,6 @@
-﻿using CalamityMod.Items;
-using CalamityMod.Items.Materials;
-using CalamityMod.Items.Weapons.Magic;
-using CalamityMod.Projectiles.Magic;
-using CalamityMod.Rarities;
-using CalamityMod.Tiles.Furniture.CraftingStations;
-using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.Audio;
-using Terraria.DataStructures;
-using Terraria.ID;
-using Terraria.ModLoader;
-
-namespace Clamity.Content.Items.Weapons.Magic
+﻿namespace Clamity.Content.Items.Weapons.Magic
 {
-    public class OmegaRay : ModItem, ILocalizedModType, IModType
+    /*public class OmegaRay : ModItem, ILocalizedModType, IModType
     {
         public new string LocalizationCategory => "Items.Weapons.Magic";
 
@@ -79,5 +66,5 @@ namespace Clamity.Content.Items.Weapons.Magic
                 .AddTile<CosmicAnvil>()
                 .Register();
         }
-    }
+    }*/
 }

@@ -17,7 +17,7 @@ namespace Clamity.Content.Bosses.Clamitas.Crafted
             Item.width = 24;
             Item.height = 26;
             Item.rare = ItemRarityID.Lime;
-            Item.value = CalamityGlobalItem.Rarity7BuyPrice;
+            Item.value = CalamityGlobalItem.RarityLimeBuyPrice;
             Item.accessory = true;
         }
         public override void UpdateAccessory(Player player, bool hideVisual)

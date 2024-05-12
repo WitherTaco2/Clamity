@@ -25,7 +25,7 @@ namespace Clamity.Content.Items.Weapons.Rogue
             Item.width = 26;
             Item.height = 48;
             Item.rare = ModContent.RarityType<Violet>();
-            Item.value = CalamityGlobalItem.Rarity12BuyPrice;
+            Item.value = CalamityGlobalItem.RarityVioletBuyPrice;
 
             Item.useTime = 1;
             Item.useAnimation = 10;
