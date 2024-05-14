@@ -1,5 +1,5 @@
 displayName = Clamity Addon
 author = WitherTaco and Calamity Fandom wiki
-version = 1.0.3
-modReferences = CalamityMod
+version = 1.0.3.1
+modReferences = CalamityMod, ClamityMusic
 weakReferences = InfernumMode

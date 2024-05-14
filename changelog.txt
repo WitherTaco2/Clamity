@@ -1,56 +1,8 @@
-[h1]Frozen Hell Part 2 Patch[/h1]
+[h1]Wall of Bronze Hotfix[/h1]
 
-New Content:
-Added Frozen armor set. WoB-tier upgrade of Molten+Frost Armor.
-Added Everest. WoB-tier shortsword. Direct upgrade of Tomutus.
-Added Auric Kunai. Upgrade of Cosmic Kunai
-Added Exo Ball. Last in you playground Rogue Spiky Ball weapon.
-Added Planterror Staff. Direct upgrade of Plantation Staff which uses guns. Brutal!
-Added Warblade and Waraxe
+Now uses Clamity Music Mod as dependence
+Potentialy fixes WoB in multiplayer
+WoB summon weapons more often
 
-Added Icicle Ring accessory (currently he drops by Glacial Slime)
-Added Red Die. Post-Clamitas direct upgrade of Old Die
-Added Plague Station and Flame Cube. Exo Box alternatives in different stages (after Plaguebringer Goliath and Exo Mech + Calamitas)
-Adapted to latest calamity update 2.0.4
-
-Added Trash of Magnus. Post-Plaguebringer Goliath Classless weapon
-Added Eidolon Amulet. Combination of amulets
-Added Metal Wings and Metal Feather for it
-Added Pearl of Fish Calamity. Post-Clamitas upgrade of Enchanted Pearl
-
-Added Titan Scale Potion and his Coralskin Foolfish
-
-Added minions for Wall of Bronze
-
-Temperary removed Omega Ray (need rework later)
-
-
-Changes/Addintions:
-Updated Frozen Ash and Frozen Hellstone sprites (item and tile)
-Clamitas now drops weapons and Slagspitter Pauldron like in his Fandom Wiki page
-Added Copper/Tin Clicker into Started Bag (If clicker class mod is active)
-Added The Generator in Nuclear Fury recipe
-Added Molten Piercer in Shattered Sun recipe
-The Generator now inflict Shadow Flames debuff
-Nerfed WoB Guns max life
-Blade of Enmity now inflict Brimstone Flames
-
-
-Resprites:
-"Resprited" Hell Flare
-Resprited Essence of Flame 
-Resprited Core of Flame
-
-Fixes:
-Fixed Green Solution don's work with Frozen Hell blocks
-Fixed localization (primary russian)
-Fixed Fish of Flame not catchable
-Fixed Permafrost don's sells Coldheart Icicle
-Frozen Hell now generates in center in Underworld (instead of WoB kill position where it could be generated on the Brimstone Crags site)
-Fixed Hellstone Shellfish Staff minion don't periodically creates explosion
-Fixed Core of Flame glowmark
-Fixed Spore Knife not have craft and fixed rarity
-Fixed Tomutus rarity
-Fixed some uncorrect price inappropriate rarity
 --------------
 WoB - Wall of Bronze
