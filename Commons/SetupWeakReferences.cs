@@ -5,7 +5,9 @@ using CalamityMod.Events;
 using CalamityMod.Items.Mounts;
 using CalamityMod.NPCs.Yharon;
 using CalamityMod.UI.CalamitasEnchants;
+using Clamity.Content.Biomes.FrozenHell.Biome;
 using Clamity.Content.Biomes.FrozenHell.Biome.Background;
+using Clamity.Content.Biomes.FrozenHell.Items;
 using Clamity.Content.Bosses.Clamitas;
 using Clamity.Content.Bosses.Clamitas.Drop;
 using Clamity.Content.Bosses.Clamitas.NPCs;
@@ -191,6 +193,11 @@ namespace Clamity.Commons
         /// </summary>
         public static void SetupBossChecklist()
         {
+            if (ModLoader.TryGetMod("CalamityMod", out Mod calamity))
+            {
+                calamity.Call("RegisterAndroombaSolution", ModContent.ItemType<CyanSolution>(), "Clamity/Commons/Androomba_FrozenHell", (NPC npc) => { FrozenHell.Convert((int)(npc.Center.X / 16f), (int)(npc.Center.Y / 16f), 2); });
+            }
+
             if (ModLoader.TryGetMod("BossChecklist", out Mod bossChecklist))
             {
                 //Clamitas
