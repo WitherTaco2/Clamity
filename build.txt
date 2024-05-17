@@ -3,3 +3,4 @@ author = WitherTaco and Calamity Fandom wiki
 version = 1.0.3.1
 modReferences = CalamityMod, ClamityMusic
 weakReferences = InfernumMode
+buildIgnore = .vs\*, Properties\*, *.csproj, *.user, obj\*, bin\*, *.config, .git\*, .github\*, LICENSE, README.md, .editorconfig, .gitignore, .gitattributes, Effects\Compiler\*
