@@ -2,6 +2,7 @@
 
 Now uses Clamity Music Mod as dependence
 Potentialy fixes WoB in multiplayer
+Fixed more errors with WoB
 WoB summon weapons more often
 
 --------------
