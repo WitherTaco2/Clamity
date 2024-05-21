@@ -1,9 +1,6 @@
-[h1]Wall of Bronze Hotfix[/h1]
+[h1][/h1]
 
-Now uses Clamity Music Mod as dependence
-Potentialy fixes WoB in multiplayer
-Fixed more errors with WoB
-WoB summon weapons more often
+Fixed Enchanted Metal crafts after Exo Mechs (now requare Adamantite-tier Forge)
 
 --------------
 WoB - Wall of Bronze
