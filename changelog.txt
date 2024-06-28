@@ -1,6 +1,1 @@
-[h1][/h1]
-
-Fixed Enchanted Metal crafts after Exo Mechs (now requare Adamantite-tier Forge)
-
---------------
-WoB - Wall of Bronze
+Fixe some Russian localization
