@@ -1,1 +1,3 @@
-Fixe some Russian localization
+Golden Gun now uses Average damage class and increased damage (5 -> 25)
+Fixed some Russian localization (again)
+Fixed Auric Kunai stealth strike have a lot of damage
