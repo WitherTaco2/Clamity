@@ -55,7 +55,7 @@ namespace Clamity.Content.Items.Weapons.Rogue
                 for (float i = 0; i < 5; i++)
                 {
                     float angle = MathHelper.TwoPi / 5f * i;
-                    Projectile.NewProjectile(source, player.Center, angle.ToRotationVector2() * 8f, ModContent.ProjectileType<AuricKunaiLightning>(), (int)(damage * 2.568f), knockback, player.whoAmI, angle, 0f);
+                    Projectile.NewProjectile(source, player.Center, angle.ToRotationVector2() * 8f, ModContent.ProjectileType<AuricKunaiLightning>(), damage, knockback, player.whoAmI, angle, 0f);
                 }
             }
 
