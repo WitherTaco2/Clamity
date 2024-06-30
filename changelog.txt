@@ -1,3 +1,4 @@
 Golden Gun now uses Average damage class and increased damage (5 -> 25)
+Added alternative recipe of Pearl God with using Clamitous Pearls
 Fixed some Russian localization (again)
 Fixed Auric Kunai stealth strike have a lot of damage
