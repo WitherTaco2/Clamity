@@ -35,8 +35,8 @@ HellFlare: {
 		'''
 		All attacks and projectiles inflict hellfire
 		Immunity to 'on fire' and 'hellfire' debuffs
-		Being above 75% life grants 10% increased crit chance
-		Being below 25% life grants 10% increased damage reduction
+		Being above 50% life grants 10% increased crit chance
+		Being below 50% life grants 10% increased damage reduction
 		Grants resistance against cold attacks
 		'''
 }

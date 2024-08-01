@@ -217,11 +217,11 @@ namespace Clamity
             }
             if (hellFlare)
             {
-                if (Player.statLife > (int)(Player.statLifeMax2 * 0.75))
+                if (Player.statLife > (int)(Player.statLifeMax2 * 0.5))
                 {
                     Player.GetCritChance<GenericDamageClass>() += 10;
                 }
-                if (Player.statLife < (int)(Player.statLifeMax2 * 0.25))
+                if (Player.statLife < (int)(Player.statLifeMax2 * 0.5))
                 {
                     Player.endurance += 0.1f;
                 }
