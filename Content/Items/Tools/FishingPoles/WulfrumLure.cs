@@ -1,5 +1,4 @@
-﻿using CalamityMod;
-using CalamityMod.Items;
+﻿using CalamityMod.Items;
 using CalamityMod.Items.Fishing.FishingRods;
 using CalamityMod.Items.Materials;
 using Microsoft.Xna.Framework;
@@ -23,7 +22,7 @@ namespace Clamity.Content.Items.Tools.FishingPoles
         {
             Item.width = 24;
             Item.height = 28;
-            Item.value = CalamityGlobalItem.Rarity3BuyPrice;
+            Item.value = CalamityGlobalItem.RarityOrangeBuyPrice;
             Item.rare = ItemRarityID.Orange;
 
             Item.useAnimation = 8;
@@ -87,6 +86,11 @@ namespace Clamity.Content.Items.Tools.FishingPoles
                 spriteBatch.DrawString(FontAssets.ItemStack.Value, text, position, new Color(255, 0, 255), 0f, new Vector2(-7f, 10f), 1.1f, SpriteEffects.None, 0f);
             }
         }
+        public override void ModifyFishingLine(Projectile bobber, ref Vector2 lineOriginOffset, ref Color lineColor)
+        {
+            lineOriginOffset = new Vector2(45, -37);
+            lineColor = new Color(255, 251, 189, 100);
+        }
         public override void AddRecipes()
         {
             CreateRecipe()
@@ -107,12 +111,6 @@ namespace Clamity.Content.Items.Tools.FishingPoles
             Projectile.aiStyle = 61;
             Projectile.bobber = true;
             Projectile.penetrate = -1;
-        }
-
-        public override bool PreDrawExtras()
-        {
-            //Lighting.AddLight(Projectile.Center, (float)((double)((int)byte.MaxValue - Projectile.alpha) * 0.0 / (double)byte.MaxValue), (float)((double)((int)byte.MaxValue - this.Projectile.alpha) * 0.25 / (double)byte.MaxValue), (float)((double)((int)byte.MaxValue - this.Projectile.alpha) * 0.25 / (double)byte.MaxValue));
-            return Projectile.DrawFishingLine(ModContent.ItemType<WulfrumLure>(), new Color(255, 251, 189, 100), 46, 36);
         }
     }
 }

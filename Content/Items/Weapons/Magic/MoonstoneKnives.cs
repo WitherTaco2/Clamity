@@ -15,7 +15,7 @@ namespace Clamity.Content.Items.Weapons.Magic
         {
             Item.width = 18;
             Item.height = 20;
-            Item.value = CalamityGlobalItem.Rarity2BuyPrice;
+            Item.value = CalamityGlobalItem.RarityGreenBuyPrice;
             Item.rare = ItemRarityID.Green;
 
             Item.useAnimation = 15;

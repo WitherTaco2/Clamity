@@ -26,7 +26,7 @@ namespace Clamity.Content.Bosses.Clamitas.Crafted.ClamitasArmor
         public override void SetDefaults()
         {
             Item.width = Item.height = 22;
-            Item.value = CalamityGlobalItem.Rarity5BuyPrice;
+            Item.value = CalamityGlobalItem.RarityLimeBuyPrice;
             Item.rare = ItemRarityID.Lime;
             Item.defense = 18;
         }

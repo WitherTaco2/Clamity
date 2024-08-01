@@ -75,8 +75,8 @@ namespace Clamity.Content.Bosses.WoB.NPCs
         });
         public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)
         {
-            NPC.lifeMax = (int)(NPC.lifeMax * 0.5f * balance * bossAdjustment);
-            NPC.damage = (int)(NPC.damage * NPC.GetExpertDamageMultiplier() * bossAdjustment);
+            NPC.lifeMax = (int)(NPC.lifeMax * 0.5f * balance/* * bossAdjustment*/);
+            NPC.damage = (int)(NPC.damage * NPC.GetExpertDamageMultiplier()/* * bossAdjustment*/);
         }
         public override void BossLoot(ref string name, ref int potionType) => potionType = ModContent.ItemType<OmegaHealingPotion>();
         public override void OnSpawn(IEntitySource source)
@@ -119,7 +119,7 @@ namespace Clamity.Content.Bosses.WoB.NPCs
                 }))
                     num1 = 1;
             }
-            if (NPC.target < 0 || NPC.target == byte.MaxValue || Main.player[NPC.target].Center.Y < Main.UnderworldLayer * 16 || Main.player[NPC.target].dead || !Main.player[NPC.target].active)
+            /*if (NPC.target < 0 || NPC.target == byte.MaxValue || Main.player[NPC.target].Center.Y < Main.UnderworldLayer * 16 || Main.player[NPC.target].dead || !Main.player[NPC.target].active)
             {
                 NPC.TargetClosest(true);
                 if ((NPC.target == (int)byte.MaxValue || Main.player[NPC.target].dead || !Main.player[NPC.target].active) || Main.player[NPC.target].Center.Y < Main.UnderworldLayer * 16)
@@ -128,6 +128,19 @@ namespace Clamity.Content.Bosses.WoB.NPCs
                     if ((NPC.target == (int)byte.MaxValue || Main.player[NPC.target].dead || !Main.player[NPC.target].active) || Main.player[NPC.target].Center.Y < Main.UnderworldLayer * 16 && !NPC.despawnEncouraged)
                         NPC.EncourageDespawn(30);
                 }
+                if (NPC.despawnEncouraged)
+                {
+                    NPC.velocity.X += Math.Sign(NPC.velocity.X) * 2f;
+                    NPC.velocity.Y = 0.0f;
+                    return;
+                }
+            }*/
+            //Despawn
+            if (NPC.target < 0 || NPC.target == byte.MaxValue || Main.player[NPC.target].Center.Y < Main.UnderworldLayer * 16 || Main.player[NPC.target].dead || !Main.player[NPC.target].active)
+            {
+                NPC.TargetClosest(true);
+                if ((NPC.target == (int)byte.MaxValue || Main.player[NPC.target].Center.Y < Main.UnderworldLayer * 16 || Main.player[NPC.target].dead || !Main.player[NPC.target].active) && !NPC.despawnEncouraged)
+                    NPC.EncourageDespawn(30);
                 if (NPC.despawnEncouraged)
                 {
                     NPC.velocity.X += Math.Sign(NPC.velocity.X) * 2f;
@@ -195,7 +208,7 @@ namespace Clamity.Content.Bosses.WoB.NPCs
             //Summon guns
             GunSummonTimer++;
             //if (GunSummonTimer >= /*(CalamityWorld.death ? 1200 : (Main.expertMode ? 1500 : 1800))*/ 120 && num3 < 5)
-            if (GunSummonTimer >= (CalamityWorld.death ? 600 : (Main.expertMode ? 750 : 900)))
+            if (GunSummonTimer >= (CalamityWorld.death ? 400 : (Main.expertMode ? 500 : 600)))
             {
                 GunSummonTimer = 0;
                 Terraria.NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, ModContent.NPCType<MechanicalLeechHead>());

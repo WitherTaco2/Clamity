@@ -33,7 +33,7 @@ namespace Clamity.Content.Items.Weapons.Classless
             Item.autoReuse = true;
             Item.noMelee = true;
             Item.height = 50;
-            Item.value = CalamityGlobalItem.Rarity15BuyPrice;
+            Item.value = CalamityGlobalItem.RarityVioletBuyPrice;
             Item.shoot = ModContent.ProjectileType<EyeOfNovaProjectile>();
             Item.shootSpeed = 12f;
         }

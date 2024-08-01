@@ -23,8 +23,8 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
         public override void SetDefaults()
         {
             Item.width = 36; Item.height = 38;
-            Item.rare = ItemRarityID.Yellow;
-            Item.value = CalamityGlobalItem.Rarity8BuyPrice;
+            Item.rare = ItemRarityID.Orange;
+            Item.value = CalamityGlobalItem.RarityOrangeBuyPrice;
 
             Item.useAnimation = Item.useTime = 15;
             Item.useStyle = ItemUseStyleID.Rapier;

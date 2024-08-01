@@ -22,8 +22,8 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
         public override void SetDefaults()
         {
             Item.width = Item.height = 32;
-            Item.rare = ItemRarityID.Pink;
-            Item.value = CalamityGlobalItem.Rarity5BuyPrice;
+            Item.rare = ItemRarityID.Green;
+            Item.value = CalamityGlobalItem.RarityGreenBuyPrice;
 
             Item.useAnimation = Item.useTime = 12;
             Item.useStyle = ItemUseStyleID.Rapier;
@@ -38,6 +38,14 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
 
             Item.shoot = ModContent.ProjectileType<SporeKnifeProjectile>();
             Item.shootSpeed = 2.4f;
+        }
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ItemID.JungleSpores, 10)
+                .AddIngredient(ItemID.Stinger, 5)
+                .AddTile(TileID.Anvils)
+                .Register();
         }
     }
     public class SporeKnifeProjectile : BaseShortswordProjectile, ILocalizedModType, IModType

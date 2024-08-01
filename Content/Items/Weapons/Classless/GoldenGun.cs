@@ -1,4 +1,5 @@
-﻿using CalamityMod.Items;
+﻿using CalamityMod;
+using CalamityMod.Items;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
@@ -12,7 +13,8 @@ namespace Clamity.Content.Items.Weapons.Classless
         public new string LocalizationCategory => "Items.Weapons.Typeless";
         public override void SetDefaults()
         {
-            Item.damage = 5;
+            Item.damage = 25;
+            Item.DamageType = ModContent.GetInstance<AverageDamageClass>();
             Item.width = 78;
             Item.height = 36;
             Item.useTime = 15;
@@ -20,7 +22,7 @@ namespace Clamity.Content.Items.Weapons.Classless
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.noMelee = true;
             Item.knockBack = 2f;
-            Item.value = CalamityGlobalItem.Rarity3BuyPrice;
+            Item.value = CalamityGlobalItem.RarityOrangeBuyPrice;
             Item.rare = ItemRarityID.Orange;
             Item.UseSound = SoundID.Item11;
             Item.autoReuse = true;

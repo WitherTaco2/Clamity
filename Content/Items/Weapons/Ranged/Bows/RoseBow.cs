@@ -19,7 +19,7 @@ namespace Clamity.Content.Items.Weapons.Ranged.Bows
             Item.width = 54;
             Item.height = 114;
             Item.rare = ModContent.RarityType<PureGreen>();
-            Item.value = CalamityGlobalItem.Rarity13BuyPrice;
+            Item.value = CalamityGlobalItem.RarityPureGreenBuyPrice;
 
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.useTime = Item.useAnimation = 30;
