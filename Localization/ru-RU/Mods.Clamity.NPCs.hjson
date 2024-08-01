@@ -49,3 +49,13 @@ GlacialSlime: {
 // MechanicalLeechTail.DisplayName: Mechanical Leech
 // MechanicalLeechHead.DisplayName: Mechanical Leech
 // MechanicalLeechBody.DisplayName: Mechanical Leech
+
+LosbafSuperboss: {
+	// DisplayName: XB-10 Losbaf
+	// Bestiary: Last Draedon project which combine technology and axo magic to make most powerful machine
+
+	BossChecklistIntegration: {
+		// SpawnInfo: Use [i:Clamity/ShadyGazingSkull] Shady Gazing Skull
+		// DespawnMessage: "[c/FFD700:The magic machine successfully tested]"
+	}
+}

@@ -69,6 +69,8 @@ Boss: {
 	FireBarrage.DisplayName: Fire Barrage
 	FireBarrageHoming.DisplayName: Fire Barrage Homing
 	WoBDeathrayStart.DisplayName: Bronze Deathray
+	ExoScythe.DisplayName: Exo Scythe
+	BaseLosbafCloneProjectile.DisplayName: Base Losbaf Clone Projectile
 }
 
 WarArrowProjectile.DisplayName: War Arrow

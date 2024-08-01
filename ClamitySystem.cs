@@ -72,11 +72,32 @@ namespace Clamity
                 }
             }
         }
+
+        internal static bool _downedLosbaf;
+        public static bool downedLosbaf
+        {
+            get
+            {
+                return _downedLosbaf;
+            }
+            set
+            {
+                if (!value)
+                {
+                    _downedLosbaf = false;
+                }
+                else
+                {
+                    NPC.SetEventFlagCleared(ref _downedLosbaf, -1);
+                }
+            }
+        }
         internal static void ResetAllFlags()
         {
             downedClamitas = false;
             downedPyrogen = false;
             downedWallOfBronze = false;
+            downedLosbaf = false;
         }
         public override void Load()
         {
@@ -110,6 +131,8 @@ namespace Clamity
                 list.Add("pyrogen");
             if (downedWallOfBronze)
                 list.Add("wob");
+            if (downedLosbaf)
+                list.Add("losbaf");
             tag["downedFlagsClamity"] = list;
         }
         public override void LoadWorldData(TagCompound tag)
@@ -118,6 +141,7 @@ namespace Clamity
             downedClamitas = list.Contains("clamitas");
             downedPyrogen = list.Contains("pyrogen");
             downedWallOfBronze = list.Contains("wob");
+            downedLosbaf = list.Contains("losbaf");
         }
         public static int AnySandBlock;
         public static int AnyGemHook;
@@ -138,6 +162,7 @@ namespace Clamity
             flags[0] = downedClamitas;
             flags[1] = downedPyrogen;
             flags[2] = downedWallOfBronze;
+            flags[3] = downedLosbaf;
 
             writer.Write(flags);
         }
@@ -147,6 +172,7 @@ namespace Clamity
             downedClamitas = flags[0];
             downedPyrogen = flags[1];
             downedWallOfBronze = flags[2];
+            downedLosbaf = flags[3];
         }
     }
 }

@@ -1,0 +1,62 @@
+﻿using CalamityMod;
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+
+namespace Clamity.Content.Bosses.Losbaf.Projectiles
+{
+    public class ExoScythe : ModProjectile, ILocalizedModType, IModType
+    {
+        public new string LocalizationCategory => "Projectiles.Boss";
+        public override void SetStaticDefaults()
+        {
+            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 6;
+            ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
+
+        }
+        public override void SetDefaults()
+        {
+            Projectile.width = Projectile.height = 48;
+            Projectile.hostile = true;
+            Projectile.timeLeft = 1000;
+            Projectile.penetrate = -1;
+            Projectile.alpha = 100;
+            Projectile.ignoreWater = true;
+        }
+        public override void AI()
+        {
+            Projectile.rotation += 0.25f;
+            switch ((int)Projectile.ai[0])
+            {
+                case 0:
+                    if (Projectile.timeLeft == 1000 - 60)
+                    {
+                        //Projectile.ai[1] = Projectile.velocity.Length();
+                        Projectile.velocity = Vector2.Zero;
+                    }
+                    if (Projectile.timeLeft == 1000 - 180)
+                    {
+                        int target = Player.FindClosest(Projectile.Center, 100, 100);
+                        Projectile.velocity = (Main.player[target].Center - Projectile.Center).SafeNormalize(Vector2.Zero) * Projectile.ai[1];
+                    }
+                    break;
+                case 1:
+                    if (Projectile.timeLeft == 1000 - 60)
+                        Projectile.velocity = Vector2.Zero;
+                    if (Projectile.timeLeft == 1000 - 180)
+                    {
+                        int target = Player.FindClosest(Projectile.Center, 100, 100);
+                        Projectile.velocity = new Vector2(0, Projectile.ai[1]);
+                    }
+                    break;
+            }
+        }
+        public override bool PreDraw(ref Color lightColor)
+        {
+            CalamityUtils.DrawAfterimagesCentered(Projectile, ProjectileID.Sets.TrailingMode[Projectile.type], Color.White, 1);
+
+            return false;
+        }
+    }
+}

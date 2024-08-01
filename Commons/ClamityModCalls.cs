@@ -29,6 +29,12 @@ namespace Clamity.Commons
                 case "wallofbronze":
                 case "wall of bronze":
                     return ClamitySystem.downedWallOfBronze;
+
+                case "losbaf":
+                case "exoocram":
+                case "exo ocram":
+                    return ClamitySystem.downedLosbaf;
+
             }
         }
         public static bool GetInZone(Player p, string zone)

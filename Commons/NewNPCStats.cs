@@ -1,6 +1,8 @@
 ﻿using CalamityMod.Projectiles.Boss;
 using CalamityMod.World;
 using Clamity.Content.Bosses.Clamitas.NPCs;
+using Clamity.Content.Bosses.Losbaf.NPCs;
+using Clamity.Content.Bosses.Losbaf.Projectiles;
 using Clamity.Content.Bosses.Pyrogen.NPCs;
 using Clamity.Content.Bosses.Pyrogen.Projectiles;
 using Clamity.Content.Bosses.WoB.NPCs;
@@ -71,6 +73,10 @@ namespace Clamity.Commons
                 {
                   new Tuple<int, int>(ModContent.NPCType<WallOfBronzeTorret>(), ModContent.ProjectileType<WallOfBronzeTorretBlast>()),
                   new int[5]{ 300, 330, 360, 410, 450 }
+                },
+                {
+                  new Tuple<int, int>(ModContent.NPCType<LosbafSuperboss>(), ModContent.ProjectileType<ExoScythe>()),
+                  new int[5]{ 450, 500, 550, 600, 650 }
                 }
             };
         }

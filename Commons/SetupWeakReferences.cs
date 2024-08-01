@@ -11,6 +11,8 @@ using Clamity.Content.Biomes.FrozenHell.Items;
 using Clamity.Content.Bosses.Clamitas;
 using Clamity.Content.Bosses.Clamitas.Drop;
 using Clamity.Content.Bosses.Clamitas.NPCs;
+using Clamity.Content.Bosses.Losbaf;
+using Clamity.Content.Bosses.Losbaf.NPCs;
 using Clamity.Content.Bosses.Pyrogen;
 using Clamity.Content.Bosses.Pyrogen.Drop;
 using Clamity.Content.Bosses.Pyrogen.NPCs;
@@ -276,6 +278,30 @@ namespace Clamity.Commons
                     AddBoss(bossChecklist, Clamity.mod, "WallOfBronze", 22.5f, ModContent.NPCType<WallOfBronze>(), () => ClamitySystem.downedWallOfBronze, new Dictionary<string, object>()
                     {
                         ["spawnItems"] = (object)ModContent.ItemType<AncientConsole>(),
+                        ["collectibles"] = (object)itemList,
+                        ["customPortrait"] = (object)drawing
+                    });
+                }
+
+                //XB-10 Losbaf
+                {
+                    List<int> itemList = new List<int>()
+                    {
+
+                    };
+                    /*if (Clamity.musicMod != null)
+                    {
+                        itemList.Add(Clamity.musicMod.Find<ModItem>("WoBMusicBox").Type);
+                    }*/
+                    Action<SpriteBatch, Rectangle, Color> drawing = (Action<SpriteBatch, Rectangle, Color>)((sb, rect, color) =>
+                    {
+                        Texture2D texture2D = ModContent.Request<Texture2D>(ModContent.GetInstance<LosbafSuperboss>().Texture, (AssetRequestMode)2).Value;
+                        Vector2 vector2 = new(rect.Center.X - texture2D.Width / 2, rect.Center.Y - texture2D.Height / 2);
+                        sb.Draw(texture2D, vector2, color);
+                    });
+                    AddBoss(bossChecklist, Clamity.mod, "Losbaf", 23.76f, ModContent.NPCType<LosbafSuperboss>(), () => ClamitySystem.downedLosbaf, new Dictionary<string, object>()
+                    {
+                        ["spawnItems"] = (object)ModContent.ItemType<ShadyGazingSkull>(),
                         ["collectibles"] = (object)itemList,
                         ["customPortrait"] = (object)drawing
                     });

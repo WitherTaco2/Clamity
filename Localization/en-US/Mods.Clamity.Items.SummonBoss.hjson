@@ -27,3 +27,12 @@ PyroKey: {
 		'A key for a furnace cube.'
 		'''
 }
+
+ShadyGazingSkull: {
+	DisplayName: Shady Gazing Skull
+	Tooltip:
+		'''
+		Summon XB-10 Losbaf in everywhere
+		Not consumable
+		'''
+}

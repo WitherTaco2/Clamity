@@ -23,3 +23,12 @@ PyroKey: {
 		'Ключ от кубической печки'
 		'''
 }
+
+ShadyGazingSkull: {
+	// DisplayName: Shady Gazing Skull
+	/* Tooltip:
+		'''
+		Summon XB-10 Losbaf in everywhere
+		Not consumable
+		''' */
+}
