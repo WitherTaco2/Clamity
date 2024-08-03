@@ -22,9 +22,9 @@ namespace Clamity
         {
             Recipe.Create(ModContent.ItemType<PearlGod>())
                 .AddIngredient<Arietes41>()
-                .AddIngredient<ClamitousPearl>()
                 .AddIngredient<LifeAlloy>(5)
                 .AddIngredient<RuinousSoul>(2)
+                .AddIngredient<ClamitousPearl>()
                 .AddTile(TileID.LunarCraftingStation)
                 .Register();
         }
