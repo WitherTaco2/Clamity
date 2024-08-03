@@ -65,8 +65,9 @@ namespace Clamity.Content.Bosses.WoB.Drop
             return false;
         }
     }
-    public class AMSProj : ModProjectile
+    public class AMSProj : ModProjectile, ILocalizedModType, IModType
     {
+        public new string LocalizationCategory => "Projectiles.Classless";
         public override void SetStaticDefaults()
         {
 

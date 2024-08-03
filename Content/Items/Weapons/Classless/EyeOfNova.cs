@@ -61,7 +61,7 @@ namespace Clamity.Content.Items.Weapons.Classless
     }
     public class EyeOfNovaProjectile : ModProjectile, ILocalizedModType, IModType
     {
-        public new string LocalizationCategory => "Projectiles.Typeless";
+        public new string LocalizationCategory => "Projectiles.Classless";
 
         public override void SetDefaults()
         {

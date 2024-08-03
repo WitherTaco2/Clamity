@@ -68,8 +68,9 @@ namespace Clamity.Content.Bosses.Pyrogen.Drop.Weapons
             }
         }
     }
-    public class HellsBellsSummon : ModProjectile
+    public class HellsBellsSummon : ModProjectile, ILocalizedModType, IModType
     {
+        public new string LocalizationCategory => "Projectiles.Summon.Minion";
         public Player Owner => Main.player[Projectile.owner];
 
         public ClamityPlayer moddedOwner => Owner.Clamity();
@@ -155,8 +156,9 @@ namespace Clamity.Content.Bosses.Pyrogen.Drop.Weapons
         }
         public override bool OnTileCollide(Vector2 oldVelocity) => false;
     }
-    public class HellsBellsRing : ModProjectile
+    public class HellsBellsRing : ModProjectile, ILocalizedModType, IModType
     {
+        public new string LocalizationCategory => "Projectiles.Summon";
         public override string Texture => "CalamityMod/Projectiles/InvisibleProj";
         public override void SetStaticDefaults()
         {

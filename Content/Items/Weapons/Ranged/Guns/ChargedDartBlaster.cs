@@ -85,8 +85,9 @@ namespace Clamity.Content.Items.Weapons.Ranged.Guns
                 .Register();
         }
     }
-    public class ChargedBlast3 : ModProjectile
+    public class ChargedBlast3 : ModProjectile, ILocalizedModType, IModType
     {
+        public new string LocalizationCategory => "Projectiles.Ranged";
         public override string Texture => "CalamityMod/Projectiles/LaserProj";
         public override void SetDefaults()
         {
@@ -164,8 +165,9 @@ namespace Clamity.Content.Items.Weapons.Ranged.Guns
             Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center.X, Projectile.Center.Y, 0.0f, 0.0f, ModContent.ProjectileType<ChargedDartExplosion>(), Projectile.damage / 4, Projectile.knockBack, Projectile.owner, 0.0f, 0.0f);
         }
     }
-    public class ChargedDartExplosion : ModProjectile
+    public class ChargedDartExplosion : ModProjectile, ILocalizedModType, IModType
     {
+        public new string LocalizationCategory => "Projectiles.Ranged";
         public override string Texture => "CalamityMod/Projectiles/InvisibleProj";
 
         public override void SetDefaults()

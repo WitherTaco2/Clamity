@@ -7,8 +7,9 @@ using Terraria.ModLoader;
 
 namespace Clamity.Content.Bosses.WoB.Projectiles
 {
-    public class WallOfBronzeTorretBlast : ModProjectile
+    public class WallOfBronzeTorretBlast : ModProjectile, ILocalizedModType, IModType
     {
+        public new string LocalizationCategory => "Projectiles.Boss";
         public override void SetStaticDefaults()
         {
             Main.projFrames[Type] = 3;

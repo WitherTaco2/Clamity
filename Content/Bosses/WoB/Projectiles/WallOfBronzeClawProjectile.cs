@@ -8,8 +8,9 @@ using Terraria.ModLoader;
 
 namespace Clamity.Content.Bosses.WoB.Projectiles
 {
-    public class WallOfBronzeClawProjectile : ModProjectile
+    public class WallOfBronzeClawProjectile : ModProjectile, ILocalizedModType, IModType
     {
+        public new string LocalizationCategory => "Projectiles.Boss";
         public ref float ClawGun => ref Projectile.ai[0];
         public Vector2 StartVelocity
         {

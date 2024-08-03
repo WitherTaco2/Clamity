@@ -62,8 +62,9 @@ namespace Clamity.Content.Items.Weapons.Magic
                 .Register();
         }
     }
-    public class HadopelagicEchoProjectile : ModProjectile
+    public class HadopelagicEchoProjectile : ModProjectile, ILocalizedModType, IModType
     {
+        public new string LocalizationCategory => "Projectiles.Magic";
         private int echoCooldown;
         private bool playedSound;
 
@@ -178,8 +179,9 @@ namespace Clamity.Content.Items.Weapons.Magic
             return false;
         }
     }
-    public class HadopelagicEchoProjectile2 : ModProjectile
+    public class HadopelagicEchoProjectile2 : ModProjectile, ILocalizedModType, IModType
     {
+        public new string LocalizationCategory => "Projectiles.Magic";
         public override string Texture => ModContent.GetInstance<HadopelagicEchoProjectile>().Texture;
         public override void SetStaticDefaults()
         {
