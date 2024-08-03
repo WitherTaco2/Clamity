@@ -75,8 +75,9 @@ namespace Clamity.Content.Bosses.WoB.Drop
             return base.Shoot(player, source, position, velocity, type, damage, knockback);
         }
     }
-    public class TheWOBblerProjectile : ModProjectile
+    public class TheWOBblerProjectile : ModProjectile, ILocalizedModType, IModType
     {
+        public new string LocalizationCategory => "Projectiles.Melee";
         public override void SetDefaults()
         {
             Projectile.CloneDefaults(ProjectileID.SpikyBall);
@@ -86,6 +87,7 @@ namespace Clamity.Content.Bosses.WoB.Drop
             Projectile.usesLocalNPCImmunity = false;
             Projectile.usesIDStaticNPCImmunity = true;
             Projectile.idStaticNPCHitCooldown = 3;
+            Projectile.DamageType = DamageClass.Melee;
         }
         public override bool OnTileCollide(Vector2 oldVelocity)
         {

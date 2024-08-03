@@ -44,7 +44,7 @@ namespace Clamity.Content.Items.Ammo
     }
     public class ArcticArrowProj : ModProjectile, ILocalizedModType
     {
-        public new string LocalizationCategory => "Projectiles.Ranged";
+        public new string LocalizationCategory => "Projectiles.Ranged.Ammo";
         public override string Texture => ModContent.GetInstance<ArcticArrow>().Texture;
 
         public override void SetDefaults()

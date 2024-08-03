@@ -9,8 +9,9 @@ using Terraria.ModLoader;
 
 namespace Clamity.Content.Bosses.Pyrogen.Projectiles
 {
-    public class FireBomb : ModProjectile
+    public class FireBomb : ModProjectile, ILocalizedModType, IModType
     {
+        public new string LocalizationCategory => "Projectiles.Boss";
         public override string Texture => ModContent.GetInstance<FireBarrage>().Texture;
         public override void SetStaticDefaults()
         {
@@ -85,8 +86,9 @@ namespace Clamity.Content.Bosses.Pyrogen.Projectiles
             Projectile.NewProjectile(Projectile.GetSource_Death(), Projectile.Center, Vector2.Zero, ModContent.ProjectileType<FireBombExplosion>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
         }*/
     }
-    public class FireBombExplosion : ModProjectile
+    public class FireBombExplosion : ModProjectile, ILocalizedModType, IModType
     {
+        public new string LocalizationCategory => "Projectiles.Boss";
         public override string Texture => "Clamity/Content/Projectiles/InvisibleProj";
         public override void SetDefaults()
         {

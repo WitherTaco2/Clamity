@@ -105,9 +105,9 @@ namespace Clamity.Content.Items.Weapons.Magic
         }
 
     }
-    public class MoonstoneKnifeProjectile : ModProjectile
+    public class MoonstoneKnifeProjectile : ModProjectile, ILocalizedModType, IModType
     {
-        public new string LocalizationCategory => "Projectiles.Melee";
+        public new string LocalizationCategory => "Projectiles.Magic";
         public override void SetDefaults()
         {
             Projectile.width = 14;

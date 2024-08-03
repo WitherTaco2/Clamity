@@ -30,8 +30,9 @@ namespace Clamity.Content.Items.Ammo
                 .Register();
         }
     }
-    public class WarArrowProjectile : ModProjectile
+    public class WarArrowProjectile : ModProjectile, ILocalizedModType
     {
+        public new string LocalizationCategory => "Projectiles.Ranged.Ammo";
         public override string Texture => ModContent.GetInstance<WarArrow>().Texture;
         public override void SetDefaults()
         {

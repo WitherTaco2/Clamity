@@ -46,7 +46,7 @@ namespace Clamity.Content.Items.Ammo
     }
     public class EnhancedNanoRoundProj : ModProjectile, ILocalizedModType
     {
-        public new string LocalizationCategory => "Projectiles.Ranged";
+        public new string LocalizationCategory => "Projectiles.Ranged.Ammo";
         public override void SetStaticDefaults()
         {
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 6;
@@ -127,7 +127,7 @@ namespace Clamity.Content.Items.Ammo
     }
     public class Nanomachine : ModProjectile, ILocalizedModType
     {
-        public new string LocalizationCategory => "Projectiles.Ranged";
+        public new string LocalizationCategory => "Projectiles.Ranged.Ammo";
         public override void SetStaticDefaults()
         {
             Main.projFrames[Projectile.type] = 3;

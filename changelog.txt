@@ -1,4 +1,7 @@
+Added Astral Star Cannon
 Golden Gun now uses Average damage class and increased damage (5 -> 25)
 Added alternative recipe of Pearl God with using Clamitous Pearls
+Renamed Terra Shiv to Gaia Shiv (russian translation included)
 Fixed some Russian localization (again)
+Fixes in English projectile localizations
 Fixed Auric Kunai stealth strike have a lot of damage

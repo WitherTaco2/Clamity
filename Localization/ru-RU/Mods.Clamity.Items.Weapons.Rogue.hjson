@@ -8,7 +8,7 @@ MoltenPiercer: {
 }
 
 WulfrumShockCutter: {
-	// DisplayName: Wulfrum Shock Cutter
+	DisplayName: Вульфрумовый ударный резак
 	// Tooltip: ""
 }
 
@@ -38,7 +38,7 @@ ExoBall: {
 }
 
 AuricKunai: {
-	DisplayName: Аурические кунаи
+	DisplayName: Аурический кунай
 	Tooltip:
 		'''
 		Выпускает быстрый поток кунаев ближнего действия

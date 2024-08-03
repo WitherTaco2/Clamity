@@ -37,7 +37,7 @@ namespace Clamity.Content.Bosses.Pyrogen.Drop
     }
     public class PyroShieldAccessory : ModProjectile, ILocalizedModType, IModType
     {
-        public new string LocalizationCategory => "Projectiles.Typeless";
+        public new string LocalizationCategory => "Projectiles.Classless";
 
         public Player Owner => Main.player[Projectile.owner];
 
