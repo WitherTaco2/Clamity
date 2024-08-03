@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using Clamity.Content.Bosses.Losbaf.NPCs;
+using System.ComponentModel;
 using Terraria.ModLoader.Config;
 
 namespace Clamity
@@ -19,5 +20,11 @@ namespace Clamity
         [DefaultValue(true)]
         [ReloadRequired]
         public bool UsesClamityWeaponsInCalamityRecipes;
+
+#if DEBUG
+        [DefaultValue(LosbafAttack.Slam)]
+        //[ReloadRequired]
+        public LosbafAttack StartingLosbafAttack;
+#endif
     }
 }

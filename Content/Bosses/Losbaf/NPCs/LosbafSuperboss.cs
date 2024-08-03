@@ -22,7 +22,7 @@ namespace Clamity.Content.Bosses.Losbaf.NPCs
         Spawn = 0,
         Slam = 1,
         ExoScytheWithTeleports = 2,
-        Rotating = 3,
+        RotatingAroundPlayer = 3,
         CircleExoScythe = 4,
     }
     public enum LosbafCloneColorType : int
@@ -81,6 +81,9 @@ namespace Clamity.Content.Bosses.Losbaf.NPCs
             get => (int)NPC.ai[1];
             set => NPC.ai[1] = (int)value;
         }
+        public static float DistanceOnRotationAttack = 500;
+        public static float DuratationOfRotationAttack = 200;
+        public static float VelocityOnRotationAttack = 20;
         public override void AI()
         {
             if (NPC.target < 0 || NPC.target == 255 || Main.player[NPC.target].dead || !Main.player[NPC.target].active)
@@ -137,7 +140,7 @@ namespace Clamity.Content.Bosses.Losbaf.NPCs
             {
                 case LosbafAttack.Spawn:
                     if (AttackTimer == 1)
-                        TeleportTo(player.Center - Vector2.UnitY * 200);
+                        TeleportTo(player.Center - Vector2.UnitY * 250);
 
                     if (AttackTimer % 5 == 1)
                     {
@@ -147,11 +150,19 @@ namespace Clamity.Content.Bosses.Losbaf.NPCs
 
                     if (AttackTimer >= 60)
                     {
+#if DEBUG
+                        NextState(ClamityConfig.Instance.StartingLosbafAttack);
+#else 
                         NextState(LosbafAttack.Slam);
+#endif
                     }
                     break;
                 case LosbafAttack.Slam:
+#if DEBUG
+                    int allSlamCount = 1;
+#else
                     int allSlamCount = 4;
+#endif
                     int verticalSlamCount = 2;
                     int hoverTime = 33;
                     int slamTime = 90;
@@ -168,6 +179,9 @@ namespace Clamity.Content.Bosses.Losbaf.NPCs
                     if (rev)
                     {
                         allSlamCount++;
+#if DEBUG
+                        allSlamCount--;
+#endif
 
                         if (slamCounter >= 1f)
                             hoverTime -= 3;
@@ -240,7 +254,7 @@ namespace Clamity.Content.Bosses.Losbaf.NPCs
                     Vector2 destination = player.Center + vec1 * distance;
                     Vector2 distanceFromDestination = destination - NPC.Center;
                     CalamityUtils.SmoothMovement(NPC, distance, distanceFromDestination, 10f, 1.1f, false);
-                    NPC.rotation = vec1.ToRotation() - MathHelper.PiOver2;
+                    NPC.rotation = vec1.ToRotation() + MathHelper.PiOver2;
 
                     if (AttackTimer % 10 == 0)
                     {
@@ -249,7 +263,7 @@ namespace Clamity.Content.Bosses.Losbaf.NPCs
                             velocity = 30;
                         if (death)
                             velocity = 40;
-                        Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, vec1 * 20, ModContent.ProjectileType<ExoScythe>(), NPC.GetProjectileDamageClamity(exoScytheType), 0, Main.myPlayer, 0, velocity);
+                        Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, vec1 * 20, exoScytheType, NPC.GetProjectileDamageClamity(exoScytheType), 0, Main.myPlayer, 0, velocity);
                     }
                     if (teleportationTime >= maxTeleportationTime)
                     {
@@ -259,9 +273,30 @@ namespace Clamity.Content.Bosses.Losbaf.NPCs
                     }
                     if (maxTeleportationTime < 10)
                     {
-                        NextState(LosbafAttack.Slam);
+                        NextState(LosbafAttack.RotatingAroundPlayer);
                         //teleportationTime = 0;
                         //maxTeleportationTime = 0;
+                    }
+                    break;
+                case LosbafAttack.RotatingAroundPlayer:
+                    if (AttackTimer == 1)
+                    {
+                        TeleportTo(player.Center - Vector2.UnitY.RotatedBy(Main.GlobalTimeWrappedHourly) * DistanceOnRotationAttack);
+                        for (int i = 0; i < 3; i++)
+                        {
+                            Projectile.NewProjectile(NPC.GetSource_FromAI(), player.Center, Vector2.Zero, ModContent.ProjectileType<LosbafCloneRotatable>(), 0, 0, Main.myPlayer, i, NPC.target);
+                        }
+                    }
+                    NPC.Center = player.Center + Vector2.UnitY.RotatedBy(Main.GlobalTimeWrappedHourly * 3) * DistanceOnRotationAttack;
+                    NPC.rotation = (player.Center - NPC.Center).ToRotation() - MathHelper.PiOver2;
+                    if (AttackTimer % 10 == 0)
+                    {
+                        Vector2 vec2 = (player.Center - NPC.Center).SafeNormalize(Vector2.Zero);
+                        Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, vec2 * VelocityOnRotationAttack, exoScytheType, NPC.GetProjectileDamageClamity(exoScytheType), 0, Main.myPlayer, 2, (AttackTimer % 60 == 0).ToInt());
+                    }
+                    if (AttackTimer == LosbafSuperboss.DuratationOfRotationAttack + 1)
+                    {
+                        NextState(LosbafAttack.Slam);
                     }
                     break;
             }

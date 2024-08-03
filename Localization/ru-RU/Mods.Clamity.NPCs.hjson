@@ -52,7 +52,7 @@ GlacialSlime: {
 
 LosbafSuperboss: {
 	// DisplayName: XB-10 Losbaf
-	// Bestiary: Last Draedon project which combine technology and axo magic to make most powerful machine
+	Bestiary: Последний проект Драэдона который сочетает в себе технологию и экзо магию для создании могущественной машины
 
 	BossChecklistIntegration: {
 		// SpawnInfo: Use [i:Clamity/ShadyGazingSkull] Shady Gazing Skull

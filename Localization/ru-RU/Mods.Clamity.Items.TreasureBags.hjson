@@ -7,3 +7,8 @@ WoBTreasureBag: {
 	Tooltip: Правый клик для открытия
 	DisplayName: Ящик с сокровищами (Стена бронзы)
 }
+
+LosbafBag: {
+	Tooltip: Правый клик для открытия
+	DisplayName: Коробка с сокровищами (Losbaf)
+}

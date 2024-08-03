@@ -52,7 +52,7 @@ MechanicalLeechBody.DisplayName: Mechanical Leech
 
 LosbafSuperboss: {
 	DisplayName: XB-10 Losbaf
-	Bestiary: Last Draedon project which combine technology and axo magic to make most powerful machine
+	Bestiary: Last Draedon project which combine technology and exo magic to make most powerful machine
 
 	BossChecklistIntegration: {
 		SpawnInfo: Use [i:Clamity/ShadyGazingSkull] Shady Gazing Skull

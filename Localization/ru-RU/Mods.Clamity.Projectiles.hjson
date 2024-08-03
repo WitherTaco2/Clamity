@@ -96,12 +96,27 @@ Boss: {
 	WallOfBronzeLaserBeamStart.DisplayName: Плазменный луч
 	WallOfBronzeClawProjectile.DisplayName: Бронзовая клешна
 	WoBDeathrayStart.DisplayName: Плазменный смертельный луч
+	// ExoScythe.DisplayName: Exo Scythe
+	// LosbafCloneRotatable.DisplayName: Losbaf Clone Rotatable
+}
+
+// WarArrowProjectile.DisplayName: War Arrow
+// FireBomb.DisplayName: Fire Bomb
+// FireBombExplosion.DisplayName: Fire Bomb Explosion
+// Firethrower.DisplayName: Firethrower
+// PyrogenSummonAnimation.DisplayName: Pyrogen Summon Animation
+// PyrogenKillExplosion.DisplayName: Pyrogen Kill Explosion
+// DraculasCharmProj.DisplayName: Dracula
+
+Typeless: {
+	// PyroShieldAccessory.DisplayName: Pyro Shield
+	// EyeOfNovaProjectile.DisplayName: Eye Of Nova Projectile
+	// GoldenGunProj.DisplayName: Golden Gun Proj
 }
 
 // ShortstrikeEffect.DisplayName: Shortstrike Effect
 // WulfrumLureBobber.DisplayName: Wulfrum Lure Bobber
 // CrustallineProjecile.DisplayName: Crustalline
 // SoulOfPyrogenSpear.DisplayName: Soul Of Pyrogen Spear
-// PyrogenSummonAnimation.DisplayName: Pyrogen Summon Animation
 // CyanSolutionProjectile.DisplayName: Cyan Solution
 // HeavyMetalTrashCanPet.DisplayName: Mini Bocchi

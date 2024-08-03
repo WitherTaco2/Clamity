@@ -1,6 +1,8 @@
 ﻿using CalamityMod;
+using Clamity.Content.Bosses.Losbaf.NPCs;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -23,6 +25,11 @@ namespace Clamity.Content.Bosses.Losbaf.Projectiles
             Projectile.penetrate = -1;
             Projectile.alpha = 100;
             Projectile.ignoreWater = true;
+        }
+        public override void OnSpawn(IEntitySource source)
+        {
+            if (Projectile.ai[0] == 2 && Projectile.ai[1] != 2)
+                Projectile.timeLeft = (int)(LosbafSuperboss.DistanceOnRotationAttack / LosbafSuperboss.VelocityOnRotationAttack);
         }
         public override void AI()
         {
@@ -50,6 +57,9 @@ namespace Clamity.Content.Bosses.Losbaf.Projectiles
                         Projectile.velocity = new Vector2(0, Projectile.ai[1]);
                     }
                     break;
+                case 2:
+
+                    break;
             }
         }
         public override bool PreDraw(ref Color lightColor)
@@ -57,6 +67,15 @@ namespace Clamity.Content.Bosses.Losbaf.Projectiles
             CalamityUtils.DrawAfterimagesCentered(Projectile, ProjectileID.Sets.TrailingMode[Projectile.type], Color.White, 1);
 
             return false;
+        }
+        public override void OnKill(int timeLeft)
+        {
+            if (Projectile.ai[0] == 2 && Projectile.ai[1] == 1)
+            {
+                Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center, Projectile.velocity.RotatedBy(MathHelper.PiOver4 / 2) / 3, ModContent.ProjectileType<ExoScythe>(), Projectile.damage, 0, Main.myPlayer, 2, 2);
+                Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center, Projectile.velocity.RotatedBy(MathHelper.PiOver4 / 2 + MathHelper.PiOver4) / 3, ModContent.ProjectileType<ExoScythe>(), Projectile.damage, 0, Main.myPlayer, 2, 2);
+
+            }
         }
     }
 }

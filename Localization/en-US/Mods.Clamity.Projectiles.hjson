@@ -97,7 +97,7 @@ Boss: {
 	WallOfBronzeClawProjectile.DisplayName: Bronze Claw
 	WoBDeathrayStart.DisplayName: Plasma Deathray
 	ExoScythe.DisplayName: Exo Scythe
-	BaseLosbafCloneProjectile.DisplayName: Base Losbaf Clone Projectile
+	LosbafCloneRotatable.DisplayName: Losbaf Clone Rotatable
 }
 
 WarArrowProjectile.DisplayName: War Arrow
@@ -118,6 +118,5 @@ ShortstrikeEffect.DisplayName: Shortstrike Effect
 WulfrumLureBobber.DisplayName: Wulfrum Lure Bobber
 CrustallineProjecile.DisplayName: Crustalline
 SoulOfPyrogenSpear.DisplayName: Soul Of Pyrogen Spear
-PyrogenSummonAnimation.DisplayName: Pyrogen Summon Animation
 CyanSolutionProjectile.DisplayName: Cyan Solution
 HeavyMetalTrashCanPet.DisplayName: Mini Bocchi

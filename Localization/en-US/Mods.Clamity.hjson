@@ -100,5 +100,19 @@ Configs: {
 			Label: Uses Clamity Weapons In Calamity Recipes
 			Tooltip: ""
 		}
+
+		StartingLosbafAttack: {
+			Label: Starting Losbaf Attack
+			Tooltip: ""
+		}
+	}
+
+	LosbafAttack: {
+		Tooltip: ""
+		Spawn.Label: Spawn
+		Slam.Label: Slam
+		ExoScytheWithTeleports.Label: Exo Scythe With Teleports
+		RotatingAroundPlayer.Label: Rotating Around Player
+		CircleExoScythe.Label: Circle Exo Scythe
 	}
 }
