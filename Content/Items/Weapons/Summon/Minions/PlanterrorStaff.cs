@@ -67,8 +67,9 @@ namespace Clamity.Content.Items.Weapons.Summon.Minions
                 .Register();
         }
     }
-    public class PlanterrorStaffSummon : ModProjectile
+    public class PlanterrorStaffSummon : ModProjectile, ILocalizedModType, IModType
     {
+        public new string LocalizationCategory => "Projectiles.Summon.Minion";
         public Player Owner => Main.player[Projectile.owner];
         public ClamityPlayer ModdedOwner => Owner.Clamity();
         public NPC Target => Owner.Center.MinionHoming(PlantationStaff.EnemyDistanceDetection, Owner);

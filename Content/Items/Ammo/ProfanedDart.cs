@@ -33,8 +33,9 @@ namespace Clamity.Content.Items.Ammo
                 .Register();
         }
     }
-    public class ProfanedDartProjectile : ModProjectile
+    public class ProfanedDartProjectile : ModProjectile, ILocalizedModType
     {
+        public new string LocalizationCategory => "Projectiles.Ranged.Ammo";
         public override string Texture => ModContent.GetInstance<ProfanedDart>().Texture;
         public override void SetStaticDefaults()
         {

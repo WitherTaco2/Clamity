@@ -45,7 +45,7 @@ namespace Clamity.Content.Items.Ammo
     }
     public class AccelerationRoundProj : ModProjectile, ILocalizedModType
     {
-        public new string LocalizationCategory => "Projectiles.Ranged";
+        public new string LocalizationCategory => "Projectiles.Ranged.Ammo";
         public override void SetStaticDefaults()
         {
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 6;

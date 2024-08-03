@@ -55,8 +55,9 @@ namespace Clamity.Content.Items.Weapons.Ranged.Guns
                 .Register();
         }
     }
-    public class ImpalerProjectile : ModProjectile
+    public class ImpalerProjectile : ModProjectile, ILocalizedModType, IModType
     {
+        public new string LocalizationCategory => "Projectiles.Ranged";
         public override void SetDefaults()
         {
             Projectile.CloneDefaults(ProjectileID.Stake);
