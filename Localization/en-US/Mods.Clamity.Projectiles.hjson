@@ -21,6 +21,8 @@ Melee: {
 	WulfrumLeechDaggerShard.DisplayName: Wulfrum Leech Dagger Shard
 	EverestProjectile.DisplayName: Everest
 	BaseSlash.DisplayName: Base Slash
+	UrchinFlailSpike.DisplayName: Urchin Flail Spike
+	UrchinFlailProjectile.DisplayName: Urchin Flail Projectile
 }
 
 Ranged: {

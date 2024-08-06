@@ -120,3 +120,13 @@ SeaShell: {
 	DisplayName: Sea Shell
 	Tooltip: Increased defense, damage reduction and movement speed while wet
 }
+
+PlagueHive: {
+	Tooltip: ""
+	DisplayName: Plague Hive
+}
+
+CocosFeather: {
+	DisplayName: Cocos Feather
+	Tooltip: ""
+}

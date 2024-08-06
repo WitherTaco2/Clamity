@@ -101,6 +101,14 @@ namespace Clamity
                     leadingConditionRule.Add(new CommonDrop(clicker.Find<ModItem>("CopperClicker").Item.type, 1));
                     leadingConditionRule.OnFailedConditions(new CommonDrop(clicker.Find<ModItem>("TinClicker").Item.type, 1));
                 }
+
+
+                static bool getsSakuraFeather(DropAttemptInfo info)
+                {
+                    string playerName = info.player.name;
+                    return playerName == "bird";
+                }
+                itemLoot.AddIf(getsSakuraFeather, ModContent.ItemType<CocosFeather>());
             }
             if (item.type == ModContent.ItemType<PlaguebringerGoliathBag>())
             {

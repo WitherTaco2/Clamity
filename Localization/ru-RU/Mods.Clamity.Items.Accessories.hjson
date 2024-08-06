@@ -116,3 +116,13 @@ SeaShell: {
 	DisplayName: Океаническая ракушка
 	Tooltip: Увеличивает защиту, поглощение урона и скорость передвижения когда вы мокрый
 }
+
+PlagueHive: {
+	// Tooltip: ""
+	// DisplayName: Plague Hive
+}
+
+CocosFeather: {
+	// DisplayName: Cocos Feather
+	// Tooltip: ""
+}

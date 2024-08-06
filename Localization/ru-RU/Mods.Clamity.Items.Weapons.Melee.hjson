@@ -120,3 +120,8 @@ Warblade: {
 	Tooltip: Имеет шанц наложить 'Разрушение брони'
 	DisplayName: Меч войны
 }
+
+UrchinFlail: {
+	// Tooltip: ""
+	// DisplayName: Urchin Flail
+}

@@ -26,7 +26,6 @@ namespace Clamity.Content.Items.Accessories
             CreateRecipe().
                 AddIngredient(ItemID.HiveBackpack).
                 AddIngredient<AlchemicalFlask>().
-                AddIngredient(ItemID.HoneyComb).
                 AddIngredient<ToxicHeart>().
                 AddTile(TileID.LunarCraftingStation).
                 Register();

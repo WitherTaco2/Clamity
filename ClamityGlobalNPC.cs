@@ -7,11 +7,13 @@ using CalamityMod.NPCs.SupremeCalamitas;
 using CalamityMod.NPCs.TownNPCs;
 using Clamity.Content.Biomes.FrozenHell.Items;
 using Clamity.Content.Items.Accessories;
+using Clamity.Content.Items.Accessories.Vanity;
 using Clamity.Content.Items.Materials;
 using Clamity.Content.Items.Mounts;
 using Clamity.Content.Items.Potions.Food;
 using Clamity.Content.Items.Tools.BreakingTool;
 using Clamity.Content.Items.Weapons.Classless;
+using Clamity.Content.Items.Weapons.Melee.Flail;
 using Clamity.Content.Items.Weapons.Melee.Shortswords;
 using Clamity.Content.Items.Weapons.Melee.Swords;
 using Clamity.Content.Items.Weapons.Ranged.Guns;
@@ -56,6 +58,10 @@ namespace Clamity
                 npcLoot.Add(ModContent.ItemType<Waraxe>(), 50);
             }
             if (npc.type == NPCID.SeaSnail)
+            {
+                npcLoot.Add(ModContent.ItemType<CocosFeather>(), 1000);
+            }
+            if (npc.type == NPCID.Harpy)
             {
                 npcLoot.Add(ItemDropRule.NormalvsExpert(ModContent.ItemType<SeaShell>(), 2, 1));
             }
@@ -208,6 +214,8 @@ namespace Clamity
                 shop.Add<CyanSolution>(new Condition(Language.GetOrRegister("Mods.Clamity.Misc.DefeatedWoB"), () => ClamitySystem.downedWallOfBronze));
             if (shop.NpcType == ModContent.NPCType<DILF>())
                 shop.Add<ColdheartIcicle>();
+            if (shop.NpcType == ModContent.NPCType<SEAHOE>())
+                shop.Add<UrchinFlail>();
         }
     }
 }

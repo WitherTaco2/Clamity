@@ -41,6 +41,7 @@ namespace Clamity
         public bool eidolonAmulet;
         public bool metalWings;
         public bool seaShell;
+        public bool cocosFeather;
 
         //Armor
         public bool inflicingMeleeFrostburn;
@@ -79,6 +80,7 @@ namespace Clamity
             eidolonAmulet = false;
             metalWings = false;
             seaShell = false;
+            cocosFeather = false;
 
             inflicingMeleeFrostburn = false;
             frozenParrying = false;
