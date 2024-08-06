@@ -1,6 +1,7 @@
 ﻿using CalamityMod;
 using Clamity.Content.Bosses.Losbaf.NPCs;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -25,6 +26,7 @@ namespace Clamity.Content.Bosses.Losbaf.Projectiles
             Projectile.penetrate = -1;
             Projectile.alpha = 100;
             Projectile.ignoreWater = true;
+            Projectile.tileCollide = false;
         }
         public override void OnSpawn(IEntitySource source)
         {
@@ -49,9 +51,9 @@ namespace Clamity.Content.Bosses.Losbaf.Projectiles
                     }
                     break;
                 case 1:
-                    if (Projectile.timeLeft == 1000 - 60)
+                    if (Projectile.timeLeft == 1000 - 20)
                         Projectile.velocity = Vector2.Zero;
-                    if (Projectile.timeLeft == 1000 - 180)
+                    if (Projectile.timeLeft == 1000 - LosbafSuperboss.DuratationBetweenDownfallScytheAttack)
                     {
                         int target = Player.FindClosest(Projectile.Center, 100, 100);
                         Projectile.velocity = new Vector2(0, Projectile.ai[1]);
@@ -60,10 +62,44 @@ namespace Clamity.Content.Bosses.Losbaf.Projectiles
                 case 2:
 
                     break;
+                case 3:
+
+                    break;
+                case 4:
+                    if (Projectile.timeLeft == 1000 - 20)
+                    {
+                        //Projectile.ai[1] = Projectile.velocity.Length();
+                        Projectile.velocity = Vector2.Zero;
+                    }
+                    if (Projectile.timeLeft == 1000 - LosbafSuperboss.DuratationBetweenDownfallScytheAttack - 20)
+                    {
+                        int target = Player.FindClosest(Projectile.Center, 100, 100);
+                        Projectile.velocity = (Main.player[target].Center - Projectile.Center).SafeNormalize(Vector2.Zero) * Projectile.ai[1];
+                    }
+                    break;
             }
         }
         public override bool PreDraw(ref Color lightColor)
         {
+            if (Projectile.ai[0] == 1 && Projectile.timeLeft > 1000 - LosbafSuperboss.DuratationBetweenDownfallScytheAttack)
+            {
+                SpriteEffects effects = SpriteEffects.None;
+                /*if (Projectile.spriteDirection == 1)
+                {
+                    effects = SpriteEffects.FlipHorizontally;
+                }*/
+                Texture2D value6 = ModContent.Request<Texture2D>("CalamityMod/Particles/BloomLine").Value;
+                Color color3 = CalamityUtils.MulticolorLerp((Main.GlobalTimeWrappedHourly * 0.5f + Projectile.whoAmI * 0.12f) % 1, Color.Cyan, Color.Lime, Color.GreenYellow, Color.Goldenrod, Color.Orange); ;
+                Main.spriteBatch.Draw(value6,
+                                 Projectile.Center /*- base.NPC.rotation.ToRotationVector2() * base.NPC.spriteDirection * 104f*/ - Main.screenPosition,
+                                 null,
+                                 color3,
+                                 MathHelper.Pi,
+                                 new Vector2((float)value6.Width / 2f, value6.Height),
+                                 new Vector2(1f * (1000 - Projectile.timeLeft) / LosbafSuperboss.DuratationBetweenDownfallScytheAttack, 4200f),
+                                 effects,
+                                 0f);
+            }
             CalamityUtils.DrawAfterimagesCentered(Projectile, ProjectileID.Sets.TrailingMode[Projectile.type], Color.White, 1);
 
             return false;

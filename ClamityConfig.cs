@@ -26,5 +26,10 @@ namespace Clamity
         //[ReloadRequired]
         public LosbafAttack StartingLosbafAttack;
 #endif
+
+        [Header("MusicEvents")]
+        [BackgroundColor(192, 54, 64, 192)]
+        [DefaultValue(true)]
+        public bool LosbafIntelude { get; set; }
     }
 }

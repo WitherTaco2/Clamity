@@ -1,4 +1,5 @@
 ﻿using CalamityMod.Items.Placeables;
+using CalamityMod.Systems;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -117,6 +118,16 @@ namespace Clamity
         public override void OnWorldLoad()
         {
             ResetAllFlags();
+
+            static void AddEntry(string eventId, string songName, TimeSpan length, Func<bool> shouldPlay, Func<bool> enabled, TimeSpan? introSilence = null, TimeSpan? outroSilence = null)
+            {
+                MusicEventEntry entry = new(eventId, Clamity.mod.GetMusicFromMusicMod(songName).Value, length, introSilence ?? TimeSpan.Zero, outroSilence ?? TimeSpan.Zero, shouldPlay, enabled);
+                MusicEventSystem.EventCollection.Add(entry);
+            }
+
+            AddEntry("LosbafDefeated", "LosbafPostFight", TimeSpan.FromSeconds(128d),
+               () => ClamitySystem.downedLosbaf, () => ClamityConfig.Instance.LosbafIntelude);
+
         }
         public override void OnWorldUnload()
         {

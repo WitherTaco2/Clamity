@@ -98,6 +98,7 @@ Boss: {
 	WoBDeathrayStart.DisplayName: Плазменный смертельный луч
 	// ExoScythe.DisplayName: Exo Scythe
 	// LosbafCloneRotatable.DisplayName: Losbaf Clone Rotatable
+	// LosbafExoBeam.DisplayName: Losbaf Exo Beam
 }
 
 // WarArrowProjectile.DisplayName: War Arrow

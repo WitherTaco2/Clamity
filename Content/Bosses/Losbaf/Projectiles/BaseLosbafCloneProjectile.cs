@@ -18,6 +18,7 @@ namespace Clamity.Content.Bosses.Losbaf.Projectiles
             Projectile.penetrate = -1;
             //Projectile.alpha = 100;
             Projectile.ignoreWater = true;
+            Projectile.tileCollide = false;
 
         }
         public override Color? GetAlpha(Color lightColor)

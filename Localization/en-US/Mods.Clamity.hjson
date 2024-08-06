@@ -105,6 +105,13 @@ Configs: {
 			Label: Starting Losbaf Attack
 			Tooltip: ""
 		}
+
+		Headers.MusicEvents: Music Events
+
+		LosbafIntelude: {
+			Label: Post-Losbaf End Music
+			Tooltip: ""
+		}
 	}
 
 	LosbafAttack: {
@@ -114,5 +121,6 @@ Configs: {
 		ExoScytheWithTeleports.Label: Exo Scythe With Teleports
 		RotatingAroundPlayer.Label: Rotating Around Player
 		CircleExoScythe.Label: Circle Exo Scythe
+		DownfallExoScythe.Label: Downfall Exo Scythe
 	}
 }
