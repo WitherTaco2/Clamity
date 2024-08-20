@@ -136,7 +136,7 @@ namespace Clamity.Content.Bosses.WoB.NPCs
                 }
             }*/
             //Despawn
-            if (NPC.target < 0 || NPC.target == byte.MaxValue || Main.player[NPC.target].Center.Y < Main.UnderworldLayer * 16 || Main.player[NPC.target].dead || !Main.player[NPC.target].active)
+            /*if (NPC.target < 0 || NPC.target == byte.MaxValue || Main.player[NPC.target].Center.Y < Main.UnderworldLayer * 16 || Main.player[NPC.target].dead || !Main.player[NPC.target].active)
             {
                 NPC.TargetClosest(true);
                 if ((NPC.target == (int)byte.MaxValue || Main.player[NPC.target].Center.Y < Main.UnderworldLayer * 16 || Main.player[NPC.target].dead || !Main.player[NPC.target].active) && !NPC.despawnEncouraged)
@@ -145,6 +145,23 @@ namespace Clamity.Content.Bosses.WoB.NPCs
                 {
                     NPC.velocity.X += Math.Sign(NPC.velocity.X) * 2f;
                     NPC.velocity.Y = 0.0f;
+                    return;
+                }
+            }*/
+            if (Main.player[NPC.target].dead || !Main.player[NPC.target].gross)
+                NPC.TargetClosest_WOF();
+
+            if (Main.player[NPC.target].dead)
+            {
+                NPC.localAI[1] += 0.0055555557f;
+                if (NPC.localAI[1] >= 1f)
+                {
+                    SoundEngine.PlaySound(SoundID.NPCDeath10, NPC.Center);
+                    NPC.life = 0;
+                    NPC.active = false;
+                    if (Main.netMode != NetmodeID.MultiplayerClient)
+                        NetMessage.SendData(MessageID.DamageNPC, -1, -1, null, NPC.whoAmI, -1f);
+
                     return;
                 }
             }
