@@ -205,20 +205,31 @@ namespace Clamity.Content.Bosses.Losbaf.NPCs
 
                     if (wrappedAttackTimer == 1)
                     {
-                        slamRotation = Main.rand.Next(1, 8);
+                        slamRotation = Main.rand.Next(1, 4);
                         if (slamCounter < verticalSlamCount)
                             slamRotation = 0;
                         NPC.rotation = MathHelper.PiOver4 * slamRotation;
 
                         TeleportTo(player.Center - Vector2.UnitY.RotatedBy(MathHelper.PiOver4 * slamRotation) * 200);
+                        int j = 0;
+                        int cloneProj = ModContent.ProjectileType<LosbafCloneSlamAttack>();
+                        for (int i = 0; i < 4; i++)
+                        {
+                            if (i == slamRotation) continue;
+                            int index = Projectile.NewProjectile(NPC.GetSource_FromAI(), player.Center - Vector2.UnitY.RotatedBy(MathHelper.PiOver4 * i) * 200, Vector2.Zero, cloneProj, NPC.GetProjectileDamageClamity(cloneProj), 0, Main.myPlayer, j, hoverTime, sitInPlaceTime);
+                            Main.projectile[index].Clamity().extraAI[0] = slamTime;
+                            Main.projectile[index].Clamity().extraAI[1] = i;
+                            Main.projectile[index].Clamity().extraAI[2] = NPC.target;
+                            j++;
+                        }
                     }
 
                     // Stay above the player before slamming down.
                     if (wrappedAttackTimer <= hoverTime && wrappedAttackTimer >= 2f)
                     {
                         float hoverInterpolant = MathF.Pow(wrappedAttackTimer / hoverTime, 0.74f);
-                        Vector2 start = player.Center - Vector2.UnitY.RotatedBy(MathHelper.PiOver4 * slamRotation) * 195f;
-                        Vector2 end = player.Center - Vector2.UnitY.RotatedBy(MathHelper.PiOver4 * slamRotation) * 360f;
+                        Vector2 start = player.Center - Vector2.UnitY.RotatedBy(MathHelper.PiOver2 * slamRotation) * 195f;
+                        Vector2 end = player.Center - Vector2.UnitY.RotatedBy(MathHelper.PiOver2 * slamRotation) * 360f;
                         NPC.Center = Vector2.Lerp(start, end, hoverInterpolant);
                         NPC.velocity = Vector2.Zero;
                     }
@@ -340,6 +351,7 @@ namespace Clamity.Content.Bosses.Losbaf.NPCs
                     {
                         Vector2 vec2 = (player.Center - NPC.Center).SafeNormalize(Vector2.Zero);
                         Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, vec2 * VelocityOnRotationAttack, exoBeamType, NPC.GetProjectileDamageClamity(exoBeamType), 0, Main.myPlayer, 2, (AttackTimer % 60 == 0).ToInt());
+                        SoundEngine.PlaySound(SoundID.Item15 with { Pitch = 0.5f }, NPC.Center);
                     }
                     if (AttackTimer == LosbafSuperboss.DuratationOfRotationAttack + 30)
                     {
@@ -356,6 +368,7 @@ namespace Clamity.Content.Bosses.Losbaf.NPCs
             NPC.ai[2] = 0;
             NPC.ai[3] = 0;
         }
+        public static readonly SoundStyle TeleportOutSound = new("Clamity/Sounds/Custom/TeleportOut");
         public void TeleportTo(Vector2 teleportPosition)
         {
             NPC.Center = teleportPosition;
@@ -366,7 +379,7 @@ namespace Clamity.Content.Bosses.Losbaf.NPCs
             for (int i = 0; i < NPC.oldPos.Length; i++)
                 NPC.oldPos[i] = NPC.position;
 
-            //SoundEngine.PlaySound(TeleportOutSound, NPC.Center);
+            SoundEngine.PlaySound(TeleportOutSound, NPC.Center);
 
             // Create teleport particle effects.
             ExpandingGreyscaleCircleParticle circle = new(NPC.Center, Vector2.Zero, new(219, 194, 229), 10, 0.28f);

@@ -81,6 +81,10 @@ namespace Clamity.Commons
                 {
                   new Tuple<int, int>(ModContent.NPCType<LosbafSuperboss>(), ModContent.ProjectileType<LosbafExoBeam>()),
                   new int[5]{ 450, 500, 550, 600, 650 }
+                },
+                {
+                  new Tuple<int, int>(ModContent.NPCType<LosbafSuperboss>(), ModContent.ProjectileType<LosbafCloneSlamAttack>()),
+                  new int[5]{ 400, 450, 500, 550, 600 }
                 }
             };
         }

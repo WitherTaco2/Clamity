@@ -99,6 +99,7 @@ Boss: {
 	// ExoScythe.DisplayName: Exo Scythe
 	// LosbafCloneRotatable.DisplayName: Losbaf Clone Rotatable
 	// LosbafExoBeam.DisplayName: Losbaf Exo Beam
+	// LosbafCloneSlamAttack.DisplayName: Losbaf Clone Slam Attack
 }
 
 // WarArrowProjectile.DisplayName: War Arrow
