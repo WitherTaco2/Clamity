@@ -39,6 +39,7 @@ AncientConsole: {
 		Summon a Wall of Bronze on right click on tile
 		Work in Underworld
 		Wall of Bronze despawn when you left from Underworld
+		WARNING: If you in multiplayer, use summoning item instead of this tile (he crafted from tile version NOW)
 		'''
 }
 
