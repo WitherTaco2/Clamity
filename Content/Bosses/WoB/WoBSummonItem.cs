@@ -8,8 +8,9 @@ using Terraria.ModLoader;
 
 namespace Clamity.Content.Bosses.WoB
 {
-    public class WoBSummonItem : ModItem
+    public class WoBSummonItem : ModItem, ILocalizedModType, IModType
     {
+        public new string LocalizationCategory => "Items.SummonBoss";
         public override void SetDefaults()
         {
             Item.width = Item.height = 32;

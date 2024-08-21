@@ -18,7 +18,7 @@ namespace Clamity.Content.Bosses.WoB
 {
     public class AncientConsole : ModItem, ILocalizedModType, IModType
     {
-        public new string LocalizationCategory => "Items.Placeables";
+        public new string LocalizationCategory => "Items.SummonBoss";
 
         public override void SetDefaults()
         {
