@@ -1,5 +1,6 @@
 ﻿using CalamityMod;
 using CalamityMod.Events;
+using CalamityMod.Items;
 using CalamityMod.Items.Placeables.Furniture.DevPaintings;
 using CalamityMod.Items.Potions;
 using CalamityMod.World;
@@ -18,12 +19,25 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using static Clamity.Commons.CalRemixCompatibilitySystem;
 
 namespace Clamity.Content.Bosses.WoB.NPCs
 {
     [AutoloadBossHead]
     public class WallOfBronze : ModNPC
     {
+        private static NPC myself;
+        public static NPC Myself
+        {
+            get
+            {
+                if (myself is not null && !myself.active)
+                    return null;
+
+                return myself;
+            }
+            private set => myself = value;
+        }
         public override void SetStaticDefaults()
         {
             NPCID.Sets.ImmuneToRegularBuffs[Type] = true;
@@ -40,6 +54,12 @@ namespace Clamity.Content.Bosses.WoB.NPCs
                 PortraitPositionXOverride = 0,
                 PortraitPositionYOverride = 0
             });
+
+            var fanny1 = new FannyDialog("WallOfBronze", "Nuhuh").WithDuration(4f).WithCondition(_ => { return Myself is not null; });
+            var fanny2 = new FannyDialog("WallOfBronze", "Nuhuh").WithDuration(4f).WithCondition(_ => { return Myself is not null && (Main.LocalPlayer.HasItem(ItemID.RodofDiscord) || Main.LocalPlayer.HasItem(ModContent.ItemType<NormalityRelocator>())); }).WithParentDialog(fanny1, 4f);
+
+            fanny1.Register();
+            fanny2.Register();
         }
         public override void SetDefaults()
         {
@@ -50,8 +70,8 @@ namespace Clamity.Content.Bosses.WoB.NPCs
             NPC.defense = 70;
             //NPC.lifeMax = 1500000;
             NPC.LifeMaxNERB(1500300, 288090, 288090);
-            NPC.HitSound = new SoundStyle?(SoundID.NPCHit4);
-            NPC.DeathSound = new SoundStyle?(SoundID.Item14);
+            NPC.HitSound = SoundID.NPCHit4;
+            NPC.DeathSound = SoundID.Item14;
             NPC.knockBackResist = 0.0f;
             NPC.noGravity = true;
             NPC.noTileCollide = true;
@@ -60,6 +80,8 @@ namespace Clamity.Content.Bosses.WoB.NPCs
             NPC.value = Item.sellPrice(1, 50, 25, 75);
             NPC.npcSlots = 15f;
             NPC.netUpdate = true;
+            NPC.Calamity().VulnerableToSickness = false;
+            NPC.Calamity().VulnerableToElectricity = true;
             //if (Main.getGoodWorld)
             //    NPC.scale = 1.5f;
 
@@ -148,6 +170,7 @@ namespace Clamity.Content.Bosses.WoB.NPCs
                     return;
                 }
             }*/
+            Myself = NPC;
             if (Main.player[NPC.target].dead || !Main.player[NPC.target].gross)
                 NPC.TargetClosest_WOF();
 
@@ -385,6 +408,7 @@ namespace Clamity.Content.Bosses.WoB.NPCs
                 CalamityUtils.DisplayLocalizedText("Mods.Clamity.Misc.FrozenHellMessege", new Color?(Color.LightCyan));
             }
 
+            //NPC.SetEventFlagCleared(ref ClamitySystem.downedWallOfBronze, -1);
             ClamitySystem.downedWallOfBronze = true;
             CalamityNetcode.SyncWorld();
         }

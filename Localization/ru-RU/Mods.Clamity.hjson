@@ -1,13 +1,4 @@
 Items: {
-	WoBSummonItem: {
-		Tooltip:
-			'''
-			DEBUG
-			Призывает Стену Бронзы в преисподне
-			Не тратится
-			'''
-		DisplayName: Техническая альтернативная бронзовая машина
-	}
 
 	Mounts: {
 		FlameCube: {

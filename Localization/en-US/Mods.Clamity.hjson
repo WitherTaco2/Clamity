@@ -1,13 +1,4 @@
 Items: {
-	WoBSummonItem: {
-		Tooltip:
-			'''
-			DEBUG
-			Summon a Wall of Bronze in Underworld
-			Non consumable
-			'''
-		DisplayName: Technical Alternative Bronze Machine
-	}
 
 	Mounts: {
 		FlameCube: {
