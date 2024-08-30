@@ -1,6 +1,5 @@
 ﻿using CalamityMod;
 using CalamityMod.Graphics.Primitives;
-using Clamity.Content.Bosses.Losbaf.NPCs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -30,6 +29,12 @@ namespace Clamity.Content.Bosses.Losbaf.Projectiles
             base.SetDefaults();
             Projectile.alpha = 255;
         }
+
+        /*public override void OnSpawn(IEntitySource source)
+        {
+            //Color color3 = CalamityUtils.MulticolorLerp((Main.GlobalTimeWrappedHourly * 0.5f + Projectile.whoAmI * 0.12f) % 1, Color.Cyan, Color.Lime, Color.GreenYellow, Color.Goldenrod, Color.Orange);
+            //GeneralParticleHandler.SpawnParticle(new BloomLineVFX(Projectile.Center, -Vector2.UnitY, 1f, color3, (int)LosbafSuperboss.DuratationBetweenDownfallScytheAttack));
+        }*/
 
         public override void AI()
         {
@@ -85,17 +90,13 @@ namespace Clamity.Content.Bosses.Losbaf.Projectiles
 
 
 
-            if (Projectile.ai[0] == 1 && Projectile.timeLeft > 1000 - LosbafSuperboss.DuratationBetweenDownfallScytheAttack)
+            /*if (Projectile.ai[0] == 1 && Projectile.timeLeft > 1000 - LosbafSuperboss.DuratationBetweenDownfallScytheAttack)
             {
                 SpriteEffects effects = SpriteEffects.None;
-                /*if (Projectile.spriteDirection == 1)
-                {
-                    effects = SpriteEffects.FlipHorizontally;
-                }*/
                 Texture2D value6 = ModContent.Request<Texture2D>("CalamityMod/Particles/BloomLine").Value;
                 Color color3 = CalamityUtils.MulticolorLerp((Main.GlobalTimeWrappedHourly * 0.5f + Projectile.whoAmI * 0.12f) % 1, Color.Cyan, Color.Lime, Color.GreenYellow, Color.Goldenrod, Color.Orange);
                 Main.spriteBatch.Draw(value6,
-                                 Projectile.Center /*- base.NPC.rotation.ToRotationVector2() * base.NPC.spriteDirection * 104f*/ - Main.screenPosition,
+                                 Projectile.Center - Main.screenPosition,
                                  null,
                                  color3,
                                  MathHelper.Pi,
@@ -103,7 +104,7 @@ namespace Clamity.Content.Bosses.Losbaf.Projectiles
                                  new Vector2(1f * (1000 - Projectile.timeLeft) / LosbafSuperboss.DuratationBetweenDownfallScytheAttack, 4200f),
                                  effects,
                                  0f);
-            }
+            }*/
 
 
 
