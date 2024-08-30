@@ -1,18 +1,8 @@
-﻿using CalamityMod;
-using CalamityMod.Buffs.StatDebuffs;
-using CalamityMod.Items.Materials;
-using CalamityMod.Rarities;
+﻿using CalamityMod.Rarities;
 using CalamityMod.Tiles.Furniture.CraftingStations;
 using Clamity.Content.Biomes.FrozenHell.Items;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
-using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -48,8 +38,9 @@ namespace Clamity.Content.Items.Ammo
                 .Register();
         }
     }
-    public class FrostfireArrowProj : ModProjectile
+    public class FrostfireArrowProj : ModProjectile, ILocalizedModType
     {
+        public new string LocalizationCategory => "Projectiles.Ranged.Ammo";
         public override string Texture => ModContent.GetInstance<FrostfireArrow>().Texture;
         public override void SetDefaults()
         {
@@ -82,8 +73,9 @@ namespace Clamity.Content.Items.Ammo
             dust.noGravity = true;
         }
     }
-    public class FrostfireArrowProj2 : ModProjectile
+    public class FrostfireArrowProj2 : ModProjectile, ILocalizedModType
     {
+        public new string LocalizationCategory => "Projectiles.Ranged.Ammo";
         //public override string Texture => "CalamityMod/Projectiles/InvisibleProj";
         //public override string Texture => "Content/Images/Projectile_961";
         public override void SetStaticDefaults()

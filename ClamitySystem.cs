@@ -1,10 +1,8 @@
-﻿using CalamityMod.Items.Accessories;
-using CalamityMod.Items.Materials;
-using CalamityMod.Items.Placeables;
-using Clamity.Content.Boss.Clamitas.Drop;
+﻿using CalamityMod.Items.Placeables;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -14,29 +12,8 @@ namespace Clamity
 {
     public class ClamitySystem : ModSystem
     {
-        public override void PostAddRecipes()
-        {
-            for (int i = 0; i < Recipe.numRecipes; i++)
-            {
-                Recipe recipe = Main.recipe[i];
+        public Dictionary<int, List<int>> enchantebleAccessories;
 
-                if (recipe.HasResult(ModContent.ItemType<TheAbsorber>()))
-                {
-                    recipe.RemoveIngredient(ModContent.ItemType<MolluskHusk>());
-                    recipe.AddIngredient<HuskOfCalamity>(5);
-                }
-                if (recipe.HasResult(ModContent.ItemType<TheAmalgam>()))
-                {
-                    recipe.RemoveIngredient(ModContent.ItemType<MolluskHusk>());
-                    recipe.AddIngredient<HuskOfCalamity>(10);
-                }
-                if (recipe.HasResult(ModContent.ItemType<AbyssalDivingSuit>()))
-                {
-                    recipe.RemoveIngredient(ModContent.ItemType<MolluskHusk>());
-                    recipe.AddIngredient<HuskOfCalamity>(15);
-                }
-            }
-        }
         internal static bool _downedClamitas;
         public static bool downedClamitas
         {
@@ -101,6 +78,21 @@ namespace Clamity
             downedPyrogen = false;
             downedWallOfBronze = false;
         }
+        public override void Load()
+        {
+            enchantebleAccessories = new();
+        }
+        public override void Unload()
+        {
+            enchantebleAccessories = null;
+        }
+        private void AddEnchantebleAccessories(int acc, params int[] projList)
+        {
+            foreach (int i in projList)
+            {
+                enchantebleAccessories.Add(acc, projList.ToList<int>());
+            }
+        }
         public override void OnWorldLoad()
         {
             ResetAllFlags();
@@ -128,19 +120,24 @@ namespace Clamity
             downedWallOfBronze = list.Contains("wob");
         }
         public static int AnySandBlock;
+        public static int AnyGemHook;
         public override void AddRecipeGroups()
         {
             ClamitySystem.AnySandBlock = RecipeGroup.RegisterGroup("AnySandBlock", new RecipeGroup((Func<string>)(() => LangHelper.GetText("Misc.RecipeGroup.AnySandBlock")), new int[5]
             {
                 ItemID.SandBlock, ItemID.EbonsandBlock, ItemID.PearlsandBlock, ItemID.CrimsandBlock, ModContent.ItemType<AstralSand>()
             }));
+            ClamitySystem.AnyGemHook = RecipeGroup.RegisterGroup("AnyGemHook", new RecipeGroup((Func<string>)(() => LangHelper.GetText("Misc.RecipeGroup.AnyGemHook")), new int[7]
+            {
+                ItemID.AmethystHook, ItemID.TopazHook, ItemID.SapphireHook, ItemID.EmeraldHook, ItemID.RubyHook, ItemID.AmberHook, ItemID.DiamondHook
+            }));
         }
         public override void NetSend(BinaryWriter writer)
         {
             BitsByte flags = new BitsByte();
             flags[0] = downedClamitas;
-            flags[0] = downedPyrogen;
-            flags[0] = downedWallOfBronze;
+            flags[1] = downedPyrogen;
+            flags[2] = downedWallOfBronze;
 
             writer.Write(flags);
         }

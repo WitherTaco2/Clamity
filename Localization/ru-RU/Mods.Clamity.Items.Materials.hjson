@@ -27,3 +27,18 @@ EnchantedMetal: {
 	Tooltip: Металл наполенный душами самой Террарии
 	DisplayName: Зачарованный металл
 }
+
+MetalFeather: {
+	// Tooltip: ""
+	DisplayName: Металлическое перо
+}
+
+RarePlanteraFruit: {
+	DisplayName: Редкий фрукт Плантеры
+	// Tooltip: ""
+}
+
+CoralskinFoolfish: {
+	Tooltip: Камуфляж это один из лучших способов защиты в Природе
+	DisplayName: Коралочешуйчетая рыба-балван
+}

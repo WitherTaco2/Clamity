@@ -1,13 +1,12 @@
-﻿using CalamityMod.Items;
+﻿using CalamityMod;
+using CalamityMod.Items;
+using CalamityMod.Projectiles.BaseProjectiles;
+using Clamity.Content.Cooldowns;
+using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria;
-using CalamityMod.Projectiles.BaseProjectiles;
-using CalamityMod.Projectiles.Rogue;
-using CalamityMod;
-using Clamity.Content.Cooldowns;
-using Microsoft.Xna.Framework;
 
 namespace Clamity.Content.Items.Weapons.Melee.Shortswords
 {
@@ -23,11 +22,11 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
         public override void SetDefaults()
         {
             Item.width = Item.height = 32;
-            Item.rare = ItemRarityID.Pink;
-            Item.value = CalamityGlobalItem.Rarity5BuyPrice;
+            Item.rare = ItemRarityID.Green;
+            Item.value = CalamityGlobalItem.RarityGreenBuyPrice;
 
             Item.useAnimation = Item.useTime = 12;
-            Item.useStyle = 13;
+            Item.useStyle = ItemUseStyleID.Rapier;
             Item.UseSound = new SoundStyle?(SoundID.Item1);
             Item.autoReuse = true;
             Item.noUseGraphic = true;
@@ -39,6 +38,14 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
 
             Item.shoot = ModContent.ProjectileType<SporeKnifeProjectile>();
             Item.shootSpeed = 2.4f;
+        }
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient(ItemID.JungleSpores, 10)
+                .AddIngredient(ItemID.Stinger, 5)
+                .AddTile(TileID.Anvils)
+                .Register();
         }
     }
     public class SporeKnifeProjectile : BaseShortswordProjectile, ILocalizedModType, IModType
@@ -80,7 +87,7 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
         {
             if (!Utils.NextBool(Main.rand, 5))
                 return;
-            Dust.NewDust(new Vector2((float)Projectile.Hitbox.X, (float)Projectile.Hitbox.Y), Projectile.Hitbox.Width, Projectile.Hitbox.Height, 2, 0.0f, 0.0f, 0, new Color(), 1f);
+            Dust.NewDust(new Vector2((float)Projectile.Hitbox.X, (float)Projectile.Hitbox.Y), Projectile.Hitbox.Width, Projectile.Hitbox.Height, DustID.Grass, 0.0f, 0.0f, 0, new Color(), 1f);
         }
     }
 }

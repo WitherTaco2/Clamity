@@ -19,7 +19,7 @@ namespace Clamity.Content.Items.Weapons.Ranged.Bows
             Item.width = 54;
             Item.height = 114;
             Item.rare = ModContent.RarityType<PureGreen>();
-            Item.value = CalamityGlobalItem.Rarity13BuyPrice;
+            Item.value = CalamityGlobalItem.RarityPureGreenBuyPrice;
 
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.useTime = Item.useAnimation = 30;
@@ -42,7 +42,7 @@ namespace Clamity.Content.Items.Weapons.Ranged.Bows
             {
                 int num2 = ModContent.ProjectileType<BeamingBolt2>();
                 int index = Projectile.NewProjectile(source, position, (velocity + Main.rand.NextVector2Circular(2.5f, 2.5f)).RotatedByRandom(0.33f), num2, (int)(damage * 0.5f), knockback);
-                    Main.projectile[index].DamageType = DamageClass.Ranged;
+                Main.projectile[index].DamageType = DamageClass.Ranged;
             }
             return false;
         }

@@ -1,12 +1,12 @@
 ﻿using CalamityMod.Items;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Terraria;
+using CalamityMod.Items.Materials;
 using CalamityMod.Items.Weapons.Melee;
 using CalamityMod.Tiles.Furniture.CraftingStations;
-using CalamityMod.Items.Materials;
-using Microsoft.Xna.Framework;
 using Clamity.Content.Items.Weapons.Melee.Shortswords;
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Clamity.Content.Items.Weapons.Melee.Swords
 {
@@ -21,7 +21,7 @@ namespace Clamity.Content.Items.Weapons.Melee.Swords
         {
             Item.width = 26; Item.height = 18;
             Item.rare = ItemRarityID.Blue;
-            Item.value = CalamityGlobalItem.Rarity1BuyPrice;
+            Item.value = CalamityGlobalItem.RarityBlueBuyPrice;
 
             Item.useAnimation = Item.useTime = 6;
             Item.useStyle = ItemUseStyleID.Swing;

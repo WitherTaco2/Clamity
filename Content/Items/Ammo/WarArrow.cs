@@ -1,9 +1,9 @@
-﻿using CalamityMod.Items.Materials;
+﻿using CalamityMod.Buffs.StatDebuffs;
+using CalamityMod.Items.Materials;
+using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria;
-using CalamityMod.Buffs.StatDebuffs;
-using Microsoft.Xna.Framework;
 
 namespace Clamity.Content.Items.Ammo
 {
@@ -30,8 +30,9 @@ namespace Clamity.Content.Items.Ammo
                 .Register();
         }
     }
-    public class WarArrowProjectile : ModProjectile
+    public class WarArrowProjectile : ModProjectile, ILocalizedModType
     {
+        public new string LocalizationCategory => "Projectiles.Ranged.Ammo";
         public override string Texture => ModContent.GetInstance<WarArrow>().Texture;
         public override void SetDefaults()
         {

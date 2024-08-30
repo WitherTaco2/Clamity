@@ -1,21 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria.ID;
-using Terraria;
-using Terraria.ModLoader;
-using CalamityMod;
+﻿using CalamityMod;
 using CalamityMod.Items.Accessories;
 using CalamityMod.Items.Materials;
-using Microsoft.Xna.Framework.Graphics;
-using static CalamityMod.NPCs.BrimstoneElemental.BrimstoneElemental;
-using Terraria.Audio;
-using Terraria.GameContent;
-using Microsoft.Xna.Framework;
-using CalamityMod.CalPlayer;
 using CalamityMod.Rarities;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Terraria;
+using Terraria.GameContent;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Clamity.Content.Items.Accessories
 {
@@ -52,8 +44,9 @@ namespace Clamity.Content.Items.Accessories
                 .Register();
         }
     }
-    public class DraculasCharmProj : ModProjectile
+    public class DraculasCharmProj : ModProjectile, ILocalizedModType, IModType
     {
+        public new string LocalizationCategory => "Projectiles.Rogue";
         public override void SetStaticDefaults()
         {
             // DisplayName.SetDefault("Moonflare Bat");

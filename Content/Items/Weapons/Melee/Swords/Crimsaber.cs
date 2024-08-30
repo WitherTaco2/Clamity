@@ -1,11 +1,6 @@
 ﻿using CalamityMod.Items;
 using CalamityMod.Items.Materials;
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -19,7 +14,7 @@ namespace Clamity.Content.Items.Weapons.Melee.Swords
         {
             Item.width = 56; Item.height = 70;
             Item.rare = ItemRarityID.Pink;
-            Item.value = CalamityGlobalItem.Rarity5BuyPrice;
+            Item.value = CalamityGlobalItem.RarityPinkBuyPrice;
 
             Item.useAnimation = Item.useTime = 35;
             Item.useStyle = ItemUseStyleID.Swing;

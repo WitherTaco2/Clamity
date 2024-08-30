@@ -50,3 +50,13 @@ RoseBow: {
 		Shoots a spread of arrows and homing petals
 		'''
 }
+
+Sillyshark: {
+	DisplayName: Sillyshark
+	Tooltip: ""
+}
+
+AstralStarCannon: {
+	DisplayName: Astral Star Cannon
+	Tooltip: Shoot a powerful astral stra which creates a other stars from the sky on hit
+}

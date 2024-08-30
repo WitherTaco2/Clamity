@@ -1,78 +1,107 @@
 Melee: {
-	// ClamitasCrusherProjectile.DisplayName: Clamitas Crusher
-	// ExoGladiusBeam.DisplayName: Exo Gladius Beam
-	// ExoGladiusExplosion.DisplayName: Exo Gladius Explosion
-	// ExoGladiusProjectile.DisplayName: Exo Gladius
-	// SearedShredderProjectile.DisplayName: Seared Shredder Projectile
-	// RGBMurasamaProjectile.DisplayName: RGB Murasama
-	// TerraShivProjectile.DisplayName: Terra Shiv
-	// TerraShivSlash.DisplayName: Terra Shiv Slash
-	// TerraShivSlash2.DisplayName: Terra Shiv Slash2
-	// TomutusProjectile.DisplayName: Tomutus
-	// ColdheartIcicleProjectile.DisplayName: Coldheart Icicle
-	// CaliburnProjectile.DisplayName: Caliburn
-	// CaliburnSlash.DisplayName: Caliburn Slash
-	// TrueCaliburnProjectile.DisplayName: True Caliburn
-	// TrueCaliburnSlash.DisplayName: True Caliburn Slash
-	// TrueCaliburnSlash2.DisplayName: True Caliburn Extra Slash
-	// DiseaseProjectile.DisplayName: Disease Projectile
-	// SporeKnifeProjectile.DisplayName: Spore Knife
-	// WulfrumLeechDaggerProjectile.DisplayName: Wulfrum Leech Dagger
-	// EverestProjectile.DisplayName: Everest Projectile
+	ClamitasCrusherProjectile.DisplayName: Дробитель Кламитаса
+	ExoGladiusBeam.DisplayName: Луч Экзо гладиуса
+	ExoGladiusExplosion.DisplayName: Взрыв экзо гладиуса
+	ExoGladiusProjectile.DisplayName: Экзо гладиус
+	SearedShredderProjectile.DisplayName: Обожжённый измельчитель
+	RGBMurasamaProjectile.DisplayName: RGB Мурасама
+	TerraShivProjectile.DisplayName: Заточка Гайи
+	TerraShivSlash.DisplayName: Разрез Заточка Гайи
+	TerraShivSlash2.DisplayName: Разрез Заточка Гайи
+	TomutusProjectile.DisplayName: Томутус
+	ColdheartIcicleProjectile.DisplayName: Сосулька из сердца холода
+	CaliburnProjectile.DisplayName: Калибурн
+	CaliburnSlash.DisplayName: Разрез Калибурна
+	TrueCaliburnProjectile.DisplayName: Истинный калибурн
+	TrueCaliburnSlash.DisplayName: Разрез Истинного калибурна
+	TrueCaliburnSlash2.DisplayName: Разрез Истинного калибурна
+	DiseaseProjectile.DisplayName: Заболевание
+	SporeKnifeProjectile.DisplayName: Споровый кинжал
+	WulfrumLeechDaggerProjectile.DisplayName: Вульфрумовый кинжал-пиявка
+	WulfrumLeechDaggerShard.DisplayName: Осколок вульфрумового кинжала-пиявки
+	TheWOBblerProjectile.DisplayName: Кусок льда
+	EverestProjectile.DisplayName: Эверест
 }
 
 Ranged: {
-	// DepthsEchoRifleProjectile.DisplayName: Depths Echo
-	// DepthsEchoRifleProjectileSplit.DisplayName: Depths Echo Split
-	// ObsidigunBullet.DisplayName: Obsidian Bullet
-	// ObsidigunBulletShard.DisplayName: Obsidian Bullet Shard
+	Ammo: {
+		AccelerationRoundProj.DisplayName: Ускоряющиеся патрон
+		ArcticArrowProj.DisplayName: Арктическая стрела
+		EnhancedNanoRoundProj.DisplayName: Зачарованный нано патрон
+		Nanomachine.DisplayName: Наномашины
+		SuperballBulletProj.DisplayName: Пуля-Супершар
+		ProfanedDartProjectile.DisplayName: Осквернённый дротик
+		FrostfireArrowProj.DisplayName: Стрела морозного огня
+		FrostfireArrowProj2.DisplayName: Взрыв морозного огня
+		WarArrowProjectile.DisplayName: Стрела войны
+	}
+
+	DepthsEchoRifleProjectile.DisplayName: Глубокое эхо
+	DepthsEchoRifleProjectileSplit.DisplayName: Осколок глубокого эхо
+	ObsidigunBullet.DisplayName: Обсидиановая пуля
+	ObsidigunBulletShard.DisplayName: Осколок обсидиановой поли
+	ImpalerProjectile.DisplayName: Кол Пронзателя
+	ChargedBlast3.DisplayName: Заряженный заряд
+	ChargedDartExplosion.DisplayName: Заряженный осколок
+	AstralStarCannonProjectile.DisplayName: Астральная звезда
+	AstralStarCannonProjectile2.DisplayName: Упавшая звезда
 }
 
-// Summon.Minion.HellstoneShellfishStaffMinion.DisplayName: Hellstone Shellfish
-// ShortstrikeEffect.DisplayName: Shortstrike Effect
-// ImpalerProjectile.DisplayName: Impaler Stake
-// HadopelagicEchoProjectile.DisplayName: Hadopelagic Echo
-// HadopelagicEchoProjectile2.DisplayName: Hadopelagic Echo
-// ChargedBlast3.DisplayName: Charged Blast
-// ChargedDartExplosion.DisplayName: Charged Dart
-// ProfanedDartProjectile.DisplayName: Profaned Dart
-// WulfrumLeechDaggerShard.DisplayName: Wulfrum Leech Dagger Shard
-// WulfrumLureBobber.DisplayName: Wulfrum Lure Bobber
+Magic: {
+	TheGeneratorSigil.DisplayName: Символ генератора
+	HadopelagicEchoProjectile.DisplayName: Гадопелагическое эхо
+	HadopelagicEchoProjectile2.DisplayName: Гадопелагическое эхо
+	MoonstoneKnifeProjectile.DisplayName: Кинжал из лунного камня
+}
+
+Summon: {
+	Minion: {
+		HellstoneShellfishStaffMinion.DisplayName: Моллюск из адского камня
+		HellsBellsSummon.DisplayName: Колокол Ада
+		PlanterrorStaffSummon.DisplayName: Гантера
+	}
+
+	HellsBellsRing.DisplayName: Звук колокола ада
+	PlanterrorStaffTentacle.DisplayName: Пушка Гантеры
+}
 
 Rogue: {
-	// MoltenPiercerProjectile.DisplayName: Molten Piercer
-	// WulfrumShockCutterProjectile.DisplayName: Wulfrum Shock Cutter
-	// FrozenStarShurikenProjectile.DisplayName: Frozen Star Shuriken
+	MoltenPiercerProjectile.DisplayName: Расплавленный кинжал
+	WulfrumShockCutterProjectile.DisplayName: Вульфрумовый ударный резак
+	DraculasCharmProj.DisplayName: Дракула
+	FrozenStarShurikenProjectile.DisplayName: Сюрикен морозной звезды
+	ExoBallProjectile.DisplayName: Экзо шар
+	AuricKunaiProjectile.DisplayName: Аурический кунай
+	AuricKunaiLightning.DisplayName: Аурическая молния
 }
 
-// CrustallineProjecile.DisplayName: Crustalline
-// HellsBellsSummon.DisplayName: Hell`s Bells
-// HellsBellsRing.DisplayName: Hell`s Bells Sound
-// SoulOfPyrogenSpear.DisplayName: Soul Of Pyrogen Spear
-// Magic.TheGeneratorSigil.DisplayName: The Generator Sigil
+Classless: {
+	PyroShieldAccessory.DisplayName: Пирощит
+	AMSProj.DisplayName: AMS
+	EyeOfNovaProjectile.DisplayName: Заряд новы
+	GoldenGunProj.DisplayName: Золотая струя
+	TrashOfMagnusProjectile.DisplayName: Заряд чумы
+}
 
 Boss: {
-	// Fireblast.DisplayName: Fireblast
-	// FireBarrage.DisplayName: Fire Barrage
-	// FireBarrageHoming.DisplayName: Fire Barrage Homing
-	// WoBDeathrayStart.DisplayName: Bronze Deathray
+	BrimstonePearlBurst.DisplayName: Серный жемчужный взрыв
+	Fireblast.DisplayName: Огненный заряд
+	FireBarrage.DisplayName: Огненный шквал
+	FireBarrageHoming.DisplayName: Огненный шквал
+	FireBomb.DisplayName: Огненная бомба
+	FireBombExplosion.DisplayName: Огенный взрыв
+	Firethrower.DisplayName: Огнемет
+	PyrogenKillExplosion.DisplayName: Взрыв Пирогена
+	WallOfBronzeTorretBlast.DisplayName: Плазменный снаряд
+	WallOfBronzeLaserBeamStart.DisplayName: Плазменный луч
+	WallOfBronzeClawProjectile.DisplayName: Бронзовая клешна
+	WoBDeathrayStart.DisplayName: Плазменный смертельный луч
 }
 
-// WarArrowProjectile.DisplayName: War Arrow
-// FireBomb.DisplayName: Fire Bomb
-// FireBombExplosion.DisplayName: Fire Bomb Explosion
-// Firethrower.DisplayName: Firethrower
+// ShortstrikeEffect.DisplayName: Shortstrike Effect
+// WulfrumLureBobber.DisplayName: Wulfrum Lure Bobber
+// CrustallineProjecile.DisplayName: Crustalline
+// SoulOfPyrogenSpear.DisplayName: Soul Of Pyrogen Spear
 // PyrogenSummonAnimation.DisplayName: Pyrogen Summon Animation
-// PyrogenKillExplosion.DisplayName: Pyrogen Kill Explosion
-// DraculasCharmProj.DisplayName: Dracula
-// Typeless.PyroShieldAccessory.DisplayName: Pyro Shield
-// WallOfBronzeTorretBlast.DisplayName: Wall Of Bronze Torret Blast
-// WallOfBronzeLaserBeamStart.DisplayName: Wall Of Bronze Laser Beam
-// WallOfBronzeClawProjectile.DisplayName: Wall Of Bronze Claw
-// AMSProj.DisplayName: A M S Proj
-// TheWOBblerProjectile.DisplayName: Ice Chunk
 // CyanSolutionProjectile.DisplayName: Cyan Solution
-// FrostfireArrowProj.DisplayName: Frostfire Arrow
-// FrostfireArrowProj2.DisplayName: Frostfire Arrow Explosion
-// MoonstoneKnifeProjectile.DisplayName: Moonstone Knife
-// Enemy.BrimstonePearlBurst.DisplayName: Brimstone Pearl Burst
+// HeavyMetalTrashCanPet.DisplayName: Mini Bocchi

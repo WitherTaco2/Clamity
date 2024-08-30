@@ -1,24 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <Import Project="..\tModLoader.targets" />
   <PropertyGroup>
     <AssemblyName>Clamity</AssemblyName>
-    <TargetFramework>net6.0</TargetFramework>
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
-  <ItemGroup>
-    <AdditionalFiles Remove="Content\Boss\Pyrogen\Gores\**" />
-    <Compile Remove="Content\Boss\Pyrogen\Gores\**" />
-    <EmbeddedResource Remove="Content\Boss\Pyrogen\Gores\**" />
-    <None Remove="Content\Boss\Pyrogen\Gores\**" />
-  </ItemGroup>
-  <ItemGroup>
-    <AdditionalFiles Include="Localization\en-US_Mods.Clamity.hjson.legecy" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="tModLoader.CodeAssist" Version="0.1.*" />
-  </ItemGroup>
   <ItemGroup>
     <Reference Include="CalamityMod">
       <HintPath>CalamityMod.dll</HintPath>

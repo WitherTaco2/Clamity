@@ -16,7 +16,7 @@ namespace Clamity.Content.Items.Weapons.Ranged.Guns
         {
             Item.width = 56; Item.height = 36;
             Item.rare = ItemRarityID.Yellow;
-            Item.value = CalamityGlobalItem.Rarity8BuyPrice;
+            Item.value = CalamityGlobalItem.RarityYellowBuyPrice;
 
             Item.useAnimation = Item.useTime = 5;
             Item.useStyle = ItemUseStyleID.Shoot;
@@ -55,8 +55,9 @@ namespace Clamity.Content.Items.Weapons.Ranged.Guns
                 .Register();
         }
     }
-    public class ImpalerProjectile : ModProjectile
+    public class ImpalerProjectile : ModProjectile, ILocalizedModType, IModType
     {
+        public new string LocalizationCategory => "Projectiles.Ranged";
         public override void SetDefaults()
         {
             Projectile.CloneDefaults(ProjectileID.Stake);
@@ -65,11 +66,11 @@ namespace Clamity.Content.Items.Weapons.Ranged.Guns
         {
             if (!Main.rand.NextBool(5))
                 return;
-            Dust.NewDust(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height, 6, Projectile.velocity.X * 0.5f, Projectile.velocity.Y * 0.5f, 0, new Color(), 1f);
+            Dust.NewDust(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height, DustID.Torch, Projectile.velocity.X * 0.5f, Projectile.velocity.Y * 0.5f, 0, new Color(), 1f);
         }
         public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
-            if (target.type != 159 && target.type != 158)
+            if (target.type != NPCID.Vampire && target.type != NPCID.VampireBat)
                 return;
             modifiers.SetInstantKill();
         }

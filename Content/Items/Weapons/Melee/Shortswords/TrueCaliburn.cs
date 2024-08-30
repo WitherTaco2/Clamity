@@ -1,20 +1,13 @@
-﻿using CalamityMod.Items;
-using CalamityMod.NPCs.Providence;
+﻿using CalamityMod;
+using CalamityMod.Items;
 using CalamityMod.Projectiles.BaseProjectiles;
-using CalamityMod;
 using Clamity.Content.Cooldowns;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria;
-using CalamityMod.Projectiles.Melee;
-using Microsoft.Xna.Framework;
-using Terraria.DataStructures;
 
 namespace Clamity.Content.Items.Weapons.Melee.Shortswords
 {
@@ -31,10 +24,10 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
         {
             Item.width = Item.height = 42;
             Item.rare = ItemRarityID.Yellow;
-            Item.value = CalamityGlobalItem.Rarity8BuyPrice;
+            Item.value = CalamityGlobalItem.RarityYellowBuyPrice;
 
             Item.useAnimation = Item.useTime = 12;
-            Item.useStyle = 13;
+            Item.useStyle = ItemUseStyleID.Rapier;
             Item.UseSound = new SoundStyle?(SoundID.Item1);
             Item.autoReuse = true;
             Item.noUseGraphic = true;
@@ -99,7 +92,50 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
             Dust.NewDust(new Vector2((float)Projectile.Hitbox.X, (float)Projectile.Hitbox.Y), Projectile.Hitbox.Width, Projectile.Hitbox.Height, 57, 0.0f, 0.0f, 0, new Color(), 1f);
         }
     }
-    public class TrueCaliburnSlash : ExobeamSlash
+    public class TrueCaliburnSlash : BaseSlash
+    {
+        public override void SetStaticDefaults()
+        {
+            base.SetStaticDefaults();
+
+            if (!ModLoader.TryGetMod("Redemption", out var redemption))
+                return;
+            redemption.Call("addElementProj", 8, Type);
+        }
+        public override float Scale => 2f;
+        public override Color FirstColor => Color.Purple;
+        public override Color SecondColor => Color.LightPink;
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            if (Projectile.ai[0] == 1)
+            {
+                //Projectile.ai[1] = 1;
+                for (int i = 0; i < Projectile.ai[1]; i++)
+                    Projectile.NewProjectile(Projectile.GetSource_FromThis(), target.Center, Projectile.velocity.RotatedByRandom(MathHelper.TwoPi) * 0.1f, ModContent.ProjectileType<TrueCaliburnSlash2>(), (int)(Projectile.damage * 0.1f), Projectile.knockBack, Projectile.owner);
+                if (Projectile.ai[1] > 1)
+                {
+                    Projectile.ai[1]--;
+                }
+            }
+        }
+    }
+    public class TrueCaliburnSlash2 : TrueCaliburnSlash
+    {
+        public override float Scale => 1f;
+        public override void SetDefaults()
+        {
+            base.SetDefaults();
+
+            Projectile.usesLocalNPCImmunity = false;
+            Projectile.usesIDStaticNPCImmunity = true;
+            Projectile.idStaticNPCHitCooldown = Projectile.MaxUpdates * 12;
+        }
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        {
+
+        }
+    }
+    /*public class TrueCaliburnSlash : ExobeamSlash
     {
         public override void SetStaticDefaults()
         {
@@ -192,5 +228,5 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
             return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), Projectile.Center, Projectile.Center + new Vector2(200, 0).RotatedBy(Projectile.rotation), Projectile.Size.Length() * Projectile.scale / 10f, ref collisionPoint)
                 || Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), Projectile.Center, Projectile.Center - new Vector2(200, 0).RotatedBy(Projectile.rotation), Projectile.Size.Length() * Projectile.scale / 10f, ref collisionPoint);
         }
-    }
+    }*/
 }

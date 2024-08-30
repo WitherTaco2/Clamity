@@ -1,5 +1,4 @@
 ﻿using CalamityMod.Items;
-using Clamity.Content.Boss.Pyrogen.Drop.Weapons;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -16,7 +15,7 @@ namespace Clamity.Content.Items.Weapons.Ranged.Guns
         {
             Item.width = 72;
             Item.height = 38;
-            Item.value = CalamityGlobalItem.Rarity5BuyPrice;
+            Item.value = CalamityGlobalItem.RarityPinkBuyPrice;
             Item.rare = ItemRarityID.Pink;
 
             Item.useTime = Item.useAnimation = 9;

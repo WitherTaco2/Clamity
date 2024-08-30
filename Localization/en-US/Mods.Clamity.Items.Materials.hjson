@@ -27,3 +27,18 @@ EnchantedMetal: {
 	Tooltip: Metal infused by soul of the Terraria
 	DisplayName: Enchanted Metal
 }
+
+MetalFeather: {
+	Tooltip: ""
+	DisplayName: Metal Feather
+}
+
+RarePlanteraFruit: {
+	DisplayName: Rare Plantera Fruit
+	Tooltip: ""
+}
+
+CoralskinFoolfish: {
+	Tooltip: Camouflage is one of nature's best defenses
+	DisplayName: Coralskin Foolfish
+}

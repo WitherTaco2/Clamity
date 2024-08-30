@@ -1,12 +1,6 @@
 ﻿using CalamityMod;
-using CalamityMod.Buffs.Alcohol;
 using CalamityMod.Buffs.Potions;
 using CalamityMod.Items.Potions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -16,12 +10,17 @@ namespace Clamity.Content.Items.Potions.Food
     public class SoulBaguette : Baguette, ILocalizedModType, IModType
     {
         public new string LocalizationCategory => "Items.Potions.Foods";
+        public override void SetStaticDefaults()
+        {
+            Item.ResearchUnlockCount = 5;
+        }
         public override void SetDefaults()
         {
             base.SetDefaults();
             Item.buffTime *= 2;
             Item.rare = ItemRarityID.Pink;
             Item.value += Item.sellPrice(0, 2, 40);
+            Item.Calamity().donorItem = false;
         }
         public override void AddRecipes()
         {

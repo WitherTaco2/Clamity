@@ -1,21 +1,18 @@
-﻿using CalamityMod.Buffs.DamageOverTime;
-using CalamityMod;
+﻿using CalamityMod;
+using CalamityMod.Buffs.DamageOverTime;
+using CalamityMod.Items;
+using CalamityMod.Items.Materials;
+using CalamityMod.Items.Weapons.Magic;
 using CalamityMod.Rarities;
+using CalamityMod.Tiles.Furniture.CraftingStations;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using CalamityMod.Items.Weapons.Magic;
-using CalamityMod.Items.Materials;
-using CalamityMod.Tiles.Furniture.CraftingStations;
 
 namespace Clamity.Content.Items.Weapons.Magic
 {
@@ -33,10 +30,10 @@ namespace Clamity.Content.Items.Weapons.Magic
             Item.useTime = 8;
             Item.reuseDelay = 20;
             Item.useAnimation = 30;
-            Item.useStyle = 5;
+            Item.useStyle = ItemUseStyleID.Shoot;
             Item.noMelee = true;
             Item.knockBack = 1.5f;
-            Item.value = Item.buyPrice(2, 50);
+            Item.value = CalamityGlobalItem.RarityVioletBuyPrice;
             Item.rare = ModContent.RarityType<Violet>();
             Item.autoReuse = true;
             Item.shootSpeed = 10f;
@@ -65,8 +62,9 @@ namespace Clamity.Content.Items.Weapons.Magic
                 .Register();
         }
     }
-    public class HadopelagicEchoProjectile : ModProjectile
+    public class HadopelagicEchoProjectile : ModProjectile, ILocalizedModType, IModType
     {
+        public new string LocalizationCategory => "Projectiles.Magic";
         private int echoCooldown;
         private bool playedSound;
 
@@ -181,8 +179,9 @@ namespace Clamity.Content.Items.Weapons.Magic
             return false;
         }
     }
-    public class HadopelagicEchoProjectile2 : ModProjectile
+    public class HadopelagicEchoProjectile2 : ModProjectile, ILocalizedModType, IModType
     {
+        public new string LocalizationCategory => "Projectiles.Magic";
         public override string Texture => ModContent.GetInstance<HadopelagicEchoProjectile>().Texture;
         public override void SetStaticDefaults()
         {
