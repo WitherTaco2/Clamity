@@ -27,6 +27,7 @@ namespace Clamity
             infernum = null;
 
             NewNPCStats.UnLoad();
+            SetupWeakReferences.Load();
         }
         public override void PostSetupContent()
         {

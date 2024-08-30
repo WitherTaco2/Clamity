@@ -162,12 +162,12 @@ namespace Clamity.Content.Subworlds.Exosphere
             base.Apply();
         }*/
 
-        public override void Update(GameTime gameTime)
+        /*public override void Update(GameTime gameTime)
         {
             if (!SubworldSystem.IsActive<ExosphereSubworld>())
             {
                 Filters.Scene["Clamity:Exosphere"].Deactivate();
             }
-        }
+        }*/
     }
 }
