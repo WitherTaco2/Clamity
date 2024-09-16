@@ -81,18 +81,15 @@ namespace Clamity.Content.Bosses.Losbaf.NPCs
                 slamRotation = Main.rand.Next(1, 4);
                 if (slamCounter < verticalSlamCount)
                     slamRotation = 0;
-                NPC.rotation = MathHelper.PiOver4 * slamRotation;
+                NPC.rotation = MathHelper.PiOver2 * slamRotation;
 
-                TeleportTo(player.Center - Vector2.UnitY.RotatedBy(MathHelper.PiOver4 * slamRotation) * 200);
+                TeleportTo(player.Center - Vector2.UnitY.RotatedBy(MathHelper.PiOver2 * slamRotation) * 200);
                 int j = 0;
                 int cloneProj = ModContent.ProjectileType<LosbafCloneSlamAttack>();
                 for (int i = 0; i < 4; i++)
                 {
                     if (i == slamRotation) continue;
-                    int index = Projectile.NewProjectile(NPC.GetSource_FromAI(), player.Center - Vector2.UnitY.RotatedBy(MathHelper.PiOver4 * i) * 200, Vector2.Zero, cloneProj, NPC.GetProjectileDamageClamity(cloneProj), 0, Main.myPlayer, j, hoverTime, sitInPlaceTime);
-                    Main.projectile[index].Clamity().extraAI[0] = slamTime;
-                    Main.projectile[index].Clamity().extraAI[1] = i;
-                    Main.projectile[index].Clamity().extraAI[2] = NPC.target;
+                    int index = Projectile.NewProjectile(NPC.GetSource_FromAI(), player.Center - Vector2.UnitY.RotatedBy(MathHelper.PiOver2 * i) * 200, Vector2.Zero, cloneProj, NPC.GetProjectileDamageClamity(cloneProj), 0, Main.myPlayer, slamCounter, j);
                     j++;
                 }
             }
@@ -111,7 +108,7 @@ namespace Clamity.Content.Bosses.Losbaf.NPCs
             if (wrappedAttackTimer == slamDelay)
             {
                 //SoundEngine.PlaySound(ExplosionTeleportSound, NPC.Center);
-                NPC.velocity = Vector2.UnitY.RotatedBy(MathHelper.PiOver4 * slamRotation) * startingSlamSpeed;
+                NPC.velocity = Vector2.UnitY.RotatedBy(MathHelper.PiOver2 * slamRotation) * startingSlamSpeed;
                 NPC.netUpdate = true;
             }
 

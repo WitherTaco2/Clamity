@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using CalamityMod.Events;
+using CalamityMod.World;
+using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 
@@ -11,19 +13,37 @@ namespace Clamity.Content.Bosses.Losbaf.Projectiles
             base.SetDefaults();
             Projectile.timeLeft = 1000;
         }
-        public ref float hoverTime => ref Projectile.ai[1];
-        public ref float sitInPlaceTime => ref Projectile.ai[2];
-        public ref float slamTime => ref Projectile.Clamity().extraAI[0];
-        public ref float slamRotation => ref Projectile.Clamity().extraAI[1];
-        public ref float target => ref Projectile.Clamity().extraAI[2];
-        public ref float Timer => ref Projectile.Clamity().extraAI[3];
+        public ref float slamCounter => ref Projectile.ai[1];
+        public ref float slamRotation => ref Projectile.ai[2];
+        public ref float target => ref Projectile.ai[3];
+        public ref float Timer => ref Projectile.ai[4];
         public override void AI()
         {
             Player player = Main.player[(int)target];
-            //int hoverTime = 33;
-            //int slamTime = 90;
-            //int sitInPlaceTime = 18;
+
+            bool bossRushActive = BossRushEvent.BossRushActive;
+            bool expert = Main.expertMode || bossRushActive;
+            bool rev = CalamityWorld.revenge || bossRushActive;
+
+            int hoverTime = 33;
+            int slamTime = 90;
+            int sitInPlaceTime = 18;
+            if (expert)
+            {
+                if (slamCounter >= 1f)
+                    hoverTime -= 3;
+                sitInPlaceTime -= 3;
+            }
+            if (rev)
+            {
+                if (slamCounter >= 1f)
+                    hoverTime -= 3;
+                sitInPlaceTime -= 4;
+            }
+
+
             Timer++;
+            int MaxTimeLeft = (int)(hoverTime + sitInPlaceTime + slamTime);
             if (Timer > MaxTimeLeft) Projectile.Kill();
 
             int slamDelay = (int)hoverTime + (int)sitInPlaceTime;
@@ -38,7 +58,6 @@ namespace Clamity.Content.Bosses.Losbaf.Projectiles
                 Projectile.velocity = Vector2.Zero;
             }
         }
-        public int MaxTimeLeft => (int)(hoverTime + sitInPlaceTime + slamTime);
         public override bool? CanHitNPC(NPC target)
         {
             return base.CanHitNPC(target);
