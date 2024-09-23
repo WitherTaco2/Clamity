@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
@@ -38,6 +39,17 @@ namespace Clamity
             }
             return num;
         }
+        public static int NewProjectile(IEntitySource spawnSource, Vector2 position, Vector2 velocity, int Type, int Damage, float KnockBack, int Owner = -1, float ai0 = 0f, float ai1 = 0f, float ai2 = 0f, float extraAi0 = 0f, float extraAi1 = 0f, float extraAi2 = 0f, float extraAi3 = 0f, float extraAi4 = 0f)
+        {
+            int index = Projectile.NewProjectile(spawnSource, position.X, position.Y, velocity.X, velocity.Y, Type, Damage, KnockBack, Owner, ai0, ai1, ai2);
+            Main.projectile[index].Clamity().extraAI[0] = extraAi0;
+            Main.projectile[index].Clamity().extraAI[1] = extraAi1;
+            Main.projectile[index].Clamity().extraAI[2] = extraAi2;
+            Main.projectile[index].Clamity().extraAI[3] = extraAi3;
+            Main.projectile[index].Clamity().extraAI[4] = extraAi4;
+            return index;
+        }
+
         /*public static double GetExpertDamageMultiplierClamity(this NPC npc, bool? master = null)
         {
             if (!EnemyStats.ExpertDamageMultiplier.TryGetValue(npc.type, out var value))

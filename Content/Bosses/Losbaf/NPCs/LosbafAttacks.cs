@@ -89,7 +89,17 @@ namespace Clamity.Content.Bosses.Losbaf.NPCs
                 for (int i = 0; i < 4; i++)
                 {
                     if (i == slamRotation) continue;
-                    int index = Projectile.NewProjectile(NPC.GetSource_FromAI(), player.Center - Vector2.UnitY.RotatedBy(MathHelper.PiOver2 * i) * 200, Vector2.Zero, cloneProj, NPC.GetProjectileDamageClamity(cloneProj), 0, Main.myPlayer, slamCounter, j);
+                    int index = ClamityUtils.NewProjectile(NPC.GetSource_FromAI(),
+                                                         player.Center - Vector2.UnitY.RotatedBy(MathHelper.PiOver2 * i) * 200,
+                                                         Vector2.Zero,
+                                                         cloneProj,
+                                                         NPC.GetProjectileDamageClamity(cloneProj),
+                                                         0,
+                                                         Main.myPlayer,
+                                                         j,
+                                                         slamCounter,
+                                                         i,
+                                                         NPC.target);
                     j++;
                 }
             }
