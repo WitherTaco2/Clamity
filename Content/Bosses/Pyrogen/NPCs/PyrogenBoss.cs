@@ -233,7 +233,7 @@ namespace Clamity.Content.Bosses.Pyrogen.NPCs
                 HandlePhaseTransition((int)NPC.ai[0] + 1);
             }
 
-            if (NPC.ai[2] == 0f && NPC.localAI[1] == 0f && Main.netMode != NetmodeID.MultiplayerClient && (NPC.ai[0] < 3f || bossRushActive || flag3 && NPC.ai[0] > 3f))
+            /*if (NPC.ai[2] == 0f && NPC.localAI[1] == 0f && Main.netMode != NetmodeID.MultiplayerClient && (NPC.ai[0] < 3f || bossRushActive || flag3 && NPC.ai[0] > 3f))
             {
                 SoundEngine.PlaySound(in ShieldRegenSound, NPC.Center);
                 int num7 = NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, ModContent.NPCType<PyrogenShield>(), NPC.whoAmI);
@@ -242,7 +242,7 @@ namespace Clamity.Content.Bosses.Pyrogen.NPCs
                 NPC.netUpdate = true;
                 Main.npc[num7].ai[0] = NPC.whoAmI;
                 Main.npc[num7].netUpdate = true;
-            }
+            }*/
 
             int num8 = (int)NPC.ai[2] - 1;
             if (num8 != -1 && Main.npc[num8].active && Main.npc[num8].type == ModContent.NPCType<PyrogenShield>())
