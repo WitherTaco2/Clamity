@@ -81,7 +81,7 @@ namespace Clamity.Content.Bosses.Losbaf.NPCs
             set => NPC.ai[1] = (int)value;
         }
 
-        public static float TimerBetweenScycleRingAttack = 120;
+        //public static float TimerBetweenScycleRingAttack = 120;
         public override void AI()
         {
             if (NPC.target < 0 || NPC.target == 255 || Main.player[NPC.target].dead || !Main.player[NPC.target].active)

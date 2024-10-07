@@ -29,7 +29,7 @@ namespace Clamity.Content.Bosses.Losbaf.NPCs
             if (AttackTimer >= 60)
             {
 #if DEBUG
-                        NextState(ClamityConfig.Instance.StartingLosbafAttack);
+                NextState(ClamityConfig.Instance.StartingLosbafAttack);
 #else
                 NextState(LosbafAttack.Slam);
 #endif
@@ -62,7 +62,7 @@ namespace Clamity.Content.Bosses.Losbaf.NPCs
             {
                 allSlamCount++;
 #if DEBUG
-                        allSlamCount--;
+                allSlamCount--;
 #endif
 
                 if (slamCounter >= 1f)
@@ -208,7 +208,7 @@ namespace Clamity.Content.Bosses.Losbaf.NPCs
             //Vector2 vec2 = (NPC.Center - player.Center).SafeNormalize(Vector2.Zero);
             Vector2 destination2 = player.Center - new Vector2(0, DistanceOnDownfallScytheAttack);
             Vector2 distanceFromDestination2 = destination2 - NPC.Center;
-            CalamityUtils.SmoothMovement(NPC, DistanceOnDownfallScytheAttack, distanceFromDestination2, 30f, 1.2f, false);
+            CalamityUtils.SmoothMovement(NPC, DistanceOnDownfallScytheAttack, distanceFromDestination2, 30f, 1.05f, false);
             NPC.rotation = (NPC.Center - player.Center).ToRotation() + MathHelper.PiOver2;
             if (AttackTimer % DuratationBetweenDownfallScytheAttack == 60 && AttackTimer < DuratationBetweenDownfallScytheAttack * DownfallAttackCount - 1)
             {
@@ -222,9 +222,12 @@ namespace Clamity.Content.Bosses.Losbaf.NPCs
                 {
                     Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, -Vector2.UnitY.RotatedBy(MathHelper.Pi / 10 * i) * 10, exoBeamType, NPC.GetProjectileDamageClamity(exoBeamType), 0, Main.myPlayer, 4, velocity);
                 }
+                int distanceDelay = 300;
+                if (rev)
+                    distanceDelay = 200;
                 for (int i = -15; i <= 15; i++)
                 {
-                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center - new Vector2(200 * i, 300), Vector2.Zero, exoBeamType, NPC.GetProjectileDamageClamity(exoBeamType), 0, Main.myPlayer, 1, velocity * 3f);
+                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center - new Vector2(distanceDelay * i, 300), Vector2.Zero, exoBeamType, NPC.GetProjectileDamageClamity(exoBeamType), 0, Main.myPlayer, 1, velocity * 3f);
                 }
             }
             if (AttackTimer > DuratationBetweenDownfallScytheAttack * DownfallAttackCount + 30)
@@ -261,6 +264,22 @@ namespace Clamity.Content.Bosses.Losbaf.NPCs
             {
                 NextState(LosbafAttack.Slam);
             }
+
+        }
+        public const int FrontwardAttackDelay = 60;
+        public const int FrontwardAttackCount = 3;
+        public void FrontwardScythes(Player player)
+        {
+            bool bossRushActive = BossRushEvent.BossRushActive;
+            bool expert = Main.expertMode || bossRushActive;
+            bool rev = CalamityWorld.revenge || bossRushActive;
+            bool death = CalamityWorld.death || bossRushActive;
+
+
+            Vector2 destination2 = player.Center - new Vector2(0, DistanceOnDownfallScytheAttack);
+            Vector2 distanceFromDestination2 = destination2 - NPC.Center;
+            CalamityUtils.SmoothMovement(NPC, DistanceOnDownfallScytheAttack, distanceFromDestination2, 30f, 1.05f, false);
+            NPC.rotation = (NPC.Center - player.Center).ToRotation() + MathHelper.PiOver2;
 
         }
     }

@@ -1,5 +1,4 @@
 ﻿using CalamityMod;
-using CalamityMod.Particles;
 using Clamity.Content.Bosses.Losbaf.NPCs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -54,7 +53,7 @@ namespace Clamity.Content.Bosses.Losbaf.Projectiles
                 case 1:
                     if (Projectile.timeLeft == 1000 - 20)
                         Projectile.velocity = Vector2.Zero;
-                    if (Projectile.timeLeft > 1000 - LosbafSuperboss.DuratationBetweenDownfallScytheAttack)
+                    /*if (Projectile.timeLeft > 1000 - LosbafSuperboss.DuratationBetweenDownfallScytheAttack)
                     {
                         Color color3 = CalamityUtils.MulticolorLerp((Main.GlobalTimeWrappedHourly * 0.5f + Projectile.whoAmI * 0.12f) % 1, Color.Cyan, Color.Lime, Color.GreenYellow, Color.Goldenrod, Color.Orange);
                         GeneralParticleHandler.SpawnParticle(new BloomLineVFX(Projectile.Center,
@@ -64,10 +63,10 @@ namespace Clamity.Content.Bosses.Losbaf.Projectiles
                                                                               1
                                                                               ));
 
-                    }
+                    }*/
                     if (Projectile.timeLeft == 1000 - LosbafSuperboss.DuratationBetweenDownfallScytheAttack)
                     {
-                        int target = Player.FindClosest(Projectile.Center, 100, 100);
+                        int target = Player.FindClosest(Projectile.Center, 1000, 1000);
                         Projectile.velocity = new Vector2(0, Projectile.ai[1]);
                     }
                     break;

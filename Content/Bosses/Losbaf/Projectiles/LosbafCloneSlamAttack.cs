@@ -15,8 +15,8 @@ namespace Clamity.Content.Bosses.Losbaf.Projectiles
         }
         public ref float slamCounter => ref Projectile.ai[1];
         public ref float slamRotation => ref Projectile.ai[2];
-        public ref float target => ref Projectile.ai[3];
-        public ref float Timer => ref Projectile.ai[4];
+        public ref float target => ref Projectile.Clamity().extraAI[1];
+        public ref float Timer => ref Projectile.Clamity().extraAI[2];
         public override void AI()
         {
             Player player = Main.player[(int)target];
