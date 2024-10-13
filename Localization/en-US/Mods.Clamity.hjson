@@ -1,14 +1,4 @@
 Items: {
-	WoBSummonItem: {
-		Tooltip:
-			'''
-			DEBUG
-			Summon a Wall of Bronze in Underworld
-			Non consumable
-			'''
-		DisplayName: Wall of Bronze Summoning Item
-	}
-
 	Mounts: {
 		FlameCube: {
 			DisplayName: Flame Cube

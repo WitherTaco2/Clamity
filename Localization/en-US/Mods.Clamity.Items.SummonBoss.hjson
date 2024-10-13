@@ -28,6 +28,27 @@ PyroKey: {
 		'''
 }
 
+AncientConsole: {
+	DisplayName: Ancient Console
+	Tooltip:
+		'''
+		Summon a Wall of Bronze on right click on tile
+		Work in Underworld
+		Wall of Bronze despawn when you left from Underworld
+		WARNING: If you in multiplayer, use summoning item instead of this tile (he crafted from tile version NOW)
+		'''
+}
+
+WoBSummonItem: {
+	Tooltip:
+		'''
+		DEBUG
+		Summon a Wall of Bronze in Underworld
+		Non consumable
+		'''
+	DisplayName: Technical Alternative Bronze Machine
+}
+
 ShadyGazingSkull: {
 	DisplayName: Shady Gazing Skull
 	Tooltip:

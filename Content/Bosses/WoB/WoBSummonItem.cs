@@ -8,8 +8,9 @@ using Terraria.ModLoader;
 
 namespace Clamity.Content.Bosses.WoB
 {
-    public class WoBSummonItem : ModItem
+    public class WoBSummonItem : ModItem, ILocalizedModType, IModType
     {
+        public new string LocalizationCategory => "Items.SummonBoss";
         public override void SetDefaults()
         {
             Item.width = Item.height = 32;
@@ -21,10 +22,6 @@ namespace Clamity.Content.Bosses.WoB
             Item.UseSound = SoundID.Item1;
             Item.consumable = false;
         }
-        public static readonly SoundStyle SummonSound = new SoundStyle("CalamityMod/Sounds/Custom/SCalSounds/SepulcherSpawn")
-        {
-            Volume = 1.1f
-        };
         public override bool? UseItem(Player player)
         {
             //player.Teleport(new Vector2(100, Main.UnderworldLayer + 40) * 16);
@@ -33,12 +30,13 @@ namespace Clamity.Content.Bosses.WoB
 
             int center = Main.maxTilesX * 16 / 2;
             NPC.NewNPC(player.GetSource_ItemUse(Item), (int)player.Center.X - 1000 * (player.Center.X > center ? -1 : 1), (int)player.Center.Y, ModContent.NPCType<WallOfBronze>());
-            SoundEngine.PlaySound(SummonSound, player.Center);
 
-            /*if (Main.netMode != 1)
+            SoundEngine.PlaySound(AncientConsoleTile.SummonSound, player.Center);
+
+            /*if (Main.netMode != NetmodeID.MultiplayerClient)
                 NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<WallOfBronze>());
             else
-                NetMessage.SendData(61, number: player.whoAmI, number2: (float)ModContent.NPCType<WallOfBronze>());*/
+                NetMessage.SendData(MessageID.SpawnBossUseLicenseStartEvent, player.whoAmI, (int)ModContent.NPCType<WallOfBronze>());*/
 
             return true;
         }
@@ -46,14 +44,11 @@ namespace Clamity.Content.Bosses.WoB
         {
             return player.ZoneUnderworldHeight && !NPC.AnyNPCs(ModContent.NPCType<WallOfBronze>()) && !BossRushEvent.BossRushActive;
         }
-        /*public override void AddRecipes()
+        public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ItemID.MartianConduitPlating, 30)
-                .AddIngredient<AuricBar>(5)
-                .AddIngredient<CoreofCalamity>()
-                .AddTile<CosmicAnvil>()
+                .AddIngredient<AncientConsole>()
                 .Register();
-        }*/
+        }
     }
 }

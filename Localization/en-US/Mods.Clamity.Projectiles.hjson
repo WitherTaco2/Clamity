@@ -102,23 +102,10 @@ Boss: {
 	LosbafCloneSlamAttack.DisplayName: Losbaf Clone Slam Attack
 }
 
-WarArrowProjectile.DisplayName: War Arrow
-FireBomb.DisplayName: Fire Bomb
-FireBombExplosion.DisplayName: Fire Bomb Explosion
-Firethrower.DisplayName: Firethrower
-PyrogenSummonAnimation.DisplayName: Pyrogen Summon Animation
-PyrogenKillExplosion.DisplayName: Pyrogen Kill Explosion
-DraculasCharmProj.DisplayName: Dracula
-
-Typeless: {
-	PyroShieldAccessory.DisplayName: Pyro Shield
-	EyeOfNovaProjectile.DisplayName: Eye Of Nova Projectile
-	GoldenGunProj.DisplayName: Golden Gun Proj
-}
-
 ShortstrikeEffect.DisplayName: Shortstrike Effect
 WulfrumLureBobber.DisplayName: Wulfrum Lure Bobber
 CrustallineProjecile.DisplayName: Crustalline
 SoulOfPyrogenSpear.DisplayName: Soul Of Pyrogen Spear
+PyrogenSummonAnimation.DisplayName: Pyrogen Summon Animation
 CyanSolutionProjectile.DisplayName: Cyan Solution
 HeavyMetalTrashCanPet.DisplayName: Mini Bocchi

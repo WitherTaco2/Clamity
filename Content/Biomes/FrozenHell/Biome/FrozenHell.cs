@@ -4,6 +4,7 @@ using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using static Clamity.Commons.CalRemixCompatibilitySystem;
 
 namespace Clamity.Content.Biomes.FrozenHell.Biome
 {
@@ -20,6 +21,13 @@ namespace Clamity.Content.Biomes.FrozenHell.Biome
         public override void SpecialVisuals(Player player, bool isActive)
         {
             player.ManageSpecialBiomeVisuals("Clamity:FrozenHellSky", isActive);
+        }
+
+        public override void SetStaticDefaults()
+        {
+            var fanny1 = new FannyDialog("FrozenHell", "Sob").WithDuration(4f).WithCondition(_ => { return Main.LocalPlayer.Clamity().ZoneFrozenHell; });
+
+            fanny1.Register();
         }
 
         public static void Convert(int i, int j, int size = 4)
