@@ -54,14 +54,6 @@ Magic: {
 	MoonstoneKnifeProjectile.DisplayName: Кинжал из лунного камня
 }
 
-
-Magic: {
-	TheGeneratorSigil.DisplayName: Символ генератора
-	HadopelagicEchoProjectile.DisplayName: Гадопелагическое эхо
-	HadopelagicEchoProjectile2.DisplayName: Гадопелагическое эхо
-	MoonstoneKnifeProjectile.DisplayName: Кинжал из лунного камня
-}
-
 Summon: {
 	Minion: {
 		HellstoneShellfishStaffMinion.DisplayName: Моллюск из адского камня
@@ -104,6 +96,10 @@ Boss: {
 	WallOfBronzeLaserBeamStart.DisplayName: Плазменный луч
 	WallOfBronzeClawProjectile.DisplayName: Бронзовая клешна
 	WoBDeathrayStart.DisplayName: Плазменный смертельный луч
+	// ExoScythe.DisplayName: Exo Scythe
+	// LosbafCloneRotatable.DisplayName: Losbaf Clone Rotatable
+	// LosbafExoBeam.DisplayName: Losbaf Exo Beam
+	// LosbafCloneSlamAttack.DisplayName: Losbaf Clone Slam Attack
 }
 
 // ShortstrikeEffect.DisplayName: Shortstrike Effect
