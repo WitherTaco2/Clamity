@@ -7,9 +7,11 @@ using CalamityMod.Projectiles.Rogue;
 using CalamityMod.Projectiles.Summon;
 using CalamityMod.Projectiles.Typeless;
 using System.Collections.Generic;
+using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 
 namespace Clamity
 {
@@ -93,5 +95,15 @@ namespace Clamity
                 }
             }
         }*/
+        public override void SendExtraAI(Projectile projectile, BitWriter bitWriter, BinaryWriter binaryWriter)
+        {
+            for (int i = 0; i < extraAI.Length; i++)
+                binaryWriter.Write(extraAI[i]);
+        }
+        public override void ReceiveExtraAI(Projectile projectile, BitReader bitReader, BinaryReader binaryReader)
+        {
+            for (int i = 0; i < extraAI.Length; i++)
+                extraAI[i] = binaryReader.ReadSingle();
+        }
     }
 }

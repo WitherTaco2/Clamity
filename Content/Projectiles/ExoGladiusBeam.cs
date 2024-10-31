@@ -1,120 +1,17 @@
 ﻿using CalamityMod;
 using CalamityMod.Buffs.DamageOverTime;
-using CalamityMod.Items;
-using CalamityMod.Items.Materials;
 using CalamityMod.Items.Weapons.Magic;
 using CalamityMod.Items.Weapons.Melee;
-using CalamityMod.Projectiles.BaseProjectiles;
 using CalamityMod.Projectiles.Melee;
-using CalamityMod.Rarities;
-using CalamityMod.Tiles.Furniture.CraftingStations;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.Audio;
-using Terraria.DataStructures;
-using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Items.Weapons.Melee.Shortswords
+namespace Clamity.Content.Projectiles
 {
-    public class ExoGladius : ModItem, ILocalizedModType, IModType
-    {
-        public new string LocalizationCategory => "Items.Weapons.Melee";
-        public override void SetDefaults()
-        {
-            Item.width = Item.height = 64;
-            Item.rare = ModContent.RarityType<Violet>();
-            Item.value = CalamityGlobalItem.RarityVioletBuyPrice;
-
-            Item.useAnimation = Item.useTime = 20;
-            Item.useStyle = ItemUseStyleID.Rapier;
-            Item.UseSound = new SoundStyle?(SoundID.Item1);
-            Item.autoReuse = true;
-            Item.noUseGraphic = true;
-            Item.noMelee = true;
-
-            Item.damage = 640;
-            Item.DamageType = DamageClass.Melee;
-            Item.knockBack = 8.5f;
-
-            Item.shoot = ModContent.ProjectileType<ExoGladiusProjectile>();
-            Item.shootSpeed = 2.4f;
-        }
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .AddIngredient<GalileoGladius>()
-                .AddIngredient<CosmicShiv>()
-                .AddIngredient<Lucrecia>()
-                .AddIngredient<MiracleMatter>()
-                .AddTile<DraedonsForge>()
-                .Register();
-        }
-    }
-    public class ExoGladiusProjectile : BaseShortswordProjectile, ILocalizedModType, IModType
-    {
-        public new string LocalizationCategory => "Projectiles.Melee";
-        public override string Texture => ModContent.GetInstance<ExoGladius>().Texture;
-        public override void SetDefaults()
-        {
-            //AquaticDischargeProj
-            /*Projectile.width = Projectile.height = 64;
-            Projectile.timeLeft = 1000;
-            Projectile.usesIDStaticNPCImmunity = true;
-            Projectile.idStaticNPCHitCooldown = 10;
-            Projectile.DamageType = ModContent.GetInstance<TrueMeleeDamageClass>();*/
-
-            Projectile.width = Projectile.height = 64;
-            Projectile.friendly = true;
-            Projectile.penetrate = -1;
-            Projectile.tileCollide = false;
-            Projectile.scale = 1f;
-            Projectile.DamageType = ModContent.GetInstance<TrueMeleeDamageClass>();
-            Projectile.ownerHitCheck = true;
-            Projectile.timeLeft = 360;
-            Projectile.hide = true;
-            Projectile.ownerHitCheck = true;
-        }
-        public override void SetVisualOffsets()
-        {
-            int num = Projectile.width / 2;
-            int num2 = Projectile.height / 2;
-            DrawOriginOffsetX = 0f;
-            DrawOffsetX = -(32 - num);
-            DrawOriginOffsetY = -(32 - num2);
-        }
-
-
-        public override void OnSpawn(IEntitySource source)
-        {
-            int a = 1;
-            for (int i = 1; i < 4; i++)
-            {
-                int num = Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center, Projectile.velocity.RotatedBy(Main.rand.NextFloat(-MathHelper.PiOver4 / 4f, MathHelper.PiOver4 / 4f)) * i, ModContent.ProjectileType<ExoGladiusBeam>(), (int)(Projectile.damage * 0.33f), Projectile.knockBack / 3f, Projectile.owner, ai2: a);
-                if (Main.projectile.IndexInRange(num))
-                {
-                    Main.projectile[num].timeLeft -= i * 4;
-                }
-                //a = 0;
-            }
-        }
-        /*public override bool PreDraw(ref Color lightColor)
-        {
-            Texture2D value = ModContent.Request<Texture2D>(Texture).Value;
-            //SpriteEffects effects = Projectile.direction == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            Main.EntitySpriteDraw(value, Projectile.Center - Main.screenPosition, new Rectangle(0, 0, value.Width, value.Height), Projectile.GetAlpha(lightColor), Projectile.rotation + MathHelper.PiOver4, value.Size() / 2f, Projectile.scale, 0);
-            return false;
-        }*/
-        public override void ExtraBehavior()
-        {
-            if (!Utils.NextBool(Main.rand, 5))
-                return;
-            Dust.NewDust(new Vector2((float)Projectile.Hitbox.X, (float)Projectile.Hitbox.Y), Projectile.Hitbox.Width, Projectile.Hitbox.Height, DustID.TerraBlade, 0.0f, 0.0f, 0, new Color(), 1f);
-        }
-
-    }
     public class ExoGladiusBeam : Exobeam, ILocalizedModType, IModType
     {
         public new string LocalizationCategory => "Projectiles.Melee";

@@ -159,8 +159,8 @@ namespace Clamity.Commons
         /// </summary>
         public static void LoadCooldowns()
         {
-            CooldownRegistry.Register<ShortstrikeCooldown>(ShortstrikeCooldown.ID);
-            CooldownRegistry.Register<ShortstrikeCharge>(ShortstrikeCharge.ID);
+            //CooldownRegistry.Register<ShortstrikeCooldown>(ShortstrikeCooldown.ID);
+            //CooldownRegistry.Register<ShortstrikeCharge>(ShortstrikeCharge.ID);
             CooldownRegistry.Register<PyrospearCooldown>(PyrospearCooldown.ID);
         }
         #endregion

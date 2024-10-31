@@ -158,7 +158,7 @@ namespace Clamity.Content.Items.Weapons.Melee.Swords
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient<BladeOfEnmity>()
+                .AddIngredient(ItemID.FieryGreatsword)
                 .AddIngredient<UltimusCleaver>()
                 .AddIngredient<EnchantedMetal>(8)
                 .AddTile<CosmicAnvil>()

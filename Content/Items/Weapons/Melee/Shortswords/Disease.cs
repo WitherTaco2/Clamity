@@ -2,7 +2,6 @@
 using CalamityMod.Items;
 using CalamityMod.Projectiles.BaseProjectiles;
 using CalamityMod.Projectiles.Rogue;
-using Clamity.Content.Cooldowns;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -67,7 +66,7 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
         }
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            if (!Main.player[Projectile.owner].HasCooldown(ShortstrikeCooldown.ID))
+            /*if (!Main.player[Projectile.owner].HasCooldown(ShortstrikeCooldown.ID))
             {
                 Main.player[Projectile.owner].AddCooldown(ShortstrikeCooldown.ID, 30);
                 //for (int i = 0; i < 3; i++)
@@ -80,7 +79,12 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
                     int num = Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.position.X, Projectile.position.Y, speedX, speedY, ModContent.ProjectileType<PlaguenadeBee>(), Main.player[Projectile.owner].beeDamage(base.Projectile.damage), Main.player[Projectile.owner].beeKB(0f), Projectile.owner);
                     Main.projectile[num].DamageType = DamageClass.Melee;
                 }
-            }
+            }*/
+            float speedX = Main.rand.Next(-35, 36) * 0.02f;
+            float speedY = Main.rand.Next(-35, 36) * 0.02f;
+            int num = Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.position.X, Projectile.position.Y, speedX, speedY, ModContent.ProjectileType<PlaguenadeBee>(), Main.player[Projectile.owner].beeDamage(base.Projectile.damage), Main.player[Projectile.owner].beeKB(0f), Projectile.owner);
+            Main.projectile[num].DamageType = DamageClass.Melee;
+
         }
     }
 }
