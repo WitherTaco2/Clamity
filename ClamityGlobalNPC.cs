@@ -4,7 +4,6 @@ using CalamityMod.NPCs.NormalNPCs;
 using CalamityMod.NPCs.PlaguebringerGoliath;
 using CalamityMod.NPCs.SunkenSea;
 using CalamityMod.NPCs.SupremeCalamitas;
-using CalamityMod.NPCs.TownNPCs;
 using Clamity.Content.Biomes.FrozenHell.Items;
 using Clamity.Content.Items.Accessories;
 using Clamity.Content.Items.Materials;
@@ -78,7 +77,7 @@ namespace Clamity
                 NPCID.GiantFlyingAntlion)
             )
             {
-                npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MandibleClaws>(), 50));
+                //npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MandibleClaws>(), 50));
                 npcLoot.Add(ItemDropRule.ByCondition(hm, ModContent.ItemType<EssenceOfFlame>(), 4));
             }
 
@@ -206,8 +205,8 @@ namespace Clamity
         {
             if (shop.NpcType == NPCID.Steampunker)
                 shop.Add<CyanSolution>(new Condition(Language.GetOrRegister("Mods.Clamity.Misc.DefeatedWoB"), () => ClamitySystem.downedWallOfBronze));
-            if (shop.NpcType == ModContent.NPCType<DILF>())
-                shop.Add<ColdheartIcicle>();
+            //if (shop.NpcType == ModContent.NPCType<DILF>())
+            //    shop.Add<ColdheartIcicle>();
         }
     }
 }

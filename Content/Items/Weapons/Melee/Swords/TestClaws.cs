@@ -2,7 +2,7 @@
 using CalamityMod.Items.Materials;
 using CalamityMod.Items.Weapons.Melee;
 using CalamityMod.Tiles.Furniture.CraftingStations;
-using Clamity.Content.Items.Weapons.Melee.Shortswords;
+using Clamity.Content.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -43,7 +43,7 @@ namespace Clamity.Content.Items.Weapons.Melee.Swords
                 .AddIngredient(ItemID.FetidBaghnakhs)
                 .AddIngredient<MycelialClaws>()
                 .AddIngredient<MantisClaws>()
-                .AddIngredient<MandibleClaws>()
+                //.AddIngredient<MandibleClaws>()
                 .AddIngredient<MiracleMatter>()
                 .AddTile<DraedonsForge>()
                 .Register();
