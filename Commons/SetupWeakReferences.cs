@@ -11,6 +11,7 @@ using Clamity.Content.Biomes.FrozenHell.Items;
 using Clamity.Content.Bosses.Clamitas;
 using Clamity.Content.Bosses.Clamitas.Drop;
 using Clamity.Content.Bosses.Clamitas.NPCs;
+using Clamity.Content.Bosses.Cybermind.NPCs;
 using Clamity.Content.Bosses.Pyrogen;
 using Clamity.Content.Bosses.Pyrogen.Drop;
 using Clamity.Content.Bosses.Pyrogen.NPCs;
@@ -163,6 +164,11 @@ namespace Clamity.Commons
             //CooldownRegistry.Register<ShortstrikeCharge>(ShortstrikeCharge.ID);
             CooldownRegistry.Register<PyrospearCooldown>(PyrospearCooldown.ID);
         }
+        public static void LoadHeadIcon()
+        {
+            Cyberhive.LoadHeadIcons();
+        }
+
         #endregion
 
         #region PostSetupContent
