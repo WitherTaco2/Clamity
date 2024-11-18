@@ -13,11 +13,14 @@ namespace Clamity.Content.Bosses.Cybermind.NPCs
 {
     public enum CyberhiveAttacks : int
     {
+        //Minor
         Spawn = 0,
+        Backdash = 1,
+
         //Phase 1
-        Rotating = 1,
-        NormalDash = 2,
-        GasDash = 3,
+        Rotating = 11,
+        NormalDash = 12,
+        GasDash = 13,
 
         //Phase 2
         HyperVerticalDash = 101,
@@ -208,8 +211,8 @@ namespace Clamity.Content.Bosses.Cybermind.NPCs
             }
             else
             {
-                if (Attacks > 3)
-                    Attacks = 1;
+                if (Attacks > 13)
+                    Attacks = 11;
 
             }
             AttacksTimer = 0;
