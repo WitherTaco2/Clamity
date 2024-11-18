@@ -155,5 +155,6 @@ namespace Clamity
 
             return false;
         }
+        public static Vector2 SafeNormalize(this Vector2 vector) => vector.SafeNormalize(Vector2.Zero);
     }
 }
