@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -156,5 +157,20 @@ namespace Clamity
             return false;
         }
         public static Vector2 SafeNormalize(this Vector2 vector) => vector.SafeNormalize(Vector2.Zero);
+
+        private static RasterizerState cullOnlyScreen;
+        public static RasterizerState CullOnlyScreen
+        {
+            get
+            {
+                if (cullOnlyScreen is null)
+                {
+                    cullOnlyScreen = RasterizerState.CullNone;
+                    cullOnlyScreen.ScissorTestEnable = true;
+                }
+
+                return cullOnlyScreen;
+            }
+        }
     }
 }

@@ -40,6 +40,18 @@ namespace Clamity.Content.Bosses.Cybermind.NPCs
     {
         public static int normalIconIndex;
         public static int phase2IconIndex;
+        private static NPC myself;
+        public static NPC Myself
+        {
+            get
+            {
+                if (myself is not null && !myself.active)
+                    return null;
+
+                return myself;
+            }
+            private set => myself = value;
+        }
         private int biomeEnrageTimer = CalamityGlobalNPC.biomeEnrageTimerMax;
 
         private int attackCounter = 0;
@@ -234,6 +246,7 @@ namespace Clamity.Content.Bosses.Cybermind.NPCs
                 enrageScale += 1f;
             }*/
             float enrageScale = bossRush ? 1f : 0f;
+            Myself = NPC;
             #endregion
 
             #region radiation
