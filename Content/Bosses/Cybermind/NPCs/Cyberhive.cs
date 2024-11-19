@@ -33,16 +33,35 @@ namespace Clamity.Content.Bosses.Cybermind.NPCs
         GammaDeathRay = 102,
         GooDash = 103,
         ShootVerticalRay = 104,
+
+        Defeat = 1000,
     }
     public class Cyberhive : ModNPC
     {
         public static int normalIconIndex;
         public static int phase2IconIndex;
         private int biomeEnrageTimer = CalamityGlobalNPC.biomeEnrageTimerMax;
-        private float rotationOfAttack = 0;
+
         private int attackCounter = 0;
-        private const int preDashMaxTimer = 120;
-        private const int dashMaxTimer = 60;
+        private bool transformed = false;
+
+        private float rotationOfAttack = 0;
+        private float rotationTime = 60;
+        private int rotationCount = 2;
+        private int dashAfterRotationMaxTime = 120;
+        private float dashAfterRotationVelocity = 30;
+
+        private int backdashTime = 5;
+        private float normalDashTime = 60;
+        private float normalDashVelocity = 45;
+
+        private int preGasDashMaxTimer = 120;
+        private int gasDashMaxTimer = 120;
+        private int gasDelay = 5;
+        private float gasDashVelocity = 75;
+
+
+
         private bool IsPhaseTwo => (NPC.life / (float)NPC.lifeMax) < 0.5f;
         public int Attack
         {
@@ -68,6 +87,7 @@ namespace Clamity.Content.Bosses.Cybermind.NPCs
         }
         public override void SetStaticDefaults()
         {
+            Main.npcFrameCount[NPC.type] = 2;
             NPCID.Sets.TrailingMode[NPC.type] = 1;
             NPCID.Sets.TrailCacheLength[NPC.type] = NPC.oldPos.Length;
             NPCID.Sets.BossBestiaryPriority.Add(Type);
@@ -84,7 +104,7 @@ namespace Clamity.Content.Bosses.Cybermind.NPCs
         {
             NPC.Calamity().canBreakPlayerDefense = true;
             NPC.npcSlots = 5f;
-            NPC.GetNPCDamage();
+            NPC.GetNPCDamageClamity();
 
             NPC.width = 200;
             NPC.height = 150;
@@ -100,11 +120,18 @@ namespace Clamity.Content.Bosses.Cybermind.NPCs
             NPC.boss = true;
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath1;
+            NPC.noTileCollide = true;
+            NPC.noGravity = true;
 
             NPC.Calamity().VulnerableToElectricity = true;
             NPC.Calamity().VulnerableToSickness = false;
             NPC.Calamity().VulnerableToHeat = false;
             NPC.Calamity().VulnerableToCold = false;
+
+            if (!Main.dedServ)
+            {
+                Music = Clamity.mod.GetMusicFromMusicMod("Cyberhive") ?? MusicID.Boss2;
+            }
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
@@ -121,19 +148,49 @@ namespace Clamity.Content.Bosses.Cybermind.NPCs
 
         public override void BossHeadSlot(ref int index)
         {
-            index = IsPhaseTwo ? phase2IconIndex : normalIconIndex;
+            index = transformed ? phase2IconIndex : normalIconIndex;
         }
         public override void SendExtraAI(BinaryWriter writer)
         {
             writer.Write(biomeEnrageTimer);
-            writer.Write(rotationOfAttack);
             writer.Write(attackCounter);
+            writer.Write(transformed);
+
+            writer.Write(rotationOfAttack);
+            writer.Write(rotationTime);
+            writer.Write(rotationCount);
+            writer.Write(dashAfterRotationMaxTime);
+            writer.Write(dashAfterRotationVelocity);
+
+            writer.Write(backdashTime);
+            writer.Write(normalDashTime);
+            writer.Write(normalDashVelocity);
+
+            writer.Write(preGasDashMaxTimer);
+            writer.Write(gasDashMaxTimer);
+            writer.Write(gasDelay);
+            writer.Write(gasDashVelocity);
         }
         public override void ReceiveExtraAI(BinaryReader reader)
         {
             biomeEnrageTimer = reader.ReadInt32();
-            rotationOfAttack = reader.ReadSingle();
             attackCounter = reader.ReadInt32();
+            transformed = reader.ReadBoolean();
+
+            rotationOfAttack = reader.ReadSingle();
+            rotationTime = reader.ReadSingle();
+            rotationCount = reader.ReadInt32();
+            dashAfterRotationMaxTime = reader.ReadInt32();
+            dashAfterRotationVelocity = reader.ReadSingle();
+
+            backdashTime = reader.ReadInt32();
+            normalDashTime = reader.ReadSingle();
+            normalDashVelocity = reader.ReadSingle();
+
+            preGasDashMaxTimer = reader.ReadInt32();
+            gasDashMaxTimer = reader.ReadInt32();
+            gasDelay = reader.ReadInt32();
+            gasDashVelocity = reader.ReadSingle();
         }
 
         public override void AI()
@@ -191,11 +248,13 @@ namespace Clamity.Content.Bosses.Cybermind.NPCs
             #region Main AI
             if (IsPhaseTwo && Attack < 100)
             {
-                SetNextAttack(100);
+                SetNextAttack(CyberhiveAttacks.Transform);
             }
             AttackTimer++;
             switch (GetAttack)
             {
+                //NPC.damage = 0;
+                //NPC.damage = NPC.defDamage;
                 case CyberhiveAttacks.Spawn:
                     //SetNextAttack((int)CyberhiveAttacks.Backdash);
                     SetNextAttack((int)CyberhiveAttacks.Rotating);
@@ -203,23 +262,32 @@ namespace Clamity.Content.Bosses.Cybermind.NPCs
                 #region 1st stage
                 case CyberhiveAttacks.Rotating:
                     //rotationOfAttack += 
-                    float num1 = 1f - AttackTimer / 30f * (attackCounter % 2 == 0 ? -1 : 1);
-                    rotationOfAttack += num1;
+                    if (AttackTimer == 1)
+                    {
+                        NPC.damage = 0;
+                        rotationOfAttack = Main.rand.NextFloat(MathHelper.TwoPi);
+                    }
+                    float num1 = 1f - MathF.Pow(AttackTimer / rotationTime, 0.81f);
+                    rotationOfAttack += 0.25f * num1 * (attackCounter % 2 == 0 ? -1 : 1);
                     NPC.Center = player.Center + Vector2.UnitX.RotatedBy(rotationOfAttack) * 500;
                     NPC.Opacity += 1f / 15f;
+                    NPC.rotation = 0;
                     if (num1 <= 0)
                         SetNextAttack(CyberhiveAttacks.DashAfterRotation);
                     break;
                 case CyberhiveAttacks.DashAfterRotation:
                     if (AttackTimer == 1)
                     {
-                        NPC.velocity = (player.Center - NPC.Center).SafeNormalize() * 10;
+                        NPC.velocity = (player.Center - NPC.Center).SafeNormalize() * dashAfterRotationVelocity;
+                        NPC.damage = NPC.defDamage;
                     }
-                    NPC.Opacity -= 1f / 15f;
-                    NPC.velocity *= 0.95f;
-                    if (AttackTimer >= 30)
+                    //if (attackCounter < 3)
+                    NPC.Opacity -= 1f / dashAfterRotationMaxTime;
+                    //NPC.velocity *= 0.98f;
+                    NPC.rotation = NPC.velocity.X * 0.01f;
+                    if (AttackTimer >= dashAfterRotationMaxTime)
                     {
-                        if (attackCounter < 3)
+                        if (attackCounter < rotationCount)
                         {
                             attackCounter++;
                             SetNextAttack(CyberhiveAttacks.Rotating);
@@ -231,14 +299,36 @@ namespace Clamity.Content.Bosses.Cybermind.NPCs
                         }
                     }
                     break;
+
+                case CyberhiveAttacks.Backdash:
+                    if (AttackTimer == 1)
+                    {
+                        if (attackCounter == 0)
+                        {
+                            NPC.Center = player.Center + Vector2.UnitX.RotatedByRandom(MathHelper.TwoPi) * 500;
+
+                        }
+                        NPC.velocity = (NPC.Center - player.Center).SafeNormalize() * normalDashVelocity;
+                        NPC.damage = 0;
+                    }
+                    NPC.Opacity += 1f / backdashTime;
+                    NPC.rotation = NPC.velocity.X * 0.01f;
+                    if (AttackTimer >= backdashTime)
+                    {
+                        SetNextAttack(CyberhiveAttacks.NormalDash);
+                    }
+
+                    break;
                 case CyberhiveAttacks.NormalDash:
                     if (AttackTimer == 1)
                     {
                         //NPC.velocity = (player.Center - NPC.Center).SafeNormalize() * 10;
                         NPC.velocity = -NPC.velocity;
+                        NPC.damage = NPC.defDamage;
                     }
-                    NPC.velocity *= 0.98f;
-                    if (AttackTimer >= 30)
+                    NPC.velocity *= 0.99f;
+                    NPC.rotation = NPC.velocity.X * 0.01f;
+                    if (AttackTimer >= normalDashTime)
                     {
                         if (attackCounter < 4)
                         {
@@ -252,32 +342,29 @@ namespace Clamity.Content.Bosses.Cybermind.NPCs
                         }
                     }
                     break;
-                case CyberhiveAttacks.Backdash:
-                    if (AttackTimer == 1)
-                    {
-                        NPC.velocity = (NPC.Center - player.Center).SafeNormalize() * 15;
-                    }
-                    if (AttackTimer >= 5)
-                    {
-                        SetNextAttack(CyberhiveAttacks.NormalDash);
-                    }
 
-                    break;
                 case CyberhiveAttacks.GasDash:
-                    int sum = preDashMaxTimer + dashMaxTimer;
+                    int sum = preGasDashMaxTimer + gasDashMaxTimer;
                     if (AttackTimer % sum == 1)
                     {
-                        NPC.Center = player.Center + Vector2.UnitX.RotatedByRandom(MathHelper.TwoPi) * 2000;
+                        NPC.Center = player.Center + Vector2.UnitX.RotatedByRandom(MathHelper.TwoPi) * 1000;
                         NPC.velocity = Vector2.Zero;
                     }
-                    if (AttackTimer % sum == preDashMaxTimer + 1)
+                    if (AttackTimer % sum == preGasDashMaxTimer + 1)
                     {
-                        NPC.velocity = (player.Center - NPC.Center).SafeNormalize() * 30;
+                        NPC.velocity = (player.Center - NPC.Center).SafeNormalize() * gasDashVelocity;
                     }
                     /*if (AttackTimer % sum > preDashMaxTimer + 1)
                     {
                         NPC.velocity *= 0.99f;
                     }*/
+                    if (AttackTimer % gasDelay == 0)
+                    {
+                        int proj1 = ModContent.ProjectileType<RadiactiveGas>();
+                        Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, NPC.velocity.SafeNormalize().RotatedByRandom(0.05f) * 2, proj1, NPC.GetProjectileDamageClamity(proj1), 0, Main.myPlayer);
+                    }
+                    NPC.rotation = NPC.velocity.X * 0.1f;
+                    NPC.rotation = NPC.velocity.ToRotation() + MathHelper.PiOver2;
                     if (AttackTimer > sum * 3)
                     {
                         SetNextAttack();
@@ -285,10 +372,22 @@ namespace Clamity.Content.Bosses.Cybermind.NPCs
                     break;
                 #endregion
 
-                #region 2nd stage
                 case CyberhiveAttacks.Transform:
-
+                    NPC.velocity = Main.rand.NextVector2Circular(2, 2);
+                    if (AttackTimer == 300)
+                    {
+                        for (int i = 0; i < 30; i++)
+                        {
+                            Vector2 v = new Vector2(0, -2).RotatedByRandom(1f);
+                            v.Y -= MathF.Abs(v.X);
+                            Gore.NewGore(NPC.GetSource_Death(), NPC.Center, v, Mod.Find<ModGore>("CybermindScale").Type, 1f);
+                        }
+                        transformed = true;
+                        //SetNextAttack(101); CyberhiveAttacks.GooDash
+                        SetNextAttack(CyberhiveAttacks.GooDash);
+                    }
                     break;
+                #region 2nd stage
                 case CyberhiveAttacks.HyperVerticalDash:
 
                     break;
@@ -298,9 +397,9 @@ namespace Clamity.Content.Bosses.Cybermind.NPCs
                 case CyberhiveAttacks.GooDash:
                     if (AttackTimer == 1)
                     {
-                        NPC.Center = player.Center + new Vector2(1000, -1000);
-                        NPC.velocity = new Vector2(-30, 0);
                         NPC.ai[2] = Main.rand.NextBool() ? -1 : 1;
+                        NPC.Center = player.Center + new Vector2(1000 * NPC.ai[2], -500);
+                        NPC.velocity = new Vector2(-30, 0);
                         NPC.velocity *= NPC.ai[2];
                     }
 
@@ -313,6 +412,7 @@ namespace Clamity.Content.Bosses.Cybermind.NPCs
                     }
                     if (AttackTimer > 100)
                     {
+                        NPC.ai[2] = 0;
                         SetNextAttack();
                     }
                     break;
@@ -350,33 +450,48 @@ namespace Clamity.Content.Bosses.Cybermind.NPCs
             SetNextAttack((int)nextAttack);
         }
         #endregion
+        public override void OnKill()
+        {
+            Gore.NewGore(NPC.GetSource_Death(), NPC.Center, Main.rand.NextVector2Circular(2, 2), Mod.Find<ModGore>("CybermindCore").Type, 1f);
+            Gore.NewGore(NPC.GetSource_Death(), NPC.Center, Main.rand.NextVector2Circular(2, 2), Mod.Find<ModGore>("CybermindLeg").Type, 1f);
+            Gore.NewGore(NPC.GetSource_Death(), NPC.Center, Main.rand.NextVector2Circular(2, 2), Mod.Find<ModGore>("CybermindLeg").Type, 1f);
+            Gore.NewGore(NPC.GetSource_Death(), NPC.Center, Main.rand.NextVector2Circular(2, 2), Mod.Find<ModGore>("CybermindLeg").Type, 1f);
+            Gore.NewGore(NPC.GetSource_Death(), NPC.Center, Main.rand.NextVector2Circular(2, 2), Mod.Find<ModGore>("CybermindLeg").Type, 1f);
 
+            ClamitySystem.downedCyberhive = true;
+            CalamityNetcode.SyncWorld();
+        }
         #region Drawing
         public override void FindFrame(int frameHeight)
         {
-            NPC.frame = new Rectangle(0, IsPhaseTwo ? 136 : 0, 198, 136);
+            NPC.frame = new Rectangle(0, transformed ? 136 : 0, 198, 136);
         }
         public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            int particleTimer = preDashMaxTimer;
-            if (GetAttack == CyberhiveAttacks.GasDash && AttackTimer < particleTimer)
+            int particleTimer = Attack % (preGasDashMaxTimer + gasDashMaxTimer);
+            Player player = Main.player[NPC.target];
+            if (GetAttack == CyberhiveAttacks.GasDash && particleTimer < preGasDashMaxTimer)
             {
                 SpriteEffects effects = SpriteEffects.None;
-                if (NPC.spriteDirection == 1)
+                /*if (NPC.spriteDirection == 1)
                 {
                     effects = SpriteEffects.FlipHorizontally;
-                }
+                }*/
                 Texture2D t = ModContent.Request<Texture2D>("CalamityMod/Particles/BloomLine").Value;
-                Color color3 = Color.Lerp(Color.Green, Color.Lime, AttackTimer / particleTimer);
+                Color color3 = Color.Lerp(Color.Green, Color.Lime, particleTimer / preGasDashMaxTimer);
+                spriteBatch.End();
+                spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.GameViewMatrix.TransformationMatrix);
                 spriteBatch.Draw(t,
                                  NPC.Center /*- base.NPC.rotation.ToRotationVector2() * base.NPC.spriteDirection * 104f*/ - screenPos,
                                  null,
                                  color3,
-                                 base.NPC.rotation + MathF.PI / 2f,
+                                 (player.Center - NPC.Center).ToRotation(),
                                  new Vector2((float)t.Width / 2f, t.Height),
-                                 new Vector2(1f * AttackTimer / particleTimer, 4200f),
+                                 new Vector2(1f * particleTimer / preGasDashMaxTimer, 4200f),
                                  effects,
                                  0f);
+                spriteBatch.End();
+                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.GameViewMatrix.TransformationMatrix);
             }
         }
         #endregion

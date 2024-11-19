@@ -45,6 +45,7 @@ namespace Clamity.Commons
             if (!Main.dedServ)
             {
                 LoadShaders();
+                LoadHeadIcon();
             }
         }
         private static bool EnchantableAcc(Item item) => !item.IsAir && item.maxStack == 1 && item.ammo == AmmoID.None && item.accessory;

@@ -96,6 +96,8 @@ Boss: {
 	WallOfBronzeLaserBeamStart.DisplayName: Плазменный луч
 	WallOfBronzeClawProjectile.DisplayName: Бронзовая клешна
 	WoBDeathrayStart.DisplayName: Плазменный смертельный луч
+	// RadiactiveBlob.DisplayName: Radiactive Blob
+	// RadiactiveGas.DisplayName: Radiactive Gas
 }
 
 // ShortstrikeEffect.DisplayName: Shortstrike Effect

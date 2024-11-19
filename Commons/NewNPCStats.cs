@@ -1,6 +1,8 @@
 ﻿using CalamityMod.Projectiles.Boss;
 using CalamityMod.World;
 using Clamity.Content.Bosses.Clamitas.NPCs;
+using Clamity.Content.Bosses.Cybermind.NPCs;
+using Clamity.Content.Bosses.Cybermind.Projectiles;
 using Clamity.Content.Bosses.Pyrogen.NPCs;
 using Clamity.Content.Bosses.Pyrogen.Projectiles;
 using Clamity.Content.Bosses.WoB.NPCs;
@@ -15,6 +17,8 @@ namespace Clamity.Commons
 {
     public static class NewNPCStats
     {
+        private const double ExpertContactVanillaMultiplier = 2D;
+        private const double MasterContactVanillaMultiplier = 3D;
         public static void Load()
         {
 
@@ -71,12 +75,30 @@ namespace Clamity.Commons
                 {
                   new Tuple<int, int>(ModContent.NPCType<WallOfBronzeTorret>(), ModContent.ProjectileType<WallOfBronzeTorretBlast>()),
                   new int[5]{ 300, 330, 360, 410, 450 }
+                },
+                {
+                  new Tuple<int, int>(ModContent.NPCType<Cyberhive>(), ModContent.ProjectileType<RadiactiveBlob>()),
+                  new int[5]{ 88, 156, 184, 212, 318 }
+                },
+                {
+                  new Tuple<int, int>(ModContent.NPCType<Cyberhive>(), ModContent.ProjectileType<RadiactiveGas>()),
+                  new int[5]{ 88, 156, 184, 212, 318 }
                 }
+            };
+            EnemyStats.ContactDamageValues = new SortedDictionary<int, int[]>
+            {
+                { ModContent.NPCType<Cyberhive>(), new int[] { 145, 220, 242, 264, 429 } },
+            };
+            EnemyStats.ExpertDamageMultiplier = new SortedDictionary<int, double>
+            {
+                { ModContent.NPCType<Cyberhive>(), 0.8f }
             };
         }
         public static void UnLoad()
         {
             EnemyStats.ProjectileDamageValues = null;
+            EnemyStats.ContactDamageValues = null;
+            EnemyStats.ExpertDamageMultiplier = null;
         }
         public static int GetProjectileDamageClamity(this NPC npc, int projType)
         {
@@ -96,6 +118,38 @@ namespace Clamity.Commons
             if (CalamityWorld.revenge)
                 return projectileDamage1;
             return !Main.expertMode ? num2 : num3;
+        }
+        public static void GetNPCDamageClamity(this NPC npc)
+        {
+            double damageAdjustment = GetExpertDamageMultiplierClamity(npc) * (Main.masterMode ? MasterContactVanillaMultiplier : ExpertContactVanillaMultiplier);
+
+            // Safety check: If for some reason the contact damage array is not initialized yet, set the NPC's damage to 1.
+            bool exists = EnemyStats.ContactDamageValues.TryGetValue(npc.type, out int[] contactDamage);
+            if (!exists)
+                npc.damage = 1;
+
+            int normalDamage = contactDamage[0];
+            int expertDamage = contactDamage[1] == -1 ? -1 : (int)Math.Round(contactDamage[1] / damageAdjustment);
+            int revengeanceDamage = contactDamage[2] == -1 ? -1 : (int)Math.Round(contactDamage[2] / damageAdjustment);
+            int deathDamage = contactDamage[3] == -1 ? -1 : (int)Math.Round(contactDamage[3] / damageAdjustment);
+            int masterDamage = contactDamage[4] == -1 ? -1 : (int)Math.Round(contactDamage[4] / damageAdjustment);
+
+            // If the assigned value would be -1, don't actually assign it. This allows for conditionally disabling the system.
+            int damageToUse = Main.masterMode ? masterDamage : CalamityWorld.death ? deathDamage : CalamityWorld.revenge ? revengeanceDamage : Main.expertMode ? expertDamage : normalDamage;
+            if (damageToUse != -1)
+                npc.damage = damageToUse;
+        }
+        /// <summary>
+        /// Gets the Expert/Master Mode damage multiplier for the specified boss NPC.
+        /// Useful for determining the base damage a boss NPC should have prior to being run through the Expert/Master scaling code.
+        /// </summary>
+        /// <param name="npc">The NPC you want to get the damage multiplier for</param>
+        /// <param name="master">Whether Master Mode is enabled or not</param>
+        /// <returns></returns>
+        public static double GetExpertDamageMultiplierClamity(this NPC npc, bool? master = null)
+        {
+            bool exists = EnemyStats.ExpertDamageMultiplier.TryGetValue(npc.type, out double damageMult);
+            return exists ? damageMult : 1D;
         }
         [StructLayout(LayoutKind.Sequential, Size = 1)]
         internal struct EnemyStats
