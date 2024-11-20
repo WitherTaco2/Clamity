@@ -83,6 +83,10 @@ namespace Clamity.Commons
                 {
                   new Tuple<int, int>(ModContent.NPCType<Cyberhive>(), ModContent.ProjectileType<RadiactiveGas>()),
                   new int[5]{ 88, 156, 184, 212, 318 }
+                },
+                {
+                  new Tuple<int, int>(ModContent.NPCType<Cyberhive>(), ModContent.ProjectileType<GammaRay>()),
+                  new int[5]{ 100, 176, 210, 245, 375 }
                 }
             };
             EnemyStats.ContactDamageValues = new SortedDictionary<int, int[]>

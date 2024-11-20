@@ -43,7 +43,7 @@ namespace Clamity.Content.Bosses.Cybermind.Projectiles
                     return 0f;
 
                 Vector3 direction3D = Vector3.Transform(Vector3.UnitX, RotationMatrix);
-                Vector2 direction = new(direction3D.X, -direction3D.Y * Cyberhive.Myself.As<Cyberhive>().LaserLengthFactor);
+                Vector2 direction = new(direction3D.X, -direction3D.Y);
                 return Utilities.InverseLerp(MathHelper.PiOver4, 0f, direction.AngleBetween(Vector2.UnitY));
             }
         }
@@ -107,14 +107,14 @@ namespace Clamity.Content.Bosses.Cybermind.Projectiles
             // In 3D, however, the laser orientation is controlled by custom rotation values that are inherited from Noxus.
             // The matrix is stored as a variable instead of a property since having it used 200 times every frame for NPC collision loops would not be ideal.
             Projectile.velocity = Vector2.UnitX;
-            Rotation = Cyberhive.Myself.As<Cyberhive>().LaserRotation;
+            Rotation = new Vector3(0, MathHelper.PiOver2, 0);
             RotationMatrix = CreateRotationMatrix(Rotation) * Matrix.CreateScale(1f, 1f / SquishFactor, 1f);
 
             if (Time >= Lifetime)
                 Projectile.Kill();
 
             // Make the laser quickly move outward.
-            LaserLength = MathF.Pow(Utilities.InverseLerp(4f, 30f, Time), 2.4f) * MaxLaserLength * SquishFactor * Cyberhive.Myself.As<Cyberhive>().LaserLengthFactor;
+            LaserLength = MathF.Pow(Utilities.InverseLerp(4f, 30f, Time), 2.4f) * MaxLaserLength * SquishFactor;
 
             // And create bright light.
             Lighting.AddLight(Projectile.Center, Color.Purple.ToVector3() * 1.4f);
@@ -158,7 +158,7 @@ namespace Clamity.Content.Bosses.Cybermind.Projectiles
             if (Cyberhive.Myself is null)
                 return 0f;
 
-            return Projectile.width * Cyberhive.Myself.As<Cyberhive>().LaserSquishFactor * 1.36f + completionRatio * 170f;
+            return Projectile.width * 1.36f + completionRatio * 170f;
         }
 
         public Color ColorFunction(float completionRatio)
@@ -203,23 +203,23 @@ namespace Clamity.Content.Bosses.Cybermind.Projectiles
             Color bloomFlareColor = Color.Lerp(Color.Wheat, Color.Blue, 0.7f);
             float bloomFlareRotation = Main.GlobalTimeWrappedHourly * 1.76f;
             float bloomFlareScale = Projectile.scale * 0.4f;
-            Main.spriteBatch.Draw(MiscTexturesRegistry.BloomFlare, drawPosition, null, bloomFlareColor, -bloomFlareRotation, BloomFlare.Size() * 0.5f, bloomFlareScale, 0, 0f);
+            Main.spriteBatch.Draw(MiscTexturesRegistry.BloomFlare.Value, drawPosition, null, bloomFlareColor, -bloomFlareRotation, ClamityAssets.BloomFlare.Size() * 0.5f, bloomFlareScale, 0, 0f);
 
             bloomFlareColor = Color.Lerp(Color.Wheat, Main.hslToRgb((Main.GlobalTimeWrappedHourly * 0.2f + 0.5f) % 1f, 1f, 0.55f), 0.7f);
             bloomFlareColor = Color.Lerp(bloomFlareColor, Color.Magenta, 0.63f);
-            Main.spriteBatch.Draw(MiscTexturesRegistry.BloomFlare, drawPosition, null, bloomFlareColor, bloomFlareRotation, BloomFlare.Size() * 0.5f, bloomFlareScale, 0, 0f);
+            Main.spriteBatch.Draw(MiscTexturesRegistry.BloomFlare.Value, drawPosition, null, bloomFlareColor, bloomFlareRotation, ClamityAssets.BloomFlare.Size() * 0.5f, bloomFlareScale, 0, 0f);
         }
 
         public void DrawLaser()
         {
-            var laserShader = ShaderManager.GetShader("NoxusBoss.NoxusLaserShader");
+            var laserShader = ShaderManager.GetShader("Clamity.GammaLaserShader");
             BeamDrawer ??= new PrimitiveTrail3D(WidthFunction, ColorFunction, null, true, laserShader);
 
-            laserShader.SetTexture(StreakNightmareDeathray, 1);
-            laserShader.SetTexture(StreakLightning, 2, SamplerState.LinearWrap);
-            laserShader.SetTexture(StreakNightmareDeathrayOverlay, 3, SamplerState.LinearWrap);
-            laserShader.SetTexture(DendriticNoise, 4);
-            laserShader.SetTexture(ViscousNoise, 5);
+            laserShader.SetTexture(ClamityAssets.StreakNightmareDeathray, 1);
+            laserShader.SetTexture(ClamityAssets.StreakLightning, 2, SamplerState.LinearWrap);
+            laserShader.SetTexture(ClamityAssets.StreakNightmareDeathrayOverlay, 3, SamplerState.LinearWrap);
+            laserShader.SetTexture(ClamityAssets.DendriticNoise, 4);
+            laserShader.SetTexture(ClamityAssets.ViscousNoise, 5);
 
             if (Time >= 2f)
             {

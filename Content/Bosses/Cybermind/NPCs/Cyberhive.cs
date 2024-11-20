@@ -72,7 +72,8 @@ namespace Clamity.Content.Bosses.Cybermind.NPCs
         private int gasDelay = 5;
         private float gasDashVelocity = 75;
 
-
+        private int preDeathrayTime = 60;
+        private int deathrayTime = 600;
 
         private bool IsPhaseTwo => (NPC.life / (float)NPC.lifeMax) < 0.5f;
         public int Attack
@@ -182,6 +183,9 @@ namespace Clamity.Content.Bosses.Cybermind.NPCs
             writer.Write(gasDashMaxTimer);
             writer.Write(gasDelay);
             writer.Write(gasDashVelocity);
+
+            writer.Write(preDeathrayTime);
+            writer.Write(deathrayTime);
         }
         public override void ReceiveExtraAI(BinaryReader reader)
         {
@@ -203,6 +207,9 @@ namespace Clamity.Content.Bosses.Cybermind.NPCs
             gasDashMaxTimer = reader.ReadInt32();
             gasDelay = reader.ReadInt32();
             gasDashVelocity = reader.ReadSingle();
+
+            preDeathrayTime = reader.ReadInt32();
+            deathrayTime = reader.ReadInt32();
         }
 
         public override void AI()
@@ -405,7 +412,31 @@ namespace Clamity.Content.Bosses.Cybermind.NPCs
 
                     break;
                 case CyberhiveAttacks.GammaDeathRay:
-
+                    if (AttackTimer == 1)
+                    {
+                        NPC.ai[2] = Main.rand.NextBool() ? -1 : 1;
+                        NPC.Center = player.Center + new Vector2(1000 * NPC.ai[2], 100);
+                        NPC.velocity = new Vector2(-10, 0);
+                    }
+                    if (AttackTimer < preDeathrayTime)
+                    {
+                        NPC.velocity.X += 2f;
+                        NPC.Center = new Vector2(NPC.Center.X + NPC.velocity.X, player.Center.Y + 100);
+                    }
+                    else
+                    {
+                        if (AttackTimer == preDeathrayTime + 2)
+                        {
+                            NPC.velocity = -NPC.velocity;
+                            NPC.velocity.X = MathHelper.Clamp(NPC.velocity.X, -30, 30);
+                            int projType = ModContent.ProjectileType<GammaRay>();
+                            Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Vector2.Zero, projType, NPC.GetProjectileDamageClamity(projType), 0, Main.myPlayer, deathrayTime);
+                        }
+                    }
+                    if (AttackTimer >= (preDeathrayTime + deathrayTime))
+                    {
+                        SetNextAttack();
+                    }
                     break;
                 case CyberhiveAttacks.GooDash:
                     if (AttackTimer == 1)
