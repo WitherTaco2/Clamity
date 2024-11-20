@@ -41,6 +41,8 @@ namespace Clamity
         public bool eidolonAmulet;
         public bool metalWings;
         public bool seaShell;
+        public bool theUnchanging;
+        public int theUnchangingPower;
 
         //Armor
         public bool inflicingMeleeFrostburn;
@@ -50,6 +52,7 @@ namespace Clamity
         //Minion
         public bool hellsBell;
         public bool guntera;
+        public bool concentration;
 
         //Buffs-Debuffs
         public bool titanScale;
@@ -79,12 +82,14 @@ namespace Clamity
             eidolonAmulet = false;
             metalWings = false;
             seaShell = false;
+            theUnchanging = false;
 
             inflicingMeleeFrostburn = false;
             frozenParrying = false;
 
             hellsBell = false;
             guntera = false;
+            concentration = false;
 
             FlyingChair = false;
             FlyingChairPower = 12;
@@ -159,6 +164,13 @@ namespace Clamity
                 else
                     Player.wingTime += recivingFlyTime;
             }
+            if (theUnchanging)
+            {
+                info.Damage -= theUnchangingPower;
+                theUnchangingPower += info.Damage / 5;
+                if (theUnchangingPower > 100)
+                    theUnchangingPower = 100;
+            }
         }
         public override void ModifyHurt(ref Player.HurtModifiers modifiers)
         {
@@ -198,6 +210,13 @@ namespace Clamity
         {
             if (titanScaleTimer > 0)
                 titanScaleTimer--;
+            if (theUnchangingPower > 0)
+            {
+                theUnchangingPower = (int)(theUnchangingPower * 0.75f);
+                if (theUnchangingPower < 10)
+                    theUnchangingPower = 0;
+            }
+
         }
         public override void PostUpdateMiscEffects()
         {

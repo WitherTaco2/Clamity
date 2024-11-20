@@ -13,8 +13,8 @@ namespace Clamity.Content.Bosses.KosFragmentBosses.CeasingVoid.Drops
         public override void SetDefaults()
         {
             Item.width = Item.height = 72;
-            Item.rare = ItemRarityID.Pink;
-            Item.value = CalamityGlobalItem.Rarity5BuyPrice;
+            Item.rare = ItemRarityID.Orange;
+            Item.value = CalamityGlobalItem.RarityOrangeBuyPrice;
 
             Item.useAnimation = Item.useTime = 35;
             Item.useStyle = ItemUseStyleID.Swing;
@@ -23,7 +23,7 @@ namespace Clamity.Content.Bosses.KosFragmentBosses.CeasingVoid.Drops
 
             Item.damage = 70;
             Item.DamageType = DamageClass.Melee;
-            Item.knockBack = 7f;
+            Item.knockBack = 3f;
         }
         public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
         {
