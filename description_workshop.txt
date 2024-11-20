@@ -5,8 +5,8 @@ Mod has official support of English and Russian Localization
 [list]
 	[*] 3 bosses: Clamitas, Pyrogen and Wall of Bronze
 	[*] over 25 old and new weapons (shortswords included)
-	[*] new post-moonlord biome - Frozen Hell
-	[*] 1 armor set
+	[*] new late post-moonlord biome - Frozen Hell
+	[*] 2 armor set
 	[*] new foods
 	[*] And more
 [/list]

@@ -22,7 +22,7 @@ namespace Clamity.Content.Bosses.Clamitas.Drop
             Item.height = 40;
             Item.maxStack = 9999;
             Item.rare = -13;
-            base.Item.master = true;
+            Item.master = true;
             Item.value = Item.buyPrice(0, 5);
         }
     }
@@ -60,9 +60,9 @@ namespace Clamity.Content.Bosses.Clamitas.Drop
         public override void SetStaticDefaults()
         {
             RegisterItemDrop(ModContent.ItemType<ClamitasRelic>());
-            Main.tileShine[base.Type] = 400;
-            Main.tileFrameImportant[base.Type] = true;
-            TileID.Sets.InteractibleByNPCs[base.Type] = true;
+            Main.tileShine[Type] = 400;
+            Main.tileFrameImportant[Type] = true;
+            TileID.Sets.InteractibleByNPCs[Type] = true;
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x4);
             TileObjectData.newTile.LavaDeath = false;
             TileObjectData.newTile.DrawYOffset = 2;
@@ -71,7 +71,7 @@ namespace Clamity.Content.Bosses.Clamitas.Drop
             TileObjectData.newAlternate.CopyFrom(TileObjectData.newTile);
             TileObjectData.newAlternate.Direction = TileObjectDirection.PlaceRight;
             TileObjectData.addAlternate(1);
-            TileObjectData.addTile(base.Type);
+            TileObjectData.addTile(Type);
             AddMapEntry(new Color(233, 207, 94), Language.GetText("MapObject.Relic"));
         }
 
@@ -106,7 +106,7 @@ namespace Clamity.Content.Bosses.Clamitas.Drop
                 Vector2 origin = rectangle.Size() / 2f;
                 Vector2 vector2 = p.ToWorldCoordinates(24f, 64f);
                 Color color = Lighting.GetColor(p.X, p.Y);
-                SpriteEffects effects = ((tile.TileFrameY / 72 != 0) ? SpriteEffects.FlipHorizontally : SpriteEffects.None);
+                SpriteEffects effects = tile.TileFrameY / 72 != 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
                 float num = (float)Math.Sin(Main.GlobalTimeWrappedHourly * (MathF.PI * 2f) / 5f);
                 Vector2 vector3 = vector2 + vector - Main.screenPosition + new Vector2(0f, -40f) + new Vector2(0f, num * 4f);
                 spriteBatch.Draw(value, vector3, rectangle, color, 0f, origin, 1f, effects, 0f);

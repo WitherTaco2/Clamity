@@ -4,7 +4,7 @@ using Terraria;
 
 namespace Clamity.Content.Items.Weapons.Melee
 {
-    public class BaseSlash : ExobeamSlash
+    public abstract class BaseSlash : ExobeamSlash
     {
         public override string Texture => "Clamity/Content/Items/Weapons/Melee/BaseSlash";
         public virtual float Scale => 1f;

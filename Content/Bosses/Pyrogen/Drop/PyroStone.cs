@@ -28,7 +28,7 @@ namespace Clamity.Content.Bosses.Pyrogen.Drop
         {
             Item.width = 40;
             Item.height = 40;
-            Item.value = CalamityGlobalItem.Rarity5BuyPrice;
+            Item.value = CalamityGlobalItem.RarityPinkBuyPrice;
             Item.rare = ItemRarityID.Pink;
             Item.accessory = true;
         }
@@ -37,7 +37,7 @@ namespace Clamity.Content.Bosses.Pyrogen.Drop
     }
     public class PyroShieldAccessory : ModProjectile, ILocalizedModType, IModType
     {
-        public new string LocalizationCategory => "Projectiles.Typeless";
+        public new string LocalizationCategory => "Projectiles.Classless";
 
         public Player Owner => Main.player[Projectile.owner];
 

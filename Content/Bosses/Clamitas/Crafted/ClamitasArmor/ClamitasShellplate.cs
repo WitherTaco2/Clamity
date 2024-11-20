@@ -17,11 +17,11 @@ namespace Clamity.Content.Bosses.Clamitas.Crafted.ClamitasArmor
         public new string LocalizationCategory => "Items.Armor.Clamitas";
         public override void SetDefaults()
         {
-            base.Item.width = 30;
-            base.Item.height = 22;
-            base.Item.value = CalamityGlobalItem.Rarity5BuyPrice;
-            base.Item.rare = ItemRarityID.Lime;
-            base.Item.defense = 22;
+            Item.width = 30;
+            Item.height = 22;
+            Item.value = CalamityGlobalItem.RarityLimeBuyPrice;
+            Item.rare = ItemRarityID.Lime;
+            Item.defense = 22;
         }
 
         public override void UpdateEquip(Player player)

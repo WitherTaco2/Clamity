@@ -1,6 +1,7 @@
 ﻿using CalamityMod;
 using CalamityMod.Buffs.DamageOverTime;
 using CalamityMod.Dusts;
+using CalamityMod.Items;
 using CalamityMod.Items.Placeables;
 using CalamityMod.Items.Weapons.Ranged;
 using CalamityMod.Projectiles.Ranged;
@@ -21,6 +22,7 @@ namespace Clamity.Content.Bosses.Clamitas.Crafted.Weapons
         {
             base.SetDefaults();
             Item.rare = ItemRarityID.Lime;
+            Item.value = CalamityGlobalItem.RarityLimeBuyPrice;
             Item.damage = 56;
             Item.useTime = Item.useAnimation = 10;
             Item.shoot = ModContent.ProjectileType<DepthsEchoRifleProjectile>();
@@ -94,7 +96,7 @@ namespace Clamity.Content.Bosses.Clamitas.Crafted.Weapons
     }
     public class DepthsEchoRifleProjectileSplit : ClamorRifleProjSplit
     {
-        public override string Texture => "Clamity/Content/Bosses/Clamitas/Crafted/Weapons/DepthsEchoRifleProjectile";
+        public override string Texture => ModContent.GetInstance<DepthsEchoRifleProjectile>().Texture;
         public override void AI()
         {
             Projectile.rotation += 0.15f;

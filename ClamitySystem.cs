@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -30,6 +31,8 @@ namespace Clamity
                 }
             }
         }
+        public Dictionary<int, List<int>> enchantebleAccessories;
+
         internal static bool _downedClamitas;
         public static bool downedClamitas
         {
@@ -93,6 +96,21 @@ namespace Clamity
             downedClamitas = false;
             downedPyrogen = false;
             downedWallOfBronze = false;
+        }
+        public override void Load()
+        {
+            enchantebleAccessories = new();
+        }
+        public override void Unload()
+        {
+            enchantebleAccessories = null;
+        }
+        private void AddEnchantebleAccessories(int acc, params int[] projList)
+        {
+            foreach (int i in projList)
+            {
+                enchantebleAccessories.Add(acc, projList.ToList<int>());
+            }
         }
         public override void OnWorldLoad()
         {

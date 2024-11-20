@@ -24,7 +24,7 @@ namespace Clamity.Content.Items.Weapons.Classless
         {
             Item.DamageType = ModContent.GetInstance<AverageDamageClass>();
             Item.width = 60;
-            Item.damage = 200;
+            Item.damage = 400;
             Item.rare = ModContent.RarityType<Violet>();
             Item.useAnimation = Item.useTime = 10;
             Item.useStyle = 5;
@@ -33,7 +33,7 @@ namespace Clamity.Content.Items.Weapons.Classless
             Item.autoReuse = true;
             Item.noMelee = true;
             Item.height = 50;
-            Item.value = CalamityGlobalItem.Rarity15BuyPrice;
+            Item.value = CalamityGlobalItem.RarityVioletBuyPrice;
             Item.shoot = ModContent.ProjectileType<EyeOfNovaProjectile>();
             Item.shootSpeed = 12f;
         }
@@ -61,7 +61,7 @@ namespace Clamity.Content.Items.Weapons.Classless
     }
     public class EyeOfNovaProjectile : ModProjectile, ILocalizedModType, IModType
     {
-        public new string LocalizationCategory => "Projectiles.Typeless";
+        public new string LocalizationCategory => "Projectiles.Classless";
 
         public override void SetDefaults()
         {
@@ -255,13 +255,14 @@ namespace Clamity.Content.Items.Weapons.Classless
         {
             target.AddBuff(ModContent.BuffType<MarkedforDeath>(), 480);
             target.AddBuff(ModContent.BuffType<Vaporfied>(), 480);
+            target.AddBuff(ModContent.BuffType<MiracleBlight>(), 480);
             target.AddBuff(BuffID.Ichor, 480);
             if (target.canGhostHeal && !Main.player[Projectile.owner].moonLeech)
             {
                 Player obj = Main.player[Projectile.owner];
-                obj.statLife++;
+                obj.statLife += 2;
                 obj.statMana += 25;
-                obj.HealEffect(1);
+                obj.HealEffect(2);
                 obj.ManaEffect(25);
             }
         }

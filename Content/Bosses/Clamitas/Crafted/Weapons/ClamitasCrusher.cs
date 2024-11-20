@@ -1,5 +1,6 @@
 ﻿using CalamityMod;
 using CalamityMod.Buffs.DamageOverTime;
+using CalamityMod.Items;
 using CalamityMod.Items.Materials;
 using CalamityMod.Items.Weapons.Melee;
 using CalamityMod.Projectiles.Melee;
@@ -18,6 +19,7 @@ namespace Clamity.Content.Bosses.Clamitas.Crafted.Weapons
         {
             base.SetDefaults();
             Item.rare = ItemRarityID.Lime;
+            Item.value = CalamityGlobalItem.RarityLimeBuyPrice;
             Item.damage = 300;
             Item.shoot = ModContent.ProjectileType<ClamitasCrusherProjectile>();
             Item.shootSpeed = 25f;

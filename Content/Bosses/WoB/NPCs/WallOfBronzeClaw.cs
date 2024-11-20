@@ -6,7 +6,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
-using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
@@ -38,13 +37,13 @@ namespace Clamity.Content.Bosses.WoB.NPCs
             NPC.canGhostHeal = false;
             NPC.noGravity = true;
             NPC.noTileCollide = true;
-            NPC.DeathSound = new SoundStyle?(CommonCalamitySounds.ExoDeathSound);
-            NPC.HitSound = new SoundStyle?(SoundID.NPCHit4);
+            NPC.DeathSound = CommonCalamitySounds.ExoDeathSound;
+            NPC.HitSound = SoundID.NPCHit4;
             NPC.netUpdate = true;
             NPC.netAlways = true;
             NPC.hide = true;
-            NPC.Calamity().VulnerableToSickness = new bool?(false);
-            NPC.Calamity().VulnerableToElectricity = new bool?(true);
+            NPC.Calamity().VulnerableToSickness = false;
+            NPC.Calamity().VulnerableToElectricity = true;
             if (Main.getGoodWorld)
                 NPC.scale = 0.75f;
         }

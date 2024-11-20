@@ -5,7 +5,7 @@ using CalamityMod.Items;
 using CalamityMod.Items.Materials;
 using CalamityMod.Items.Weapons.Rogue;
 using CalamityMod.Rarities;
-using Clamity.Content.Items.Weapons.Melee.Shortswords;
+using Clamity.Content.Projectiles;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
