@@ -11,7 +11,7 @@ using Terraria.ModLoader;
 
 namespace Clamity.Content.Bosses.Pyrogen.Projectiles
 {
-    public class FireBarrage : BrimstoneBarrage
+    public class SmallFireball : BrimstoneBarrage
     {
         public override void SetStaticDefaults()
         {
@@ -26,9 +26,9 @@ namespace Clamity.Content.Bosses.Pyrogen.Projectiles
 
         }
     }
-    public class FireBarrageHoming : FireBarrage
+    public class SmallFireballHoming : SmallFireball
     {
-        public override string Texture => "Clamity/Content/Bosses/Pyrogen/Projectiles/FireBarrage";
+        public override string Texture => ModContent.GetInstance<SmallFireball>().Texture;
         public int TargetIndex = -1;
         public override void AI()
         {
@@ -57,7 +57,7 @@ namespace Clamity.Content.Bosses.Pyrogen.Projectiles
             }
         }
     }
-    public class Fireblast : SCalBrimstoneFireblast
+    public class InfernoFireball : SCalBrimstoneFireblast
     {
         public override void SetStaticDefaults()
         {
@@ -82,7 +82,7 @@ namespace Clamity.Content.Bosses.Pyrogen.Projectiles
             {
                 int num = (bossRushActive ? 20 : (flag ? 16 : (flag2 ? 14 : (flag3 ? 12 : 8))));
                 float num2 = MathF.PI * 2f / (float)num;
-                int type = ModContent.ProjectileType<FireBarrage>();
+                int type = ModContent.ProjectileType<SmallFireball>();
                 float num3 = 7f;
                 Vector2 spinningpoint = new Vector2(0f, 0f - num3);
                 for (int i = 0; i < num; i++)

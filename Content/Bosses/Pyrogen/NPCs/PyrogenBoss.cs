@@ -53,6 +53,16 @@ namespace Clamity.Content.Bosses.Pyrogen.NPCs
             return true;
         }
     }
+    public enum PyrogenAttacks : int
+    {
+        Spawn = 0,
+        Firewall,
+        FlameBombs,
+        FireballSucking,
+        InfernoPillars,
+
+        Death = 99
+    }
     [AutoloadBossHead]
     public class PyrogenBoss : ModNPC
     {
@@ -172,9 +182,10 @@ namespace Clamity.Content.Bosses.Pyrogen.NPCs
 
             Player player = Main.player[NPC.target];
             bool bossRushActive = BossRushEvent.BossRushActive;
-            bool flag = Main.expertMode || bossRushActive;
-            bool flag2 = CalamityWorld.revenge || bossRushActive;
-            bool flag3 = CalamityWorld.death || bossRushActive;
+            bool expertOrBR = Main.expertMode || bossRushActive;
+            bool refOrBR = CalamityWorld.revenge || bossRushActive;
+            bool deathOrBR = CalamityWorld.death || bossRushActive;
+
             if (!player.ZoneDesert && !bossRushActive)
             {
                 if (biomeEnrageTimer > 0)
@@ -188,7 +199,7 @@ namespace Clamity.Content.Bosses.Pyrogen.NPCs
             }
 
             bool num = biomeEnrageTimer <= 0 || bossRushActive;
-            float num2 = flag3 ? 0.5f : 0f;
+            float num2 = deathOrBR ? 0.5f : 0f;
             if (num)
             {
                 NPC.Calamity().CurrentlyEnraged = !bossRushActive;
@@ -206,15 +217,15 @@ namespace Clamity.Content.Bosses.Pyrogen.NPCs
             }
 
             float num3 = NPC.life / (float)NPC.lifeMax;
-            bool flag4 = num3 < (flag2 ? 0.85f : 0.8f) || flag3;
-            bool flag5 = num3 < (flag3 ? 0.8f : flag2 ? 0.7f : 0.6f);
-            bool flag6 = num3 < (flag3 ? 0.6f : flag2 ? 0.55f : 0.4f);
-            bool flag7 = num3 < (flag3 ? 0.5f : flag2 ? 0.45f : 0.3f);
-            bool flag8 = num3 < (flag3 ? 0.35f : 0.25f) && flag2;
-            bool flag9 = num3 < (flag3 ? 0.25f : 0.15f) && flag2;
-            int num4 = ModContent.ProjectileType<FireBarrage>();
-            int num5 = ModContent.ProjectileType<Fireblast>();
-            int num6 = ModContent.ProjectileType<FireBarrageHoming>();
+            bool flag4 = num3 < (refOrBR ? 0.85f : 0.8f) || deathOrBR;
+            bool flag5 = num3 < (deathOrBR ? 0.8f : refOrBR ? 0.7f : 0.6f);
+            bool flag6 = num3 < (deathOrBR ? 0.6f : refOrBR ? 0.55f : 0.4f);
+            bool flag7 = num3 < (deathOrBR ? 0.5f : refOrBR ? 0.45f : 0.3f);
+            bool flag8 = num3 < (deathOrBR ? 0.35f : 0.25f) && refOrBR;
+            bool flag9 = num3 < (deathOrBR ? 0.25f : 0.15f) && refOrBR;
+            int num4 = ModContent.ProjectileType<SmallFireball>();
+            int num5 = ModContent.ProjectileType<InfernoFireball>();
+            int num6 = ModContent.ProjectileType<SmallFireballHoming>();
             int type = 235;
             if (!Main.zenithWorld)
             {
@@ -255,7 +266,7 @@ namespace Clamity.Content.Bosses.Pyrogen.NPCs
                 NPC.ai[2] = 0f;
                 if (NPC.localAI[1] == -1f)
                 {
-                    NPC.localAI[1] = flag3 ? 840f : flag ? 1220f : 1580f;
+                    NPC.localAI[1] = deathOrBR ? 840f : expertOrBR ? 1220f : 1580f;
                 }
 
                 if (NPC.localAI[1] > 0f)
@@ -722,7 +733,7 @@ namespace Clamity.Content.Bosses.Pyrogen.NPCs
                 {
                     if (randomAttack < 25)
                     {
-                        Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, -Vector2.UnitY, ModContent.ProjectileType<Fireblast>(), NPC.GetProjectileDamageClamity(ModContent.ProjectileType<Fireblast>()), 1f, Main.myPlayer);
+                        Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, -Vector2.UnitY, ModContent.ProjectileType<InfernoFireball>(), NPC.GetProjectileDamageClamity(ModContent.ProjectileType<InfernoFireball>()), 1f, Main.myPlayer);
                         randomAttack = -1;
                     }
                     else if (randomAttack >= 25 && randomAttack < 100)
@@ -731,7 +742,7 @@ namespace Clamity.Content.Bosses.Pyrogen.NPCs
                         {
                             for (int i = 0; i < 4; i++)
                             {
-                                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Vector2.UnitX.RotatedBy(MathHelper.TwoPi / 4 * i + secondRotation) * 5f, ModContent.ProjectileType<FireBarrage>(), NPC.GetProjectileDamageClamity(ModContent.ProjectileType<FireBarrage>()), 1f, Main.myPlayer);
+                                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Vector2.UnitX.RotatedBy(MathHelper.TwoPi / 4 * i + secondRotation) * 5f, ModContent.ProjectileType<SmallFireball>(), NPC.GetProjectileDamageClamity(ModContent.ProjectileType<SmallFireball>()), 1f, Main.myPlayer);
                             }
                         }
                         if (attackTimer < -200)
