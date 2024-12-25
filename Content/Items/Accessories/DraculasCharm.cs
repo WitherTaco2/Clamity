@@ -44,8 +44,9 @@ namespace Clamity.Content.Items.Accessories
                 .Register();
         }
     }
-    public class DraculasCharmProj : ModProjectile
+    public class DraculasCharmProj : ModProjectile, ILocalizedModType, IModType
     {
+        public new string LocalizationCategory => "Projectiles.Rogue";
         public override void SetStaticDefaults()
         {
             // DisplayName.SetDefault("Moonflare Bat");

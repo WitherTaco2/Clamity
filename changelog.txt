@@ -1,8 +1,3 @@
-[h1]Wall of Bronze Hotfix[/h1]
+Update 1.0.3.4
 
-Now uses Clamity Music Mod as dependence
-Potentialy fixes WoB in multiplayer
-WoB summon weapons more often
-
---------------
-WoB - Wall of Bronze
+Fixed Funny after his update

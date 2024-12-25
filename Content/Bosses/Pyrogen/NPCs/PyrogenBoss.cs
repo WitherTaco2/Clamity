@@ -22,6 +22,7 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.GameContent.UI.BigProgressBar;
 using Terraria.ID;
 using Terraria.ModLoader;
+using static Clamity.Commons.CalRemixCompatibilitySystem;
 
 
 namespace Clamity.Content.Bosses.Pyrogen.NPCs
@@ -66,6 +67,18 @@ namespace Clamity.Content.Bosses.Pyrogen.NPCs
     [AutoloadBossHead]
     public class PyrogenBoss : ModNPC
     {
+        private static NPC myself;
+        public static NPC Myself
+        {
+            get
+            {
+                if (myself is not null && !myself.active)
+                    return null;
+
+                return myself;
+            }
+            private set => myself = value;
+        }
         private int biomeEnrageTimer = 300;
 
         private int currentPhase = 1;
@@ -86,6 +99,10 @@ namespace Clamity.Content.Bosses.Pyrogen.NPCs
             if (!ModLoader.TryGetMod("Redemption", out var redemption))
                 return;
             redemption.Call("addElementNPC", 2, Type);
+
+            var fanny1 = new FannyDialog("Pyrogen", "FannyNuhuh").WithDuration(4f).WithCondition(_ => { return Myself is not null; });
+
+            fanny1.Register();
         }
 
         public override void SetDefaults()
@@ -163,6 +180,7 @@ namespace Clamity.Content.Bosses.Pyrogen.NPCs
         {
             #region PreAttackAI
             globalTimer++;
+            Myself = NPC;
             CalamityGlobalNPC calamityGlobalNPC = NPC.Calamity();
             Lighting.AddLight((int)((NPC.position.X + NPC.width / 2) / 16f), (int)((NPC.position.Y + NPC.height / 2) / 16f), 0f, 1f, 1f);
             if (FireDrawer != null)

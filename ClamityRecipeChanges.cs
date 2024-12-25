@@ -9,14 +9,24 @@ using Clamity.Content.Biomes.FrozenHell.Items;
 using Clamity.Content.Bosses.Clamitas.Drop;
 using Clamity.Content.Bosses.Pyrogen.Drop.Weapons;
 using Clamity.Content.Items.Materials;
-using Clamity.Content.Items.Weapons.Melee.Shortswords;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Clamity
 {
     public class ClamityRecipeChanges : ModSystem
     {
+        public override void AddRecipes()
+        {
+            Recipe.Create(ModContent.ItemType<PearlGod>())
+                .AddIngredient<Arietes41>()
+                .AddIngredient<LifeAlloy>(5)
+                .AddIngredient<RuinousSoul>(2)
+                .AddIngredient<ClamitousPearl>()
+                .AddTile(TileID.LunarCraftingStation)
+                .Register();
+        }
         public override void PostAddRecipes()
         {
             ChangeVanillaRecipes();
@@ -35,10 +45,10 @@ namespace Clamity
                         recipe.requiredItem.Insert(1, ModContent.GetInstance<MoltenPiercer>().Item);
                     if (recipe.HasResult<NuclearFury>())
                         recipe.requiredItem.Insert(2, ModContent.GetInstance<TheGenerator>().Item);
-                    if (recipe.HasResult<ElementalShiv>())
+                    /*if (recipe.HasResult<ElementalShiv>())
                     {
                         recipe.requiredItem.Insert(0, ModContent.GetInstance<TerraShiv>().Item);
-                    }
+                    }*/
                 }
 
                 //Changes in Calamity with using Clamity Materials

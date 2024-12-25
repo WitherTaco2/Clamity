@@ -40,7 +40,7 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient<Tomutus>()
+                //.AddIngredient<Tomutus>()
                 .AddIngredient<HellfireFlamberge>()
                 .AddIngredient<EnchantedMetal>(8)
                 .AddTile<CosmicAnvil>()

@@ -1,4 +1,5 @@
-﻿using CalamityMod.Items;
+﻿using CalamityMod;
+using CalamityMod.Items;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
@@ -12,7 +13,8 @@ namespace Clamity.Content.Items.Weapons.Classless
         public new string LocalizationCategory => "Items.Weapons.Typeless";
         public override void SetDefaults()
         {
-            Item.damage = 5;
+            Item.damage = 25;
+            Item.DamageType = ModContent.GetInstance<AverageDamageClass>();
             Item.width = 78;
             Item.height = 36;
             Item.useTime = 15;
@@ -55,7 +57,7 @@ namespace Clamity.Content.Items.Weapons.Classless
     }
     public class GoldenGunProj : ModProjectile, ILocalizedModType
     {
-        public new string LocalizationCategory => "Projectiles.Typeless";
+        public new string LocalizationCategory => "Projectiles.Classless";
         public override string Texture => "CalamityMod/Projectiles/InvisibleProj";
 
         public override void SetDefaults()

@@ -1,14 +1,4 @@
 Items: {
-	WoBSummonItem: {
-		Tooltip:
-			'''
-			DEBUG
-			Призывает Стену Бронзы в преисподне
-			Не тратится
-			'''
-		DisplayName: Тяжелая металлическая мусорка
-	}
-
 	Mounts: {
 		FlameCube: {
 			DisplayName: Куб Огня

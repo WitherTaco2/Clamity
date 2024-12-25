@@ -1,7 +1,6 @@
 ﻿using CalamityMod;
 using CalamityMod.Items.TreasureBags;
 using CalamityMod.Items.TreasureBags.MiscGrabBags;
-using Clamity.Content.Cooldowns;
 using Clamity.Content.Items.Accessories;
 using Clamity.Content.Items.Mounts;
 using Clamity.Content.Items.Potions.Food;
@@ -35,11 +34,6 @@ namespace Clamity
         }*/
         public override void ModifyShootStats(Item item, Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
-
-            if (!player.HasCooldown(ShortstrikeCooldown.ID))
-            {
-
-            }
             if (item.DamageType == ModContent.GetInstance<RogueDamageClass>())
             {
                 if (player.Clamity().vampireEX && player.Calamity().StealthStrikeAvailable())
