@@ -55,8 +55,8 @@ namespace Clamity.Content.Bosses.WoB.NPCs
                 PortraitPositionYOverride = 0
             });
 
-            var fanny1 = new FannyDialog("WallOfBronze", "Nuhuh").WithDuration(4f).WithCondition(_ => { return Myself is not null; });
-            var fanny2 = new FannyDialog("WallOfBronze", "Nuhuh").WithDuration(4f).WithCondition(_ => { return Myself is not null && (Main.LocalPlayer.HasItem(ItemID.RodofDiscord) || Main.LocalPlayer.HasItem(ModContent.ItemType<NormalityRelocator>())); }).WithParentDialog(fanny1, 4f);
+            var fanny1 = new FannyDialog("WallOfBronze", "FannyNuhuh").WithDuration(4f).WithCondition(_ => { return Myself is not null; });
+            var fanny2 = new FannyDialog("WallOfBronze", "FannyNuhuh").WithDuration(4f).WithCondition(_ => { return Myself is not null && (Main.LocalPlayer.HasItem(ItemID.RodofDiscord) || Main.LocalPlayer.HasItem(ModContent.ItemType<NormalityRelocator>())); }).WithParentDialog(fanny1, 4f);
 
             fanny1.Register();
             fanny2.Register();
