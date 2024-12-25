@@ -90,7 +90,7 @@ namespace Clamity.Content.Bosses.Pyrogen.NPCs
                 return;
             redemption.Call("addElementNPC", 2, Type);
 
-            var fanny1 = new FannyDialog("Pyrogen", "Nuhuh").WithDuration(4f).WithCondition(_ => { return Myself is not null; });
+            var fanny1 = new FannyDialog("Pyrogen", "FannyNuhuh").WithDuration(4f).WithCondition(_ => { return Myself is not null; });
 
             fanny1.Register();
         }

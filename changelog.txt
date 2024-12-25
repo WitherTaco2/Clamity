@@ -1,8 +1,3 @@
-Added Astral Star Cannon
-Golden Gun now uses Average damage class and increased damage (5 -> 25)
-Added alternative recipe of Pearl God with using Clamitous Pearls
-Added Fanny Support (Calamity Community Remix Compability)
-Renamed Terra Shiv to Gaia Shiv (russian translation included)
-Fixed some Russian localization (again)
-Fixes in English projectile localizations
-Fixed Auric Kunai stealth strike have a lot of damage
+Update 1.0.3.4
+
+Fixed Funny after his update

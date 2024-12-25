@@ -25,7 +25,7 @@ namespace Clamity.Content.Biomes.FrozenHell.Biome
 
         public override void SetStaticDefaults()
         {
-            var fanny1 = new FannyDialog("FrozenHell", "Sob").WithDuration(4f).WithCondition(_ => { return Main.LocalPlayer.Clamity().ZoneFrozenHell; });
+            var fanny1 = new FannyDialog("FrozenHell", "FannySob").WithDuration(4f).WithCondition(_ => { return Main.LocalPlayer.Clamity().ZoneFrozenHell; });
 
             fanny1.Register();
         }
