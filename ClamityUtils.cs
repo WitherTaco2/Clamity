@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.Utilities;
 
 namespace Clamity
 {
@@ -154,6 +155,19 @@ namespace Clamity
             }
 
             return false;
+        }
+        public static void Shuffle<T>(this IList<T> list, int seed)
+        {
+            int n = list.Count;
+            UnifiedRandom rand = new UnifiedRandom(seed);
+            while (n > 1)
+            {
+                n--;
+                int k = rand.Next(n + 1);
+                T value = list[k];
+                list[k] = list[n];
+                list[n] = value;
+            }
         }
     }
 }

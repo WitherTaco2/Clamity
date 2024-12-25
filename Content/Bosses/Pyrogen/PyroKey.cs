@@ -1,5 +1,4 @@
 ﻿using CalamityMod.Events;
-using CalamityMod.Particles;
 using Clamity.Content.Bosses.Pyrogen.NPCs;
 using Clamity.Content.Items.Materials;
 using Microsoft.Xna.Framework;
@@ -39,7 +38,7 @@ namespace Clamity.Content.Bosses.Pyrogen
 
         public override bool CanUseItem(Player player)
         {
-            bool hasntProj = true;
+            /*bool hasntProj = true;
             foreach (Projectile proj in Main.projectile)
             {
                 if (proj == null || !proj.active) continue;
@@ -47,8 +46,8 @@ namespace Clamity.Content.Bosses.Pyrogen
                 {
                     hasntProj = false;
                 }
-            }
-            if (player.ZoneDesert && !NPC.AnyNPCs(ModContent.NPCType<PyrogenBoss>()) && hasntProj)
+            }*/
+            if (player.ZoneDesert && !NPC.AnyNPCs(ModContent.NPCType<PyrogenBoss>()) /*&& hasntProj*/)
             {
                 return !BossRushEvent.BossRushActive;
             }
@@ -56,15 +55,25 @@ namespace Clamity.Content.Bosses.Pyrogen
             return false;
         }
 
-        public override bool AltFunctionUse(Player player)
+        /*public override bool AltFunctionUse(Player player)
         {
             return CanUseItem(player);
-        }
+        }*/
 
         public override bool? UseItem(Player player)
         {
             SoundEngine.PlaySound(in SoundID.Roar, player.Center);
-            if (player.altFunctionUse == 2)
+
+            if (Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<PyrogenBoss>());
+            }
+            else
+            {
+                NetMessage.SendData(MessageID.SpawnBossUseLicenseStartEvent, -1, -1, null, player.whoAmI, ModContent.NPCType<PyrogenBoss>());
+            }
+
+            /*if (player.altFunctionUse == 2)
             {
                 if (Main.netMode != NetmodeID.MultiplayerClient)
                 {
@@ -76,8 +85,7 @@ namespace Clamity.Content.Bosses.Pyrogen
                 }
             }
             else
-                Projectile.NewProjectile(player.GetSource_ItemUse(Item), player.Center, Vector2.Zero, ModContent.ProjectileType<PyrogenSummonAnimation>(), 0, 0, player.whoAmI);
-
+                Projectile.NewProjectile(player.GetSource_ItemUse(Item), player.Center, Vector2.Zero, ModContent.ProjectileType<PyrogenSummonAnimation>(), 0, 0, player.whoAmI);*/
             return true;
         }
 
@@ -103,7 +111,7 @@ namespace Clamity.Content.Bosses.Pyrogen
                 .Register();
         }
     }
-    public class PyrogenSummonAnimation : ModProjectile
+    /*public class PyrogenSummonAnimation : ModProjectile
     {
         public override string Texture => "CalamityMod/Projectiles/InvisibleProj";
         public override void SetDefaults()
@@ -125,7 +133,7 @@ namespace Clamity.Content.Bosses.Pyrogen
                 Projectile.Kill();
 
             Projectile.Center = player.Center - new Vector2(0, 200);
-            if (Projectile.timeLeft % 10 == 0 /*&& Projectile.timeLeft > 40*/)
+            if (Projectile.timeLeft % 10 == 0)
             {
                 Color color = Color.Lerp(Color.Red, Color.Yellow, 1f - Projectile.timeLeft / 60f);
                 GeneralParticleHandler.SpawnParticle(new DirectionalPulseRing(Projectile.Center, Vector2.Zero, color, new Vector2(0.5f, 0.5f), Main.rand.NextFloat(12f, 25f), 10f, 0f, 20));
@@ -137,5 +145,5 @@ namespace Clamity.Content.Bosses.Pyrogen
             GeneralParticleHandler.SpawnParticle(new DirectionalPulseRing(Projectile.Center, Vector2.Zero, Color.Red, new Vector2(0.5f, 0.5f), Main.rand.NextFloat(12f, 25f), 0f, 20f, 40));
             NPC.NewNPCDirect(Projectile.GetSource_Death(), Projectile.Center, ModContent.NPCType<PyrogenBoss>());
         }
-    }
+    }*/
 }

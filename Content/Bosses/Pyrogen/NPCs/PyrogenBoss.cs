@@ -13,9 +13,11 @@ using Clamity.Content.Items.Materials;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
@@ -85,7 +87,9 @@ namespace Clamity.Content.Bosses.Pyrogen.NPCs
 
         private int teleportLocationX;
 
-        private int globalTimer;
+        private int attackTimer;
+
+        private int previosAttack;
 
         public FireParticleSet FireDrawer;
 
@@ -158,7 +162,8 @@ namespace Clamity.Content.Bosses.Pyrogen.NPCs
             writer.Write(biomeEnrageTimer);
             writer.Write(teleportLocationX);
             writer.Write(NPC.dontTakeDamage);
-            writer.Write(globalTimer);
+            writer.Write(attackTimer);
+            writer.Write(previosAttack);
             for (int i = 0; i < 4; i++)
             {
                 writer.Write(NPC.Calamity().newAI[i]);
@@ -170,16 +175,30 @@ namespace Clamity.Content.Bosses.Pyrogen.NPCs
             biomeEnrageTimer = reader.ReadInt32();
             teleportLocationX = reader.ReadInt32();
             NPC.dontTakeDamage = reader.ReadBoolean();
-            globalTimer = reader.ReadInt32();
+            attackTimer = reader.ReadInt32();
+            previosAttack = reader.ReadInt32();
             for (int i = 0; i < 4; i++)
             {
                 NPC.Calamity().newAI[i] = reader.ReadSingle();
             }
         }
+        public PyrogenAttacks Attack
+        {
+            get => (PyrogenAttacks)NPC.ai[0];
+            set => NPC.ai[0] = (int)value;
+        }
+        public override void OnSpawn(IEntitySource source)
+        {
+            Attack = PyrogenAttacks.Spawn;
+        }
+        public const int FirewallTime = 120;
+        public const int FirewallCount = 4;
+
+        public const int SuckingFireballCount = 40;
         public override void AI()
         {
             #region PreAttackAI
-            globalTimer++;
+            //attackTimer++;
             Myself = NPC;
             CalamityGlobalNPC calamityGlobalNPC = NPC.Calamity();
             Lighting.AddLight((int)((NPC.position.X + NPC.width / 2) / 16f), (int)((NPC.position.Y + NPC.height / 2) / 16f), 0f, 1f, 1f);
@@ -216,22 +235,22 @@ namespace Clamity.Content.Bosses.Pyrogen.NPCs
                 biomeEnrageTimer = 300;
             }
 
-            bool num = biomeEnrageTimer <= 0 || bossRushActive;
-            float num2 = deathOrBR ? 0.5f : 0f;
-            if (num)
+            bool isEnraged = biomeEnrageTimer <= 0 || bossRushActive;
+            float enragePower = deathOrBR ? 0.5f : 0f;
+            if (isEnraged)
             {
                 NPC.Calamity().CurrentlyEnraged = !bossRushActive;
-                num2 += 2f;
+                enragePower += 2f;
             }
 
-            if (num2 > 2f)
+            if (enragePower > 2f)
             {
-                num2 = 2f;
+                enragePower = 2f;
             }
 
             if (bossRushActive)
             {
-                num2 = 3f;
+                enragePower = 3f;
             }
 
             float num3 = NPC.life / (float)NPC.lifeMax;
@@ -241,10 +260,10 @@ namespace Clamity.Content.Bosses.Pyrogen.NPCs
             bool flag7 = num3 < (deathOrBR ? 0.5f : refOrBR ? 0.45f : 0.3f);
             bool flag8 = num3 < (deathOrBR ? 0.35f : 0.25f) && refOrBR;
             bool flag9 = num3 < (deathOrBR ? 0.25f : 0.15f) && refOrBR;
-            int num4 = ModContent.ProjectileType<SmallFireball>();
-            int num5 = ModContent.ProjectileType<InfernoFireball>();
-            int num6 = ModContent.ProjectileType<SmallFireballHoming>();
-            int type = 235;
+            int smallFireBall = ModContent.ProjectileType<SmallFireball>();
+            int bigFireBall = ModContent.ProjectileType<InfernoFireball>();
+            int smallFireBallHoming = ModContent.ProjectileType<SmallFireballHoming>();
+            /*int type = 235;
             if (!Main.zenithWorld)
             {
                 _ = SoundID.Item28;
@@ -252,7 +271,7 @@ namespace Clamity.Content.Bosses.Pyrogen.NPCs
             else
             {
                 _ = SoundID.Item20;
-            }
+            }*/
 
             //NPC.HitSound = (Main.zenithWorld ? SoundID.NPCHit41 : HitSound);
             //NPC.DeathSound = (Main.zenithWorld ? SoundID.NPCDeath14 : DeathSound);
@@ -262,18 +281,7 @@ namespace Clamity.Content.Bosses.Pyrogen.NPCs
                 HandlePhaseTransition((int)NPC.ai[0] + 1);
             }
 
-            /*if (NPC.ai[2] == 0f && NPC.localAI[1] == 0f && Main.netMode != NetmodeID.MultiplayerClient && (NPC.ai[0] < 3f || bossRushActive || flag3 && NPC.ai[0] > 3f))
-            {
-                SoundEngine.PlaySound(in ShieldRegenSound, NPC.Center);
-                int num7 = NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, ModContent.NPCType<PyrogenShield>(), NPC.whoAmI);
-                NPC.ai[2] = num7 + 1;
-                NPC.localAI[1] = -1f;
-                NPC.netUpdate = true;
-                Main.npc[num7].ai[0] = NPC.whoAmI;
-                Main.npc[num7].netUpdate = true;
-            }*/
-
-            int num8 = (int)NPC.ai[2] - 1;
+            /*int num8 = (int)NPC.ai[2] - 1;
             if (num8 != -1 && Main.npc[num8].active && Main.npc[num8].type == ModContent.NPCType<PyrogenShield>())
             {
                 NPC.dontTakeDamage = true;
@@ -291,7 +299,7 @@ namespace Clamity.Content.Bosses.Pyrogen.NPCs
                 {
                     NPC.localAI[1] -= 1f;
                 }
-            }
+            }*/
 
             if (CalamityConfig.Instance.BossesStopWeather)
             {
@@ -415,7 +423,7 @@ namespace Clamity.Content.Bosses.Pyrogen.NPCs
 
             #region Stage Animations
 
-            if (NPC.ai[0] >= 1f && globalTimer % Main.rand.Next(60 / (int)NPC.ai[0], 60 / (int)NPC.ai[0] + 4) < 3)
+            /*if (NPC.ai[0] >= 1f && globalTimer % Main.rand.Next(60 / (int)NPC.ai[0], 60 / (int)NPC.ai[0] + 4) < 3)
             {
                 Vector2 vec1 = new Vector2(NPC.width / 2f * Main.rand.NextFloat(-1, 1), NPC.height / 2f * Main.rand.NextFloat(-1, 1));
                 Vector2 vec2 = vec1.RotatedByRandom(MathHelper.PiOver4);
@@ -430,9 +438,104 @@ namespace Clamity.Content.Bosses.Pyrogen.NPCs
                 Vector2 vec11 = new Vector2(NPC.width * Main.rand.NextFloat(0, 1), NPC.height * Main.rand.NextFloat(0, 1));
                 int index0 = Projectile.NewProjectile(NPC.GetSource_Death(), NPC.position, Vector2.Zero, ModContent.ProjectileType<PyrogenKillExplosion>(), 0, 0, Main.myPlayer, NPC.whoAmI, vec11.X, vec11.Y);
                 //Main.projectile[index0].scale = 1f;
-            }
+            }*/
             #endregion
             //Start of attack AI
+
+            void SetNextAttack()
+            {
+                NPC.ai[0]++;
+                if (NPC.ai[0] > 3)
+                    NPC.ai[0] = 1;
+                attackTimer = 0;
+            }
+            void SetAttack(PyrogenAttacks a)
+            {
+                NPC.ai[0] = (int)a;
+                attackTimer = 0;
+            }
+
+            attackTimer++;
+            switch (Attack)
+            {
+                case PyrogenAttacks.Spawn:
+                    int appear = 6 * 60;
+                    int startFight = 12 * 60;
+                    NPC.Center = player.Center - new Vector2(0, 200);
+                    if (attackTimer % 10 == 0 && attackTimer <= appear)
+                    {
+                        Color color = Color.Lerp(Color.Red, Color.Yellow, 1f - attackTimer / 60f);
+                        GeneralParticleHandler.SpawnParticle(new DirectionalPulseRing(NPC.Center, Vector2.Zero, color, new Vector2(0.5f, 0.5f), Main.rand.NextFloat(12f, 25f), 10f, 0f, 20));
+                        Main.LocalPlayer.Calamity().GeneralScreenShakePower = MathHelper.Lerp(0, 20, (float)attackTimer / appear);
+                    }
+                    if (attackTimer == appear)
+                    {
+                        GeneralParticleHandler.SpawnParticle(new DirectionalPulseRing(NPC.Center, Vector2.Zero, Color.Yellow, new Vector2(0.5f, 0.5f), Main.rand.NextFloat(12f, 25f), 0f, 10f, 40));
+                        GeneralParticleHandler.SpawnParticle(new DirectionalPulseRing(NPC.Center, Vector2.Zero, Color.Orange, new Vector2(0.5f, 0.5f), Main.rand.NextFloat(12f, 25f), 0f, 15f, 40));
+                        GeneralParticleHandler.SpawnParticle(new DirectionalPulseRing(NPC.Center, Vector2.Zero, Color.Red, new Vector2(0.5f, 0.5f), Main.rand.NextFloat(12f, 25f), 0f, 20f, 40));
+
+                        Main.LocalPlayer.Calamity().GeneralScreenShakePower = 40;
+                    }
+                    if (attackTimer >= startFight)
+                    {
+                        SetNextAttack();
+                    }
+                    break;
+                case PyrogenAttacks.Firewall:
+                    if (attackTimer % FirewallTime == 0)
+                    {
+                        int randRot = Main.rand.Next(4);
+                        int empty = Main.rand.Next(-3, 3);
+                        for (int i = -40; i < 40; i++)
+                        {
+                            if (i >= empty - 1 && i <= empty + 1) continue;
+                            Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center + new Vector2(2000, i * 32).RotatedBy(MathHelper.PiOver2 * randRot), new Vector2(-10, 0).RotatedBy(MathHelper.PiOver2 * randRot), smallFireBall, NPC.GetProjectileDamageClamity(smallFireBall), 0, Main.myPlayer);
+                        }
+                    }
+                    if (attackTimer >= FirewallTime * FirewallCount)
+                    {
+                        SetNextAttack();
+                    }
+                    break;
+                case PyrogenAttacks.FlameBombs:
+                    List<int> list = new List<int>() { 0, 1, 2 };
+                    list.Shuffle<int>(NPC.whoAmI);
+
+                    if (attackTimer % (20 / enragePower) == 0)
+                    {
+                        Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, new Vector2(0, 10).RotatedBy(MathHelper.TwoPi / 3 * list[attackTimer / 10]), bigFireBall, NPC.GetProjectileDamageClamity(bigFireBall), 0, Main.myPlayer);
+                    }
+                    if (attackTimer >= 59)
+                    {
+                        SetNextAttack();
+                    }
+
+                    break;
+                case PyrogenAttacks.FireballSucking:
+                    if (attackTimer % FirewallTime == 0)
+                    {
+                        //int randRot = Main.rand.Next(4);
+                        int empty = Main.rand.Next(-10, 10);
+                        for (int i = 0; i < SuckingFireballCount; i++)
+                        {
+                            if (i >= empty - 3 && i <= empty + 3) continue;
+                            int barrage = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center + new Vector2(0, 1000).RotatedBy(MathHelper.TwoPi / SuckingFireballCount * i), new Vector2(0, -10).RotatedBy(MathHelper.TwoPi / SuckingFireballCount * i), smallFireBall, NPC.GetProjectileDamageClamity(smallFireBall), 0, Main.myPlayer);
+                            Main.projectile[barrage].timeLeft = (int)(1000 / 10) - 2;
+                        }
+                    }
+                    if (attackTimer >= FirewallTime * FirewallCount)
+                    {
+                        SetNextAttack();
+                    }
+                    break;
+                case PyrogenAttacks.InfernoPillars:
+
+                    break;
+
+                case PyrogenAttacks.Death:
+
+                    break;
+            }
 
             NPC.rotation = NPC.velocity.X * 0.1f;
         }
@@ -504,12 +607,15 @@ namespace Clamity.Content.Bosses.Pyrogen.NPCs
                 spriteEffects = SpriteEffects.FlipHorizontally;
             }
 
-            base.NPC.DrawBackglow(BackglowColor, 4f, spriteEffects, base.NPC.frame, screenPos);
-            Vector2 vector = new Vector2(TextureAssets.Npc[base.NPC.type].Value.Width / 2, TextureAssets.Npc[base.NPC.type].Value.Height / Main.npcFrameCount[base.NPC.type] / 2);
-            Vector2 position = base.NPC.Center - screenPos;
-            position -= new Vector2(value.Width, value.Height / Main.npcFrameCount[base.NPC.type]) * base.NPC.scale / 2f;
-            position += vector * base.NPC.scale + new Vector2(0f, base.NPC.gfxOffY);
-            spriteBatch.Draw(value, position, base.NPC.frame, base.NPC.GetAlpha(Color.White), base.NPC.rotation, vector, base.NPC.scale, spriteEffects, 0f);
+            if ((Attack == PyrogenAttacks.Spawn && attackTimer > 6 * 60) || Attack != PyrogenAttacks.Spawn)
+            {
+                base.NPC.DrawBackglow(BackglowColor, 4f, spriteEffects, base.NPC.frame, screenPos);
+                Vector2 vector = new Vector2(TextureAssets.Npc[base.NPC.type].Value.Width / 2, TextureAssets.Npc[base.NPC.type].Value.Height / Main.npcFrameCount[base.NPC.type] / 2);
+                Vector2 position = base.NPC.Center - screenPos;
+                position -= new Vector2(value.Width, value.Height / Main.npcFrameCount[base.NPC.type]) * base.NPC.scale / 2f;
+                position += vector * base.NPC.scale + new Vector2(0f, base.NPC.gfxOffY);
+                spriteBatch.Draw(value, position, base.NPC.frame, base.NPC.GetAlpha(Color.White), base.NPC.rotation, vector, base.NPC.scale, spriteEffects, 0f);
+            }
             return false;
         }
 

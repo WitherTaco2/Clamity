@@ -6,12 +6,13 @@ using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.Audio;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 
 namespace Clamity.Content.Bosses.Pyrogen.Projectiles
 {
-    public class SmallFireball : BrimstoneBarrage, ILocalizedModType, IModType
+    public class SmallFireball : BrimstoneBarrage, ILocalizedModType
     {
         public new string LocalizationCategory => "Projectiles.Boss";
         public override void SetStaticDefaults()
@@ -24,10 +25,10 @@ namespace Clamity.Content.Bosses.Pyrogen.Projectiles
         }
         public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
-
+            target.AddBuff(BuffID.OnFire3, 90);
         }
     }
-    public class SmallFireballHoming : SmallFireball, ILocalizedModType, IModType
+    public class SmallFireballHoming : SmallFireball, ILocalizedModType
     {
         public new string LocalizationCategory => "Projectiles.Boss";
         public override string Texture => ModContent.GetInstance<SmallFireball>().Texture;
@@ -59,7 +60,7 @@ namespace Clamity.Content.Bosses.Pyrogen.Projectiles
             }
         }
     }
-    public class InfernoFireball : SCalBrimstoneFireblast, ILocalizedModType, IModType
+    public class InfernoFireball : SCalBrimstoneFireblast, ILocalizedModType
     {
         public new string LocalizationCategory => "Projectiles.Boss";
         public override void SetStaticDefaults()
@@ -72,7 +73,7 @@ namespace Clamity.Content.Bosses.Pyrogen.Projectiles
         }
         public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
-
+            target.AddBuff(BuffID.OnFire3, 90);
         }
         public override void OnKill(int timeLeft)
         {

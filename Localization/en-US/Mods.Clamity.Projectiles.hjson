@@ -85,9 +85,6 @@ Classless: {
 
 Boss: {
 	BrimstonePearlBurst.DisplayName: Brimstone Pearl Burst
-	Fireblast.DisplayName: Fireblast
-	FireBarrage.DisplayName: Fire Barrage
-	FireBarrageHoming.DisplayName: Fire Barrage
 	FireBomb.DisplayName: Fire Bomb
 	FireBombExplosion.DisplayName: Fire Explosion
 	Firethrower.DisplayName: Firethrower
@@ -96,6 +93,9 @@ Boss: {
 	WallOfBronzeLaserBeamStart.DisplayName: Plasma Beam
 	WallOfBronzeClawProjectile.DisplayName: Bronze Claw
 	WoBDeathrayStart.DisplayName: Plasma Deathray
+	InfernoFireball.DisplayName: Inferno Fireball
+	SmallFireball.DisplayName: Fire Barrage
+	SmallFireballHoming.DisplayName: "{$Mods.Clamity.Projectiles.Boss.SmallFireball.DisplayName}"
 }
 
 ShortstrikeEffect.DisplayName: Shortstrike Effect
