@@ -195,6 +195,8 @@ namespace Clamity.Content.Bosses.Pyrogen.NPCs
         public const int FirewallCount = 4;
 
         public const int SuckingFireballCount = 40;
+        public const int SuckingFireballVelocity = 10;
+
         public override void AI()
         {
             #region PreAttackAI
@@ -448,11 +450,22 @@ namespace Clamity.Content.Bosses.Pyrogen.NPCs
                 if (NPC.ai[0] > 3)
                     NPC.ai[0] = 1;
                 attackTimer = 0;
+                NPC.ai[2] = 0;
+                NPC.ai[3] = 0;
+            }
+            void SetAttackInt(int b)
+            {
+                NPC.ai[0] = b;
+                attackTimer = 0;
+                NPC.ai[2] = 0;
+                NPC.ai[3] = 0;
             }
             void SetAttack(PyrogenAttacks a)
             {
                 NPC.ai[0] = (int)a;
                 attackTimer = 0;
+                NPC.ai[2] = 0;
+                NPC.ai[3] = 0;
             }
 
             attackTimer++;
@@ -501,9 +514,10 @@ namespace Clamity.Content.Bosses.Pyrogen.NPCs
                     List<int> list = new List<int>() { 0, 1, 2 };
                     list.Shuffle<int>(NPC.whoAmI);
 
-                    if (attackTimer % (20 / enragePower) == 0)
+                    if (attackTimer % (20 / enragePower) == 0 && NPC.ai[2] < list.Count - 1)
                     {
-                        Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, new Vector2(0, 10).RotatedBy(MathHelper.TwoPi / 3 * list[attackTimer / 10]), bigFireBall, NPC.GetProjectileDamageClamity(bigFireBall), 0, Main.myPlayer);
+                        Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, new Vector2(0, 10).RotatedBy(MathHelper.TwoPi / list.Count * list[(int)NPC.ai[2]]), bigFireBall, NPC.GetProjectileDamageClamity(bigFireBall), 0, Main.myPlayer);
+                        NPC.ai[2]++;
                     }
                     if (attackTimer >= 59)
                     {
@@ -512,6 +526,7 @@ namespace Clamity.Content.Bosses.Pyrogen.NPCs
 
                     break;
                 case PyrogenAttacks.FireballSucking:
+                    int velocity = SuckingFireballVelocity;
                     if (attackTimer % FirewallTime == 0)
                     {
                         //int randRot = Main.rand.Next(4);
@@ -519,8 +534,11 @@ namespace Clamity.Content.Bosses.Pyrogen.NPCs
                         for (int i = 0; i < SuckingFireballCount; i++)
                         {
                             if (i >= empty - 3 && i <= empty + 3) continue;
-                            int barrage = Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center + new Vector2(0, 1000).RotatedBy(MathHelper.TwoPi / SuckingFireballCount * i), new Vector2(0, -10).RotatedBy(MathHelper.TwoPi / SuckingFireballCount * i), smallFireBall, NPC.GetProjectileDamageClamity(smallFireBall), 0, Main.myPlayer);
-                            Main.projectile[barrage].timeLeft = (int)(1000 / 10) - 2;
+                            int barrage = Projectile.NewProjectile(NPC.GetSource_FromAI(),
+                                NPC.Center + new Vector2(0, 1000).RotatedBy(MathHelper.TwoPi / SuckingFireballCount * i),
+                                new Vector2(0, -velocity).RotatedBy(MathHelper.TwoPi / SuckingFireballCount * i),
+                                smallFireBall, NPC.GetProjectileDamageClamity(smallFireBall), 0, Main.myPlayer);
+                            Main.projectile[barrage].timeLeft = (int)(1000f / velocity) - 2;
                         }
                     }
                     if (attackTimer >= FirewallTime * FirewallCount)
@@ -579,6 +597,7 @@ namespace Clamity.Content.Bosses.Pyrogen.NPCs
         }
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
+            //Fire
             float num = (float)base.NPC.width * 0.6f;
             if (num < 10f)
             {
@@ -600,6 +619,7 @@ namespace Clamity.Content.Bosses.Pyrogen.NPCs
                 FireDrawer.DrawSet(base.NPC.Bottom - Vector2.UnitY * (12f - base.NPC.gfxOffY));
             }
 
+            //Boss itself
             Texture2D value = ModContent.Request<Texture2D>(Texture).Value;
             SpriteEffects spriteEffects = SpriteEffects.None;
             if (base.NPC.spriteDirection == 1)
