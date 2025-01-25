@@ -98,6 +98,7 @@ Boss: {
 	WoBDeathrayStart.DisplayName: Плазменный смертельный луч
 	// RadiactiveBlob.DisplayName: Radiactive Blob
 	// RadiactiveGas.DisplayName: Radiactive Gas
+	// GammaRay.DisplayName: Gamma Ray
 }
 
 // ShortstrikeEffect.DisplayName: Shortstrike Effect

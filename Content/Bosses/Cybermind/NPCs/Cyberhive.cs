@@ -409,7 +409,7 @@ namespace Clamity.Content.Bosses.Cybermind.NPCs
                     break;
                 #region 2nd stage
                 case CyberhiveAttacks.HyperVerticalDash:
-
+                    SetNextAttack();
                     break;
                 case CyberhiveAttacks.GammaDeathRay:
                     if (AttackTimer == 1)
@@ -420,7 +420,7 @@ namespace Clamity.Content.Bosses.Cybermind.NPCs
                     }
                     if (AttackTimer < preDeathrayTime)
                     {
-                        NPC.velocity.X += 2f;
+                        NPC.velocity.X += 2f * NPC.ai[2];
                         NPC.Center = new Vector2(NPC.Center.X + NPC.velocity.X, player.Center.Y + 100);
                     }
                     else
@@ -480,7 +480,6 @@ namespace Clamity.Content.Bosses.Cybermind.NPCs
             {
                 if (Attack > 13)
                     Attack = 11;
-
             }
             AttackTimer = 0;
         }
