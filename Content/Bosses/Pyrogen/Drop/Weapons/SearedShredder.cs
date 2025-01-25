@@ -2,6 +2,7 @@
 using CalamityMod.Buffs.DamageOverTime;
 using CalamityMod.Items;
 using Microsoft.Xna.Framework;
+using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -62,6 +63,14 @@ namespace Clamity.Content.Bosses.Pyrogen.Drop.Weapons
         {
             target.AddBuff(BuffID.OnFire, 180);
             target.AddBuff(ModContent.BuffType<BrimstoneFlames>(), 120);
+        }
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            writer.Write(TargetIndex);
+        }
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            TargetIndex = reader.ReadInt32();
         }
         public override void AI()
         {

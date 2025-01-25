@@ -1,6 +1,13 @@
 LoreWhat: {
 	DisplayName: Clamitas
-	Lore: I won't comment on what it is. No. No. I don't comment that much
+	Lore: 
+		'''
+		After war Calamitas with ocean a lot of creatures started running in different directions.
+		Some saves and addapts in desert, some saves in place as known as Sunken Sea
+		But more powerful got into ruines of Azaphure. His enchanted pearl absorb a lot of brimstone make and starts
+		being cursed but gain power of this. Name of this is createure is Clamitas, Supreme Clam
+		(oh what shit did I just say)
+		'''
 }
 
 LorePyrogen: {
@@ -18,5 +25,8 @@ LoreWallOfBronze: {
 		'''
 		The artificial core of the Underworld, and a marvel of ancient ingenuity.
 		This titanic bastion would carry on the task of maintaining Terraria's core if its organic counterpart were ever to expire.
+		
+		The greatest invention of ancient architects that is able to protect hell from strong threats and dangers. The source of the great heat of the primordial auric energy that is able to warm the minds of local creatures. 
+		The ancient architects are a race of the oldest creatures that existed before the age of dragons. They were the greatest engineers
 		'''
 }
