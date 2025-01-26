@@ -11,5 +11,8 @@
 	  <Reference Include="Luminance">
 		  <HintPath>Luminance.dll</HintPath>
 	  </Reference>
+	  <Reference Include="SubworldLibrary">
+		  <HintPath>SubworldLibrary.dll</HintPath>
+	  </Reference>
   </ItemGroup>
 </Project>

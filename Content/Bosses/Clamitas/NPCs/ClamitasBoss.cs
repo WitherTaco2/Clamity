@@ -1,5 +1,6 @@
 using CalamityMod;
 using CalamityMod.BiomeManagers;
+using CalamityMod.Buffs.StatBuffs;
 using CalamityMod.Dusts;
 using CalamityMod.Events;
 using CalamityMod.Items.Placeables;
@@ -77,7 +78,7 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
             value.Position.Y += 40f;
             NPCID.Sets.NPCBestiaryDrawOffset[Type] = value;
 
-            var fanny1 = new FannyDialog("Clamitas", "Nuhuh").WithDuration(4f).WithCondition(_ => { return Myself is not null; });
+            var fanny1 = new FannyDialog("Clamitas", "FannyNuhuh").WithDuration(4f).WithCondition(_ => { return Myself is not null; });
 
             fanny1.Register();
 
@@ -189,6 +190,7 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
             if (Main.netMode != NetmodeID.Server && !Main.player[NPC.target].dead && Main.player[NPC.target].active)
             {
                 player.AddBuff(ModContent.BuffType<CalamityMod.Buffs.StatDebuffs.Clamity>(), 2);
+                player.AddBuff(ModContent.BuffType<BossEffects>(), 2);
             }
             if (Main.player[NPC.target].dead && !Main.player[NPC.target].active)
             {

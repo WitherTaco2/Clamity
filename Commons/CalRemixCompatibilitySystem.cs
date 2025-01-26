@@ -22,7 +22,7 @@ namespace Clamity.Commons
                     return;
 
                 // Add the mod name in front of the identifier.
-                string identifier = $"NoxusBoss_{dialogKey}";
+                string identifier = $"Clamity_{dialogKey}";
 
                 string dialog = Language.GetTextValue($"Mods.Clamity.FannyDialog.{dialogKey}");
                 instance = Clamity.calRemix.Call("CreateFannyDialog", identifier, dialog, portrait);
