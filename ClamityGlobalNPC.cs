@@ -1,4 +1,5 @@
 ﻿using CalamityMod;
+using CalamityMod.NPCs;
 using CalamityMod.NPCs.Abyss;
 using CalamityMod.NPCs.AcidRain;
 using CalamityMod.NPCs.NormalNPCs;
@@ -132,39 +133,99 @@ namespace Clamity
         }*/
         public override void UpdateLifeRegen(NPC npc, ref int damage)
         {
-            bool flag1 = CalamityLists.DesertScourgeIDs.Contains(npc.type) || CalamityLists.EaterofWorldsIDs.Contains(npc.type) || CalamityLists.PerforatorIDs.Contains(npc.type) || CalamityLists.AquaticScourgeIDs.Contains(npc.type) || CalamityLists.AstrumDeusIDs.Contains(npc.type) || CalamityLists.StormWeaverIDs.Contains(npc.type);
-            bool flag2 = CalamityLists.SlimeGodIDs.Contains(npc.type);
-            bool flag3 = npc.drippingSlime || npc.drippingSparkleSlime;
+            bool wormBoss = CalamityLists.DesertScourgeIDs.Contains(npc.type) || CalamityLists.EaterofWorldsIDs.Contains(npc.type) || CalamityLists.PerforatorIDs.Contains(npc.type) || CalamityLists.AquaticScourgeIDs.Contains(npc.type) || CalamityLists.AstrumDeusIDs.Contains(npc.type) || CalamityLists.StormWeaverIDs.Contains(npc.type);
+            bool slimeGod = CalamityLists.SlimeGodIDs.Contains(npc.type);
+            bool slimed = npc.drippingSlime || npc.drippingSparkleSlime;
 
-            float num7 = flag3 ? (flag1 | flag2 ? 1.5f : 2f) : 1f;
+            //Vulnerability
+            double heatDamageMult = slimed ? ((wormBoss || slimeGod) ? CalamityGlobalNPC.VulnerableToDoTDamageMult_Worms_SlimeGod : CalamityGlobalNPC.VulnerableToDoTDamageMult) : CalamityGlobalNPC.BaseDoTDamageMult;
             if (npc.Calamity().VulnerableToHeat.HasValue)
             {
                 if (npc.Calamity().VulnerableToHeat.Value)
-                    num7 *= flag3 ? (flag1 | flag2 ? 1.25f : 1.5f) : (flag1 | flag2 ? 1.5f : 2f);
+                    heatDamageMult *= slimed ? ((wormBoss || slimeGod) ? 1.25 : 1.5) : ((wormBoss || slimeGod) ? CalamityGlobalNPC.VulnerableToDoTDamageMult_Worms_SlimeGod : CalamityGlobalNPC.VulnerableToDoTDamageMult);
                 else
-                    num7 *= flag3 ? 0.2f : 0.5f;
+                    heatDamageMult *= slimed ? ((wormBoss || slimeGod) ? 0.66 : 0.5) : 0.5;
             }
+
+            double coldDamageMult = CalamityGlobalNPC.BaseDoTDamageMult;
+            if (npc.Calamity().VulnerableToCold.HasValue)
+            {
+                if (npc.Calamity().VulnerableToCold.Value)
+                    coldDamageMult *= wormBoss ? CalamityGlobalNPC.VulnerableToDoTDamageMult_Worms_SlimeGod : CalamityGlobalNPC.VulnerableToDoTDamageMult;
+                else
+                    coldDamageMult *= 0.5;
+            }
+
+            double sicknessDamageMult = npc.Calamity().irradiated > 0 ? (wormBoss ? CalamityGlobalNPC.VulnerableToDoTDamageMult_Worms_SlimeGod : CalamityGlobalNPC.VulnerableToDoTDamageMult) : CalamityGlobalNPC.BaseDoTDamageMult;
+            if (npc.Calamity().VulnerableToSickness.HasValue)
+            {
+                if (npc.Calamity().VulnerableToSickness.Value)
+                    sicknessDamageMult *= npc.Calamity().irradiated > 0 ? (wormBoss ? 1.25 : 1.5) : (wormBoss ? CalamityGlobalNPC.VulnerableToDoTDamageMult_Worms_SlimeGod : CalamityGlobalNPC.VulnerableToDoTDamageMult);
+                else
+                    sicknessDamageMult *= npc.Calamity().irradiated > 0 ? (wormBoss ? 0.66 : 0.5) : 0.5;
+            }
+
+            bool increasedElectricityDamage = npc.wet || npc.honeyWet || npc.lavaWet || npc.dripping;
+            double electricityDamageMult = increasedElectricityDamage ? (wormBoss ? CalamityGlobalNPC.VulnerableToDoTDamageMult_Worms_SlimeGod : CalamityGlobalNPC.VulnerableToDoTDamageMult) : CalamityGlobalNPC.BaseDoTDamageMult;
+            if (npc.Calamity().VulnerableToElectricity.HasValue)
+            {
+                if (npc.Calamity().VulnerableToElectricity.Value)
+                    electricityDamageMult *= increasedElectricityDamage ? (wormBoss ? 1.25 : 1.5) : (wormBoss ? CalamityGlobalNPC.VulnerableToDoTDamageMult_Worms_SlimeGod : CalamityGlobalNPC.VulnerableToDoTDamageMult);
+                else
+                    electricityDamageMult *= increasedElectricityDamage ? (wormBoss ? 0.66 : 0.5) : 0.5;
+            }
+
+            double waterDamageMult = CalamityGlobalNPC.BaseDoTDamageMult;
+            if (npc.Calamity().VulnerableToWater.HasValue)
+            {
+                if (npc.Calamity().VulnerableToWater.Value)
+                    waterDamageMult *= wormBoss ? CalamityGlobalNPC.VulnerableToDoTDamageMult_Worms_SlimeGod : CalamityGlobalNPC.VulnerableToDoTDamageMult;
+                else
+                    waterDamageMult *= 0.5;
+            }
+
+            //Calamity Debuff buffs
+            if (npc.Calamity().IncreasedHeatEffects_Fireball)
+                heatDamageMult += 0.25;
+            if (npc.Calamity().IncreasedHeatEffects_FlameWakerBoots)
+                heatDamageMult += 0.25;
+            if (npc.Calamity().IncreasedHeatEffects_CinnamonRoll)
+                heatDamageMult += 0.5;
+            if (npc.Calamity().IncreasedHeatEffects_HellfireTreads)
+                heatDamageMult += 0.5;
+
+            if (npc.Calamity().IncreasedSicknessEffects_ToxicHeart)
+                sicknessDamageMult += 0.5;
+            if (npc.Calamity().IncreasedSicknessAndWaterEffects_EvergreenGin)
+            {
+                sicknessDamageMult += 0.25;
+                waterDamageMult += 0.25;
+            }
+
+            //Clamity Debuff buffs
+            float calamityHeatDamageMult = 0f;
             if (IncreasedHeatEffects_PyroStone)
-                num7 += 0.5f;
-            float num12 = num7 - 1f;
+                calamityHeatDamageMult += 0.5f;
+
+
 
             if (npc.onFire)
             {
-                int num15 = (int)(12.0 * num12);
+                int num15 = (int)(12.0 * calamityHeatDamageMult);
                 npc.lifeRegen -= num15;
                 if (damage < num15 / 4)
                     damage = num15 / 4;
             }
             if (npc.onFire2)
             {
-                int num16 = (int)(48.0 * num12);
+                int num16 = (int)(48.0 * calamityHeatDamageMult);
                 npc.lifeRegen -= num16;
                 if (damage < num16 / 4)
                     damage = num16 / 4;
             }
             if (npc.onFire3)
             {
-                int num17 = (int)(30.0 * num12);
+                int num17 = (int)(30.0 * calamityHeatDamageMult);
                 npc.lifeRegen -= num17;
                 if (damage < num17 / 4)
                     damage = num17 / 4;
@@ -177,14 +238,14 @@ namespace Clamity
                     if (((Entity)Main.projectile[index]).active && Main.projectile[index].type == 636 && (double)Main.projectile[index].ai[0] == 1.0 && (double)Main.projectile[index].ai[1] == (double)((Entity)npc).whoAmI)
                         ++num18;
                 }
-                int num19 = (int)((num18 <= 1 ? 1.0 : 1.0 + 0.25 * (double)(num18 - 1)) * 2.0 * 100.0 * num12);
+                int num19 = (int)((num18 <= 1 ? 1.0 : 1.0 + 0.25 * (double)(num18 - 1)) * 2.0 * 100.0 * calamityHeatDamageMult);
                 npc.lifeRegen -= num19;
                 if (damage < num19 / 4)
                     damage = num19 / 4;
             }
             if (npc.shadowFlame)
             {
-                int num20 = (int)(60.0 * num12);
+                int num20 = (int)(60.0 * calamityHeatDamageMult);
                 npc.lifeRegen -= num20;
                 if (damage < num20 / 4)
                     damage = num20 / 4;
@@ -197,9 +258,9 @@ namespace Clamity
             {
                 double num23 = 1.0;
                 if (flag6 || flag7 & flag5)
-                    num23 *= num12;
+                    num23 *= calamityHeatDamageMult;
                 if (flag7 && !flag5 && !flag6)
-                    num23 *= num7;
+                    num23 *= heatDamageMult;
                 int num24 = (int)(50.0 * num23);
                 npc.lifeRegen -= num24;
                 if (damage < num24 / 4)
