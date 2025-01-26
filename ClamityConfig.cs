@@ -5,8 +5,11 @@ namespace Clamity
 {
     public class ClamityConfig : ModConfig
     {
-        public override ConfigScope Mode => ConfigScope.ClientSide;
+        public override ConfigScope Mode => ConfigScope.ServerSide;
         public static ClamityConfig Instance;
+
+        [DefaultValue(false)]
+        public bool PermafrostSoldEnchantedMetal;
 
         [DefaultValue(true)]
         [ReloadRequired]
@@ -20,4 +23,11 @@ namespace Clamity
         [ReloadRequired]
         public bool UsesClamityWeaponsInCalamityRecipes;
     }
+    /*public class ClamityClientConfig : ModConfig
+    {
+        public override ConfigScope Mode => ConfigScope.ServerSide;
+        public static ClamityClientConfig Instance;
+
+
+    }*/
 }
