@@ -1,4 +1,5 @@
 Update 1.0.3.5
 
-Again Fixed Funny
 Clamity now requare Luminance and Subworld Library for future updates
+Again Fixed Funny
+Fixed Pyro Stone hasn't heat debuff multiplier
