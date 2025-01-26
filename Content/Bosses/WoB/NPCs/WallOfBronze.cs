@@ -406,6 +406,8 @@ namespace Clamity.Content.Bosses.WoB.NPCs
                     }
                 }
                 CalamityUtils.DisplayLocalizedText("Mods.Clamity.Misc.FrozenHellMessege", new Color?(Color.LightCyan));
+                ClamitySystem.generatedFrozenHell = true;
+                CalamityNetcode.SyncWorld();
             }
 
             //NPC.SetEventFlagCleared(ref ClamitySystem.downedWallOfBronze, -1);

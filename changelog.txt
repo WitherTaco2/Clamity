@@ -1,4 +1,7 @@
 Update 1.0.3.5
 
-Again Fixed Funny
 Clamity now requare Luminance and Subworld Library for future updates
+Permafrost now sold Enchanted Metal if Wall of Bronze is defeated but Frozen Hell not generated
+Again Fixed Funny
+Fixed Pyro Stone hasn't heat debuff multiplier and don't affects calamity's debuffs
+Configs now server side

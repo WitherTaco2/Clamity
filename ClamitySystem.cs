@@ -52,7 +52,25 @@ namespace Clamity
                 }
             }
         }
-
+        internal static bool _generatedFrozenHell;
+        public static bool generatedFrozenHell
+        {
+            get
+            {
+                return _generatedFrozenHell;
+            }
+            set
+            {
+                if (!value)
+                {
+                    _generatedFrozenHell = false;
+                }
+                else
+                {
+                    NPC.SetEventFlagCleared(ref _generatedFrozenHell, -1);
+                }
+            }
+        }
         internal static bool _downedWallOfBronze;
         public static bool downedWallOfBronze
         {
@@ -98,6 +116,7 @@ namespace Clamity
             downedPyrogen = false;
             downedWallOfBronze = false;
             downedCyberhive = false;
+            generatedFrozenHell = false;
         }
         public override void Load()
         {
@@ -134,6 +153,7 @@ namespace Clamity
             if (downedCyberhive)
                 list.Add("cyberhive");
             tag["downedFlagsClamity"] = list;
+            tag["generatedFrozenHell"] = generatedFrozenHell;
         }
         public override void LoadWorldData(TagCompound tag)
         {
@@ -142,6 +162,7 @@ namespace Clamity
             downedPyrogen = list.Contains("pyrogen");
             downedWallOfBronze = list.Contains("wob");
             downedCyberhive = list.Contains("cyberhive");
+            generatedFrozenHell = tag.GetBool("generatedFrozenHell");
         }
         public static int AnySandBlock;
         public static int AnyGemHook;
@@ -165,6 +186,8 @@ namespace Clamity
             flags[3] = downedCyberhive;
 
             writer.Write(flags);
+
+            writer.Write(generatedFrozenHell);
         }
         public override void NetReceive(BinaryReader reader)
         {
@@ -173,6 +196,8 @@ namespace Clamity
             downedPyrogen = flags[1];
             downedWallOfBronze = flags[2];
             downedCyberhive = flags[3];
+
+            generatedFrozenHell = reader.ReadBoolean();
         }
     }
 }
