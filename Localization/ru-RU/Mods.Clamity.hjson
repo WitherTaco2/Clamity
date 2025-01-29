@@ -40,6 +40,7 @@ Misc: {
 	// None: ""
 	DefeatedWoB: После победы над Стеной Бронзы
 	// FrozenHellMessege: You can feel the cold breeze coming from the center of Hell
+	// GeneratedFrozenHell: If not generated Frozen Hell or active special config
 }
 
 Tiles: {
@@ -90,6 +91,11 @@ Configs: {
 			// Label: Uses Clamity Weapons In Calamity Recipes
 			// Tooltip: ""
 		}
+
+		PermafrostSoldEnchantedMetal: {
+			// Label: Permafrost Sold Enchanted Metal
+			// Tooltip: Makes Permafrost sold an Enchanted Metal ignoring existence of Frozen Hell
+		}
 	}
 }
 
@@ -119,21 +125,30 @@ Dialogues: {
 			// Text4: I not powerful. I make a lot of mistakes
 			// Text5: This place is my final battle. But not war
 			// Text6: Oh... You need continue my misson
-			// Text7: A
 		}
 	}
 
-	ArchitectorAbyss: {
-		// Text1: Greatest creation...
-		// Text2: Want an explore the secrets
-		// Text3: He fall to depths of the world to find new questions
-		// Text4: But now is not the time for answers.
+	Architect: {
+		Abyss: {
+			// Text1: Greatest creation...
+			// Text2: Want an explore the secrets
+			// Text3: He fall to depths of the world to find new questions
+			// Text4: But now is not the time for answers.
+		}
+
+		PostWoB: {
+			// Text1: Grand machine is fall. Very interesting...
+			// Text2: You maybe has a lot of questions of all your path.
+			// Text3: What is you? Your destiny? How you born? And from what?
+			// Text4: If you want to learn an secrets of this worlds, i open portal in depths of the world
+		}
 	}
 
-	ArchitectorPostWoB: {
-		// Text1: Grand machine is fall. Very interesting...
-		// Text2: You maybe has a lot of questions of all your path.
-		// Text3: What is you? Your destiny? How you born? And from what?
-		// Text4: If you want to learn an secrets of this worlds, i open portal in depths of the world
+	Noxus: {
+		KilledYharim: {
+			// Text1: Hmm... Perfect vessel...
+			// Text2: Perfect creature of chaos
+			// Text3: One less obstacle for the Entropy
+		}
 	}
 }
