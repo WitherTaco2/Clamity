@@ -1,4 +1,5 @@
-﻿using CalamityMod.Items;
+﻿using CalamityMod;
+using CalamityMod.Items;
 using CalamityMod.Items.Weapons.Melee;
 using CalamityMod.Rarities;
 using CalamityMod.Tiles.Furniture.CraftingStations;
@@ -16,14 +17,14 @@ namespace Clamity.Content.Items.Weapons.Melee.Swords
 
         public override void SetDefaults()
         {
-            Item.damage = 500;
-            Item.DamageType = DamageClass.Melee;
+            Item.damage = 600;
+            //Item.DamageType = DamageClass.Melee;
+            Item.DamageType = ModContent.GetInstance<TrueMeleeDamageClass>();
             Item.useTurn = true;
             Item.rare = ModContent.RarityType<Violet>();
             Item.width = Item.height = 80;
             Item.scale = 1.5f;
-            Item.useTime = 20;
-            Item.useAnimation = 20;
+            Item.useTime = Item.useAnimation = 10;
             Item.useStyle = ItemUseStyleID.Swing;
             Item.knockBack = 8f;
             Item.value = CalamityGlobalItem.RarityVioletBuyPrice;
@@ -72,7 +73,7 @@ namespace Clamity.Content.Items.Weapons.Melee.Swords
             }
         }*/
 
-        public override void MeleeEffects(Player player, Rectangle hitbox)
+        /*public override void MeleeEffects(Player player, Rectangle hitbox)
         {
             if (player.whoAmI != Main.myPlayer || (player.itemAnimation != (int)((double)player.itemAnimationMax * 0.1) && player.itemAnimation != (int)((double)player.itemAnimationMax * 0.3) && player.itemAnimation != (int)((double)player.itemAnimationMax * 0.5) && player.itemAnimation != (int)((double)player.itemAnimationMax * 0.7) && player.itemAnimation != (int)((double)player.itemAnimationMax * 0.9)))
             {
@@ -154,6 +155,18 @@ namespace Clamity.Content.Items.Weapons.Melee.Swords
                                      KnockBack: 0f,
                                      Owner: player.whoAmI);
             Main.projectile[index].DamageType = DamageClass.Melee;
+        }*/
+        public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                float num = Main.rand.NextFloat(0.3f);
+                Projectile p = Projectile.NewProjectileDirect(player.GetSource_OnHit(target), target.Center + new Vector2(0, 300).RotatedBy(num), new Vector2(0, -10).RotatedBy(num), 85, Item.damage, Item.knockBack, player.whoAmI);
+                p.penetrate = -1;
+                p.DamageType = DamageClass.Melee;
+                p.tileCollide = false;
+                //p.DamageType = ModContent.GetInstance<TrueMeleeDamageClass>();
+            }
         }
         public override void AddRecipes()
         {

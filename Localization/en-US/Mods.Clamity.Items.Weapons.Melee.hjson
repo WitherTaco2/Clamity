@@ -121,3 +121,8 @@ Warblade: {
 	DisplayName: Warblade
 	Tooltip: Has chance to inflict Armor Crunch
 }
+
+Breakthrough: {
+	DisplayName: Breakthrough
+	Tooltip: ""
+}

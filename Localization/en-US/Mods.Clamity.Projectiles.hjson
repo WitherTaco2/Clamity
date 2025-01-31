@@ -21,6 +21,8 @@ Melee: {
 	WulfrumLeechDaggerShard.DisplayName: Wulfrum Leech Dagger Shard
 	TheWOBblerProjectile.DisplayName: Ice Chunk
 	EverestProjectile.DisplayName: Everest
+	BreakthroughProj.DisplayName: Breakthrough Proj
+	BreakthroughProjBreath.DisplayName: Breakthrough Proj Breath
 }
 
 Ranged: {
@@ -96,6 +98,8 @@ Boss: {
 	WallOfBronzeLaserBeamStart.DisplayName: Plasma Beam
 	WallOfBronzeClawProjectile.DisplayName: Bronze Claw
 	WoBDeathrayStart.DisplayName: Plasma Deathray
+	WoBCutsceneDrama.DisplayName: Wo B Cutscene Drama
+	WoBCutsceneBoom.DisplayName: Wo B Cutscene Boom
 }
 
 ShortstrikeEffect.DisplayName: Shortstrike Effect

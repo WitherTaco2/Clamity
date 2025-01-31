@@ -21,6 +21,8 @@ Melee: {
 	WulfrumLeechDaggerShard.DisplayName: Осколок вульфрумового кинжала-пиявки
 	TheWOBblerProjectile.DisplayName: Кусок льда
 	EverestProjectile.DisplayName: Эверест
+	// BreakthroughProj.DisplayName: Breakthrough Proj
+	// BreakthroughProjBreath.DisplayName: Breakthrough Proj Breath
 }
 
 Ranged: {
@@ -96,6 +98,8 @@ Boss: {
 	WallOfBronzeLaserBeamStart.DisplayName: Плазменный луч
 	WallOfBronzeClawProjectile.DisplayName: Бронзовая клешна
 	WoBDeathrayStart.DisplayName: Плазменный смертельный луч
+	// WoBCutsceneDrama.DisplayName: Wo B Cutscene Drama
+	// WoBCutsceneBoom.DisplayName: Wo B Cutscene Boom
 }
 
 // ShortstrikeEffect.DisplayName: Shortstrike Effect

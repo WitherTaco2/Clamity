@@ -2,13 +2,12 @@
 using CalamityMod.Items;
 using CalamityMod.Items.Weapons.Melee;
 using CalamityMod.Projectiles.BaseProjectiles;
-using CalamityMod.Projectiles.Melee;
 using CalamityMod.Rarities;
 using CalamityMod.Tiles.Furniture.CraftingStations;
 using Clamity.Content.Biomes.FrozenHell.Items;
+using Luminance.Common.Utilities;
 using Terraria;
 using Terraria.Audio;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -23,14 +22,14 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
             Item.rare = ModContent.RarityType<Violet>();
             Item.value = CalamityGlobalItem.RarityVioletBuyPrice;
 
-            Item.useAnimation = Item.useTime = 10;
+            Item.useAnimation = Item.useTime = 30;
             Item.useStyle = ItemUseStyleID.Rapier;
             Item.UseSound = new SoundStyle?(SoundID.Item1);
             Item.autoReuse = true;
             Item.noUseGraphic = true;
             Item.noMelee = true;
 
-            Item.damage = 300;
+            Item.damage = 600;
             Item.DamageType = DamageClass.Melee;
             Item.knockBack = 8.5f;
 
@@ -53,25 +52,32 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
         public override string Texture => ModContent.GetInstance<Everest>().Texture;
         public override void SetDefaults()
         {
-            //AquaticDischargeProj
-            /*Projectile.width = Projectile.height = 64;
-            Projectile.timeLeft = 1000;
-            Projectile.usesIDStaticNPCImmunity = true;
-            Projectile.idStaticNPCHitCooldown = 10;
-            Projectile.DamageType = ModContent.GetInstance<TrueMeleeDamageClass>();*/
-
             Projectile.width = Projectile.height = 60;
             Projectile.friendly = true;
             Projectile.penetrate = -1;
             Projectile.tileCollide = false;
             Projectile.scale = 1f;
             Projectile.DamageType = ModContent.GetInstance<TrueMeleeDamageClass>();
-            Projectile.ownerHitCheck = true;
             Projectile.timeLeft = 360;
             Projectile.hide = true;
             Projectile.ownerHitCheck = true;
+            Projectile.usesLocalNPCImmunity = true;
+            Projectile.localNPCHitCooldown = 5;
         }
-        public override void OnSpawn(IEntitySource source)
+        public override float TotalDuration => 30;
+        public override void AI()
+        {
+            base.AI();
+            Projectile.velocity = Projectile.velocity.RotateTowards(Projectile.AngleTo(Main.MouseWorld), 0.1f);
+            if (Projectile.timeLeft % 2 == 0)
+            {
+                Projectile p = Projectile.NewProjectileDirect(Projectile.GetSource_FromThis(), Projectile.Center, Projectile.velocity.RotatedByRandom(0.05f) * 3, 85, Projectile.damage, Projectile.knockBack, Projectile.owner);
+                p.penetrate = -1;
+                p.DamageType = DamageClass.Melee;
+                p.tileCollide = false;
+            }
+        }
+        /*public override void OnSpawn(IEntitySource source)
         {
             for (int i = 0; i < 3; i++)
             {
@@ -93,6 +99,6 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
 
                 Projectile.NewProjectile(source, Projectile.Center.X, Projectile.Center.Y, speedX, speedY, type, (int)((float)Projectile.damage * num), Projectile.knockBack, Projectile.owner);
             }
-        }
+        }*/
     }
 }

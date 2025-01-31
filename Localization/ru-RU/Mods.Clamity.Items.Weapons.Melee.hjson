@@ -120,3 +120,8 @@ Warblade: {
 	DisplayName: Меч войны
 	Tooltip: Имеет шанц наложить 'Разрушение брони'
 }
+
+Breakthrough: {
+	// DisplayName: Breakthrough
+	// Tooltip: ""
+}

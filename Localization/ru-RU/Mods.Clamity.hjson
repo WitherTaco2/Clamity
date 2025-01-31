@@ -136,6 +136,12 @@ Dialogues: {
 			// Text4: But now is not the time for answers.
 		}
 
+		Moonlord: {
+			// Text1: Era of doomsday is end
+			// Text2: Power of greates evil gone into oblivion
+			// Text3: But what he did is not forgotten.
+		}
+
 		PostWoB: {
 			// Text1: Grand machine is fall. Very interesting...
 			// Text2: You maybe has a lot of questions of all your path.
