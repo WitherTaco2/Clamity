@@ -90,12 +90,53 @@ namespace Clamity
                 }
             }
         }
+        internal static bool _dialogueArchitectAbyss;
+        public static bool dialogueArchitectAbyss
+        {
+            get
+            {
+                return _dialogueArchitectAbyss;
+            }
+            set
+            {
+                if (!value)
+                {
+                    _dialogueArchitectAbyss = false;
+                }
+                else
+                {
+                    NPC.SetEventFlagCleared(ref _dialogueArchitectAbyss, -1);
+                }
+            }
+        }
+        internal static bool _dialogueArchitectPostWoB;
+        public static bool dialogueArchitectPostWoB
+        {
+            get
+            {
+                return _dialogueArchitectPostWoB;
+            }
+            set
+            {
+                if (!value)
+                {
+                    _dialogueArchitectPostWoB = false;
+                }
+                else
+                {
+                    NPC.SetEventFlagCleared(ref _dialogueArchitectPostWoB, -1);
+                }
+            }
+        }
         internal static void ResetAllFlags()
         {
             downedClamitas = false;
             downedPyrogen = false;
             downedWallOfBronze = false;
             generatedFrozenHell = false;
+
+            dialogueArchitectAbyss = false;
+            dialogueArchitectPostWoB = false;
         }
         public override void Load()
         {
@@ -131,6 +172,13 @@ namespace Clamity
                 list.Add("wob");
             tag["downedFlagsClamity"] = list;
             tag["generatedFrozenHell"] = generatedFrozenHell;
+
+            list = new List<string>();
+            if (dialogueArchitectAbyss)
+                list.Add("abyss");
+            if (dialogueArchitectPostWoB)
+                list.Add("wob");
+            tag["Clamity:Dialogues"] = list;
         }
         public override void LoadWorldData(TagCompound tag)
         {
@@ -139,6 +187,10 @@ namespace Clamity
             downedPyrogen = list.Contains("pyrogen");
             downedWallOfBronze = list.Contains("wob");
             generatedFrozenHell = tag.GetBool("generatedFrozenHell");
+
+            list = tag.GetList<string>("Clamity:Dialogues");
+            dialogueArchitectAbyss = list.Contains("abyss");
+            dialogueArchitectPostWoB = list.Contains("wob");
         }
         public static int AnySandBlock;
         public static int AnyGemHook;
@@ -163,6 +215,11 @@ namespace Clamity
             writer.Write(flags);
 
             writer.Write(generatedFrozenHell);
+
+            flags = new BitsByte();
+            flags[0] = dialogueArchitectAbyss;
+            flags[1] = dialogueArchitectPostWoB;
+            writer.Write(flags);
         }
         public override void NetReceive(BinaryReader reader)
         {
@@ -172,6 +229,10 @@ namespace Clamity
             downedWallOfBronze = flags[2];
 
             generatedFrozenHell = reader.ReadBoolean();
+
+            flags = reader.ReadByte();
+            dialogueArchitectAbyss = flags[0];
+            dialogueArchitectPostWoB = flags[1];
         }
     }
 }

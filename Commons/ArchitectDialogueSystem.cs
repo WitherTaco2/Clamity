@@ -1,8 +1,8 @@
 ﻿using CalamityMod;
-using CalamityMod.Events;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using Terraria;
 using Terraria.ModLoader;
 
 namespace Clamity.Commons
@@ -101,6 +101,12 @@ namespace Clamity.Commons
         }
         public override void PostUpdateWorld()
         {
+            if (Main.LocalPlayer.Calamity().ZoneAbyssLayer4 && !ClamitySystem.dialogueArchitectAbyss)
+            {
+                StartDialogue(ArchitectDialoguePhase.Abyss);
+                ClamitySystem.dialogueArchitectAbyss = true;
+            }
+
             Tick();
         }
         internal static void Tick()
@@ -135,11 +141,6 @@ namespace Clamity.Commons
                 else
                     --CurrentDialogueDelay;
 
-                // Ensure a boss does not attack the player while they are reading dialogue.
-                // Indefinitely stall the countdown.
-                if (BossRushEvent.BossRushSpawnCountdown < 180)
-                    BossRushEvent.BossRushSpawnCountdown = CurrentDialogueDelay + 180;
-
                 // Gotta Go Fast Mode
                 if (GottaGoFast && CurrentDialogueDelay > GottaGoFastSpeed)
                     CurrentDialogueDelay = GottaGoFastSpeed;
@@ -153,13 +154,13 @@ namespace Clamity.Commons
             // Allow the boss spawn countdown to hit zero and the next boss to appear without showing any dialogue or causing any delays.
 
             // However, if Boss Rush is not occurring, reset all variables.
-            if (!BossRushEvent.BossRushActive)
+            /*if (!BossRushEvent.BossRushActive)
             {
                 Phase = ArchitectDialoguePhase.None;
                 currentSequence = null;
                 currentSequenceIndex = 0;
                 CurrentDialogueDelay = 0;
-            }
+            }*/
         }
 
         private static bool GetNextUnskippedDialogue(ArchitectDialogueEvent[] sequence, int index, out int newIndex)

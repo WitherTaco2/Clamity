@@ -4,6 +4,7 @@ using CalamityMod.Items;
 using CalamityMod.Items.Placeables.Furniture.DevPaintings;
 using CalamityMod.Items.Potions;
 using CalamityMod.World;
+using Clamity.Commons;
 using Clamity.Content.Biomes.FrozenHell.Items;
 using Clamity.Content.Bosses.WoB.Drop;
 using Microsoft.Xna.Framework;
@@ -408,8 +409,14 @@ namespace Clamity.Content.Bosses.WoB.NPCs
                 CalamityUtils.DisplayLocalizedText("Mods.Clamity.Misc.FrozenHellMessege", new Color?(Color.LightCyan));
                 ClamitySystem.generatedFrozenHell = true;
                 CalamityNetcode.SyncWorld();
-            }
 
+
+            }
+            if (!ClamitySystem.dialogueArchitectPostWoB)
+            {
+                ArchitectDialogueSystem.StartDialogue(ArchitectDialoguePhase.PostWoB);
+                ClamitySystem.dialogueArchitectPostWoB = true;
+            }
             //NPC.SetEventFlagCleared(ref ClamitySystem.downedWallOfBronze, -1);
             ClamitySystem.downedWallOfBronze = true;
             CalamityNetcode.SyncWorld();
