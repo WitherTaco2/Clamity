@@ -29,6 +29,11 @@ Items: {
 			}
 		}
 	}
+
+	DragonAeriaTeleport: {
+		DisplayName: Dragon Aeria Teleport
+		Tooltip: ""
+	}
 }
 
 Misc: {
