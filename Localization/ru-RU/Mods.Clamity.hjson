@@ -30,11 +30,6 @@ Items: {
 		}
 	}
 
-	EntropicSlag: {
-		// Tooltip: ""
-		// DisplayName: Entropic Slag
-	}
-
 	MirrorOfBeyond: {
 		/* Tooltip:
 			'''

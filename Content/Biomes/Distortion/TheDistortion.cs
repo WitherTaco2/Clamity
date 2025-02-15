@@ -90,12 +90,12 @@ namespace Clamity.Content.Biomes.Distortion
                 Main.worldSurface = SubworldHeight - 25;
                 Main.rockLayer = SubworldHeight - 30;
 
-                for (int i = 100; i < SubworldWidth / 4; i++)
+                for (int i = 100; i < SubworldWidth / 4; i += 100 + WorldGen.genRand.Next(30))
                 {
-                    for (int j = SubworldHeight / 4; j < SubworldHeight - 100; j += 100)
+                    for (int j = SubworldHeight / 4; j < SubworldHeight - 100; j += 100 + WorldGen.genRand.Next(90))
                     {
                         Tile tile = Main.tile[i, j];
-                        if (WorldGen.genRand.NextBool(10000))
+                        if (WorldGen.genRand.NextBool(4))
                         {
                             CreateIsland(i, j);
                         }
@@ -142,15 +142,26 @@ namespace Clamity.Content.Biomes.Distortion
                     if (!WorldGen.InWorld(x + i, y))
                         continue;
                     WorldGen.PlaceTile(x + i, y, (ushort)ModContent.TileType<NightmareGrass>());
+
+                    Tile tile = Framing.GetTileSafely(x + i, y); // Safely get the tile at the given coordinates
+                    bool growSuccess = WorldGen.GrowTree(x + i, y); ; // A bool to see if the tree growing was successful.
+
+                    //If growing the tree was a success and the player is near, show growing effects
+                    if (growSuccess && WorldGen.genRand.NextBool(10))
+                    {
+                        WorldGen.TreeGrowFXCheck(x + i, y);
+                    }
                 }
+                int num = 1;
                 for (int j = 0; j < 8; j++) //Y
                 {
-                    for (int i = -maxWight / 2 + j; i <= maxWight / 2 - j; i++) //X
+                    for (int i = -maxWight / 2 + j * num; i <= maxWight / 2 - j * num; i++) //X
                     {
                         if (!WorldGen.InWorld(x + i, y + j + 1))
                             continue;
                         WorldGen.PlaceTile(x + i, y + j + 1, (ushort)ModContent.TileType<EntropicSlagTile>());
                     }
+                    num++;
                 }
 
             }

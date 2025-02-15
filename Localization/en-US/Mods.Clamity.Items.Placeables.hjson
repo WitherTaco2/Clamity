@@ -48,6 +48,6 @@ Pyroplate: {
 }
 
 EntropicSlag: {
-	Tooltip: ""
 	DisplayName: Entropic Slag
+	Tooltip: Sprite is placeholder
 }
