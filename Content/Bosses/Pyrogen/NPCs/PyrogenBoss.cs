@@ -282,14 +282,14 @@ namespace Clamity.Content.Bosses.Pyrogen.NPCs
                 }
             }
 
-            if (CalamityConfig.Instance.BossesStopWeather)
+            /*if (CalamityConfig.Instance.BossesStopWeather)
             {
                 CalamityMod.CalamityMod.StopRain();
             }
             else if (!Main.raining)
             {
                 CalamityUtils.StartRain();
-            }
+            }*/
 
             if (!player.active || player.dead)
             {
