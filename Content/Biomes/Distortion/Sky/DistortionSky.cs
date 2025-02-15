@@ -43,7 +43,11 @@ namespace Clamity.Content.Biomes.Distortion.Sky
             var backgroundShader = ShaderManager.GetShader("Clamity.TheDistortion");
             backgroundShader.TrySetParameter("globalTimer", Main.GlobalTimeWrappedHourly);
             backgroundShader.TrySetParameter("backgroundColor1", Color.Black.ToVector4());
+            //backgroundShader.TrySetParameter("backgroundColor2", Color.Lerp(Color.Purple, Color.Orange, Utils.GetLerpValue(TheDistortion.SubworldHeight / 4 - 50, TheDistortion.SubworldHeight / 4, Main.LocalPlayer.Center.Y, true)).ToVector4());
             backgroundShader.TrySetParameter("backgroundColor2", Color.Purple.ToVector4());
+            backgroundShader.TrySetParameter("backgroundColor3", Color.Aquamarine.ToVector4());
+            backgroundShader.TrySetParameter("backgroundColorDarksun", Color.Orange.ToVector4());
+            backgroundShader.TrySetParameter("darksunLerpValue", Utils.GetLerpValue(TheDistortion.SubworldHeight / 4 - 50, TheDistortion.SubworldHeight / 4, Main.LocalPlayer.Center.Y, true));
             backgroundShader.SetTexture(ModContent.Request<Texture2D>("Clamity/Assets/Textures/Noice/Mist2"), 1, SamplerState.LinearWrap);
             backgroundShader.Apply();
 
