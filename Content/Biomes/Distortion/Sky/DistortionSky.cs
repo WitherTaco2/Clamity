@@ -45,10 +45,13 @@ namespace Clamity.Content.Biomes.Distortion.Sky
             backgroundShader.TrySetParameter("backgroundColor1", Color.Black.ToVector4());
             //backgroundShader.TrySetParameter("backgroundColor2", Color.Lerp(Color.Purple, Color.Orange, Utils.GetLerpValue(TheDistortion.SubworldHeight / 4 - 50, TheDistortion.SubworldHeight / 4, Main.LocalPlayer.Center.Y, true)).ToVector4());
             backgroundShader.TrySetParameter("backgroundColor2", Color.Purple.ToVector4());
-            backgroundShader.TrySetParameter("backgroundColor3", Color.Aquamarine.ToVector4());
+            backgroundShader.TrySetParameter("backgroundColor3", Color.DarkBlue.ToVector4());
             backgroundShader.TrySetParameter("backgroundColorDarksun", Color.Orange.ToVector4());
-            backgroundShader.TrySetParameter("darksunLerpValue", Utils.GetLerpValue(TheDistortion.SubworldHeight / 4 - 50, TheDistortion.SubworldHeight / 4, Main.LocalPlayer.Center.Y, true));
+            backgroundShader.TrySetParameter("darksunLerpValue", Utils.GetLerpValue(TheDistortion.SubworldHeight * 16 / 4, TheDistortion.SubworldHeight * 16 / 4 - 400, Main.LocalPlayer.Center.Y, true));
+            backgroundShader.TrySetParameter("playerPos", Main.LocalPlayer.Center);
+            backgroundShader.TrySetParameter("screenSize", Main.ScreenSize.ToVector2());
             backgroundShader.SetTexture(ModContent.Request<Texture2D>("Clamity/Assets/Textures/Noice/Mist2"), 1, SamplerState.LinearWrap);
+            backgroundShader.SetTexture(ModContent.Request<Texture2D>("Clamity/Assets/Textures/Noice/Mist"), 1, SamplerState.LinearWrap);
             backgroundShader.Apply();
 
             Main.spriteBatch.Draw(WhitePixel, screenArea * 0.5f, null, Color.White, 0f, WhitePixel.Size() * 0.5f, textureArea, 0, 0f);
