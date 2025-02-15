@@ -6,6 +6,7 @@ namespace Clamity
     public class Clamity : Mod
     {
         public static Clamity mod;
+        public static Mod calamity;
         public static Mod musicMod;
         public static Mod infernum;
         public static Mod calRemix;
@@ -14,6 +15,7 @@ namespace Clamity
         public override void Load()
         {
             mod = this;
+            ModLoader.TryGetMod("CalamityMod", out calamity);
             ModLoader.TryGetMod("ClamityMusic", out musicMod);
             ModLoader.TryGetMod("InfernumMode", out infernum);
             ModLoader.TryGetMod("CalRemix", out calRemix);
@@ -24,6 +26,7 @@ namespace Clamity
         public override void Unload()
         {
             mod = null;
+            calamity = null;
             musicMod = null;
             infernum = null;
 

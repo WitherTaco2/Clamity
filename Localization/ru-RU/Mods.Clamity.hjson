@@ -29,6 +29,20 @@ Items: {
 			}
 		}
 	}
+
+	EntropicSlag: {
+		// Tooltip: ""
+		// DisplayName: Entropic Slag
+	}
+
+	MirrorOfBeyond: {
+		/* Tooltip:
+			'''
+			Teleport you to The Distortion
+			Item can not be used on cursor
+			''' */
+		// DisplayName: Mirror Of Beyond
+	}
 }
 
 Misc: {
@@ -52,6 +66,11 @@ Biomes: {
 	FrozenHell: {
 		TownNPCDialogueName: Замороженный ад
 		DisplayName: Замороженный ад
+	}
+
+	NighmareForestBiome: {
+		// TownNPCDialogueName: the Nighmare Forest Biome
+		// DisplayName: Nighmare Forest Biome
 	}
 }
 

@@ -4,6 +4,7 @@ using CalamityMod.Cooldowns;
 using CalamityMod.Items.Accessories;
 using CalamityMod.NPCs.Cryogen;
 using CalamityMod.Projectiles.Rogue;
+using Clamity.Content.Biomes.Distortion;
 using Clamity.Content.Biomes.FrozenHell.Biome;
 using Clamity.Content.Bosses.Pyrogen.Drop;
 using Clamity.Content.Bosses.Pyrogen.NPCs;
@@ -11,6 +12,7 @@ using Clamity.Content.Cooldowns;
 using Clamity.Content.Items.Materials;
 using Clamity.Content.Items.Tools.Bags.Fish;
 using Microsoft.Xna.Framework;
+using SubworldLibrary;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
@@ -62,6 +64,11 @@ namespace Clamity
         public int FlyingChairPower;
 
         public bool ZoneFrozenHell => Player.InModBiome((ModBiome)ModContent.GetInstance<FrozenHell>());
+        public bool ZoneDistortion => SubworldSystem.IsActive<TheDistortion>();
+        public bool ZoneShatteredIslands => ZoneDistortion && !ZoneNightmareForest && !ZoneEndothermicMountains && !ZoneDarksun;
+        public bool ZoneNightmareForest => false;
+        public bool ZoneEndothermicMountains => false;
+        public bool ZoneDarksun => false;
         public override void ResetEffects()
         {
             realityRelocator = false;

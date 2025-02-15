@@ -5,6 +5,7 @@ using CalamityMod.Events;
 using CalamityMod.Items.Mounts;
 using CalamityMod.NPCs.Yharon;
 using CalamityMod.UI.CalamitasEnchants;
+using Clamity.Content.Biomes.Distortion.Sky;
 using Clamity.Content.Biomes.FrozenHell.Biome;
 using Clamity.Content.Biomes.FrozenHell.Biome.Background;
 using Clamity.Content.Biomes.FrozenHell.Items;
@@ -153,6 +154,9 @@ namespace Clamity.Commons
         {
             Filters.Scene["Clamity:FrozenHellSky"] = new Filter(new FrozenHellShaderData("FilterMiniTower").UseColor(0.5f, 1f, 1f).UseOpacity(0.65f), EffectPriority.VeryHigh);
             SkyManager.Instance["Clamity:FrozenHellSky"] = (CustomSky)new FrozenHellSky();
+
+            Filters.Scene["Clamity:Distortion"] = new Filter(new GenericScreenShaderData("FilterMiniTower").UseColor(Color.Transparent).UseOpacity(0f), EffectPriority.VeryHigh);
+            SkyManager.Instance["Clamity:Distortion"] = (CustomSky)new DistortionSky();
         }
         /// <summary>
         /// Registers Clamity's Cooldowns

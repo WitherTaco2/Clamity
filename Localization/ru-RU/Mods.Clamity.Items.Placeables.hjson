@@ -46,3 +46,8 @@ Pyroplate: {
 	Tooltip: Он резонирует с потусторонней энергией
 	DisplayName: Пироплита
 }
+
+EntropicSlag: {
+	// Tooltip: ""
+	// DisplayName: Entropic Slag
+}
