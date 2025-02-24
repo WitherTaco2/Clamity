@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Clamity.Content.Biomes.Distortion.Items;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria;
 using Terraria.GameContent;
@@ -62,6 +64,49 @@ namespace Clamity.Content.Biomes.Distortion.Tiles
         {
             //Item.NewItem(WorldGen.GetItemSource_FromTreeShake(x, y), new Vector2(x, y) * 16, ModContent.ItemType<Items.Placeable.ExampleBlock>());
             //TODO - Later make exclusive food and shaking tree
+
+            int type = ItemID.SpookyWood, count = Main.rand.Next(20, 40);
+            if (Main.halloween && Main.rand.NextBool(50))
+            {
+                type = ItemID.RottenEgg;
+                count = Main.rand.Next(10, 13);
+            }
+            if (Main.rand.NextBool(7))
+            {
+                type = ItemID.Acorn;
+                count = Main.rand.Next(1, 3);
+            }
+            if (Main.rand.NextBool(20))
+            {
+                type = ModContent.ItemType<PumpkinFetus>();
+                count = 1;
+            }
+            if (Main.rand.NextBool(25))
+            {
+                if (Main.rand.NextBool(100))
+                {
+                    type = ItemID.PlatinumCoin;
+                    count = 3;
+                }
+                else if (Main.rand.NextBool(25))
+                {
+                    type = ItemID.PlatinumCoin;
+                    count = 1;
+                }
+                else if (Main.rand.NextBool(5))
+                {
+                    type = ItemID.GoldCoin;
+                    count = Main.rand.Next(20, 40);
+                }
+                else
+                {
+                    type = ItemID.GoldCoin;
+                    count = 10;
+                }
+            }
+
+            Item.NewItem(WorldGen.GetItemSource_FromTreeShake(x, y), new Vector2(x, y) * 16, type, count);
+
             return false;
         }
 

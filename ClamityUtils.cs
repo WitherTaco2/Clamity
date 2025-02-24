@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using CalamityMod;
+using Clamity.Content.Biomes.Distortion.Tiles;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -155,6 +157,13 @@ namespace Clamity
             }
 
             return false;
+        }
+        public static void MergeWithDistortion(int type)
+        {
+            CalamityUtils.SetMerge(type, ModContent.TileType<EntropicSlagTile>());
+            CalamityUtils.SetMerge(type, ModContent.TileType<NightmareGrass>());
+            CalamityUtils.SetMerge(type, ModContent.TileType<EndothermicSnowTile>());
+            CalamityUtils.SetMerge(type, ModContent.TileType<EndothermicIceTile>());
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using CalamityMod;
+using System.Reflection;
 using Terraria.ModLoader.IO;
 
 namespace Clamity.Commons
@@ -31,6 +32,7 @@ namespace Clamity.Commons
                 if (callResult is not null and T r)
                 {
                     result = r;
+                    //Clamity.mod.Logger.Debug(modCallInfo.ToString() + r.GetType().Name + " " + r.ToString());
                     return true;
                 }
             }
@@ -51,14 +53,23 @@ namespace Clamity.Commons
             Clamity.calamity.Call(modCallInfo, value);
         }
 
-        private static void SetDownedValue(string fieldName, bool value)
+        internal static void SetDownedValue(string fieldName, bool value)
         {
-            Clamity.calamity?.Code?.GetType("CalamityMod.DownedBossSystem")?.GetField(fieldName, BindingFlags.NonPublic | BindingFlags.Static).SetValue(null, value);
+            //if (value == false)
+            //    Clamity.mod.Logger.Warn(fieldName + " changed to false");
+            //ModReferences.BaseCalamity?.Code?.GetType("CalamityMod.DownedBossSystem")?.GetField(fieldName, BindingFlags.NonPublic | BindingFlags.Static).SetValue(null, value);
+            var r = typeof(DownedBossSystem).GetField(fieldName, BindingFlags.NonPublic | BindingFlags.Static);
+            if (r == null)
+            {
+                Clamity.mod.Logger.Warn(r.Name + " returned null");
+            }
+            r.SetValue(null, value);
+            //CalamityNetcode.SyncWorld();
         }
 
-        private static void SetWorldValue(string fieldName, bool value)
+        internal static void SetWorldValue(string fieldName, bool value)
         {
-            Clamity.calamity?.Code?.GetType("CalamityMod.World.CalamityWorld")?.GetField(fieldName, BindingFlags.Public | BindingFlags.Static).SetValue(null, value);
+            ModReferences.BaseCalamity?.Code?.GetType("CalamityMod.World.CalamityWorld")?.GetField(fieldName, BindingFlags.Public | BindingFlags.Static).SetValue(null, value);
         }
 
         #endregion
@@ -67,160 +78,178 @@ namespace Clamity.Commons
 
         public static bool DesertScourgeDefeated
         {
-            get => TryGetFromModCall(out bool defeated, "BossDowned", "DesertScourge") && defeated;
+            get => TryGetFromModCall(out bool defeated, "GetBossDowned", "desertscourge") && defeated;
             set => SetDownedValue("_downedDesertScourge", value);
         }
 
         public static bool CrabulonDefeated
         {
-            get => TryGetFromModCall(out bool defeated, "BossDowned", "Crabulon") && defeated;
+            get => TryGetFromModCall(out bool defeated, "GetBossDowned", "crabulon") && defeated;
             set => SetDownedValue("_downedCrabulon", value);
         }
 
         public static bool HiveMindDefeated
         {
-            get => TryGetFromModCall(out bool defeated, "BossDowned", "HiveMind") && defeated;
+            get => TryGetFromModCall(out bool defeated, "GetBossDowned", "hivemind") && defeated;
             set => SetDownedValue("_downedHiveMind", value);
         }
 
         public static bool PerforatorHiveDefeated
         {
-            get => TryGetFromModCall(out bool defeated, "BossDowned", "Perforator") && defeated;
+            get => TryGetFromModCall(out bool defeated, "GetBossDowned", "perforator") && defeated;
             set => SetDownedValue("_downedPerforator", value);
         }
 
         public static bool SlimeGodDefeated
         {
-            get => TryGetFromModCall(out bool defeated, "BossDowned", "SlimeGod") && defeated;
+            get => TryGetFromModCall(out bool defeated, "GetBossDowned", "slimegod") && defeated;
             set => SetDownedValue("_downedSlimeGod", value);
         }
 
         public static bool CryogenDefeated
         {
-            get => TryGetFromModCall(out bool defeated, "BossDowned", "Cryogen") && defeated;
+            get => TryGetFromModCall(out bool defeated, "GetBossDowned", "cryogen") && defeated;
             set => SetDownedValue("_downedCryogen", value);
         }
 
         public static bool AquaticScourgeDefeated
         {
-            get => TryGetFromModCall(out bool defeated, "BossDowned", "AquaticScourge") && defeated;
+            get => TryGetFromModCall(out bool defeated, "GetBossDowned", "aquaticscourge") && defeated;
             set => SetDownedValue("_downedAquaticScourge", value);
         }
 
         public static bool BrimstoneElementalDefeated
         {
-            get => TryGetFromModCall(out bool defeated, "BossDowned", "BrimstoneElemental") && defeated;
+            get => TryGetFromModCall(out bool defeated, "GetBossDowned", "brimstoneelemental") && defeated;
             set => SetDownedValue("_downedBrimstoneElemental", value);
         }
 
         public static bool CalamitasCloneDefeated
         {
-            get => TryGetFromModCall(out bool defeated, "BossDowned", "CalamitasClone") && defeated;
+            get => TryGetFromModCall(out bool defeated, "GetBossDowned", "calamitasclone") && defeated;
             set => SetDownedValue("_downedCalamitasClone", value);
         }
 
         public static bool LeviathanDefeated
         {
-            get => TryGetFromModCall(out bool defeated, "BossDowned", "AnahitaLeviathan") && defeated;
+            get => TryGetFromModCall(out bool defeated, "GetBossDowned", "anahitaleviathan") && defeated;
             set => SetDownedValue("_downedLeviathan", value);
         }
 
         public static bool AstrumAureusDefeated
         {
-            get => TryGetFromModCall(out bool defeated, "BossDowned", "AstrumAureus") && defeated;
+            get => TryGetFromModCall(out bool defeated, "GetBossDowned", "astrumaureus") && defeated;
             set => SetDownedValue("_downedAstrumAureus", value);
         }
 
         // 2019
         public static bool PeanutButterGoliathDefeated
         {
-            get => TryGetFromModCall(out bool defeated, "BossDowned", "PlaguebringerGoliath") && defeated;
+            get => TryGetFromModCall(out bool defeated, "GetBossDowned", "plaguebringergoliath") && defeated;
             set => SetDownedValue("_downedPlaguebringer", value);
         }
 
         public static bool RavagerDefeated
         {
-            get => TryGetFromModCall(out bool defeated, "BossDowned", "Ravager") && defeated;
+            get => TryGetFromModCall(out bool defeated, "GetBossDowned", "ravager") && defeated;
             set => SetDownedValue("_downedRavager", value);
         }
 
         public static bool AstrumDeusDefeated
         {
-            get => TryGetFromModCall(out bool defeated, "BossDowned", "AstrumDeus") && defeated;
+            get => TryGetFromModCall(out bool defeated, "GetBossDowned", "astrumdeus") && defeated;
             set => SetDownedValue("_downedAstrumDeus", value);
         }
 
         public static bool ProfanedGuardiansDefeated
         {
-            get => TryGetFromModCall(out bool defeated, "BossDowned", "Guardians") && defeated;
+            get => TryGetFromModCall(out bool defeated, "GetBossDowned", "guardians") && defeated;
             set => SetDownedValue("_downedGuardians", value);
         }
 
         public static bool DragonfollyDefeated
         {
-            get => TryGetFromModCall(out bool defeated, "BossDowned", "Dragonfolly") && defeated;
+            get => TryGetFromModCall(out bool defeated, "GetBossDowned", "dragonfolly") && defeated;
             set => SetDownedValue("_downedDragonfolly", value);
         }
 
         public static bool ProvidenceDefeated
         {
-            get => TryGetFromModCall(out bool defeated, "BossDowned", "Providence") && defeated;
+            get => TryGetFromModCall(out bool defeated, "GetBossDowned", "providence") && defeated;
             set => SetDownedValue("_downedProvidence", value);
         }
 
         public static bool CeaselessVoidDefeated
         {
-            get => TryGetFromModCall(out bool defeated, "BossDowned", "CeaselessVoid") && defeated;
+            get => TryGetFromModCall(out bool defeated, "GetBossDowned", "ceaselessvoid") && defeated;
             set => SetDownedValue("_downedCeaselessVoid", value);
         }
 
         public static bool StormWeaverDefeated
         {
-            get => TryGetFromModCall(out bool defeated, "BossDowned", "StormWeaver") && defeated;
+            get => TryGetFromModCall(out bool defeated, "GetBossDowned", "stormweaver") && defeated;
             set => SetDownedValue("_downedStormWeaver", value);
         }
 
         public static bool SignusDefeated
         {
-            get => TryGetFromModCall(out bool defeated, "BossDowned", "Signus") && defeated;
+            get => TryGetFromModCall(out bool defeated, "GetBossDowned", "signus") && defeated;
             set => SetDownedValue("_downedSignus", value);
         }
 
         public static bool PolterghastDefeated
         {
-            get => TryGetFromModCall(out bool defeated, "BossDowned", "Polterghast") && defeated;
+            get => TryGetFromModCall(out bool defeated, "GetBossDowned", "polterghast") && defeated;
             set => SetDownedValue("_downedPolterghast", value);
         }
 
         public static bool OldDukeDefeated
         {
-            get => TryGetFromModCall(out bool defeated, "BossDowned", "OldDuke") && defeated;
+            get => TryGetFromModCall(out bool defeated, "GetBossDowned", "oldduke") && defeated;
             set => SetDownedValue("_downedBoomerDuke", value);
         }
 
         public static bool DevourerOfGodsDefeated
         {
-            get => TryGetFromModCall(out bool defeated, "BossDowned", "DevourerOfGods") && defeated;
+            get => TryGetFromModCall(out bool defeated, "GetBossDowned", "devourerofgods") && defeated;
             set => SetDownedValue("_downedDoG", value);
         }
 
         public static bool YharonDefeated
         {
-            get => TryGetFromModCall(out bool defeated, "BossDowned", "Yharon") && defeated;
+            get => TryGetFromModCall(out bool defeated, "GetBossDowned", "yharon") && defeated;
             set => SetDownedValue("_downedYharon", value);
         }
 
         public static bool DraedonDefeated
         {
-            get => TryGetFromModCall(out bool defeated, "BossDowned", "ExoMechs") && defeated;
+            get => TryGetFromModCall(out bool defeated, "GetBossDowned", "exomechs") && defeated;
             set => SetDownedValue("_downedExoMechs", value);
         }
 
         public static bool CalamitasDefeated
         {
-            get => TryGetFromModCall(out bool defeated, "BossDowned", "SupremeCalamitas") && defeated;
+            get => TryGetFromModCall(out bool defeated, "GetBossDowned", "calamitas") && defeated;
             set => SetDownedValue("_downedCalamitas", value);
         }
+
+        #endregion
+
+        #region Other Flags
+        public static bool RevengeanceModeActive
+        {
+            get => TryGetFromModCall(out bool active, "GetDifficulty", "Revengeance") && active;
+            set => SetWorldValue("revenge", value);
+        }
+
+        public static bool DeathModeActive
+        {
+            get => TryGetFromModCall(out bool active, "GetDifficulty", "Death") && active;
+            set => SetWorldValue("death", value);
+        }
+
+        public static bool AcidRainIsOngoing => TryGetFromModCall(out bool active, "GetAcidRainActive") && active;
+
 
         #endregion
 
@@ -228,6 +257,59 @@ namespace Clamity.Commons
 
         public static void SaveDefeatStates(TagCompound tag)
         {
+            /*if (DownedBossSystem.downedDesertScourge)
+                tag[nameof(DesertScourgeDefeated)] = true;
+            if (DownedBossSystem.downedCrabulon)
+                tag[nameof(CrabulonDefeated)] = true;
+            if (DownedBossSystem.downedHiveMind)
+                tag[nameof(HiveMindDefeated)] = true;
+            if (DownedBossSystem.downedPerforator)
+                tag[nameof(PerforatorHiveDefeated)] = true;
+            if (DownedBossSystem.downedSlimeGod)
+                tag[nameof(SlimeGodDefeated)] = true;
+            if (DownedBossSystem.downedCryogen)
+                tag[nameof(CryogenDefeated)] = true;
+            if (DownedBossSystem.downedAquaticScourge)
+                tag[nameof(AquaticScourgeDefeated)] = true;
+            if (DownedBossSystem.downedBrimstoneElemental)
+                tag[nameof(BrimstoneElementalDefeated)] = true;
+            if (DownedBossSystem.downedCalamitasClone)
+                tag[nameof(CalamitasCloneDefeated)] = true;
+            if (DownedBossSystem.downedLeviathan)
+                tag[nameof(LeviathanDefeated)] = true;
+            if (DownedBossSystem.downedAstrumAureus)
+                tag[nameof(AstrumAureusDefeated)] = true;
+            if (DownedBossSystem.downedPlaguebringer)
+                tag[nameof(PeanutButterGoliathDefeated)] = true;
+            if (DownedBossSystem.downedRavager)
+                tag[nameof(RavagerDefeated)] = true;
+            if (DownedBossSystem.downedAstrumDeus)
+                tag[nameof(AstrumDeusDefeated)] = true;
+            if (DownedBossSystem.downedGuardians)
+                tag[nameof(ProfanedGuardiansDefeated)] = true;
+            if (DownedBossSystem.downedDragonfolly)
+                tag[nameof(DragonfollyDefeated)] = true;
+            if (DownedBossSystem.downedProvidence)
+                tag[nameof(ProvidenceDefeated)] = true;
+            if (DownedBossSystem.downedCeaselessVoid)
+                tag[nameof(CeaselessVoidDefeated)] = true;
+            if (DownedBossSystem.downedStormWeaver)
+                tag[nameof(StormWeaverDefeated)] = true;
+            if (DownedBossSystem.downedSignus)
+                tag[nameof(SignusDefeated)] = true;
+            if (DownedBossSystem.downedPolterghast)
+                tag[nameof(PolterghastDefeated)] = true;
+            if (DownedBossSystem.downedBoomerDuke)
+                tag[nameof(OldDukeDefeated)] = true;
+            if (DownedBossSystem.downedDoG)
+                tag[nameof(DevourerOfGodsDefeated)] = true;
+            if (DownedBossSystem.downedYharon)
+                tag[nameof(YharonDefeated)] = true;
+            if (DownedBossSystem.downedExoMechs)
+                tag[nameof(DraedonDefeated)] = true;
+            if (DownedBossSystem.downedCalamitas)
+                tag[nameof(CalamitasDefeated)] = true;*/
+
             if (DesertScourgeDefeated)
                 tag[nameof(DesertScourgeDefeated)] = true;
             if (CrabulonDefeated)
@@ -284,6 +366,33 @@ namespace Clamity.Commons
 
         public static void LoadDefeatStates(TagCompound tag)
         {
+            /*DownedBossSystem.downedDesertScourge = tag.ContainsKey(nameof(DesertScourgeDefeated));
+            DownedBossSystem.downedCrabulon = tag.ContainsKey(nameof(CrabulonDefeated));
+            DownedBossSystem.downedHiveMind = tag.ContainsKey(nameof(HiveMindDefeated));
+            DownedBossSystem.downedPerforator = tag.ContainsKey(nameof(PerforatorHiveDefeated));
+            DownedBossSystem.downedSlimeGod = tag.ContainsKey(nameof(SlimeGodDefeated));
+            DownedBossSystem.downedCryogen = tag.ContainsKey(nameof(CryogenDefeated));
+            DownedBossSystem.downedAquaticScourge = tag.ContainsKey(nameof(AquaticScourgeDefeated));
+            DownedBossSystem.downedBrimstoneElemental = tag.ContainsKey(nameof(BrimstoneElementalDefeated));
+            DownedBossSystem.downedCalamitasClone = tag.ContainsKey(nameof(CalamitasCloneDefeated));
+            DownedBossSystem.downedLeviathan = tag.ContainsKey(nameof(LeviathanDefeated));
+            DownedBossSystem.downedAstrumAureus = tag.ContainsKey(nameof(AstrumAureusDefeated));
+            DownedBossSystem.downedPlaguebringer = tag.ContainsKey(nameof(PeanutButterGoliathDefeated));
+            DownedBossSystem.downedRavager = tag.ContainsKey(nameof(RavagerDefeated));
+            DownedBossSystem.downedAstrumDeus = tag.ContainsKey(nameof(AstrumDeusDefeated));
+            DownedBossSystem.downedGuardians = tag.ContainsKey(nameof(ProfanedGuardiansDefeated));
+            DownedBossSystem.downedDragonfolly = tag.ContainsKey(nameof(DragonfollyDefeated));
+            DownedBossSystem.downedProvidence = tag.ContainsKey(nameof(ProvidenceDefeated));
+            DownedBossSystem.downedCeaselessVoid = tag.ContainsKey(nameof(CeaselessVoidDefeated));
+            DownedBossSystem.downedStormWeaver = tag.ContainsKey(nameof(StormWeaverDefeated));
+            DownedBossSystem.downedSignus = tag.ContainsKey(nameof(SignusDefeated));
+            DownedBossSystem.downedPolterghast = tag.ContainsKey(nameof(PolterghastDefeated));
+            DownedBossSystem.downedBoomerDuke = tag.ContainsKey(nameof(OldDukeDefeated));
+            DownedBossSystem.downedDoG = tag.ContainsKey(nameof(DevourerOfGodsDefeated));
+            DownedBossSystem.downedYharon = tag.ContainsKey(nameof(YharonDefeated));
+            DownedBossSystem.downedExoMechs = tag.ContainsKey(nameof(DraedonDefeated));
+            DownedBossSystem.downedCalamitas = tag.ContainsKey(nameof(CalamitasDefeated));*/
+
             DesertScourgeDefeated = tag.ContainsKey(nameof(DesertScourgeDefeated));
             CrabulonDefeated = tag.ContainsKey(nameof(CrabulonDefeated));
             HiveMindDefeated = tag.ContainsKey(nameof(HiveMindDefeated));

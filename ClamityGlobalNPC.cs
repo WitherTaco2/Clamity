@@ -7,6 +7,7 @@ using CalamityMod.NPCs.PlaguebringerGoliath;
 using CalamityMod.NPCs.SunkenSea;
 using CalamityMod.NPCs.SupremeCalamitas;
 using CalamityMod.NPCs.TownNPCs;
+using Clamity.Content.Biomes.Distortion.NPCs;
 using Clamity.Content.Biomes.FrozenHell.Items;
 using Clamity.Content.Items.Accessories;
 using Clamity.Content.Items.Materials;
@@ -17,6 +18,7 @@ using Clamity.Content.Items.Weapons.Classless;
 using Clamity.Content.Items.Weapons.Melee.Shortswords;
 using Clamity.Content.Items.Weapons.Melee.Swords;
 using Clamity.Content.Items.Weapons.Ranged.Guns;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
@@ -453,6 +455,17 @@ namespace Clamity
                 shop.Add<CyanSolution>(new Condition(Language.GetOrRegister("Mods.Clamity.Misc.DefeatedWoB"), () => ClamitySystem.downedWallOfBronze));
             if (shop.NpcType == ModContent.NPCType<DILF>())
                 shop.Add<EnchantedMetal>(new Condition(Language.GetOrRegister("Mods.Clamity.Misc.GeneratedFrozenHell"), () => !ClamitySystem.generatedFrozenHell || ClamityConfig.Instance.PermafrostSoldEnchantedMetal), new Condition(Language.GetOrRegister("Mods.Clamity.Misc.DefeatedWoB"), () => ClamitySystem.downedWallOfBronze));
+        }
+        public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
+        {
+            if (spawnInfo.Player.Clamity().ZoneDistortion)
+            {
+                pool.Clear();
+                if (spawnInfo.Player.Clamity().ZoneShatteredIslands)
+                {
+                    pool.Add(ModContent.NPCType<CosmiliteSlime>(), 1f);
+                }
+            }
         }
     }
 }

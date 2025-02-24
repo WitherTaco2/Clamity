@@ -1,4 +1,7 @@
 ﻿using CalamityMod;
+using CalamityMod.Tiles.FurnitureCosmilite;
+using CalamityMod.Tiles.FurnitureProfaned;
+using CalamityMod.Tiles.FurnitureSilva;
 using Microsoft.Xna.Framework;
 using System.Reflection;
 using Terraria;
@@ -41,11 +44,17 @@ namespace Clamity.Content.Biomes.Distortion.Tiles
             Main.tileBlockLight[Type] = true;
 
             CalamityUtils.MergeWithGeneral(Type);
-            //CalamityUtils.SetMerge(Type, ModContent.TileType<>());
+            ClamityUtils.MergeWithDistortion(Type);
+
+            CalamityUtils.SetMerge(Type, ModContent.TileType<CosmiliteBrick>());
+            CalamityUtils.SetMerge(Type, ModContent.TileType<SilvaCrystal>());
+            CalamityUtils.SetMerge(Type, ModContent.TileType<RunicProfanedBrick>());
+            CalamityUtils.SetMerge(Type, TileID.LunarOre);
+            CalamityUtils.SetMerge(Type, 409); //Luminite Brick
 
             HitSound = SoundID.Tink;
             MineResist = 2f;
-            MinPick = 250;
+            //MinPick = 225;
             AddMapEntry(Color.Purple);
             //this.RegisterUniversalMerge(TileID.Ash, "CalamityMod/Tiles/Merges/AshMerge");
         }

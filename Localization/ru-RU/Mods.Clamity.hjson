@@ -38,6 +38,30 @@ Items: {
 			''' */
 		// DisplayName: Mirror Of Beyond
 	}
+
+	DraedonItems: {
+		DistortionDraedonsLog: {
+			// DisplayName: The Distortion Log
+			/* Tooltip:
+				'''
+				[Out of My Mind] - 'Cosmilite' and Mutantion
+				Click to view its contents
+				''' */
+			// ContentPage1: After the beginning of cooperation with devourer, I began to explore this dimension deeper. The metal named Cosmilite has properties located behind the edge of science. It is in raw very flexible but impossible for stretching and breakage
+			// ContentPage2: "[Currupted data]"
+			// ContentPage3: This place is behind the edge of my knowledge of the home universe. This place changes the matter itself which I bring under itself and my mind when trying to understand it. We have to take a break. But I can't leave research. But I can't...
+		}
+	}
+
+	OneshootRottenEgg: {
+		// DisplayName: Oneshoot Rotten Egg
+		// Tooltip: ""
+	}
+
+	PumpkinFetus: {
+		// DisplayName: Pumpkin Fetus
+		// Tooltip: ""
+	}
 }
 
 Misc: {
@@ -55,6 +79,7 @@ Misc: {
 Tiles: {
 	FrozenHellstoneTile.MapEntry: Замороженный адский камень
 	FrozenAshTile.MapEntry: Замороженный пепел
+	// CosmiliteOreTile.MapEntry: Cosmilite Ore Tile
 }
 
 Biomes: {
@@ -63,9 +88,19 @@ Biomes: {
 		DisplayName: Замороженный ад
 	}
 
-	NighmareForestBiome: {
-		// TownNPCDialogueName: the Nighmare Forest Biome
-		// DisplayName: Nighmare Forest Biome
+	DistortionBiome: {
+		// DisplayName: The Distortion
+		// TownNPCDialogueName: the Distortion Biome
+	}
+
+	NightmareForestBiome: {
+		// DisplayName: Nightmare Forest
+		// TownNPCDialogueName: the Nightmare Forest
+	}
+
+	ShatteredIslandsBiome: {
+		// DisplayName: Shattered Islands
+		// TownNPCDialogueName: the Shattered Islands
 	}
 }
 

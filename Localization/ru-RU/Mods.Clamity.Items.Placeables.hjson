@@ -1,3 +1,6 @@
+// FormattedBannerName: "{0} Banner"
+// FormattedBannerTooltip: "{$CommonItemTooltip.BannerBonus}{0}"
+
 Relics: {
 	PyrogenRelic: {
 		DisplayName: Реликвия Пирогена
@@ -50,4 +53,19 @@ Pyroplate: {
 EntropicSlag: {
 	// DisplayName: Entropic Slag
 	// Tooltip: Sprite is placeholder
+}
+
+CosmiliteOre: {
+	// DisplayName: Cosmilite Ore
+	// Tooltip: ""
+}
+
+EndothermicIce: {
+	// DisplayName: Endothermic Ice
+	// Tooltip: ""
+}
+
+EndothermicSnow: {
+	// DisplayName: Endothermic Snow
+	// Tooltip: ""
 }

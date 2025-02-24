@@ -5,6 +5,7 @@ using CalamityMod.Items.Accessories;
 using CalamityMod.NPCs.Cryogen;
 using CalamityMod.Projectiles.Rogue;
 using Clamity.Content.Biomes.Distortion;
+using Clamity.Content.Biomes.Distortion.Biomes;
 using Clamity.Content.Biomes.FrozenHell.Biome;
 using Clamity.Content.Bosses.Pyrogen.Drop;
 using Clamity.Content.Bosses.Pyrogen.NPCs;
@@ -66,7 +67,7 @@ namespace Clamity
         public bool ZoneFrozenHell => Player.InModBiome((ModBiome)ModContent.GetInstance<FrozenHell>());
         public bool ZoneDistortion => SubworldSystem.IsActive<TheDistortion>();
         public bool ZoneShatteredIslands => ZoneDistortion && !ZoneNightmareForest && !ZoneEndothermicMountains && !ZoneDarksun;
-        public bool ZoneNightmareForest => false;
+        public bool ZoneNightmareForest => ZoneDistortion && ModContent.GetInstance<NightmareForestBiomeTileCounter>().biomeTiles >= 50;
         public bool ZoneEndothermicMountains => false;
         public bool ZoneDarksun => false;
         public override void ResetEffects()

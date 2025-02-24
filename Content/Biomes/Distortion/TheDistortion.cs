@@ -13,9 +13,9 @@ namespace Clamity.Content.Biomes.Distortion
 {
     public class TheDistortion : Subworld
     {
-        public class TheDistortionShatteredIslandsPass : GenPass
+        public class ShatteredIslandsPass : GenPass
         {
-            public TheDistortionShatteredIslandsPass() : base("Terrain", 1f) { }
+            public ShatteredIslandsPass() : base("Terrain", 1f) { }
 
             protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
             {
@@ -48,7 +48,7 @@ namespace Clamity.Content.Biomes.Distortion
 
                 for (int i = SubworldWidth / 4; i < SubworldWidth * 3 / 4; i++)
                 {
-                    for (int j = SubworldHeight / 4; j < SubworldHeight - 100; j++)
+                    for (int j = DurksunHeight; j < SubworldHeight - 100; j++)
                     {
                         Tile tile = Main.tile[i, j];
                         if (WorldGen.genRand.NextBool(1000))
@@ -69,18 +69,39 @@ namespace Clamity.Content.Biomes.Distortion
                     {
                         if (!WorldGen.InWorld(x + b, y + a))
                             continue;
-                        WorldGen.PlaceTile(x + b, y + a, (ushort)ModContent.TileType<EntropicSlagTile>());
+                        WorldGen.PlaceTile(x + b, y + a, ModContent.TileType<EntropicSlagTile>());
 
                         /*Tile tile1 = Main.tile[i + b, j + a];
                         tile1.TileType = ModContent.TileType<EntropicSlagTile>();
                         tile1.Get<TileWallWireStateData>().HasTile = true;*/
                     }
                 }
+
+                //Cosmilite ore gen prototype (but i gets endless loading)
+
+                /*int oreCenterX = x + WorldGen.genRand.Next(-3, 3), oreCenterY = y + 1 + WorldGen.genRand.Next(0, 3);
+                bool isGenerateOre = WorldGen.genRand.NextBool(2);
+                if (isGenerateOre)
+                {
+                    for (int a = -1; a < 1; a++)
+                    {
+                        for (int b = -1; b < 1; b++)
+                        {
+                            if (!WorldGen.InWorld(oreCenterX + a, oreCenterY + b))
+                                continue;
+                            Tile tile1 = Main.tile[oreCenterX + a, oreCenterY + b];
+                            if (tile1.HasTile)
+                            {
+                                WorldGen.PlaceTile(oreCenterX + a, oreCenterY + b, ModContent.TileType<CosmiliteOreTile>());
+                            }
+                        }
+                    }
+                }*/
             }
         }
-        public class TheDistortionNightmareForestPass : GenPass
+        public class NightmareForestPass : GenPass
         {
-            public TheDistortionNightmareForestPass() : base("Terrain", 1f) { }
+            public NightmareForestPass() : base("Terrain", 1f) { }
 
             protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
             {
@@ -92,10 +113,10 @@ namespace Clamity.Content.Biomes.Distortion
 
                 for (int i = 100; i < SubworldWidth / 4; i += 100 + WorldGen.genRand.Next(30))
                 {
-                    for (int j = SubworldHeight / 4; j < SubworldHeight - 100; j += 100 + WorldGen.genRand.Next(90))
+                    for (int j = DurksunHeight; j < SubworldHeight - 100; j += 100 + WorldGen.genRand.Next(50))
                     {
                         Tile tile = Main.tile[i, j];
-                        if (WorldGen.genRand.NextBool(4))
+                        if (WorldGen.genRand.NextBool(3))
                         {
                             CreateIsland(i, j);
                         }
@@ -141,7 +162,7 @@ namespace Clamity.Content.Biomes.Distortion
                 {
                     if (!WorldGen.InWorld(x + i, y))
                         continue;
-                    WorldGen.PlaceTile(x + i, y, (ushort)ModContent.TileType<NightmareGrass>());
+                    WorldGen.PlaceTile(x + i, y, ModContent.TileType<NightmareGrass>());
 
                     Tile tile = Framing.GetTileSafely(x + i, y); // Safely get the tile at the given coordinates
                     bool growSuccess = WorldGen.GrowTree(x + i, y); ; // A bool to see if the tree growing was successful.
@@ -159,42 +180,114 @@ namespace Clamity.Content.Biomes.Distortion
                     {
                         if (!WorldGen.InWorld(x + i, y + j + 1))
                             continue;
-                        WorldGen.PlaceTile(x + i, y + j + 1, (ushort)ModContent.TileType<EntropicSlagTile>());
+                        WorldGen.PlaceTile(x + i, y + j + 1, ModContent.TileType<EntropicSlagTile>());
                     }
                     num++;
                 }
-
             }
         }
-        public override List<GenPass> Tasks => new List<GenPass> { new TheDistortionShatteredIslandsPass(), new TheDistortionNightmareForestPass() };
+        public class EndothermicMountainsPass : GenPass
+        {
+            public EndothermicMountainsPass() : base("Terrain", 1f) { }
+
+            protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
+            {
+                progress.Message = "Frozing a Planets";
+
+                //Feldy, need make gen in here
+                //Mountaing is on right side of world
+                //Between SubworldWidth * 3 / 4 and SubworldWidth
+
+                //Also planned generation of draedon lab in mountain
+                //Used an Structure Helper
+            }
+
+        }
+
+        public class DarksunPass : GenPass
+        {
+            public DarksunPass() : base("Terrain", 1f) { }
+
+            protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
+            {
+                progress.Message = "Filling dark to sun";
+
+                //I don t have ideas for unique gen for it
+            }
+        }
+
+        public class ShrinePass : GenPass
+        {
+            public ShrinePass() : base("Terrain", 1f) { }
+
+            protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
+            {
+                progress.Message = "Placing a Cosmic Treasure";
+
+                //Structure Helper mod things
+            }
+        }
+        public override List<GenPass> Tasks => new List<GenPass> { new ShatteredIslandsPass(), new NightmareForestPass(), new EndothermicMountainsPass(), new DarksunPass() };
         public static int SubworldWidth => 4000;
         public static int SubworldHeight => 1800;
+        public static int DurksunHeight => SubworldHeight / 4;
         public override int Width => SubworldWidth;
         public override int Height => SubworldHeight;
         //public override bool ShouldSave => true;
 
+        /*public override void DrawMenu(GameTime gameTime)
+        {
+            DistortionSky.SetDistortionBG();
 
+            Vector2 textPosition = new Vector2(Main.screenWidth, Main.screenHeight) / 2f - FontAssets.DeathText.Value.MeasureString(Main.statusText) / 2f;
+
+            Main.spriteBatch.DrawString(FontAssets.DeathText.Value, Main.statusText, textPosition, Color.White);
+
+        }*/
 
 
         #region World Data Management
         public static TagCompound SafeWorldDataToTag(string suffix, bool saveInCentralRegistry = true)
         {
-            // Re-initialize the save data tag.
+            // Re-initialize the save data savedWorldData.
             TagCompound savedWorldData = [];
+
+            // Save difficulty data. This is self-explanatory.
+            bool revengeanceMode = CalamityVariablesSystem.RevengeanceModeActive;
+            bool deathMode = CalamityVariablesSystem.DeathModeActive;
+            if (revengeanceMode)
+                savedWorldData["RevengeanceMode"] = revengeanceMode;
+            if (deathMode)
+                savedWorldData["DeathMode"] = deathMode;
+            if (Main.zenithWorld)
+                savedWorldData["GFB"] = Main.zenithWorld;
 
             // Save Calamity's boss defeat data.
             CalamityVariablesSystem.SaveDefeatStates(savedWorldData);
+            //if (DownedBossSystem.downedDoG)
+            //    savedWorldData["DoG"] = true;
 
-            // Store the tag.
+            // Store the savedWorldData.
             if (saveInCentralRegistry)
-                SubworldSystem.CopyWorldData($"DragonAeriaSavedWorldData_{suffix}", savedWorldData);
+                SubworldSystem.CopyWorldData($"TheDistortionSavedWorldData_{suffix}", savedWorldData);
 
             return savedWorldData;
         }
 
         private void LoadWorldDataFromTag(string suffix, TagCompound specialTag = null)
         {
-            TagCompound savedWorldData = specialTag ?? SubworldSystem.ReadCopiedWorldData<TagCompound>($"DragonAeriaSavedWorldData_{suffix}");
+            TagCompound savedWorldData = specialTag ?? SubworldSystem.ReadCopiedWorldData<TagCompound>($"TheDistortionSavedWorldData_{suffix}");
+
+            /*if (savedWorldData.ContainsKey("DoG") || savedWorldData.GetBool("DoG"))
+            {
+                //CalamityVariablesSystem.SetDownedValue("_downedDoG", true);
+                //DownedBossSystem.downedDoG = true;
+                typeof(DownedBossSystem).GetField("_downedDoG", BindingFlags.NonPublic | BindingFlags.Static).SetValue(null, true);
+            }*/
+
+            CalamityVariablesSystem.RevengeanceModeActive = savedWorldData.ContainsKey("RevengeanceMode");
+            CalamityVariablesSystem.DeathModeActive = savedWorldData.ContainsKey("DeathMode");
+            Main.zenithWorld = savedWorldData.ContainsKey("GFB");
 
             //Load Calamity's boss defeat data.
             CalamityVariablesSystem.LoadDefeatStates(savedWorldData);
