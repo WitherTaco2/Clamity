@@ -1,0 +1,40 @@
+
+
+Content
+[]					Shattered Islands
+.	[+]				Generation
+.	[*]				God Slayer, Silva and Auric Shrines
+	.	[]			Generation
+	.	[]			Luminite Key. DoG drop in distortion
+	.	[]			Auric Key. Quest item from Architect maybe
+	.	[]			Silva's Ring. Regen-related accessory
+	.	[]			Signus Belt. Rapid onmidirectional dash accesory
+	.	[]			Ancient Bronze blueprint. Used for craft ancient console for WoB summon
+.	[]				Enemies
+	.	[*]			Cosmilite Slime
+
+[]					Nightmare Forest
+.	[+]				Generation
+.	[]				Enemies
+	.	[]			Ideas?
+.	[]				Architect npc
+
+[]					Endothermic Mountains
+.	[]				Generation
+.	[]				Draedon's Lab gen
+	.	[]			Auric Bar-tier schematic
+		.	[]		Melee arsenal weapon
+		.	[]		Rander arsenal weapon
+		.	[]		Magic arsenal weapon
+		.	[]		Summon arsenal weapon (whip i think)
+		.	[]		Rogue arsenal weapon
+		.	[]		Clicker arsenal weapon*
+	.	[+]			Draedon Log
+.	[]				Enemies
+	.	[]			Endothermic Skeleton (has flaming skull or rare sans variant)
+
+[]					Darksun
+.	[]				Generation
+	.	[]			Ideas?
+.	[]				Enemies
+	.	[]			Ideas?
