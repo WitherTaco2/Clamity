@@ -1,6 +1,7 @@
 ClamitasBoss: {
 	DisplayName: Clamitas, Supreme Clam
-	Bestiary: Cursed Giant Clam by Calamitas himself, clamitas absorbed the power of brimstone. There is no power left in the pearl from the ocean. No scoundrel can resist the power of Clamitas itself
+	DisplayNameAlt: "Giant Clam?"
+	Bestiary: He is one of Giant Clams, that absorbed the power of brimstone. There is no power left in the pearl from the ocean. No scoundrel can resist the power of Clamitas itself
 
 	BossChecklistIntegration: {
 		SpawnInfo: Use an [i:Clamity/ClamitasSummoningItem] Clamitous Shell in the Brimstone Crags
