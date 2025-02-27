@@ -98,7 +98,8 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
 
             if (!Main.dedServ)
             {
-                Music = Clamity.mod.GetMusicFromMusicMod("Clamitas") ?? MusicID.Boss3;
+                Music = -1;
+                //Music = Clamity.mod.GetMusicFromMusicMod("Clamitas") ?? MusicID.Boss3;
             }
         }
 
@@ -206,7 +207,7 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            if (spawnInfo.Player.Calamity().ZoneCalamity && DownedBossSystem.downedDesertScourge && !NPC.AnyNPCs(ModContent.NPCType<ClamitasBoss>()))
+            if (spawnInfo.Player.Calamity().ZoneCalamity && DownedBossSystem.downedCalamitasClone && !NPC.AnyNPCs(ModContent.NPCType<ClamitasBoss>()))
             {
                 return SpawnCondition.CaveJellyfish.Chance * 0.24f;
             }
@@ -216,7 +217,7 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
 
         public override void ModifyTypeName(ref string typeName)
         {
-            if (Main.zenithWorld)
+            /*if (Main.zenithWorld)
             {
                 if (Main.hardMode)
                 {
@@ -226,15 +227,15 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
                 {
                     typeName = CalamityUtils.GetTextValue("NPCs.Clamitas");
                 }
-            }
+            }*/
 
-            if (CurrentAttack == Attacks.PreFight || CurrentAttack == Attacks.StartingCutscene)
+            if (BattleIsStarted)
             {
-                typeName = Language.GetTextValue($"Mods.Clamity.NPCs.{nameof(ClamitasBoss)}.DisplayNameAlt");
+                typeName = Language.GetTextValue($"Mods.Clamity.NPCs.{nameof(ClamitasBoss)}.DisplayName");
             }
             else
             {
-                typeName = Language.GetTextValue($"Mods.Clamity.NPCs.{nameof(ClamitasBoss)}.DisplayName");
+                typeName = Language.GetTextValue($"Mods.Clamity.NPCs.{nameof(ClamitasBoss)}.DisplayNameAlt");
             }
         }
 
@@ -265,9 +266,8 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            bool isGiantClam = CurrentAttack == Attacks.PreFight || (CurrentAttack == Attacks.StartingCutscene);
             Texture2D t = ModContent.Request<Texture2D>(Texture).Value;
-            if (isGiantClam)
+            if (!BattleIsStarted)
                 t = ModContent.Request<Texture2D>(ModContent.GetInstance<GiantClam>().Texture).Value;
             else
                 Main.EntitySpriteDraw(ModContent.Request<Texture2D>(Texture + "_Extra").Value, NPC.Center - Vector2.UnitY * 20f * NPC.scale - screenPos, new Rectangle(0, flareFrame * 174, 116, 174), NPC.GetAlpha(Color.White), NPC.rotation, new Vector2(116, 174) * 0.5f, NPC.scale, SpriteEffects.None);

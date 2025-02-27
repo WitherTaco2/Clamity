@@ -1,6 +1,7 @@
 ﻿using CalamityMod;
 using CalamityMod.Events;
 using CalamityMod.Items.Materials;
+using Clamity.Content.Bosses.Clamitas.Drop;
 using Clamity.Content.Bosses.Clamitas.NPCs;
 using Terraria;
 using Terraria.Audio;
@@ -56,7 +57,7 @@ namespace Clamity.Content.Bosses.Clamitas
         {
             CreateRecipe()
                 .AddIngredient<AshesofCalamity>(10)
-                .AddIngredient<MolluskHusk>(15)
+                .AddIngredient<HuskOfCalamity>(5)
                 .AddTile(TileID.MythrilAnvil)
                 .Register();
         }

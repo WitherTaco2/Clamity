@@ -18,33 +18,28 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
         }
 
         private int attack = (int)Attacks.PreFight;
-        private Attacks CurrentAttack
+        public Attacks CurrentAttack
         {
             get => (Attacks)attack;
             set => attack = (int)value;
         }
+        public int AttackTimer
+        {
+            get => (int)NPC.ai[0];
+            set => NPC.ai[0] = value;
+        }
+        public bool BattleIsStarted => CurrentAttack != Attacks.PreFight && (CurrentAttack != Attacks.StartingCutscene);
         public override void AI()
         {
             Myself = NPC;
             NPC.TargetClosest();
             Player player = Main.player[NPC.target];
             CalamityGlobalNPC calamityGlobalNPC = NPC.Calamity();
-            if (hitAmount < 5)
-            {
-                hitAmount++;
-                hasBeenHit = true;
-            }
+
 
             NPC.chaseable = hasBeenHit;
 
-
-            //hitAmount = 5;
-            if (hitAmount != 5)
-            {
-                return;
-            }
-
-            if (Main.netMode != NetmodeID.Server && !Main.player[NPC.target].dead && Main.player[NPC.target].active)
+            if (BattleIsStarted && Main.netMode != NetmodeID.Server && !Main.player[NPC.target].dead && Main.player[NPC.target].active)
             {
                 player.AddBuff(ModContent.BuffType<CalamityMod.Buffs.StatDebuffs.Clamity>(), 2);
                 player.AddBuff(ModContent.BuffType<BossEffects>(), 2);
@@ -67,7 +62,41 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
                 statChange = true;
             }
 
+            AttackTimer++;
+            switch (CurrentAttack)
+            {
+                case Attacks.PreFight:
+                    PreFightState();
 
+                    break;
+                case Attacks.StartingCutscene:
+
+                    break;
+
+            }
         }
+        private Attacks SetNextAttack(Attacks nextAttack)
+        {
+            CurrentAttack = nextAttack;
+            AttackTimer = 0;
+
+            return nextAttack;
+        }
+        private void PreFightState()
+        {
+            Music = -1;
+
+            if (NPC.justHit && hitAmount < 5)
+            {
+                hitAmount++;
+                hasBeenHit = true;
+            }
+
+            if (hitAmount == 10)
+            {
+                SetNextAttack(Attacks.StartingCutscene);
+            }
+        }
+
     }
 }
