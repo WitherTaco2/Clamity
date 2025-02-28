@@ -33,15 +33,15 @@ Items: {
 	MirrorOfBeyond: {
 		Tooltip:
 			'''
-			Teleport you to The Distortion
+			Teleport you to Entropic Space
 			Item can not be used on cursor
 			'''
 		DisplayName: Mirror Of Beyond
 	}
 
 	DraedonItems: {
-		DistortionDraedonsLog: {
-			DisplayName: The Distortion Log
+		EntropicSpaceDraedonsLog: {
+			DisplayName: Entropic Space Log
 			Tooltip:
 				'''
 				[Out of My Mind] - 'Cosmilite' and Mutantion
@@ -77,9 +77,9 @@ Misc: {
 }
 
 Tiles: {
-	FrozenHellstoneTile.MapEntry: Frozen Hellstone
+	FrozenHellstoneTile.MapEntry: Endobsidian
 	FrozenAshTile.MapEntry: Frozen Ash
-	CosmiliteOreTile.MapEntry: Cosmilite Ore Tile
+	CosmiliteOreTile.MapEntry: Cosmilite Ore
 }
 
 Biomes: {
@@ -88,9 +88,9 @@ Biomes: {
 		DisplayName: Frozen Hell
 	}
 
-	DistortionBiome: {
-		DisplayName: The Distortion
-		TownNPCDialogueName: the Distortion Biome
+	EntropicSpaceBiome: {
+		DisplayName: Entropic Space
+		TownNPCDialogueName: the Entropic Space
 	}
 
 	NightmareForestBiome: {

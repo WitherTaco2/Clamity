@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Biomes.Distortion.Biomes
+namespace Clamity.Content.Biomes.EntropicSpace.Biomes
 {
     public class ShatteredIslandsBiome : ModBiome
     {

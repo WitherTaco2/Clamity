@@ -8,7 +8,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria;
-using Clamity.Content.Biomes.Distortion.Tiles.Banners;
+using Clamity.Content.Biomes.EntropicSpace.Tiles.Banners;
 
 namespace Clamity.Content.Items.Placeable
 {

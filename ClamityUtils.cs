@@ -1,5 +1,5 @@
 ﻿using CalamityMod;
-using Clamity.Content.Biomes.Distortion.Tiles;
+using Clamity.Content.Biomes.EntropicSpace.Tiles;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;

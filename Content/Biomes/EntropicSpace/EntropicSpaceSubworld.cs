@@ -1,5 +1,5 @@
 ﻿using Clamity.Commons;
-using Clamity.Content.Biomes.Distortion.Tiles;
+using Clamity.Content.Biomes.EntropicSpace.Tiles;
 using Luminance.Common.Utilities;
 using SubworldLibrary;
 using System.Collections.Generic;
@@ -9,9 +9,9 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.WorldBuilding;
 
-namespace Clamity.Content.Biomes.Distortion
+namespace Clamity.Content.Biomes.EntropicSpace
 {
-    public class TheDistortion : Subworld
+    public class EntropicSpaceSubworld : Subworld
     {
         public class ShatteredIslandsPass : GenPass
         {

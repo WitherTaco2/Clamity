@@ -6,7 +6,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Biomes.Distortion.Tiles
+namespace Clamity.Content.Biomes.EntropicSpace.Tiles
 {
     public class NightmareGrass : ModTile
     {

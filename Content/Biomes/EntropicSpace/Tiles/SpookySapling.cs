@@ -9,7 +9,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace Clamity.Content.Biomes.Distortion.Tiles
+namespace Clamity.Content.Biomes.EntropicSpace.Tiles
 {
     public class SpookySapling : ModTile
     {

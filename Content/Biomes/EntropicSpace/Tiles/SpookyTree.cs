@@ -1,4 +1,4 @@
-﻿using Clamity.Content.Biomes.Distortion.Items;
+﻿using Clamity.Content.Biomes.EntropicSpace.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -7,7 +7,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Biomes.Distortion.Tiles
+namespace Clamity.Content.Biomes.EntropicSpace.Tiles
 {
     public class SpookyTree : ModTree
     {

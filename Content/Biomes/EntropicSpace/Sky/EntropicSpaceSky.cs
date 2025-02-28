@@ -6,9 +6,9 @@ using Terraria;
 using Terraria.Graphics.Effects;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Biomes.Distortion.Sky
+namespace Clamity.Content.Biomes.EntropicSpace.Sky
 {
-    public class DistortionSky : CustomSky
+    public class EntropicSpaceSky : CustomSky
     {
         private bool skyActive;
         public override bool IsActive() => skyActive;
@@ -17,7 +17,7 @@ namespace Clamity.Content.Biomes.Distortion.Sky
         public override void Deactivate(params object[] args) => skyActive = false;
         public override void Update(GameTime gameTime)
         {
-            if (!Main.LocalPlayer.Clamity().ZoneDistortion || Main.gameMenu)
+            if (!Main.LocalPlayer.Clamity().ZoneEntropicSpace || Main.gameMenu)
             {
                 skyActive = false;
             }
@@ -47,14 +47,14 @@ namespace Clamity.Content.Biomes.Distortion.Sky
         }
         public static void SetDistortionBG(Vector2 playerPos)
         {
-            var backgroundShader = ShaderManager.GetShader("Clamity.TheDistortion");
+            var backgroundShader = ShaderManager.GetShader("Clamity.EntropicSpace");
             backgroundShader.TrySetParameter("globalTimer", Main.GlobalTimeWrappedHourly);
             backgroundShader.TrySetParameter("backgroundColor1", Color.Black.ToVector4());
             //backgroundShader.TrySetParameter("backgroundColor2", Color.Lerp(Color.Purple, Color.Orange, Utils.GetLerpValue(TheDistortion.SubworldHeight / 4 - 50, TheDistortion.SubworldHeight / 4, Main.LocalPlayer.Center.Y, true)).ToVector4());
             backgroundShader.TrySetParameter("backgroundColor2", Color.Purple.ToVector4());
             backgroundShader.TrySetParameter("backgroundColor3", Color.DarkBlue.ToVector4());
             backgroundShader.TrySetParameter("backgroundColorDarksun", Color.Orange.ToVector4());
-            backgroundShader.TrySetParameter("darksunLerpValue", Utils.GetLerpValue(TheDistortion.SubworldHeight * 16 / 4, TheDistortion.SubworldHeight * 16 / 4 - 600, playerPos.Y, true));
+            backgroundShader.TrySetParameter("darksunLerpValue", Utils.GetLerpValue(EntropicSpaceSubworld.SubworldHeight * 16 / 4, EntropicSpaceSubworld.SubworldHeight * 16 / 4 - 600, playerPos.Y, true));
             backgroundShader.TrySetParameter("playerPos", playerPos);
             backgroundShader.TrySetParameter("screenSize", Main.ScreenSize.ToVector2());
             backgroundShader.SetTexture(ModContent.Request<Texture2D>("Clamity/Assets/Textures/Noice/Mist2"), 1, SamplerState.LinearWrap);

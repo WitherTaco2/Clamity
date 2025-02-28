@@ -1,10 +1,10 @@
-﻿using Clamity.Content.Biomes.Distortion.Tiles;
+﻿using Clamity.Content.Biomes.EntropicSpace.Tiles;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Biomes.Distortion.Biomes
+namespace Clamity.Content.Biomes.EntropicSpace.Biomes
 {
     public class NightmareForestBiome : ModBiome
     {

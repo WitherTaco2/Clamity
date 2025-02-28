@@ -51,6 +51,11 @@ Items: {
 			// ContentPage2: "[Currupted data]"
 			// ContentPage3: This place is behind the edge of my knowledge of the home universe. This place changes the matter itself which I bring under itself and my mind when trying to understand it. We have to take a break. But I can't leave research. But I can't...
 		}
+
+		EntropicSpaceDraedonsLog: {
+			// DisplayName: Entropic Space Draedons Log
+			// Tooltip: ""
+		}
 	}
 
 	OneshootRottenEgg: {
@@ -88,9 +93,9 @@ Biomes: {
 		DisplayName: Замороженный ад
 	}
 
-	DistortionBiome: {
-		// DisplayName: The Distortion
-		// TownNPCDialogueName: the Distortion Biome
+	EntropicSpaceBiome: {
+		// DisplayName: Entropic Space
+		// TownNPCDialogueName: the Entropic Space
 	}
 
 	NightmareForestBiome: {

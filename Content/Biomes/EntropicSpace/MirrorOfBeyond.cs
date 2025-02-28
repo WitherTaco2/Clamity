@@ -8,7 +8,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Biomes.Distortion
+namespace Clamity.Content.Biomes.EntropicSpace
 {
     public class MirrorOfBeyond : ModItem
     {
@@ -27,8 +27,8 @@ namespace Clamity.Content.Biomes.Distortion
         }
         public override bool? UseItem(Player player)
         {
-            if (!SubworldSystem.IsActive<TheDistortion>())
-                SubworldSystem.Enter<TheDistortion>();
+            if (!SubworldSystem.IsActive<EntropicSpaceSubworld>())
+                SubworldSystem.Enter<EntropicSpaceSubworld>();
             else
                 SubworldSystem.Exit();
             return true;
@@ -53,8 +53,8 @@ namespace Clamity.Content.Biomes.Distortion
 
             //Drawing a rings
             string path = GetType().Namespace.Replace('.', '/');
-            Texture2D t = ModContent.Request<Texture2D>(path + "/DistPortal_SmallRing").Value;
-            Texture2D t2 = ModContent.Request<Texture2D>(path + "/DistPortal_BigRing").Value;
+            Texture2D t = ModContent.Request<Texture2D>(path + "/VoidPortal_SmallRing").Value;
+            Texture2D t2 = ModContent.Request<Texture2D>(path + "/VoidPortal_BigRing").Value;
             spriteBatch.Draw(t, center, null, lightColor, Main.GlobalTimeWrappedHourly, t.Size() / 2, 0.5f, SpriteEffects.None, 0);
             spriteBatch.Draw(t2, center, null, lightColor, -Main.GlobalTimeWrappedHourly * 0.5f, t2.Size() / 2, 0.5f, SpriteEffects.None, 0);
 

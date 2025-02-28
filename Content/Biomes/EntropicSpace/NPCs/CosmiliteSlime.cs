@@ -1,15 +1,15 @@
 ﻿using CalamityMod;
 using CalamityMod.NPCs;
-using Clamity.Content.Biomes.Distortion.Biomes;
-using Clamity.Content.Biomes.Distortion.Tiles;
-using Clamity.Content.Biomes.Distortion.Tiles.Banners;
+using Clamity.Content.Biomes.EntropicSpace.Biomes;
+using Clamity.Content.Biomes.EntropicSpace.Tiles;
+using Clamity.Content.Biomes.EntropicSpace.Tiles.Banners;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Biomes.Distortion.NPCs
+namespace Clamity.Content.Biomes.EntropicSpace.NPCs
 {
     public class CosmiliteSlime : ModNPC
     {
@@ -41,7 +41,7 @@ namespace Clamity.Content.Biomes.Distortion.NPCs
             BannerItem = ModContent.ItemType<CosmiliteSlimeBanner>();
             NPC.Calamity().VulnerableToHeat = true;
             NPC.Calamity().VulnerableToSickness = false;
-            SpawnModBiomes = new int[] { ModContent.GetInstance<DistortionBiome>().Type, ModContent.GetInstance<ShatteredIslandsBiome>().Type };
+            SpawnModBiomes = new int[] { ModContent.GetInstance<EntropicSpaceBiome>().Type, ModContent.GetInstance<ShatteredIslandsBiome>().Type };
 
             // Scale stats in Expert and Master
             CalamityGlobalNPC.AdjustExpertModeStatScaling(NPC);

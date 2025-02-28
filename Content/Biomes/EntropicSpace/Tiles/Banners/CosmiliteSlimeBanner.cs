@@ -1,6 +1,6 @@
 ﻿using Clamity.Content.Items.Placeable;
 
-namespace Clamity.Content.Biomes.Distortion.Tiles.Banners
+namespace Clamity.Content.Biomes.EntropicSpace.Tiles.Banners
 {
     public class CosmiliteSlimeBanner : BaseDistortionBanner
     {

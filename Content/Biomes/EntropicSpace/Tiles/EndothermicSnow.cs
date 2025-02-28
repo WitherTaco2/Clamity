@@ -4,9 +4,9 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Biomes.Distortion.Tiles
+namespace Clamity.Content.Biomes.EntropicSpace.Tiles
 {
-    internal class EndothermicIce : ModItem, ILocalizedModType
+    public class EndothermicSnow : ModItem, ILocalizedModType
     {
         public new string LocalizationCategory => "Items.Placeables";
         public override void SetStaticDefaults()
@@ -19,7 +19,7 @@ namespace Clamity.Content.Biomes.Distortion.Tiles
         {
             Item.width = 10;
             Item.height = 10;
-            Item.createTile = ModContent.TileType<EndothermicIceTile>();
+            Item.createTile = ModContent.TileType<EndothermicSnowTile>();
             Item.useStyle = ItemUseStyleID.Swing;
             Item.useTurn = true;
             Item.useAnimation = 15;
@@ -30,7 +30,7 @@ namespace Clamity.Content.Biomes.Distortion.Tiles
             Item.value = 1000;
         }
     }
-    public class EndothermicIceTile : ModTile
+    public class EndothermicSnowTile : ModTile
     {
         public override void SetStaticDefaults()
         {
@@ -41,15 +41,15 @@ namespace Clamity.Content.Biomes.Distortion.Tiles
             CalamityUtils.MergeWithGeneral(Type);
             ClamityUtils.MergeWithDistortion(Type);
 
-            HitSound = SoundID.Item50;
-            MineResist = 1f;
+            HitSound = SoundID.Dig;
+            MineResist = 0.75f;
             //MinPick = 225;
-            AddMapEntry(new Color(123, 205, 237));
+            AddMapEntry(new Color(212, 255, 243));
         }
 
         public override bool CreateDust(int i, int j, ref int type)
         {
-            Dust.NewDust(new Vector2(i, j) * 16f, 16, 16, DustID.Ice, 0f, 0f, 1, new Color(100, 130, 150), 1f);
+            Dust.NewDust(new Vector2(i, j) * 16f, 16, 16, DustID.Snow, 0f, 0f, 1, new Color(100, 130, 150), 1f);
             return false;
         }
     }

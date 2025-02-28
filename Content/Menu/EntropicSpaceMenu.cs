@@ -1,6 +1,6 @@
 ﻿using CalamityMod.MainMenu;
-using Clamity.Content.Biomes.Distortion;
-using Clamity.Content.Biomes.Distortion.Sky;
+using Clamity.Content.Biomes.EntropicSpace;
+using Clamity.Content.Biomes.EntropicSpace.Sky;
 using Luminance.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -12,9 +12,9 @@ using Terraria.ModLoader;
 
 namespace Clamity.Content.Menu
 {
-    public class DistortionMenu : CalamityMainMenu
+    public class EntropicSpaceMenu : CalamityMainMenu
     {
-        public override string DisplayName => "Distortion Theme";
+        public override string DisplayName => "Entropic Space";
 
         public override Asset<Texture2D> Logo => ModContent.Request<Texture2D>("Clamity/Content/Menu/Logo");
 
@@ -23,7 +23,7 @@ namespace Clamity.Content.Menu
             Vector2 position = new Vector2(Main.screenWidth / 2f, 100f);
 
             Main.spriteBatch.PrepareForShaders();
-            DistortionSky.DrawBackground(new Vector2(0, TheDistortion.SubworldHeight * 16));
+            EntropicSpaceSky.DrawBackground(new Vector2(0, EntropicSpaceSubworld.SubworldHeight * 16));
             //Main.spriteBatch.ResetToDefault();
 
             Main.spriteBatch.End();

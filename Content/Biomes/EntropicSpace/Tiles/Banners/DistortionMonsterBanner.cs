@@ -1,4 +1,4 @@
-﻿using Clamity.Content.Biomes.Distortion.NPCs;
+﻿using Clamity.Content.Biomes.EntropicSpace.NPCs;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
@@ -8,7 +8,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace Clamity.Content.Biomes.Distortion.Tiles.Banners
+namespace Clamity.Content.Biomes.EntropicSpace.Tiles.Banners
 {
     public class DistortionMonsterBanner : ModTile
     {

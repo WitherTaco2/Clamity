@@ -7,9 +7,9 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Biomes.Distortion.Items
+namespace Clamity.Content.Biomes.EntropicSpace.Items
 {
-    public class DistortionDraedonsLog : ModItem, ILocalizedModType
+    public class EntropicSpaceDraedonsLog : ModItem, ILocalizedModType
     {
         public new string LocalizationCategory => "Items.DraedonItems";
         public override void SetDefaults()
@@ -24,21 +24,21 @@ namespace Clamity.Content.Biomes.Distortion.Items
         public override bool? UseItem(Player player)
         {
             if (Main.myPlayer == player.whoAmI)
-                PopupGUIManager.FlipActivityOfGUIWithType(typeof(DistortionDraedonsLogGui));
+                PopupGUIManager.FlipActivityOfGUIWithType(typeof(EntropicSpaceDraedonsLogGui));
             return true;
         }
     }
-    public class DistortionDraedonsLogGui : DraedonsLogGUI
+    public class EntropicSpaceDraedonsLogGui : DraedonsLogGUI
     {
         public override int TotalPages => 3;
         public override string GetTextByPage()
         {
-            return CalamityUtils.GetTextValueFromModItem<DistortionDraedonsLog>("ContentPage" + (Page + 1));
+            return CalamityUtils.GetTextValueFromModItem<EntropicSpaceDraedonsLog>("ContentPage" + (Page + 1));
         }
         public override Texture2D GetTextureByPage()
         {
-            var image = (GetType().Namespace + "." + nameof(DistortionDraedonsLogGui)).Replace('.', '/');
-            image = "Clamity/Content/Biomes/Distortion/Items/DistortionDraedonsLogGui";
+            var image = (GetType().Namespace + "." + nameof(EntropicSpaceDraedonsLogGui)).Replace('.', '/');
+            image = "Clamity/Content/Biomes/EntropicSpace/Items/EntropicSpaceDraedonsLogGui";
             return ModContent.Request<Texture2D>(image).Value;
         }
     }

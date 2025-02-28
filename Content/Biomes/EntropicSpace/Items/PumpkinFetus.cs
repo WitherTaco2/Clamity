@@ -1,7 +1,7 @@
 ﻿using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Clamity.Content.Biomes.Distortion.Items
+namespace Clamity.Content.Biomes.EntropicSpace.Items
 {
     public class PumpkinFetus : ModItem
     {

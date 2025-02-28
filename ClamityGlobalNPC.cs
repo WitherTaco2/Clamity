@@ -7,7 +7,7 @@ using CalamityMod.NPCs.PlaguebringerGoliath;
 using CalamityMod.NPCs.SunkenSea;
 using CalamityMod.NPCs.SupremeCalamitas;
 using CalamityMod.NPCs.TownNPCs;
-using Clamity.Content.Biomes.Distortion.NPCs;
+using Clamity.Content.Biomes.EntropicSpace.NPCs;
 using Clamity.Content.Biomes.FrozenHell.Items;
 using Clamity.Content.Items.Accessories;
 using Clamity.Content.Items.Materials;
@@ -458,7 +458,7 @@ namespace Clamity
         }
         public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
         {
-            if (spawnInfo.Player.Clamity().ZoneDistortion)
+            if (spawnInfo.Player.Clamity().ZoneEntropicSpace)
             {
                 pool.Clear();
                 if (spawnInfo.Player.Clamity().ZoneShatteredIslands)
