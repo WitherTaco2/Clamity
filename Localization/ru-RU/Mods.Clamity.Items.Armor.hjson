@@ -43,7 +43,7 @@ Vanity: {
 
 FrozenHellstone: {
 	FrozenHellstoneVisor: {
-		DisplayName: Замороженный козырек
+		DisplayName: Замороженный козырёк
 		Tooltip:
 			'''
 			Увеличивает урон истинного ближнего боя на 20%
