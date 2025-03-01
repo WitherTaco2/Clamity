@@ -3,7 +3,7 @@ using System.Reflection;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Core;
 
-namespace ExampleSolynBook.Items
+namespace Clamity.Content.Items.SolynBooks
 {
     public class SolynBookRegistry : ModSystem
     {
