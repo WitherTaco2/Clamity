@@ -86,6 +86,9 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
         {
             Music = -1;
 
+            NPC.life = NPC.lifeMax;
+
+
             if (NPC.justHit && hitAmount < 5)
             {
                 hitAmount++;
