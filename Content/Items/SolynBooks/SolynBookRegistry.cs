@@ -15,7 +15,7 @@ namespace ExampleSolynBook.Items
             if (ModLoader.HasMod("NoxusBoss"))
             {
                 //For future
-                //CreateSolynBook(3, "ExampleSolynBook/Items/ExampleSolynBook");
+                CreateSolynBook(2, "Clamity/Content/Items/SolynBooks/BronzeBlueprints");
             }
         }
         /// <summary>
