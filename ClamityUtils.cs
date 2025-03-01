@@ -158,6 +158,30 @@ namespace Clamity
 
             return false;
         }
+
+
+        public static float InverseLerp(float from, float to, float x, bool clamped = true)
+        {
+            float inverse = (x - from) / (to - from);
+            if (!clamped)
+                return inverse;
+
+            return MathHelper.Clamp(inverse, 0f, 1f);
+        }
+        /// <summary>
+        /// Subdivides a rectangle into frames.
+        /// </summary>
+        /// <param name="rectangle">The base rectangle.</param>
+        /// <param name="horizontalFrames">The amount of horizontal frames to subdivide into.</param>
+        /// <param name="verticalFrames">The amount of vertical frames to subdivide into.</param>
+        /// <param name="frameX">The index of the X frame.</param>
+        /// <param name="frameY">The index of the Y frame.</param>
+        public static Rectangle Subdivide(this Rectangle rectangle, int horizontalFrames, int verticalFrames, int frameX, int frameY)
+        {
+            int width = rectangle.Width / horizontalFrames;
+            int height = rectangle.Height / verticalFrames;
+            return new Rectangle(rectangle.Left + width * frameX, rectangle.Top + height * frameY, width, height);
+        }
         public static void MergeWithDistortion(int type)
         {
             CalamityUtils.SetMerge(type, ModContent.TileType<EntropicSlagTile>());
