@@ -1,6 +1,7 @@
 ﻿using CalamityMod;
 using CalamityMod.Items.Materials;
 using CalamityMod.Rarities;
+using CalamityMod.Tiles.Ores;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -45,6 +46,7 @@ namespace Clamity.Content.Biomes.EntropicSpace.Tiles
         public override void SetStaticDefaults()
         {
             Main.tileSolid[Type] = true;
+            Main.tileMergeDirt[Type] = true;
             Main.tileBlockLight[Type] = true;
             Main.tileOreFinderPriority[Type] = 950;
 
@@ -56,8 +58,8 @@ namespace Clamity.Content.Biomes.EntropicSpace.Tiles
 
             AddMapEntry(Color.Magenta, CreateMapEntryName());
             MineResist = 3f;
-            MinPick = 250;
-            HitSound = SoundID.Tink;
+            MinPick = 275;
+            HitSound = AuricOre.MineSound;
             Main.tileSpelunker[Type] = true;
 
 

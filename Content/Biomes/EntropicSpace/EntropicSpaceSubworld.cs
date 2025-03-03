@@ -79,7 +79,7 @@ namespace Clamity.Content.Biomes.EntropicSpace
 
                 //Cosmilite ore gen prototype (but i gets endless loading)
 
-                /*int oreCenterX = x + WorldGen.genRand.Next(-3, 3), oreCenterY = y + 1 + WorldGen.genRand.Next(0, 3);
+                int oreCenterX = x + WorldGen.genRand.Next(-3, 3), oreCenterY = y + 1 + WorldGen.genRand.Next(0, 3);
                 bool isGenerateOre = WorldGen.genRand.NextBool(2);
                 if (isGenerateOre)
                 {
@@ -92,11 +92,15 @@ namespace Clamity.Content.Biomes.EntropicSpace
                             Tile tile1 = Main.tile[oreCenterX + a, oreCenterY + b];
                             if (tile1.HasTile)
                             {
-                                WorldGen.PlaceTile(oreCenterX + a, oreCenterY + b, ModContent.TileType<CosmiliteOreTile>());
+                                Main.tile[oreCenterX + a, oreCenterY + b].TileType = (ushort)ModContent.TileType<CosmiliteOreTile>();
+                                WorldGen.SquareTileFrame(oreCenterX + a, oreCenterY + b);
+                                NetMessage.SendTileSquare(-1, oreCenterX + a, oreCenterY + b, 1);
+
+                                //WorldGen.PlaceTile(oreCenterX + a, oreCenterY + b, ModContent.TileType<CosmiliteOreTile>());
                             }
                         }
                     }
-                }*/
+                }
             }
         }
         public class NightmareForestPass : GenPass
@@ -233,6 +237,8 @@ namespace Clamity.Content.Biomes.EntropicSpace
         public static int DurksunHeight => SubworldHeight / 4;
         public override int Width => SubworldWidth;
         public override int Height => SubworldHeight;
+
+        //TODO - remove commending after completing an generation
         //public override bool ShouldSave => true;
 
         /*public override void DrawMenu(GameTime gameTime)

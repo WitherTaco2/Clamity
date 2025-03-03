@@ -1,4 +1,5 @@
 ﻿using CalamityMod;
+using CalamityMod.Rarities;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
@@ -23,7 +24,7 @@ namespace Clamity.Content.Biomes.FrozenHell.Items
             Item.height = 12;
             Item.maxStack = 9999;
             Item.value = Item.sellPrice(0, 1, 0, 0);
-            Item.rare = ItemRarityID.White;
+            Item.rare = ModContent.RarityType<Violet>();
 
             Item.useTurn = true;
             Item.autoReuse = true;

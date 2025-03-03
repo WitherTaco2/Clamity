@@ -57,7 +57,7 @@ namespace Clamity.Content.Biomes.EntropicSpace.Sky
             backgroundShader.TrySetParameter("darksunLerpValue", Utils.GetLerpValue(EntropicSpaceSubworld.SubworldHeight * 16 / 4, EntropicSpaceSubworld.SubworldHeight * 16 / 4 - 600, playerPos.Y, true));
             backgroundShader.TrySetParameter("playerPos", playerPos);
             backgroundShader.TrySetParameter("screenSize", Main.ScreenSize.ToVector2());
-            backgroundShader.SetTexture(ModContent.Request<Texture2D>("Clamity/Assets/Textures/Noice/Mist2"), 1, SamplerState.LinearWrap);
+            //backgroundShader.SetTexture(ModContent.Request<Texture2D>("Clamity/Assets/Textures/Noice/Mist2"), 1, SamplerState.LinearWrap);
             backgroundShader.SetTexture(ModContent.Request<Texture2D>("Clamity/Assets/Textures/Noice/Mist"), 1, SamplerState.LinearWrap);
             backgroundShader.Apply();
         }

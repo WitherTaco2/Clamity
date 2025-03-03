@@ -152,6 +152,11 @@ namespace Clamity.Commons
         /// </summary>
         public static void LoadShaders()
         {
+            //Dye Shaders
+            /*GameShaders.Armor.BindShader(ModContent.ItemType<DistortedDye>(), new ArmorShaderData(ModContent.Request<Effect>("Clamity/Assets/AutoloadedEffects/Shaders/EntropicDye"), "ArmorBasic")
+                .UseImage(ModContent.Request<Texture2D>("Clamity/Assets/Textures/Noice/Mist"))
+                );*/
+
             Filters.Scene["Clamity:FrozenHellSky"] = new Filter(new FrozenHellShaderData("FilterMiniTower").UseColor(0.5f, 1f, 1f).UseOpacity(0.65f), EffectPriority.VeryHigh);
             SkyManager.Instance["Clamity:FrozenHellSky"] = (CustomSky)new FrozenHellSky();
 

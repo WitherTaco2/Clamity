@@ -33,15 +33,15 @@ Items: {
 	MirrorOfBeyond: {
 		/* Tooltip:
 			'''
-			Teleport you to The Distortion
+			Teleport you to Entropic Space
 			Item can not be used on cursor
 			''' */
 		// DisplayName: Mirror Of Beyond
 	}
 
 	DraedonItems: {
-		DistortionDraedonsLog: {
-			// DisplayName: The Distortion Log
+		EntropicSpaceDraedonsLog: {
+			// DisplayName: Entropic Space Log
 			/* Tooltip:
 				'''
 				[Out of My Mind] - 'Cosmilite' and Mutantion
@@ -50,11 +50,6 @@ Items: {
 			// ContentPage1: After the beginning of cooperation with devourer, I began to explore this dimension deeper. The metal named Cosmilite has properties located behind the edge of science. It is in raw very flexible but impossible for stretching and breakage
 			// ContentPage2: "[Currupted data]"
 			// ContentPage3: This place is behind the edge of my knowledge of the home universe. This place changes the matter itself which I bring under itself and my mind when trying to understand it. We have to take a break. But I can't leave research. But I can't...
-		}
-
-		EntropicSpaceDraedonsLog: {
-			// DisplayName: Entropic Space Draedons Log
-			// Tooltip: ""
 		}
 	}
 
@@ -65,6 +60,11 @@ Items: {
 
 	PumpkinFetus: {
 		// DisplayName: Pumpkin Fetus
+		// Tooltip: ""
+	}
+
+	DistortedDye: {
+		// DisplayName: Distorted Dye
 		// Tooltip: ""
 	}
 }
@@ -84,7 +84,7 @@ Misc: {
 Tiles: {
 	FrozenHellstoneTile.MapEntry: Замороженный адский камень
 	FrozenAshTile.MapEntry: Замороженный пепел
-	// CosmiliteOreTile.MapEntry: Cosmilite Ore Tile
+	// CosmiliteOreTile.MapEntry: Cosmilite Ore
 }
 
 Biomes: {

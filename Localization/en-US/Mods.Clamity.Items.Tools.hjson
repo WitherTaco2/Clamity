@@ -12,3 +12,12 @@ Waraxe: {
 	Tooltip: Has chance to inflict Armor Crunch
 	DisplayName: Waraxe
 }
+
+CosmiliteDrill: {
+	DisplayName: Cosmilite Drill
+	Tooltip:
+		'''
+		Can mine Cosmilite Ore
+		'Hmm. Need cosmilite for mine cosmilite...'
+		'''
+}

@@ -12,3 +12,12 @@ Waraxe: {
 	Tooltip: Имеет шанц наложить 'Разрушение брони'
 	DisplayName: Топор войны
 }
+
+CosmiliteDrill: {
+	// DisplayName: Cosmilite Drill
+	/* Tooltip:
+		'''
+		Can mine Cosmilite Ore
+		'Hmm. Need cosmilite for mine cosmilite...'
+		''' */
+}
