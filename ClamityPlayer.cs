@@ -8,6 +8,7 @@ using Clamity.Content.Biomes.FrozenHell.Biome;
 using Clamity.Content.Bosses.Pyrogen.Drop;
 using Clamity.Content.Bosses.Pyrogen.NPCs;
 using Clamity.Content.Cooldowns;
+using Clamity.Content.Items.Accessories;
 using Clamity.Content.Items.Materials;
 using Clamity.Content.Items.Tools.Bags.Fish;
 using Microsoft.Xna.Framework;
@@ -41,6 +42,7 @@ namespace Clamity
         public bool eidolonAmulet;
         public bool metalWings;
         public bool seaShell;
+        public bool subcommunity;
 
         //Armor
         public bool inflicingMeleeFrostburn;
@@ -79,6 +81,7 @@ namespace Clamity
             eidolonAmulet = false;
             metalWings = false;
             seaShell = false;
+            subcommunity = false;
 
             inflicingMeleeFrostburn = false;
             frozenParrying = false;
@@ -266,6 +269,17 @@ namespace Clamity
                 Player.velocity = Vector2.Zero;
                 Player.velocity.Y = -0.1f;
                 Player.RemoveAllGrapplingHooks();*/
+            }
+            if (subcommunity)
+            {
+                float baseBoost = TheSubcommunity.CalculatePower();
+                Player.pickSpeed += baseBoost * TheSubcommunity.MiningSpeedMult;
+                Player.luck += baseBoost * TheSubcommunity.LuckMult;
+                Player.fishingSkill += (int)(baseBoost * TheSubcommunity.FishingPower);
+                Player.tileSpeed += baseBoost * TheSubcommunity.TileAndWallPlacingSpeedMult;
+                Player.wallSpeed += baseBoost * TheSubcommunity.TileAndWallPlacingSpeedMult;
+                Player.tileRangeX += (int)(baseBoost * TheSubcommunity.TileRangeMult);
+                Player.tileRangeY += (int)(baseBoost * TheSubcommunity.TileRangeMult);
             }
         }
         public Item FindAccessory(int itemID)

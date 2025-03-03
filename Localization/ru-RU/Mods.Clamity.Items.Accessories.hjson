@@ -116,3 +116,21 @@ SeaShell: {
 	DisplayName: Океаническая ракушка
 	Tooltip: Увеличивает защиту, поглощение урона и скорость передвижения когда вы мокрый
 }
+
+TheSubcommunity: {
+	// DisplayName: The Subcommunity
+	/* Tooltip:
+		'''
+		[STATS]
+		'The part of The (Calamity) Community.'
+		'Has own specialization.'
+		[c/B00BA5:Thank you to all of my supporters who made this addon a reality!]
+		''' */
+	/* StatsList:
+		'''
+		Increases mining speed by {0}%
+		Increases a luck by {1} and fishing power by {2}
+		Increases tile and wall placing speed by {3} and placing range by {4}
+		Become more powerful as you defeat bosses ({5}% Power)
+		''' */
+}
