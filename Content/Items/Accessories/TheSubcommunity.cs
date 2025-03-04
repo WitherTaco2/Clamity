@@ -1,8 +1,11 @@
 ﻿using CalamityMod;
 using CalamityMod.Items;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.DataStructures;
+using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -13,8 +16,8 @@ namespace Clamity.Content.Items.Accessories
         public new string LocalizationCategory => "Items.Accessories";
         public override void SetStaticDefaults()
         {
-            //Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(5, 10));
-            //ItemID.Sets.AnimatesAsSoul[Type] = true;
+            Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(5, 4));
+            ItemID.Sets.AnimatesAsSoul[Type] = true;
         }
 
         public override void SetDefaults()
@@ -99,7 +102,7 @@ namespace Clamity.Content.Items.Accessories
             list.FindAndReplace("[STATS]", statList);
         }
 
-        /*public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
+        public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
             CalamityUtils.DrawInventoryCustomScale(
                 spriteBatch,
@@ -114,7 +117,7 @@ namespace Clamity.Content.Items.Accessories
                 drawOffset: new(0f, 0f)
             );
             return false;
-        }*/
+        }
 
     }
 }
