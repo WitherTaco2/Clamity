@@ -1,6 +1,6 @@
 ClamitasBoss: {
 	DisplayName: Clamitas, Supreme Clam
-	DisplayNameAlt: "Giant Clam?"
+	DisplayNameAlt: Giant Clam?
 	Bestiary: He is one of Giant Clams, that absorbed the power of brimstone. There is no power left in the pearl from the ocean. No scoundrel can resist the power of Clamitas itself
 
 	BossChecklistIntegration: {

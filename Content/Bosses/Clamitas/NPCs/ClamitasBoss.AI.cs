@@ -1,6 +1,9 @@
 ﻿using CalamityMod;
 using CalamityMod.Buffs.StatBuffs;
 using CalamityMod.NPCs;
+using Clamity.Content.Bosses.Clamitas.Projectiles;
+using Clamity.Content.Particles;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -14,7 +17,11 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
             PreFight = 0,
             StartingCutscene = 1,
 
+            FastTeleports,
+            CrossSpirits,
+            SpiritWave,
 
+            HahaLimboMonent,
         }
 
         private int attack = (int)Attacks.PreFight;
@@ -29,11 +36,11 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
             set => NPC.ai[0] = value;
         }
         public bool BattleIsStarted => CurrentAttack != Attacks.PreFight && (CurrentAttack != Attacks.StartingCutscene);
+        public Player player => Main.player[NPC.target];
         public override void AI()
         {
             Myself = NPC;
             NPC.TargetClosest();
-            Player player = Main.player[NPC.target];
             CalamityGlobalNPC calamityGlobalNPC = NPC.Calamity();
 
 
@@ -67,7 +74,6 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
             {
                 case Attacks.PreFight:
                     PreFightState();
-
                     break;
                 case Attacks.StartingCutscene:
 
@@ -86,19 +92,46 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
         {
             Music = -1;
 
-            NPC.life = NPC.lifeMax;
+            //NPC.life = NPC.lifeMax;
 
-
-            if (NPC.justHit && hitAmount < 5)
-            {
-                hitAmount++;
-                hasBeenHit = true;
-            }
-
-            if (hitAmount == 10)
+            if (hitAmount >= 10)
             {
                 SetNextAttack(Attacks.StartingCutscene);
             }
+        }
+        private void StartingCutsceneState()
+        {
+            if (AttackTimer % 10 == 0)
+            {
+                ChromaticBurstParticle particle1 = new ChromaticBurstParticle(NPC.Center, Vector2.Zero, Color.Red, 20, 10f, 0);
+            }
+            Main.LocalPlayer.Calamity().GeneralScreenShakePower = Utils.GetLerpValue(0, 1, AttackTimer / (float)60, true);
+
+            if (AttackTimer > 120)
+            {
+                SetNextAttack(Attacks.CrossSpirits);
+            }
+        }
+        private void CrossSpiritsState()
+        {
+            if (AttackTimer % 120 == 0)
+            {
+                float num = AttackTimer % 240 == 0 ? MathHelper.PiOver4 : 0;
+                Vector2 center = player.Center;
+                for (int i = 0; i < 3; i++)
+                {
+                    float rot = MathHelper.PiOver2 * i + num;
+                    Projectile.NewProjectile(NPC.GetSource_FromAI(), center + Vector2.UnitX.RotatedBy(num) * 10, -Vector2.UnitX.RotatedBy(num), ModContent.ProjectileType<BrimstoneSpiritsSpawner>(), 1, 1, Main.myPlayer, 20);
+                }
+            }
+        }
+        private void SpiritWaveState()
+        {
+
+        }
+        private void State()
+        {
+
         }
 
     }

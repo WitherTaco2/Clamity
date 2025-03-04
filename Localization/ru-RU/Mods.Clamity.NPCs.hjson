@@ -1,9 +1,10 @@
 ClamitasBoss: {
 	DisplayName: Кламитас, высший моллюск
+	// DisplayNameAlt: Giant Clam?
 	Bestiary: Проклятый самим Каламитасом гигантский моллюск, кламитас впитал в себя силу серы. В жемчужине не осталось силы океана. Ни один негодяй не может противостоять силе самого Кламитаcа
 
 	BossChecklistIntegration: {
-		// SpawnInfo: Use an [i:Clamity/ClamitasSummoningItem] Clamitous Shell in the Brimstone Crags
+		// SpawnInfo: Randomly found in Brimstone Crags after defeating Calamitas Clone or Use an [i:Clamity/ClamitasSummoningItem] Clamitous Shell in the Brimstone Crags
 		// DespawnMessage: "[c/FFD700:The Clamitas returns into hiding in its grotto.]"
 	}
 }

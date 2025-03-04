@@ -98,7 +98,7 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
 
             if (!Main.dedServ)
             {
-                Music = -1;
+                Music = 0;
                 //Music = Clamity.mod.GetMusicFromMusicMod("Clamitas") ?? MusicID.Boss3;
             }
         }
@@ -241,6 +241,12 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
 
         public override void HitEffect(NPC.HitInfo hit)
         {
+            if (NPC.justHit && hitAmount < 5)
+            {
+                hitAmount++;
+                hasBeenHit = true;
+            }
+
             for (int i = 0; i < 5; i++)
             {
                 Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Obsidian, hit.HitDirection, -1f);
