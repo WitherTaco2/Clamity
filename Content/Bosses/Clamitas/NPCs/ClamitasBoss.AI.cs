@@ -1,6 +1,7 @@
 ﻿using CalamityMod;
 using CalamityMod.Buffs.StatBuffs;
 using CalamityMod.NPCs;
+using CalamityMod.Particles;
 using Clamity.Content.Bosses.Clamitas.Projectiles;
 using Clamity.Content.Particles;
 using Microsoft.Xna.Framework;
@@ -43,7 +44,6 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
             NPC.TargetClosest();
             CalamityGlobalNPC calamityGlobalNPC = NPC.Calamity();
 
-
             NPC.chaseable = hasBeenHit;
 
             if (BattleIsStarted && Main.netMode != NetmodeID.Server && !Main.player[NPC.target].dead && Main.player[NPC.target].active)
@@ -69,6 +69,7 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
                 statChange = true;
             }
 
+            Main.NewText($"{attack} - {AttackTimer}");
             AttackTimer++;
             switch (CurrentAttack)
             {
@@ -76,7 +77,13 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
                     PreFightState();
                     break;
                 case Attacks.StartingCutscene:
-
+                    StartingCutsceneState();
+                    break;
+                case Attacks.CrossSpirits:
+                    CrossSpiritsState();
+                    break;
+                case Attacks.SpiritWave:
+                    SpiritWaveState();
                     break;
 
             }
@@ -90,7 +97,13 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
         }
         private void PreFightState()
         {
-            Music = -1;
+            //Music = -1;
+
+            if (NPC.justHit)
+            {
+                ++hitAmount;
+                hasBeenHit = true;
+            }
 
             //NPC.life = NPC.lifeMax;
 
@@ -101,14 +114,19 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
         }
         private void StartingCutsceneState()
         {
+            hide = true;
+            int animTime = 120;
+
             if (AttackTimer % 10 == 0)
             {
                 ChromaticBurstParticle particle1 = new ChromaticBurstParticle(NPC.Center, Vector2.Zero, Color.Red, 20, 10f, 0);
+                GeneralParticleHandler.SpawnParticle(particle1);
             }
             Main.LocalPlayer.Calamity().GeneralScreenShakePower = Utils.GetLerpValue(0, 1, AttackTimer / (float)60, true);
 
-            if (AttackTimer > 120)
+            if (AttackTimer > animTime)
             {
+                hide = false;
                 SetNextAttack(Attacks.CrossSpirits);
             }
         }
@@ -121,8 +139,9 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
                 for (int i = 0; i < 3; i++)
                 {
                     float rot = MathHelper.PiOver2 * i + num;
-                    Projectile.NewProjectile(NPC.GetSource_FromAI(), center + Vector2.UnitX.RotatedBy(num) * 10, -Vector2.UnitX.RotatedBy(num), ModContent.ProjectileType<BrimstoneSpiritsSpawner>(), 1, 1, Main.myPlayer, 20);
+                    Projectile.NewProjectile(NPC.GetSource_FromAI(), center + Vector2.UnitX.RotatedBy(rot) * 100, -Vector2.UnitX.RotatedBy(rot), ModContent.ProjectileType<BrimstoneSpiritsSpawner>(), 1, 1, Main.myPlayer, 100, 1);
                 }
+                //SoundEngine.PlaySound(SoundID., player.Center);
             }
         }
         private void SpiritWaveState()

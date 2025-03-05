@@ -10,12 +10,16 @@ namespace Clamity.Content.Bosses.Clamitas.Projectiles
         public override string Texture => "CalamityMod/Projectiles/InvisibleProj";
         public override void SetDefaults()
         {
+            Projectile.width = Projectile.height = 48;
+            Projectile.aiStyle = -1;
+            AIType = -1;
             Projectile.timeLeft = 120;
             Projectile.tileCollide = false;
+
         }
         public override void AI()
         {
-            if (Projectile.velocity.Length() > 0)
+            if (Projectile.velocity != Vector2.Zero)
             {
                 Projectile.rotation = Projectile.velocity.ToRotation();
                 Projectile.velocity = Vector2.Zero;
@@ -26,9 +30,9 @@ namespace Clamity.Content.Bosses.Clamitas.Projectiles
         public ref float Power => ref Projectile.ai[1];
         public override void OnKill(int timeLeft)
         {
-            for (float i = -Width / 2f; i < Width / 2f; i++)
+            for (float i = -Width / 2f; i < Width / 2f; i += 20)
             {
-                Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center + Vector2.UnitY.RotatedBy(Projectile.rotation) * i, new Vector2(Main.rand.NextFloat(1f, 1.2f) * Power, 0).RotatedBy(Projectile.rotation), ModContent.ProjectileType<BrimstoneSpirits>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
+                Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center + Vector2.UnitY.RotatedBy(Projectile.rotation) * i, new Vector2(Main.rand.NextFloat(10f, 12f) * Power, 0).RotatedBy(Projectile.rotation), ModContent.ProjectileType<BrimstoneSpirits>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
             }
         }
         public override bool PreDraw(ref Color lightColor)

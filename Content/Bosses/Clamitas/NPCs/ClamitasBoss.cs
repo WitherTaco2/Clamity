@@ -98,8 +98,8 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
 
             if (!Main.dedServ)
             {
-                Music = 0;
-                //Music = Clamity.mod.GetMusicFromMusicMod("Clamitas") ?? MusicID.Boss3;
+                //Music = 0;
+                Music = Clamity.mod.GetMusicFromMusicMod("Clamitas") ?? MusicID.Boss3;
             }
         }
 
@@ -173,7 +173,7 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
                 NPC.frame.Y = NPC.frame.Y + frameHeight;
             }
 
-            if ((hitAmount < 5 || hide) && !NPC.IsABestiaryIconDummy)
+            if ((hitAmount < 10 || hide) && !NPC.IsABestiaryIconDummy)
             {
                 NPC.frame.Y = frameHeight * 11;
             }
@@ -229,7 +229,7 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
                 }
             }*/
 
-            if (BattleIsStarted)
+            if (BattleIsStarted || NPC.IsABestiaryIconDummy)
             {
                 typeName = Language.GetTextValue($"Mods.Clamity.NPCs.{nameof(ClamitasBoss)}.DisplayName");
             }
@@ -241,12 +241,6 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
 
         public override void HitEffect(NPC.HitInfo hit)
         {
-            if (NPC.justHit && hitAmount < 5)
-            {
-                hitAmount++;
-                hasBeenHit = true;
-            }
-
             for (int i = 0; i < 5; i++)
             {
                 Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Obsidian, hit.HitDirection, -1f);
@@ -272,28 +266,32 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            Texture2D t = ModContent.Request<Texture2D>(Texture).Value;
+            string t = Texture;
             if (!BattleIsStarted)
-                t = ModContent.Request<Texture2D>(ModContent.GetInstance<GiantClam>().Texture).Value;
+                t = ModContent.GetInstance<GiantClam>().Texture;
             else
                 Main.EntitySpriteDraw(ModContent.Request<Texture2D>(Texture + "_Extra").Value, NPC.Center - Vector2.UnitY * 20f * NPC.scale - screenPos, new Rectangle(0, flareFrame * 174, 116, 174), NPC.GetAlpha(Color.White), NPC.rotation, new Vector2(116, 174) * 0.5f, NPC.scale, SpriteEffects.None);
 
-            Main.EntitySpriteDraw(ModContent.Request<Texture2D>(Texture).Value, NPC.Center - screenPos, NPC.frame, NPC.GetAlpha(drawColor), NPC.rotation, NPC.frame.Size() * 0.5f, NPC.scale, SpriteEffects.None);
+            Main.EntitySpriteDraw(ModContent.Request<Texture2D>(t).Value, NPC.Center - screenPos, NPC.frame, NPC.GetAlpha(drawColor), NPC.rotation, NPC.frame.Size() * 0.5f, NPC.scale, SpriteEffects.None);
             return false;
         }
 
         public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            Texture2D value = ModContent.Request<Texture2D>(Texture).Value;
-            Texture2D value2 = ModContent.Request<Texture2D>(Texture + "Glow").Value;
+            string t = Texture;
+            if (!BattleIsStarted)
+                t = ModContent.GetInstance<GiantClam>().Texture;
+
+            Texture2D value = ModContent.Request<Texture2D>(t).Value;
+            Texture2D glow = ModContent.Request<Texture2D>(t + "Glow").Value;
             SpriteEffects effects = SpriteEffects.None;
             Vector2 vector = new Vector2(NPC.Center.X, NPC.Center.Y);
             Vector2 vector2 = new Vector2(value.Width / 2, value.Height / Main.npcFrameCount[NPC.type] / 2);
             Vector2 position = vector - screenPos;
-            position -= new Vector2(value2.Width, value2.Height / Main.npcFrameCount[NPC.type]) * 1f / 2f;
+            position -= new Vector2(glow.Width, glow.Height / Main.npcFrameCount[NPC.type]) * 1f / 2f;
             position += vector2 * 1f + new Vector2(0f, 4f + NPC.gfxOffY);
             Color color = new Color(127 - NPC.alpha, 127 - NPC.alpha, 127 - NPC.alpha, 0).MultiplyRGBA(Color.Red);
-            Main.EntitySpriteDraw(value2, position, NPC.frame, color, NPC.rotation, vector2, NPC.scale, effects);
+            Main.EntitySpriteDraw(glow, position, NPC.frame, color, NPC.rotation, vector2, NPC.scale, effects);
         }
 
         public override void OnKill()

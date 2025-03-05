@@ -24,6 +24,7 @@ namespace Clamity.Content.Bosses.Clamitas.Projectiles
         {
             Projectile.width = Projectile.height = 48;
             Projectile.aiStyle = -1;
+            AIType = -1;
             Projectile.timeLeft = 600;
             Projectile.hostile = true;
             Projectile.ignoreWater = true;
@@ -36,7 +37,7 @@ namespace Clamity.Content.Bosses.Clamitas.Projectiles
         }
         public override void OnSpawn(IEntitySource source)
         {
-            WeightedRandom<int> typeDecider = new WeightedRandom<int>();
+            WeightedRandom<int> typeDecider = new WeightedRandom<int>((int)Main.GlobalTimeWrappedHourly + Projectile.whoAmI);
             typeDecider.Add(ModContent.ProjectileType<RedirectingLostSoul>(), 0.75f);
             typeDecider.Add(ModContent.ProjectileType<RedirectingVengefulSoul>(), 0.4f);
             typeDecider.Add(ModContent.ProjectileType<RedirectingGildedSoul>(), 0.2f);
