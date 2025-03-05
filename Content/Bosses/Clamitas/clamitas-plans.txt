@@ -1,0 +1,35 @@
+
+Clamitas Bossfight rework
+* Now randomly spawn in Brimstone Crags after calamitas clone
+* Can be summoned with using item that can be crafted after defeating
+* He looks like normal giant clam until hitter a lot (like normal giant clam)
+* After hitting starts an epic cutscene (like genesis from wotg maybe)
+
+Attacks
+* Speed over time teleporting with shoots a brimblast. After high speed teleport above player and fall with crafting a horysontal brimdarts on ground
+* Absorb a power an shoots a fan of brimdarts three times (slow, medium and fast velocity)
+* Creates a cross areas that after time shoot a spirits (like warden attack from MoR). Firstly plus-spae, later X-shape
+* Creates a big verstical ot horisontal areas of spirits
+* Fires a flame from pearl to player. Direction slowly rotates to player (maybe like new araneus from SoA)
+* At 50% starts a limbo moment. He creates a 2 clones and two random starts swaps 5 times. Need hit an original clamitas for not getting a special sttack
+* At 25% starts a move powerful limbo moment. Now all 3 clones now swaps.
+* Special attack: ???
+
+Despiration phase
+* Uses a flame laser like from Herecy
+* Full rotates from left/right side (based of player pos)
+* Creates a second laser from oposite side and starts get closer to vertical
+* Creates a static vertical laser and removes a first lasers
+* gradually creates a fan of static laser up to oposite vertical pos
+* Death animation - Crack of pearl (clamitas become to black on white packground with using a shader)
+
+New drop related content
+* The Subcommunity
+* Rework of all clamitas' weapon drop
+* New clamitas upgrade of Poseidon
+	* Shots a bunch of homing satanic/calamity sigils
+* Wave Skipper upgrade
+* Using seaprism weapons to clamitas-tier upgrades
+* Rewrider lore maybe
+* Trophy, Mask, 
+* Treasure clam (bag) that opens twice
