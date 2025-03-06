@@ -1,4 +1,5 @@
-﻿using CalamityMod.Buffs.DamageOverTime;
+﻿using CalamityMod;
+using CalamityMod.Buffs.DamageOverTime;
 using CalamityMod.Items.Accessories;
 using CalamityMod.Projectiles.Magic;
 using CalamityMod.Projectiles.Melee;
@@ -6,9 +7,11 @@ using CalamityMod.Projectiles.Ranged;
 using CalamityMod.Projectiles.Rogue;
 using CalamityMod.Projectiles.Summon;
 using CalamityMod.Projectiles.Typeless;
+using Clamity.Content.Items.Accessories.GemCrawlerDrop;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
@@ -95,6 +98,19 @@ namespace Clamity
                 }
             }
         }*/
+        public override void OnSpawn(Projectile proj, IEntitySource source)
+        {
+            Player player = Main.player[proj.owner];
+            if (source is EntitySource_ItemUse_WithAmmo)
+            {
+                if (proj.arrow && player.Clamity().gemAmethyst && !player.Clamity().gemFinal && Main.rand.NextBool(10))
+                {
+                    //float d = player.GetTotalDamage<RangedDamageClass>().ApplyTo(proj.damage / 5);
+                    int p = Projectile.NewProjectile(proj.GetSource_FromAI(), proj.Center, proj.velocity, ModContent.ProjectileType<SharpAmethystProj>(), player.ApplyArmorAccDamageBonusesTo(proj.damage / 5), 1f, proj.owner);
+                    Main.projectile[p].DamageType = DamageClass.Ranged;
+                }
+            }
+        }
         public override void SendExtraAI(Projectile projectile, BitWriter bitWriter, BinaryWriter binaryWriter)
         {
             for (int i = 0; i < extraAI.Length; i++)

@@ -9,9 +9,11 @@ using Clamity.Content.Bosses.Pyrogen.Drop;
 using Clamity.Content.Bosses.Pyrogen.NPCs;
 using Clamity.Content.Cooldowns;
 using Clamity.Content.Items.Accessories;
+using Clamity.Content.Items.Accessories.GemCrawlerDrop;
 using Clamity.Content.Items.Materials;
 using Clamity.Content.Items.Tools.Bags.Fish;
 using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
@@ -19,6 +21,7 @@ using Terraria.DataStructures;
 using Terraria.GameInput;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Utilities;
 
 namespace Clamity
 {
@@ -43,6 +46,19 @@ namespace Clamity
         public bool metalWings;
         public bool seaShell;
         public bool subcommunity;
+
+        //Equip (gems)
+        public bool gemAmethyst;
+        public bool gemTopaz;
+        public bool gemSapphire;
+        public bool gemEmerald;
+        public bool gemRuby;
+        public bool gemDiamond;
+        public int gemDiamondBarrier;
+        public int gemCooldown;
+        public bool gemAmber;
+        public bool gemFinal;
+
 
         //Armor
         public bool inflicingMeleeFrostburn;
@@ -82,6 +98,15 @@ namespace Clamity
             metalWings = false;
             seaShell = false;
             subcommunity = false;
+
+            gemAmethyst = false;
+            gemTopaz = false;
+            gemSapphire = false;
+            gemEmerald = false;
+            gemRuby = false;
+            gemDiamond = false;
+            gemAmber = false;
+            gemFinal = false;
 
             inflicingMeleeFrostburn = false;
             frozenParrying = false;
@@ -132,6 +157,16 @@ namespace Clamity
                     target.AddBuff(BuffID.Frostburn, 180);
                 if (titanScale)
                     titanScaleTimer = 10 * 60;
+            }
+            if (proj.DamageType is MagicDamageClass)
+            {
+                if (gemCooldown == 0)
+                {
+                    gemDiamondBarrier += gemFinal ? 3 : 1;
+                    gemCooldown = 30;
+                }
+                else
+                    gemCooldown = (int)(gemCooldown * 0.9f);
             }
             if (proj.Calamity().stealthStrike)
             {
@@ -203,6 +238,11 @@ namespace Clamity
         {
             if (titanScaleTimer > 0)
                 titanScaleTimer--;
+            int maxGemBarrier = gemFinal ? 120 : gemDiamond ? 20 : 0;
+            if (gemDiamondBarrier > maxGemBarrier)
+                gemDiamondBarrier = maxGemBarrier;
+            if (gemCooldown > 0)
+                gemCooldown--;
         }
         public override void PostUpdateMiscEffects()
         {
@@ -371,6 +411,28 @@ namespace Clamity
                     Main.projectile[drop].DamageType = DamageClass.Generic;
                 }
                 Player.Calamity().RustyMedallionCooldown = RustyMedallion.AcidCreationCooldown / 2;
+            }
+            if (gemFinal)
+            {
+                WeightedRandom<Action<EntitySource_ItemUse_WithAmmo, Player, Vector2, Vector2, int, float>> rand =
+                    new Terraria.Utilities.WeightedRandom<Action<EntitySource_ItemUse_WithAmmo, Player, Vector2, Vector2, int, float>>((int)Main.GlobalTimeWrappedHourly);
+                rand.Add((source, player, center, velocity, damage, kb) =>
+                    {
+                        for (int i = 0; i < 4; i++)
+                        {
+                            Projectile.NewProjectile(source, position, velocity.RotatedByRandom(0.1f), ModContent.ProjectileType<SharpAmethystProj>(), damage, kb, player.whoAmI);
+                        }
+                        player.Clamity().gemCooldown = 30;
+                    }, item.DamageType is RangedDamageClass ? 2f : (gemCooldown <= 0 ? 1f : 0));
+                rand.Add((source, proj, center, velocity, damage, kb) =>
+                    {
+
+                    }, item.DamageType is MeleeDamageClass ? 2f : 1f);
+                rand.Add((source, proj, center, velocity, damage, kb) =>
+                    {
+
+                    }, item.DamageType is MagicDamageClass ? 2f : 1f);
+                rand.Get().Invoke(source, Player, position, velocity, damage, knockback);
             }
             return true;
         }

@@ -9,6 +9,7 @@ using CalamityMod.NPCs.SupremeCalamitas;
 using CalamityMod.NPCs.TownNPCs;
 using Clamity.Content.Biomes.FrozenHell.Items;
 using Clamity.Content.Items.Accessories;
+using Clamity.Content.Items.Accessories.GemCrawlerDrop;
 using Clamity.Content.Items.Materials;
 using Clamity.Content.Items.Mounts;
 using Clamity.Content.Items.Potions.Food;
@@ -60,6 +61,14 @@ namespace Clamity
             if (npc.type == NPCID.SeaSnail)
             {
                 npcLoot.Add(ItemDropRule.NormalvsExpert(ModContent.ItemType<SeaShell>(), 2, 1));
+            }
+            if (npc.type == ModContent.NPCType<CrawlerDiamond>())
+            {
+                npcLoot.Add(ModContent.ItemType<MagicDiamond>(), 6);
+            }
+            if (npc.type == ModContent.NPCType<CrawlerAmethyst>())
+            {
+                npcLoot.Add(ModContent.ItemType<SharpAmethyst>(), 6);
             }
 
             //Essence of Flame drop
