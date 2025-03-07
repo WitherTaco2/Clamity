@@ -49,13 +49,14 @@ namespace Clamity
 
         //Equip (gems)
         public bool gemAmethyst;
+        public int gemAmethystCooldown;
         public bool gemTopaz;
         public bool gemSapphire;
         public bool gemEmerald;
         public bool gemRuby;
         public bool gemDiamond;
         public int gemDiamondBarrier;
-        public int gemCooldown;
+        public int gemDiamondCooldown;
         public bool gemAmber;
         public bool gemFinal;
 
@@ -160,13 +161,13 @@ namespace Clamity
             }
             if (proj.DamageType is MagicDamageClass)
             {
-                if (gemCooldown == 0)
+                if (gemDiamondCooldown == 0)
                 {
                     gemDiamondBarrier += gemFinal ? 3 : 1;
-                    gemCooldown = 30;
+                    gemDiamondCooldown = 30;
                 }
                 else
-                    gemCooldown = (int)(gemCooldown * 0.9f);
+                    gemDiamondCooldown = (int)(gemDiamondCooldown * 0.9f);
             }
             if (proj.Calamity().stealthStrike)
             {
@@ -241,8 +242,8 @@ namespace Clamity
             int maxGemBarrier = gemFinal ? 120 : gemDiamond ? 20 : 0;
             if (gemDiamondBarrier > maxGemBarrier)
                 gemDiamondBarrier = maxGemBarrier;
-            if (gemCooldown > 0)
-                gemCooldown--;
+            if (gemDiamondCooldown > 0)
+                gemDiamondCooldown--;
         }
         public override void PostUpdateMiscEffects()
         {
@@ -416,14 +417,16 @@ namespace Clamity
             {
                 WeightedRandom<Action<EntitySource_ItemUse_WithAmmo, Player, Vector2, Vector2, int, float>> rand =
                     new Terraria.Utilities.WeightedRandom<Action<EntitySource_ItemUse_WithAmmo, Player, Vector2, Vector2, int, float>>((int)Main.GlobalTimeWrappedHourly);
-                rand.Add((source, player, center, velocity, damage, kb) =>
-                    {
-                        for (int i = 0; i < 4; i++)
+                if (gemAmethystCooldown <= 0)
+                    rand.Add((source, player, center, velocity, damage, kb) =>
                         {
-                            Projectile.NewProjectile(source, position, velocity.RotatedByRandom(0.1f), ModContent.ProjectileType<SharpAmethystProj>(), damage, kb, player.whoAmI);
-                        }
-                        player.Clamity().gemCooldown = 30;
-                    }, item.DamageType is RangedDamageClass ? 2f : (gemCooldown <= 0 ? 1f : 0));
+                            for (int i = 0; i < 4; i++)
+                            {
+                                float d = player.GetTotalDamage<RangedDamageClass>().ApplyTo(damage / 5);
+                                Projectile.NewProjectile(source, position, velocity.RotatedByRandom(0.1f), ModContent.ProjectileType<SharpAmethystProj>(), player.ApplyArmorAccDamageBonusesTo(d), kb, player.whoAmI);
+                            }
+                            player.Clamity().gemAmethystCooldown = 30;
+                        }, item.DamageType is RangedDamageClass ? 2f : 1f);
                 rand.Add((source, proj, center, velocity, damage, kb) =>
                     {
 

@@ -105,8 +105,8 @@ namespace Clamity
             {
                 if (proj.arrow && player.Clamity().gemAmethyst && !player.Clamity().gemFinal && Main.rand.NextBool(10))
                 {
-                    //float d = player.GetTotalDamage<RangedDamageClass>().ApplyTo(proj.damage / 5);
-                    int p = Projectile.NewProjectile(proj.GetSource_FromAI(), proj.Center, proj.velocity, ModContent.ProjectileType<SharpAmethystProj>(), player.ApplyArmorAccDamageBonusesTo(proj.damage / 5), 1f, proj.owner);
+                    float d = player.GetTotalDamage<RangedDamageClass>().ApplyTo(4);
+                    int p = Projectile.NewProjectile(proj.GetSource_FromAI(), proj.Center, proj.velocity, ModContent.ProjectileType<SharpAmethystProj>(), player.ApplyArmorAccDamageBonusesTo(d), 1f, proj.owner);
                     Main.projectile[p].DamageType = DamageClass.Ranged;
                 }
             }
