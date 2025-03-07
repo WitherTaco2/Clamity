@@ -8,10 +8,6 @@ namespace Clamity.Content.Items.Potions.Food
     public class Barolegs : ModItem, ILocalizedModType, IModType
     {
         public new string LocalizationCategory => "Items.Potions.Foods";
-        public override void SetStaticDefaults()
-        {
-            Item.ResearchUnlockCount = 5;
-        }
         public override void SetDefaults()
         {
             Item.DefaultToFood(34, 16, GetFoodBuff, 20 * 60 * 60);

@@ -23,7 +23,7 @@ namespace Clamity.Content.Items.Weapons.Rogue
         {
             //Malachite
             Item.width = 74; Item.height = 68;
-            Item.value = CalamityGlobalItem.RarityYellowBuyPrice;
+            Item.value = CalamityGlobalItem.Rarity8BuyPrice;
             Item.rare = ItemRarityID.Yellow;
 
             Item.useTime = Item.useAnimation = 19;

@@ -1,4 +1,5 @@
 ﻿using CalamityMod.Rarities;
+using CalamityMod.Tiles.Furniture.CraftingStations;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -36,7 +37,7 @@ namespace Clamity.Content.Biomes.FrozenHell.Items
             CreateRecipe(2)
                 .AddIngredient<FrozenHellstone>(3)
                 .AddIngredient(ItemID.Obsidian)
-                .AddTile(TileID.AdamantiteForge)
+                .AddTile<DraedonsForge>()
                 .Register();
         }
     }

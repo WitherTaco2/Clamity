@@ -2,7 +2,7 @@
 using CalamityMod.Items.Materials;
 using CalamityMod.Items.Weapons.Melee;
 using CalamityMod.Tiles.Furniture.CraftingStations;
-using Clamity.Content.Projectiles;
+using Clamity.Content.Items.Weapons.Melee.Shortswords;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -21,7 +21,7 @@ namespace Clamity.Content.Items.Weapons.Melee.Swords
         {
             Item.width = 26; Item.height = 18;
             Item.rare = ItemRarityID.Blue;
-            Item.value = CalamityGlobalItem.RarityBlueBuyPrice;
+            Item.value = CalamityGlobalItem.Rarity1BuyPrice;
 
             Item.useAnimation = Item.useTime = 6;
             Item.useStyle = ItemUseStyleID.Swing;
@@ -43,7 +43,7 @@ namespace Clamity.Content.Items.Weapons.Melee.Swords
                 .AddIngredient(ItemID.FetidBaghnakhs)
                 .AddIngredient<MycelialClaws>()
                 .AddIngredient<MantisClaws>()
-                //.AddIngredient<MandibleClaws>()
+                .AddIngredient<MandibleClaws>()
                 .AddIngredient<MiracleMatter>()
                 .AddTile<DraedonsForge>()
                 .Register();

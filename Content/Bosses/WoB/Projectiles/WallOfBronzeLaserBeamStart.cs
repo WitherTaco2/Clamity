@@ -12,10 +12,8 @@ using Terraria.ModLoader;
 
 namespace Clamity.Content.Bosses.WoB.Projectiles
 {
-    public class WallOfBronzeLaserBeamStart : ModProjectile, ILocalizedModType, IModType
+    public class WallOfBronzeLaserBeamStart : ModProjectile
     {
-        public new string LocalizationCategory => "Projectiles.Boss";
-
         private const int maxFrames = 5;
         private int frameDrawn;
         public override void SetStaticDefaults()

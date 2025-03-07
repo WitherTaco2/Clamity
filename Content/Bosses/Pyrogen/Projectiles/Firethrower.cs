@@ -3,9 +3,8 @@ using Terraria.ModLoader;
 
 namespace Clamity.Content.Bosses.Pyrogen.Projectiles
 {
-    public class Firethrower : ModProjectile, ILocalizedModType, IModType
+    public class Firethrower : ModProjectile
     {
-        public new string LocalizationCategory => "Projectiles.Boss";
         public override void SetStaticDefaults()
         {
             Main.projFrames[Type] = 7;

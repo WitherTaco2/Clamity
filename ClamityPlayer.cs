@@ -3,13 +3,11 @@ using CalamityMod.Buffs.DamageOverTime;
 using CalamityMod.Cooldowns;
 using CalamityMod.Items.Accessories;
 using CalamityMod.NPCs.Cryogen;
-using CalamityMod.Projectiles.Rogue;
+using CalamityMod.Projectiles.Ranged;
 using Clamity.Content.Biomes.FrozenHell.Biome;
 using Clamity.Content.Bosses.Pyrogen.Drop;
 using Clamity.Content.Bosses.Pyrogen.NPCs;
 using Clamity.Content.Cooldowns;
-using Clamity.Content.Items.Accessories;
-using Clamity.Content.Items.Materials;
 using Clamity.Content.Items.Tools.Bags.Fish;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -41,8 +39,6 @@ namespace Clamity
         public bool redDie;
         public bool eidolonAmulet;
         public bool metalWings;
-        public bool seaShell;
-        public bool subcommunity;
 
         //Armor
         public bool inflicingMeleeFrostburn;
@@ -54,8 +50,7 @@ namespace Clamity
         public bool guntera;
 
         //Buffs-Debuffs
-        public bool titanScale;
-        public int titanScaleTimer;
+        //public bool wCleave;
 
         //Pets
 
@@ -80,14 +75,14 @@ namespace Clamity
             redDie = false;
             eidolonAmulet = false;
             metalWings = false;
-            seaShell = false;
-            subcommunity = false;
 
             inflicingMeleeFrostburn = false;
             frozenParrying = false;
 
             hellsBell = false;
             guntera = false;
+
+
 
             FlyingChair = false;
             FlyingChairPower = 12;
@@ -97,43 +92,29 @@ namespace Clamity
             frozenParryingTime = 0;
         }
         #endregion
-
         #region On Hit Effect
         public override void OnHitNPCWithItem(Item item, NPC target, NPC.HitInfo hit, int damageDone)
         {
-            target.Clamity().IncreasedHeatEffects_PyroStone = pyroStone;
-
-            if (item.DamageType == DamageClass.Melee || item.DamageType == ModContent.GetInstance<TrueMeleeDamageClass>())
+            if (pyroSpear && !Player.HasCooldown(PyrospearCooldown.ID))
             {
-                if (pyroSpear && !Player.HasCooldown(PyrospearCooldown.ID))
+                for (int i = 0; i < 4; i++)
                 {
-                    for (int i = 0; i < 4; i++)
-                    {
-                        Vector2 vec1 = Vector2.UnitY.RotatedByRandom(1f);
-                        Projectile.NewProjectile(item.GetSource_OnHit(target), target.Center + vec1 * 500f, -vec1.RotatedByRandom(0.1f) * 20f, ModContent.ProjectileType<SoulOfPyrogenSpear>(), item.damage / 2, 1f, Player.whoAmI, target.whoAmI);
-                    }
-                    Player.AddCooldown(PyrospearCooldown.ID, 100);
+                    Vector2 vec1 = Vector2.UnitY.RotatedByRandom(1f);
+                    Projectile.NewProjectile(item.GetSource_OnHit(target), target.Center + vec1 * 500f, -vec1.RotatedByRandom(0.1f) * 20f, ModContent.ProjectileType<SoulOfPyrogenSpear>(), item.damage / 2, 1f, Player.whoAmI, target.whoAmI);
                 }
-                if (inflicingMeleeFrostburn)
-                    target.AddBuff(BuffID.Frostburn, 180);
-                if (titanScale)
-                    titanScaleTimer = 10 * 60;
+                //pyroSpearCD = 100;
+                Player.AddCooldown(PyrospearCooldown.ID, 100);
             }
             if (hellFlare)
                 CalamityUtils.Inflict246DebuffsNPC(target, BuffID.OnFire3);
-
         }
         public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
         {
-            if (proj.DamageType == ModContent.GetInstance<TrueMeleeDamageClass>())
+            if (proj.DamageType == ModContent.GetInstance<TrueMeleeDamageClass>()) //true melee effect
             {
                 PyroSpearEffect(proj, target);
-                if (inflicingMeleeFrostburn)
-                    target.AddBuff(BuffID.Frostburn, 180);
-                if (titanScale)
-                    titanScaleTimer = 10 * 60;
             }
-            if (proj.Calamity().stealthStrike)
+            if (proj.Calamity().stealthStrike) //
             {
                 PyroSpearEffect(proj, target);
             }
@@ -147,11 +128,11 @@ namespace Clamity
                     Vector2 vec1 = Vector2.UnitY.RotatedByRandom(1f);
                     Projectile.NewProjectile(proj.GetSource_OnHit(target), target.Center + vec1 * 500f, -vec1.RotatedByRandom(0.1f) * 20f, ModContent.ProjectileType<SoulOfPyrogenSpear>(), proj.damage / 2, 1f, Player.whoAmI, target.whoAmI);
                 }
+                //pyroSpearCD = 100;
                 Player.AddCooldown(PyrospearCooldown.ID, 100);
             }
         }
         #endregion
-
         #region Hurt Effect
         public override void OnHurt(Player.HurtInfo info)
         {
@@ -167,12 +148,21 @@ namespace Clamity
         }
         public override void ModifyHurt(ref Player.HurtModifiers modifiers)
         {
+            /*if (metalWings)
+            {
+                float percent = info.Damage / Player.statLifeMax2;
+                int recivingFlyTime = (int)(Player.wingTimeMax * percent / 2);
+                if (Player.wingTime + recivingFlyTime > Player.wingTimeMax)
+                    Player.wingTime = Player.wingTimeMax;
+                else
+                    Player.wingTime += recivingFlyTime;
+            }*/
             if (frozenParrying && frozenParryingTime > 15)
             {
                 if (!Player.HasCooldown(ParryCooldown.ID))
                 {
-                    Player.GiveUniversalIFrames(Player.ComputeParryIFrames(), true);
-                    modifiers.SetMaxDamage(1);
+                    Player.GiveIFrames(60, true);
+                    modifiers.FinalDamage *= 0.1f;
                     modifiers.DisableSound();
                 }
                 SoundEngine.PlaySound(in PyrogenShield.BreakSound, new Vector2?(Player.Center));
@@ -181,8 +171,8 @@ namespace Clamity
             }
         }
         #endregion
-
         #region Updates
+
         public override void UpdateEquips()
         {
             foreach (Item i in Player.armor)
@@ -201,14 +191,11 @@ namespace Clamity
         }
         public override void PostUpdateEquips()
         {
-            if (titanScaleTimer > 0)
-                titanScaleTimer--;
+
         }
         public override void PostUpdateMiscEffects()
         {
             var cooldownList = Player.GetDisplayedCooldowns();
-            bool flagSurface = Player.Center.Y < Main.worldSurface * 16f;
-            bool flagWet = Main.raining & flagSurface || Player.dripping || Player.wet && !Player.lavaWet && !Player.honeyWet;
 
             StatModifier statModifier;
             if (pyroStone || pyroStoneVanity)
@@ -222,25 +209,21 @@ namespace Clamity
             }
             if (hellFlare)
             {
-                if (Player.statLife > (int)(Player.statLifeMax2 * 0.75))
+                if (this.Player.statLife > (int)(Player.statLifeMax2 * 0.75))
                 {
                     Player.GetCritChance<GenericDamageClass>() += 10;
                 }
-                if (Player.statLife < (int)(Player.statLifeMax2 * 0.25))
+                if (this.Player.statLife < (int)(Player.statLifeMax2 * 0.25))
                 {
                     Player.endurance += 0.1f;
                 }
             }
             if (eidolonAmulet)
             {
-                if (Player.Calamity().oceanCrestTimer > 0 | flagWet)
+                bool flag1 = Player.Center.Y < Main.worldSurface * 16f;
+                bool flag2 = Main.raining & flag1 || Player.dripping || Player.wet && !Player.lavaWet && !Player.honeyWet;
+                if (Player.Calamity().oceanCrestTimer > 0 | flag2)
                     Player.GetDamage<GenericDamageClass>() += 0.1f;
-            }
-            if (seaShell && flagWet)
-            {
-                Player.endurance += 0.05f;
-                Player.statDefense += 3;
-                Player.moveSpeed += 0.15f;
             }
             if (frozenParrying && frozenParryingTime > 0)
                 frozenParryingTime--;
@@ -270,17 +253,6 @@ namespace Clamity
                 Player.velocity.Y = -0.1f;
                 Player.RemoveAllGrapplingHooks();*/
             }
-            if (subcommunity)
-            {
-                float baseBoost = TheSubcommunity.CalculatePower();
-                Player.pickSpeed += baseBoost * TheSubcommunity.MiningSpeedMult;
-                Player.luck += baseBoost * TheSubcommunity.LuckMult;
-                Player.fishingSkill += (int)(baseBoost * TheSubcommunity.FishingPower);
-                Player.tileSpeed += baseBoost * TheSubcommunity.TileAndWallPlacingSpeedMult;
-                Player.wallSpeed += baseBoost * TheSubcommunity.TileAndWallPlacingSpeedMult;
-                Player.tileRangeX += (int)(baseBoost * TheSubcommunity.TileRangeMult);
-                Player.tileRangeY += (int)(baseBoost * TheSubcommunity.TileRangeMult);
-            }
         }
         public Item FindAccessory(int itemID)
         {
@@ -292,7 +264,6 @@ namespace Clamity
             return new Item();
         }
         #endregion
-
         #region Modify Stats
         public override void UpdateBadLifeRegen()
         {
@@ -351,8 +322,6 @@ namespace Clamity
             }
         }
         #endregion
-
-        #region Other
         public override bool Shoot(Item item, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
 
@@ -364,7 +333,7 @@ namespace Clamity
 
                 Vector2 startingPosition = Main.MouseWorld - Vector2.UnitY.RotatedByRandom(0.4f) * 1250f;
                 Vector2 directionToMouse = (Main.MouseWorld - startingPosition).SafeNormalize(Vector2.UnitY).RotatedByRandom(0.1f);
-                int drop = Projectile.NewProjectile(source, startingPosition, directionToMouse * 15f, ModContent.ProjectileType<AcidBarrelDrop>(), d, 0f, Player.whoAmI);
+                int drop = Projectile.NewProjectile(source, startingPosition, directionToMouse * 15f, ModContent.ProjectileType<ToxicannonDrop>(), d, 0f, Player.whoAmI);
                 if (drop.WithinBounds(Main.maxProjectiles))
                 {
                     Main.projectile[drop].penetrate = 3;
@@ -374,6 +343,7 @@ namespace Clamity
             }
             return true;
         }
+        #region Other
         public override void CatchFish(FishingAttempt attempt, ref int itemDrop, ref int npcSpawn, ref AdvancedPopupRequest sonar, ref Vector2 sonarPosition)
         {
             bool flag = !attempt.inHoney && !attempt.inLava;
@@ -381,8 +351,6 @@ namespace Clamity
             {
                 if (Player.ZoneDesert && Main.hardMode && attempt.uncommon && Main.rand.NextBool(7))
                     itemDrop = ModContent.ItemType<FishOfFlame>();
-                if (Player.Calamity().ZoneSunkenSea && Main.rand.NextBool(5))
-                    itemDrop = ModContent.ItemType<CoralskinFoolfish>();
             }
         }
         public override void ProcessTriggers(TriggersSet triggersSet)

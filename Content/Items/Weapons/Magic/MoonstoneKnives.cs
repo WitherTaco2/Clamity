@@ -15,7 +15,7 @@ namespace Clamity.Content.Items.Weapons.Magic
         {
             Item.width = 18;
             Item.height = 20;
-            Item.value = CalamityGlobalItem.RarityGreenBuyPrice;
+            Item.value = CalamityGlobalItem.Rarity2BuyPrice;
             Item.rare = ItemRarityID.Green;
 
             Item.useAnimation = 15;
@@ -105,9 +105,9 @@ namespace Clamity.Content.Items.Weapons.Magic
         }
 
     }
-    public class MoonstoneKnifeProjectile : ModProjectile, ILocalizedModType, IModType
+    public class MoonstoneKnifeProjectile : ModProjectile
     {
-        public new string LocalizationCategory => "Projectiles.Magic";
+        public new string LocalizationCategory => "Projectiles.Melee";
         public override void SetDefaults()
         {
             Projectile.width = 14;

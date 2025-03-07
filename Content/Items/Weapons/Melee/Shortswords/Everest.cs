@@ -21,7 +21,7 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
         {
             Item.width = Item.height = 64;
             Item.rare = ModContent.RarityType<Violet>();
-            Item.value = CalamityGlobalItem.RarityVioletBuyPrice;
+            Item.value = CalamityGlobalItem.Rarity15BuyPrice;
 
             Item.useAnimation = Item.useTime = 10;
             Item.useStyle = ItemUseStyleID.Rapier;
@@ -40,7 +40,7 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
         public override void AddRecipes()
         {
             CreateRecipe()
-                //.AddIngredient<Tomutus>()
+                .AddIngredient<Tomutus>()
                 .AddIngredient<HellfireFlamberge>()
                 .AddIngredient<EnchantedMetal>(8)
                 .AddTile<CosmicAnvil>()

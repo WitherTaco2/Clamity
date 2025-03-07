@@ -35,13 +35,13 @@ namespace Clamity.Content.Bosses.WoB.NPCs
             NPC.canGhostHeal = false;
             NPC.noGravity = true;
             NPC.noTileCollide = true;
-            NPC.DeathSound = CommonCalamitySounds.ExoDeathSound;
-            NPC.HitSound = SoundID.NPCHit4;
+            NPC.DeathSound = new SoundStyle?(CommonCalamitySounds.ExoDeathSound);
+            NPC.HitSound = new SoundStyle?(SoundID.NPCHit4);
             NPC.netUpdate = true;
             NPC.netAlways = true;
             NPC.hide = true;
-            NPC.Calamity().VulnerableToSickness = false;
-            NPC.Calamity().VulnerableToElectricity = true;
+            NPC.Calamity().VulnerableToSickness = new bool?(false);
+            NPC.Calamity().VulnerableToElectricity = new bool?(true);
             //if (Main.getGoodWorld)
             //    NPC.scale = 2f;
         }

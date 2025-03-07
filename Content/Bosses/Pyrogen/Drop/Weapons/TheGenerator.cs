@@ -22,7 +22,7 @@ namespace Clamity.Content.Bosses.Pyrogen.Drop.Weapons
         {
             Item.width = 40;
             Item.height = 46;
-            Item.value = CalamityGlobalItem.RarityPinkBuyPrice;
+            Item.value = CalamityGlobalItem.Rarity5BuyPrice;
             Item.rare = ItemRarityID.Pink;
 
             Item.useTime = Item.useAnimation = 24;

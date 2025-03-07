@@ -8,10 +8,6 @@ namespace Clamity.Content.Items.Potions.Food
     public class EldercherryJuice : ModItem, ILocalizedModType, IModType
     {
         public new string LocalizationCategory => "Items.Potions.Foods";
-        public override void SetStaticDefaults()
-        {
-            Item.ResearchUnlockCount = 5;
-        }
         public override void SetDefaults()
         {
             Item.DefaultToFood(24, 26, BuffID.WellFed3, 30 * 60 * 60, true);

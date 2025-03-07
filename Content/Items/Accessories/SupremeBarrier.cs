@@ -17,7 +17,7 @@ namespace Clamity.Content.Items.Accessories
         {
             this.Item.width = 60;
             this.Item.height = 54;
-            this.Item.value = CalamityGlobalItem.RarityHotPinkBuyPrice;
+            this.Item.value = CalamityGlobalItem.Rarity15BuyPrice;
             this.Item.defense = 30;
             this.Item.accessory = true;
             this.Item.rare = ModContent.RarityType<HotPink>();

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
@@ -39,7 +40,7 @@ namespace Clamity.Content.Bosses.WoB.Drop
     {
         public bool FloatingDestination
         {
-            get => Projectile.ai[0] == 1.0;
+            get => (double)Projectile.ai[0] == 1.0;
             set => Projectile.ai[0] = value ? 1f : 0.0f;
         }
 
@@ -53,28 +54,28 @@ namespace Clamity.Content.Bosses.WoB.Drop
 
         public override void AI()
         {
-            Player player = Main.player[Projectile.owner];
+            Terraria.Player player = Main.player[Projectile.owner];
             CheckActive(player);
             Movement(player);
         }
 
-        private void CheckActive(Player player)
+        private void CheckActive(Terraria.Player player)
         {
             if (player.dead || !player.HasBuff(ModContent.BuffType<HeavyMetalTrashCanBuff>()))
                 return;
             Projectile.timeLeft = 2;
         }
 
-        private void Movement(Player player)
+        private void Movement(Terraria.Player player)
         {
             int direction = player.direction;
-            Vector2 vector2_1 = new(direction * 40, -40f);
-            Vector2 vector2_2 = FindDesiredCenter(player) ?? player.MountedCenter + vector2_1;
-            if (!IsStanding(player) && !IsStanding(Projectile))
+            Vector2 vector2_1 = new((float)(direction * 40), -40f);
+            Vector2 vector2_2 = this.FindDesiredCenter(player) ?? (player.MountedCenter + vector2_1);
+            if (!HeavyMetalTrashCanPet.IsStanding(player) && !HeavyMetalTrashCanPet.IsStanding(Projectile))
                 vector2_2 = player.MountedCenter + vector2_1;
             Vector2 vector2_3 = vector2_2 - Projectile.Center;
             float num = vector2_3.LengthSquared();
-            if (vector2_3 != Vector2.Zero && (num > 6400f || !IsStanding(Projectile)))
+            if (vector2_3 != Vector2.Zero && (num > 6400f || !HeavyMetalTrashCanPet.IsStanding(Projectile)))
                 Projectile.velocity = vector2_3 * 0.1f * 2f;
             if (num > 4000000f)
             {
@@ -89,7 +90,7 @@ namespace Clamity.Content.Bosses.WoB.Drop
             Projectile.rotation = 0.0f;
         }
 
-        private Vector2? FindDesiredCenter(Player player)
+        private Vector2? FindDesiredCenter(Terraria.Player player)
         {
             Vector2? desiredCenter = new Vector2?();
             for (int index1 = (int)player.MountedCenter.X - 128; index1 < (int)player.MountedCenter.X + 128; ++index1)
@@ -103,12 +104,12 @@ namespace Clamity.Content.Bosses.WoB.Drop
                         {
                             bool[] tileSolid1 = Main.tileSolid;
                             tile = Main.tile[index1 / 16, index2 / 16];
-                            int index3 = tile.TileType;
+                            int index3 = (int)tile.TileType;
                             if (!tileSolid1[index3])
                             {
                                 bool[] tileSolidTop = Main.tileSolidTop;
                                 tile = Main.tile[index1 / 16, index2 / 16];
-                                int index4 = tile.TileType;
+                                int index4 = (int)tile.TileType;
                                 if (!tileSolidTop[index4])
                                     continue;
                             }
@@ -117,17 +118,17 @@ namespace Clamity.Content.Bosses.WoB.Drop
                             {
                                 bool[] tileSolid2 = Main.tileSolid;
                                 tile = Main.tile[index1 / 16, index2 / 16 - 1];
-                                int index5 = tile.TileType;
+                                int index5 = (int)tile.TileType;
                                 if (!tileSolid2[index5])
                                 {
                                     bool[] tileSolidTop = Main.tileSolidTop;
                                     tile = Main.tile[index1 / 16, index2 / 16 - 1];
-                                    int index6 = tile.TileType;
+                                    int index6 = (int)tile.TileType;
                                     if (!tileSolidTop[index6])
                                         continue;
                                 }
                             }
-                            Vector2 vector2_1 = new(index1, index2);
+                            Vector2 vector2_1 = new((float)index1, (float)index2);
                             Vector2? nullable1 = desiredCenter;
                             Vector2 center = Projectile.Center;
                             Vector2? nullable2 = nullable1.HasValue ? nullable1.GetValueOrDefault() - center : new Vector2?();
@@ -144,18 +145,18 @@ namespace Clamity.Content.Bosses.WoB.Drop
                 }
             }
             if (Main.netMode != NetmodeID.MultiplayerClient)
-                FloatingDestination = !desiredCenter.HasValue;
+                this.FloatingDestination = !desiredCenter.HasValue;
             return desiredCenter;
         }
 
-        public static bool IsStanding(Player player)
+        public static bool IsStanding(Terraria.Player player)
         {
             int x = (int)player.Center.X;
             int y = (int)player.Bottom.Y;
             Tile tile = Main.tile[x / 16, y / 16];
-            if (!(tile != null) || !tile.HasTile)
+            if (!(tile != (ArgumentException)null) || !tile.HasTile)
                 return false;
-            return Main.tileSolid[tile.TileType] || Main.tileSolidTop[tile.TileType];
+            return Main.tileSolid[(int)tile.TileType] || Main.tileSolidTop[(int)tile.TileType];
         }
 
         public static bool IsStanding(Projectile projectile)
@@ -163,9 +164,9 @@ namespace Clamity.Content.Bosses.WoB.Drop
             int x = (int)projectile.Center.X;
             int y = (int)projectile.Bottom.Y;
             Tile tile = Main.tile[x / 16, y / 16];
-            if (!(tile != null) || !tile.HasTile)
+            if (!(tile != (ArgumentException)null) || !tile.HasTile)
                 return false;
-            return Main.tileSolid[tile.TileType] || Main.tileSolidTop[tile.TileType];
+            return Main.tileSolid[(int)tile.TileType] || Main.tileSolidTop[(int)tile.TileType];
         }
 
         private void Animate(bool movesFast)

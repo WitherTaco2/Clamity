@@ -3,6 +3,8 @@ using CalamityMod.Items;
 using CalamityMod.Items.Materials;
 using CalamityMod.NPCs.Providence;
 using CalamityMod.Projectiles.BaseProjectiles;
+using Clamity.Content.Buffs.Shortstrike;
+using Clamity.Content.Cooldowns;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -17,10 +19,10 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
         {
             Item.width = Item.height = 34;
             Item.rare = ItemRarityID.Blue;
-            Item.value = CalamityGlobalItem.RarityBlueBuyPrice;
+            Item.value = CalamityGlobalItem.Rarity1BuyPrice;
             Item.maxStack = 9999;
 
-            Item.useAnimation = Item.useTime = 70;
+            Item.useAnimation = Item.useTime = 56;
             Item.useStyle = ItemUseStyleID.Rapier;
             Item.UseSound = new SoundStyle?(SoundID.Item1);
             Item.autoReuse = true;
@@ -29,7 +31,7 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
             Item.consumable = true;
 
             Item.damage = 1;
-            Item.DamageType = DamageClass.MeleeNoSpeed;
+            Item.DamageType = DamageClass.Melee;
             Item.knockBack = 5.75f;
             Item.crit = 0;
 
@@ -76,11 +78,11 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             Player player = Main.player[Projectile.owner];
-            /*if (!player.HasCooldown(ShortstrikeCooldown.ID))
+            if (!player.HasCooldown(ShortstrikeCooldown.ID))
             {
                 player.AddCooldown(ShortstrikeCooldown.ID, 180);
                 player.AddBuff(ModContent.BuffType<WulfrumShortstrike>(), 60);
-            }*/
+            }
             if (target.type != NPCID.TargetDummy && target.type != ModContent.NPCType<Providence>())
                 target.life -= target.lifeMax / 200;
             if (!player.Clamity().wulfrumShortstrike)

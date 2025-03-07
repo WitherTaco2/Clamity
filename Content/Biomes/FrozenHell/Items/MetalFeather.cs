@@ -12,7 +12,7 @@ namespace Clamity.Content.Biomes.FrozenHell.Items
             Item.width = 56;
             Item.height = 66;
             Item.maxStack = 9999;
-            Item.value = Item.sellPrice(0, 20);
+            Item.value = Terraria.Item.sellPrice(0, 20);
             Item.rare = ModContent.RarityType<Violet>();
         }
     }

@@ -1,4 +1,5 @@
-﻿using CalamityMod.Buffs.DamageOverTime;
+﻿using CalamityMod;
+using CalamityMod.Buffs.DamageOverTime;
 using CalamityMod.Items.Accessories;
 using CalamityMod.Projectiles.Magic;
 using CalamityMod.Projectiles.Melee;
@@ -7,11 +8,9 @@ using CalamityMod.Projectiles.Rogue;
 using CalamityMod.Projectiles.Summon;
 using CalamityMod.Projectiles.Typeless;
 using System.Collections.Generic;
-using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.ModLoader.IO;
 
 namespace Clamity
 {
@@ -24,6 +23,8 @@ namespace Clamity
             Player player = Main.player[projectile.owner];
 
             UpdateAflameAccesory(projectile, target, hit, damageDone);
+            if (player.Clamity().inflicingMeleeFrostburn && projectile.DamageType == ModContent.GetInstance<TrueMeleeDamageClass>())
+                target.AddBuff(BuffID.Frostburn, 180);
         }
         private void UpdateAflameAccesory(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
         {
@@ -95,15 +96,5 @@ namespace Clamity
                 }
             }
         }*/
-        public override void SendExtraAI(Projectile projectile, BitWriter bitWriter, BinaryWriter binaryWriter)
-        {
-            for (int i = 0; i < extraAI.Length; i++)
-                binaryWriter.Write(extraAI[i]);
-        }
-        public override void ReceiveExtraAI(Projectile projectile, BitReader bitReader, BinaryReader binaryReader)
-        {
-            for (int i = 0; i < extraAI.Length; i++)
-                extraAI[i] = binaryReader.ReadSingle();
-        }
     }
 }

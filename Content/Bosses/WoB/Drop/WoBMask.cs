@@ -13,16 +13,16 @@ namespace Clamity.Content.Bosses.WoB.Drop
         {
             if (Main.netMode != NetmodeID.Server)
             {
-                ArmorIDs.Head.Sets.DrawHead[Item.headSlot] = false;
+                ArmorIDs.Head.Sets.DrawHead[base.Item.headSlot] = false;
             }
         }
 
         public override void SetDefaults()
         {
-            Item.width = 18;
-            Item.height = 22;
-            Item.rare = ItemRarityID.Blue;
-            Item.vanity = true;
+            base.Item.width = 18;
+            base.Item.height = 22;
+            base.Item.rare = ItemRarityID.Blue;
+            base.Item.vanity = true;
         }
     }
 }

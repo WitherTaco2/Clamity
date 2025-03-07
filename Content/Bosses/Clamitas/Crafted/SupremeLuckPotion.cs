@@ -13,6 +13,7 @@ namespace Clamity.Content.Bosses.Clamitas.Crafted
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 20;
+
         }
         public override void SetDefaults()
         {
@@ -57,8 +58,8 @@ namespace Clamity.Content.Bosses.Clamitas.Crafted
         }
         public override void Update(Player player, ref int buffIndex)
         {
-            player.buffImmune[BuffID.Lucky] = true;
             player.luck += 0.7f;
+            player.buffImmune[BuffID.Lucky] = true;
         }
     }
 }

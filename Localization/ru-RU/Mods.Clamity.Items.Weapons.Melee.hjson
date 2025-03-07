@@ -35,7 +35,7 @@ RGBMurasama: {
 }
 
 TerraShiv: {
-	DisplayName: Заточка Гайи
+	DisplayName: Терра-заточка
 	Tooltip:
 		'''
 		Создаёт очень длинный удар
@@ -92,7 +92,7 @@ MandibleClaws: {
 }
 
 SporeKnife: {
-	DisplayName: Споровый кинжал
+	DisplayName: Spore Knife Споровый кинжал
 	Tooltip: Высвобождает споры при коротком страйке
 }
 
@@ -107,16 +107,11 @@ WulfrumLeechDagger: {
 }
 
 FrozenVolcano: {
-	DisplayName: Замороженный вулкан
 	Tooltip: Запускает огонь
+	DisplayName: Замороженный вулкан
 }
 
 Everest: {
-	DisplayName: Эверест
 	Tooltip: Выпускает разбросом вулканические огненые шары
-}
-
-Warblade: {
-	DisplayName: Меч войны
-	Tooltip: Имеет шанц наложить 'Разрушение брони'
+	DisplayName: Эверест
 }

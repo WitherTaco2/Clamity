@@ -21,7 +21,7 @@ namespace Clamity.Content.Bosses.WoB.Drop
     }
     public class WoBRelicTile : BaseBossRelic
     {
-        public override string RelicTextureName => (GetType().Namespace + "." + Name).Replace('.', '/');
+        public override string RelicTextureName => "Clamity/Content/Bosses/WoB/Drop/WoBRelicTile";
         public override int AssociatedItem => ModContent.ItemType<WoBRelic>();
     }
 

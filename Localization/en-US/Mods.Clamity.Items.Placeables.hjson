@@ -32,6 +32,16 @@ FrozenHellstone: {
 	DisplayName: Frozen Hellstone
 }
 
+AncientConsole: {
+	DisplayName: Ancient Console
+	Tooltip:
+		'''
+		Summon a Wall of Bronze on right click on tile
+		Work in Underworld
+		Wall of Bronze despawn when you left from Underworld
+		'''
+}
+
 FrozenAsh: {
 	Tooltip: ""
 	DisplayName: Frozen Ash

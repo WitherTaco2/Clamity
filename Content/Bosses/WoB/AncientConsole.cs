@@ -5,7 +5,6 @@ using CalamityMod.Rarities;
 using CalamityMod.Tiles.Furniture.CraftingStations;
 using Clamity.Content.Bosses.WoB.NPCs;
 using Microsoft.Xna.Framework;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -18,7 +17,7 @@ namespace Clamity.Content.Bosses.WoB
 {
     public class AncientConsole : ModItem, ILocalizedModType, IModType
     {
-        public new string LocalizationCategory => "Items.SummonBoss";
+        public new string LocalizationCategory => "Items.Placeables";
 
         public override void SetDefaults()
         {
@@ -74,8 +73,7 @@ namespace Clamity.Content.Bosses.WoB
 
         public static readonly SoundStyle SummonSound = new SoundStyle("CalamityMod/Sounds/Custom/SCalSounds/SepulcherSpawn")
         {
-            Volume = 1.1f,
-            Pitch = 0.2f
+            Volume = 1.1f
         };
         public override bool CanExplode(int i, int j) => false;
         public override bool RightClick(int i, int j)
@@ -83,37 +81,16 @@ namespace Clamity.Content.Bosses.WoB
             if (NPC.AnyNPCs(ModContent.NPCType<WallOfBronze>()) || BossRushEvent.BossRushActive || !Main.LocalPlayer.ZoneUnderworldHeight)
                 return true;
 
-            //CalamityUtils.
-            Vector2 tilePosInWorld = new Vector2(i * 16, j * 16);
-            Dictionary<int, float> distance = new Dictionary<int, float>();
-            foreach (Player p in Main.player)
-            {
-                if (p == null) continue;
-                if (!p.active || p.dead) continue;
-                distance.Add(p.whoAmI, Vector2.Distance(p.Center, tilePosInWorld));
-            }
-            float min = float.MaxValue; int thisPlayer = -1;
-            foreach (var d in distance)
-            {
-                if (d.Value < min)
-                {
-                    min = d.Value;
-                    thisPlayer = d.Key;
-                }
-            }
-            if (thisPlayer != -1)
-            {
-                Player player = Main.player[thisPlayer];
-                int center = Main.maxTilesX * 16 / 2;
-                NPC.NewNPC(player.GetSource_ItemUse(new Item(ModContent.ItemType<WoBSummonItem>())), (int)player.Center.X - 1000 * (player.Center.X > center ? -1 : 1), (int)player.Center.Y, ModContent.NPCType<WallOfBronze>());
+            Player player = Main.LocalPlayer;
+            int center = Main.maxTilesX * 16 / 2;
+            NPC.NewNPC(player.GetSource_ItemUse(player.HeldItem), (int)player.Center.X - 1000 * (player.Center.X > center ? -1 : 1), (int)player.Center.Y, ModContent.NPCType<WallOfBronze>());
+            SoundEngine.PlaySound(SummonSound, new Vector2(i, j) * 16);
 
-                SoundEngine.PlaySound(SummonSound, new Vector2(i, j) * 16);
+            /*if (Main.netMode != 1)
+                NPC.SpawnOnPlayer(Main.LocalPlayer.whoAmI, ModContent.NPCType<WallOfBronze>());
+            else
+                NetMessage.SendData(61, number: Main.LocalPlayer.whoAmI, number2: (float)ModContent.NPCType<WallOfBronze>());*/
 
-                /*if (Main.netMode != NetmodeID.MultiplayerClient)
-                    NPC.SpawnOnPlayer(Main.myPlayer, ModContent.NPCType<WallOfBronze>());
-                else
-                    NetMessage.SendData(MessageID.SpawnBossUseLicenseStartEvent, Main.myPlayer, (int)ModContent.NPCType<WallOfBronze>());*/
-            }
             return true;
         }
     }

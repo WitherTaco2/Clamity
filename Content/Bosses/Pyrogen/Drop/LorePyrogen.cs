@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.ID;
 
+
 namespace Clamity.Content.Bosses.Pyrogen.Drop
 {
     public class LorePyrogen : LoreItem

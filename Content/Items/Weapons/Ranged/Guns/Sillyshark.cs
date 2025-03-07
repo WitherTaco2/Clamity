@@ -1,5 +1,4 @@
-﻿using CalamityMod.Items;
-using Clamity.Content.Items.Materials;
+﻿using Clamity.Content.Items.Materials;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
@@ -23,7 +22,7 @@ namespace Clamity.Content.Items.Weapons.Ranged.Guns
         {
             Item.width = 15;
             Item.height = 64;
-            Item.value = CalamityGlobalItem.RarityOrangeBuyPrice;
+            Item.value = Item.sellPrice(0, 0, 16);
             Item.rare = ItemRarityID.Orange;
 
             Item.useTime = Item.useAnimation = 16;

@@ -16,8 +16,8 @@ Arrow: {
 	}
 
 	FrostfireArrow: {
-		DisplayName: Стреля ледяного огня
-		Tooltip: Создает взрым при ударе
+		// DisplayName: Frostfire Arrow
+		// Tooltip: Create explosion on hit
 	}
 }
 
@@ -26,28 +26,4 @@ Solution: {
 		Tooltip: ""
 		DisplayName: Голубой раствор
 	}
-}
-
-SuperballBullet: {
-	Tooltip: При полете она распадается на другие пули
-	DisplayName: Пуля-Супершар
-}
-
-EnhancedNanoRound: {
-	Tooltip: Сбивает врагов с толку и выпускает облако нанитов, когда враг умирает
-	DisplayName: Зачарованный нано патрон
-}
-
-ArcticArrow: {
-	Tooltip: Замораживает противника на короткое время
-	DisplayName: Арктическая стрела
-}
-
-AccelerationRound: {
-	Tooltip:
-		'''
-		Со временем набирает скорость
-		Увеличивает урон со временем (вплоть до 2х от изначального)
-		'''
-	DisplayName: Ускоряющиеся патрон
 }

@@ -94,8 +94,3 @@ HeavyMetalTrashCanBuff: {
 	DisplayName: Mini Bocchi
 	Description: Hitori Gotoh is following you.
 }
-
-TitanScalePotionBuff: {
-	DisplayName: Titan Scale
-	Description: You feel tanky
-}

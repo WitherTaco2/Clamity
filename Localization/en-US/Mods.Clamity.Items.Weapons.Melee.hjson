@@ -35,7 +35,7 @@ RGBMurasama: {
 }
 
 TerraShiv: {
-	DisplayName: Gaia Shiv
+	DisplayName: Terra Shiv
 	Tooltip:
 		'''
 		Don't underestimate the power of shivs
@@ -108,16 +108,11 @@ WulfrumLeechDagger: {
 }
 
 FrozenVolcano: {
-	DisplayName: Frozen Volcano
 	Tooltip: Launches a flames
+	DisplayName: Frozen Volcano
 }
 
 Everest: {
-	DisplayName: Everest
 	Tooltip: Fires a spread of volcanic fireballs
-}
-
-Warblade: {
-	DisplayName: Warblade
-	Tooltip: Has chance to inflict Armor Crunch
+	DisplayName: Everest
 }

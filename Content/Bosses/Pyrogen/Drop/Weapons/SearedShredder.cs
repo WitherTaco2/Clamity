@@ -2,7 +2,6 @@
 using CalamityMod.Buffs.DamageOverTime;
 using CalamityMod.Items;
 using Microsoft.Xna.Framework;
-using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -22,7 +21,7 @@ namespace Clamity.Content.Bosses.Pyrogen.Drop.Weapons
         {
             Item.width = 74;
             Item.height = 68;
-            Item.value = CalamityGlobalItem.RarityPinkBuyPrice;
+            Item.value = CalamityGlobalItem.Rarity5BuyPrice;
             Item.rare = ItemRarityID.Pink;
 
             Item.useTime = Item.useAnimation = 19;
@@ -63,14 +62,6 @@ namespace Clamity.Content.Bosses.Pyrogen.Drop.Weapons
         {
             target.AddBuff(BuffID.OnFire, 180);
             target.AddBuff(ModContent.BuffType<BrimstoneFlames>(), 120);
-        }
-        public override void SendExtraAI(BinaryWriter writer)
-        {
-            writer.Write(TargetIndex);
-        }
-        public override void ReceiveExtraAI(BinaryReader reader)
-        {
-            TargetIndex = reader.ReadInt32();
         }
         public override void AI()
         {

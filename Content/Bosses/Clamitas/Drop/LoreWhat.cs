@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.ID;
 
+
 namespace Clamity.Content.Bosses.Clamitas.Drop
 {
     public class LoreWhat : LoreItem

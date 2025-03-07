@@ -12,7 +12,7 @@ namespace Clamity.Content.Bosses.Pyrogen.Drop
 
         public override void SetStaticDefaults()
         {
-            Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(5, 4, false));
+            Main.RegisterItemAnimation(Item.type, (DrawAnimation)new DrawAnimationVertical(5, 4, false));
             ItemID.Sets.AnimatesAsSoul[Type] = true;
         }
 
@@ -20,7 +20,7 @@ namespace Clamity.Content.Bosses.Pyrogen.Drop
         {
             Item.width = 20;
             Item.height = 24;
-            Item.value = CalamityGlobalItem.RarityPinkBuyPrice;
+            Item.value = CalamityGlobalItem.Rarity5BuyPrice;
             Item.rare = ItemRarityID.Pink;
             Item.accessory = true;
         }

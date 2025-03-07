@@ -1,5 +1,4 @@
-﻿using CalamityMod.Items;
-using CalamityMod.Rarities;
+﻿using CalamityMod.Rarities;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
@@ -19,7 +18,7 @@ namespace Clamity.Content.Bosses.WoB.Drop
         {
             Item.width = 42;
             Item.height = 40;
-            Item.value = CalamityGlobalItem.RarityVioletBuyPrice;
+            Item.value = Terraria.Item.sellPrice(0, 30, 24);
             Item.rare = ModContent.RarityType<Violet>();
 
             Item.useTime = 1;
@@ -75,9 +74,8 @@ namespace Clamity.Content.Bosses.WoB.Drop
             return base.Shoot(player, source, position, velocity, type, damage, knockback);
         }
     }
-    public class TheWOBblerProjectile : ModProjectile, ILocalizedModType, IModType
+    public class TheWOBblerProjectile : ModProjectile
     {
-        public new string LocalizationCategory => "Projectiles.Melee";
         public override void SetDefaults()
         {
             Projectile.CloneDefaults(ProjectileID.SpikyBall);
@@ -87,7 +85,6 @@ namespace Clamity.Content.Bosses.WoB.Drop
             Projectile.usesLocalNPCImmunity = false;
             Projectile.usesIDStaticNPCImmunity = true;
             Projectile.idStaticNPCHitCooldown = 3;
-            Projectile.DamageType = DamageClass.Melee;
         }
         public override bool OnTileCollide(Vector2 oldVelocity)
         {

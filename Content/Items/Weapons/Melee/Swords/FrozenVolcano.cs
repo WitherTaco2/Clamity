@@ -26,7 +26,7 @@ namespace Clamity.Content.Items.Weapons.Melee.Swords
             Item.useAnimation = 20;
             Item.useStyle = ItemUseStyleID.Swing;
             Item.knockBack = 8f;
-            Item.value = CalamityGlobalItem.RarityVioletBuyPrice;
+            Item.value = CalamityGlobalItem.Rarity15BuyPrice;
             Item.autoReuse = true;
             Item.UseSound = SoundID.Item1;
         }
@@ -158,7 +158,7 @@ namespace Clamity.Content.Items.Weapons.Melee.Swords
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ItemID.FieryGreatsword)
+                .AddIngredient<BladeOfEnmity>()
                 .AddIngredient<UltimusCleaver>()
                 .AddIngredient<EnchantedMetal>(8)
                 .AddTile<CosmicAnvil>()

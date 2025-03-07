@@ -13,10 +13,6 @@ namespace Clamity.Content.Items.Ammo
     public class ProfanedDart : ModItem, ILocalizedModType, IModType
     {
         public new string LocalizationCategory => "Items.Ammo.Dart";
-        public override bool IsLoadingEnabled(Mod mod)
-        {
-            return false;
-        }
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 99;
@@ -37,14 +33,9 @@ namespace Clamity.Content.Items.Ammo
                 .Register();
         }
     }
-    public class ProfanedDartProjectile : ModProjectile, ILocalizedModType
+    public class ProfanedDartProjectile : ModProjectile
     {
-        public new string LocalizationCategory => "Projectiles.Ranged.Ammo";
         public override string Texture => ModContent.GetInstance<ProfanedDart>().Texture;
-        public override bool IsLoadingEnabled(Mod mod)
-        {
-            return false;
-        }
         public override void SetStaticDefaults()
         {
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 8;

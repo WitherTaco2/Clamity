@@ -2,7 +2,6 @@
 using CalamityMod.Buffs.DamageOverTime;
 using CalamityMod.Buffs.Summon;
 using CalamityMod.CalPlayer;
-using CalamityMod.Items;
 using CalamityMod.Items.Weapons.Summon;
 using CalamityMod.Projectiles.Summon;
 using Clamity.Content.Bosses.Clamitas.Drop;
@@ -30,7 +29,6 @@ namespace Clamity.Content.Bosses.Clamitas.Crafted.Weapons
         {
             base.SetDefaults();
             Item.rare = ItemRarityID.Lime;
-            Item.value = CalamityGlobalItem.RarityLimeBuyPrice;
             Item.damage = 120;
             Item.shoot = ModContent.ProjectileType<HellstoneShellfishStaffMinion>();
         }
@@ -330,8 +328,6 @@ namespace Clamity.Content.Bosses.Clamitas.Crafted.Weapons
                 if (flag3)
                 {
                     nPC3.HitEffect(0, 1.0);
-                    nPC3.AddBuff(ModContent.BuffType<BrimstoneFlames>(), 180);
-                    Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, Vector2.Zero, ProjectileID.Volcano, Projectile.damage, 0, Projectile.owner);
                 }
             }
             else
