@@ -13,16 +13,16 @@ namespace Clamity.Content.Bosses.Pyrogen.Drop
         {
             if (Main.netMode != NetmodeID.Server)
             {
-                ArmorIDs.Head.Sets.DrawHead[base.Item.headSlot] = false;
+                ArmorIDs.Head.Sets.DrawHead[Item.headSlot] = false;
             }
         }
 
         public override void SetDefaults()
         {
-            base.Item.width = 28;
-            base.Item.height = 20;
-            base.Item.rare = ItemRarityID.Blue;
-            base.Item.vanity = true;
+            Item.width = 28;
+            Item.height = 20;
+            Item.rare = ItemRarityID.Blue;
+            Item.vanity = true;
         }
     }
 }

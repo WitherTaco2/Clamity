@@ -1,5 +1,6 @@
 using CalamityMod;
 using CalamityMod.BiomeManagers;
+using CalamityMod.Buffs.StatBuffs;
 using CalamityMod.Dusts;
 using CalamityMod.Events;
 using CalamityMod.Items.Placeables;
@@ -14,7 +15,7 @@ using CalamityMod.NPCs.SunkenSea;
 using CalamityMod.Projectiles.Boss;
 using Clamity.Commons;
 using Clamity.Content.Bosses.Clamitas.Drop;
-using Clamity.Content.Items.Potions.Food;
+using Clamity.Content.Items.Accessories;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -25,12 +26,25 @@ using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
+using static Clamity.Commons.CalRemixCompatibilitySystem;
 
 namespace Clamity.Content.Bosses.Clamitas.NPCs
 {
     [AutoloadBossHead]
     public class ClamitasBoss : ModNPC
     {
+        private static NPC myself;
+        public static NPC Myself
+        {
+            get
+            {
+                if (myself is not null && !myself.active)
+                    return null;
+
+                return myself;
+            }
+            private set => myself = value;
+        }
         public static readonly SoundStyle SlamSound = new SoundStyle("CalamityMod/Sounds/Item/ClamImpact");
 
         private int hitAmount;
@@ -65,7 +79,9 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
             value.Position.Y += 40f;
             NPCID.Sets.NPCBestiaryDrawOffset[Type] = value;
 
-            //GiantClam
+            var fanny1 = new FannyDialog("Clamitas", "FannyNuhuh").WithDuration(4f).WithCondition(_ => { return Myself is not null; });
+
+            fanny1.Register();
 
         }
 
@@ -153,6 +169,7 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
 
         public override void AI()
         {
+            Myself = NPC;
             NPC.TargetClosest();
             Player player = Main.player[NPC.target];
             CalamityGlobalNPC calamityGlobalNPC = NPC.Calamity();
@@ -174,6 +191,7 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
             if (Main.netMode != NetmodeID.Server && !Main.player[NPC.target].dead && Main.player[NPC.target].active)
             {
                 player.AddBuff(ModContent.BuffType<CalamityMod.Buffs.StatDebuffs.Clamity>(), 2);
+                player.AddBuff(ModContent.BuffType<BossEffects>(), 2);
             }
             if (Main.player[NPC.target].dead && !Main.player[NPC.target].active)
             {
@@ -753,6 +771,8 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
             npcLoot.Add(ModContent.ItemType<HuskOfCalamity>(), 1, 25, 30);
             npcLoot.Add(ModContent.ItemType<ClamitousPearl>(), 1, 2, 4);
             npcLoot.Add(ModContent.ItemType<SlagspitterPauldron>(), 2, 1, 4);
+            npcLoot.Add(ModContent.ItemType<TheSubcommunity>(), 10);
+            //npcLoot.Add(ModContent.ItemType<Calamitea>(), 1, 3, 3);
             npcLoot.Add(ItemDropRule.OneFromOptions(1, ModContent.ItemType<Brimlash>(), ModContent.ItemType<BrimstoneFury>(), ModContent.ItemType<BurningSea>(), ModContent.ItemType<IgneousExaltation>(), ModContent.ItemType<Brimblade>()));
             npcLoot.AddConditionalPerPlayer(() => !ClamitySystem.downedClamitas, ModContent.ItemType<LoreWhat>(), ui: true, DropHelper.FirstKillText);
             npcLoot.DefineConditionalDropSet(DropHelper.RevAndMaster).Add(ModContent.ItemType<ClamitasRelic>());

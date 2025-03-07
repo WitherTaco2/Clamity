@@ -32,19 +32,22 @@ namespace Clamity.Content.Items.Accessories
         {
             Item.width = Item.height = 48;
             Item.accessory = true;
-            Item.value = CalamityGlobalItem.Rarity14BuyPrice;
+            Item.value = CalamityGlobalItem.RarityDarkBlueBuyPrice;
             Item.rare = ModContent.RarityType<DarkBlue>();
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             CalamityPlayer modPlayer = player.Calamity();
+
             modPlayer.fleshTotem = true;
             modPlayer.healingPotionMultiplier += 0.25f;
+
+            player.Calamity().bloodyWormTooth = true;
             player.endurance += 0.1f;
-            player.GetDamage<GenericDamageClass>() += 0.2f;
 
             modPlayer.voidOfCalamity = true;
+            player.GetDamage<GenericDamageClass>() += 0.2f;
             if (player.whoAmI == Main.myPlayer)
             {
                 var source = player.GetSource_Accessory(Item);

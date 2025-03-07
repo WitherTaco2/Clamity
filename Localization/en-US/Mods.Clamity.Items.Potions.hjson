@@ -1,8 +1,3 @@
-SupremeLuckPotion: {
-	DisplayName: Supreme Luck Potion
-	Tooltip: Greatly increases the Luck of the user
-}
-
 Foods: {
 	AuricApple: {
 		DisplayName: Auric Apple
@@ -74,4 +69,18 @@ Foods: {
 			'''
 		DisplayName: Calamitea
 	}
+}
+
+SupremeLuckPotion: {
+	DisplayName: Supreme Luck Potion
+	Tooltip: Greatly increases the Luck of the user
+}
+
+TitanScalePotion: {
+	Tooltip:
+		'''
+		Increases knockback, defense by 5 and damage reduction by 5%
+		Increases defense by 20 and damage reduction by 5% for a few seconds after a true melee strike
+		'''
+	DisplayName: Titan Scale Potion
 }

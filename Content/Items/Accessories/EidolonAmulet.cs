@@ -42,7 +42,7 @@ namespace Clamity.Content.Items.Accessories
                 .AddIngredient<LumenousAmulet>()
                 .AddIngredient<OceanCrest>()
                 .AddIngredient<CorrodedFossil>(5)
-                .AddTile(TileID.TinkerersWorkbench)
+                .AddTile(TileID.LunarCraftingStation)
                 .Register();
         }
     }

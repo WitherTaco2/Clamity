@@ -91,6 +91,11 @@ PlanterrorStaffBuff: {
 }
 
 HeavyMetalTrashCanBuff: {
-	// DisplayName: Mini Bocchi
-	// Description: Hitori Gotoh is following you.
+	DisplayName: Мини бочи
+	Description: Хитори Готох следует за вами
+}
+
+TitanScalePotionBuff: {
+	DisplayName: Чешуя титана
+	Description: Вы чувстуете себя танком
 }

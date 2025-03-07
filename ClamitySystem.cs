@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -11,6 +12,8 @@ namespace Clamity
 {
     public class ClamitySystem : ModSystem
     {
+        public Dictionary<int, List<int>> enchantebleAccessories;
+
         internal static bool _downedClamitas;
         public static bool downedClamitas
         {
@@ -49,7 +52,25 @@ namespace Clamity
                 }
             }
         }
-
+        internal static bool _generatedFrozenHell;
+        public static bool generatedFrozenHell
+        {
+            get
+            {
+                return _generatedFrozenHell;
+            }
+            set
+            {
+                if (!value)
+                {
+                    _generatedFrozenHell = false;
+                }
+                else
+                {
+                    NPC.SetEventFlagCleared(ref _generatedFrozenHell, -1);
+                }
+            }
+        }
         internal static bool _downedWallOfBronze;
         public static bool downedWallOfBronze
         {
@@ -74,6 +95,22 @@ namespace Clamity
             downedClamitas = false;
             downedPyrogen = false;
             downedWallOfBronze = false;
+            generatedFrozenHell = false;
+        }
+        public override void Load()
+        {
+            enchantebleAccessories = new();
+        }
+        public override void Unload()
+        {
+            enchantebleAccessories = null;
+        }
+        private void AddEnchantebleAccessories(int acc, params int[] projList)
+        {
+            foreach (int i in projList)
+            {
+                enchantebleAccessories.Add(acc, projList.ToList<int>());
+            }
         }
         public override void OnWorldLoad()
         {
@@ -93,6 +130,7 @@ namespace Clamity
             if (downedWallOfBronze)
                 list.Add("wob");
             tag["downedFlagsClamity"] = list;
+            tag["generatedFrozenHell"] = generatedFrozenHell;
         }
         public override void LoadWorldData(TagCompound tag)
         {
@@ -100,6 +138,7 @@ namespace Clamity
             downedClamitas = list.Contains("clamitas");
             downedPyrogen = list.Contains("pyrogen");
             downedWallOfBronze = list.Contains("wob");
+            generatedFrozenHell = tag.GetBool("generatedFrozenHell");
         }
         public static int AnySandBlock;
         public static int AnyGemHook;
@@ -122,6 +161,8 @@ namespace Clamity
             flags[2] = downedWallOfBronze;
 
             writer.Write(flags);
+
+            writer.Write(generatedFrozenHell);
         }
         public override void NetReceive(BinaryReader reader)
         {
@@ -129,6 +170,8 @@ namespace Clamity
             downedClamitas = flags[0];
             downedPyrogen = flags[1];
             downedWallOfBronze = flags[2];
+
+            generatedFrozenHell = reader.ReadBoolean();
         }
     }
 }
