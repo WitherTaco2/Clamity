@@ -18,6 +18,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
+using Terraria.GameContent.Events;
 using Terraria.GameInput;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -34,6 +35,7 @@ namespace Clamity
         public List<int> aflameAccList;
 
         //Equip
+        //Old (legecy)
         public bool pyroSpear;
         //public int pyroSpearCD;
         public bool vampireEX;
@@ -47,7 +49,7 @@ namespace Clamity
         public bool seaShell;
         public bool subcommunity;
 
-        //Equip (gems)
+        //Crawler big gems
         public bool gemAmethyst;
         public int gemAmethystCooldown;
         public bool gemTopaz;
@@ -60,6 +62,9 @@ namespace Clamity
         public bool gemAmber;
         public bool gemFinal;
 
+        //Sentry
+        public bool brimScope;
+        public bool cyanPearl;
 
         //Armor
         public bool inflicingMeleeFrostburn;
@@ -108,6 +113,10 @@ namespace Clamity
             gemDiamond = false;
             gemAmber = false;
             gemFinal = false;
+
+            brimScope = false;
+            cyanPearl = false;
+
 
             inflicingMeleeFrostburn = false;
             frozenParrying = false;
@@ -173,6 +182,13 @@ namespace Clamity
             {
                 PyroSpearEffect(proj, target);
             }
+            if (proj.Clamity().IsSentryRelated)
+            {
+                if (brimScope)
+                {
+                    target.AddBuff(ModContent.BuffType<BrimstoneFlames>(), 60);
+                }
+            }
         }
         private void PyroSpearEffect(Projectile proj, NPC target)
         {
@@ -184,6 +200,50 @@ namespace Clamity
                     Projectile.NewProjectile(proj.GetSource_OnHit(target), target.Center + vec1 * 500f, -vec1.RotatedByRandom(0.1f) * 20f, ModContent.ProjectileType<SoulOfPyrogenSpear>(), proj.damage / 2, 1f, Player.whoAmI, target.whoAmI);
                 }
                 Player.AddCooldown(PyrospearCooldown.ID, 100);
+            }
+        }
+        public override void ModifyHitByProjectile(Projectile proj, ref Player.HurtModifiers modifiers)
+        {
+            //Copyed Calamity's Summon penalty for compatibilty of changes to it
+            bool isSummon = proj.CountsAsClass<SummonDamageClass>();
+            if (isSummon)
+            {
+                Item heldItem = Player.ActiveItem();
+
+                bool wearingForbiddenSet = Player.armor[0].type == ItemID.AncientBattleArmorHat && Player.armor[1].type == ItemID.AncientBattleArmorShirt && Player.armor[2].type == ItemID.AncientBattleArmorPants;
+
+                bool forbiddenWithMagicWeapon = wearingForbiddenSet && heldItem.CountsAsClass<MagicDamageClass>();
+                bool gemTechBlueGem = Player.Calamity().GemTechSet && Player.Calamity().GemTechState.IsBlueGemActive;
+
+                bool crossClassNerfDisabled = forbiddenWithMagicWeapon || Player.Calamity().fearmongerSet || gemTechBlueGem || Player.Calamity().profanedCrystalBuffs || DD2Event.Ongoing;
+                crossClassNerfDisabled |= CalamityLists.DisabledSummonerNerfMinions.Contains(proj.type);
+
+                // If this projectile is a summon, its owner is holding an item, and the cross class nerf isn't disabled from equipment:
+                if (isSummon && heldItem.type > ItemID.None && !crossClassNerfDisabled)
+                {
+                    bool heldItemIsClassedWeapon = !heldItem.CountsAsClass<SummonDamageClass>() && (
+                        heldItem.CountsAsClass<MeleeDamageClass>() ||
+                        heldItem.CountsAsClass<RangedDamageClass>() ||
+                        heldItem.CountsAsClass<MagicDamageClass>() ||
+                        heldItem.CountsAsClass<ThrowingDamageClass>()
+                    );
+
+                    bool heldItemIsTool = heldItem.pick > 0 || heldItem.axe > 0 || heldItem.hammer > 0;
+                    bool heldItemCanBeUsed = heldItem.useStyle != ItemUseStyleID.None;
+                    bool heldItemIsAccessoryOrAmmo = heldItem.accessory || heldItem.ammo != AmmoID.None;
+                    bool heldItemIsExcludedByModCall = CalamityLists.DisabledSummonerNerfItems.Contains(heldItem.type);
+
+                    if (heldItemIsClassedWeapon && heldItemCanBeUsed && !heldItemIsTool && !heldItemIsAccessoryOrAmmo && !heldItemIsExcludedByModCall)
+                    {
+                        float basePenalty = 0.75f;
+                        float reversedPenalty = 1 / basePenalty;
+                        //modifiers.FinalDamage *= BalancingConstants.SummonerCrossClassNerf;
+                        if (cyanPearl && proj.Clamity().IsSentryRelated)
+                        {
+                            modifiers.FinalDamage *= (1 + reversedPenalty) / 2;
+                        }
+                    }
+                }
             }
         }
         #endregion

@@ -23,7 +23,6 @@ using System.IO;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.Bestiary;
-using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Clamity.Commons.CalRemixCompatibilitySystem;
@@ -773,7 +772,7 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
             npcLoot.Add(ModContent.ItemType<SlagspitterPauldron>(), 2, 1, 4);
             npcLoot.Add(ModContent.ItemType<TheSubcommunity>(), 10);
             //npcLoot.Add(ModContent.ItemType<Calamitea>(), 1, 3, 3);
-            npcLoot.Add(ItemDropRule.OneFromOptions(1, ModContent.ItemType<Brimlash>(), ModContent.ItemType<BrimstoneFury>(), ModContent.ItemType<BurningSea>(), ModContent.ItemType<IgneousExaltation>(), ModContent.ItemType<Brimblade>()));
+            npcLoot.Add(DropHelper.CalamityStyle(DropHelper.NormalWeaponDropRateFraction, ModContent.ItemType<Brimlash>(), ModContent.ItemType<BrimstoneFury>(), ModContent.ItemType<BurningSea>(), ModContent.ItemType<IgneousExaltation>(), ModContent.ItemType<Brimblade>()));
             npcLoot.AddConditionalPerPlayer(() => !ClamitySystem.downedClamitas, ModContent.ItemType<LoreWhat>(), ui: true, DropHelper.FirstKillText);
             npcLoot.DefineConditionalDropSet(DropHelper.RevAndMaster).Add(ModContent.ItemType<ClamitasRelic>());
             npcLoot.Add(ModContent.ItemType<ThankYouPainting>(), 100);

@@ -137,10 +137,28 @@ TheSubcommunity: {
 
 MagicDiamond: {
 	// DisplayName: Magic Diamond
-	// Tooltip: ""
+	// Tooltip: Magic attack grants a small amount of barrier up to 20
 }
 
 SharpAmethyst: {
 	// DisplayName: Sharp Amethyst
-	// Tooltip: ""
+	// Tooltip: Every arrows can chance to create an extra gem arrow
+}
+
+BlightedSpyglass: {
+	// DisplayName: Blighted Spyglass
+	/* Tooltip:
+		'''
+		+1 max sentry
+		Sentries inflict a Brimstone Flames
+		''' */
+}
+
+CyanPearl: {
+	// DisplayName: Cyan Pearl
+	/* Tooltip:
+		'''
+		+7% summon damage
+		Halves summon damage penalty for sentries
+		''' */
 }

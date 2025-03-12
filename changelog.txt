@@ -1,3 +1,7 @@
 Update 1.0.3.7
 
-Oh sorry i forgot fix Pyrogen rain bug
+Added The Subcommunity
+Added New Crawler Gems accessories - Sharp Amethyst, Magic Diamond
+Added Sentry-related accessories - Cyan Pearl, Blighted Spyglass
+
+Clamitas and Pyrogen now uses Calamity Styled drop chances for weapons

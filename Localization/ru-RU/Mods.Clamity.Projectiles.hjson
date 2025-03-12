@@ -84,7 +84,7 @@ Classless: {
 	EyeOfNovaProjectile.DisplayName: Заряд новы
 	GoldenGunProj.DisplayName: Золотая струя
 	TrashOfMagnusProjectile.DisplayName: Заряд чумы
-	// SharpAmethystProj.DisplayName: Sharp Amethyst Proj
+	// SharpAmethystProj.DisplayName: Sharp Amethyst
 }
 
 Boss: {
