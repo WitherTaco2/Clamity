@@ -162,3 +162,15 @@ CyanPearl: {
 		Halves summon damage penalty for sentries
 		''' */
 }
+
+SkullOfTheBloodGod: {
+	// DisplayName: Skull of The Blood God
+	/* Tooltip:
+		'''
+		13% increased critical strike chance and 20% increased damage
+		Critical strikes explode, causing nearby enemies to ignite with Brimstone Flames
+		Halves enemy contact damage, but this effect has a 20 second cooldown
+		Brimstone fire rains down after getting hit
+		Greatly reduces the damage taken by the Brimstone Flames debuff
+		''' */
+}
