@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -30,7 +31,17 @@ namespace Clamity.Content.Items.Accessories.GemCrawlerDrop
             Projectile.aiStyle = -1;
             AIType = -1;
             Projectile.timeLeft = 600;
-            Projectile.extraUpdates = 2;
+            Projectile.extraUpdates = 1;
+        }
+        public override void AI()
+        {
+            Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
+            Projectile.velocity.Y += 0.1f;
+            if (Main.rand.NextBool(3))
+            {
+                Dust dust = Dust.NewDustPerfect(Projectile.Center, DustID.GemAmethyst, Vector2.Zero);
+                dust.noGravity = true;
+            }
         }
     }
 }

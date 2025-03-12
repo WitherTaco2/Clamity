@@ -81,6 +81,7 @@ Classless: {
 	EyeOfNovaProjectile.DisplayName: Nova Blast
 	GoldenGunProj.DisplayName: Golden Stream
 	TrashOfMagnusProjectile.DisplayName: Plague Bolt
+	SharpAmethystProj.DisplayName: Sharp Amethyst
 }
 
 Boss: {
