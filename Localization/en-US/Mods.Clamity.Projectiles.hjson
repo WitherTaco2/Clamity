@@ -45,6 +45,8 @@ Ranged: {
 	ChargedDartExplosion.DisplayName: Charged Split
 	AstralStarCannonProjectile.DisplayName: Astral Star
 	AstralStarCannonProjectile2.DisplayName: Fallen Star
+	IrradiatedShellshooterProjTrail.DisplayName: Irradiated Shellshooter Proj Trail
+	IrradiatedShellshooterProj.DisplayName: Irradiated Shellshooter Proj
 }
 
 Magic: {
@@ -73,6 +75,7 @@ Rogue: {
 	ExoBallProjectile.DisplayName: Exo Ball
 	AuricKunaiProjectile.DisplayName: Auric Kunai
 	AuricKunaiLightning.DisplayName: Auric Lightning
+	NuclearFuelBarrelProj.DisplayName: Nuclear Fuel Barrel Proj
 }
 
 Classless: {
@@ -81,6 +84,7 @@ Classless: {
 	EyeOfNovaProjectile.DisplayName: Nova Blast
 	GoldenGunProj.DisplayName: Golden Stream
 	TrashOfMagnusProjectile.DisplayName: Plague Bolt
+	SharpAmethystProj.DisplayName: Sharp Amethyst Proj
 }
 
 Boss: {

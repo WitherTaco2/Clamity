@@ -45,3 +45,8 @@ AuricKunai: {
 		Невидимые удары наносят 5 молний ближайшему врагу
 		'''
 }
+
+NuclearFuelBarrel: {
+	// Tooltip: ""
+	// DisplayName: Nuclear Fuel Barrel
+}

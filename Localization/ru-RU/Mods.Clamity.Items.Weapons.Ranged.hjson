@@ -60,3 +60,8 @@ AstralStarCannon: {
 	DisplayName: Астральная звёздная пушка
 	Tooltip: Стреляет мощной астральной звездой который создает падающие звезды с небес при ударе
 }
+
+IrradiatedShellshooter: {
+	// DisplayName: Irradiated Shellshooter
+	// Tooltip: ""
+}

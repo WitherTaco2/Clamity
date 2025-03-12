@@ -42,3 +42,8 @@ CoralskinFoolfish: {
 	Tooltip: Камуфляж это один из лучших способов защиты в Природе
 	DisplayName: Коралочешуйчетая рыба-балван
 }
+
+NuclearEssence: {
+	// DisplayName: Nuclear Essence
+	// Tooltip: ""
+}

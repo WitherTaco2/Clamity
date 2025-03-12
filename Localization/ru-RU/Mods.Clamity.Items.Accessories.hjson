@@ -134,3 +134,13 @@ TheSubcommunity: {
 		Become more powerful as you defeat bosses ({5}% Power)
 		''' */
 }
+
+MagicDiamond: {
+	// DisplayName: Magic Diamond
+	// Tooltip: ""
+}
+
+SharpAmethyst: {
+	// DisplayName: Sharp Amethyst
+	// Tooltip: ""
+}

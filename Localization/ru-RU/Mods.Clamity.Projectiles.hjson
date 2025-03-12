@@ -45,6 +45,8 @@ Ranged: {
 	ChargedDartExplosion.DisplayName: Заряженный осколок
 	AstralStarCannonProjectile.DisplayName: Астральная звезда
 	AstralStarCannonProjectile2.DisplayName: Упавшая звезда
+	// IrradiatedShellshooterProjTrail.DisplayName: Irradiated Shellshooter Proj Trail
+	// IrradiatedShellshooterProj.DisplayName: Irradiated Shellshooter Proj
 }
 
 Magic: {
@@ -73,6 +75,7 @@ Rogue: {
 	ExoBallProjectile.DisplayName: Экзо шар
 	AuricKunaiProjectile.DisplayName: Аурический кунай
 	AuricKunaiLightning.DisplayName: Аурическая молния
+	// NuclearFuelBarrelProj.DisplayName: Nuclear Fuel Barrel Proj
 }
 
 Classless: {
@@ -81,6 +84,7 @@ Classless: {
 	EyeOfNovaProjectile.DisplayName: Заряд новы
 	GoldenGunProj.DisplayName: Золотая струя
 	TrashOfMagnusProjectile.DisplayName: Заряд чумы
+	// SharpAmethystProj.DisplayName: Sharp Amethyst Proj
 }
 
 Boss: {

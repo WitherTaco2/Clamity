@@ -45,3 +45,8 @@ AuricKunai: {
 		Stealth strikes spawn 5 Lightnings to nearest enemy
 		'''
 }
+
+NuclearFuelBarrel: {
+	Tooltip: ""
+	DisplayName: Nuclear Fuel Barrel
+}

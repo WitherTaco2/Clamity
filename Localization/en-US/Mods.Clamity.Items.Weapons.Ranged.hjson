@@ -60,3 +60,8 @@ AstralStarCannon: {
 	DisplayName: Astral Star Cannon
 	Tooltip: Shoot a powerful astral stra which creates a other stars from the sky on hit
 }
+
+IrradiatedShellshooter: {
+	DisplayName: Irradiated Shellshooter
+	Tooltip: ""
+}
