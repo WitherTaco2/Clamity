@@ -38,6 +38,8 @@ namespace Clamity.Content.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
+            player.Clamity().skullOfBloodGod = true;
+
             CalamityPlayer modPlayer = player.Calamity();
 
             modPlayer.fleshTotem = true;
