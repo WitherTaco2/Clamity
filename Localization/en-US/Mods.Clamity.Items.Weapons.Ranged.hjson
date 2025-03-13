@@ -63,5 +63,9 @@ AstralStarCannon: {
 
 IrradiatedShellshooter: {
 	DisplayName: Irradiated Shellshooter
-	Tooltip: ""
+	Tooltip: 
+		'''
+		Shoot a bunch of slow, powerful radiactive bolts that trail an irradiated aura, if used wooden arrow
+		Else shoots bunch of used arrows
+		'''
 }

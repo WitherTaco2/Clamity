@@ -47,6 +47,10 @@ AuricKunai: {
 }
 
 NuclearFuelBarrel: {
-	Tooltip: ""
 	DisplayName: Nuclear Fuel Barrel
+	Tooltip: 
+		'''
+		Throws a rolling barrel that make nuclear explosion and make it rain on wall collision
+		Stealth strikes make more rain on collision and leave a lingering irradiated zone after the explosion dissipates
+		'''
 }

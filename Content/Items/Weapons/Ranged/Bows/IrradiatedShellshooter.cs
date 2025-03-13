@@ -138,10 +138,10 @@ namespace Clamity.Content.Items.Weapons.Ranged.Bows
             }
         }
 
-        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
-        {
-            target.AddBuff(ModContent.BuffType<Irradiated>(), 480);
-        }
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) => target.AddBuff(ModContent.BuffType<Irradiated>(), 480);
+
+        public override void OnHitPlayer(Player target, Player.HurtInfo info) => target.AddBuff(ModContent.BuffType<Irradiated>(), 480);
+
 
         /*public override bool PreDraw(ref Color lightColor)
         {
@@ -173,7 +173,7 @@ namespace Clamity.Content.Items.Weapons.Ranged.Bows
 
             if (Main.rand.NextBool(3))
             {
-                MediumMistParticle mist = new MediumMistParticle(Projectile.Center, Vector2.Zero, Color.Lime, Color.Green, 2f, 0.5f, Main.rand.NextFloat(-0.1f, 0.1f));
+                MediumMistParticle mist = new MediumMistParticle(Projectile.Center, Vector2.Zero, Color.Lime, Color.Green, 2f, 1f, Main.rand.NextFloat(-0.1f, 0.1f));
                 GeneralParticleHandler.SpawnParticle(mist);
             }
             if (Main.rand.NextBool(2))
