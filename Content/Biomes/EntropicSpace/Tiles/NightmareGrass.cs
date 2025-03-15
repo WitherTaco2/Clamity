@@ -1,4 +1,6 @@
 ﻿using CalamityMod;
+using CalamityMod.Particles;
+using Clamity.Content.Particles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -68,6 +70,11 @@ namespace Clamity.Content.Biomes.EntropicSpace.Tiles
             {
                 Main.tile[i, j].TileType = (ushort)ModContent.TileType<EntropicSlagTile>();
             }
+
+            if (Main.rand.NextBool(20) || true)
+            {
+                GeneralParticleHandler.SpawnParticle(new NightmareSpark(new Vector2(i * 16, j * 16), -Vector2.UnitX * 5 * Main.rand.NextFloat(1, 1.2f)));
+            }
         }
 
         public override void DrawEffects(int i, int j, SpriteBatch spriteBatch, ref TileDrawInfo drawData)
@@ -100,7 +107,7 @@ namespace Clamity.Content.Biomes.EntropicSpace.Tiles
             Vector2 zero = Main.drawToScreen ? Vector2.Zero : new Vector2(Main.offScreenRange);
             Vector2 drawOffset = new Vector2(i * 16 - Main.screenPosition.X, j * 16 - Main.screenPosition.Y) + zero;
             Color drawColour = GetDrawColour(i, j);
-            Texture2D leaves = ModContent.Request<Texture2D>("Clamity/Content/Biomes/Distortion/Tiles/NightmareBlossomGrassGrass").Value;
+            Texture2D leaves = ModContent.Request<Texture2D>("Clamity/Content/Biomes/EntropicSpace/Tiles/NightmareBlossomGrassGrass").Value;
 
             DrawExtraTop(i, j, leaves, drawOffset, drawColour);
             DrawExtraWallEnds(i, j, leaves, drawOffset, drawColour);

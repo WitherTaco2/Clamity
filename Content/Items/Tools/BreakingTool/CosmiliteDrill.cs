@@ -21,14 +21,14 @@ namespace Clamity.Content.Items.Tools.BreakingTool
         {
             Item.width = 46;
             Item.height = 38;
-            Item.damage = 5;
+            Item.damage = 200;
             Item.knockBack = 0f;
             Item.useTime = 2;
             Item.useAnimation = 16;
             Item.pick = 275;
             Item.tileBoost += 2;
 
-            Item.DamageType = DamageClass.Melee;
+            Item.DamageType = ModContent.GetInstance<TrueMeleeNoSpeedDamageClass>();
             Item.value = CalamityGlobalItem.RarityDarkBlueBuyPrice;
             Item.rare = ModContent.RarityType<DarkBlue>();
             Item.UseSound = SoundID.Item23;

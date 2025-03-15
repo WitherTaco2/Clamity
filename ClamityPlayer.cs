@@ -66,10 +66,10 @@ namespace Clamity
 
         public bool ZoneFrozenHell => Player.InModBiome((ModBiome)ModContent.GetInstance<FrozenHell>());
         public bool ZoneEntropicSpace => SubworldSystem.IsActive<EntropicSpaceSubworld>();
-        public bool ZoneShatteredIslands => ZoneEntropicSpace && !ZoneNightmareForest && !ZoneEndothermicMountains && !ZoneDarksun;
+        public bool ZoneShatteredIslands => ZoneEntropicSpace && !ZoneNightmareForest && !ZoneEndothermicPlanetoids && !ZoneDarksun;
         public bool ZoneNightmareForest => ZoneEntropicSpace && ModContent.GetInstance<NightmareForestBiomeTileCounter>().biomeTiles >= 50;
-        public bool ZoneEndothermicMountains => false;
-        public bool ZoneDarksun => false;
+        public bool ZoneEndothermicPlanetoids => ZoneEntropicSpace && ModContent.GetInstance<EndothermicPlanetoidsCounter>().biomeTiles >= 50;
+        public bool ZoneDarksun => ZoneEntropicSpace && Player.Center.Y < EntropicSpaceSubworld.DurksunHeight;
         public override void ResetEffects()
         {
             realityRelocator = false;

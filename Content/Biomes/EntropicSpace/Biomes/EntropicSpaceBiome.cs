@@ -13,6 +13,7 @@ namespace Clamity.Content.Biomes.EntropicSpace.Biomes
         //public override string MapBackground => BackgroundPath;
         public override Color? BackgroundColor => base.BackgroundColor;
         public override bool IsBiomeActive(Player player) => player.Clamity().ZoneEntropicSpace;
-        public override int Music => Clamity.mod.GetMusicFromMusicMod("TheDistortion/ShatteredIslands") ?? MusicID.OtherworldlySpace;
+        public override int Music => Clamity.mod.GetMusicFromMusicMod("EntropicSpace/ShatteredIslands") ?? MusicID.OtherworldlySpace;
+        public override SceneEffectPriority Priority => SceneEffectPriority.BiomeLow;
     }
 }

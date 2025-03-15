@@ -107,6 +107,16 @@ Biomes: {
 		DisplayName: Shattered Islands
 		TownNPCDialogueName: the Shattered Islands
 	}
+
+	EndothermicPlanetoidsBiome: {
+		DisplayName: Endothermic Planetoids
+		TownNPCDialogueName: the Endothermic Planetoids
+	}
+
+	DarkSunBiome: {
+		DisplayName: Dark Sun
+		TownNPCDialogueName: the Dark Sun
+	}
 }
 
 InfernumIntro: {

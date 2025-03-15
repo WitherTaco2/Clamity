@@ -1,6 +1,7 @@
 ﻿using Clamity.Commons;
 using Clamity.Content.Biomes.EntropicSpace.Tiles;
 using Luminance.Common.Utilities;
+using Microsoft.Xna.Framework;
 using SubworldLibrary;
 using System.Collections.Generic;
 using Terraria;
@@ -69,7 +70,7 @@ namespace Clamity.Content.Biomes.EntropicSpace
                     {
                         if (!WorldGen.InWorld(x + b, y + a))
                             continue;
-                        WorldGen.PlaceTile(x + b, y + a, ModContent.TileType<EntropicSlagTile>());
+                        WorldGen.PlaceTile(x + b, y + a, WorldGen.genRand.NextBool(10) ? ModContent.TileType<CosmiliteOreTile>() : ModContent.TileType<EntropicSlagTile>());
 
                         /*Tile tile1 = Main.tile[i + b, j + a];
                         tile1.TileType = ModContent.TileType<EntropicSlagTile>();
@@ -77,15 +78,15 @@ namespace Clamity.Content.Biomes.EntropicSpace
                     }
                 }
 
-                //Cosmilite ore gen prototype (but i gets endless loading)
+                //Old Ore Gen
 
-                int oreCenterX = x + WorldGen.genRand.Next(-3, 3), oreCenterY = y + 1 + WorldGen.genRand.Next(0, 3);
+                /*int oreCenterX = x + WorldGen.genRand.Next(-3, 3), oreCenterY = y + 1 + WorldGen.genRand.Next(0, 3);
                 bool isGenerateOre = WorldGen.genRand.NextBool(2);
                 if (isGenerateOre)
                 {
-                    for (int a = -1; a < 1; a++)
+                    for (int a = -1; a <= 1 + WorldGen.genRand.Next(2); a++)
                     {
-                        for (int b = -1; b < 1; b++)
+                        for (int b = -1; b <= 1 + WorldGen.genRand.Next(2); b++)
                         {
                             if (!WorldGen.InWorld(oreCenterX + a, oreCenterY + b))
                                 continue;
@@ -100,7 +101,7 @@ namespace Clamity.Content.Biomes.EntropicSpace
                             }
                         }
                     }
-                }
+                }*/
             }
         }
         public class NightmareForestPass : GenPass
@@ -184,7 +185,7 @@ namespace Clamity.Content.Biomes.EntropicSpace
                     {
                         if (!WorldGen.InWorld(x + i, y + j + 1))
                             continue;
-                        WorldGen.PlaceTile(x + i, y + j + 1, ModContent.TileType<EntropicSlagTile>());
+                        WorldGen.PlaceTile(x + i, y + j + 1, WorldGen.genRand.NextBool(10) ? ModContent.TileType<CosmiliteOreTile>() : ModContent.TileType<EntropicSlagTile>());
                     }
                     num++;
                 }
@@ -204,8 +205,47 @@ namespace Clamity.Content.Biomes.EntropicSpace
 
                 //Also planned generation of draedon lab in mountain
                 //Used an Structure Helper
-            }
 
+                float centinWithinZoneX = MathHelper.Lerp(SubworldWidth * 3 / 4, SubworldWidth, 0.5f);
+                int planet1CenterX = (int)MathHelper.Lerp(SubworldWidth * 3 / 4, centinWithinZoneX, 0.75f);
+                int planet2CenterX = (int)MathHelper.Lerp(SubworldWidth, centinWithinZoneX, 0.75f);
+
+                CreatePlanetoid(planet1CenterX, SubworldHeight * 3 / 4, (int)(SubworldWidth / 4 / 3));
+            }
+            private void CreatePlanetoid(int x, int y, int radius)
+            {
+                WorldUtils.Gen(new Point(x, y), new Shapes.Circle(radius), Actions.Chain(new GenAction[]
+                {
+                    new Modifiers.Blotches(4, 0.5),
+                    new Actions.PlaceTile((ushort)ModContent.TileType<EndothermicSnowTile>()),
+                    new Actions.SetFrames()
+                }));
+                WorldUtils.Gen(new Point(x, y), new Shapes.Circle(radius - 25), Actions.Chain(new GenAction[]
+                {
+                    new Modifiers.Blotches(4, 0.5),
+                    new Actions.ClearTile(),
+                    new Actions.PlaceTile((ushort)ModContent.TileType<EndothermicIceTile>()),
+                    new Actions.SetFrames()
+                }));
+                /*WorldUtils.Gen(new Point(x, y), new Shapes.Circle(radius - 100), Actions.Chain(new GenAction[]
+                {
+                    new Modifiers.Blotches(2, 0.03),
+                    new Actions.SetTile((ushort)ModContent.TileType<EntropicSlagTile>(), true),
+                    new Actions.SetFrames()
+                }));*/
+
+                //Prototype gen code
+                /*for (int j = -radius; j < radius; j++)
+                {
+                    int num = (int)(radius * CalamityUtils.Convert01To010(MathF.Abs(j) / (float)radius / 2 + 0.5f));
+                    for (int i = -num; i < num; i++)
+                    {
+                        if (!WorldGen.InWorld(x + i, y + j))
+                            continue;
+                        WorldGen.PlaceTile(x + i, y + j, type);
+                    }
+                }*/
+            }
         }
 
         public class DarksunPass : GenPass
@@ -240,6 +280,8 @@ namespace Clamity.Content.Biomes.EntropicSpace
 
         //TODO - remove commending after completing an generation
         //public override bool ShouldSave => true;
+
+        public override bool NormalUpdates => true;
 
         /*public override void DrawMenu(GameTime gameTime)
         {

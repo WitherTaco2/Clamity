@@ -64,7 +64,7 @@ namespace Clamity.Content.Biomes.EntropicSpace.NPCs
         }*/
         public override void AI()
         {
-            NPC.TargetClosest(false);
+            //NPC.TargetClosest(false);
             Player p = Main.player[NPC.target];
 
             //Main.NewText(CurrentFrame);

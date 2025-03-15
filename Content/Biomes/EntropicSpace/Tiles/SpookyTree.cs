@@ -66,6 +66,7 @@ namespace Clamity.Content.Biomes.EntropicSpace.Tiles
             //TODO - Later make exclusive food and shaking tree
 
             int type = ItemID.SpookyWood, count = Main.rand.Next(20, 40);
+            /*bool skip = false;
             if (Main.halloween && Main.rand.NextBool(50))
             {
                 type = ItemID.RottenEgg;
@@ -76,10 +77,11 @@ namespace Clamity.Content.Biomes.EntropicSpace.Tiles
                 type = ItemID.Acorn;
                 count = Main.rand.Next(1, 3);
             }
-            if (Main.rand.NextBool(20))
+            if (Main.rand.NextBool(10))
             {
                 type = ModContent.ItemType<PumpkinFetus>();
                 count = 1;
+                skip = true;
             }
             if (Main.rand.NextBool(25))
             {
@@ -103,6 +105,63 @@ namespace Clamity.Content.Biomes.EntropicSpace.Tiles
                     type = ItemID.GoldCoin;
                     count = 10;
                 }
+            }*/
+            switch (Main.rand.Next(18 * 5))
+            {
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                    type = ModContent.ItemType<PumpkinFetus>();
+                    count = 1;
+                    break;
+                case 6:
+                case 7:
+                case 8:
+                case 9:
+                case 10:
+                case 11:
+                case 12:
+                case 13:
+                case 14:
+                    type = ItemID.Acorn;
+                    count = Main.rand.Next(1, 3);
+                    break;
+                case 15:
+                case 16:
+                case 17:
+                case 18:
+                    if (Main.rand.NextBool(100))
+                    {
+                        type = ItemID.PlatinumCoin;
+                        count = 3;
+                    }
+                    else if (Main.rand.NextBool(25))
+                    {
+                        type = ItemID.PlatinumCoin;
+                        count = 1;
+                    }
+                    else if (Main.rand.NextBool(5))
+                    {
+                        type = ItemID.GoldCoin;
+                        count = Main.rand.Next(20, 40);
+                    }
+                    else
+                    {
+                        type = ItemID.GoldCoin;
+                        count = 10;
+                    }
+                    break;
+
+                default:
+                    type = ItemID.SpookyWood; count = Main.rand.Next(20, 40);
+                    break;
+            }
+            if (Main.halloween && Main.rand.NextBool(10))
+            {
+                type = ItemID.RottenEgg;
+                count = Main.rand.Next(10, 13);
             }
 
             Item.NewItem(WorldGen.GetItemSource_FromTreeShake(x, y), new Vector2(x, y) * 16, type, count);
