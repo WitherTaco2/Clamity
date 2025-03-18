@@ -1,4 +1,9 @@
 Clamitas: {
+	ClamitasShelleggings: {
+		DisplayName: Панцирные поножи Каламидии
+		Tooltip: Увеличивает урон на 15% и шанс критического удара на 9%
+	}
+
 	ClamitasShellmet: {
 		DisplayName: Панцирный шлем Каламидии
 		Tooltip:
@@ -22,34 +27,29 @@ Clamitas: {
 			Даёт небольшое количесво света в бездне
 			'''
 	}
-
-	ClamitasShelleggings: {
-		DisplayName: Панцирные поножи Каламидии
-		Tooltip: Увеличивает урон на 15% и шанс критического удара на 9%
-	}
 }
 
 Vanity: {
 	PyrogenMask: {
-		DisplayName: Маска Пирогена
 		Tooltip: ""
+		DisplayName: Маска Пирогена
 	}
 
 	WoBMask: {
-		DisplayName: Маска Стены бронзы
 		Tooltip: ""
+		DisplayName: Маска Стены бронзы
 	}
 }
 
 FrozenHellstone: {
 	FrozenHellstoneVisor: {
-		DisplayName: Замороженный козырёк
 		Tooltip:
 			'''
 			Увеличивает урон истинного ближнего боя на 20%
 			Атаки истинного ближнего боя наклыдвают дебафф «{$BuffName.Frostburn}»
 			Враги чаще выбирают вас в качестве цели
 			'''
+		DisplayName: Замороженный козырёк
 		SetBonus:
 			'''
 			Вы не можете замёрзнуть
@@ -58,22 +58,22 @@ FrozenHellstone: {
 			'''
 	}
 
-	FrozenHellstoneChestplate: {
-		DisplayName: Замороженный нагрудник
-		Tooltip:
-			'''
-			Увеличивает урон истинного ближнего боя и скорость ближнего боя на 20%
-			Враги чаще выбирают вас в качестве цели 
-			'''
-	}
-
 	FrozenHellstoneGreaves: {
-		DisplayName: Замороженные поножи
 		Tooltip:
 			'''
 			Увеличивает урон истинного ближнего боя на 20%
 			Увеличивает максимальный запас здоровья на 75 ед.
 			Враги чаще выбирают вас в качестве цели
 			'''
+		DisplayName: Замороженные поножи
+	}
+
+	FrozenHellstoneChestplate: {
+		Tooltip:
+			'''
+			Увеличивает урон истинного ближнего боя и скорость ближнего боя на 20%
+			Враги чаще выбирают вас в качестве цели 
+			'''
+		DisplayName: Замороженный нагрудник
 	}
 }

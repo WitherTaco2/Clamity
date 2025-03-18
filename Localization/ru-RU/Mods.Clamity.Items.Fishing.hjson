@@ -12,6 +12,6 @@ WulfrumLure: {
 }
 
 FishOfFlame: {
-	DisplayName: Рыба пламени
 	Tooltip: Нажмите ПКМ, чтобы извлечь эссенции
+	DisplayName: Рыба пламени
 }
