@@ -109,13 +109,13 @@ Biomes: {
 	}
 
 	EndothermicPlanetoidsBiome: {
-		// DisplayName: Endothermic Planetoids Biome
-		// TownNPCDialogueName: the Endothermic Planetoids Biome
+		// DisplayName: Endothermic Planetoids
+		// TownNPCDialogueName: the Endothermic Planetoids
 	}
 
 	DarkSunBiome: {
-		// DisplayName: Dark Sun Biome
-		// TownNPCDialogueName: the Dark Sun Biome
+		// DisplayName: Dark Sun
+		// TownNPCDialogueName: the Dark Sun
 	}
 }
 

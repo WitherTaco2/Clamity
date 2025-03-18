@@ -193,6 +193,27 @@ namespace Clamity.Content.Biomes.EntropicSpace
         }
         public class EndothermicMountainsPass : GenPass
         {
+            public class PlaceSplotches : GenAction
+            {
+                private int _chance;
+                private float _strenght;
+                private int _step;
+                private int _type;
+                public PlaceSplotches(int chance, float strenght, int step, int type)
+                {
+                    _chance = chance;
+                    _strenght = strenght;
+                    _step = step;
+                    _type = type;
+                }
+                public override bool Apply(Point origin, int x, int y, params object[] args)
+                {
+                    //WorldUtils.TileFrame(x, y, _frameNeighbors);
+                    if (WorldGen.genRand.NextBool(_chance))
+                        WorldGen.TileRunner(x, y, _strenght, _step, _type);
+                    return UnitApply(origin, x, y, args);
+                }
+            }
             public EndothermicMountainsPass() : base("Terrain", 1f) { }
 
             protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
@@ -222,29 +243,14 @@ namespace Clamity.Content.Biomes.EntropicSpace
                 }));
                 WorldUtils.Gen(new Point(x, y), new Shapes.Circle(radius - 25), Actions.Chain(new GenAction[]
                 {
-                    new Modifiers.Blotches(4, 0.5),
+                    //new Modifiers.Blotches(4, 0.5),
                     new Actions.ClearTile(),
-                    new Actions.PlaceTile((ushort)ModContent.TileType<EndothermicIceTile>()),
-                    new Actions.SetFrames()
+                    new Actions.PlaceTile((ushort)ModContent.TileType<EndothermicSnowTile>()),
+                    new PlaceSplotches(25, WorldGen.genRand.NextFloat(3f, 6f), WorldGen.genRand.Next(7, 17), ModContent.TileType<EndothermicIceTile>())
+                    //new Actions.PlaceTile((ushort)ModContent.TileType<EndothermicIceTile>()),
+                    //new Actions.SetFrames()
                 }));
-                /*WorldUtils.Gen(new Point(x, y), new Shapes.Circle(radius - 100), Actions.Chain(new GenAction[]
-                {
-                    new Modifiers.Blotches(2, 0.03),
-                    new Actions.SetTile((ushort)ModContent.TileType<EntropicSlagTile>(), true),
-                    new Actions.SetFrames()
-                }));*/
 
-                //Prototype gen code
-                /*for (int j = -radius; j < radius; j++)
-                {
-                    int num = (int)(radius * CalamityUtils.Convert01To010(MathF.Abs(j) / (float)radius / 2 + 0.5f));
-                    for (int i = -num; i < num; i++)
-                    {
-                        if (!WorldGen.InWorld(x + i, y + j))
-                            continue;
-                        WorldGen.PlaceTile(x + i, y + j, type);
-                    }
-                }*/
             }
         }
 
