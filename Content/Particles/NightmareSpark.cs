@@ -14,6 +14,7 @@ namespace Clamity.Content.Particles
         {
             Position = position;
             Velocity = velocity;
+            Color = Color.White;
             Lifetime = 600;
             Time = 600;
 
@@ -26,8 +27,8 @@ namespace Clamity.Content.Particles
         public override void CustomDraw(SpriteBatch spriteBatch, Vector2 basePosition)
         {
             Texture2D t = ModContent.Request<Texture2D>(Texture).Value;
-            spriteBatch.Draw(t, basePosition, null, Color.Orange, 0, t.Size() / 2, new Vector2(1, 0.5f) /* 0.1f*/, SpriteEffects.None, 1);
-            spriteBatch.Draw(t, basePosition, null, Color.Orange, MathHelper.PiOver2, t.Size() / 2, new Vector2(1, 0.5f) * 0.1f, SpriteEffects.None, 1);
+            spriteBatch.Draw(t, basePosition - Main.screenPosition, null, Color.Orange, 0, t.Size() / 2, new Vector2(1, 0.5f) /* 0.1f*/, SpriteEffects.None, 1);
+            spriteBatch.Draw(t, basePosition - Main.screenPosition, null, Color.Orange, MathHelper.PiOver2, t.Size() / 2, new Vector2(1, 0.5f) /* 0.1f*/, SpriteEffects.None, 1);
         }
     }
 }
