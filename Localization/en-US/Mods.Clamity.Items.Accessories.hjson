@@ -1,30 +1,30 @@
 SoulOfPyrogen: {
+	DisplayName: Soul of Pyrogen
 	Tooltip:
 		'''
 		10% increased melee and rogue damage
 		True melee and stealth strikes summon spears from the depths of Hell
 		'''
-	DisplayName: Soul of Pyrogen
 }
 
 DraculasCharm: {
+	DisplayName: Dracula's Charm
 	Tooltip:
 		'''
 		15% increased rogue damage and +10 maximum stealth
 		Stealth strikes deal 8% more damage, summon a swarm of homing lifestealing vampire bats and inflict Crumbling
 		Rogue projectiles steal life on crits and explode into homing souls
 		'''
-	DisplayName: Dracula's Charm
 }
 
 PyroStone: {
+	DisplayName: Pyro Stone
 	Tooltip:
 		'''
 		Multiplies all heat-based debuff damage by 1.5
 		Creates a rotating fire shield around you that damages and ignites enemies on contact
 		'One of the ancient relics'
 		'''
-	DisplayName: Pyro Stone
 }
 
 HellFlare: {
@@ -57,12 +57,12 @@ SupremeBarrier: {
 }
 
 IcicleRing: {
+	DisplayName: Icicle Ring
 	Tooltip:
 		'''
 		Reduces mana cost to zero
 		Wearer constantly takes damage from the pain
 		'''
-	DisplayName: Icicle Ring
 }
 
 RedDie: {
@@ -135,7 +135,7 @@ TheSubcommunity: {
 	StatsList:
 		'''
 		Increases mining speed by {0}%
-		Increases a luck by {1} and fishing power by {2}
+		Increases luck by {1} and fishing power by {2}
 		Increases tile and wall placing speed by {3} and placing range by {4}
 		Become more powerful as you defeat bosses ({5}% Power)
 		'''
@@ -143,12 +143,21 @@ TheSubcommunity: {
 
 MagicDiamond: {
 	DisplayName: Magic Diamond
-	Tooltip: Magic attack grants a small amount of barrier up to 20
+	Tooltip:
+		'''
+		Dealing magic damage creates a small barrier
+		Each magic attack adds a small amount of durability to the barrier
+		The barrier can store up to 20 durability
+		'''
 }
 
 SharpAmethyst: {
 	DisplayName: Sharp Amethyst
-	Tooltip: Every arrows can chance to create an extra gem arrow
+	Tooltip: 
+		'''
+		Shooting an arrow has a chance to create an extra gem arrow
+		Gem arrows deal 20% of the arrow's damage
+		'''
 }
 
 BlightedSpyglass: {
@@ -170,12 +179,12 @@ CyanPearl: {
 }
 
 SkullOfTheBloodGod: {
-	DisplayName: Skull of The Blood God
+	DisplayName: Skull of the Blood God
 	Tooltip:
 		'''
-		13% increased critical strike chance and 20% increased damage
+		20% increased damage and 13% increased critical strike chance
 		Critical strikes explode, causing nearby enemies to ignite with Brimstone Flames
-		Halves enemy contact damage, but this effect has a 20 second cooldown
+		Halves enemy contact damage with a 20 second cooldown
 		Brimstone fire rains down after getting hit
 		Greatly reduces the damage taken by the Brimstone Flames debuff
 		'''
