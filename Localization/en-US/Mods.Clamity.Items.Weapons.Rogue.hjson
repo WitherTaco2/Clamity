@@ -12,11 +12,6 @@ WulfrumShockCutter: {
 	Tooltip: ""
 }
 
-Crustalline: {
-	DisplayName: Crustalline
-	Tooltip: ""
-}
-
 FrozenStarShuriken: {
 	DisplayName: Frozen Star Shuriken
 	Tooltip:

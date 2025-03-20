@@ -1,17 +1,19 @@
 LoreWhat: {
-	DisplayName: Кламитас
+	DisplayName: История (Каламидия)
 	Lore:
 		'''
-		After war Calamitas with ocean a lot of creatures started running in different directions.
-		Some saves and addapts in desert, some saves in place as known as Sunken Sea
-		But more powerful got into ruines of Azaphure. His enchanted pearl absorb a lot of brimstone make and starts
-		being cursed but gain power of this. Name of this is createure is Clamitas, Supreme Clam
-		(oh what shit did I just say)
+		Уже много лет кануло с тех пор, как Серная ведьма испепелила Ильмерис, превратив его в песок.
+		Большая часть выживших существ разделилась на две группы: одни пытались приспособиться к жизни в новообразовавшейся пустыне,
+		создавая её экосистему, а другие остались здесь — в месте, теперь известном как «Затерянное море» — всё, что осталось от некогда великого королевства.
+
+		Самые могущественные существа нашли себе обитель в месте, на первый взгляд совсем не подходящем для жизни — Азафуре.  
+		Один моллюск впитал в свою зачарованную жемчужину огромное количество серы, из-за чего был проклят, но обрёл небывалую силу.  
+		И имя его — Каламидия, Верховный моллюск. 
 		'''
 }
 
 LorePyrogen: {
-	DisplayName: Пироген
+	DisplayName: История (Пироген)
 	Lore:
 		'''
 		Древняя печь бога-кузнеца. В нем разделяется аурическая душа с его хозяином. 
@@ -20,7 +22,7 @@ LorePyrogen: {
 }
 
 LoreWallOfBronze: {
-	DisplayName: Стена Бронзы
+	DisplayName: История (Стена бронзы)
 	Lore:
 		'''
 		Искусственное ядро Подземного мира и чудо древней изобретательности.

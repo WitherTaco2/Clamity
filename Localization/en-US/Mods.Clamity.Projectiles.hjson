@@ -1,58 +1,34 @@
 Melee: {
 	ClamitasCrusherProjectile.DisplayName: Clamitas Crusher
-	ExoGladiusBeam.DisplayName: Exo Gladius Beam
-	ExoGladiusExplosion.DisplayName: Exo Gladius Explosion
-	ExoGladiusProjectile.DisplayName: Exo Gladius
 	SearedShredderProjectile.DisplayName: Seared Shredder
 	RGBMurasamaProjectile.DisplayName: RGB Murasama
-	TerraShivProjectile.DisplayName: Gaia Shiv
-	TerraShivSlash.DisplayName: Gaia Shiv Slash
-	TerraShivSlash2.DisplayName: Gaia Shiv Slash
-	TomutusProjectile.DisplayName: Tomutus
-	ColdheartIcicleProjectile.DisplayName: Coldheart Icicle
-	CaliburnProjectile.DisplayName: Caliburn
-	CaliburnSlash.DisplayName: Caliburn Slash
-	TrueCaliburnProjectile.DisplayName: True Caliburn
-	TrueCaliburnSlash.DisplayName: True Caliburn Slash
-	TrueCaliburnSlash2.DisplayName: True Caliburn Slash
 	DiseaseProjectile.DisplayName: Disease
-	SporeKnifeProjectile.DisplayName: Spore Knife
 	WulfrumLeechDaggerProjectile.DisplayName: Wulfrum Leech Dagger
 	WulfrumLeechDaggerShard.DisplayName: Wulfrum Leech Dagger Shard
 	TheWOBblerProjectile.DisplayName: Ice Chunk
 	EverestProjectile.DisplayName: Everest
+	ExoNewBeam.DisplayName: Exo Beam
+	ExoNewExplosion.DisplayName: Exo Explosion
 }
 
 Ranged: {
 	Ammo: {
-		AccelerationRoundProj.DisplayName: Acceleration Round
-		ArcticArrowProj.DisplayName: Arctic Arrow
-		EnhancedNanoRoundProj.DisplayName: Enhanced Nano Round
-		Nanomachine.DisplayName: Nanomachine
-		SuperballBulletProj.DisplayName: Superball Bullet
 		ProfanedDartProjectile.DisplayName: Profaned Dart
 		FrostfireArrowProj.DisplayName: Frostfire Arrow
 		FrostfireArrowProj2.DisplayName: Frostfire Explosion
-		WarArrowProjectile.DisplayName: War Arrow
 	}
 
 	DepthsEchoRifleProjectile.DisplayName: Depths Echo
 	DepthsEchoRifleProjectileSplit.DisplayName: Depths Echo Split
 	ObsidigunBullet.DisplayName: Obsidian Bullet
 	ObsidigunBulletShard.DisplayName: Obsidian Bullet Shard
-	ImpalerProjectile.DisplayName: Impaler Stake
-	ChargedBlast3.DisplayName: Charged Blast
-	ChargedDartExplosion.DisplayName: Charged Split
-	AstralStarCannonProjectile.DisplayName: Astral Star
-	AstralStarCannonProjectile2.DisplayName: Fallen Star
+	WitheredBoneBowProj.DisplayName: Withered Bone Bolt
 	IrradiatedShellshooterProjTrail.DisplayName: Irradiated Shellshooter Proj Trail
 	IrradiatedShellshooterProj.DisplayName: Irradiated Shellshooter Proj
 }
 
 Magic: {
 	TheGeneratorSigil.DisplayName: The Generator Sigil
-	HadopelagicEchoProjectile.DisplayName: Hadopelagic Echo
-	HadopelagicEchoProjectile2.DisplayName: Hadopelagic Echo
 	MoonstoneKnifeProjectile.DisplayName: Moonstone Knife
 }
 
@@ -82,9 +58,9 @@ Classless: {
 	PyroShieldAccessory.DisplayName: Pyro Shield
 	AMSProj.DisplayName: AMS
 	EyeOfNovaProjectile.DisplayName: Nova Blast
-	GoldenGunProj.DisplayName: Golden Stream
 	TrashOfMagnusProjectile.DisplayName: Plague Bolt
 	SharpAmethystProj.DisplayName: Sharp Amethyst
+	GoldenGunProj.DisplayName: Golden Gun Proj
 }
 
 Boss: {

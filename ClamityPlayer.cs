@@ -34,8 +34,8 @@ namespace Clamity
         public bool aflameAcc;
         public List<int> aflameAccList;
 
-        //Equip
-        //Old (legecy)
+        //Accessories
+        //Other
         public bool pyroSpear;
         //public int pyroSpearCD;
         public bool vampireEX;
@@ -48,6 +48,7 @@ namespace Clamity
         public bool metalWings;
         public bool seaShell;
         public bool subcommunity;
+        public bool skullOfBloodGod;
 
         //Crawler big gems
         public bool gemAmethyst;
@@ -104,6 +105,7 @@ namespace Clamity
             metalWings = false;
             seaShell = false;
             subcommunity = false;
+            skullOfBloodGod = false;
 
             gemAmethyst = false;
             gemTopaz = false;

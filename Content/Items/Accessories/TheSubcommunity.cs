@@ -77,12 +77,12 @@ namespace Clamity.Content.Items.Accessories
             float bossDownedRatio = numBosses / (float)TotalCountedBosses;
             return killsOnly ? bossDownedRatio : MathHelper.Lerp(0.05f, 0.2f, bossDownedRatio);
         }
-        public const float MiningSpeedMult = 0.5f;
-        public const float LuckMult = 0.5f;
-        public const int FishingPower = 50;
-        public const float TileAndWallPlacingSpeedMult = 0.5f;
+        public const float MiningSpeedMult = 2.5f;
+        public const float LuckMult = 2.5f;
+        public const int FishingPower = 250;
+        public const float TileAndWallPlacingSpeedMult = 2.5f;
         //public const float WallPlacingSpeedMult = TileAndWallPlacingSpeedMult;
-        public const int TileRangeMult = 5;
+        public const int TileRangeMult = 25;
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
