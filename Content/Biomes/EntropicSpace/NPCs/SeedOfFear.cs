@@ -125,7 +125,7 @@ namespace Clamity.Content.Biomes.EntropicSpace.NPCs
                 }
 
 
-                spriteBatch.Draw(hook, partCenter, null, Lighting.GetColor((int)partCenter.X / 16, (int)(partCenter.Y / 16f)), part.rotation, hook.Size() / 2, 1f, SpriteEffects.None, 0);
+                spriteBatch.Draw(hook, partCenter, null, Lighting.GetColor((int)partCenter.X / 16, (int)(partCenter.Y / 16f)), part.AngleFrom(NPC.Center), hook.Size() / 2, 1f, SpriteEffects.None, 0);
             }
 
             //Main body drawing
@@ -147,6 +147,8 @@ namespace Clamity.Content.Biomes.EntropicSpace.NPCs
             width = height = 44;
         }
         public NPC Owner => Main.npc[(int)ai[0]];
+        public float distance = 0;
+        public float distanceMax = 0;
         public override void AI()
         {
             //Center += Owner.velocity;
@@ -161,15 +163,19 @@ namespace Clamity.Content.Biomes.EntropicSpace.NPCs
                     if (ai[2] == 0)
                     {
                         velocity = this.SafeDirectionTo(Main.player[Owner.target].Center);
+                        distanceMax = this.Distance(Main.player[Owner.target].Center);
+                        distance = 0;
                     }
                     else
                     {
                         Tile tile = Main.tile[(int)position.X / 16, (int)position.Y / 16];
-                        if (tile.HasTile && tile.IsTileSolid())
+                        if (tile.HasTile && tile.IsTileSolid() && distance >= distanceMax)
                         {
                             ai[1] = 1;
                             ai[2] = 0;
                         }
+                        distance += velocity.Length();
+
                     }
                     ai[2]++;
                 }
@@ -177,11 +183,13 @@ namespace Clamity.Content.Biomes.EntropicSpace.NPCs
         }
         public override void SendExtraAI(BinaryWriter writer)
         {
-
+            writer.Write(distance);
+            writer.Write(distanceMax);
         }
         public override void ReceiveExtraAI(BinaryReader reader)
         {
-
+            distance = reader.ReadSingle();
+            distanceMax = reader.ReadSingle();
         }
     }
 }

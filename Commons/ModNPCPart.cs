@@ -52,7 +52,7 @@ namespace Clamity.Commons
         {
             for (int i = 0; i < array.Length - 1; i++)
             {
-                ref ModNPCPart npc = ref array[i];
+                ModNPCPart npc = array[i];
                 npc.position += npc.velocity;
                 npc.AI();
             }
