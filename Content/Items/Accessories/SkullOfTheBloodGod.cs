@@ -13,14 +13,14 @@ using Terraria.ModLoader;
 
 namespace Clamity.Content.Items.Accessories
 {
-    public class CoreOfTheBloodGod : ModItem, ILocalizedModType, IModType
+    public class SkullOfTheBloodGod : ModItem, ILocalizedModType, IModType
     {
         public new string LocalizationCategory => "Items.Accessories";
 
-        public override bool IsLoadingEnabled(Mod mod)
+        /*public override bool IsLoadingEnabled(Mod mod)
         {
             return false;
-        }
+        }*/
 
         public override void SetStaticDefaults()
         {
@@ -38,13 +38,16 @@ namespace Clamity.Content.Items.Accessories
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
+            player.Clamity().skullOfBloodGod = true;
+
             CalamityPlayer modPlayer = player.Calamity();
 
             modPlayer.fleshTotem = true;
-            modPlayer.healingPotionMultiplier += 0.25f;
+            //modPlayer.healingPotionMultiplier += 0.25f;
 
-            player.Calamity().bloodyWormTooth = true;
-            player.endurance += 0.1f;
+            modPlayer.voidOfExtinction = true;
+            modPlayer.abaddon = true;
+            player.GetCritChance<GenericDamageClass>() += 13f;
 
             modPlayer.voidOfCalamity = true;
             player.GetDamage<GenericDamageClass>() += 0.2f;
@@ -55,7 +58,7 @@ namespace Clamity.Content.Items.Accessories
                 {
                     if (player.miscCounter % 10 == 0)
                     {
-                        int damage = (int)player.GetBestClassDamage().ApplyTo(30);
+                        int damage = (int)player.GetBestClassDamage().ApplyTo(120);
                         CalamityUtils.ProjectileRain(source, player.Center, 400f, 100f, 500f, 800f, 22f, ModContent.ProjectileType<StandingFire>(), damage, 5f, player.whoAmI);
                     }
                 }
@@ -66,7 +69,7 @@ namespace Clamity.Content.Items.Accessories
         {
             CreateRecipe()
                 .AddIngredient<FleshTotem>()
-                .AddIngredient<BloodyWormScarf>()
+                .AddIngredient<VoidofExtinction>()
                 .AddIngredient<VoidofCalamity>()
                 .AddIngredient<BloodstoneCore>(4)
                 .AddIngredient<AscendantSpiritEssence>(5)

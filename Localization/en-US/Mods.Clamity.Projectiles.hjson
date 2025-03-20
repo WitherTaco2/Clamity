@@ -47,6 +47,7 @@ Ranged: {
 	ChargedDartExplosion.DisplayName: Charged Split
 	AstralStarCannonProjectile.DisplayName: Astral Star
 	AstralStarCannonProjectile2.DisplayName: Fallen Star
+	WitheredBoneBowProj.DisplayName: Withered Bone Bolt
 }
 
 Magic: {
@@ -83,6 +84,7 @@ Classless: {
 	EyeOfNovaProjectile.DisplayName: Nova Blast
 	GoldenGunProj.DisplayName: Golden Stream
 	TrashOfMagnusProjectile.DisplayName: Plague Bolt
+	SharpAmethystProj.DisplayName: Sharp Amethyst
 }
 
 Boss: {
