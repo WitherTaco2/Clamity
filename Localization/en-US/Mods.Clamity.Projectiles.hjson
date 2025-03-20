@@ -7,6 +7,8 @@ Melee: {
 	WulfrumLeechDaggerShard.DisplayName: Wulfrum Leech Dagger Shard
 	TheWOBblerProjectile.DisplayName: Ice Chunk
 	EverestProjectile.DisplayName: Everest
+	ExoNewBeam.DisplayName: Exo Beam
+	ExoNewExplosion.DisplayName: Exo Explosion
 	BreakthroughProj.DisplayName: Breakthrough Proj
 	BreakthroughProjBreath.DisplayName: Breakthrough Proj Breath
 }

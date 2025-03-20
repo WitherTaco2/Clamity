@@ -12,7 +12,7 @@ using Terraria.ModLoader;
 
 namespace Clamity.Content.Projectiles
 {
-    public class ExoGladiusBeam : Exobeam, ILocalizedModType, IModType
+    public class ExoNewBeam : Exobeam, ILocalizedModType, IModType
     {
         public new string LocalizationCategory => "Projectiles.Melee";
         public override string Texture => ModContent.GetInstance<Exobeam>().Texture;
@@ -46,7 +46,7 @@ namespace Clamity.Content.Projectiles
             target.AddBuff(ModContent.BuffType<MiracleBlight>(), 300);
         }
     }
-    public class ExoGladiusExplosion : ModProjectile, /*IAdditiveDrawer,*/ ILocalizedModType, IModType
+    public class ExoNewExplosion : ModProjectile, /*IAdditiveDrawer,*/ ILocalizedModType, IModType
     {
         public new string LocalizationCategory => "Projectiles.Melee";
         public override void SetStaticDefaults()

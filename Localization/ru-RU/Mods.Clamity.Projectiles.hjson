@@ -7,6 +7,8 @@ Melee: {
 	WulfrumLeechDaggerShard.DisplayName: Осколок вульфрумового кинжала-пиявки
 	TheWOBblerProjectile.DisplayName: Кусок льда
 	EverestProjectile.DisplayName: Эверест
+	// ExoNewBeam.DisplayName: Exo Beam
+	// ExoNewExplosion.DisplayName: Exo Explosion
 	// BreakthroughProj.DisplayName: Breakthrough Proj
 	// BreakthroughProjBreath.DisplayName: Breakthrough Proj Breath
 }
