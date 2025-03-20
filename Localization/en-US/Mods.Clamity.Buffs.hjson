@@ -8,58 +8,6 @@ HellstoneShellfishStaffBuff: {
 	Description: The hellstone shellfish will protect you
 }
 
-Shortstrike: {
-	CopperShortstrike: {
-		DisplayName: Copper Shortstrike
-		Description: Increases defense by 5
-	}
-
-	IronShortstrike: {
-		DisplayName: Iron Shortstrike
-		Description: Increases defense by 6
-	}
-
-	TinShortstrike: {
-		DisplayName: Tin Shortstrike
-		Description: Increases damage reduction by 2%
-	}
-
-	GoldShortstrike: {
-		DisplayName: Gold Shortstrike
-		Description: Increases defense by 10
-	}
-
-	LeadShortstrike: {
-		DisplayName: Lead Shortstrike
-		Description: Increases damage reduction by 3%
-	}
-
-	PlatinumShortstrike: {
-		DisplayName: Platinum Shortstrike
-		Description: Increases damage reduction by 6%
-	}
-
-	SilverShortstrike: {
-		DisplayName: Silver Shortstrike
-		Description: Increases defense by 8
-	}
-
-	TungstenShortstrike: {
-		DisplayName: Tungsten Shortstrike
-		Description: Increases damage reduction by 4%
-	}
-
-	GladiusShortstrike: {
-		DisplayName: Gladius Shortstrike
-		Description: Increases movement speed by 20%
-	}
-
-	WulfrumShortstrike: {
-		DisplayName: Wulfrum Shortstrike
-		Description: Wulfrum Leech Dagger is non-consumable
-	}
-}
-
 HellsBellsBuff: {
 	Description: The bell of Hell will protect you
 	DisplayName: Obsidian Bell
