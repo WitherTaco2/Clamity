@@ -9,18 +9,13 @@ ClamitousPearl: {
 }
 
 CoreOfFlame: {
-	DisplayName: Ядро огня
+	DisplayName: Ядро Игниса
 	// Tooltip: ""
 }
 
 EssenceOfFlame: {
-	DisplayName: Эссенция огня
+	DisplayName: Эссенция Игниса
 	Tooltip: Эссенция существ из горячих земель
-}
-
-MediocreMatter: {
-	// DisplayName: Mediocre Matter
-	// Tooltip: ""
 }
 
 EnchantedMetal: {
