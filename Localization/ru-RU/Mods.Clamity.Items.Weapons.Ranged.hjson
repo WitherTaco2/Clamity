@@ -17,11 +17,6 @@ RoseBow: {
 		'''
 }
 
-Sillyshark: {
-	DisplayName: Шелковистая акула
-	// Tooltip: ""
-}
-
 WitheredBoneBow: {
 	// DisplayName: Withered Bone Bow
 	/* Tooltip:

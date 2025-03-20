@@ -9,18 +9,13 @@ ClamitousPearl: {
 }
 
 CoreOfFlame: {
-	DisplayName: Core of Flame
+	DisplayName: Core of Ignis
 	Tooltip: ""
 }
 
 EssenceOfFlame: {
-	DisplayName: Essence of Flame
+	DisplayName: Essence of Ignis
 	Tooltip: The essence of hot creatures
-}
-
-MediocreMatter: {
-	DisplayName: Mediocre Matter
-	Tooltip: ""
 }
 
 EnchantedMetal: {

@@ -8,12 +8,3 @@ RealityRelocator: {
 		'I'll be there in the blink of an eye'
 		'''
 }
-
-RodOfMisery: {
-	DisplayName: Rod of Misery
-	Tooltip:
-		'''
-		Teleports you to opposite your mouse's cursor... kinda.
-		Teleportation is disabled while Chaos State is active
-		'''
-}
