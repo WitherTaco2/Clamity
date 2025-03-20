@@ -47,7 +47,7 @@ Ranged: {
 	ChargedDartExplosion.DisplayName: Заряженный осколок
 	AstralStarCannonProjectile.DisplayName: Астральная звезда
 	AstralStarCannonProjectile2.DisplayName: Упавшая звезда
-	// WitheredBoneBowProj.DisplayName: Withered Bone Bow Proj
+	// WitheredBoneBowProj.DisplayName: Withered Bone Bolt
 }
 
 Magic: {

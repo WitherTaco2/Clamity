@@ -153,7 +153,7 @@ MagicDiamond: {
 
 SharpAmethyst: {
 	DisplayName: Sharp Amethyst
-	Tooltip: 
+	Tooltip:
 		'''
 		Shooting an arrow has a chance to create an extra gem arrow
 		Gem arrows deal 20% of the arrow's damage

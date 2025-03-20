@@ -1,30 +1,30 @@
 SoulOfPyrogen: {
+	DisplayName: Душа Пирогена
 	Tooltip:
 		'''
 		Увеличивает разбойный урон и урон ближнего боя на 10%
 		Истинные удары ближнего боя и скрытные удары создают выступающие из-под земли копь
 		'''
-	DisplayName: Душа Пирогена
 }
 
 DraculasCharm: {
+	DisplayName: Амулет Дракулы
 	Tooltip:
 		'''
 		Увеличивает разбойный урон на 15% и максимальный запас скрытности на 10
 		Скрытные удары наносят на 8% больше урона, призывают рой из самонаводящихся летучий мышей-вампиров и накладывают дебафф «Разрушение»
 		Снаряды разбойного оружия похищают часть здоровья врага при критических ударах, а также разрушаются на самонаводящиеся души при уничтожении
 		'''
-	DisplayName: Амулет Дракулы
 }
 
 PyroStone: {
+	DisplayName: Пирокамень
 	Tooltip:
 		'''
 		Увеличивает урон всех огненых дебаффов в 1,5 раза
 		Создаёт кольцо из огненого щита, которое наносит урон и поджигает врагов
 		«Одна из древних реликвий»
 		'''
-	DisplayName: Пирокамень
 }
 
 HellFlare: {
@@ -55,12 +55,12 @@ SupremeBarrier: {
 }
 
 IcicleRing: {
+	DisplayName: Кольцо-сосулька
 	Tooltip:
 		'''
 		Снижает расход маны до 0
 		Вы постоянно получаете урон
 		'''
-	DisplayName: Кольцо-сосулька
 }
 
 RedDie: {
@@ -126,20 +126,29 @@ TheSubcommunity: {
 	/* StatsList:
 		'''
 		Increases mining speed by {0}%
-		Increases a luck by {1} and fishing power by {2}
-		Increases tile and wall placing speed by {3} and placing range by {4}
+		Increases luck by {1} and fishing power by {2}
+		Increases tile and wall placing speed by {3}% and placing range by {4}
 		Become more powerful as you defeat bosses ({5}% Power)
 		''' */
 }
 
 MagicDiamond: {
 	// DisplayName: Magic Diamond
-	// Tooltip: Magic attack grants a small amount of barrier up to 20
+	/* Tooltip:
+		'''
+		Dealing magic damage creates a small barrier
+		Each magic attack adds a small amount of durability to the barrier
+		The barrier can store up to 20 durability
+		''' */
 }
 
 SharpAmethyst: {
 	// DisplayName: Sharp Amethyst
-	// Tooltip: Every arrows can chance to create an extra gem arrow
+	/* Tooltip:
+		'''
+		Shooting an arrow has a chance to create an extra gem arrow
+		Gem arrows deal 20% of the arrow's damage
+		''' */
 }
 
 BlightedSpyglass: {
@@ -161,12 +170,12 @@ CyanPearl: {
 }
 
 SkullOfTheBloodGod: {
-	// DisplayName: Skull of The Blood God
+	// DisplayName: Skull of the Blood God
 	/* Tooltip:
 		'''
-		13% increased critical strike chance and 20% increased damage
+		20% increased damage and 13% increased critical strike chance
 		Critical strikes explode, causing nearby enemies to ignite with Brimstone Flames
-		Halves enemy contact damage, but this effect has a 20 second cooldown
+		Halves enemy contact damage with a 20 second cooldown
 		Brimstone fire rains down after getting hit
 		Greatly reduces the damage taken by the Brimstone Flames debuff
 		''' */
