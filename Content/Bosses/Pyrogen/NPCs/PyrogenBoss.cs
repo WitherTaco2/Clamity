@@ -303,14 +303,14 @@ namespace Clamity.Content.Bosses.Pyrogen.NPCs
                 }
             }*/
 
-            if (CalamityConfig.Instance.BossesStopWeather)
+            /*if (CalamityConfig.Instance.BossesStopWeather)
             {
                 CalamityMod.CalamityMod.StopRain();
             }
             else if (!Main.raining)
             {
                 CalamityUtils.StartRain();
-            }
+            }*/
 
             if (!player.active || player.dead)
             {
@@ -706,7 +706,7 @@ namespace Clamity.Content.Bosses.Pyrogen.NPCs
                 ModContent.ItemType<HellsBells>(),
                 ModContent.ItemType<MoltenPiercer>()
             };
-            mainRule.Add(ItemDropRule.OneFromOptions(1, itemIDs));
+            mainRule.Add(DropHelper.CalamityStyle(DropHelper.NormalWeaponDropRateFraction, itemIDs));
             //mainRule.Add(ModContent.ItemType<GlacialEmbrace>(), 10);
             mainRule.Add(ItemDropRule.Common(ModContent.ItemType<EssenceOfFlame>(), 1, 8, 10));
             mainRule.Add(DropHelper.PerPlayer(ModContent.ItemType<SoulOfPyrogen>()));

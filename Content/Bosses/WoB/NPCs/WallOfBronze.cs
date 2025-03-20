@@ -56,7 +56,7 @@ namespace Clamity.Content.Bosses.WoB.NPCs
             });
 
             var fanny1 = new FannyDialog("WallOfBronze", "FannyNuhuh").WithDuration(4f).WithCondition(_ => { return Myself is not null; });
-            var fanny2 = new FannyDialog("WallOfBronze", "FannyNuhuh").WithDuration(4f).WithCondition(_ => { return Myself is not null && (Main.LocalPlayer.HasItem(ItemID.RodofDiscord) || Main.LocalPlayer.HasItem(ModContent.ItemType<NormalityRelocator>())); }).WithParentDialog(fanny1, 4f);
+            var fanny2 = new FannyDialog("WallOfBronzeRoD", "FannyNuhuh").WithDuration(4f).WithCondition(_ => { return Myself is not null && (Main.LocalPlayer.HasItem(ItemID.RodofDiscord) || Main.LocalPlayer.HasItem(ModContent.ItemType<NormalityRelocator>())); }).WithParentDialog(fanny1, 4f);
 
             fanny1.Register();
             fanny2.Register();
@@ -406,6 +406,8 @@ namespace Clamity.Content.Bosses.WoB.NPCs
                     }
                 }
                 CalamityUtils.DisplayLocalizedText("Mods.Clamity.Misc.FrozenHellMessege", new Color?(Color.LightCyan));
+                ClamitySystem.generatedFrozenHell = true;
+                CalamityNetcode.SyncWorld();
             }
 
             //NPC.SetEventFlagCleared(ref ClamitySystem.downedWallOfBronze, -1);

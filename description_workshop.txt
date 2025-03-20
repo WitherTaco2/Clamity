@@ -11,11 +11,18 @@ Mod has official support of English and Russian Localization
 	[*] And more
 [/list]
 
+[h1]Team[/h1]
+WitherTaco - Owner, Coder, minor Spriter, Me
+pil - main Spriter,
+thydeo - minor Spriter, my friend
+FranciumKilla - Musican, Creator of Cruiser's theme from Calamity Entropy
+BrimstonPremium - Pyrogen's theme creator (Musican)
+
 [h1]Credits[/h1]
 Thanks StarvoXD for inspiration of Clamitas (and music)
 Thanks スナネコ (Mira) for helping with Wall of Bronze and Frozen Hell
 Credits for music in music mod page
-Fandom Wiki for sprites and ideas
+Calamity Fandom Wiki and Chinace Calamity Fandom wiki for sprites and ideas
 Calamity Team for cool mod
 YOU for downloading this project
 
