@@ -7,8 +7,8 @@ Melee: {
 	WulfrumLeechDaggerShard.DisplayName: Wulfrum Leech Dagger Shard
 	TheWOBblerProjectile.DisplayName: Ice Chunk
 	EverestProjectile.DisplayName: Everest
-	ExoGladiusBeam.DisplayName: Exo Gladius Beam
-	ExoGladiusExplosion.DisplayName: Exo Gladius Explosion
+	ExoNewBeam.DisplayName: Exo Beam
+	ExoNewExplosion.DisplayName: Exo Explosion
 }
 
 Ranged: {

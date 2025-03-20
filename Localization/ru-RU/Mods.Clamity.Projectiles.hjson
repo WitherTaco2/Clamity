@@ -7,8 +7,8 @@ Melee: {
 	WulfrumLeechDaggerShard.DisplayName: Осколок вульфрумового кинжала-пиявки
 	TheWOBblerProjectile.DisplayName: Кусок льда
 	EverestProjectile.DisplayName: Эверест
-	ExoGladiusBeam.DisplayName: Луч Экзо гладиуса
-	ExoGladiusExplosion.DisplayName: Взрыв экзо гладиуса
+	// ExoNewBeam.DisplayName: Exo Beam
+	// ExoNewExplosion.DisplayName: Exo Explosion
 }
 
 Ranged: {
