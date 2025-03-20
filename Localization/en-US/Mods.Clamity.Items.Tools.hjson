@@ -8,11 +8,6 @@ TheWOBbler: {
 	DisplayName: The WOBbler
 }
 
-Waraxe: {
-	Tooltip: Has chance to inflict Armor Crunch
-	DisplayName: Waraxe
-}
-
 CosmiliteDrill: {
 	DisplayName: Cosmilite Drill
 	Tooltip:

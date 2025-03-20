@@ -8,11 +8,6 @@ TheWOBbler: {
 	DisplayName: СБпер
 }
 
-Waraxe: {
-	Tooltip: Имеет шанц наложить 'Разрушение брони'
-	DisplayName: Топор войны
-}
-
 CosmiliteDrill: {
 	// DisplayName: Cosmilite Drill
 	/* Tooltip:

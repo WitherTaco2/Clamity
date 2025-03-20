@@ -24,8 +24,8 @@ MediocreMatter: {
 }
 
 EnchantedMetal: {
-	Tooltip: Металл наполенный душами самой Террарии
 	DisplayName: Зачарованный металл
+	Tooltip: Металл наполенный душами самой Террарии
 }
 
 MetalFeather: {

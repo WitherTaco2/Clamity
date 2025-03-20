@@ -1,12 +1,3 @@
-HadopelagicEcho: {
-	DisplayName: Hadopelagic Echo
-	Tooltip:
-		'''
-		Fires a string of bouncing sound waves that become stronger as they travel
-		Sound waves echo additional sound waves on enemy hits
-		'''
-}
-
 OmegaRay: {
 	DisplayName: Omega Ray
 	Tooltip: Disintegrates everything with a five Y-beams of energy and lasers
