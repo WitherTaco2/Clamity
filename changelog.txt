@@ -1,6 +1,7 @@
 Update 1.0.3.7
 
 Returned and reworked The Omega (old name - Omega Ray)
+Added Wither Bone Bow (WitherTaco's Developer Shadowspec weapon)
 Added The Subcommunity, Skull of Blood God
 Added New Crawler Gems accessories - Sharp Amethyst, Magic Diamond
 Added Sentry-related accessories - Cyan Pearl, Blighted Spyglass

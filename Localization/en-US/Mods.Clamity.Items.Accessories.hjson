@@ -136,7 +136,7 @@ TheSubcommunity: {
 		'''
 		Increases mining speed by {0}%
 		Increases a luck by {1} and fishing power by {2}
-		Increases tile and wall placing speed by {3} and placing range by {4}
+		Increases tile and wall placing speed by {3}% and placing range by {4}
 		Become more powerful as you defeat bosses ({5}% Power)
 		'''
 }

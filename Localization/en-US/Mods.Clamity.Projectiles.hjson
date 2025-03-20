@@ -45,6 +45,7 @@ Ranged: {
 	ChargedDartExplosion.DisplayName: Charged Split
 	AstralStarCannonProjectile.DisplayName: Astral Star
 	AstralStarCannonProjectile2.DisplayName: Fallen Star
+	WitheredBoneBowProj.DisplayName: Withered Bone Bolt
 }
 
 Magic: {

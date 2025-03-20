@@ -60,3 +60,13 @@ AstralStarCannon: {
 	DisplayName: Astral Star Cannon
 	Tooltip: Shoot a powerful astral stra which creates a other stars from the sky on hit
 }
+
+WitheredBoneBow: {
+	DisplayName: Withered Bone Bow
+	Tooltip:
+		'''
+		Converts wooden arrow to withered bone bolts
+		Bolts creates a copy behind player on hit up to two times
+		Bolts inflict Withered and has 15 armor penetration
+		'''
+}
