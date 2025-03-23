@@ -18,8 +18,6 @@ using Clamity.Content.Items.Mounts;
 using Clamity.Content.Items.Potions.Food;
 using Clamity.Content.Items.Weapons.Classless;
 using Clamity.Content.Items.Weapons.Melee.Shortswords;
-using Clamity.Content.Items.Weapons.Melee.Swords;
-using Clamity.Content.Items.Weapons.Ranged.Guns;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;

@@ -19,8 +19,8 @@ EssenceOfFlame: {
 }
 
 EnchantedMetal: {
-	DisplayName: Зачарованный металл
 	Tooltip: Металл наполенный душами самой Террарии
+	DisplayName: Зачарованный металл
 }
 
 MetalFeather: {
