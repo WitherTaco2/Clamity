@@ -4,8 +4,10 @@ using CalamityMod.NPCs;
 using CalamityMod.Particles;
 using Clamity.Content.Bosses.Clamitas.Projectiles;
 using Clamity.Content.Particles;
+using Luminance.Common.Easings;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -69,7 +71,7 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
                 statChange = true;
             }
 
-            Main.NewText($"{attack} - {AttackTimer}");
+            //Main.NewText($"{attack} - {AttackTimer}");
             AttackTimer++;
             switch (CurrentAttack)
             {
@@ -119,7 +121,7 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
 
             if (AttackTimer % 10 == 0)
             {
-                ChromaticBurstParticle particle1 = new ChromaticBurstParticle(NPC.Center, Vector2.Zero, Color.Red, 20, 10f, 0);
+                ChromaticBurstParticle particle1 = new ChromaticBurstParticle(NPC.Center, Vector2.Zero, Color.Red, Color.Red * 0.4f, 20, 1.5f, 0.05f, EasingCurves.Quadratic, EasingType.Out);
                 GeneralParticleHandler.SpawnParticle(particle1);
             }
             Main.LocalPlayer.Calamity().GeneralScreenShakePower = Utils.GetLerpValue(0, 1, AttackTimer / (float)60, true);
@@ -132,16 +134,22 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
         }
         private void CrossSpiritsState()
         {
-            if (AttackTimer % 120 == 0)
+            int delay = 100;
+            if (AttackTimer % delay == 0)
             {
-                float num = AttackTimer % 240 == 0 ? MathHelper.PiOver4 : 0;
+                float num = AttackTimer % (delay * 2) == 0 ? MathHelper.PiOver4 : 0;
                 Vector2 center = player.Center;
-                for (int i = 0; i < 3; i++)
+                for (int i = 0; i < 4; i++)
                 {
                     float rot = MathHelper.PiOver2 * i + num;
-                    Projectile.NewProjectile(NPC.GetSource_FromAI(), center + Vector2.UnitX.RotatedBy(rot) * 100, -Vector2.UnitX.RotatedBy(rot), ModContent.ProjectileType<BrimstoneSpiritsSpawner>(), 1, 1, Main.myPlayer, 100, 1);
+                    Projectile.NewProjectile(NPC.GetSource_FromAI(), center + Vector2.UnitX.RotatedBy(rot) * 2000, -Vector2.UnitX.RotatedBy(rot) * 60, ModContent.ProjectileType<BrimstoneSpiritsSpawner>(), 1, 1, NPC.target, 100, 5);
                 }
-                //SoundEngine.PlaySound(SoundID., player.Center);
+                SoundEngine.PlaySound(SoundID.NPCHit36, player.Center);
+            }
+
+            if (AttackTimer > delay * 4 + delay / 2)
+            {
+                SetNextAttack(Attacks.SpiritWave);
             }
         }
         private void SpiritWaveState()

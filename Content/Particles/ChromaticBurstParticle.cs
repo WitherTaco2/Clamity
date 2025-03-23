@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Luminance.Common.Easings;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 
@@ -6,8 +7,17 @@ namespace Clamity.Content.Particles
 {
     public class ChromaticBurstParticle : BaseClamityParticle
     {
-        public float StartingScale = 1f;
-        public float FinalScale = 1f;
+        public float StartingScale;
+        public float FinalScale;
+        public Color StartingColor;
+        public Color FinalColor;
+        public EasingType ScaleEasingType;
+
+        public EasingCurves.Curve ScaleEasingCurve
+        {
+            get;
+            set;
+        }
 
         public override bool SetLifetime => true;
         public override bool UseCustomDraw => true;
@@ -15,21 +25,26 @@ namespace Clamity.Content.Particles
 
         public override string Texture => $"{BaseTexturePath}/ChromaticBurst";
 
-        public ChromaticBurstParticle(Vector2 position, Vector2 velocity, Color color, int lifetime, float startingScale, float finalScale)
+        public ChromaticBurstParticle(Vector2 position, Vector2 velocity, Color startingColor, Color finalColor, int lifetime, float startingScale, float finalScale, EasingCurves.Curve scaleEasingCurve, EasingType scaleEasingType)
         {
             Position = position;
             Velocity = velocity;
-            Color = color;
+            //Color = Color.White;
+            StartingColor = startingColor;
+            FinalColor = finalColor;
             StartingScale = startingScale;
             FinalScale = finalScale;
             Lifetime = lifetime;
             Time = lifetime;
+            ScaleEasingCurve = scaleEasingCurve;
+            ScaleEasingType = scaleEasingType;
         }
 
         public override void Update()
         {
-            Opacity = Utils.GetLerpValue(0f, 4f, Lifetime - Time, true);
-            Scale = MathHelper.Lerp(StartingScale, FinalScale, LifetimeCompletion);
+            //Opacity = Utils.GetLerpValue(0f, 4f, Lifetime - Time, true);
+            Color = Color.Lerp(StartingColor, FinalColor, LifetimeRatio);
+            Scale = ScaleEasingCurve.Evaluate(ScaleEasingType, StartingScale, FinalScale, LifetimeRatio);
             //Scale += 0.8f;
         }
 

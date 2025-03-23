@@ -11,8 +11,9 @@ using Terraria.Utilities;
 
 namespace Clamity.Content.Bosses.Clamitas.Projectiles
 {
-    public class BrimstoneSpirits : ModProjectile
+    public class BrimstoneSpirits : ModProjectile, ILocalizedModType
     {
+        public new string LocalizationCategory => "Projectiles.Boss";
         public override string Texture => "CalamityMod/Projectiles/InvisibleProj";
         public override void SetStaticDefaults()
         {
@@ -33,7 +34,7 @@ namespace Clamity.Content.Bosses.Clamitas.Projectiles
         public ref float SpriteType => ref Projectile.ai[0];
         public override void AI()
         {
-
+            Projectile.rotation = Projectile.velocity.ToRotation();
         }
         public override void OnSpawn(IEntitySource source)
         {

@@ -23,7 +23,7 @@ using Terraria.ModLoader.Utilities;
 
 namespace Clamity.Content.Bosses.Clamitas.NPCs
 {
-    [AutoloadBossHead]
+    //[AutoloadBossHead]
     public partial class ClamitasBoss : ModNPC
     {
         private static NPC myself;
@@ -52,7 +52,21 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
         private int flareFrameCounter;
 
 
+        //Boss Icon
+        public static int giantClamIconIndex;
+        public static int clamitasIconIndex;
 
+        internal static void LoadHeadIcons()
+        {
+            string phase1IconPath = "Clamity/Content/Bosses/Clamitas/NPCs/GiantClam_Head_Boss";
+            string phase2IconPath = "Clamity/Content/Bosses/Clamitas/NPCs/ClamitasBoss_Head_Boss";
+
+            Clamity.mod.AddBossHeadTexture(phase1IconPath, -1);
+            giantClamIconIndex = ModContent.GetModBossHeadSlot(phase1IconPath);
+
+            Clamity.mod.AddBossHeadTexture(phase2IconPath, -1);
+            clamitasIconIndex = ModContent.GetModBossHeadSlot(phase2IconPath);
+        }
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[NPC.type] = 12;
@@ -62,6 +76,9 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
             NPCID.Sets.NPCBestiaryDrawModifiers value = nPCBestiaryDrawModifiers;
             value.Position.Y += 40f;
             NPCID.Sets.NPCBestiaryDrawOffset[Type] = value;
+
+
+
 
             //var fanny1 = new FannyDialog("Clamitas", "FannyNuhuh").WithDuration(4f).WithCondition(_ => { return Myself is not null; });
 
@@ -149,10 +166,10 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
 
 
 
-        public override bool CheckActive()
+        /*public override bool CheckActive()
         {
             return Vector2.Distance(Main.player[NPC.target].Center, NPC.Center) > 5600f;
-        }
+        }*/
 
         public override bool? CanBeHitByProjectile(Projectile projectile)
         {
@@ -267,13 +284,21 @@ namespace Clamity.Content.Bosses.Clamitas.NPCs
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
             string t = Texture;
-            if (!BattleIsStarted)
+            if (!BattleIsStarted && !NPC.IsABestiaryIconDummy)
                 t = ModContent.GetInstance<GiantClam>().Texture;
             else
                 Main.EntitySpriteDraw(ModContent.Request<Texture2D>(Texture + "_Extra").Value, NPC.Center - Vector2.UnitY * 20f * NPC.scale - screenPos, new Rectangle(0, flareFrame * 174, 116, 174), NPC.GetAlpha(Color.White), NPC.rotation, new Vector2(116, 174) * 0.5f, NPC.scale, SpriteEffects.None);
 
             Main.EntitySpriteDraw(ModContent.Request<Texture2D>(t).Value, NPC.Center - screenPos, NPC.frame, NPC.GetAlpha(drawColor), NPC.rotation, NPC.frame.Size() * 0.5f, NPC.scale, SpriteEffects.None);
             return false;
+        }
+
+        public override void BossHeadSlot(ref int index)
+        {
+            if (!BattleIsStarted)
+                index = giantClamIconIndex;
+            else
+                index = clamitasIconIndex;
         }
 
         public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)

@@ -73,6 +73,8 @@ Boss: {
 	WallOfBronzeLaserBeamStart.DisplayName: Плазменный луч
 	WallOfBronzeClawProjectile.DisplayName: Бронзовая клешна
 	WoBDeathrayStart.DisplayName: Плазменный смертельный луч
+	// BrimstoneSpirits.DisplayName: Brimstone Spirits
+	// BrimstoneSpiritsSpawner.DisplayName: Brimstone Spirits Spawner
 }
 
 // ShortstrikeEffect.DisplayName: Shortstrike Effect
@@ -82,5 +84,3 @@ Boss: {
 // PyrogenSummonAnimation.DisplayName: Pyrogen Summon Animation
 // CyanSolutionProjectile.DisplayName: Cyan Solution
 // HeavyMetalTrashCanPet.DisplayName: Mini Bocchi
-// BrimstoneSpirits.DisplayName: Brimstone Spirits
-// BrimstoneSpiritsSpawner.DisplayName: Brimstone Spirits Spawner
