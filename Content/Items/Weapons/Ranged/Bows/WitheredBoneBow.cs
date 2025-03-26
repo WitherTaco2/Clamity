@@ -124,6 +124,8 @@ namespace Clamity.Content.Items.Weapons.Ranged.Bows
             Projectile.rotation = Projectile.velocity.ToRotation();
             Dust dust = Dust.NewDustPerfect(Projectile.Center, DustID.GemSapphire);
             dust.noGravity = true;
+
+            CalamityUtils.HomeInOnNPC(Projectile, false, 1000, 30, 10);
         }
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
