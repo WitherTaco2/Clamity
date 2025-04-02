@@ -15,11 +15,11 @@ namespace Clamity.Commons
 {
     public static class NewNPCStats
     {
-        /*private const double ExpertContactVanillaMultiplier = 2D;
+        private const double ExpertContactVanillaMultiplier = 2D;
         private const double MasterContactVanillaMultiplier = 3D;
         private const double NormalProjectileVanillaMultiplier = 2D;
         private const double ExpertProjectileVanillaMultiplier = 4D;
-        private const double MasterProjectileVanillaMultiplier = 6D;*/
+        private const double MasterProjectileVanillaMultiplier = 6D;
         public static void Load()
         {
             EnemyStats.ProjectileDamageValues = new SortedDictionary<Tuple<int, int>, int[]>()
@@ -77,7 +77,7 @@ namespace Clamity.Commons
                   new int[5]{ 300, 330, 360, 410, 450 }
                 }
             };
-            /*EnemyStats.ExpertDamageMultiplier = new SortedDictionary<int, double>()
+            EnemyStats.ExpertDamageMultiplier = new SortedDictionary<int, double>()
             {
                 { ModContent.NPCType<IhorBody>(), 0.8 },
                 { ModContent.NPCType<IhorBodySmall>(), 0.8 },
@@ -87,7 +87,7 @@ namespace Clamity.Commons
                 { ModContent.NPCType<IhorHead>(), new int[] { 135, 207, 241, 271, 414 } },
                 { ModContent.NPCType<IhorBody>(), new int[] { 90, 138, 161, 184, 276 } },
                 { ModContent.NPCType<IhorBodySmall>(), new int[] { 70, 128, 131, 144, 226 } },
-            };*/
+            };
         }
         public static void UnLoad()
         {
@@ -112,7 +112,7 @@ namespace Clamity.Commons
                 return projectileDamage1;
             return !Main.expertMode ? num2 : num3;
         }
-        /*public static void GetNPCDamageClamity(this NPC npc)
+        public static void GetNPCDamageClamity(this NPC npc)
         {
             double damageAdjustment = GetExpertDamageMultiplierClamity(npc) * (Main.masterMode ? MasterContactVanillaMultiplier : ExpertContactVanillaMultiplier);
 
@@ -136,7 +136,7 @@ namespace Clamity.Commons
         {
             bool exists = EnemyStats.ExpertDamageMultiplier.TryGetValue(npc.type, out double damageMult);
             return exists ? damageMult : 1D;
-        }*/
+        }
         [StructLayout(LayoutKind.Sequential, Size = 1)]
         internal struct EnemyStats
         {
