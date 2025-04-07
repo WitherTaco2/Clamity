@@ -3,7 +3,7 @@ using CalamityMod.Events;
 using CalamityMod.NPCs;
 using CalamityMod.World;
 using Clamity.Commons;
-using Luminance.Common.Utilities;
+using Microsoft.Xna.Framework;
 using System.IO;
 using Terraria;
 using Terraria.GameContent.Bestiary;
@@ -30,7 +30,7 @@ namespace Clamity.Content.Bosses.Ihor.NPCs
             NPC.width = 114;
             NPC.height = 114;
 
-            NPC.LifeMaxNERB(95000, 182400, 1650000);
+            NPC.LifeMaxNERB(95000, 114400, 1650000);
 
             double HPBoost = CalamityConfig.Instance.BossHealthBoost * 0.01;
             NPC.lifeMax += (int)(NPC.lifeMax * HPBoost);
@@ -39,7 +39,7 @@ namespace Clamity.Content.Bosses.Ihor.NPCs
             NPC.knockBackResist = 0f;
             NPC.boss = true;
             NPC.value = Item.buyPrice(0, 5, 0, 0);
-            NPC.alpha = 255;
+            //NPC.alpha = 255;
             NPC.behindTiles = true;
             NPC.noGravity = true;
             NPC.noTileCollide = true;
@@ -86,8 +86,9 @@ namespace Clamity.Content.Bosses.Ihor.NPCs
                 enrageScale += 2f;
             }
 
-            NPC.velocity = NPC.Center.SafeDirectionTo(player.Center);
-            NPC.rotation = NPC.velocity.ToRotation();
+            //NPC.velocity = NPC.Center.SafeDirectionTo(player.Center) * 10;
+            NPC.velocity = (player.Center - NPC.Center) * 0.1f;
+            NPC.rotation = NPC.velocity.ToRotation() - MathHelper.PiOver2;
 
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {

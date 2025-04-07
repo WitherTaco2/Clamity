@@ -3,6 +3,7 @@ using CalamityMod.Events;
 using CalamityMod.NPCs;
 using Clamity.Commons;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System.IO;
 using Terraria;
 using Terraria.ID;
@@ -14,6 +15,7 @@ namespace Clamity.Content.Bosses.Ihor.NPCs
     [LongDistanceNetSync(SyncWith = typeof(IhorHead))]
     public class IhorBody : ModNPC
     {
+        public override string Texture => base.Texture;
         public override LocalizedText DisplayName => Language.GetOrRegister("Mods.Clamity.NPCs.IhorHead.DisplayName");
         public override void SetDefaults()
         {
@@ -76,9 +78,9 @@ namespace Clamity.Content.Bosses.Ihor.NPCs
 
             NPC aheadSegment = Main.npc[(int)NPC.ai[1]];
 
-            Vector2 destination = aheadSegment.Center + new Vector2(0, aheadSegment.height / 2);
-            NPC.velocity = (destination - NPC.Center) * 0.1f;
-            NPC.rotation = NPC.velocity.ToRotation();
+            Vector2 destination = aheadSegment.Center + new Vector2(0, -aheadSegment.height / 2).RotatedBy(aheadSegment.rotation);
+            NPC.velocity = (destination - NPC.Center) * 0.2f + aheadSegment.velocity;
+            NPC.rotation = NPC.velocity.ToRotation() - MathHelper.PiOver2;
         }
         public override bool CheckActive() => false;
         public override void SendExtraAI(BinaryWriter writer)
@@ -88,6 +90,16 @@ namespace Clamity.Content.Bosses.Ihor.NPCs
         public override void ReceiveExtraAI(BinaryReader reader)
         {
             NPC.dontTakeDamage = reader.ReadBoolean();
+        }
+        public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
+        {
+            Texture2D t = ModContent.Request<Texture2D>("Clamity/Content/Bosses/Ihor/NPCs/IhorConnection").Value;
+            NPC aheadSegment = Main.npc[(int)NPC.ai[1]];
+            Vector2 from = NPC.Center + new Vector2(0, NPC.height / 2).RotatedBy(NPC.rotation);
+            Vector2 to = aheadSegment.Center + new Vector2(0, -aheadSegment.height / 2).RotatedBy(aheadSegment.rotation);
+
+            spriteBatch.Draw(t, (from + to) / 2 - Main.screenPosition, null, drawColor, (to - from).ToRotation() - MathHelper.PiOver2, t.Size() / 2f, new Vector2(1, (to - from).Length() / (float)t.Height), SpriteEffects.None, 0);
+            return base.PreDraw(spriteBatch, screenPos, drawColor);
         }
     }
 }
