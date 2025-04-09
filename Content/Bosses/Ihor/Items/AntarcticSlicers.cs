@@ -66,15 +66,15 @@ namespace Clamity.Content.Bosses.Ihor.Items
             {
                 Item.useTime = 2;
                 Item.useAnimation = 2;
-                Item.useLimitPerAnimation = player.Clamity().antarcticSlicersBolts;
+                //Item.useLimitPerAnimation = player.Clamity().antarcticSlicersBolts;
                 //Item.reuseDelay = 10;
             }
             else
             {
                 Item.useTime = 4;
                 Item.useAnimation = 4;
-                Item.useLimitPerAnimation = 1;
-                Item.reuseDelay = 0;
+                //Item.useLimitPerAnimation = 1;
+                //Item.reuseDelay = 0;
             }
             return base.UseItem(player);
         }
@@ -87,7 +87,7 @@ namespace Clamity.Content.Bosses.Ihor.Items
                 {
                     SoundEngine.PlaySound(SoundID.DD2_GhastlyGlaivePierce with { Pitch = 1.5f }, player.Center);
                     Vector2 vel = velocity.RotatedByRandom(0.4f);
-                    Projectile.NewProjectile(source, position + vel * 200, vel * 0.1f, ModContent.ProjectileType<AntarcticSlicersSlash>(), (int)(damage * 1.2), knockback * 1.2f, player.whoAmI, 1);
+                    Projectile.NewProjectile(source, position + vel * 100, vel * 0.1f, ModContent.ProjectileType<AntarcticSlicersSlash>(), (int)(damage * 1.2), knockback * 1.2f, player.whoAmI, 1);
                     player.Clamity().antarcticSlicersBolts--;
                 }
                 else
@@ -219,7 +219,7 @@ namespace Clamity.Content.Bosses.Ihor.Items
     public class AntarcticSlicersBlade : BaseShortswordProjectile
     {
         public override LocalizedText DisplayName => CalamityUtils.GetItemName<AntarcticSlicers>();
-        public override string Texture => ModContent.GetInstance<AntarcticSlicersBolt>().Texture;
+        //public override string Texture => ModContent.GetInstance<AntarcticSlicersBolt>().Texture;
         public new string LocalizationCategory => "Projectiles.Melee";
         public Player player => Main.player[Projectile.owner];
         public ref int Bolts => ref Main.player[Projectile.owner].Clamity().antarcticSlicersBolts;
@@ -259,7 +259,7 @@ namespace Clamity.Content.Bosses.Ihor.Items
         {
             if (Main.rand.NextBool(2))
             {
-                Dust dust = Dust.NewDustPerfect(Projectile.Center + Main.rand.NextVector2Circular(12, 12), DustID.Snow);
+                Dust dust = Dust.NewDustPerfect(Projectile.Center + Main.rand.NextVector2Circular(12, 12), DustID.SnowBlock);
                 dust.scale = Main.rand.NextFloat(0.15f, 0.6f);
                 dust.noGravity = true;
                 dust.velocity = -Projectile.velocity * 0.5f;
@@ -297,7 +297,7 @@ namespace Clamity.Content.Bosses.Ihor.Items
                 float rot = MathHelper.ToRadians(i * rotFactor);
                 Vector2 offset = new Vector2(Main.rand.NextFloat(0.5f, 2.5f), 0).RotatedBy(rot * Main.rand.NextFloat(1.1f, 9.1f));
                 Vector2 velOffset = new Vector2(Main.rand.NextFloat(0.5f, 2.5f), 0).RotatedBy(rot * Main.rand.NextFloat(1.1f, 9.1f));
-                Dust dust = Dust.NewDustPerfect(target.Center + offset, Main.rand.NextBool() ? DustID.Snow : DustID.Ice, new Vector2(velOffset.X, velOffset.Y));
+                Dust dust = Dust.NewDustPerfect(target.Center + offset, Main.rand.NextBool() ? DustID.SnowBlock : DustID.Ice, new Vector2(velOffset.X, velOffset.Y));
                 dust.noGravity = false;
                 dust.velocity = velOffset;
                 dust.scale = Main.rand.NextFloat(1.5f, 1.2f);
@@ -308,7 +308,7 @@ namespace Clamity.Content.Bosses.Ihor.Items
     public class AntarcticSlicersBladeAlt : BaseShortswordProjectile
     {
         public override LocalizedText DisplayName => CalamityUtils.GetItemName<AntarcticSlicers>();
-        public override string Texture => ModContent.GetInstance<AntarcticSlicersBolt>().Texture;
+        //public override string Texture => ModContent.GetInstance<AntarcticSlicersBolt>().Texture;
         public new string LocalizationCategory => "Projectiles.Melee";
         public Player player => Main.player[Projectile.owner];
         public ref int Bolts => ref Main.player[Projectile.owner].Clamity().antarcticSlicersBolts;
@@ -348,7 +348,7 @@ namespace Clamity.Content.Bosses.Ihor.Items
         {
             if (Main.rand.NextBool(2))
             {
-                Dust dust = Dust.NewDustPerfect(Projectile.Center + Main.rand.NextVector2Circular(12, 12), DustID.Snow);
+                Dust dust = Dust.NewDustPerfect(Projectile.Center + Main.rand.NextVector2Circular(12, 12), DustID.SnowBlock);
                 dust.scale = Main.rand.NextFloat(0.15f, 0.6f);
                 dust.noGravity = true;
                 dust.velocity = -Projectile.velocity * 0.5f;
@@ -387,7 +387,7 @@ namespace Clamity.Content.Bosses.Ihor.Items
                 float rot = MathHelper.ToRadians(i * rotFactor);
                 Vector2 offset = new Vector2(Main.rand.NextFloat(0.5f, 2.5f), 0).RotatedBy(rot * Main.rand.NextFloat(1.1f, 9.1f));
                 Vector2 velOffset = new Vector2(Main.rand.NextFloat(0.5f, 2.5f), 0).RotatedBy(rot * Main.rand.NextFloat(1.1f, 9.1f));
-                Dust dust = Dust.NewDustPerfect(target.Center + offset, Main.rand.NextBool() ? DustID.Snow : DustID.Ice, new Vector2(velOffset.X, velOffset.Y));
+                Dust dust = Dust.NewDustPerfect(target.Center + offset, Main.rand.NextBool() ? DustID.SnowBlock : DustID.Ice, new Vector2(velOffset.X, velOffset.Y));
                 dust.noGravity = false;
                 dust.velocity = velOffset;
                 dust.scale = Main.rand.NextFloat(1.5f, 1.2f);
