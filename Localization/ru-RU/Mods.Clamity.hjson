@@ -67,6 +67,11 @@ Items: {
 		// DisplayName: Distorted Dye
 		// Tooltip: ""
 	}
+
+	BronzeBlueprints: {
+		// DisplayName: Bronze Blueprints
+		// Tooltip: ""
+	}
 }
 
 Misc: {
