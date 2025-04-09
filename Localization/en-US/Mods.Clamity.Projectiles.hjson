@@ -9,6 +9,8 @@ Melee: {
 	EverestProjectile.DisplayName: Everest
 	ExoNewBeam.DisplayName: Exo Beam
 	ExoNewExplosion.DisplayName: Exo Explosion
+	AntarcticSlicersBolt.DisplayName: Antarctic Slicers Bolt
+	AntarcticSlicersSlash.DisplayName: Antarctic Slicers Slash
 }
 
 Ranged: {

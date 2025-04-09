@@ -5,6 +5,7 @@ using CalamityMod.Items.Accessories;
 using CalamityMod.NPCs.Cryogen;
 using CalamityMod.Projectiles.Rogue;
 using Clamity.Content.Biomes.FrozenHell.Biome;
+using Clamity.Content.Bosses.Ihor.Items;
 using Clamity.Content.Bosses.Pyrogen.Drop;
 using Clamity.Content.Bosses.Pyrogen.NPCs;
 using Clamity.Content.Cooldowns;
@@ -33,6 +34,7 @@ namespace Clamity
         public bool wulfrumShortstrike;
         public bool aflameAcc;
         public List<int> aflameAccList;
+        public int antarcticSlicersBolts = 0;
 
         //Accessories
         //Other
@@ -384,6 +386,8 @@ namespace Clamity
                 Player.tileRangeX += (int)(baseBoost * TheSubcommunity.TileRangeMult);
                 Player.tileRangeY += (int)(baseBoost * TheSubcommunity.TileRangeMult);
             }
+            if (Player.ActiveItem().type != ModContent.ItemType<AntarcticSlicers>())
+                antarcticSlicersBolts = 0;
         }
         public Item FindAccessory(int itemID)
         {

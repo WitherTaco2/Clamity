@@ -48,3 +48,8 @@ Everest: {
 	DisplayName: Эверест
 	Tooltip: Выпускает разбросом вулканические огненые шары
 }
+
+AntarcticSlicers: {
+	// DisplayName: Antarctic Slicers
+	// Tooltip: ""
+}

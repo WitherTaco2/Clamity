@@ -48,3 +48,8 @@ Everest: {
 	DisplayName: Everest
 	Tooltip: Fires a spread of volcanic fireballs
 }
+
+AntarcticSlicers: {
+	DisplayName: Antarctic Slicers
+	Tooltip: ""
+}
