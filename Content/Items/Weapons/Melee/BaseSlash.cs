@@ -21,7 +21,7 @@ namespace Clamity.Content.Items.Weapons.Melee
             Projectile.Opacity = Projectile.timeLeft / 35f;
             if (Projectile.timeLeft == 34)
             {
-                Particle spark2 = new GlowSparkParticle(Projectile.Center, new Vector2(0.1f, 0.1f).RotatedByRandom(100), false, 12, Main.rand.NextFloat(0.05f, 0.09f), GetNewColor * 0.7f, new Vector2(2, 0.5f), true);
+                Particle spark2 = new GlowSparkParticle(Projectile.Center, Projectile.velocity, false, 12, Scale, GetNewColor * 0.7f, new Vector2(2, 0.5f), true);
                 GeneralParticleHandler.SpawnParticle(spark2);
             }
         }
