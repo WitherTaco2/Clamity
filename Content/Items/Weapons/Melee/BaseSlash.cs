@@ -21,7 +21,7 @@ namespace Clamity.Content.Items.Weapons.Melee
             Projectile.Opacity = Projectile.timeLeft / 35f;
             if (Projectile.timeLeft == 34)
             {
-                Particle spark2 = new GlowSparkParticle(Projectile.Center, Projectile.velocity, false, 12, Scale, GetNewColor * 0.7f, new Vector2(2, 0.5f), true);
+                Particle spark2 = new GlowSparkParticle(Projectile.Center, Projectile.velocity, false, 12, Scale * 0.1f, GetNewColor * 0.7f, new Vector2(2, 0.5f), true);
                 GeneralParticleHandler.SpawnParticle(spark2);
             }
         }
@@ -42,8 +42,8 @@ namespace Clamity.Content.Items.Weapons.Melee
             }
 
             float collisionPoint = 0f;
-            return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), Projectile.Center, Projectile.Center + new Vector2(250, 0).RotatedBy(Projectile.rotation) * Scale, Projectile.Size.Length() * Projectile.scale / 10f, ref collisionPoint)
-                || Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), Projectile.Center, Projectile.Center - new Vector2(250, 0).RotatedBy(Projectile.rotation) * Scale, Projectile.Size.Length() * Projectile.scale / 10f, ref collisionPoint);
+            return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), Projectile.Center, Projectile.Center + new Vector2(200, 0).RotatedBy(Projectile.rotation) * Scale, Projectile.Size.Length() * Projectile.scale / 10f, ref collisionPoint)
+                || Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), Projectile.Center, Projectile.Center - new Vector2(200, 0).RotatedBy(Projectile.rotation) * Scale, Projectile.Size.Length() * Projectile.scale / 10f, ref collisionPoint);
         }
     }
 }
