@@ -29,7 +29,7 @@ namespace Clamity.Content.Bosses.Ihor.Items
             Item.noUseGraphic = true;
             Item.autoReuse = true;
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.damage = 23;
+            Item.damage = 40;
             Item.DamageType = ModContent.GetInstance<TrueMeleeDamageClass>();
             Item.useTime = 4;
             Item.useAnimation = 4;
@@ -42,30 +42,12 @@ namespace Clamity.Content.Bosses.Ihor.Items
             Item.rare = ItemRarityID.Green;
         }
         public override bool AltFunctionUse(Player player) => true;
-        /*public override bool CanUseItem(Player player)
-        {
-            if (player.altFunctionUse == 2)
-            {
-                Item.useTime = 2;
-                Item.useAnimation = 2;
-                Item.useLimitPerAnimation = player.Clamity().antarcticSlicersBolts;
-                //Item.reuseDelay = 10;
-            }
-            else
-            {
-                Item.useTime = 4;
-                Item.useAnimation = 4;
-                Item.useLimitPerAnimation = 1;
-                Item.reuseDelay = 0;
-            }
-            return base.CanUseItem(player);
-        }*/
         public override bool? UseItem(Player player)
         {
             if (player.altFunctionUse == 2)
             {
-                Item.useTime = 2;
-                Item.useAnimation = 2;
+                Item.useTime = 1;
+                Item.useAnimation = 1;
                 //Item.useLimitPerAnimation = player.Clamity().antarcticSlicersBolts;
                 //Item.reuseDelay = 10;
             }
@@ -87,7 +69,7 @@ namespace Clamity.Content.Bosses.Ihor.Items
                 {
                     SoundEngine.PlaySound(SoundID.DD2_GhastlyGlaivePierce with { Pitch = 1.5f }, player.Center);
                     Vector2 vel = velocity.RotatedByRandom(0.4f);
-                    Projectile.NewProjectile(source, position + vel * 100, vel * 0.1f, ModContent.ProjectileType<AntarcticSlicersSlash>(), (int)(damage * 1.2), knockback * 1.2f, player.whoAmI, 1);
+                    Projectile.NewProjectile(source, position + vel * 20, vel * 0.1f, ModContent.ProjectileType<AntarcticSlicersSlash>(), (int)(damage * 1.2), knockback * 1.2f, player.whoAmI, 1);
                     player.Clamity().antarcticSlicersBolts--;
                 }
                 else
@@ -275,20 +257,20 @@ namespace Clamity.Content.Bosses.Ihor.Items
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             // Add to bolt counter, spawn 2 quiver bolts, and on hit visual
-            if (Bolts < 10)
+            if (Bolts < 15)
             {
                 Bolts++;
                 Projectile.NewProjectile(Projectile.GetSource_FromThis(), Owner.Center, Vector2.Zero, ModContent.ProjectileType<AntarcticSlicersBolt>(), Projectile.damage, Projectile.knockBack, Projectile.owner, 0, Bolts);
-                if (Bolts < 10)
+                if (Bolts < 15)
                 {
                     Bolts++;
                     Projectile.NewProjectile(Projectile.GetSource_FromThis(), Owner.Center, Vector2.Zero, ModContent.ProjectileType<AntarcticSlicersBolt>(), Projectile.damage, Projectile.knockBack, Projectile.owner, 0, Bolts);
                 }
             }
-            else if (Main.rand.NextBool(3))
+            else if (Main.rand.NextBool(2))
             {
-                Vector2 vel = (Projectile.Center - player.Center).RotatedByRandom(0.4f);
-                Projectile.NewProjectile(Projectile.GetSource_FromAI(), player.Center + vel * 200, vel * 0.1f, ModContent.ProjectileType<AntarcticSlicersSlash>(), (int)(Projectile.damage * 1.2), Projectile.knockBack * 1.2f, player.whoAmI, 1);
+                Vector2 vel = (Projectile.Center - player.Center).SafeNormalize(Vector2.Zero).RotatedByRandom(0.4f);
+                Projectile.NewProjectile(Projectile.GetSource_FromAI(), player.Center + vel * 20, vel * 0.1f, ModContent.ProjectileType<AntarcticSlicersSlash>(), (int)(Projectile.damage * 1.1), Projectile.knockBack * 1.2f, player.whoAmI, 1);
             }
             float numberOfDusts = 5f;
             float rotFactor = 360f / numberOfDusts;
@@ -365,20 +347,20 @@ namespace Clamity.Content.Bosses.Ihor.Items
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             // Add to bolt counter, spawn 2 quiver bolts, and on hit visual
-            if (Bolts < 10)
+            if (Bolts < 15)
             {
                 Bolts++;
                 Projectile.NewProjectile(Projectile.GetSource_FromThis(), Owner.Center, Vector2.Zero, ModContent.ProjectileType<AntarcticSlicersBolt>(), Projectile.damage, Projectile.knockBack, Projectile.owner, 0, Bolts);
-                if (Bolts < 10)
+                if (Bolts < 15)
                 {
                     Bolts++;
                     Projectile.NewProjectile(Projectile.GetSource_FromThis(), Owner.Center, Vector2.Zero, ModContent.ProjectileType<AntarcticSlicersBolt>(), Projectile.damage, Projectile.knockBack, Projectile.owner, 0, Bolts);
                 }
             }
-            else if (Main.rand.NextBool(3))
+            else if (Main.rand.NextBool(2))
             {
-                Vector2 vel = (Projectile.Center - player.Center).RotatedByRandom(0.4f);
-                Projectile.NewProjectile(Projectile.GetSource_FromAI(), player.Center + vel * 200, vel * 0.1f, ModContent.ProjectileType<AntarcticSlicersSlash>(), (int)(Projectile.damage * 1.2), Projectile.knockBack * 1.2f, player.whoAmI, 1);
+                Vector2 vel = (Projectile.Center - player.Center).SafeNormalize(Vector2.Zero).RotatedByRandom(0.4f);
+                Projectile.NewProjectile(Projectile.GetSource_FromAI(), player.Center + vel * 20, vel * 0.1f, ModContent.ProjectileType<AntarcticSlicersSlash>(), (int)(Projectile.damage * 1.1), Projectile.knockBack * 1.2f, player.whoAmI, 1);
             }
             float numberOfDusts = 5f;
             float rotFactor = 360f / numberOfDusts;
