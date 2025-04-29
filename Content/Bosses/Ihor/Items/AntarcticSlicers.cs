@@ -151,7 +151,8 @@ namespace Clamity.Content.Bosses.Ihor.Items
                     Projectile.Kill();
 
                 // Setting the bolt's position on the player's back
-                Projectile.rotation = (21.8f - (Projectile.ai[1] * 0.1f)) * -Owner.direction;
+                Projectile.rotation = (21.8f - (Projectile.ai[1] * 0.1f)) * -Owner.direction - MathHelper.PiOver4;
+                //Projectile.rotation = Owner.direction == 1 ? (21.8f - (Projectile.ai[1] * 0.1f)) : MathHelper.Pi - (21.8f - (Projectile.ai[1] * 0.1f));
                 Vector2 BoltPos = Owner.MountedCenter + new Vector2((10 + Projectile.ai[1] * 2.5f) * -Owner.direction, 3f - Projectile.ai[1]);
 
                 Projectile.Center = BoltPos;
@@ -189,7 +190,8 @@ namespace Clamity.Content.Bosses.Ihor.Items
         {
             if (Projectile.ai[0] == 1)
                 CalamityUtils.DrawAfterimagesCentered(Projectile, ProjectileID.Sets.TrailingMode[Projectile.type], lightColor, 1);
-            return true;
+            CalamityUtils.DrawAfterimagesCentered(Projectile, 3, lightColor, 1);
+            return false;
         }
         public override bool? CanDamage() => Projectile.ai[0] == 1 ? true : false;
     }

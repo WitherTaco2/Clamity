@@ -12,6 +12,13 @@ using Terraria.ModLoader;
 
 namespace Clamity.Content.Bosses.Ihor.NPCs
 {
+    public enum IhorAttacks : int
+    {
+        Summon = 0,
+        MagicBurst,
+
+        StormPillars,
+    }
     public class IhorHead : ModNPC
     {
         private int biomeEnrageTimer = CalamityGlobalNPC.biomeEnrageTimerMax;
@@ -55,8 +62,10 @@ namespace Clamity.Content.Bosses.Ihor.NPCs
         {
             biomeEnrageTimer = reader.ReadInt32();
         }
+        public ref float Attack => ref NPC.ai[0];
         public override void AI()
         {
+            #region Pre-Attack
             bool bossRush = BossRushEvent.BossRushActive;
             bool expertMode = Main.expertMode || bossRush;
             bool masterMode = Main.masterMode || bossRush;
@@ -85,11 +94,14 @@ namespace Clamity.Content.Bosses.Ihor.NPCs
                 NPC.Calamity().CurrentlyEnraged = !bossRush;
                 enrageScale += 2f;
             }
+            #endregion
 
+            //Main AI
             //NPC.velocity = NPC.Center.SafeDirectionTo(player.Center) * 10;
             NPC.velocity = (player.Center - NPC.Center) * 0.1f;
             NPC.rotation = NPC.velocity.ToRotation() - MathHelper.PiOver2;
 
+            #region Summon body
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
                 if (!tailSpawned && NPC.ai[0] == 0f)
@@ -117,6 +129,7 @@ namespace Clamity.Content.Bosses.Ihor.NPCs
                 }
                 tailSpawned = true;
             }
+            #endregion
         }
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {

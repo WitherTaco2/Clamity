@@ -25,6 +25,8 @@ Ranged: {
 	ObsidigunBullet.DisplayName: Obsidian Bullet
 	ObsidigunBulletShard.DisplayName: Obsidian Bullet Shard
 	WitheredBoneBowProj.DisplayName: Withered Bone Bolt
+	BarofrostProj.DisplayName: Barofrost Proj
+	BarofrostProj2.DisplayName: Barofrost Proj2
 }
 
 Magic: {

@@ -15,7 +15,6 @@ namespace Clamity.Content.Bosses.Ihor.NPCs
     [LongDistanceNetSync(SyncWith = typeof(IhorHead))]
     public class IhorBody : ModNPC
     {
-        public override string Texture => base.Texture;
         public override LocalizedText DisplayName => Language.GetOrRegister("Mods.Clamity.NPCs.IhorHead.DisplayName");
         public override void SetDefaults()
         {
@@ -56,6 +55,7 @@ namespace Clamity.Content.Bosses.Ihor.NPCs
                 NPC.life = Main.npc[(int)NPC.ai[1]].life;
 
             NPC.dontTakeDamage = Main.npc[(int)NPC.ai[1]].dontTakeDamage;
+            NPC.Opacity = Main.npc[(int)NPC.ai[1]].Opacity;
 
             bool shouldDespawn = !NPC.AnyNPCs(ModContent.NPCType<IhorHead>());
             if (!shouldDespawn)
@@ -95,10 +95,10 @@ namespace Clamity.Content.Bosses.Ihor.NPCs
         {
             Texture2D t = ModContent.Request<Texture2D>("Clamity/Content/Bosses/Ihor/NPCs/IhorConnection").Value;
             NPC aheadSegment = Main.npc[(int)NPC.ai[1]];
-            Vector2 from = NPC.Center + new Vector2(0, NPC.height / 2).RotatedBy(NPC.rotation);
-            Vector2 to = aheadSegment.Center + new Vector2(0, -aheadSegment.height / 2).RotatedBy(aheadSegment.rotation);
+            Vector2 from = NPC.Center + new Vector2(0, NPC.height / 2 - 2).RotatedBy(NPC.rotation);
+            Vector2 to = aheadSegment.Center - new Vector2(0, aheadSegment.height / 2 - 2).RotatedBy(aheadSegment.rotation);
 
-            spriteBatch.Draw(t, (from + to) / 2 - Main.screenPosition, null, drawColor, (to - from).ToRotation() - MathHelper.PiOver2, t.Size() / 2f, new Vector2(1, (to - from).Length() / (float)t.Height), SpriteEffects.None, 0);
+            spriteBatch.Draw(t, (from + to) / 2 - Main.screenPosition, null, drawColor * NPC.Opacity, (to - from).ToRotation() - MathHelper.PiOver2, t.Size() / 2f, new Vector2(1, (to - from).Length() / (float)t.Height), SpriteEffects.None, 0);
             return base.PreDraw(spriteBatch, screenPos, drawColor);
         }
     }
