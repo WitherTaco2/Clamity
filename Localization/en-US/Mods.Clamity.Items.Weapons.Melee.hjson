@@ -53,3 +53,8 @@ AntarcticSlicers: {
 	DisplayName: Antarctic Slicers
 	Tooltip: ""
 }
+
+JawOfTheFrost: {
+	DisplayName: Jaw of the Frost
+	Tooltip: Thrown a chunk of ice that shatters on hit
+}

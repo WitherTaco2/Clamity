@@ -1,4 +1,5 @@
 ﻿using CalamityMod.Projectiles.Boss;
+using CalamityMod.Projectiles.Enemy;
 using CalamityMod.World;
 using Clamity.Content.Bosses.Clamitas.NPCs;
 using Clamity.Content.Bosses.Ihor.NPCs;
@@ -75,6 +76,10 @@ namespace Clamity.Commons
                 },
                 {
                   new Tuple<int, int>(ModContent.NPCType<WallOfBronzeTorret>(), ModContent.ProjectileType<WallOfBronzeTorretBlast>()),
+                  new int[5]{ 300, 330, 360, 410, 450 }
+                },
+                {
+                  new Tuple<int, int>(ModContent.NPCType<IhorHead>(), ModContent.ProjectileType<StormMarkHostile>()),
                   new int[5]{ 300, 330, 360, 410, 450 }
                 }
             };

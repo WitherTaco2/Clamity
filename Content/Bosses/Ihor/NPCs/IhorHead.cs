@@ -12,12 +12,20 @@ using Terraria.ModLoader;
 
 namespace Clamity.Content.Bosses.Ihor.NPCs
 {
-    public enum IhorAttacks : int
+    public enum IhorMagicAttacks : int
     {
         Summon = 0,
         MagicBurst,
+        HomingStowballs,
 
         StormPillars,
+    }
+    public enum IhorMeleeAttacks : int
+    {
+        Summon = 0,
+        LinearDash,
+        HomingDash,
+        DoGLikeDash,
     }
     public class IhorHead : ModNPC
     {
@@ -53,6 +61,11 @@ namespace Clamity.Content.Bosses.Ihor.NPCs
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath1;
             NPC.netAlways = true;
+
+            if (!Main.dedServ)
+            {
+                Music = Clamity.mod.GetMusicFromMusicMod("Ihor") ?? MusicID.Boss2;
+            }
         }
         public override void SendExtraAI(BinaryWriter writer)
         {
@@ -62,7 +75,8 @@ namespace Clamity.Content.Bosses.Ihor.NPCs
         {
             biomeEnrageTimer = reader.ReadInt32();
         }
-        public ref float Attack => ref NPC.ai[0];
+        public ref float MagicAttack => ref NPC.ai[0];
+        public ref float MeleeAttack => ref NPC.ai[1];
         public override void AI()
         {
             #region Pre-Attack

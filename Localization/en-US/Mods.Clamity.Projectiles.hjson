@@ -11,6 +11,9 @@ Melee: {
 	ExoNewExplosion.DisplayName: Exo Explosion
 	AntarcticSlicersBolt.DisplayName: Antarctic Slicers Bolt
 	AntarcticSlicersSlash.DisplayName: Antarctic Slicers Slash
+	JawOfTheFrostMeleeEffect.DisplayName: "{$Mods.Clamity.Items.Weapons.Melee.JawOfTheFrost.DisplayName}"
+	JawOfTheFrostProjectile.DisplayName: Big Ice Chunk
+	JawOfTheFrostProjectileBig.DisplayName: Ice Fragment
 }
 
 Ranged: {

@@ -79,7 +79,7 @@ namespace Clamity.Content.Bosses.Ihor.NPCs
             NPC aheadSegment = Main.npc[(int)NPC.ai[1]];
 
             Vector2 destination = aheadSegment.Center + new Vector2(0, -aheadSegment.height / 2).RotatedBy(aheadSegment.rotation);
-            NPC.velocity = (destination - NPC.Center) * 0.2f + aheadSegment.velocity;
+            NPC.velocity = (destination - NPC.Center) * 0.2f + aheadSegment.velocity * 4;
             NPC.rotation = NPC.velocity.ToRotation() - MathHelper.PiOver2;
         }
         public override bool CheckActive() => false;
