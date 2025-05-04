@@ -24,6 +24,7 @@ namespace Clamity.Content.Particles
             FinalScale = finalScale;
             Lifetime = lifetime;
             //Time = lifetime;
+            Main.NewText(Texture);
         }
 
         public override void Update()

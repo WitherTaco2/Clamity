@@ -29,7 +29,7 @@ namespace Clamity.Content.Bosses.Ihor.Items
             Item.noUseGraphic = true;
             Item.autoReuse = true;
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.damage = 40;
+            Item.damage = 35;
             Item.DamageType = ModContent.GetInstance<TrueMeleeDamageClass>();
             Item.useTime = 4;
             Item.useAnimation = 4;
@@ -199,6 +199,11 @@ namespace Clamity.Content.Bosses.Ihor.Items
     {
         public override Color FirstColor => Color.LightCyan;
         public override Color SecondColor => Color.Black;
+        public override void SetDefaults()
+        {
+            base.SetDefaults();
+            Projectile.DamageType = ModContent.GetInstance<TrueMeleeDamageClass>();
+        }
     }
     public class AntarcticSlicersBlade : BaseShortswordProjectile
     {
@@ -263,11 +268,11 @@ namespace Clamity.Content.Bosses.Ihor.Items
             {
                 Bolts++;
                 Projectile.NewProjectile(Projectile.GetSource_FromThis(), Owner.Center, Vector2.Zero, ModContent.ProjectileType<AntarcticSlicersBolt>(), Projectile.damage, Projectile.knockBack, Projectile.owner, 0, Bolts);
-                if (Bolts < 15)
+                /*if (Bolts < 15)
                 {
                     Bolts++;
                     Projectile.NewProjectile(Projectile.GetSource_FromThis(), Owner.Center, Vector2.Zero, ModContent.ProjectileType<AntarcticSlicersBolt>(), Projectile.damage, Projectile.knockBack, Projectile.owner, 0, Bolts);
-                }
+                }*/
             }
             else if (Main.rand.NextBool(2))
             {

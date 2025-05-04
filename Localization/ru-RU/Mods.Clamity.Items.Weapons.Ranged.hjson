@@ -30,5 +30,9 @@ WitheredBoneBow: {
 
 Barofrost: {
 	// DisplayName: Barofrost
-	// Tooltip: ""
+	/* Tooltip:
+		'''
+		Fires combo of two shoots of two converging high-velocity ice arrows that easily soar through the air
+		and one shoot of single penetrable high-velocity ice arrows
+		''' */
 }

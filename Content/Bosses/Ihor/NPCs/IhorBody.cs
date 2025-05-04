@@ -79,7 +79,7 @@ namespace Clamity.Content.Bosses.Ihor.NPCs
             NPC aheadSegment = Main.npc[(int)NPC.ai[1]];
 
             Vector2 destination = aheadSegment.Center + new Vector2(0, -aheadSegment.height / 2).RotatedBy(aheadSegment.rotation);
-            NPC.velocity = (destination - NPC.Center) * 0.2f + aheadSegment.velocity * 4;
+            NPC.velocity = (destination - NPC.Center) * 0.2f + aheadSegment.velocity * 0.075f;
             NPC.rotation = NPC.velocity.ToRotation() - MathHelper.PiOver2;
         }
         public override bool CheckActive() => false;
@@ -95,8 +95,8 @@ namespace Clamity.Content.Bosses.Ihor.NPCs
         {
             Texture2D t = ModContent.Request<Texture2D>("Clamity/Content/Bosses/Ihor/NPCs/IhorConnection").Value;
             NPC aheadSegment = Main.npc[(int)NPC.ai[1]];
-            Vector2 from = NPC.Center + new Vector2(0, NPC.height / 2 - 2).RotatedBy(NPC.rotation);
-            Vector2 to = aheadSegment.Center - new Vector2(0, aheadSegment.height / 2 - 2).RotatedBy(aheadSegment.rotation);
+            Vector2 from = NPC.Center + new Vector2(0, NPC.height / 2 - 6).RotatedBy(NPC.rotation);
+            Vector2 to = aheadSegment.Center - new Vector2(0, aheadSegment.height / 2 - 6).RotatedBy(aheadSegment.rotation);
 
             spriteBatch.Draw(t, (from + to) / 2 - Main.screenPosition, null, drawColor * NPC.Opacity, (to - from).ToRotation() - MathHelper.PiOver2, t.Size() / 2f, new Vector2(1, (to - from).Length() / (float)t.Height), SpriteEffects.None, 0);
             return base.PreDraw(spriteBatch, screenPos, drawColor);

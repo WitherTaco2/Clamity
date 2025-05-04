@@ -30,7 +30,7 @@ namespace Clamity.Content.Bosses.Ihor.Items
             Item.UseSound = SoundID.Item1;
             Item.autoReuse = true;
 
-            Item.damage = 70;
+            Item.damage = 120;
             Item.DamageType = DamageClass.Melee;
             Item.knockBack = 6;
 
@@ -125,6 +125,12 @@ namespace Clamity.Content.Bosses.Ihor.Items
             for (int i = 0; i < 7; i++)
             {
                 Projectile.NewProjectile(Projectile.GetSource_Death(), Projectile.Center, new Vector2(0, -5) + Main.rand.NextVector2Circular(1, 1), ModContent.ProjectileType<JawOfTheFrostProjectile>(), Projectile.damage / 2, Projectile.knockBack, Projectile.owner);
+            }
+            for (int i = 0; i < 20; i++)
+            {
+                //Dust dust = Dust.NewDustPerfect(Projectile.Center + Main.rand.NextVector2Circular(Projectile.width / 2, Projectile.height / 2), Main.rand.NextBool() ? DustID.SnowBlock : DustID.Ice, Projectile.velocity.RotatedBy(1.5f) / 3f, Scale: Main.rand.NextFloat(2f));
+                Dust dust2 = Dust.NewDustPerfect(Projectile.Center + Main.rand.NextVector2Circular(Projectile.width / 2, Projectile.height / 2), Main.rand.NextBool() ? DustID.SnowBlock : DustID.Ice, Main.rand.NextVector2Circular(3f, 3f), Scale: Main.rand.NextFloat(2f));
+
             }
         }
     }

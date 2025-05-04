@@ -3,16 +3,19 @@ using CalamityMod.Events;
 using CalamityMod.NPCs;
 using CalamityMod.World;
 using Clamity.Commons;
+using Clamity.Content.Particles;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using System.IO;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Clamity.Content.Bosses.Ihor.NPCs
 {
-    public enum IhorMagicAttacks : int
+    /*public enum IhorMagicAttacks : int
     {
         Summon = 0,
         MagicBurst,
@@ -26,6 +29,15 @@ namespace Clamity.Content.Bosses.Ihor.NPCs
         LinearDash,
         HomingDash,
         DoGLikeDash,
+    }*/
+    public enum IhorAttacks : int
+    {
+        Summon = 0, //23 seconds. Probably a lot of time to spend on intro
+        MagicBurst,
+        HomingDash,
+        HomingSnowballs,
+
+        StormPillars,
     }
     public class IhorHead : ModNPC
     {
@@ -75,8 +87,16 @@ namespace Clamity.Content.Bosses.Ihor.NPCs
         {
             biomeEnrageTimer = reader.ReadInt32();
         }
-        public ref float MagicAttack => ref NPC.ai[0];
-        public ref float MeleeAttack => ref NPC.ai[1];
+        public override void OnSpawn(IEntitySource source)
+        {
+            Attack = (int)IhorAttacks.MagicBurst;
+            PreviousAttack = (int)IhorAttacks.MagicBurst;
+            AttackTimer = 0;
+        }
+        public Player player => Main.player[NPC.target];
+        public ref float Attack => ref NPC.ai[0];
+        public ref float AttackTimer => ref NPC.ai[1];
+        public ref float PreviousAttack => ref NPC.ai[2];
         public override void AI()
         {
             #region Pre-Attack
@@ -112,8 +132,35 @@ namespace Clamity.Content.Bosses.Ihor.NPCs
 
             //Main AI
             //NPC.velocity = NPC.Center.SafeDirectionTo(player.Center) * 10;
-            NPC.velocity = (player.Center - NPC.Center) * 0.1f;
-            NPC.rotation = NPC.velocity.ToRotation() - MathHelper.PiOver2;
+
+            //NPC.velocity = (player.Center - NPC.Center) * 0.1f;
+            //NPC.rotation = NPC.velocity.ToRotation() - MathHelper.PiOver2;
+
+            if (Main.GlobalTimeWrappedHourly % 60 == 0)
+            {
+                ChromaticBurstParticle p = new(NPC.Center, Vector2.Zero, Color.LightBlue, 20, 6f, 0f);
+            }
+
+            AttackTimer++;
+            switch ((IhorAttacks)((int)Attack))
+            {
+                case IhorAttacks.Summon:
+                    AISummon();
+                    break;
+                case IhorAttacks.MagicBurst:
+                    AIMagicBurst();
+                    break;
+                case IhorAttacks.HomingDash:
+                    AIHomingDash();
+                    break;
+                case IhorAttacks.HomingSnowballs:
+                    AIHomingSnowballs();
+                    break;
+
+                    /*case IhorAttacks.StormPillars:
+
+                        break;*/
+            }
 
             #region Summon body
             if (Main.netMode != NetmodeID.MultiplayerClient)
@@ -145,6 +192,54 @@ namespace Clamity.Content.Bosses.Ihor.NPCs
             }
             #endregion
         }
+        private void SetRandomAttack()
+        {
+            List<int> list = new List<int>() { 1, 2, 3 };
+            list.Remove((int)PreviousAttack);
+            PreviousAttack = Attack;
+            Attack = Main.rand.Next(list);
+            AttackTimer = 0;
+        }
+        private void AISummon()
+        {
+            SetRandomAttack();
+
+            if (AttackTimer == 20 * 60)
+            {
+                NPC.Opacity = 1;
+                NPC.velocity = Vector2.UnitY * 10;
+                NPC.Center = player.Center + Vector2.UnitY * 1000;
+            }
+            else if (AttackTimer < 20 * 60)
+            {
+                NPC.Opacity = 0;
+                NPC.Center = player.Center + Vector2.UnitY * 1000;
+            }
+            if (AttackTimer > 23 * 60)
+            {
+                NPC.Opacity = 1;
+                SetRandomAttack();
+            }
+        }
+        private void AIMagicBurst()
+        {
+            NPC.velocity = (player.Center - NPC.Center) * 0.1f;
+            NPC.rotation = NPC.velocity.ToRotation() - MathHelper.PiOver2;
+        }
+        private void AIHomingDash()
+        {
+
+        }
+        private void AIHomingSnowballs()
+        {
+
+        }
+        /*
+        private void AI()
+        {
+
+        }
+        */
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
         {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[]

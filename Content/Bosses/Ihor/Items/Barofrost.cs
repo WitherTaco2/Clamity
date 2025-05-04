@@ -28,7 +28,7 @@ namespace Clamity.Content.Bosses.Ihor.Items
             Item.noMelee = true;
             Item.reuseDelay = Item.useTime;
 
-            Item.damage = 5;
+            Item.damage = 100;
             Item.DamageType = DamageClass.Ranged;
             Item.knockBack = 2.2f;
             Item.UseSound = SoundID.Item5;
@@ -46,7 +46,7 @@ namespace Clamity.Content.Bosses.Ihor.Items
         {
             if (shootCombo == 2)
             {
-                Projectile.NewProjectile(source, position, velocity, ModContent.ProjectileType<BarofrostProj>(), damage * 2, knockback, player.whoAmI);
+                Projectile.NewProjectile(source, position, velocity, ModContent.ProjectileType<BarofrostProj2>(), damage * 2, knockback, player.whoAmI);
             }
             else
             {
@@ -77,6 +77,8 @@ namespace Clamity.Content.Bosses.Ihor.Items
             Projectile.timeLeft = 300;
             Projectile.extraUpdates = 2;
             Projectile.Calamity().pointBlankShotDuration = CalamityGlobalProjectile.DefaultPointBlankDuration;
+            Projectile.usesLocalNPCImmunity = true;
+            Projectile.localNPCHitCooldown = -1;
         }
         public override void AI()
         {
@@ -104,17 +106,17 @@ namespace Clamity.Content.Bosses.Ihor.Items
                 GeneralParticleHandler.SpawnParticle(spark);
             }
         }
-        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        /*public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             base.OnHitNPC(target, hit, damageDone);
-        }
+        }*/
         public override void OnKill(int timeLeft)
         {
             SoundEngine.PlaySound(SoundID.Dig, Projectile.Center);
 
             for (int i = 0; i <= 5; i++)
             {
-                Dust dust = Dust.NewDustPerfect(Projectile.Center, Main.rand.NextBool(3) ? DustID.Ice : DustID.Snow, Projectile.velocity.RotatedByRandom(MathHelper.ToRadians(8f)) * Main.rand.NextFloat(0.1f, 0.6f), 0, default, Main.rand.NextFloat(0.9f, 1.2f));
+                Dust dust = Dust.NewDustPerfect(Projectile.Center, Main.rand.NextBool(3) ? DustID.Ice : DustID.SnowBlock, Projectile.velocity.RotatedByRandom(MathHelper.ToRadians(8f)) * Main.rand.NextFloat(0.1f, 0.6f), 0, default, Main.rand.NextFloat(0.9f, 1.2f));
                 dust.noGravity = false;
             }
         }
@@ -126,6 +128,10 @@ namespace Clamity.Content.Bosses.Ihor.Items
     }
     public class BarofrostProj2 : BarofrostProj
     {
-
+        public override void SetDefaults()
+        {
+            base.SetDefaults();
+            Projectile.penetrate = 5;
+        }
     }
 }

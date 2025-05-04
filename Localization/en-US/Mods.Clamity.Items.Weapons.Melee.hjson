@@ -51,7 +51,13 @@ Everest: {
 
 AntarcticSlicers: {
 	DisplayName: Antarctic Slicers
-	Tooltip: ""
+	Tooltip:
+		'''
+		A pair of dual daggers with short range
+		Hitting enemies with the daggers will give you bolt for each hit, up to 15
+		Has chance to make slash on hit while bolts is overflowing
+		Pressing <right> will allow you to very rapid slashes collected bolts at enemies
+		'''
 }
 
 JawOfTheFrost: {
