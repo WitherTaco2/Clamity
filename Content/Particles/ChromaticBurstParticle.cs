@@ -24,7 +24,6 @@ namespace Clamity.Content.Particles
             FinalScale = finalScale;
             Lifetime = lifetime;
             //Time = lifetime;
-            Main.NewText(Texture);
         }
 
         public override void Update()
@@ -32,6 +31,7 @@ namespace Clamity.Content.Particles
             Opacity = Utils.GetLerpValue(0f, 4f, Lifetime - Time, true);
             Scale = MathHelper.Lerp(StartingScale, FinalScale, LifetimeCompletion);
             //Scale += 0.8f;
+            Main.NewText(Texture);
         }
 
         public override void CustomDraw(SpriteBatch spriteBatch)

@@ -1,6 +1,7 @@
 ﻿using CalamityMod;
 using CalamityMod.Events;
 using CalamityMod.NPCs;
+using CalamityMod.Particles;
 using CalamityMod.World;
 using Clamity.Commons;
 using Clamity.Content.Particles;
@@ -94,9 +95,9 @@ namespace Clamity.Content.Bosses.Ihor.NPCs
             AttackTimer = 0;
         }
         public Player player => Main.player[NPC.target];
-        public ref float Attack => ref NPC.ai[0];
-        public ref float AttackTimer => ref NPC.ai[1];
-        public ref float PreviousAttack => ref NPC.ai[2];
+        public ref float Attack => ref NPC.ai[1];
+        public ref float AttackTimer => ref NPC.ai[2];
+        public ref float PreviousAttack => ref NPC.ai[3];
         public override void AI()
         {
             #region Pre-Attack
@@ -139,6 +140,7 @@ namespace Clamity.Content.Bosses.Ihor.NPCs
             if (Main.GlobalTimeWrappedHourly % 60 == 0)
             {
                 ChromaticBurstParticle p = new(NPC.Center, Vector2.Zero, Color.LightBlue, 20, 6f, 0f);
+                GeneralParticleHandler.SpawnParticle(p);
             }
 
             AttackTimer++;
