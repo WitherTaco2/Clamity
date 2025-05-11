@@ -3,6 +3,7 @@ using CalamityMod.Projectiles.Enemy;
 using CalamityMod.World;
 using Clamity.Content.Bosses.Clamitas.NPCs;
 using Clamity.Content.Bosses.Ihor.NPCs;
+using Clamity.Content.Bosses.Ihor.Projectiles;
 using Clamity.Content.Bosses.Pyrogen.NPCs;
 using Clamity.Content.Bosses.Pyrogen.Projectiles;
 using Clamity.Content.Bosses.WoB.NPCs;
@@ -80,7 +81,15 @@ namespace Clamity.Commons
                 },
                 {
                   new Tuple<int, int>(ModContent.NPCType<IhorHead>(), ModContent.ProjectileType<StormMarkHostile>()),
-                  new int[5]{ 300, 330, 360, 410, 450 }
+                  new int[5]{ 80, 140, 160, 180, 270 }
+                },
+                {
+                  new Tuple<int, int>(ModContent.NPCType<IhorHead>(), ModContent.ProjectileType<SnowFlake>()),
+                  new int[5]{ 80, 140, 160, 180, 270 }
+                },
+                {
+                  new Tuple<int, int>(ModContent.NPCType<IhorHead>(), ModContent.ProjectileType<HomingSnowball>()),
+                  new int[5]{ 100, 155, 170, 200, 300 }
                 }
             };
             EnemyStats.ExpertDamageMultiplier = new SortedDictionary<int, double>()
