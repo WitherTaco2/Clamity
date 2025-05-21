@@ -80,6 +80,10 @@ Boss: {
 	WallOfBronzeLaserBeamStart.DisplayName: Плазменный луч
 	WallOfBronzeClawProjectile.DisplayName: Бронзовая клешна
 	WoBDeathrayStart.DisplayName: Плазменный смертельный луч
+	// HomingSnowball.DisplayName: Homing Snowball
+	// IhorFire.DisplayName: Ihor Fire
+	// IhorIcicles.DisplayName: Ihor Icicles
+	// SnowFlakeShard.DisplayName: Snow Flake Shard
 }
 
 // ShortstrikeEffect.DisplayName: Shortstrike Effect
@@ -90,5 +94,3 @@ Boss: {
 // CyanSolutionProjectile.DisplayName: Cyan Solution
 // HeavyMetalTrashCanPet.DisplayName: Mini Bocchi
 // SnowFlake.DisplayName: Snow Flake
-// SnowFlakeShard.DisplayName: Snow Flake Shard
-// HomingSnowball.DisplayName: Homing Snowball

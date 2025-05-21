@@ -90,7 +90,15 @@ namespace Clamity.Commons
                 {
                   new Tuple<int, int>(ModContent.NPCType<IhorHead>(), ModContent.ProjectileType<HomingSnowball>()),
                   new int[5]{ 100, 155, 170, 200, 300 }
-                }
+                },
+                {
+                  new Tuple<int, int>(ModContent.NPCType<IhorHead>(), ModContent.ProjectileType<IhorIcicles>()),
+                  new int[5]{ 80, 140, 160, 180, 270 }
+                },
+                {
+                  new Tuple<int, int>(ModContent.NPCType<IhorHead>(), ModContent.ProjectileType<IhorFire>()),
+                  new int[5]{ 100, 155, 170, 200, 300 }
+                },
             };
             EnemyStats.ExpertDamageMultiplier = new SortedDictionary<int, double>()
             {

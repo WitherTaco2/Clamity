@@ -8,6 +8,7 @@ using Clamity.Commons;
 using Clamity.Content.Bosses.Ihor.Particles;
 using Clamity.Content.Bosses.Ihor.Projectiles;
 using Clamity.Content.Particles;
+using Luminance.Common.Utilities;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.IO;
@@ -39,9 +40,10 @@ namespace Clamity.Content.Bosses.Ihor.NPCs
     {
         Summon = 0, //23 seconds. Probably a lot of time to spend on intro
         MagicBurst,
-        HomingDash,
+        Flamethrower,
         HomingSnowballs,
         SnowFlake,
+        IceRockRain,
 
         StormPillars,
     }
@@ -95,14 +97,14 @@ namespace Clamity.Content.Bosses.Ihor.NPCs
         }
         public override void OnSpawn(IEntitySource source)
         {
-            Attack = (int)IhorAttacks.Summon;
-            PreviousAttack = (int)IhorAttacks.Summon;
+            Attack = (int)IhorAttacks.MagicBurst;
+            //PreviousAttack = (int)IhorAttacks.MagicBurst;
             AttackTimer = 0;
         }
         public Player player => Main.player[NPC.target];
         public ref float Attack => ref NPC.ai[1];
         public ref float AttackTimer => ref NPC.ai[2];
-        public ref float PreviousAttack => ref NPC.ai[3];
+        //public ref float PreviousAttack => ref NPC.ai[3];
         public override void AI()
         {
             #region Pre-Attack
@@ -142,19 +144,22 @@ namespace Clamity.Content.Bosses.Ihor.NPCs
             switch ((IhorAttacks)((int)Attack))
             {
                 case IhorAttacks.Summon:
-                    AISummon();
+                    Do_Summon();
                     break;
                 case IhorAttacks.MagicBurst:
-                    AIMagicBurst();
+                    Do_MagicBurst();
                     break;
-                case IhorAttacks.HomingDash:
-                    AIHomingDash();
+                case IhorAttacks.Flamethrower:
+                    Do_Flamethrower();
                     break;
                 case IhorAttacks.HomingSnowballs:
-                    AIHomingSnowballs();
+                    Do_HomingSnowballs();
                     break;
                 case IhorAttacks.SnowFlake:
-                    AISnowFlake();
+                    Do_SnowFlake();
+                    break;
+                case IhorAttacks.IceRockRain:
+
                     break;
 
                     /*case IhorAttacks.StormPillars:
@@ -195,15 +200,22 @@ namespace Clamity.Content.Bosses.Ihor.NPCs
         private void SetRandomAttack()
         {
             List<int> list = new List<int>() { 1, 2, 3, 4 };
-            list.Remove((int)PreviousAttack);
-            PreviousAttack = Attack;
+            list.Remove((int)Attack);
+            //PreviousAttack = Attack;
+
+            /*string test = Attack.ToString();
+            foreach (var i in list)
+                test += " " + i.ToString();
+            Main.NewText(test);*/
+
             Attack = Main.rand.Next(list);
+            //Main.NewText(Attack);
             AttackTimer = 0;
             NPC.Calamity().newAI[0] = 0;
         }
         private void SetAttack(IhorAttacks attack)
         {
-            PreviousAttack = Attack;
+            //PreviousAttack = Attack;
             Attack = (int)attack;
             AttackTimer = 0;
             NPC.Calamity().newAI[0] = 0;
@@ -227,7 +239,7 @@ namespace Clamity.Content.Bosses.Ihor.NPCs
             NPC.velocity = (player.Center - NPC.Center).SafeNormalize(Vector2.Zero) * percent;
             NPC.rotation = NPC.velocity.ToRotation() - MathHelper.PiOver2;
         }
-        private void AISummon()
+        private void Do_Summon()
         {
             //SetRandomAttack();
             SetAttack(IhorAttacks.HomingSnowballs);
@@ -258,14 +270,72 @@ namespace Clamity.Content.Bosses.Ihor.NPCs
                 //SetRandomAttack();
             }
         }
-        private void AIMagicBurst()
+        private void Do_MagicBurst()
         {
-        }
-        private void AIHomingDash()
-        {
+            Move(0.01f);
+
+            int particleDelay = 20;
+            if (AttackTimer < particleDelay * 3 + 1)
+            {
+                if (AttackTimer % particleDelay == 0)
+                {
+                    //Roar();
+                    IhorChargeChromaticBurstParticle p = new(NPC.whoAmI);
+                    GeneralParticleHandler.SpawnParticle(p);
+                }
+            }
+            else if (AttackTimer == particleDelay * 3 + 2)
+            {
+                int type = ModContent.ProjectileType<IhorIcicles>();
+                int projectileDamage = NPC.GetProjectileDamageClamity(type);
+                for (int i = 0; i < 40; i++)
+                {
+                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, new Vector2(Main.rand.NextFloat(10f, 15f), 0).RotatedBy(NPC.rotation + MathHelper.PiOver2 + Main.rand.NextFloat(-0.4f, 0.4f)), type, projectileDamage, 1f, Main.myPlayer, Main.rand.NextFloat(1.4f, 1.5f) * (Main.rand.NextBool() ? -1 : 1));
+                }
+            }
+            if (AttackTimer > 400 + particleDelay * 3)
+            {
+                //SetAttack(IhorAttacks.MagicBurst);
+                SetRandomAttack();
+            }
 
         }
-        private void AIHomingSnowballs()
+        private void Do_Flamethrower()
+        {
+            if (AttackTimer == 1)
+            {
+                Roar();
+            }
+
+            if (NPC.velocity.Length() < 10f)
+            {
+                NPC.velocity *= 1.01f;
+            }
+            NPC.velocity = NPC.velocity.RotateTowards(NPC.AngleTo(player.Center), 0.02f);
+            NPC.rotation = NPC.velocity.ToRotation() - MathHelper.PiOver2;
+
+            if (AttackTimer % 10 == 0 && AttackTimer > 90)
+            {
+                int type = ModContent.ProjectileType<IhorFire>();
+                int projectileDamage = NPC.GetProjectileDamageClamity(type);
+                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, new Vector2(0, 5).RotatedBy(NPC.rotation + Main.rand.NextFloat(0.1f)), type, projectileDamage, 1f, Main.myPlayer);
+
+
+                type = ModContent.ProjectileType<IhorIcicles>();
+                projectileDamage = NPC.GetProjectileDamageClamity(type);
+                for (int i = 0; i < 2; i++)
+                {
+                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, new Vector2(Main.rand.NextFloat(10f, 15f), 0).RotatedBy(NPC.rotation + MathHelper.PiOver2 + Main.rand.NextFloat(-0.4f, 0.4f)), type, projectileDamage, 1f, Main.myPlayer, Main.rand.NextFloat(1.4f, 1.5f) * (Main.rand.NextBool() ? -1 : 1));
+                }
+            }
+
+            if (AttackTimer > 400)
+            {
+                //SetAttack(IhorAttacks.MagicBurst);
+                SetRandomAttack();
+            }
+        }
+        private void Do_HomingSnowballs()
         {
             Move(0.01f);
 
@@ -288,13 +358,13 @@ namespace Clamity.Content.Bosses.Ihor.NPCs
                     Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Vector2.UnitX.RotatedBy(NPC.rotation - MathHelper.PiOver2 / 4 * i) * 25 * i, type, projectileDamage5, 1f, Main.myPlayer);
                 }
             }
-            if (AttackTimer > 600 + particleDelay * 3)
+            if (AttackTimer > 400 + particleDelay * 3)
             {
-                SetAttack(IhorAttacks.SnowFlake);
-                //SetRandomAttack();
+                SetRandomAttack();
+                //SetAttack(IhorAttacks.SnowFlake);
             }
         }
-        private void AISnowFlake()
+        private void Do_SnowFlake()
         {
             Move(0.01f);
 
@@ -309,17 +379,22 @@ namespace Clamity.Content.Bosses.Ihor.NPCs
             {
                 int type = ModContent.ProjectileType<SnowFlake>();
                 int projectileDamage5 = NPC.GetProjectileDamageClamity(type);
-                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Vector2.Zero, type, projectileDamage5, 1f, Main.myPlayer, Main.rand.NextFloat(0.5f, 1f) * (Main.rand.NextBool() ? -1 : 1), NPC.target, MathHelper.TwoPi / count * NPC.Calamity().newAI[0]);
+                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, Vector2.Zero, type, projectileDamage5, 1f, Main.myPlayer, Main.rand.NextFloat(0.5f, 1f) * (Main.rand.NextBool() ? -1 : 1), NPC.target, MathHelper.TwoPi / count * NPC.Calamity().newAI[0] - MathHelper.PiOver2);
                 NPC.Calamity().newAI[0]++;
             }
             if (AttackTimer > 300 + delay * count + 180)
             {
-                SetAttack(IhorAttacks.HomingSnowballs);
+                SetRandomAttack();
+                //SetAttack(IhorAttacks.HomingSnowballs);
             }
 
         }
+        private void Do_IceRockRain()
+        {
+
+        }
         /*
-        private void AI()
+        private void Do_()
         {
 
         }

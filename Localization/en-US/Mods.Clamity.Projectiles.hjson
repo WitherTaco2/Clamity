@@ -80,6 +80,10 @@ Boss: {
 	WallOfBronzeLaserBeamStart.DisplayName: Plasma Beam
 	WallOfBronzeClawProjectile.DisplayName: Bronze Claw
 	WoBDeathrayStart.DisplayName: Plasma Deathray
+	HomingSnowball.DisplayName: Homing Snowball
+	IhorFire.DisplayName: Ihor Fire
+	IhorIcicles.DisplayName: Ihor Icicles
+	SnowFlakeShard.DisplayName: Snow Flake Shard
 }
 
 ShortstrikeEffect.DisplayName: Shortstrike Effect
@@ -90,5 +94,3 @@ PyrogenSummonAnimation.DisplayName: Pyrogen Summon Animation
 CyanSolutionProjectile.DisplayName: Cyan Solution
 HeavyMetalTrashCanPet.DisplayName: Mini Bocchi
 SnowFlake.DisplayName: Snow Flake
-SnowFlakeShard.DisplayName: Snow Flake Shard
-HomingSnowball.DisplayName: Homing Snowball

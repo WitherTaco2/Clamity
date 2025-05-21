@@ -5,8 +5,9 @@ using Terraria.ModLoader;
 
 namespace Clamity.Content.Bosses.Ihor.Projectiles
 {
-    public class SnowFlakeShard : ModProjectile
+    public class SnowFlakeShard : ModProjectile, ILocalizedModType
     {
+        public new string LocalizationCategory => "Projectiles.Boss";
         public override void SetDefaults()
         {
             Projectile.width = Projectile.height = 10;
