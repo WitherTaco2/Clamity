@@ -6,6 +6,7 @@ using CalamityMod.Rarities;
 using CalamityMod.Tiles.Furniture.CraftingStations;
 using Clamity.Content.Biomes.FrozenHell.Items;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -71,49 +72,18 @@ namespace Clamity.Content.Items.Weapons.Rogue
         }
         public override void AI()
         {
-            Projectile.rotation += 0.4f * (float)Projectile.direction;
-            if (Projectile.timeLeft < BlazingStarProj.Lifetime - BlazingStarProj.ReboundTime)
-                Projectile.ai[0] = 1f;
-            if (Projectile.ai[0] == 0.0)
-                return;
-            Projectile.tileCollide = false;
-            float num1 = 32.5f;
-            float num2 = 3f;
-            Terraria.Player player = Main.player[Projectile.owner];
-            float num3 = Projectile.Distance(player.Center);
-            Vector2 vector2 = (player.Center - Projectile.Center) / num3 * num1;
-            if (num3 > 3000)
-                Projectile.Kill();
-            if (Projectile.velocity.X < vector2.X)
+            switch ((int)Projectile.ai[0])
             {
-                Projectile.velocity.X += num2;
-                if (Projectile.velocity.X < 0.0 && vector2.X > 0.0)
-                    Projectile.velocity.X += num2;
+                case 0: //Vortex
+
+                    break;
+                case 1: //Fast slices
+
+                    break;
+                case 2: //Dash with projectiles
+
+                    break;
             }
-            else if (Projectile.velocity.X > vector2.X)
-            {
-                Projectile.velocity.X -= num2;
-                if (Projectile.velocity.X > 0.0 && vector2.X < 0.0)
-                    Projectile.velocity.X -= num2;
-            }
-            if (Projectile.velocity.Y < vector2.Y)
-            {
-                Projectile.velocity.Y += num2;
-                if (Projectile.velocity.Y < 0.0 && vector2.Y > 0.0)
-                    Projectile.velocity.Y += num2;
-            }
-            else if (Projectile.velocity.Y > vector2.Y)
-            {
-                Projectile.velocity.Y -= num2;
-                if (Projectile.velocity.Y > 0.0 && vector2.Y < 0.0)
-                    Projectile.velocity.Y -= num2;
-            }
-            if (Main.myPlayer != Projectile.owner)
-                return;
-            Rectangle hitbox = Projectile.Hitbox;
-            if (!hitbox.Intersects(player.Hitbox))
-                return;
-            Projectile.Kill();
         }
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
@@ -123,14 +93,20 @@ namespace Clamity.Content.Items.Weapons.Rogue
         }
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            for (int i = 0; i < Main.rand.Next(3 + (Projectile.Calamity().stealthStrike ? 1 : 0)); i++)
+
+        }
+        public override bool PreDraw(ref Color lightColor)
+        {
+            if (Projectile.ai[0] == 0)
             {
-                int index = Projectile.NewProjectile(Projectile.GetSource_OnHit(target), Projectile.Center, new Vector2(0, 15).RotatedByRandom(MathHelper.TwoPi), 297, Projectile.damage / 3, 0, Projectile.owner);
-                Main.projectile[index].DamageType = ModContent.GetInstance<RogueDamageClass>();
-                Main.projectile[index].usesLocalNPCImmunity = false;
-                Main.projectile[index].usesIDStaticNPCImmunity = true;
-                Main.projectile[index].idStaticNPCHitCooldown = 10;
+                Texture2D texture = ModContent.Request<Texture2D>("Clamity/Assets/Textures/SlicerVortex").Value;
+
+                Main.spriteBatch.Draw(texture, Projectile.Center - Main.screenPosition, null, Color.LightSkyBlue, Main.GlobalTimeWrappedHourly, texture.Size() / 2, Projectile.ai[2], SpriteEffects.None, 0);
+                Main.spriteBatch.Draw(texture, Projectile.Center - Main.screenPosition, null, Color.LightSkyBlue, -Main.GlobalTimeWrappedHourly / 3 * 2, texture.Size() / 2, Projectile.ai[2], SpriteEffects.FlipHorizontally, 0);
             }
+
+            CalamityUtils.DrawAfterimagesCentered(Projectile, ProjectileID.Sets.TrailingMode[Type], lightColor);
+            return false;
         }
     }
 }
