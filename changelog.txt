@@ -1,16 +1,17 @@
-Update 1.0.3.7
+Update 1.0.3.7 - "Mod feel dead" Patch
+Sorry it is currently patch, not content update. I dont know will I be able to complete the update
 
 New Content:
 Added Wither Bone Bow (WitherTaco's Developer Shadowspec weapon)
 Added The Subcommunity, Skull of Blood God
-Added New Crawler Gems accessories - Sharp Amethyst, Magic Diamond
 Added Sentry-related accessories - Cyan Pearl, Blighted Spyglass
+Added Starfish from The Depth. Direct upgrade of Fishbone Boomerang
 
 Reworks:
-Returned and reworked The Omega (old name - Omega Ray)
+Returned and reworked The Omega (old name - Omega Ray). Now works like Omicron weapon update with now 4 wingsman that two shots a barrage and other two shoots a bombs
 
 Removes:
-Removed Astral Star Cannon, Charged Dart Blaster, Impaler, Lead Wizard (he moved to future addon - Calamity Returned and Reworked)
+Removed Astral Star Cannon, Charged Dart Blaster, Impaler, Lead Wizard (he moved and slightly updated to future addon - Calamity Returned and Reworked)
 
 Balance Changes:
 Heavy nerfed a Plague Station mount speed
@@ -20,6 +21,9 @@ Nerfed Clamitas Armor stats bonuses
 * Chestplate: damage (15% -> 12%), crit chance (4% -> 7%)
 * Leggigns: damage (15% -> 13%), crit chance (9% -> 5%)
 * Set Bonus: Mollusks damage (200 -> 130)
+
+Fixes:
+I forgot what thing i fixed. It i made around months ago
 
 Other Changes:
 Clamitas and Pyrogen now uses Calamity Styled drop chances for weapons
