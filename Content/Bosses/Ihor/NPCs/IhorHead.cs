@@ -199,6 +199,9 @@ namespace Clamity.Content.Bosses.Ihor.NPCs
         }
         private void SetRandomAttack()
         {
+            SetAttack(IhorAttacks.Flamethrower);
+            return;
+
             List<int> list = new List<int>() { 1, 2, 3, 4 };
             list.Remove((int)Attack);
             //PreviousAttack = Attack;
@@ -226,7 +229,7 @@ namespace Clamity.Content.Bosses.Ihor.NPCs
             GeneralParticleHandler.SpawnParticle(p);
             SoundEngine.PlaySound(Mauler.RoarSound with { Pitch = 0.2f }, NPC.Center);
         }
-        private void Move(float percent = 0.1f)
+        private void Move(float percent = 0.015f)
         {
             NPC.velocity = (player.Center - NPC.Center) * percent;
             //float inertia = 30f;
@@ -272,7 +275,7 @@ namespace Clamity.Content.Bosses.Ihor.NPCs
         }
         private void Do_MagicBurst()
         {
-            Move(0.01f);
+            Move();
 
             int particleDelay = 20;
             if (AttackTimer < particleDelay * 3 + 1)
@@ -311,14 +314,14 @@ namespace Clamity.Content.Bosses.Ihor.NPCs
             {
                 NPC.velocity *= 1.01f;
             }
-            NPC.velocity = NPC.velocity.RotateTowards(NPC.AngleTo(player.Center), 0.02f);
+            NPC.velocity = NPC.velocity.RotateTowards(NPC.AngleTo(player.Center), 0.03f);
             NPC.rotation = NPC.velocity.ToRotation() - MathHelper.PiOver2;
 
             if (AttackTimer % 10 == 0 && AttackTimer > 90)
             {
                 int type = ModContent.ProjectileType<IhorFire>();
                 int projectileDamage = NPC.GetProjectileDamageClamity(type);
-                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, new Vector2(0, 5).RotatedBy(NPC.rotation + Main.rand.NextFloat(0.1f)), type, projectileDamage, 1f, Main.myPlayer);
+                Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, new Vector2(0, 3).RotatedBy(NPC.rotation + Main.rand.NextFloat(0.1f)), type, projectileDamage, 1f, Main.myPlayer);
 
 
                 type = ModContent.ProjectileType<IhorIcicles>();
@@ -337,7 +340,7 @@ namespace Clamity.Content.Bosses.Ihor.NPCs
         }
         private void Do_HomingSnowballs()
         {
-            Move(0.01f);
+            Move();
 
             int particleDelay = 20;
             if (AttackTimer < particleDelay * 3 + 1)
@@ -366,7 +369,7 @@ namespace Clamity.Content.Bosses.Ihor.NPCs
         }
         private void Do_SnowFlake()
         {
-            Move(0.01f);
+            Move();
 
             if (AttackTimer == 1)
             {
