@@ -13,9 +13,9 @@ Mod has official support of English and Russian Localization
 
 [h1]Team[/h1]
 WitherTaco - Owner, Coder, minor Spriter, Me
-pil - main Spriter,
-thydeo - minor Spriter, my friend
-FranciumKilla - Musican, Creator of Cruiser's theme from Calamity Entropy
+pil - Main Spriter,
+thydeo - Minor Spriter, my friend
+FranciumKilla - Musican, as known as Creator of Cruiser's theme for Calamity Entropy mod
 BrimstonPremium - Pyrogen's theme creator (Musican)
 
 [h1]Credits[/h1]

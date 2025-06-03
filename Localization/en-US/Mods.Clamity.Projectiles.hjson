@@ -51,6 +51,7 @@ Rogue: {
 	ExoBallProjectile.DisplayName: Exo Ball
 	AuricKunaiProjectile.DisplayName: Auric Kunai
 	AuricKunaiLightning.DisplayName: Auric Lightning
+	StarfishFromTheDepthProj.DisplayName: Starfish from the Depth
 }
 
 Classless: {

@@ -10,6 +10,7 @@ using CalamityMod.NPCs.SupremeCalamitas;
 using CalamityMod.NPCs.TownNPCs;
 using Clamity.Content.Biomes.EntropicSpace.NPCs;
 using Clamity.Content.Biomes.FrozenHell.Items;
+using Clamity.Content.Items;
 using Clamity.Content.Items.Accessories;
 using Clamity.Content.Items.Accessories.GemCrawlerDrop;
 using Clamity.Content.Items.Accessories.Sentry;
@@ -47,6 +48,7 @@ namespace Clamity
             if (npc.type == ModContent.NPCType<SupremeCalamitas>())
             {
                 mainRule.Add(ItemDropRule.Common(ModContent.ItemType<Calamitea>(), 1, 10, 10));
+                npcLoot.Add(ItemDropRule.ByCondition(DropHelper.If(info => info.npc.type == ModContent.NPCType<SupremeCalamitas>() && info.npc.ModNPC<SupremeCalamitas>().permafrost, false), ModContent.ItemType<WitherOnAStick>()));
             }
 
             //Other Drop
@@ -405,11 +407,11 @@ namespace Clamity
             }
 
             // Kami Debuff from Yanmei's Knife
-            if (npc.Calamity().kamiFlu > 0)
+            /*if (npc.Calamity().kamiFlu > 0)
             {
                 int baseKamiFluDoTValue = (int)(250 * vanillaSicknessDamageMult);
                 ApplyDPSDebuff(baseKamiFluDoTValue, baseKamiFluDoTValue / 10, ref npc.lifeRegen, ref damage);
-            }
+            }*/
 
             //Absorber Affliction
             if (npc.Calamity().absorberAffliction > 0)
