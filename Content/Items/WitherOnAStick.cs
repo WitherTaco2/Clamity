@@ -1,4 +1,5 @@
-﻿using CalamityMod.Items;
+﻿using CalamityMod;
+using CalamityMod.Items;
 using CalamityMod.NPCs.Other;
 using CalamityMod.Particles;
 using CalamityMod.Projectiles.Summon;
@@ -19,6 +20,11 @@ namespace Clamity.Content.Items
             base.SetStaticDefaults();
             ItemID.Sets.AnimatesAsSoul[Type] = true;
             Main.RegisterItemAnimation(Type, new DrawAnimationVertical(10, 4));
+        }
+        public override void SetDefaults()
+        {
+            base.SetDefaults();
+            Item.Calamity().devItem = true;
         }
         public override void HoldStyle(Player player, Rectangle heldItemFrame)
         {
