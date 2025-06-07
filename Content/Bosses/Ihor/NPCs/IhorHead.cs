@@ -183,7 +183,7 @@ namespace Clamity.Content.Bosses.Ihor.NPCs
                             ihorType = ModContent.NPCType<IhorBodySmall>();
                         else
                             ihorType = ModContent.NPCType<IhorBody>();
-                        lol = NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, ModContent.NPCType<IhorBody>(), NPC.whoAmI);
+                        lol = NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.Center.X, (int)NPC.Center.Y, ihorType, NPC.whoAmI);
 
                         Main.npc[lol].ai[2] = NPC.whoAmI;
                         Main.npc[lol].realLife = NPC.whoAmI;
