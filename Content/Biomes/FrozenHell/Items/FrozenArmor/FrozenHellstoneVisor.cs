@@ -45,7 +45,7 @@ namespace Clamity.Content.Biomes.FrozenHell.Items.FrozenArmor
 
         public override void AddRecipes() => CreateRecipe().AddIngredient(ItemID.MoltenHelmet)
                                                            .AddIngredient(ItemID.FrostHelmet)
-                                                           .AddIngredient<EnchantedMetal>(10)
+                                                           .AddIngredient<EndobsidianBar>(10)
                                                            .AddIngredient<EndothermicEnergy>(18)
                                                            .AddTile(TileID.Hellforge)
                                                            .Register();

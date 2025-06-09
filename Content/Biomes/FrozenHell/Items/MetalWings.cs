@@ -96,7 +96,7 @@ namespace Clamity.Content.Biomes.FrozenHell.Items
             CreateRecipe()
                 .AddIngredient(ItemID.SoulofFlight, 20)
                 .AddIngredient<MetalFeather>()
-                .AddIngredient<EnchantedMetal>(5)
+                .AddIngredient<EndobsidianBar>(5)
                 .AddTile<CosmicAnvil>()
                 .Register();
         }

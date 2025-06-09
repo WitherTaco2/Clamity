@@ -33,7 +33,7 @@ namespace Clamity.Content.Items.Ammo
                 //.AddIngredient(ItemID.HellfireArrow, 666)
                 //.AddIngredient(ItemID.FrostburnArrow, 333)
                 .AddIngredient(ItemID.HellfireArrow, 999)
-                .AddIngredient<EnchantedMetal>()
+                .AddIngredient<EndobsidianBar>()
                 .AddTile<CosmicAnvil>()
                 .Register();
         }

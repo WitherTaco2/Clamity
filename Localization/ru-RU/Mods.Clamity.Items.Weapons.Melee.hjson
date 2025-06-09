@@ -48,3 +48,8 @@ Everest: {
 	DisplayName: Эверест
 	Tooltip: Выпускает разбросом вулканические огненые шары
 }
+
+GreatestPeak: {
+	// DisplayName: Greatest Peak
+	// Tooltip: ""
+}

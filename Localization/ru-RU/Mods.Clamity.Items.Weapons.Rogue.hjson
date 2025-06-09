@@ -49,3 +49,8 @@ StarfishFromTheDepth: {
 		Stealth strikes creates a three starfishes at same time
 		''' */
 }
+
+SubzeroSlicer: {
+	// DisplayName: Subzero Slicer
+	// Tooltip: ""
+}

@@ -10,7 +10,8 @@ using Terraria.ModLoader;
 
 namespace Clamity.Content.Items.Weapons.Melee.Swords
 {
-    public class FrozenVolcano : ModItem, ILocalizedModType, IModType
+    [LegacyName("FrozenVolcano")]
+    public class GreatestPeak : ModItem, ILocalizedModType, IModType
     {
         public new string LocalizationCategory => "Items.Weapons.Melee";
 
@@ -74,93 +75,14 @@ namespace Clamity.Content.Items.Weapons.Melee.Swords
 
         public override void MeleeEffects(Player player, Rectangle hitbox)
         {
-            if (player.whoAmI != Main.myPlayer || (player.itemAnimation != (int)((double)player.itemAnimationMax * 0.1) && player.itemAnimation != (int)((double)player.itemAnimationMax * 0.3) && player.itemAnimation != (int)((double)player.itemAnimationMax * 0.5) && player.itemAnimation != (int)((double)player.itemAnimationMax * 0.7) && player.itemAnimation != (int)((double)player.itemAnimationMax * 0.9)))
-            {
-                return;
-            }
 
-            float num = 0f;
-            float num2 = 0f;
-            float num3 = 0f;
-            float num4 = 0f;
-            if (player.itemAnimation == (int)((double)player.itemAnimationMax * 0.9))
-            {
-                num = -7f;
-            }
-
-            if (player.itemAnimation == (int)((double)player.itemAnimationMax * 0.7))
-            {
-                num = -6f;
-                num2 = 2f;
-            }
-
-            if (player.itemAnimation == (int)((double)player.itemAnimationMax * 0.5))
-            {
-                num = -4f;
-                num2 = 4f;
-            }
-
-            if (player.itemAnimation == (int)((double)player.itemAnimationMax * 0.3))
-            {
-                num = -2f;
-                num2 = 6f;
-            }
-
-            if (player.itemAnimation == (int)((double)player.itemAnimationMax * 0.1))
-            {
-                num2 = 7f;
-            }
-
-            if (player.itemAnimation == (int)((double)player.itemAnimationMax * 0.7))
-            {
-                num4 = 26f;
-            }
-
-            if (player.itemAnimation == (int)((double)player.itemAnimationMax * 0.3))
-            {
-                num4 -= 4f;
-                num3 -= 20f;
-            }
-
-            if (player.itemAnimation == (int)((double)player.itemAnimationMax * 0.1))
-            {
-                num3 += 6f;
-            }
-
-            if (player.direction == -1)
-            {
-                if (player.itemAnimation == (int)((double)player.itemAnimationMax * 0.9))
-                {
-                    num4 -= 8f;
-                }
-
-                if (player.itemAnimation == (int)((double)player.itemAnimationMax * 0.7))
-                {
-                    num4 -= 6f;
-                }
-            }
-
-            num *= 1.5f;
-            num2 *= 1.5f;
-            num4 *= (float)player.direction;
-            num3 *= player.gravDir;
-            int index = Projectile.NewProjectile(player.GetSource_ItemUse(base.Item),
-                                     Damage: (int)player.GetTotalDamage<MeleeDamageClass>().ApplyTo((float)base.Item.damage * 0.1f),
-                                     X: (float)(hitbox.X + hitbox.Width / 2) + num4,
-                                     Y: (float)(hitbox.Y + hitbox.Height / 2) + num3,
-                                     SpeedX: (float)player.direction * num2,
-                                     SpeedY: num * player.gravDir,
-                                     Type: 85,
-                                     KnockBack: 0f,
-                                     Owner: player.whoAmI);
-            Main.projectile[index].DamageType = DamageClass.Melee;
         }
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ItemID.FieryGreatsword)
+                .AddIngredient<Hellkite>()
                 .AddIngredient<UltimusCleaver>()
-                .AddIngredient<EnchantedMetal>(8)
+                .AddIngredient<EndobsidianBar>(8)
                 .AddTile<CosmicAnvil>()
                 .Register();
         }

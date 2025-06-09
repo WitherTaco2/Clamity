@@ -1,7 +1,6 @@
 ﻿using CalamityMod;
 using CalamityMod.Items;
 using CalamityMod.Items.Weapons.Rogue;
-using CalamityMod.Projectiles.Rogue;
 using CalamityMod.Projectiles.Summon;
 using CalamityMod.Rarities;
 using CalamityMod.Tiles.Furniture.CraftingStations;
@@ -10,6 +9,7 @@ using Luminance.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Linq;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -25,27 +25,39 @@ namespace Clamity.Content.Items.Weapons.Rogue
         public override float StealthDamageMultiplier => 0.5f;
         public override void SetDefaults()
         {
-            Item.damage = 300;
-            Item.DamageType = ModContent.GetInstance<RogueDamageClass>();
-            Item.noMelee = true;
-            Item.noUseGraphic = true;
             Item.width = 1;
             Item.height = 1;
-            Item.useTime = 15;
-            Item.useAnimation = 15;
-            Item.useStyle = ItemUseStyleID.Swing;
-            Item.knockBack = 4f;
-            Item.value = CalamityGlobalItem.RarityVioletBuyPrice;
             Item.rare = ModContent.RarityType<Violet>();
+            Item.value = CalamityGlobalItem.RarityVioletBuyPrice;
+
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.useTime = Item.useAnimation = 45;
+            Item.noMelee = true;
+            Item.noUseGraphic = true;
             Item.UseSound = SoundID.Item1;
-            Item.shootSpeed = 13f;
+            Item.autoReuse = true;
+
+            Item.damage = 1000;
+            Item.DamageType = ModContent.GetInstance<RogueDamageClass>();
+            Item.knockBack = 4f;
+
+            Item.shootSpeed = 3f;
             Item.shoot = ModContent.ProjectileType<SubzeroSlicerProjectile>();
+        }
+        public override bool CanUseItem(Player player)
+        {
+            return base.CanUseItem(player);
+            return !Main.projectile.Any(n => n.active && n.owner == player.whoAmI && n.type == ModContent.ProjectileType<SubzeroSlicerProjectile>());
         }
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            int index = Projectile.NewProjectile(source, position, velocity, type, damage, knockback, player.whoAmI);
+            int index = Projectile.NewProjectile(source, position, velocity, type, damage, knockback, player.whoAmI, Main.rand.Next(3));
+            Main.projectile[index].ai[0] = 0;
             if (player.Calamity().StealthStrikeAvailable())
+            {
                 Main.projectile[index].Calamity().stealthStrike = true;
+                Main.projectile[index].ai[0] = 0;
+            }
             return false;
         }
         public override void AddRecipes()
@@ -54,7 +66,7 @@ namespace Clamity.Content.Items.Weapons.Rogue
                 .AddIngredient<BlazingStar>()
                 .AddIngredient<StarfishFromTheDepth>()
                 .AddIngredient(ItemID.Trimarang)
-                .AddIngredient<EnchantedMetal>(8)
+                .AddIngredient<EndobsidianBar>(8)
                 .AddTile<CosmicAnvil>()
                 .Register();
         }
@@ -73,13 +85,13 @@ namespace Clamity.Content.Items.Weapons.Rogue
 
         public override void SetDefaults()
         {
-            Projectile.width = 40;
-            Projectile.height = 40;
+            Projectile.width = Projectile.height = 90;
             Projectile.friendly = true;
-            Projectile.tileCollide = true;
+            //Projectile.tileCollide = true;
+            Projectile.tileCollide = false;
             Projectile.ignoreWater = true;
             Projectile.penetrate = -1;
-            Projectile.timeLeft = BlazingStarProj.Lifetime;
+            Projectile.timeLeft = Lifetime + ChargeupTime;
             Projectile.DamageType = ModContent.GetInstance<RogueDamageClass>();
             //Projectile.extraUpdates = 1;
             Projectile.usesLocalNPCImmunity = true;
@@ -105,7 +117,6 @@ namespace Clamity.Content.Items.Weapons.Rogue
         internal float ArmAnticipationMovement() => PiecewiseAnimation(ChargeProgress, new CurveSegment[] { pullback, throwout });
 
 
-        public ref float Returning => ref Projectile.ai[1];
         public override void AI()
         {
             //Anticipation animation. Make the player look like theyre holding the fish skeleton
@@ -130,8 +141,8 @@ namespace Clamity.Content.Items.Weapons.Rogue
 
                 SoundEngine.PlaySound(SoundID.Item1, Projectile.Center);
                 Projectile.Center = Owner.MountedCenter + Projectile.velocity * 12f;
-                Projectile.velocity = Projectile.velocity.SafeNormalize(Vector2.Zero) * 17.5f;
-                Projectile.tileCollide = true;
+                Projectile.velocity = Projectile.velocity.SafeNormalize(Vector2.Zero) * 20f;
+                //Projectile.tileCollide = true;
 
                 if (Projectile.Calamity().stealthStrike)
                 {
@@ -144,15 +155,34 @@ namespace Clamity.Content.Items.Weapons.Rogue
                 }
             }
 
+            //Boomerang spinny sounds
+            if (Projectile.soundDelay <= 0)
+            {
+                SoundEngine.PlaySound(SoundID.Item7, Projectile.Center);
+                Projectile.soundDelay = 8;
+            }
+
+            Projectile.rotation += (MathHelper.PiOver4 / 4f + MathHelper.PiOver4 / 2f * Math.Clamp(ThrowProgress * 2f, 0, 1)) * Math.Sign(Projectile.velocity.X);
+
             //Movement AI
-            if (Returning == 1f) //Returning
+            if (Projectile.ai[1] == 1f) //Returning
             {
                 Projectile.tileCollide = false;
                 //Aim back at the player
                 Projectile.velocity = Projectile.velocity.Length() * (Owner.MountedCenter - Projectile.Center).SafeNormalize(Vector2.One);
+                if (Projectile.velocity.Length() < 20)
+                    Projectile.velocity *= 1.05f;
+                if (Projectile.velocity.Length() < 1f)
+                    Projectile.velocity = Projectile.Center.SafeDirectionTo(Owner.MountedCenter);
                 Projectile.timeLeft = 10;
 
-                if ((Projectile.Center - Owner.MountedCenter).Length() < 24f)
+                if (Projectile.ai[0] == 0)
+                {
+                    Projectile.ai[2] = MathHelper.Clamp(Projectile.ai[2] - 0.05f, 0, 1f);
+                    Projectile.ExpandHitboxBy((int)(500 * Projectile.ai[2]));
+                }
+
+                if ((Projectile.Center - Owner.MountedCenter).Length() < 50f) //24
                 {
                     Projectile.Kill();
                 }
@@ -189,9 +219,11 @@ namespace Clamity.Content.Items.Weapons.Rogue
                             Vector2 targetVector = Projectile.SafeDirectionTo(newTarget.Center);
                             if (Projectile.Clamity().extraAI[0] == 0) //Homing to target
                             {
-                                Projectile.Clamity().extraAI[1] = MathHelper.Clamp(Projectile.Clamity().extraAI[1] + 0.1f, 0, 10f);
-                                Projectile.ai[2] = MathHelper.Clamp(Projectile.ai[2] - 0.1f, 0, 2f);
-                                Projectile.velocity = targetVector * Projectile.Clamity().extraAI[1];
+                                //Projectile.Clamity().extraAI[1] = MathHelper.Clamp(Projectile.Clamity().extraAI[1] + 0.1f, 0, 10f);
+                                Projectile.ai[2] = MathHelper.Clamp(Projectile.ai[2] - 0.02f, 0, 1f);
+                                Projectile.velocity = targetVector * Projectile.velocity.Length();
+                                if (Projectile.velocity.Length() < 30)
+                                    Projectile.velocity += Projectile.velocity.SafeNormalize(Vector2.Zero) * 0.1f;
 
                                 if (newTarget.Distance(Projectile.Center) < 100)
                                 {
@@ -200,8 +232,9 @@ namespace Clamity.Content.Items.Weapons.Rogue
                             }
                             else //Active vortex
                             {
-                                Projectile.ai[2] = MathHelper.Clamp(Projectile.ai[2] + 0.05f, 0, 2f);
+                                Projectile.ai[2] = MathHelper.Clamp(Projectile.ai[2] + 0.01f, 0, 1f);
                                 Projectile.velocity *= 0.85f;
+                                Projectile.velocity += newTarget.velocity / 2;
 
                                 if (newTarget.Distance(Projectile.Center) > 100)
                                 {
@@ -209,6 +242,12 @@ namespace Clamity.Content.Items.Weapons.Rogue
                                 }
                             }
                         }
+                        else if (Projectile.timeLeft < Lifetime - 60)
+                        {
+                            Projectile.ai[1] = 1f;
+                            Projectile.tileCollide = false;
+                        }
+                        Projectile.ExpandHitboxBy((int)(500 * Projectile.ai[2]));
 
                         break;
                     case 1: //Fast slices
@@ -219,17 +258,17 @@ namespace Clamity.Content.Items.Weapons.Rogue
                         {
                             if (n.CanBeChasedBy(Projectile))
                             {
-                                float potentialNewDistance = (Projectile.Center - n.Center).Length();
-                                if (potentialNewDistance < targettingDistance1 && potentialNewDistance < closestNPCDistance1)
+                                float potentialNewDistance1 = (Projectile.Center - n.Center).Length();
+                                if (potentialNewDistance1 < targettingDistance1 && potentialNewDistance1 < closestNPCDistance1)
                                 {
-                                    closestNPCDistance = potentialNewDistance;
-                                    newTarget = n;
+                                    closestNPCDistance1 = potentialNewDistance1;
+                                    newTarget1 = n;
                                 }
                             }
                         }
                         if (newTarget1 != null)
                         {
-                            Projectile.velocity = Projectile.velocity.RotateTowards(Projectile.AngleTo(newTarget1.Center), 0.1f);
+                            Projectile.velocity = Projectile.velocity.RotateTowards(Projectile.AngleTo(newTarget1.Center), 0.2f);
                         }
                         break;
                     case 2: //Dash with projectiles
@@ -243,31 +282,34 @@ namespace Clamity.Content.Items.Weapons.Rogue
                             {
                                 if (n.CanBeChasedBy(Projectile))
                                 {
-                                    float potentialNewDistance = (Projectile.Center - n.Center).Length();
-                                    if (potentialNewDistance < targettingDistance2 && potentialNewDistance < closestNPCDistance2)
+                                    float potentialNewDistance2 = (Projectile.Center - n.Center).Length();
+                                    if (potentialNewDistance2 < targettingDistance2 && potentialNewDistance2 < closestNPCDistance2)
                                     {
-                                        closestNPCDistance = potentialNewDistance;
-                                        newTarget = n;
+                                        closestNPCDistance2 = potentialNewDistance2;
+                                        newTarget2 = n;
                                     }
                                 }
                             }
                             if (newTarget2 != null)
                             {
-                                Projectile.velocity = (newTarget2.Center - Projectile.Center) / 2f;
+                                //Projectile.velocity = (newTarget2.Center - Projectile.Center) / 10f;
+                                Projectile.velocity = Projectile.SafeDirectionTo(newTarget2.Center) * 30;
                                 for (int i = 0; i < 5; i++)
                                 {
-
+                                    Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center, Projectile.velocity, ModContent.ProjectileType<SubzeroSlicerProjectileBolt>(), Projectile.damage / 5, Projectile.knockBack / 2, Projectile.owner);
                                 }
                             }
-                            Projectile.velocity *= 0.9f;
                             Projectile.Clamity().extraAI[0] = 120;
                         }
+                        Projectile.velocity *= 0.95f;
                         break;
                 }
             }
         }
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
+            return false;
+
             Projectile.ai[1] = 1f;
             Projectile.tileCollide = false;
             return false;
@@ -281,9 +323,11 @@ namespace Clamity.Content.Items.Weapons.Rogue
             if (Projectile.ai[0] == 0)
             {
                 Texture2D texture = ModContent.Request<Texture2D>("Clamity/Assets/Textures/SlicerVortex").Value;
-
-                Main.spriteBatch.Draw(texture, Projectile.Center - Main.screenPosition, null, Color.LightSkyBlue, Main.GlobalTimeWrappedHourly, texture.Size() / 2, Projectile.ai[2], SpriteEffects.None, 0);
-                Main.spriteBatch.Draw(texture, Projectile.Center - Main.screenPosition, null, Color.LightSkyBlue, -Main.GlobalTimeWrappedHourly / 3 * 2, texture.Size() / 2, Projectile.ai[2], SpriteEffects.FlipHorizontally, 0);
+                Utilities.UseBlendState(Main.spriteBatch, BlendState.Additive);
+                //Utilities.PrepareForShaders(Main.spriteBatch);
+                Main.spriteBatch.Draw(texture, Projectile.Center - Main.screenPosition, null, Color.LightSkyBlue, Main.GlobalTimeWrappedHourly * 10, texture.Size() / 2, Projectile.ai[2], SpriteEffects.None, 0);
+                Main.spriteBatch.Draw(texture, Projectile.Center - Main.screenPosition, null, Color.LightSkyBlue, -Main.GlobalTimeWrappedHourly * 7, texture.Size() / 2, Projectile.ai[2], SpriteEffects.FlipHorizontally, 0);
+                Utilities.UseBlendState(Main.spriteBatch, BlendState.AlphaBlend);
             }
 
             CalamityUtils.DrawAfterimagesCentered(Projectile, ProjectileID.Sets.TrailingMode[Type], lightColor);

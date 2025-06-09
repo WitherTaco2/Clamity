@@ -42,7 +42,7 @@ namespace Clamity.Content.Items.Weapons.Melee.Shortswords
             CreateRecipe()
                 //.AddIngredient<Tomutus>()
                 .AddIngredient<HellfireFlamberge>()
-                .AddIngredient<EnchantedMetal>(8)
+                .AddIngredient<EndobsidianBar>(8)
                 .AddTile<CosmicAnvil>()
                 .Register();
         }

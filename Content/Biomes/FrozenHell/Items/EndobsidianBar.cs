@@ -5,7 +5,8 @@ using Terraria.ModLoader;
 
 namespace Clamity.Content.Biomes.FrozenHell.Items
 {
-    public class EnchantedMetal : ModItem, ILocalizedModType, IModType
+    [LegacyName("EnchantedMetal")]
+    public class EndobsidianBar : ModItem, ILocalizedModType, IModType
     {
         public new string LocalizationCategory => "Items.Materials";
 

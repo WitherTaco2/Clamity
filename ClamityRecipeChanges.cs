@@ -136,7 +136,7 @@ namespace Clamity
                 if (recipe.HasResult<ShadowspecBar>() && ClamityConfig.Instance.UsesEnchantedMetalInShadowspecBarRecipe)
                 {
                     //item3.stack = 10;
-                    recipe.requiredItem.Insert(1, new Item(ModContent.ItemType<EnchantedMetal>()));
+                    recipe.requiredItem.Insert(1, new Item(ModContent.ItemType<EndobsidianBar>()));
                 }
             }
         }
