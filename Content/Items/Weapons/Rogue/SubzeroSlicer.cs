@@ -5,6 +5,7 @@ using CalamityMod.Projectiles.Summon;
 using CalamityMod.Rarities;
 using CalamityMod.Tiles.Furniture.CraftingStations;
 using Clamity.Content.Biomes.FrozenHell.Items;
+using Clamity.Content.Items.Weapons.Melee;
 using Luminance.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -52,7 +53,7 @@ namespace Clamity.Content.Items.Weapons.Rogue
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
             int index = Projectile.NewProjectile(source, position, velocity, type, damage, knockback, player.whoAmI, Main.rand.Next(3));
-            Main.projectile[index].ai[0] = 0;
+            //Main.projectile[index].ai[0] = 1;
             if (player.Calamity().StealthStrikeAvailable())
             {
                 Main.projectile[index].Calamity().stealthStrike = true;
@@ -86,6 +87,8 @@ namespace Clamity.Content.Items.Weapons.Rogue
         public override void SetDefaults()
         {
             Projectile.width = Projectile.height = 90;
+            Projectile.aiStyle = -1;
+            AIType = -1;
             Projectile.friendly = true;
             //Projectile.tileCollide = true;
             Projectile.tileCollide = false;
@@ -143,6 +146,7 @@ namespace Clamity.Content.Items.Weapons.Rogue
                 Projectile.Center = Owner.MountedCenter + Projectile.velocity * 12f;
                 Projectile.velocity = Projectile.velocity.SafeNormalize(Vector2.Zero) * 20f;
                 //Projectile.tileCollide = true;
+                Owner.heldProj = -1;
 
                 if (Projectile.Calamity().stealthStrike)
                 {
@@ -164,6 +168,16 @@ namespace Clamity.Content.Items.Weapons.Rogue
 
             Projectile.rotation += (MathHelper.PiOver4 / 4f + MathHelper.PiOver4 / 2f * Math.Clamp(ThrowProgress * 2f, 0, 1)) * Math.Sign(Projectile.velocity.X);
 
+            //I don't know why weapon losts their damage if player changes item from this weapon to other item
+            //He instantly decreases up to -2.1 mil
+            //Updated 1: I find a bug and he is bug from Fargo's Souls Mod and he affects and on Fishbone Boomerang
+            /*if (Projectile.damage < 1)
+            {
+                Projectile.ai[1] = 1f;
+                Projectile.tileCollide = false;
+                //Projectile.Kill();
+            }*/
+
             //Movement AI
             if (Projectile.ai[1] == 1f) //Returning
             {
@@ -172,8 +186,8 @@ namespace Clamity.Content.Items.Weapons.Rogue
                 Projectile.velocity = Projectile.velocity.Length() * (Owner.MountedCenter - Projectile.Center).SafeNormalize(Vector2.One);
                 if (Projectile.velocity.Length() < 20)
                     Projectile.velocity *= 1.05f;
-                if (Projectile.velocity.Length() < 1f)
-                    Projectile.velocity = Projectile.Center.SafeDirectionTo(Owner.MountedCenter);
+                if (Projectile.velocity.Length() < 2f)
+                    Projectile.velocity = Projectile.Center.SafeDirectionTo(Owner.MountedCenter) * 2;
                 Projectile.timeLeft = 10;
 
                 if (Projectile.ai[0] == 0)
@@ -269,10 +283,26 @@ namespace Clamity.Content.Items.Weapons.Rogue
                         if (newTarget1 != null)
                         {
                             Projectile.velocity = Projectile.velocity.RotateTowards(Projectile.AngleTo(newTarget1.Center), 0.2f);
+                            if (Projectile.Distance(newTarget1.Center) > 500)
+                            {
+                                if (Projectile.velocity.Length() < 30)
+                                    Projectile.velocity += Projectile.velocity.SafeNormalize(Vector2.Zero) * 0.1f;
+                            }
+                            else
+                            {
+                                if (Projectile.velocity.Length() > 20.1f)
+                                    Projectile.velocity -= Projectile.velocity.SafeNormalize(Vector2.Zero) * 0.1f;
+
+                            }
+                        }
+                        else if (Projectile.timeLeft < Lifetime - 60)
+                        {
+                            Projectile.ai[1] = 1f;
+                            Projectile.tileCollide = false;
                         }
                         break;
                     case 2: //Dash with projectiles
-                        if (--Projectile.Clamity().extraAI[0] < 0)
+                        if (++Projectile.Clamity().extraAI[0] > 60)
                         {
 
                             NPC newTarget2 = null;
@@ -296,27 +326,35 @@ namespace Clamity.Content.Items.Weapons.Rogue
                                 Projectile.velocity = Projectile.SafeDirectionTo(newTarget2.Center) * 30;
                                 for (int i = 0; i < 5; i++)
                                 {
-                                    Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center, Projectile.velocity, ModContent.ProjectileType<SubzeroSlicerProjectileBolt>(), Projectile.damage / 5, Projectile.knockBack / 2, Projectile.owner);
+                                    int index1 = Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center, Projectile.velocity + Main.rand.NextVector2Circular(10, 10), ModContent.ProjectileType<SubzeroSlicerProjectileBolt>(), Projectile.damage / 10, Projectile.knockBack / 2, Projectile.owner);
+                                    //Main.projectile[index1].penetrate = 2;
                                 }
                             }
-                            Projectile.Clamity().extraAI[0] = 120;
+                            else if (Projectile.timeLeft < Lifetime - 60)
+                            {
+                                Projectile.ai[1] = 1f;
+                                Projectile.tileCollide = false;
+                            }
+                            Projectile.Clamity().extraAI[0] = 0;
                         }
                         Projectile.velocity *= 0.95f;
                         break;
                 }
             }
+            //Main.NewText($"{Projectile.timeLeft} {CanDamage() is null}");
         }
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
-            return false;
-
             Projectile.ai[1] = 1f;
             Projectile.tileCollide = false;
             return false;
         }
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-
+            if (Projectile.ai[0] == 1)
+            {
+                Projectile.NewProjectile(Projectile.GetSource_OnHit(target), Projectile.Center, Projectile.velocity.SafeNormalize(Vector2.Zero) / 100, ModContent.ProjectileType<SubzeroSlicerProjectileSlash>(), Projectile.damage / 2, Projectile.knockBack, Projectile.owner, Projectile.whoAmI);
+            }
         }
         public override bool PreDraw(ref Color lightColor)
         {
@@ -375,6 +413,21 @@ namespace Clamity.Content.Items.Weapons.Rogue
                 Main.EntitySpriteDraw(lightTexture, drawPosition, null, innerColor, 0f, lightTexture.Size() * 0.5f, innerScale * 0.6f, SpriteEffects.None, 0);
             }
             return false;
+        }
+    }
+    public class SubzeroSlicerProjectileSlash : BaseSlash
+    {
+        public override void SetDefaults()
+        {
+            base.SetDefaults();
+            Projectile.DamageType = ModContent.GetInstance<RogueDamageClass>();
+        }
+        public override float Scale => 1.5f;
+        public override Color FirstColor => Color.LightBlue;
+        public override Color SecondColor => Color.Cyan;
+        public override bool? CanHitNPC(NPC target)
+        {
+            return target.whoAmI != Projectile.ai[0];
         }
     }
 }

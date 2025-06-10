@@ -52,5 +52,12 @@ StarfishFromTheDepth: {
 
 SubzeroSlicer: {
 	// DisplayName: Subzero Slicer
-	// Tooltip: ""
+	/* Tooltip:
+		'''
+		Throwns a fast blades with one of 3 different variants
+		First creates damaging vortex at target position
+		Second makes fast slashes and homes to target
+		Third creates homing wisp projectiles on dashes
+		Stealth strike thowns all types at same time
+		''' */
 }

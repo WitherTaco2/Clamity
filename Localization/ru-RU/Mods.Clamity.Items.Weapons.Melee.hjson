@@ -51,5 +51,9 @@ Everest: {
 
 GreatestPeak: {
 	// DisplayName: Greatest Peak
-	// Tooltip: ""
+	/* Tooltip:
+		'''
+		Placeholder
+		'Very Peak'
+		''' */
 }

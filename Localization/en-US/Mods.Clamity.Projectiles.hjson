@@ -9,6 +9,7 @@ Melee: {
 	EverestProjectile.DisplayName: Everest
 	ExoNewBeam.DisplayName: Exo Beam
 	ExoNewExplosion.DisplayName: Exo Explosion
+	SubzeroSlicerProjectileSlash.DisplayName: Subzero Slicer Projectile Slash
 }
 
 Ranged: {
