@@ -23,3 +23,8 @@ MoonstoneKnives: {
 	DisplayName: Кинжалы из лунного камня
 	Tooltip: Бросает несколько ножей, которые восстанавливают ману пользователя
 }
+
+EtherealKnives: {
+	// DisplayName: Ethereal Knives
+	// Tooltip: Throws a stream of knives that restore the users mana
+}

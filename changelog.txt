@@ -1,29 +1,21 @@
-Update 1.0.3.7 - "Mod feel dead" Patch
+Update 1.0.3.9 - 
 Sorry it is currently patch, not content update. I dont know will I be able to complete the update
 
 New Content:
-Added Wither Bone Bow (WitherTaco's Developer Shadowspec weapon)
-Added The Subcommunity, Skull of Blood God
-Added Sentry-related accessories - Cyan Pearl, Blighted Spyglass
-Added Starfish from The Depth. Direct upgrade of Fishbone Boomerang
+Added Ethereal Knives. Mana knives that restores mana. Direct upgrade of Moonstone Knives
 
 Reworks:
-Returned and reworked The Omega (old name - Omega Ray). Now works like Omicron weapon update with now 4 wingsman that two shots a barrage and other two shoots a bombs
+None
 
 Removes:
-Removed Astral Star Cannon, Charged Dart Blaster, Impaler, Lead Wizard (he moved and slightly updated to future addon - Calamity Returned and Reworked)
+None
 
 Balance Changes:
-Heavy nerfed a Plague Station mount speed
-Nerfed Frozen Armor defence (200 -> 160 defence at full set. Aka decreased defence by 20%)
-Nerfed Clamitas Armor stats bonuses
-* Helmet: damage (10% -> 6%), crit chance (9% -> 5%)
-* Chestplate: damage (15% -> 12%), crit chance (4% -> 7%)
-* Leggigns: damage (15% -> 13%), crit chance (9% -> 5%)
-* Set Bonus: Mollusks damage (200 -> 130)
-
-Fixes:
-I forgot what thing i fixed. It i made around months ago
+None
 
 Other Changes:
-Clamitas and Pyrogen now uses Calamity Styled drop chances for weapons
+Moonstone Knives no longer uses 8 Lens in recipe
+
+Bug Fixes:
+Fixed Moonstone Knives don't actually restores mana
+

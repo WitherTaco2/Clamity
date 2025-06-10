@@ -9,6 +9,7 @@ Melee: {
 	EverestProjectile.DisplayName: Everest
 	ExoNewBeam.DisplayName: Exo Beam
 	ExoNewExplosion.DisplayName: Exo Explosion
+	EtherealKnivesProjectile.DisplayName: Ethereal Knives Projectile
 }
 
 Ranged: {
