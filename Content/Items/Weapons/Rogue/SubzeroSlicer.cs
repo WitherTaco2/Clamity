@@ -23,7 +23,7 @@ namespace Clamity.Content.Items.Weapons.Rogue
     [LegacyName("FrozenStarShuriken")]
     public class SubzeroSlicer : RogueWeapon
     {
-        public override float StealthDamageMultiplier => 0.5f;
+        public override float StealthDamageMultiplier => 0.25f;
         public override void SetDefaults()
         {
             Item.width = 1;
@@ -38,7 +38,7 @@ namespace Clamity.Content.Items.Weapons.Rogue
             Item.UseSound = SoundID.Item1;
             Item.autoReuse = true;
 
-            Item.damage = 1000;
+            Item.damage = 700;
             Item.DamageType = ModContent.GetInstance<RogueDamageClass>();
             Item.knockBack = 4f;
 
@@ -53,7 +53,7 @@ namespace Clamity.Content.Items.Weapons.Rogue
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
             int index = Projectile.NewProjectile(source, position, velocity, type, damage, knockback, player.whoAmI, Main.rand.Next(3));
-            //Main.projectile[index].ai[0] = 1;
+            //Main.projectile[index].ai[0] = 2;
             if (player.Calamity().StealthStrikeAvailable())
             {
                 Main.projectile[index].Calamity().stealthStrike = true;
@@ -78,7 +78,7 @@ namespace Clamity.Content.Items.Weapons.Rogue
         public new string LocalizationCategory => "Projectiles.Rogue";
 
         public static int ChargeupTime => 10;
-        public static int Lifetime => 1500;
+        public static int Lifetime => 500;
         public float OverallProgress => 1 - Projectile.timeLeft / (float)Lifetime;
         public float ThrowProgress => 1 - Projectile.timeLeft / (float)(Lifetime);
         public float ChargeProgress => 1 - (Projectile.timeLeft - Lifetime) / (float)(ChargeupTime);
@@ -209,6 +209,11 @@ namespace Clamity.Content.Items.Weapons.Rogue
             }
             else //Homing to target
             {
+                if (Projectile.timeLeft < 11)
+                {
+                    Projectile.ai[1] = 1;
+                    Projectile.tileCollide = false;
+                }
                 switch ((int)Projectile.ai[0])
                 {
                     case 0: //Vortex
@@ -234,7 +239,7 @@ namespace Clamity.Content.Items.Weapons.Rogue
                             if (Projectile.Clamity().extraAI[0] == 0) //Homing to target
                             {
                                 //Projectile.Clamity().extraAI[1] = MathHelper.Clamp(Projectile.Clamity().extraAI[1] + 0.1f, 0, 10f);
-                                Projectile.ai[2] = MathHelper.Clamp(Projectile.ai[2] - 0.02f, 0, 1f);
+                                Projectile.ai[2] = MathHelper.Clamp(Projectile.ai[2] - 0.02f, 0, Projectile.Calamity().stealthStrike ? 1f : 0.5f);
                                 Projectile.velocity = targetVector * Projectile.velocity.Length();
                                 if (Projectile.velocity.Length() < 30)
                                     Projectile.velocity += Projectile.velocity.SafeNormalize(Vector2.Zero) * 0.1f;
@@ -246,7 +251,7 @@ namespace Clamity.Content.Items.Weapons.Rogue
                             }
                             else //Active vortex
                             {
-                                Projectile.ai[2] = MathHelper.Clamp(Projectile.ai[2] + 0.01f, 0, 1f);
+                                Projectile.ai[2] = MathHelper.Clamp(Projectile.ai[2] + 0.01f, 0, Projectile.Calamity().stealthStrike ? 1f : 0.5f);
                                 Projectile.velocity *= 0.85f;
                                 Projectile.velocity += newTarget.velocity / 2;
 
@@ -353,7 +358,7 @@ namespace Clamity.Content.Items.Weapons.Rogue
         {
             if (Projectile.ai[0] == 1)
             {
-                Projectile.NewProjectile(Projectile.GetSource_OnHit(target), Projectile.Center, Projectile.velocity.SafeNormalize(Vector2.Zero) / 100, ModContent.ProjectileType<SubzeroSlicerProjectileSlash>(), Projectile.damage / 2, Projectile.knockBack, Projectile.owner, Projectile.whoAmI);
+                Projectile.NewProjectile(Projectile.GetSource_OnHit(target), Projectile.Center, Projectile.velocity.SafeNormalize(Vector2.Zero) / 100, ModContent.ProjectileType<SubzeroSlicerProjectileSlash>(), Projectile.damage / 2, Projectile.knockBack, Projectile.owner, target.whoAmI);
             }
         }
         public override bool PreDraw(ref Color lightColor)
