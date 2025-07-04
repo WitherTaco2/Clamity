@@ -1,8 +1,8 @@
-Update 1.0.3.9 - 
-Sorry it is currently patch, not content update. I dont know will I be able to complete the update
+Update 1.0.3.10 - TML Patch
+
 
 New Content:
-Added Ethereal Knives. Mana knives that restores mana. Direct upgrade of Moonstone Knives
+None
 
 Reworks:
 None
@@ -14,8 +14,7 @@ Balance Changes:
 None
 
 Other Changes:
-Moonstone Knives no longer uses 8 Lens in recipe
+None
 
 Bug Fixes:
-Fixed Moonstone Knives don't actually restores mana
-
+Adapted to latest TML version
