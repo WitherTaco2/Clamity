@@ -23,3 +23,8 @@ MoonstoneKnives: {
 	DisplayName: Moonstone Knives
 	Tooltip: Throws several knives that restore the users mana
 }
+
+EtherealKnives: {
+	DisplayName: Ethereal Knives
+	Tooltip: Throws a stream of knives that restore the users mana
+}

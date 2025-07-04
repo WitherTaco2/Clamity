@@ -9,6 +9,7 @@ Melee: {
 	EverestProjectile.DisplayName: Эверест
 	// ExoNewBeam.DisplayName: Exo Beam
 	// ExoNewExplosion.DisplayName: Exo Explosion
+	// EtherealKnivesProjectile.DisplayName: Ethereal Knives Projectile
 }
 
 Ranged: {
@@ -49,6 +50,7 @@ Rogue: {
 	ExoBallProjectile.DisplayName: Экзо шар
 	AuricKunaiProjectile.DisplayName: Аурический кунай
 	AuricKunaiLightning.DisplayName: Аурическая молния
+	// StarfishFromTheDepthProj.DisplayName: Starfish from the Depth
 }
 
 Classless: {

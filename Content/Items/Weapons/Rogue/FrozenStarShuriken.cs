@@ -45,7 +45,7 @@ namespace Clamity.Content.Items.Weapons.Rogue
         {
             CreateRecipe()
                 .AddIngredient<BlazingStar>()
-                .AddIngredient<FishboneBoomerang>()
+                .AddIngredient<StarfishFromTheDepth>()
                 .AddIngredient(ItemID.Trimarang)
                 .AddIngredient<EnchantedMetal>(8)
                 .AddTile<CosmicAnvil>()
