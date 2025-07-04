@@ -23,6 +23,7 @@ namespace Clamity
         public static ClamityPlayer Clamity(this Player player) => player.GetModPlayer<ClamityPlayer>();
         public static ClamityGlobalProjectile Clamity(this Projectile proj) => proj.GetGlobalProjectile<ClamityGlobalProjectile>();
         public static ClamityGlobalNPC Clamity(this NPC npc) => npc.GetGlobalNPC<ClamityGlobalNPC>();
+        public static ClamityGlobalItem Clamity(this Item item) => item.GetGlobalItem<ClamityGlobalItem>();
         public static LocalizedText GetText(string key) => Language.GetOrRegister("Mods.Clamity." + key, (Func<string>)null);
         public static bool ContainType(int type, params int[] array)
         {
