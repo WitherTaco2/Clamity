@@ -1,13 +1,16 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Luminance.Common.Easings;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 
 namespace Clamity.Content.Particles
 {
-    public class ChromaticBurstParticle : BaseClamityParticle
+    public class ChromaticBurstParticleEasingAlt : BaseClamityParticle
     {
         public float StartingScale = 1f;
         public float FinalScale = 1f;
+        public EasingType ScaleEasingType = EasingType.In;
+        public EasingCurves.Curve ScaleEasingCurve = EasingCurves.Linear;
 
         public override bool SetLifetime => true;
         public override bool UseCustomDraw => true;
@@ -15,7 +18,7 @@ namespace Clamity.Content.Particles
 
         public override string Texture => $"{BaseTexturePath}/ChromaticBurst";
 
-        public ChromaticBurstParticle(Vector2 position, Vector2 velocity, Color color, int lifetime, float startingScale, float finalScale)
+        public ChromaticBurstParticleEasingAlt(Vector2 position, Vector2 velocity, Color color, int lifetime, float startingScale, float finalScale, EasingCurves.Curve scaleEasingCurve, EasingType scaleEasingType)
         {
             Position = position;
             Velocity = velocity;
@@ -24,12 +27,15 @@ namespace Clamity.Content.Particles
             FinalScale = finalScale;
             Lifetime = lifetime;
             Time = lifetime;
+            ScaleEasingCurve = scaleEasingCurve;
+            ScaleEasingType = scaleEasingType;
         }
 
         public override void Update()
         {
             Opacity = Utils.GetLerpValue(0f, 4f, Lifetime - Time, true);
-            Scale = MathHelper.Lerp(StartingScale, FinalScale, LifetimeCompletion);
+            Color = Color.Lerp(StartingColor, FinalColor, LifetimeCompletion);
+            Scale = ScaleEasingCurve.Evaluate(ScaleEasingType, StartingScale, FinalScale, LifetimeCompletion);
             //Scale += 0.8f;
         }
 
