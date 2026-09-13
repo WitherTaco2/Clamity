@@ -145,7 +145,7 @@ namespace Clamity.Content.Bosses.ForbiddenLantern.NPCs
                     }
                     break;
                 case Attacks.WaterRay:
-                    if (NPC.ai[1] == LightChargeUp)
+                    if (NPC.ai[1] == LightChargeUp - 10)
                     {
                         for (int i = 0; i < 8; i++)
                         {
@@ -154,7 +154,7 @@ namespace Clamity.Content.Bosses.ForbiddenLantern.NPCs
 
                         }
                     }
-                    if (NPC.ai[1] >= 120)
+                    if (NPC.ai[1] >= LightChargeUp + 120)
                     {
                         NPC.ai[0] = 0;
                         NPC.ai[1] = 0;
@@ -207,7 +207,7 @@ namespace Clamity.Content.Bosses.ForbiddenLantern.NPCs
         {
             Texture2D l = ModContent.Request<Texture2D>("CalamityMod/Projectiles/StarProj").Value;
             float lightScale = 0;
-            if (NPC.ai[0] == (int)Attacks.WaterRay) lightScale = MathF.Sin(MathHelper.Clamp(NPC.ai[1] / LightChargeUp, 0, 1));
+            if (NPC.ai[0] == (int)Attacks.WaterRay) lightScale = MathF.Sin(MathHelper.Clamp(NPC.ai[1] / (LightChargeUp+120), 0, 1)*MathHelper.Pi);
 
             spriteBatch.Draw(l, NPC.Center - Main.screenPosition, null, Color.White, 0, l.Size()/2, new Vector2(1f, 4f) * NPC.scale * lightScale, SpriteEffects.None, 1);
             spriteBatch.Draw(l, NPC.Center - Main.screenPosition, null, Color.White, 0 + MathHelper.PiOver2, l.Size()/2, new Vector2(1f, 4f) * NPC.scale * lightScale, SpriteEffects.None, 1);

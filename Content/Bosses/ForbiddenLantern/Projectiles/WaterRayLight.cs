@@ -1,4 +1,5 @@
-﻿using Luminance.Common.Utilities;
+﻿using CalamityMod;
+using Luminance.Common.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -20,7 +21,7 @@ namespace Clamity.Content.Bosses.ForbiddenLantern.Projectiles
             Projectile.tileCollide = false;
             Projectile.ignoreWater = true;
             Projectile.penetrate = -1;
-            Projectile.timeLeft = 90;
+            Projectile.timeLeft = 120;
 
         }
         //public int MaxTimeLeft = 600;
@@ -36,7 +37,8 @@ namespace Clamity.Content.Bosses.ForbiddenLantern.Projectiles
         {
             NPC lantern = Main.npc[(int)Projectile.ai[0]];
 
-            Projectile.scale = 1f - MathHelper.Clamp(Projectile.timeLeft / (float)RotatingTime, 0, 1) + Main.rand.NextFloat(0, 0.1f);
+            //Projectile.scale = 1f - MathHelper.Clamp(Projectile.timeLeft / (float)RotatingTime, 0, 1) + Main.rand.NextFloat(0, 0.1f);
+            Projectile.scale = 1f - CalamityUtils.CircOutEasing(MathHelper.Clamp(Projectile.timeLeft / (float)RotatingTime / 2f, 0, 1), 1);
             float num1 = Projectile.timeLeft > (90 - RotatingTime) ? MathF.Sin(Projectile.scale / 2 * MathHelper.Pi) : 1f;
             Projectile.Center = lantern.Center + Vector2.UnitX.RotatedBy(MathHelper.TwoPi / TotalProjectileCount * Projectile.ai[1] + Main.GlobalTimeWrappedHourly) * 150f * Projectile.scale;
 
